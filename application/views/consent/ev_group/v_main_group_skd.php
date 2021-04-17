@@ -48,19 +48,18 @@ function add_group(){
 }
 
 
-function Delete(gru_id){
+function Delete_skd(gru_id){
 	
 	console.log(gru_id)
 	
 	 $.ajax({
         type: "POST",
-        url: "<?php echo base_url(); ?>/ev_group/Evs_group/add_group_skd",
+        url: "<?php echo base_url(); ?>/ev_group/Evs_group/delete_group_skd",
         data: {
-			"group":group,
 			"Emp_id":Emp_id			
         },
         dataType: "JSON",
-        success: function(status) {
+        success: function(data, status) {
 			console.log(status)
         }
         // success function
@@ -80,7 +79,7 @@ function Delete(gru_id){
 	<div class="col-md-12">
 		<div class="panel panel-indigo">
 			<div class="panel-heading">
-				<h1 style="font-family:'Times New Roman'"><font color = "#ffffff" size = "7px"><b>Manage Group SKD</b></font>
+				<h1 style="font-family:'Times New Roman'"><font color = "#ffffff" size = "7px"><b>Manage Group SKDD</b></font>
 					<div class="panel pull-right" id="addtable_filter">
 							<select name="example_length" class="form-control" aria-controls="example" onChange="test(value)">
 								<option value="0">Select Company</option>
@@ -208,7 +207,7 @@ function Delete(gru_id){
 										<!-- End Modal Edit_add-->	
 										
 										<!-- Modal Delete -->
-										<div class="modal fade" id="Delete<?echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal fade" id="Delete<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header" style="background-color:gray;">
@@ -233,7 +232,7 @@ function Delete(gru_id){
 														<div class="btn-group pull-left">	
 															<button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
 														</div>
-															<button type="button" class="btn btn-success" onClick="Delete(<?echo $row->gru_id?>)">YES</button>
+															<button type="button" class="btn btn-success" onClick="Delete_skd(<?php echo $row->gru_id; ?>)">YES</button>
 													</div>
 													<!-- Modal footer -->
 												</div>
@@ -446,7 +445,7 @@ function Delete(gru_id){
 					<div class="btn-group pull-left">	
 						<button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
 					</div>
-						<button type="button" class="btn btn-success" onClick="Delete()">YES</button>
+						<button type="button" class="btn btn-success" onClick="Delete(<?php echo $row->gru_id; ?>)">YES</button>
 				</div>
 				<!-- Modal footer -->
 			</div>
