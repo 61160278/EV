@@ -118,7 +118,11 @@ function Delete_data(gru_id){
 										<tr class="odd gradeX" align = 'center'>
 											<td><?php echo $num;?> </td>
 											<td><?php echo $row->gru_name; ?></td>
-											<td><?php echo $row->gru_head_dept; ?></td>
+											<td>
+												if(<?php echo $row->gru_head_dept; ?> == NULL){
+													<?php echo $row->gru_head_dept; ?>
+												}
+											</td>
 											<td>
 												<div class="demo-btns">
 													<a data-toggle="modal" class="btn btn btn-danger" href="#Delete<?php echo $row->gru_id?>">
