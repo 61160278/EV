@@ -42,7 +42,6 @@ function add_group(){
 
 }
 
-
 function Delete_data(gru_id){
 	console.log(gru_id);
 	$.ajax({
