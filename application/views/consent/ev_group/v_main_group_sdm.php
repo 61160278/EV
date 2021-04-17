@@ -85,7 +85,7 @@ function Delete_data(gru_id){
 	<div class="col-md-12">
 		<div class="panel panel-indigo">
 			<div class="panel-heading">
-				<h1 style="font-family:'Times New Roman'"><font color = "#ffffff" size = "7px"><b>Manage Group SDMM</b></font>
+				<h1 style="font-family:'Times New Roman'"><font color = "#ffffff" size = "7px"><b>Manage Group SDM</b></font>
 					<div class="panel pull-right" id="addtable_filter">
 							<select name="example_length" class="form-control" aria-controls="example" onChange="test(value)">
 								<option value="0">Select Company</option>
