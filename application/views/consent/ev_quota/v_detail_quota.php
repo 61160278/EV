@@ -62,7 +62,7 @@ function check_quota_plan(){
 		
 		document.getElementById("show_quotaPlan"+i).innerHTML = value_quotaPlan;
 	}//for
-	
+}
 	function drawGraph(dataArr) {
             var canvas = document.getElementById("testCanvas");
             var context = canvas.getContext("2d");
@@ -140,7 +140,7 @@ function check_quota_plan(){
             
         }
 
- }
+ 
 
 // const canvas = document.getElementById("myCanvas");
 // const ctx = canvas.getContext("2d");
