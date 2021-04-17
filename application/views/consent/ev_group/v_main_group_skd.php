@@ -119,9 +119,13 @@ function Delete_data(gru_id){
 											<td><?php echo $num;?> </td>
 											<td><?php echo $row->gru_name; ?></td>
 											<td>
-												if(<?php echo $row->gru_head_dept; ?> == NULL){
-													<?php echo $row->gru_head_dept; ?>
+												<?php if($row->gru_head_dept == NULL){ 
+													echo "ไม่พบข้อมูล";
+												} else {
+													echo $row->gru_head_dept ;
 												}
+												
+												?> 
 											</td>
 											<td>
 												<div class="demo-btns">
