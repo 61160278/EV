@@ -44,7 +44,7 @@ tbody:hover {
 
 <script>
 $(document).ready(function(){
-	function check_quota_plan();
+	check_quota_plan();
 });
 function check_quota_plan(){
 	
@@ -62,7 +62,7 @@ function check_quota_plan(){
 	}//for
 	
 
-// }
+ }
 
 // const canvas = document.getElementById("myCanvas");
 // const ctx = canvas.getContext("2d");
@@ -87,7 +87,7 @@ function check_quota_plan(){
 <div class="col-md-12">
 	<div class="panel panel-midnightblue" data-widget='{"draggable": "false"}'>
 		<div class="panel-heading">
-			<h2><font size = "5px">Detail Quota !!!!!</font></h2>
+			<h2><font size = "5px">Detail Quota </font></h2>
 			<div class="panel-ctrls" data-actions-container="" data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
 			</div>
 		</div>
