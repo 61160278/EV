@@ -48,25 +48,30 @@ function add_group(){
 }
 
 
-function Delete(gru_id){
+function Delete_data(gru_id){
 	
-	console.log(gru_id)
+	console.log(gru_id);
+
 	
-	 $.ajax({
-        type: "POST",
-        url: "<?php echo base_url(); ?>/ev_group/Evs_group/add_group_sdm",
+
+	$.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_group/Evs_group/delete_group_sdm",
         data: {
-			"group":group,
-			"Emp_id":Emp_id			
+		"gru_id":gru_id
         },
         dataType: "JSON",
-        success: function(status) {
-			console.log(status)
+        success: function(data,status) {
+            console.log(status)
+            
         }
-        // success function
+     
+        });
 
-    });
-	
+
+
+
+
 }
 
 
@@ -80,7 +85,7 @@ function Delete(gru_id){
 	<div class="col-md-12">
 		<div class="panel panel-indigo">
 			<div class="panel-heading">
-				<h1 style="font-family:'Times New Roman'"><font color = "#ffffff" size = "7px"><b>Manage Group SDM</b></font>
+				<h1 style="font-family:'Times New Roman'"><font color = "#ffffff" size = "7px"><b>Manage Group SDMM</b></font>
 					<div class="panel pull-right" id="addtable_filter">
 							<select name="example_length" class="form-control" aria-controls="example" onChange="test(value)">
 								<option value="0">Select Company</option>
@@ -137,10 +142,10 @@ function Delete(gru_id){
 											<td><?php //echo $row->Empname_eng . "  " . $row->Empsurname_eng; ?></td>
 											<td>
 												<div class="demo-btns">
-													<a data-toggle="modal" class="btn btn btn-danger" href="#Delete<?echo $row->gru_id?>">
+													<a data-toggle="modal" class="btn btn btn-danger" href="#Delete<?php echo $row->gru_id?>">
 														<i class="ti ti-trash"></i>
 													</a>
-													<a data-toggle="modal" class="btn btn-warning" href="#Edit<?echo $row->gru_id?>">
+													<a data-toggle="modal" class="btn btn-warning" href="#Edit<?php echo $row->gru_id?>">
 														<i class="ti ti-pencil-alt"></i>
 													</a>
 													<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/add_group_sdm" data-toggle="modal" class="btn btn-info" href="#">
@@ -150,7 +155,7 @@ function Delete(gru_id){
 											</td>
 										</tr>
 										<!-- Model Edit -->	
-										<div class="modal fade" id="Edit<?echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal fade" id="Edit<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header" style="background-color:gray;">
@@ -208,7 +213,7 @@ function Delete(gru_id){
 										<!-- End Modal Edit_add-->	
 										
 										<!-- Modal Delete -->
-										<div class="modal fade" id="Delete<?echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal fade" id="Delete<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header" style="background-color:gray;">
@@ -233,7 +238,7 @@ function Delete(gru_id){
 														<div class="btn-group pull-left">	
 															<button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
 														</div>
-															<button type="button" class="btn btn-success" onClick="Delete(<?echo $row->gru_id?>)">YES</button>
+															<button type="button" class="btn btn-success" onClick="Delete_data(<?php echo $row->gru_id; ?>)">YES</button>
 													</div>
 													<!-- Modal footer -->
 												</div>
@@ -363,98 +368,9 @@ function Delete(gru_id){
 	</div>
 	<!-- End Modal Add-->
 
-<!-- Model Edit -->	
-	<div class="modal fade" id="Edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header" style="background-color:gray;">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><font color="White"><b>&times;</b></font></button>
-						<h2 class="modal-title"><b><font color="white">Edit Group Data & Head Dept.</font></b></h2>		
-				</div>
-				<!-- modal header -->
-				
-				<div class="modal-body">
-					<form class="form-horizontal">
-						<div class="form-group">
-							<label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
-								<div class="col-sm-6">
-									<input type="text" class="form-control" id="focusedinput" placeholder="HR AGM">
-								</div>						
-						</div>
-						<!-- Group Name -->
-						
-						<h2 style="font-family:'Courier New'"><b><font size = "4px" color="Black">Select Head Dept.</font></b></h2>
-						
-						<div class="form-group">
-							<label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
-								<div class="col-sm-6">
-									<input type="text" class="form-control" id="focusedinput" placeholder="JS000xxx">
-								</div>
-						</div>
-						<!--Emp. ID -->
-								
-						<div class="form-group">
-							<label for="focusedinput" class="col-sm-3 control-label">Name - Surname</label>
-								<div class="col-sm-6">
-									<input disabled type="text" class="form-control" id="focusedinput" placeholder="Name Surname">
-								</div>
-						</div>
-						<!-- Name Surname -->
-					</form>
-					<!-- form-horizontal -->
-				</div>
-				<!-- modal-body -->
-							
-				<div class="modal-footer">
-					<div class="btn-group pull-left">	
-						<button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
-					</div>
-						<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_sdm">
-							<button type="button" class="btn btn-success">SAVE</button>
-						</a>
-				</div>
-				<!-- modal-footer -->
-			</div>
-			<!-- modal-content -->
-		</div>
-		<!-- modal-dialog -->
-	</div>
-	<!-- End Modal Edit_add-->	
+
 	
-<!-- Modal Delete -->
-	<div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header" style="background-color:gray;">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><font color="White"><b>&times;</b></font></button>	
-				</div>
-				<!-- Modal header -->
-				
-				<div class="modal-body">	
-					<div class="form-horizontal">
-						<div class="form-group" align = "center">
-							<div class="col-sm-12">
-								<label for="focusedinput" class="control-label" style="font-family:'Courier New'" align = "center"><font size = "5px">Do you want to Delete Data YES or NO ?</font></label>
-							</div>
-						</div>
-					</div>
-					<!-- form-horizontal -->
-				</div>
-				<!-- Modal body -->
-				
-				<div class="modal-footer">
-					<div class="btn-group pull-left">	
-						<button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
-					</div>
-						<button type="button" class="btn btn-success" onClick="Delete()">YES</button>
-				</div>
-				<!-- Modal footer -->
-			</div>
-			<!-- modal-content -->
-		</div>
-		<!-- modal-dialog -->
-	</div>
-	<!-- End Modal Delete -->	
+
 	
 	
 	

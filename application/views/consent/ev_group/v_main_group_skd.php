@@ -80,12 +80,12 @@ function Delete(gru_id){
 	<div class="col-md-12">
 		<div class="panel panel-indigo">
 			<div class="panel-heading">
-				<h1 style="font-family:'Times New Roman'"><font color = "#ffffff" size = "7px"><b>Manage Group SDM</b></font>
+				<h1 style="font-family:'Times New Roman'"><font color = "#ffffff" size = "7px"><b>Manage Group SKD</b></font>
 					<div class="panel pull-right" id="addtable_filter">
 							<select name="example_length" class="form-control" aria-controls="example" onChange="test(value)">
 								<option value="0">Select Company</option>
-								<option value="1" selected>SDM</option>
-								<option value="2">SKD</option>
+								<option value="1" >SDM</option>
+								<option value="2" selected>SKD</option>
 							</select>
 					</div>
 					<!-- select company -->
