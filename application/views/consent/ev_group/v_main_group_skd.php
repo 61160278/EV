@@ -43,24 +43,26 @@ function add_group(){
 }
 
 
-function Delete_skd(gru_id){
-	
+function Delete_data(gru_id){
 	console.log(gru_id);
-	
-	 $.ajax({
-        type: "POST",
+	$.ajax({
+        type: "post",
         url: "<?php echo base_url(); ?>/ev_group/Evs_group/delete_group_skd",
         data: {
-			"gru_id":gru_id		
+		"gru_id":gru_id
         },
         dataType: "JSON",
-        success: function(data, status) {
-			console.log(status)
+        success: function(data,status) {
+            console.log(status)
+            
         }
-        // success function
+     
+        });
 
-    });
-	
+
+
+
+
 }
 
 
@@ -226,7 +228,7 @@ function Delete_skd(gru_id){
 														<div class="btn-group pull-left">	
 															<button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
 														</div>
-															<button type="button" class="btn btn-success" onClick="Delete_skd(<?php echo $row->gru_id; ?>)">YES</button>
+															<button type="button" class="btn btn-success" onClick="Delete_data(<?php echo $row->gru_id; ?>)">YES</button>
 													</div>
 													<!-- Modal footer -->
 												</div>
