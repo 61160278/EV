@@ -43,6 +43,9 @@ tbody:hover {
 </style>
 
 <script>
+$(document).ready(function(){
+	function check_quota_plan();
+});
 function check_quota_plan(){
 	
 	var check = "";
