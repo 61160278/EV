@@ -76,7 +76,6 @@ class Da_evs_group extends evs_model {
 	 	
 	 	$sql = "DELETE FROM evs_database.evs_group 
 		WHERE  gru_id = ? ";
-		
 	 	$this->db->query($sql, array($this->gru_id));
 	 }
 
