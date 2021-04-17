@@ -54,21 +54,9 @@ function Delete_data(gru_id){
         dataType: "JSON",
         success: function(data,status) {
             console.log(status)
-            
         }
-     
         });
-
-
-
-
-
 }
-
-
-
-
-
 </script>
 
 <!DOCTYPE html>
@@ -130,13 +118,13 @@ function Delete_data(gru_id){
 										<tr class="odd gradeX" align = 'center'>
 											<td><?php echo $num;?> </td>
 											<td><?php echo $row->gru_name; ?></td>
-											<td><?php //echo $row->Empname_eng . "  " . $row->Empsurname_eng; ?></td>
+											<td><?php echo $row->gru_head_dept; ?></td>
 											<td>
 												<div class="demo-btns">
-													<a data-toggle="modal" class="btn btn btn-danger" href="#Delete<?echo $row->gru_id?>">
+													<a data-toggle="modal" class="btn btn btn-danger" href="#Delete<?php echo $row->gru_id?>">
 														<i class="ti ti-trash"></i>
 													</a>
-													<a data-toggle="modal" class="btn btn-warning" href="#Edit<?echo $row->gru_id?>">
+													<a data-toggle="modal" class="btn btn-warning" href="#Edit<?php echo $row->gru_id?>">
 														<i class="ti ti-pencil-alt"></i>
 													</a>
 													<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/add_group_skd" data-toggle="modal" class="btn btn-info" href="#">
@@ -306,7 +294,7 @@ function Delete_data(gru_id){
 			<div class="modal-content">
 				<div class="modal-header" style="background-color:gray;">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><font color="White"><b>&times;</b></font></button>
-						<h2 class="modal-title"><b><font color="white">Add Group Data & Head Dept.</font></b></h2>		
+						<h2 class="modal-title"><b><font color="white">Add SKD Group Data & Head Dept.</font></b></h2>		
 				</div>
 				<!-- modal header -->
 				
