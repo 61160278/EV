@@ -107,6 +107,13 @@ class Evs_group extends MainController_avenxo {
 	}
 	// function delete_group_sdm
 	
+
+	/*
+	* Evs_form
+	* Form
+	* @author  Tippawan Aiemsaad
+	* @Create Date 2564-04-17
+	*/
 	function delete_group_skd()
 	{
 
