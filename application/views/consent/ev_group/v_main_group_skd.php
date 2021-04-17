@@ -18,11 +18,6 @@ if(value == "0"){window.location.href = "<?php echo base_url();?>/ev_group/Evs_g
 	else{window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";}
 }
 
-
-
-
-
-
 function add_group(){
 	
 	var group = document.getElementById("grouptext").value;
@@ -50,13 +45,13 @@ function add_group(){
 
 function Delete_skd(gru_id){
 	
-	console.log(gru_id)
+	console.log(gru_id);
 	
 	 $.ajax({
         type: "POST",
         url: "<?php echo base_url(); ?>/ev_group/Evs_group/delete_group_skd",
         data: {
-			"Emp_id":Emp_id			
+			"gru_id":gru_id		
         },
         dataType: "JSON",
         success: function(data, status) {
