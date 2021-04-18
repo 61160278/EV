@@ -48,8 +48,8 @@ tbody:hover {
 <script>
 $(document).ready(function() {
     check_quota_plan();
-    var testValues = [0.4, 2, 3.2, 2, 0.4];
-    drawGraph(testValues);
+    // var testValues = [0.4, 2, 3.2, 2, 0.4];
+    drawGraph(check_quota_plan());
 });
 
 function check_quota_plan() {
