@@ -49,9 +49,10 @@ tbody:hover {
 $(document).ready(function() {
 	
     check_quota_plan();
-
+	$)("#testCanvas").ready(function(){
      var testValues = [0.4, 2, 3.2, 2, 0.4];
     drawGraph(testValues);
+});
 });
 
 function check_quota_plan() {
@@ -318,8 +319,8 @@ function drawGraph(dataArr) {
 							
 							</svg>
 							</div> -->
-                            <canvas id="testCanvas"></canvas>
-
+                            <!-- <canvas id="testCanvas"></canvas> -->
+<div id="testCanvas"></div>
                             <!-- <canvas id="myCanvas" width="400" height="400" ></canvas>  -->
 
                         </div>
