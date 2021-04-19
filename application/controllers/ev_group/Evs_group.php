@@ -70,6 +70,7 @@ class Evs_group extends MainController_avenxo {
 		$this->meg->gru_head_dept = $Emp_id;
 		$this->meg->gru_company_id = 2;
 		$this->meg->insert();
+		$this->output('/consent/ev_group/v_add_group_skd');
 	}
 	// function add_group_skd
 	
@@ -134,6 +135,22 @@ class Evs_group extends MainController_avenxo {
 		$this->mevg->Emp_ID = $empid;
 		echo json_encode($this->mevg->get_name_emp_by_IDemp());
 	}
-	
+	// function search_by_employee_id
+
+	/*
+	* Evs_form
+	* Form
+	* @author  Tippawan Aiemsaad
+	* @Create Date 2564-04-19
+	*/
+	function save_edit_skd()
+	{
+
+		$sve_edt = $this->input->post('sve_edt');
+		$this->sve_edt->update();
+
+		echo json_encode($status);
+	}
+	// function save_edit_skd
 }
 ?>
