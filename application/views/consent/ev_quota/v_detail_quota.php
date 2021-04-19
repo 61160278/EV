@@ -67,12 +67,12 @@ function check_quota_plan() {
 } //check_quota_plan()
 
 // Start graph
-//console.log(' on funcation line graph :');
+
 linechart();
 
 function linechart() {
-    var canvas = document.getElementById("testCanvas");
-
+    //var canvas = document.getElementById("testCanvas");
+/console.log(' on funcation line graph :');
 } //linechart()
 </script>
 
