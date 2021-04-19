@@ -47,10 +47,10 @@ tbody:hover {
 
 <script>
 $(document).ready(function() {
-	
+
     check_quota_plan();
-	$)("#testCanvas").ready(function(){
-     var testValues = [0.4, 2, 3.2, 2, 0.4];
+    $)("#testCanvas").ready(function() {
+    var testValues = [0.4, 2, 3.2, 2, 0.4];
     drawGraph(testValues);
 });
 });
@@ -70,104 +70,6 @@ function check_quota_plan() {
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
     } //for
 }
-
-function drawGraph(dataArr) {
-    var canvas = document.getElementById("testCanvas");
-    var context = canvas.getContext("2d");
-
-
-    var GRAPH_HEIGHT = 350;
-    var arrayLen = dataArr.length;
-
-    var largest = 0;
-    for (var i = 0; i < arrayLen; i++) {
-        if (dataArr[i] > largest) {
-            largest = dataArr[i];
-        }
-
-    }
-    context.clearRect(0, 0, 200, 400);
-    // set font for fillText()  
-    context.font = "16px Arial";
-
-    // draw X and Y axis  
-    context.beginPath();
-    context.moveTo(475, 375);
-    context.lineTo(25, 375);
-    context.lineTo(25, 25);
-    context.stroke();
-
-    // draw reference line  แถวมบนสุด เส้นระดับ
-    context.beginPath();
-    context.strokeStyle = "#BBB";
-    context.moveTo(25, 25);
-    context.lineTo(475, 25);
-    // draw reference value for hours  
-    context.fillText(largest, 0, 25);
-    context.stroke();
-
-    // draw reference line แถวล่างสุด เส้นระดับ
-    context.beginPath();
-    context.moveTo(25, (GRAPH_HEIGHT) / 4 * 3 + 25);
-    context.lineTo(475, (GRAPH_HEIGHT) / 4 * 3 + 25);
-    // draw reference value for hours  
-    context.fillText(largest / 4, 0, (GRAPH_HEIGHT) / 4 * 3 + 25);
-    context.stroke();
-
-    // draw reference line  แถวที่ 2 เส้นระดับ
-    context.beginPath();
-    context.moveTo(25, (GRAPH_HEIGHT) / 2 + 25);
-    context.lineTo(475, (GRAPH_HEIGHT) / 2 + 25);
-    // draw reference value for hours  
-    context.fillText(largest / 2, 0, (GRAPH_HEIGHT) / 2 + 25);
-    context.stroke();
-
-    // draw reference line  แถวที่ 3 เส้นระดับ
-    context.beginPath();
-    context.moveTo(25, (GRAPH_HEIGHT) / 4 + 25);
-    context.lineTo(475, (GRAPH_HEIGHT) / 4 + 25);
-    // draw reference value for hours  
-    var granY = (largest / 2) + 0.8;
-    context.fillText(granY.toFixed(1), 0, (GRAPH_HEIGHT) / 4 + 25);
-    context.stroke();
-
-    context.beginPath();
-    context.lineJoin = "round";
-    context.strokeStyle = "black";
-
-    context.moveTo(25, (GRAPH_HEIGHT - dataArr[0] / largest * GRAPH_HEIGHT) + 25);
-    // draw reference value for day of the week  
-    var grad = ["S", "A", "B", "C", "D"];
-    context.fillText("S", 15, 400);
-    for (var j = 1; j < grad.length; j++) {
-        context.lineTo(475 / arrayLen * j + 25, (GRAPH_HEIGHT - dataArr[j] / largest * GRAPH_HEIGHT) + 25);
-        // draw reference value for day of the week  
-        context.fillText(grad[j], 475 / arrayLen * j, 375 + 25);
-        context.stroke();
-    }
-
-}
-
-
-
-// const canvas = document.getElementById("myCanvas");
-// const ctx = canvas.getContext("2d");
-// ctx.fillStyle = "#FF0000";
-// canvas.height = canvas.width;
-// ctx.transform(1, 0, 0, -1, 0, canvas.height)
-
-// let xMax = canvas.height;
-// let slope = 1.2;
-// let intercept = 70;
-
-// ctx.moveTo(0, intercept);
-// ctx.lineTo(xMax, f(xMax));
-// ctx.strokeStyle = "black";
-// ctx.stroke();
-
-// function f(x) {
-//   return x * slope + intercept;
-// }
 </script>
 
 <div class="col-md-12">
@@ -320,7 +222,7 @@ function drawGraph(dataArr) {
 							</svg>
 							</div> -->
                             <!-- <canvas id="testCanvas"></canvas> -->
-<div id="testCanvas"></div>
+                            <div id="testCanvas"></div>
                             <!-- <canvas id="myCanvas" width="400" height="400" ></canvas>  -->
 
                         </div>
