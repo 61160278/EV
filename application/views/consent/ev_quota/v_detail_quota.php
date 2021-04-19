@@ -71,10 +71,12 @@ function check_quota_plan() {
 linechart();
 
 function linechart() {
-    var canvas = document.getElementById("testCanvas");
+  
     var canvas = document.getElementById("testCanvas");
             var context = canvas.getContext("2d");
             var dataArr = [0.4, 2, 3.2, 2, 0.4];
+            ctx.fillStyle = 'green';
+ctx.fillRect(10, 10, 150, 100);
 console.log(dataArr);
 console.log(' on funcation line graph :');
 } //linechart()
