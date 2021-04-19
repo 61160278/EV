@@ -57,7 +57,7 @@ class Evs_group extends MainController_avenxo {
 		$this->meg->gru_head_dept = $Emp_id;
 		$this->meg->gru_company_id = 1;
 		$this->meg->insert();
-
+		$this->meg->connect();
 		
 
 	}
