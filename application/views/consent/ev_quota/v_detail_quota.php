@@ -71,9 +71,9 @@ function check_quota_plan() {
 linechart();
 
 function linechart() {
-  
-    var canvas = document.getElementById("testCanvas").getContext('2d');
-    canvas  = [0.4, 2, 3.2, 2, 0.4];
+    var ctx = document.getElementById("testCanvas").getContext("2d");
+    
+    //   = [0.4, 2, 3.2, 2, 0.4];
           
 
 
