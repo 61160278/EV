@@ -172,6 +172,7 @@ function creatembo(){
             },
 			// success
             error: function(data) {
+				console.log("9999 : error");
             }
 			// error
         });
