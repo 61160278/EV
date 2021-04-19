@@ -46,7 +46,9 @@ tbody:hover {
 </style>
 
 <script>
-
+$(document).ready(function(){
+    drawGraph();
+});
 
 function check_quota_plan() {
 
@@ -59,10 +61,10 @@ function check_quota_plan() {
         quota = document.getElementById("quota" + i).innerHTML;
         value_quotaPlan = parseInt(check) * quota / 100;
 
-        console.log(value_quotaPlan);
+       
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
     } //for
-}
+}//check_quota_plan()
 
 // Start graph
 function drawGraph() {
@@ -82,10 +84,6 @@ function drawGraph() {
         quotaPlan = parseInt(check) * quota / 100;
        console.log('line graph :',quotaPlan);
     } //for
- 
-
-
-
     // for (var i = 0; i < arrayLen; i++) {
     //     if (dataArr[i] > largest) {
     //         largest = dataArr[i];
@@ -155,7 +153,7 @@ function drawGraph() {
     //     context.fillText(grad[j], 475 / arrayLen * j, 375 + 25);
     //     context.stroke();
     // }
-}
+}//drawGraph()
 </script>
 
 <div class="col-md-12">
@@ -307,7 +305,7 @@ function drawGraph() {
 							
 							</svg>
 							</div> -->
-                            <canvas id="testCanvas" onload = "drawGraph()"></canvas>
+                            <canvas id="testCanvas"></canvas>
                             <!-- <div id="testCanvas"></div> -->
                             <!-- <canvas id="myCanvas" width="400" height="400" ></canvas>  -->
 
