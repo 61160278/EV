@@ -68,21 +68,7 @@ function check_quota_plan() {
 
 // Start graph
 console.log(' on funcation line graph :');
-function drawGraph() {
-    
-    // var test = "";
-    // var quotaPlan = 0;
-    // var quota = 0;
-    console.log(' in fun line graph :');
-    
-    // test = document.getElementById("quotaPlan").value;
-    // for (var a = 1; a <= 5; a++) {
-    //     quota = document.getElementById("quota" + a).innerHTML;
-    //     quotaPlan = parseInt(check) * quota / 100;
-    //    console.log('line graph :',quotaPlan);
-    // } //for
-    
-}//drawGraph()
+//drawGraph()
 </script>
 
 <div class="col-md-12">
@@ -235,7 +221,11 @@ function drawGraph() {
 							</svg>
 							</div> -->
                             <!-- <canvas id="testCanvas"></canvas> -->
-                            <div id="testCanvas" onload ="drawGraph()"></div>
+                            <div id="testCanvas"> 
+                        <h1>test Graph</h1>
+                        
+                        
+                        </div>
                             <!-- <canvas id="myCanvas" width="400" height="400" ></canvas>  -->
 
                         </div>
