@@ -94,6 +94,10 @@ function save_dataMBO(){
                 console.log("1111");
             },
 			// success
+            error: function(data) {
+				console.log("9999 : error");
+            }
+			// error
         });
 		// ajax
 	
@@ -172,6 +176,7 @@ function creatembo(){
             },
 			// success
             error: function(data) {
+				console.log("9999 : error");
             }
 			// error
         });
