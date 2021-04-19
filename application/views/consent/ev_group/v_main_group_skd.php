@@ -38,7 +38,7 @@ function add_group(){
 
     });
   
-   window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
+   
 
 }
 
@@ -68,7 +68,7 @@ function get_idemployee(){
         },
         dataType: "JSON",
         success: function(data,status) {
-            console.log("x"+status)
+            console.log(status)
 
 			if(data.length != 0){
 				document.getElementById("nameEmp").value = data[0].Empname_eng + " " + data[0].Empsurname_eng;
@@ -78,12 +78,24 @@ function get_idemployee(){
 
 
         }
-        });
+	});
 }
 
-$("#add").keyup(function() {
-    console.log() 
-});
+function Save_edit_data(){
+	empid = document.getElementById("empid").value;
+	console.log(empid)
+	$.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>/ev_group/Evs_group/save_edit_skd",
+        data: {
+			"empid":empid
+        },
+        dataType: "JSON",
+        success: function(data,status) {
+            console.log(status)
+        }
+        });
+}
 
 </script>
 
@@ -163,7 +175,7 @@ $("#add").keyup(function() {
 													<a data-toggle="modal" class="btn btn-warning" href="#Edit<?php echo $row->gru_id?>">
 														<i class="ti ti-pencil-alt"></i>
 													</a>
-													<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/add_group_skd" data-toggle="modal" class="btn btn-info" href="#">
+													<a data-toggle="modal" class="btn btn-info" href = "<?php echo base_url();?>/ev_group/Evs_group/add_group_skd">
 														<i class="ti ti-info-alt"></i>
 													</a>
 												</div>
@@ -216,7 +228,7 @@ $("#add").keyup(function() {
 															<button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
 														</div>
 															<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">
-																<button type="button" class="btn btn-success">SAVE</button>
+																<button type="button" class="btn btn-success" onClick="Save_edit_data(<?php echo $row->gru_id; ?>)">SAVE</button>
 															</a>
 													</div>
 													<!-- modal-footer -->
@@ -331,59 +343,59 @@ $("#add").keyup(function() {
 </head>
 
 <!-- Modal Add -->
-<div class="modal fade" id="Add<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header" style="background-color:gray;">
-														<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><font color="White"><b>&times;</b></font></button>
-															<h2 class="modal-title"><b><font color="white">Add SKD Group Data & Head Dept.</font></b></h2>		
-													</div>
-													<!-- modal header -->
+<div class="modal fade" id="Add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="background-color:gray;">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><font color="White"><b>&times;</b></font></button>
+				<h2 class="modal-title"><b><font color="white">Add SKD Group Data & Head Dept.</font></b></h2>		
+			</div>
+			<!-- modal header -->
 													
-													<div class="modal-body">
-														<form class="form-horizontal">
-															<div class="form-group">
-																<label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
-																	<div class="col-sm-6">
-																		<input type="text" class="form-control" id="grouptext" placeholder="HR AGM">
-																	</div>						
-															</div>
-															<!-- Group Name -->
-															
-															<h2 style="font-family:'Courier New'"><b><font size = "4px" color="Black">Select Head Dept.</font></b></h2>
-															
-															<div class="form-group">
-																<label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
-																	<div class="col-sm-6">
-																		<input type="text" class="form-control" id="Emp_id" placeholder="JS000xxx">
-																	</div>
-															</div>
-															<!--Emp. ID -->
-																	
-															<div class="form-group">
-																<label for="focusedinput" class="col-sm-3 control-label">Name - Surname</label>
-																	<div class="col-sm-6">
-																		<input disabled type="text" class="form-control" id="Name" placeholder="Name Surname">
-																	</div>
-															</div>
-															<!-- Name Surname -->
-														</form>
-														<!-- form-horizontal -->
-													</div>
-													<!-- modal-body -->
-																
-													<div class="modal-footer">
-														<div class="btn-group pull-left">	
-															<button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
-														</div>
-															<!--<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">-->
-																<button type="button" class="btn btn-success" id="btnsaveadd" onclick="add_group()">SAVE</button>
-															<!--</a>-->
-													</div>
-													<!-- modal-footer -->
-												</div>
-												<!-- modal-content -->
-											</div>
-											<!-- modal-dialog -->
-										</div>
-										<!-- End Modal Add-->
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="grouptext" placeholder="HR AGM">
+							</div>						
+					</div>
+					<!-- Group Name -->
+					
+					<h2 style="font-family:'Courier New'"><b><font size = "4px" color="Black">Select Head Dept.</font></b></h2>
+					
+					<div class="form-group">
+						<label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="Emp_id" placeholder="JS000xxx">
+							</div>
+					</div>
+					<!--Emp. ID -->
+							
+					<div class="form-group">
+						<label for="focusedinput" class="col-sm-3 control-label">Name - Surname</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="Name" placeholder="Name Surname">
+							</div>
+					</div>
+					<!-- Name Surname -->
+				</form>
+				<!-- form-horizontal -->
+			</div>
+			<!-- modal-body -->
+						
+			<div class="modal-footer">
+				<div class="btn-group pull-left">	
+					<button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+				</div>
+					<!--<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">-->
+						<button type="button" class="btn btn-success" id="btnsaveadd" onclick="add_group()">SAVE</button>
+					<!--</a>-->
+			</div>
+			<!-- modal-footer -->
+		</div>
+		<!-- modal-content -->
+	</div>
+	<!-- modal-dialog -->
+</div>
+<!-- End Modal Add-->
