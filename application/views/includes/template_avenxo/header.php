@@ -32,6 +32,8 @@
     
     <script src="jquery-3.5.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 
     <!--[if lt IE 10]>
         <script type="text/javascript" src="assets/js/media.match.min.js"></script>
