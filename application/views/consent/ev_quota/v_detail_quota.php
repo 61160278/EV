@@ -49,6 +49,7 @@ tbody:hover {
 $(document).ready(function() {
 
     check_quota_plan();
+    drawGraph();
 });
 
 function check_quota_plan() {
@@ -65,6 +66,99 @@ function check_quota_plan() {
 
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
     } //for
+}
+
+// Start graph
+function drawGraph() {
+    var canvas = document.getElementById("testCanvas");
+    var context = canvas.getContext("2d");
+    var GRAPH_HEIGHT = 350;
+    var arrayLen = dataArr.length;
+    var largest = 0;
+    var check = "";
+    var value_quotaPlan = [];
+    var quota = 0;
+    var dataArr = [];
+
+    check = document.getElementById("quotaPlan").value;
+    for (var a = 1; a <= 5; a++) {
+        quota = document.getElementById("quota" + a).innerHTML;
+        value_quotaPlan[i] = parseInt(check) * quota / 100;
+        console.log(value_quotaPlan[i]);
+    } //for
+
+
+
+
+    for (var i = 0; i < arrayLen; i++) {
+        if (dataArr[i] > largest) {
+            largest = dataArr[i];
+        }
+
+    }
+    context.clearRect(0, 0, 200, 400);
+    // set font for fillText()  
+    context.font = "16px Arial";
+
+    // draw X and Y axis  
+    context.beginPath();
+    context.moveTo(475, 375);
+    context.lineTo(25, 375);
+    context.lineTo(25, 25);
+    context.stroke();
+
+    // draw reference line  แถวมบนสุด เส้นระดับ
+    context.beginPath();
+    context.strokeStyle = "#BBB";
+    context.moveTo(25, 25);
+    context.lineTo(475, 25);
+    // draw reference value for hours  
+    context.fillText(largest, 0, 25);
+    context.stroke();
+
+    // draw reference line แถวล่างสุด เส้นระดับ
+    context.beginPath();
+    context.moveTo(25, (GRAPH_HEIGHT) / 4 * 3 + 25);
+    context.lineTo(475, (GRAPH_HEIGHT) / 4 * 3 + 25);
+    // draw reference value for hours  
+    context.fillText(largest / 4, 0, (GRAPH_HEIGHT) / 4 * 3 + 25);
+    context.stroke();
+
+    // draw reference line  แถวที่ 2 เส้นระดับ
+    context.beginPath();
+    context.moveTo(25, (GRAPH_HEIGHT) / 2 + 25);
+    context.lineTo(475, (GRAPH_HEIGHT) / 2 + 25);
+    // draw reference value for hours  
+    context.fillText(largest / 2, 0, (GRAPH_HEIGHT) / 2 + 25);
+    context.stroke();
+
+    // draw reference line  แถวที่ 3 เส้นระดับ
+    context.beginPath();
+    context.moveTo(25, (GRAPH_HEIGHT) / 4 + 25);
+    context.lineTo(475, (GRAPH_HEIGHT) / 4 + 25);
+    // draw reference value for hours  
+    var granY = (largest / 2) + 0.8;
+    context.fillText(granY.toFixed(1), 0, (GRAPH_HEIGHT) / 4 + 25);
+    context.stroke();
+
+    // draw titles  คำอธิบายแกน x,y
+    // context.fillText("Day of the week", GRAPH_RIGHT / 3, GRAPH_BOTTOM + 50);// แกน y
+    // context.fillText("Hours", GRAPH_RIGHT + 30, GRAPH_HEIGHT / 2);// แกน x
+
+    context.beginPath();
+    context.lineJoin = "round";
+    context.strokeStyle = "black";
+
+    context.moveTo(25, (GRAPH_HEIGHT - dataArr[0] / largest * GRAPH_HEIGHT) + 25);
+    // draw reference value for day of the week  
+    var grad = ["S", "A", "B", "C", "D"];
+    context.fillText("S", 15, 400);
+    for (var j = 1; j < grad.length; j++) {
+        context.lineTo(475 / arrayLen * j + 25, (GRAPH_HEIGHT - dataArr[j] / largest * GRAPH_HEIGHT) + 25);
+        // draw reference value for day of the week  
+        context.fillText(grad[j], 475 / arrayLen * j, 375 + 25);
+        context.stroke();
+    }
 }
 </script>
 
