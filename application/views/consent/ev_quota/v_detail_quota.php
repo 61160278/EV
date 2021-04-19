@@ -72,8 +72,10 @@ linechart();
 
 function linechart() {
     var canvas = document.getElementById("testCanvas");
-            var context = canvas.getContext("2d");
+    var context = canvas.getContext("2d");
     var GRAPH_HEIGHT = 350;
+    var GRAPH_WIDTH = 450;
+
     var largest = 0;
     var dataArr = [0.4, 2, 3.2, 2, 0.4];
     var arrayLen = dataArr.length;
@@ -252,9 +254,9 @@ function linechart() {
                             </div>
                         </div>
                         <div class="panel-body">
-                            
-                            <canvas id="testCanvas"width="550" height="450"></canvas>
-                            
+
+                            <canvas id="testCanvas" width="550" height="450"></canvas>
+
 
                         </div>
                     </div>
