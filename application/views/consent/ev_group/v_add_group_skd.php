@@ -1,7 +1,7 @@
 <?php
 /*
 * v_add_group_skd.php
-* Display v_add_group_sdm
+* Display v_add_group_skd
 * @input    
 * @output
 * @author Tippawan Aiemsaad, Jirayu Jaravichit
