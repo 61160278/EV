@@ -63,7 +63,7 @@ function check_quota_plan() {
         quota = document.getElementById("quota" + i).innerHTML;
         value_quotaPlan = parseInt(check) * quota / 100;
 
-
+        console.log(value_quotaPlan);
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
     } //for
 }
@@ -84,9 +84,9 @@ function drawGraph() {
     for (var a = 1; a <= 5; a++) {
         quota = document.getElementById("quota" + a).innerHTML;
         quotaPlan = parseInt(check) * quota / 100;
-       
+       console.log(quotaPlan);
     } //for
- console.log(quotaPlan);
+ 
 
 
 
