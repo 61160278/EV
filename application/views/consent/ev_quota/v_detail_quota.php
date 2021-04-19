@@ -68,8 +68,8 @@ function check_quota_plan() {
 
 // Start graph
 function drawGraph() {
-    // var canvas = document.getElementById("testCanvas");
-    // var context = canvas.getContext("2d");
+     var canvas = document.getElementById("testCanvas");
+     var context = canvas.getContext("2d");
     // var GRAPH_HEIGHT = 350;
     // var arrayLen = dataArr.length;
     // var largest = 0;
@@ -84,22 +84,22 @@ function drawGraph() {
         quotaPlan = parseInt(check) * quota / 100;
        console.log('line graph :',quotaPlan);
     } //for
-    // for (var i = 0; i < arrayLen; i++) {
-    //     if (dataArr[i] > largest) {
-    //         largest = dataArr[i];
-    //     }
+    for (var i = 0; i < arrayLen; i++) {
+        if (dataArr[i] > largest) {
+            largest = dataArr[i];
+        }
 
-    // }
-    // context.clearRect(0, 0, 200, 400);
-    // // set font for fillText()  
-    // context.font = "16px Arial";
+    }
+    context.clearRect(0, 0, 200, 400);
+    // set font for fillText()  
+    context.font = "16px Arial";
 
-    // // draw X and Y axis  
-    // context.beginPath();
-    // context.moveTo(475, 375);
-    // context.lineTo(25, 375);
-    // context.lineTo(25, 25);
-    // context.stroke();
+    // draw X and Y axis  
+    context.beginPath();
+    context.moveTo(475, 375);
+    context.lineTo(25, 375);
+    context.lineTo(25, 25);
+    context.stroke();
 
     // // draw reference line  แถวมบนสุด เส้นระดับ
     // context.beginPath();
