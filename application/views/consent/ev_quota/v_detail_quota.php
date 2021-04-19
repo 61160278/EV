@@ -46,9 +46,9 @@ tbody:hover {
 </style>
 
 <script>
-$(document).ready(function(){
-    linechart();
-});
+// $(document).ready(function(){
+//     linechart();
+// });
 
 function check_quota_plan() {
 
@@ -224,7 +224,7 @@ function linechart(){
 							</svg>
 							</div> -->
                             <!-- <canvas id="testCanvas"></canvas> -->
-                            <div id="testCanvas"> 
+                            <div id="testCanvas" onload ="linechart();"> 
                        
                         
                         
