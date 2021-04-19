@@ -21,6 +21,7 @@ class M_evs_group extends Da_evs_group {
 	function get_all(){	
 		$sql = "SELECT * 
 				FROM evs_database.evs_group" ;
+				
 		$query = $this->db->query($sql);
 		return $query;
 	}//get_all WHERE NOT pos_psl_id=6
@@ -35,7 +36,7 @@ class M_evs_group extends Da_evs_group {
 	*/
 	function get_all_com(){	
 		$sql = "SELECT *
-				FROM evs_database.evs_group as evg
+				FROM evs_database.evs_group 
 				WHERE gru_company_id = ?";
 		$query = $this->db->query($sql, array($this->gru_company_id));
 		return $query;
@@ -43,7 +44,16 @@ class M_evs_group extends Da_evs_group {
 	}//get_all_com  INNER JOIN dbmc.employee as emp ON emp.Emp_ID = evg.gru_head_dept
 	
 	
+	function connect(){
+		$sql = "SELECT *
+				FROM evs_database.evs_group
+				LEFT JOIN dbmc.employee
+				ON employee.Emp_ID = evs_group.gru_head_dept";
+		$query = $this->db->query($sql);
+		return $query;
 
+	}
+	// connect
 	
 	
 	
