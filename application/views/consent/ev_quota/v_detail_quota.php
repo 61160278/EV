@@ -67,12 +67,13 @@ function check_quota_plan() {
 }//check_quota_plan()
 
 // Start graph
+console.log(' on funcation line graph :');
 function drawGraph() {
     
     // var test = "";
     // var quotaPlan = 0;
     // var quota = 0;
-    document.getElementById("testCanvas").innerHTML = "line graph";
+    console.log(' in fun line graph :');
     
     // test = document.getElementById("quotaPlan").value;
     // for (var a = 1; a <= 5; a++) {
