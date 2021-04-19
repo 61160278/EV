@@ -224,7 +224,7 @@ function linechart(){
 							</svg>
 							</div> -->
                             <!-- <canvas id="testCanvas"></canvas> -->
-                            <div id="testCanvas"> 
+                            <div id="testCanvas" > 
                        
                         
                         
