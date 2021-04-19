@@ -42,6 +42,7 @@ function add_group(){
 
 }
 
+
 function Delete_data(gru_id){
 	console.log(gru_id);
 	$.ajax({
@@ -117,15 +118,7 @@ function Delete_data(gru_id){
 										<tr class="odd gradeX" align = 'center'>
 											<td><?php echo $num;?> </td>
 											<td><?php echo $row->gru_name; ?></td>
-											<td>
-												<?php if($row->gru_head_dept == NULL){ 
-													echo "ไม่พบข้อมูล";
-												} else {
-													echo $row->gru_head_dept ;
-												}
-												
-												?> 
-											</td>
+											<td><?php echo $row->gru_head_dept; ?></td>
 											<td>
 												<div class="demo-btns">
 													<a data-toggle="modal" class="btn btn btn-danger" href="#Delete<?php echo $row->gru_id?>">
@@ -223,9 +216,7 @@ function Delete_data(gru_id){
 														<div class="btn-group pull-left">	
 															<button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
 														</div>
-														<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">
 															<button type="button" class="btn btn-success" onClick="Delete_data(<?php echo $row->gru_id; ?>)">YES</button>
-														</a>
 													</div>
 													<!-- Modal footer -->
 												</div>
