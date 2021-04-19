@@ -74,10 +74,8 @@ function linechart() {
   
     var canvas = document.getElementById("testCanvas");
             var context = canvas.getContext('2d');
-            var dataArr = [0.4, 2, 3.2, 2, 0.4];
-            ctx.fillStyle = 'green';
-ctx.fillRect(10, 10, 150, 100);
-console.log(dataArr);
+            context = [0.4, 2, 3.2, 2, 0.4];
+          
 console.log(' on funcation line graph :');
 } //linechart()
 </script>
