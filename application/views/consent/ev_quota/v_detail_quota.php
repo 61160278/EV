@@ -49,10 +49,6 @@ tbody:hover {
 $(document).ready(function() {
 
     check_quota_plan();
-    $)("#testCanvas").ready(function() {
-    var testValues = [0.4, 2, 3.2, 2, 0.4];
-    drawGraph(testValues);
-});
 });
 
 function check_quota_plan() {
