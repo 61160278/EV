@@ -108,19 +108,6 @@ class Evs_quota extends MainController_avenxo {
 	// function detail_quota(
 	
 	/*
-	* quota_evaluation_status
-	* @input
-	* @output 
-	* @author 	Piyasak Srijan
-	* @Create Date 2564-04-07
-	*/
-	function quota_evaluation_status()
-	{
-		$this->output('/consent/ev_quota/v_quota_evaluation_status');
-	}
-	// function quota_evaluation_status()
-	
-	/*
 	* hd_quota_evaluation_status
 	* @input
 	* @output 
@@ -145,7 +132,7 @@ class Evs_quota extends MainController_avenxo {
 		$this->output('/consent/ev_quota/v_hr_quota_evaluation_status');
 	}
 	// function hr_quota_evaluation_status()
-
+	
 	/*
 	* edit_quota
 	* @input
