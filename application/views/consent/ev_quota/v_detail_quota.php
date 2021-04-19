@@ -311,7 +311,7 @@ function drawGraph() {
 							
 							</svg>
 							</div> -->
-                            <canvas id="testCanvas"></canvas>
+                            <canvas id="testCanvas" onload = "drawGraph()"></canvas>
                             <!-- <div id="testCanvas"></div> -->
                             <!-- <canvas id="myCanvas" width="400" height="400" ></canvas>  -->
 
