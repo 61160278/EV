@@ -46,9 +46,14 @@ tbody:hover {
 </style>
 
 <script>
-// $(document).ready(function(){
-//     linechart();
-// });
+$(document).ready(function() {
+	
+    check_quota_plan();
+	$)("#testCanvas").ready(function(){
+     var testValues = [0.4, 2, 3.2, 2, 0.4];
+    drawGraph(testValues);
+});
+});
 
 function check_quota_plan() {
 
@@ -64,34 +69,22 @@ function check_quota_plan() {
 
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
     } //for
-} //check_quota_plan()
+}
 
-// Start graph
+function drawGraph(dataArr) {
+    var canvas = document.getElementById("testCanvas");
+    var context = canvas.getContext("2d");
 
-
-
-// window.onload = function() {
-window.onchange = function() {
-    var dataArr =[];
-    var myCanvas = document.getElementById('testCanvas');
-    var context = myCanvas.getContext('2d');
-    for (var i = 1; i <= 5; i++) {
-    var mean_quotaPlan = document.getElementById("show_quotaPlan" + i).innerHTML; 
-    // var dataArr = [0.4, 2, 3.2, 2, 0.4];
-    dataArr[i] = mean_quotaPlan;
-    
-    } //for
-    dataArr.shift();
-  console.log(dataArr);
 
     var GRAPH_HEIGHT = 350;
-
     var arrayLen = dataArr.length;
+
     var largest = 0;
     for (var i = 0; i < arrayLen; i++) {
         if (dataArr[i] > largest) {
             largest = dataArr[i];
         }
+
     }
     context.clearRect(0, 0, 200, 400);
     // set font for fillText()  
@@ -102,7 +95,6 @@ window.onchange = function() {
     context.moveTo(475, 375);
     context.lineTo(25, 375);
     context.lineTo(25, 25);
-    context.fillText((largest / largest) - 1, 0, GRAPH_HEIGHT + 25);
     context.stroke();
 
     // draw reference line  แถวมบนสุด เส้นระดับ
@@ -138,6 +130,7 @@ window.onchange = function() {
     var granY = (largest / 2) + 0.8;
     context.fillText(granY.toFixed(1), 0, (GRAPH_HEIGHT) / 4 + 25);
     context.stroke();
+
     context.beginPath();
     context.lineJoin = "round";
     context.strokeStyle = "black";
@@ -154,6 +147,27 @@ window.onchange = function() {
     }
 
 }
+
+
+
+// const canvas = document.getElementById("myCanvas");
+// const ctx = canvas.getContext("2d");
+// ctx.fillStyle = "#FF0000";
+// canvas.height = canvas.width;
+// ctx.transform(1, 0, 0, -1, 0, canvas.height)
+
+// let xMax = canvas.height;
+// let slope = 1.2;
+// let intercept = 70;
+
+// ctx.moveTo(0, intercept);
+// ctx.lineTo(xMax, f(xMax));
+// ctx.strokeStyle = "black";
+// ctx.stroke();
+
+// function f(x) {
+//   return x * slope + intercept;
+// }
 </script>
 
 <div class="col-md-12">
@@ -261,9 +275,53 @@ window.onchange = function() {
                             </div>
                         </div>
                         <div class="panel-body">
-
-                            <canvas id="testCanvas" width="500" height="400" style="border:1px solid #000000;"></canvas>
-
+                            <!--<div id="line-example" style="position: relative;">
+								<svg xmlns="http://www.w3.org/2000/svg" style="top: -0.13px; overflow: hidden; position: relative;" width="700" height="350" version="1.1">
+								<desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.0</desc>
+								<defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs>
+								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: end; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="end" x="32.51" y="308" font="10px &quot;Arial&quot;">
+									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">0</tspan>
+								</text>
+								<path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#aaaaaa" stroke-width="1" d="M 45.01 308.2 H 650"></path>
+								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: end; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="end" x="32.51" y="248" font="10px &quot;Arial&quot;">
+									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">25</tspan>
+								</text>
+								<path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#aaaaaa" stroke-width="1" d="M 45.01 248 H 650"></path>
+								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: end; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="end" x="32.51" y="188" font="10px &quot;Arial&quot;">
+									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">50</tspan>
+								</text>
+								<path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#aaaaaa" stroke-width="1" d="M 45.01 188 H 650"></path>
+								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: end; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="end" x="32.51" y="128" font="10px &quot;Arial&quot;">
+									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">75</tspan>
+								</text>
+								<path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#aaaaaa" stroke-width="1" d="M 45.01 128 H 650"></path>
+								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: end; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="end" x="32.51" y="68" font="10px &quot;Arial&quot;">
+									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">100</tspan>
+								</text>
+								<path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#aaaaaa" stroke-width="1" d="M 45.01 68 H 650"></path>
+								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: middle; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="middle" transform="matrix(1, 0, 0, 1, 0, 6.9)" x="580" y="320.7" font="10px &quot;Arial&quot;">
+									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">D</tspan>
+								</text>
+								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: middle; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="middle" transform="matrix(1, 0, 0, 1, 0, 6.9)" x="460" y="320.7" font="10px &quot;Arial&quot;">
+									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">C</tspan>
+								</text>
+								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: middle; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="middle" transform="matrix(1, 0, 0, 1, 0, 6.9)" x="340" y="320.7" font="10px &quot;Arial&quot;">
+									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">B</tspan>
+								</text>
+								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: middle; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="middle" transform="matrix(1, 0, 0, 1, 0, 6.9)" x="220" y="320.7" font="10px &quot;Arial&quot;">
+									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">A</tspan>
+								</text>
+								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: middle; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="middle" transform="matrix(1, 0, 0, 1, 0, 6.9)" x="100" y="320.7" font="10px &quot;Arial&quot;">
+									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">S</tspan>
+								</text>
+								<path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#37474f" stroke-width="3" d="M 100 300 C 100 300 200 200 350 100 C 450 190 350 110 580 300 C">
+								</path> 
+							
+							</svg>
+							</div> -->
+                            <!-- <canvas id="testCanvas"></canvas> -->
+<div id="testCanvas"></div>
+                            <!-- <canvas id="myCanvas" width="400" height="400" ></canvas>  -->
 
                         </div>
                     </div>
