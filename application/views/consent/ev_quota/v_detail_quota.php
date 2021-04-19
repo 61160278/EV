@@ -77,6 +77,9 @@ function linechart() {
 if(canvas != null) {  
     // do here.  
     canvas.getContext("2d");  
+    context.clearRect(0, 0, 200, 400);
+            // set font for fillText()  
+            context.font = "16px Arial";
 } 
   
     var GRAPH_HEIGHT = 350;
@@ -93,9 +96,9 @@ if(canvas != null) {
 
     }
 
-    context.clearRect(0, 0, 200, 400);
-    // set font for fillText()  
-    context.font = "16px Arial";
+    // context.clearRect(0, 0, 200, 400);
+    // // set font for fillText()  
+    // context.font = "16px Arial";
 
     // draw X and Y axis  
     context.beginPath();
