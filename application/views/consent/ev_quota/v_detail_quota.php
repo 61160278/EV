@@ -261,7 +261,7 @@ function linechart() {
                         </div>
                         <div class="panel-body">
 
-                            <canvas id="testCanvas" width="550" height="450"></canvas>
+                            <canvas id="testCanvas" width="400" height="500"></canvas>
 
 
                         </div>
