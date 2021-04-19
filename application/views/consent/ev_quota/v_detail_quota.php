@@ -123,6 +123,17 @@ if(canvas != null) {
     context.beginPath();
     context.lineJoin = "round";
     context.strokeStyle = "black";
+
+    context.moveTo(25, (GRAPH_HEIGHT - dataArr[0] / largest * GRAPH_HEIGHT) + 25);
+    // draw reference value for day of the week  
+    var grad = ["S", "A", "B", "C", "D"];
+    context.fillText("S", 15, 400);
+    for (var j = 1; j < grad.length; j++) {
+        context.lineTo(475 / arrayLen * j + 25, (GRAPH_HEIGHT - dataArr[j] / largest * GRAPH_HEIGHT) + 25);
+        // draw reference value for day of the week  
+        context.fillText(grad[j], 475 / arrayLen * j, 375 + 25);
+        context.stroke();
+    }
  
 } 
   
@@ -186,16 +197,16 @@ if(canvas != null) {
     // context.lineJoin = "round";
     // context.strokeStyle = "black";
 
-    context.moveTo(25, (GRAPH_HEIGHT - dataArr[0] / largest * GRAPH_HEIGHT) + 25);
-    // draw reference value for day of the week  
-    var grad = ["S", "A", "B", "C", "D"];
-    context.fillText("S", 15, 400);
-    for (var j = 1; j < grad.length; j++) {
-        context.lineTo(475 / arrayLen * j + 25, (GRAPH_HEIGHT - dataArr[j] / largest * GRAPH_HEIGHT) + 25);
-        // draw reference value for day of the week  
-        context.fillText(grad[j], 475 / arrayLen * j, 375 + 25);
-        context.stroke();
-    }
+    // context.moveTo(25, (GRAPH_HEIGHT - dataArr[0] / largest * GRAPH_HEIGHT) + 25);
+    // // draw reference value for day of the week  
+    // var grad = ["S", "A", "B", "C", "D"];
+    // context.fillText("S", 15, 400);
+    // for (var j = 1; j < grad.length; j++) {
+    //     context.lineTo(475 / arrayLen * j + 25, (GRAPH_HEIGHT - dataArr[j] / largest * GRAPH_HEIGHT) + 25);
+    //     // draw reference value for day of the week  
+    //     context.fillText(grad[j], 475 / arrayLen * j, 375 + 25);
+    //     context.stroke();
+    // }
 } //linechart()
 </script>
 
