@@ -188,7 +188,7 @@ console.log(' on funcation line graph :');
                         </div>
                         <div class="panel-body">
 
-                            <canvas id="testCanvas" width="500" height="400" style="border:1px solid #000000;"></canvas>
+                            <canvas id="testCanvas"  style="border:1px solid #000000;"></canvas>
 
 
                         </div>
