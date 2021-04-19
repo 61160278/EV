@@ -46,9 +46,9 @@ tbody:hover {
 </style>
 
 <script>
-// $(document).ready(function(){
-//     drawGraph();
-// });
+$(document).ready(function(){
+    linechart();
+});
 
 function check_quota_plan() {
 
@@ -67,8 +67,11 @@ function check_quota_plan() {
 }//check_quota_plan()
 
 // Start graph
-console.log(' on funcation line graph :');
-//drawGraph()
+//console.log(' on funcation line graph :');
+function linechart(){
+    console.log(' in funcation line graph :');
+}//drawGraph()
+
 </script>
 
 <div class="col-md-12">
@@ -222,7 +225,7 @@ console.log(' on funcation line graph :');
 							</div> -->
                             <!-- <canvas id="testCanvas"></canvas> -->
                             <div id="testCanvas"> 
-                        <h1>test Graph</h1>
+                       
                         
                         
                         </div>
