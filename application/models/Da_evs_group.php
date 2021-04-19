@@ -38,10 +38,10 @@ class Da_evs_group extends evs_model {
 	
 	function insert() {
 	 
-	 	$sql = "INSERT INTO evs_database.evs_group (gru_id, gru_name, gru_head_dept,gru_company_id)
-	 	VALUES(?, ?, ?,?)";
+	 	$sql = "INSERT INTO evs_database.evs_group (gru_id, gru_name, gru_head_dept, gru_company_id)
+	 	VALUES(?, ?, ?, ?)";
 		 
-	 	$this->db->query($sql, array($this->gru_id, $this->gru_name, $this->gru_head_dept ,$this->gru_company_id));
+	 	$this->db->query($sql, array($this->gru_id, $this->gru_name, $this->gru_head_dept, $this->gru_company_id));
 	 }
 	 
 	/*
