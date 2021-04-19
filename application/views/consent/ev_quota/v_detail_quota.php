@@ -72,7 +72,13 @@ linechart();
 
 function linechart() {
     var canvas = document.getElementById("testCanvas");
-    var context = canvas.getContext("2d");
+      
+  
+if(canvas != null) {  
+    // do here.  
+    canvas.getContext("2d");  
+} 
+  
     var GRAPH_HEIGHT = 350;
     var GRAPH_WIDTH = 450;
 
