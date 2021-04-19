@@ -75,18 +75,18 @@ function drawGraph() {
     var GRAPH_HEIGHT = 350;
     var arrayLen = dataArr.length;
     var largest = 0;
-    var check = "";
-    var value_quotaPlan = [];
+    var test = "";
+    var quotaPlan = 0;
     var quota = 0;
     var dataArr = [];
 
-    check = document.getElementById("quotaPlan").value;
+    test = document.getElementById("quotaPlan").value;
     for (var a = 1; a <= 5; a++) {
         quota = document.getElementById("quota" + a).innerHTML;
-        value_quotaPlan[i] = parseInt(check) * quota / 100;
-        console.log(value_quotaPlan[i]);
+        quotaPlan = parseInt(check) * quota / 100;
+       
     } //for
-
+ console.log(quotaPlan);
 
 
 
