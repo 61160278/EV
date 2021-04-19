@@ -72,8 +72,8 @@ function drawGraph() {
     // var test = "";
     // var quotaPlan = 0;
     // var quota = 0;
-  
-    console.log('line graph');
+    document.getElementById("testCanvas").innerHTML = "line graph";
+    
     // test = document.getElementById("quotaPlan").value;
     // for (var a = 1; a <= 5; a++) {
     //     quota = document.getElementById("quota" + a).innerHTML;
@@ -233,8 +233,8 @@ function drawGraph() {
 							
 							</svg>
 							</div> -->
-                            <canvas id="testCanvas"></canvas>
-                            <!-- <div id="testCanvas"></div> -->
+                            <!-- <canvas id="testCanvas"></canvas> -->
+                            <div id="testCanvas"></div>
                             <!-- <canvas id="myCanvas" width="400" height="400" ></canvas>  -->
 
                         </div>
