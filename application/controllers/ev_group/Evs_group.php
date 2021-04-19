@@ -57,8 +57,7 @@ class Evs_group extends MainController_avenxo {
 		$this->meg->gru_head_dept = $Emp_id;
 		$this->meg->gru_company_id = 1;
 		$this->meg->insert();
-		$this->meg->connect();
-		
+
 		
 
 	}
@@ -82,7 +81,6 @@ class Evs_group extends MainController_avenxo {
 		$this->load->model('M_evs_group','mevg');
 		$this->mevg->gru_company_id = 1;
 		$data['grp_sdm'] = $this->mevg->get_all_com();
-		
 		$this->output('/consent/ev_group/v_main_group_sdm',$data);
 	}
 	// function select_company_sdm
@@ -96,13 +94,6 @@ class Evs_group extends MainController_avenxo {
 	}
 	// function select_company_skd
 	
-	
-	/*
-	* Evs_form
-	* Form
-	* @author  Jirayu Jaravichit
-	* @Create Date 2564-04-16
-	*/
 	
 	function delete_group_sdm()
 	{
@@ -136,11 +127,6 @@ class Evs_group extends MainController_avenxo {
 	// function delete_group_skd
 	
 	
-	
-		
-		
-		
-		
 	
 	
 }
