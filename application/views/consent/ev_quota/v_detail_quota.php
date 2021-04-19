@@ -223,12 +223,12 @@ function linechart(){
 							
 							</svg>
 							</div> -->
-                            <!-- <canvas id="testCanvas"></canvas> -->
-                            <div id="testCanvas" onload="linechart()"> 
+                            <canvas id="testCanvas" onload="linechart()"></canvas>
+                            <!-- <div id="testCanvas" > 
                        
                         
                         
-                        </div>
+                        </div> -->
                             <!-- <canvas id="myCanvas" width="400" height="400" ></canvas>  -->
 
                         </div>
