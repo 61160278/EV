@@ -45,7 +45,7 @@ function add_group(){
 function Delete_data(gru_id){
 	console.log(gru_id);
 	$.ajax({
-        type: "post",
+        type: "POST",
         url: "<?php echo base_url(); ?>/ev_group/Evs_group/delete_group_skd",
         data: {
 		"gru_id":gru_id
@@ -56,6 +56,35 @@ function Delete_data(gru_id){
         }
         });
 }
+
+function get_idemployee(){
+	empid = document.getElementById("empid").value;
+	console.log(empid)
+	$.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>/ev_group/Evs_group/search_by_employee_id",
+        data: {
+			"empid":empid
+        },
+        dataType: "JSON",
+        success: function(data,status) {
+            console.log("x"+status)
+
+			if(data.length != 0){
+				document.getElementById("nameEmp").value = data[0].Empname_eng + " " + data[0].Empsurname_eng;
+			}else{
+				document.getElementById("nameEmp").value = "";
+			}
+
+
+        }
+        });
+}
+
+$("#add").keyup(function() {
+    console.log() 
+});
+
 </script>
 
 <!DOCTYPE html>
@@ -121,7 +150,7 @@ function Delete_data(gru_id){
 												<?php if($row->gru_head_dept == NULL){ 
 													echo "ไม่พบข้อมูล";
 												} else {
-													echo $row->gru_head_dept ;
+													echo $row->Empname_eng." ".$row->Empsurname_eng;
 												}
 												
 												?> 
@@ -141,7 +170,7 @@ function Delete_data(gru_id){
 											</td>
 										</tr>
 										<!-- Model Edit -->	
-										<div class="modal fade" id="Edit<?echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal fade" id="Edit<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header" style="background-color:gray;">
@@ -165,7 +194,7 @@ function Delete_data(gru_id){
 															<div class="form-group">
 																<label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
 																	<div class="col-sm-6">
-																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" id="focusedinput" placeholder="JS000xxx">
+																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" id="empid" placeholder="JS000xxx" onkeyup="get_idemployee()">
 																	</div>
 															</div>
 															<!--Emp. ID -->
@@ -173,7 +202,7 @@ function Delete_data(gru_id){
 															<div class="form-group">
 																<label for="focusedinput" class="col-sm-3 control-label">Name - Surname</label>
 																	<div class="col-sm-6">
-																		<input disabled type="text" class="form-control" id="focusedinput" placeholder="Name Surname">
+																		<input disabled type="text" class="form-control" value="<?php echo $row->Empname_eng , " ", $row->Empsurname_eng; ?>" id="nameEmp" placeholder="Name Surname" >
 																	</div>
 															</div>
 															<!-- Name Surname -->
@@ -233,7 +262,11 @@ function Delete_data(gru_id){
 											</div>
 											<!-- modal-dialog -->
 										</div>
-										<!-- End Modal Delete -->	
+										<!-- End Modal Delete -->
+
+										
+
+
 									<?php 
 									$num++;
 									} ?> 
@@ -298,59 +331,59 @@ function Delete_data(gru_id){
 </head>
 
 <!-- Modal Add -->
-	<div class="modal fade" id="Add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header" style="background-color:gray;">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><font color="White"><b>&times;</b></font></button>
-						<h2 class="modal-title"><b><font color="white">Add SKD Group Data & Head Dept.</font></b></h2>		
-				</div>
-				<!-- modal header -->
-				
-				<div class="modal-body">
-					<form class="form-horizontal">
-						<div class="form-group">
-							<label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
-								<div class="col-sm-6">
-									<input type="text" class="form-control" id="grouptext" placeholder="HR AGM">
-								</div>						
-						</div>
-						<!-- Group Name -->
-						
-						<h2 style="font-family:'Courier New'"><b><font size = "4px" color="Black">Select Head Dept.</font></b></h2>
-						
-						<div class="form-group">
-							<label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
-								<div class="col-sm-6">
-									<input type="text" class="form-control" id="Emp_id" placeholder="JS000xxx">
-								</div>
-						</div>
-						<!--Emp. ID -->
-								
-						<div class="form-group">
-							<label for="focusedinput" class="col-sm-3 control-label">Name - Surname</label>
-								<div class="col-sm-6">
-									<input disabled type="text" class="form-control" id="Name" placeholder="Name Surname">
-								</div>
-						</div>
-						<!-- Name Surname -->
-					</form>
-					<!-- form-horizontal -->
-				</div>
-				<!-- modal-body -->
-							
-				<div class="modal-footer">
-					<div class="btn-group pull-left">	
-						<button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
-					</div>
-						<!--<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">-->
-							<button type="button" class="btn btn-success" id="btnsaveadd" onclick="add_group()">SAVE</button>
-						<!--</a>-->
-				</div>
-				<!-- modal-footer -->
-			</div>
-			<!-- modal-content -->
-		</div>
-		<!-- modal-dialog -->
-	</div>
-	<!-- End Modal Add-->
+<div class="modal fade" id="Add<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header" style="background-color:gray;">
+														<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><font color="White"><b>&times;</b></font></button>
+															<h2 class="modal-title"><b><font color="white">Add SKD Group Data & Head Dept.</font></b></h2>		
+													</div>
+													<!-- modal header -->
+													
+													<div class="modal-body">
+														<form class="form-horizontal">
+															<div class="form-group">
+																<label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
+																	<div class="col-sm-6">
+																		<input type="text" class="form-control" id="grouptext" placeholder="HR AGM">
+																	</div>						
+															</div>
+															<!-- Group Name -->
+															
+															<h2 style="font-family:'Courier New'"><b><font size = "4px" color="Black">Select Head Dept.</font></b></h2>
+															
+															<div class="form-group">
+																<label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
+																	<div class="col-sm-6">
+																		<input type="text" class="form-control" id="Emp_id" placeholder="JS000xxx">
+																	</div>
+															</div>
+															<!--Emp. ID -->
+																	
+															<div class="form-group">
+																<label for="focusedinput" class="col-sm-3 control-label">Name - Surname</label>
+																	<div class="col-sm-6">
+																		<input disabled type="text" class="form-control" id="Name" placeholder="Name Surname">
+																	</div>
+															</div>
+															<!-- Name Surname -->
+														</form>
+														<!-- form-horizontal -->
+													</div>
+													<!-- modal-body -->
+																
+													<div class="modal-footer">
+														<div class="btn-group pull-left">	
+															<button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+														</div>
+															<!--<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">-->
+																<button type="button" class="btn btn-success" id="btnsaveadd" onclick="add_group()">SAVE</button>
+															<!--</a>-->
+													</div>
+													<!-- modal-footer -->
+												</div>
+												<!-- modal-content -->
+											</div>
+											<!-- modal-dialog -->
+										</div>
+										<!-- End Modal Add-->
