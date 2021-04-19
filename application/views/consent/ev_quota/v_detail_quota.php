@@ -296,7 +296,7 @@ function linechart() {
 							
 							</svg>
 							</div> -->
-                            <canvas id="testCanvas" onload="linechart()"></canvas>
+                            <canvas id="testCanvas" onload="linechart()" width="300" height="300"></canvas>
                             <!-- <div id="testCanvas" > 
                        
                         
