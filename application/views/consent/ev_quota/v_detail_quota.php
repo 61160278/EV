@@ -72,11 +72,18 @@ linechart();
 
 function linechart() {
   
-    var canvas = document.getElementById("testCanvas");
-            var context = canvas.getContext('2d');
-            context = [0.4, 2, 3.2, 2, 0.4];
+    var canvas = document.getElementById("testCanvas").getContext('2d');
+    canvas  = [0.4, 2, 3.2, 2, 0.4];
           
-console.log(' on funcation line graph :');
+
+
+
+
+
+
+
+
+
 } //linechart()
 </script>
 
