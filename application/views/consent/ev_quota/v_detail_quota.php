@@ -69,17 +69,17 @@ function check_quota_plan() {
 // Start graph
 function drawGraph() {
     
-    var test = "";
-    var quotaPlan = 0;
-    var quota = 0;
+    // var test = "";
+    // var quotaPlan = 0;
+    // var quota = 0;
   
-
-    test = document.getElementById("quotaPlan").value;
-    for (var a = 1; a <= 5; a++) {
-        quota = document.getElementById("quota" + a).innerHTML;
-        quotaPlan = parseInt(check) * quota / 100;
-       console.log('line graph :',quotaPlan);
-    } //for
+    console.log('line graph');
+    // test = document.getElementById("quotaPlan").value;
+    // for (var a = 1; a <= 5; a++) {
+    //     quota = document.getElementById("quota" + a).innerHTML;
+    //     quotaPlan = parseInt(check) * quota / 100;
+    //    console.log('line graph :',quotaPlan);
+    // } //for
     
 }//drawGraph()
 </script>
