@@ -21,7 +21,6 @@
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="description" content="EVS | SDM & SKD">
     <meta name="author" content="KaijuThemes">
-
     <link type='text/css' href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600' rel='stylesheet'>
 
     <link type="text/css" href="<?php echo base_url();?>avenxo/assets/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">        <!-- Font Awesome -->
@@ -30,6 +29,7 @@
 
     <link type="text/css" href="<?php echo base_url();?>avenxo/assets/plugins/codeprettifier/prettify.css" rel="stylesheet">                <!-- Code Prettifier -->
     <link type="text/css" href="<?php echo base_url();?>avenxo/assets/plugins/iCheck/skins/minimal/blue.css" rel="stylesheet">              <!-- iCheck -->
+    
 
     <!--[if lt IE 10]>
         <script type="text/javascript" src="assets/js/media.match.min.js"></script>
