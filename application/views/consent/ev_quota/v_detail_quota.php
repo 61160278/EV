@@ -233,8 +233,8 @@ function drawGraph() {
 							
 							</svg>
 							</div> -->
-                            <!-- <canvas id="testCanvas"></canvas> -->
-                            <div id="testCanvas"></div>
+                            <canvas id="testCanvas"></canvas>
+                            <!-- <div id="testCanvas"></div> -->
                             <!-- <canvas id="myCanvas" width="400" height="400" ></canvas>  -->
 
                         </div>
