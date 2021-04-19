@@ -178,7 +178,7 @@ function linechart(){
                                 data-action-collapse='{"target": ".panel-body"}'>
                             </div>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" onload="linechart()">
                             <!--<div id="line-example" style="position: relative;">
 								<svg xmlns="http://www.w3.org/2000/svg" style="top: -0.13px; overflow: hidden; position: relative;" width="700" height="350" version="1.1">
 								<desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.0</desc>
@@ -224,7 +224,7 @@ function linechart(){
 							</svg>
 							</div> -->
                             <!-- <canvas id="testCanvas"></canvas> -->
-                            <div id="testCanvas" onload ="linechart();"> 
+                            <div id="testCanvas"> 
                        
                         
                         
