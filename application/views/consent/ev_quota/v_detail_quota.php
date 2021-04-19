@@ -72,7 +72,7 @@ linechart();
 
 function linechart() {
     //var canvas = document.getElementById("testCanvas");
-/console.log(' on funcation line graph :');
+console.log(' on funcation line graph :');
 } //linechart()
 </script>
 
