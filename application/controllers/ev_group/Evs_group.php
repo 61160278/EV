@@ -57,9 +57,6 @@ class Evs_group extends MainController_avenxo {
 		$this->meg->gru_head_dept = $Emp_id;
 		$this->meg->gru_company_id = 1;
 		$this->meg->insert();
-
-		
-
 	}
 	// function add_group_sdm
 
@@ -107,7 +104,6 @@ class Evs_group extends MainController_avenxo {
 	}
 	// function delete_group_sdm
 	
-
 	/*
 	* Evs_form
 	* Form
@@ -126,8 +122,18 @@ class Evs_group extends MainController_avenxo {
 	}
 	// function delete_group_skd
 	
-	
-	
+	/*
+	* Evs_form
+	* Form
+	* @author  Tippawan Aiemsaad
+	* @Create Date 2564-04-19
+	*/
+	function search_by_employee_id(){
+		$empid = $this->input->post('empid');
+		$this->load->model('M_evs_group','mevg');
+		$this->mevg->Emp_ID = $empid;
+		echo json_encode($this->mevg->get_name_emp_by_IDemp());
+	}
 	
 }
 ?>
