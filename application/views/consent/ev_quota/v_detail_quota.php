@@ -182,9 +182,9 @@ if(canvas != null) {
     // context.fillText(granY.toFixed(1), 0, (GRAPH_HEIGHT) / 4 + 25);
     // context.stroke();
 
-    context.beginPath();
-    context.lineJoin = "round";
-    context.strokeStyle = "black";
+    // context.beginPath();
+    // context.lineJoin = "round";
+    // context.strokeStyle = "black";
 
     context.moveTo(25, (GRAPH_HEIGHT - dataArr[0] / largest * GRAPH_HEIGHT) + 25);
     // draw reference value for day of the week  
