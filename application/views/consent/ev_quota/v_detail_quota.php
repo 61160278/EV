@@ -46,11 +46,7 @@ tbody:hover {
 </style>
 
 <script>
-$(document).ready(function() {
 
-    check_quota_plan();
-    drawGraph();
-});
 
 function check_quota_plan() {
 
