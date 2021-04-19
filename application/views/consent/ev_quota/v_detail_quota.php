@@ -78,10 +78,13 @@ function linechart() {
     var dataArr = [0.4, 2, 3.2, 2, 0.4];
     var arrayLen = dataArr.length;
     for (var i = 0; i < arrayLen; i++) {
+        console.log(' in for line graph :');
         if (dataArr[i] > largest) {
             largest = dataArr[i];
         }
+
     }
+
     context.clearRect(0, 0, 200, 400);
     // set font for fillText()  
     context.font = "16px Arial";
@@ -141,10 +144,7 @@ function linechart() {
         context.fillText(grad[j], 475 / arrayLen * j, 375 + 25);
         context.stroke();
     }
-}
-
-
-} //drawGraph()
+} //linechart()
 </script>
 
 <div class="col-md-12">
