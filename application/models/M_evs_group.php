@@ -41,7 +41,7 @@ class M_evs_group extends Da_evs_group {
 		$query = $this->db->query($sql, array($this->gru_company_id));
 		return $query;
 	
-	}//get_all_com  INNER JOIN dbmc.employee as emp ON emp.Emp_ID = evg.gru_head_dept
+	}//get_all_com
 
 
 	function get_name_emp_by_IDemp(){	
@@ -51,6 +51,6 @@ class M_evs_group extends Da_evs_group {
 		$query = $this->db->query($sql, array($this->Emp_ID));
 		return $query->result();
 	
-	}//get_all_com  INNER JOIN dbmc.employee as emp ON emp.Emp_ID = evg.gru_head_dept
+	}//get_name_emp_by_IDemp 
 } 
 ?>
