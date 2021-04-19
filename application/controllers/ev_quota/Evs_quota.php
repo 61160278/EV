@@ -63,6 +63,7 @@ class Evs_quota extends MainController_avenxo {
 	*/
 	function hd_report_curve()
 	{
+		$pos_psl_id = $this->input->post('pos_psl_id'); //position id
 		$this->output('/consent/ev_quota/v_hd_report_curve');
 	}
 	// function hd_report_curve()
@@ -119,6 +120,32 @@ class Evs_quota extends MainController_avenxo {
 	}
 	// function quota_evaluation_status()
 	
+	/*
+	* hd_quota_evaluation_status
+	* @input
+	* @output 
+	* @author 	Piyasak Srijan
+	* @Create Date 2564-04-07
+	*/
+	function hd_quota_evaluation_status()
+	{
+		$this->output('/consent/ev_quota/v_hd_quota_evaluation_status');
+	}
+	// function hd_quota_evaluation_status()
+	
+	/*
+	* hr_quota_evaluation_status
+	* @input
+	* @output 
+	* @author 	Piyasak Srijan
+	* @Create Date 2564-04-07
+	*/
+	function hr_quota_evaluation_status()
+	{
+		$this->output('/consent/ev_quota/v_hr_quota_evaluation_status');
+	}
+	// function hr_quota_evaluation_status()
+
 	/*
 	* edit_quota
 	* @input
