@@ -54,7 +54,7 @@ function check_quota(){
 
 </script>
 <div class="col-md-12">
-	<div class="panel panel-midnightblue" data-widget='{"draggable": "false"}'>
+	<div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
 		<div class="panel-heading">
 			<h2><font size = "5px"><b>Add Quota</b></font></h2>
 			<div class="panel-ctrls" data-actions-container="" data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
