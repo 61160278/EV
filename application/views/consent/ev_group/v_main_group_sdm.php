@@ -95,7 +95,7 @@ function Save_edit_data(gru_id){
         });
 	  window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_sdm";
 }
-//Save_edit_data
+
 
 </script>
 
