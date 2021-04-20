@@ -50,7 +50,7 @@ class Evs_attitude_indicators_form extends MainController {
 		$this->load->model('M_evs_position_level','mepl');
 
 		$data['cate_data'] = $this->mctg->get_category_all()->result(); //show value category all
-		$data['pos_data'] = $this->mepl->get_all()->result(); // show value position all
+		$data['pos_lv_data'] = $this->mepl->get_all()->result(); // show value position all
 
 		$this->output("consent/indicator/v_indicator_attitude_table",$data);
 	}
