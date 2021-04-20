@@ -8,6 +8,23 @@
 * @Create Date 2563-04-06
 */  
 ?>
+<script>
+function get_data_for_hd_report_curve() {
+	var pos_sel = document.getElementById("pos_select").value; // get kay by id
+	console.log(pos_sel)
+	
+	$.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/Evs_quota/hd_report_curve",
+        data: {
+            "pos_psl_id": pos_sel
+        },
+        dataType: "JSON",
+        success: function(data) {
+            console.log(data)
+		}
+}
+</script>
 <style>
 	.text {
 		color : black;
@@ -27,17 +44,19 @@
 		text-align : center;
 	}
 	table, th, td {
-  border: 2px solid #ffffff;
-  border-collapse: collapse;
-  text-align : center ;
-  color : black;
- font-size: 20px;
-}
+	  border: 2px solid #ffffff;
+	  border-collapse: collapse;
+	  text-align : center ;
+	  color : black;
+	 font-size: 20px;
+	}
 
-tbody:hover {
-  background-color: #ffffff;
-}
-
+	tbody:hover {
+	  background-color: #ffffff;
+	}
+	.panel.panel-indigo .panel-heading h2 {
+		color: #ffffff;
+	}
 </style>
 <script>
 
@@ -88,9 +107,9 @@ function check_quota_actual(){
 
 </script>
 <div class="col-md-12">
-	<div class="panel panel-midnightblue" data-widget='{"draggable": "false"}'>
+	<div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
 		<div class="panel-heading">
-			<h2><font size = "5px"><b>Report Curve</b></font></h2>
+			<h2 class = ""><font size = "5px"><b>Report Curve</b></font></h2>
 			<div class="panel-ctrls" data-actions-container="" data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
 			</div>
 		</div>
@@ -114,12 +133,16 @@ function check_quota_actual(){
 						</select>
 					</div>
 					<div class="col-md-2">
-						<select class="form-control text" id="" >
-							<option value="yearEndBonus">Select Position</option>
-							<option value="yearEndBonus">All Position</option>
-							<option value="salaryIncrement">AGM</option>
-							<option value="salaryIncrement">Senior Staff</option>
-							<option value="salaryIncrement">Staff</option>
+						<select class="form-control text" name = "pos_select" id="pos_select" >
+							<option value="">Select Position</option>
+							<option value="0">All Position</option>
+							<!-- start foreach -->
+                            <?php foreach($pos_lv_data as $value){ ?>
+                            <option value="<?php echo $value->psl_id;?>">
+                            <?php echo $value->psl_position_level;?>
+                            </option>
+                            <?php } ?>
+                            <!-- end foreach -->
 						</select>
 					</div>
 					<div class="col-md-1">
@@ -137,7 +160,7 @@ function check_quota_actual(){
 				<div class="col-md-8">
 					<div class="panel panel-orange" data-widget='{"draggable": "false"}' >
 						<div class="panel-heading">
-							<h2><font size = "5px"><b>ตางราง Report</b></font></h2>
+							<h2 class = "text"><font size = "5px"><b>ตางราง Report</b></font></h2>
 							<div class="panel-ctrls" data-actions-container="" data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
 							</div>
 						</div>
