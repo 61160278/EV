@@ -423,17 +423,16 @@ class Evs_ability_indicators_form extends MainController {
 					}
 					//end if
 				}
-				//end foreach
-
-
-			}
+			//end foreach
 			$this->debv->ept_kcp_id = $key_component_id;
-			$this->debv->ept_id = $this->input->post("arr_save_expected_id[".$j."]");
+			$this->debv->ept_id = $this->input->post("arr_save_expected_id[".$k."]");
 			$this->debv->update();
+			}
+	
 		}
 
 		$status = "key_component_and_expected_behavior_to_database_edit";
-		echo json_encode($status);
+		echo json_encode($key_component_and_expected_behavior_to_database_edit);
 	}
 	// function key_component_and_expected_behavior_to_database_edit()
 

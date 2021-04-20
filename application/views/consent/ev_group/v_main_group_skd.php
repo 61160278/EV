@@ -35,11 +35,7 @@ function add_group(){
 			console.log(status)
         }
         // success function
-
     });
-  
-   
-
 }
 
 
@@ -83,20 +79,25 @@ function get_idemployee(){
 	});
 }
 
-function Save_edit_data(){
-	empid = document.getElementById("empid").value;
-	console.log(empid)
+function Save_edit_data(gru_id){
+	var group = document.getElementById("group_text").value;
+	var Empname_eng = document.getElementById("Empname_eng").value;
+	console.log(gru_id)
 	$.ajax({
         type: "POST",
         url: "<?php echo base_url(); ?>/ev_group/Evs_group/save_edit_skd",
         data: {
-			"empid":empid
+			
+			"group":group,
+			"Empname_eng":Empname_eng
+			
         },
         dataType: "JSON",
         success: function(data,status) {
             console.log(status)
         }
         });
+	  window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
 }
 
 </script>
@@ -183,6 +184,7 @@ function Save_edit_data(){
 												</div>
 											</td>
 										</tr>
+										
 										<!-- Model Edit -->	
 										<div class="modal fade" id="Edit<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
@@ -194,11 +196,11 @@ function Save_edit_data(){
 													<!-- modal header -->
 													
 													<div class="modal-body">
-														<form class="form-horizontal">
+														<form class="form-horizontal" action = "<?php echo base_url(); ?>ev_group/Evs_group/save_edit_skd" method = "post">
 															<div class="form-group">
 																<label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
 																	<div class="col-sm-6">
-																		<input type="text" class="form-control" value="<?php echo $row->gru_name; ?>" id="focusedinput" placeholder="HR AGM">
+																		<input type="text" class="form-control" value="<?php echo $row->gru_name; ?>" name="group_text" placeholder="HR AGM">
 																	</div>						
 															</div>
 															<!-- Group Name -->
@@ -208,7 +210,8 @@ function Save_edit_data(){
 															<div class="form-group">
 																<label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
 																	<div class="col-sm-6">
-																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" id="empid" placeholder="JS000xxx" onkeyup="get_idemployee()">
+																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" name="Empname_eng" placeholder="JS000xxx">
+																		<input type="hidden" class="form-control" value="<?php echo $row->gru_id; ?>" name = "gru_id" >
 																	</div>
 															</div>
 															<!--Emp. ID -->
@@ -220,8 +223,6 @@ function Save_edit_data(){
 																	</div>
 															</div>
 															<!-- Name Surname -->
-														</form>
-														<!-- form-horizontal -->
 													</div>
 													<!-- modal-body -->
 																
@@ -229,17 +230,18 @@ function Save_edit_data(){
 														<div class="btn-group pull-left">	
 															<button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
 														</div>
-															<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">
-																<button type="button" class="btn btn-success" onClick="Save_edit_data(<?php echo $row->gru_id; ?>)">SAVE</button>
-															</a>
+															<input type="submit" class="btn btn-success" value = "SAVE">
 													</div>
 													<!-- modal-footer -->
+													</form>
+														<!-- form-horizontal -->
 												</div>
 												<!-- modal-content -->
 											</div>
 											<!-- modal-dialog -->
 										</div>
-										<!-- End Modal Edit_add-->	
+										<!-- End Modal Edit_add-->
+
 										
 										<!-- Modal Delete -->
 										<div class="modal fade" id="Delete<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

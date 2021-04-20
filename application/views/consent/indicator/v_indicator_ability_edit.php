@@ -465,17 +465,21 @@ function update_data_key_component_and_expected_behavior() {
 
 
 
-
     for (i = 0; i < table_for_count; i++) {
 
-        table_arr_for_count = document.getElementsByName("arr_edit_pos_" + (i + 1) + "").length
+        table_arr_for_count = document.getElementsByName("id_exp").length
         arr_save_posittion_other_to_database[i] = [table_arr_for_count];
         arr_save_expected_en_todatabase[i] = document.getElementsByName("arr_add_expected_en_edit")[i].value;
         arr_save_expected_th_todatabase[i] = document.getElementsByName("arr_add_expected_th_edit")[i].value;
-        arr_save_expected_id[i] = document.getElementsByName("id_exp")[i].value;
+        
+        console.log(arr_save_expected_en_todatabase[i]);
+        console.log(arr_save_expected_th_todatabase[i]);
+  
         for (j = 0; j < table_arr_for_count; j++) {
+            arr_save_expected_id[j] = document.getElementsByName("id_exp")[j].value;
             arr_save_posittion_other_to_database[i][j] = document.getElementsByName("arr_edit_pos_" + (i + 1) + "")[j]
                 .value;
+                console.log(arr_save_expected_id[j]);
             console.log(arr_save_posittion_other_to_database[i][j]);
             console.log(" i : " + i + " J : " + j);
         }
@@ -497,7 +501,6 @@ function update_data_key_component_and_expected_behavior() {
 
         success: function(status) {
             console.log(status);
-
 
             table_data += '<div id="row_table' + save_table_insert_data + '">'
             table_data += '<div class="card-body">'
@@ -531,7 +534,7 @@ function update_data_key_component_and_expected_behavior() {
 
                 table_data += '</div>'
                 table_data += '<div class="col-2">'
-                table_data += '<hr>'
+     
                 table_arr_for_count = arr_save_posittion_other_to_database[i].length
                 for (j = 0; j < table_arr_for_count; j++) {
 
@@ -944,6 +947,7 @@ function edit_key_and_expected(kcp_id) {
                     table_data += '<!-- end add key component -->'
                     table_data += '<hr>'
                     data.forEach((row_expected, index) => {
+                        
                         if (row_key.kcp_key_component_detail_en == row_expected
                             .kcp_key_component_detail_en) {
 
@@ -965,8 +969,7 @@ function edit_key_and_expected(kcp_id) {
                                     'placeholder="Enter Expected" class="form-control" style="resize: none"'
                                 table_data += 'required>' + row_expected
                                     .ept_expected_detail_en + '</textarea>'
-                                    table_data +=  '<input type= "hidden" name = "id_exp" value = "'+row_expected
-                                    .ept_id+'">' 
+                                   
                                 table_data += '</div>'
                                 table_data += '</div>'
                                 table_data += '<!-- row -->'
@@ -981,7 +984,7 @@ function edit_key_and_expected(kcp_id) {
                                 table_data += '<!-- col-4  -->'
                                 table_data +=
                                     '<div class="col-8"><textarea name="arr_add_expected_th_edit" rows="2" placeholder="Enter Expected" class="form-control" style="resize: none" required>' +
-                                    row_expected.ept_expected_detail_en + '</textarea>'
+                                    row_expected.ept_expected_detail_th + '</textarea>'
                                 table_data += '</div>'
                                 table_data += '<!-- col-8  -->'
                                 table_data += '</div>'
@@ -1021,6 +1024,7 @@ function edit_key_and_expected(kcp_id) {
                                             }
                                             table_data +=
                                                 '<!-- Start input position  -->'
+                                                table_data +=  '<input type= "hidden" id = "id_exp" name = "id_exp" value = "'+row_expected.ept_id+'">' 
                                             table_data += '<div class="row">'
                                             table_data += '<div class="col-6">'
                                             table_data += '<div class="row">'
@@ -1051,6 +1055,8 @@ function edit_key_and_expected(kcp_id) {
                                             table_data += 'class=" form-control-label">Position :</label>'
                                             table_data += '</div>'
                                             table_data += '<div class="col-8" >'
+                                            
+                                         
                                             table_data += '<select name="arr_edit_pos_'+index_loop+'" id="select" class="form-control">'
                                             table_data +=
                                                 '<option >Select position level</option>'
