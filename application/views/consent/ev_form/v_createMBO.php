@@ -94,6 +94,10 @@ function save_dataMBO(){
                 console.log("1111");
             },
 			// success
+			error: function(){
+				console.log("9999");
+			}
+			// error
         });
 		// ajax
 	
