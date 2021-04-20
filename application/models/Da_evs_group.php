@@ -55,13 +55,13 @@ class Da_evs_group extends evs_model {
 
 	function update() {
 	
-	 	$sql = "UPDATE evs_database.evs_group 
-	 			SET	gru_id=?, gru_name=?, gru_head_dept=? 
-	 			WHERE gru_id=?";
+		$sql = "UPDATE evs_database.evs_group 
+				SET	gru_id=?, gru_name=?, gru_head_dept=? 
+				WHERE gru_id=?";
+	     
+	     $this->db->query($sql, array($this->gru_id_new, $this->gru_name, $this->gru_head_dept, $this->gru_id_old));
 		
-		$this->db->query($sql, array($this->gru_id_new, $this->gru_name, $this->gru_head_dept, $this->gru_id_old));
-		 
-	 }
+	}                       
 
 	/*
 	* delete

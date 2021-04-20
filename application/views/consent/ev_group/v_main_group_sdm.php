@@ -73,6 +73,47 @@ function Delete_data(gru_id){
 }
 
 
+function get_idemployee(){
+	empid = document.getElementById("empid").value;
+	console.log(empid)
+	$.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>/ev_group/Evs_group/search_by_employee_id",
+        data: {
+			"empid":empid
+        },
+        dataType: "JSON",
+        success: function(data,status) {
+            console.log(status)
+
+			if(data.length != 0){
+				document.getElementById("nameEmp").value = data[0].Empname_eng + " " + data[0].Empsurname_eng;
+			}else{
+				document.getElementById("nameEmp").value = "";
+			}
+
+
+        }
+	});
+}
+
+function Save_edit_data(){
+	empid = document.getElementById("empid").value;
+	console.log(empid)
+	$.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>/ev_group/Evs_group/save_edit_sdm",
+        data: {
+			"empid":empid
+        },
+        dataType: "JSON",
+        success: function(data,status) {
+            console.log(status)
+        }
+        });
+}
+
+
 </script>
 
 <!DOCTYPE html>
@@ -185,7 +226,7 @@ function Delete_data(gru_id){
 															<div class="form-group">
 																<label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
 																	<div class="col-sm-6">
-																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" id="focusedinput" placeholder="JS000xxx">
+																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" id="empid" placeholder="JS000xxx" onkeyup="get_idemployee()">
 																	</div>
 															</div>
 															<!--Emp. ID -->

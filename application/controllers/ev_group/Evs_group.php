@@ -147,6 +147,20 @@ class Evs_group extends MainController_avenxo {
 	}
 	// function search_by_employee_id
 
+
+	function save_edit_sdm()
+	{
+
+		$this->load->model('Da_evs_group','sedt');
+		$sedt = $this->input->post('sedt');
+		$this->sedt->update();
+
+		echo json_encode($status);
+	}
+	// function save_edit_sdm
+
+
+
 	/*
 	* Evs_form
 	* Form
