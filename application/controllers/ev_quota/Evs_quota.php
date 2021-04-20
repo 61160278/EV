@@ -10,6 +10,13 @@ require_once(dirname(__FILE__) . "/../MainController_avenxo.php");
 * @Create Date 2564-04-05
 */
 
+/*
+* Evs_form
+* Form
+* @author 	Kunanya Singmee
+* @Update Date 2564-04-20
+*/
+
 class Evs_quota extends MainController_avenxo {
 
 	/**
@@ -61,10 +68,20 @@ class Evs_quota extends MainController_avenxo {
 	* @author 	Piyasak Srijan
 	* @Create Date 2564-04-06
 	*/
+	
+	/*
+	* hd_report_curve
+	* @input
+	* @output 
+	* @author 	Piyasak Srijan
+	* @Update Date 2564-04-20
+	*/
 	function hd_report_curve()
 	{
-		$pos_psl_id = $this->input->post('pos_psl_id'); //position id
-		$this->output('/consent/ev_quota/v_hd_report_curve');
+		$this->load->model('M_evs_position','meps');
+		$data['pos_data'] = $this->meps->get_all()->result(); // show value position all
+		
+		$this->output('/consent/ev_quota/v_hd_report_curve',$data);
 	}
 	// function hd_report_curve()
 	
@@ -73,11 +90,14 @@ class Evs_quota extends MainController_avenxo {
 	* @input
 	* @output 
 	* @author 	Piyasak Srijan
-	* @Create Date 2564-04-06
+	* @Update Date 2564-04-20
 	*/
 	function hr_report_curve()
 	{
-		$this->output('/consent/ev_quota/v_hr_report_curve');
+		$this->load->model('M_evs_position','meps');
+		$data['pos_data'] = $this->meps->get_all()->result(); // show value position all
+		
+		$this->output('/consent/ev_quota/v_hr_report_curve',$data);
 	}
 	// function hr_report_curve()
 	
@@ -90,7 +110,12 @@ class Evs_quota extends MainController_avenxo {
 	*/
 	function manage_quota()
 	{
-		$this->output('/consent/ev_quota/v_manage_quota');
+		$this->load->model('M_evs_position','meps');
+		$data['pos_data'] = $this->meps->get_all()->result(); // show value position all
+		$this->load->model('M_evs_company','mcpn');
+		$data['com_data'] = $this->mcpn->get_all()->result(); // show value company all
+		
+		$this->output('/consent/ev_quota/v_manage_quota',$data);
 	}
 	// function manage_quota(
 	
@@ -114,9 +139,20 @@ class Evs_quota extends MainController_avenxo {
 	* @author 	Piyasak Srijan
 	* @Create Date 2564-04-07
 	*/
+	
+	/*
+	* hd_quota_evaluation_status
+	* @input
+	* @output 
+	* @author 	Piyasak Srijan
+	* @Update Date 2564-04-20
+	*/
 	function hd_quota_evaluation_status()
 	{
-		$this->output('/consent/ev_quota/v_hd_quota_evaluation_status');
+		$this->load->model('M_evs_position','meps');
+		$data['pos_data'] = $this->meps->get_all()->result(); // show value position all
+		
+		$this->output('/consent/ev_quota/v_hd_quota_evaluation_status',$data);
 	}
 	// function hd_quota_evaluation_status()
 	
@@ -127,9 +163,22 @@ class Evs_quota extends MainController_avenxo {
 	* @author 	Piyasak Srijan
 	* @Create Date 2564-04-07
 	*/
+	
+	/*
+	* hr_quota_evaluation_status
+	* @input
+	* @output 
+	* @author 	Piyasak Srijan
+	* @Update Date 2564-04-20
+	*/
 	function hr_quota_evaluation_status()
 	{
-		$this->output('/consent/ev_quota/v_hr_quota_evaluation_status');
+		$this->load->model('M_evs_position','meps');
+		$data['pos_data'] = $this->meps->get_all()->result(); // show value position all
+		$this->load->model('M_evs_company','mcpn');
+		$data['com_data'] = $this->mcpn->get_all()->result(); // show value company all
+		
+		$this->output('/consent/ev_quota/v_hr_quota_evaluation_status',$data);
 	}
 	// function hr_quota_evaluation_status()
 	
