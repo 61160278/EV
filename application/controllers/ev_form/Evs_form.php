@@ -1,4 +1,3 @@
-
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once(dirname(__FILE__) . "/../MainController_avenxo.php");
@@ -62,12 +61,6 @@ class Evs_form extends MainController_avenxo {
 			$this->load->model('M_evs_employee','memp');
 			$this->memp->Emp_ID = $emp_id;
 			$data['emp_info'] = $this->memp->get_by_empid();
-
-			echo $emp_info->Position_ID;
-
-			$this->load->model('M_evs_set_form_mbo','mesf');
-			// $this->mesf->sfm_pos_id = $pos;
-			// $data = $this->mesf->get_mbo()->row();
 
 			$this->output('/consent/ev_form/v_editMBO',$data);
 		}
