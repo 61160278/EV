@@ -26,10 +26,13 @@
 	th {
 		text-align : center;
 	}
+	.panel.panel-indigo .panel-heading h2 {
+		color: #ffffff;
+	}
 </style>
 
 <div class="col-md-12">
-	<div class="panel panel-midnightblue" data-widget='{"draggable": "false"}'>
+	<div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
 		<div class="panel-heading">
 			<h2><font size = "5px"><b>Report Curve</b></font></h2>
 			<div class="panel-ctrls" data-actions-container="" data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
