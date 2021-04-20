@@ -12,6 +12,7 @@ require_once(dirname(__FILE__) . "/../MainController_avenxo.php");
 
 class Evs_form extends MainController_avenxo {
 
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -58,7 +59,26 @@ class Evs_form extends MainController_avenxo {
 		
 		$this->output('/consent/ev_form/v_createMBO',$data);
 	}
-	// function index() $this->input->post
+	// function createMBO
+
+	/*
+	* get_mbo_by_emp
+	* @input emp_id
+	* @output infomation employee
+	* @author 	Kunanya Singmee
+	* @Create Date 2564-04-17
+	*/
+	function get_mbo_by_emp()
+	{
+
+		$Emp_ID = $this->input->post("Emp_ID");
+		$this->load->model('M_evs_data_mbo','medm');
+		$this->medm->Emp_ID = $Emp_ID;
+		$data = $this->medm->get_by_empID();
+
+		echo json_encode($data);
+	}
+	// function get_mbo_by_emp
 	
 	
 	function get_mbo_by_pos(){
@@ -88,9 +108,6 @@ class Evs_form extends MainController_avenxo {
 			$this->dedm->insert();
 		}
 		// for
-
-		$this->output('/consent/ev_form/v_editMBO');
-	
 	}
 	// function save_mbo_by_emp
  
