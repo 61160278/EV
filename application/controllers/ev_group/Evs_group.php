@@ -150,9 +150,9 @@ class Evs_group extends MainController_avenxo {
 
 	function save_edit_sdm()
 	{
-
+		$empid = $this->input->post('empid');
 		$this->load->model('Da_evs_group','sedt');
-		$sedt = $this->input->post('sedt');
+		$this->sedt->Emp_ID = $empid;
 		$this->sedt->update();
 
 		echo json_encode($status);
