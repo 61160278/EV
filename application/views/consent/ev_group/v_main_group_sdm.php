@@ -73,44 +73,27 @@ function Delete_data(gru_id){
 }
 
 
-function get_idemployee(){
-	empid = document.getElementById("empid").value;
-	console.log(empid)
+
+
+function Save_edit_data(gru_id){
+	var group = document.getElementById("grouptext").value;
+	var Emp_id = document.getElementById("Emp_id").value;
+	console.log(gru_id)
 	$.ajax({
-        type: "POST",
-        url: "<?php echo base_url(); ?>/ev_group/Evs_group/search_by_employee_id",
-        data: {
-			"empid":empid
-        },
-        dataType: "JSON",
-        success: function(data,status) {
-            console.log(status)
-
-			if(data.length != 0){
-				document.getElementById("nameEmp").value = data[0].Empname_eng + " " + data[0].Empsurname_eng;
-			}else{
-				document.getElementById("nameEmp").value = "";
-			}
-
-
-        }
-	});
-}
-
-function Save_edit_data(){
-	empid = document.getElementById("empid").value;
-	console.log(empid)
-	$.ajax({
-        type: "POST",
+        type: "post",
         url: "<?php echo base_url(); ?>/ev_group/Evs_group/save_edit_sdm",
         data: {
-			"empid":empid
+			
+			"group":group,
+			"Emp_id":Emp_id
+			
         },
         dataType: "JSON",
         success: function(data,status) {
             console.log(status)
         }
         });
+	  window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_sdm";
 }
 
 
@@ -212,11 +195,12 @@ function Save_edit_data(){
 													<!-- modal header -->
 													
 													<div class="modal-body">
-														<form class="form-horizontal">
+														<form class="form-horizontal" action = "<?php echo base_url(); ?>ev_group/Evs_group/save_edit_sdm" method = "post">
 															<div class="form-group">
 																<label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
 																	<div class="col-sm-6">
-																		<input type="text" class="form-control" value="<?php echo $row->gru_name; ?>" id="focusedinput" placeholder="HR AGM">
+																		<input type="text" class="form-control" value="<?php echo $row->gru_name; ?>" name="grouptext" placeholder="HR AGM">
+																	
 																	</div>						
 															</div>
 															<!-- Group Name -->
@@ -226,7 +210,8 @@ function Save_edit_data(){
 															<div class="form-group">
 																<label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
 																	<div class="col-sm-6">
-																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" id="empid" placeholder="JS000xxx" onkeyup="get_idemployee()">
+																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" name="Emp_id" placeholder="JS000xxx">
+																		<input type="hidden" class="form-control" value="<?php echo $row->gru_id; ?>" name = "gru_id" >
 																	</div>
 															</div>
 															<!--Emp. ID -->
@@ -238,8 +223,7 @@ function Save_edit_data(){
 																	</div>
 															</div>
 															<!-- Name Surname -->
-														</form>
-														<!-- form-horizontal -->
+														
 													</div>
 													<!-- modal-body -->
 																
@@ -247,11 +231,13 @@ function Save_edit_data(){
 														<div class="btn-group pull-left">	
 															<button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
 														</div>
-															<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_sdm">
-																<button type="button" class="btn btn-success">SAVE</button>
-															</a>
+														
+																<input type="submit" class="btn btn-success" value = "SAVE">
+															
 													</div>
 													<!-- modal-footer -->
+													</form>
+														<!-- form-horizontal -->
 												</div>
 												<!-- modal-content -->
 											</div>
