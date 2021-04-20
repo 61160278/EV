@@ -30,8 +30,9 @@
     <link type="text/css" href="<?php echo base_url();?>avenxo/assets/plugins/codeprettifier/prettify.css" rel="stylesheet">                <!-- Code Prettifier -->
     <link type="text/css" href="<?php echo base_url();?>avenxo/assets/plugins/iCheck/skins/minimal/blue.css" rel="stylesheet">              <!-- iCheck -->
     
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
     <!--[if lt IE 10]>
         <script type="text/javascript" src="assets/js/media.match.min.js"></script>
