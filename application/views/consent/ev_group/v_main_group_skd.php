@@ -159,7 +159,6 @@ function Save_edit_data(){
 										<tr class="odd gradeX" align = 'center'>
 											<td><?php echo $num;?> </td>
 											<td><?php echo $row->gru_name; ?></td>
-<<<<<<< HEAD
 											<td>
 												<?php if($row->gru_head_dept == NULL){ 
 													echo "ไม่พบข้อมูล";
@@ -169,9 +168,6 @@ function Save_edit_data(){
 												
 												?> 
 											</td>
-=======
-											<td><?php echo $row->gru_head_dept; ?></td>
->>>>>>> 75c02a84819111521dc0f92d0d22d298de37d07f
 											<td>
 												<div class="demo-btns">
 													<a data-toggle="modal" class="btn btn btn-danger" href="#Delete<?php echo $row->gru_id?>">
