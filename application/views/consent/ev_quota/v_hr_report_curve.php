@@ -8,6 +8,24 @@
 * @Create Date 2563-04-06
 */  
 ?>
+<script>
+function get_data() {
+	var pos_sel = document.getElementById("pos_select").value; // get kay by id
+	console.log(pos_sel);
+	
+	$.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_quota/v_hr_report_curve",
+        data: {
+            "pos_psl_id": pos_sel
+        },
+        dataType: "JSON",
+        success: function(data) {
+            console.log(data)
+		}
+	});
+}
+</script>
 <style>
 	.text {
 		color : black;
@@ -25,9 +43,6 @@
 	}
 	th {
 		text-align : center;
-	}
-	.panel.panel-indigo .panel-heading h2 {
-		color: #ffffff;
 	}
 </style>
 
@@ -79,10 +94,17 @@
 						</select>
 					</div>
 					<div class="col-md-2">
-						<select class="form-control text" id="" >
-							<option value="yearEndBonus">Select Position</option>
-							<option value="yearEndBonus">Staff</option>
-							<option value="salaryIncrement">General Manager</option>
+						<select class="form-control text" id="pos_select" >
+							<option value="select">Select Position</option>
+							<option value="0">All Position</option>
+							<!-- start foreach -->
+                             <?php foreach($pos_data as $value){ ?>
+                             <option value="<?php echo $value->Position_ID;?>">
+                             <?php echo $value->Pos_shortName;?>
+                             </option>
+                             <?php } ?>
+                             <!-- end foreach -->
+							
 						</select>
 					</div>
 					<div class="col-md-2">

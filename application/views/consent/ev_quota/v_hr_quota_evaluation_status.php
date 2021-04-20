@@ -1,13 +1,47 @@
 <?php
 /*
-* v_quota_evaluation_status.php
-* Display v_add_quota
+* v_hr_quota_evaluation_status.php
+* Display v_hr_quota_evaluation_status
 * @input    
 * @output
 * @author   Piyasak Srijan
 * @Create Date 2564-04-7
 */  
 ?>
+<script>
+function get_position() {
+	var pos_sel = document.getElementById("pos_select").value; // get kay by id
+	console.log(pos_sel);
+	
+	$.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_quota/v_hr_quota_evaluation_status",
+        data: {
+            "pos_id": pos_sel
+        },
+        dataType: "JSON",
+        success: function(data) {
+            console.log(data)
+		}
+	});
+}
+function get_company() {
+	var cpn_sel = document.getElementById("com_select").value; // get kay by id
+	console.log(cpn_sel);
+	
+	$.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_quota/v_hr_quota_evaluation_status",
+        data: {
+            "cpn_id": cpn_sel
+        },
+        dataType: "JSON",
+        success: function(data) {
+            console.log(data)
+		}
+	});
+}
+</script>
 <style>
 	.text {
 		color : black;
@@ -773,10 +807,15 @@
 								<div class="panel-heading">
 									<h2>&nbsp;</h2>
 									<div class="col-md-3">
-										<select class="text form-control pull-right margin text" id="" >
-											<option value="yearEndBonus">Company</option>
-											<option value="yearEndBonus">SDM</option>
-											<option value="yearEndBonus">SKD</option>
+										<select class="text form-control pull-right margin text" id="com_select" >
+											<option value="0">Company</option>
+											<!-- start foreach -->
+											<?php foreach($com_data as $value){ ?>
+											<option value="<?php echo $value->Company_ID;?>">
+											<?php echo $value->Company_shortname;?>
+											</option>
+											<?php } ?>
+											<!-- end foreach -->
 										</select>
 									</div> 	
 									<div class="col-md-4">
@@ -789,12 +828,16 @@
 										</select>	
 									</div>
 									<div class="col-md-3">
-										<select class="text form-control pull-right margin text" id="" >
-											<option value="yearEndBonus">Select Position</option>
-											<option value="yearEndBonus">All Position</option>
-											<option value="yearEndBonus">Staff</option>
-											<option value="yearEndBonus">Senior Staff</option>
-											<option value="salaryIncrement">Manager</option>
+										<select class="text form-control pull-right margin text" id="pos_select" >
+											<option value="select">Select Position</option>
+											<option value="0">All Position</option>
+											<!-- start foreach -->
+											<?php foreach($pos_data as $value){ ?>
+											<option value="<?php echo $value->Position_ID;?>">
+											<?php echo $value->Position_name;?>
+											</option>
+											<?php } ?>
+											<!-- end foreach -->
 										</select>
 									</div> 	
 									<button class="btn-success btn pull-right margin">SUBMIT</button>
@@ -898,12 +941,16 @@
 									<div class="col-md-6">
 									</div> 	
 									<div class="col-md-4">
-										<select class="text form-control pull-right margin text" id="" >
-											<option value="yearEndBonus">Select Position</option>
-											<option value="yearEndBonus">All Position</option>
-											<option value="yearEndBonus">Staff</option>
-											<option value="yearEndBonus">Senior Staff</option>
-											<option value="salaryIncrement">Manager</option>
+										<select class="text form-control pull-right margin text" id="pos_select" >
+											<option value="select">Select Position</option>
+											<option value="0">All Position</option>
+											<!-- start foreach -->
+											<?php foreach($pos_data as $value){ ?>
+											<option value="<?php echo $value->Position_ID;?>">
+											<?php echo $value->Position_name;?>
+											</option>
+											<?php } ?>
+											<!-- end foreach -->
 										</select>	
 									</div>
 									<button class="btn-success btn pull-right margin">SUBMIT</button>

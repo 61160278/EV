@@ -1,7 +1,7 @@
 <?php
 /*
-* v_edit_quota.php
-* Display v_edit_quota
+* v_add_quota.php
+* Display v_add_quota
 * @input    
 * @output
 * @author   Piyasak Srijan
@@ -11,10 +11,6 @@
 <style>
 	.text {
 		color : black;
-	}
-	.h7 {
-		color: white;
-		font-weight: bold;
 	}
 	.orange {
 		background-color : orange;
@@ -26,7 +22,9 @@
 	}
 	th {
 		text-align : center;
+	
 	}
+
 </style>
 <script>
 function check_quota(){
@@ -56,9 +54,9 @@ function check_quota(){
 
 </script>
 <div class="col-md-12">
-	<div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
-		<div class="panel-heading ">
-			<h2 class = "h7"><font size = "5px">Edit Quota</font></h2>
+	<div class="panel panel-midnightblue" data-widget='{"draggable": "false"}'>
+		<div class="panel-heading">
+			<h2><font size = "5px"><b>Add Quota</b></font></h2>
 			<div class="panel-ctrls" data-actions-container="" data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
 			</div>
 		</div>
@@ -67,19 +65,19 @@ function check_quota(){
 				<div class="form-group">
 					<div class="col-md-3">
 					</div>
-					<div class="col-md-4">
-						<table width ="100%">
-							<tr>										
-								<td width = "30%"><h4 class = "text"><b>Quota </b></h4></td>				
-								<td width = "10%"><h4 class = "text"><b>: </b></h4></td>
-								<td><h4 class = "text"><b>Year End Bonus</b></h4></td>	
-							</tr>
-							<tr>
-								<td><h4 class = "text"><b>Position: </b></h4></td>
-								<td><h4 class = "text"><b>: </b></h4></td>
-								<td><h4 class = "text"><b>Team Associates Above</b></h4></td>	
-							</tr>	
-						</table>
+					<div class="col-md-3">
+						<select class="form-control text" id="" >
+							<option value="yearEndBonus">Quota</option>
+							<option value="yearEndBonus">Year End Bonus</option>
+							<option value="salaryIncrement">Salary Increment</option>
+						</select>
+					</div>
+					<div class="col-md-3">
+						<select class="form-control text" id="" >
+							<option value="yearEndBonus">Position Of Quota</option>
+							<option value="yearEndBonus">Team Associate above</option>
+							<option value="salaryIncrement">Operational Associate</option>
+						</select>
 					</div>
 				</div>
 			</div>
@@ -131,7 +129,7 @@ function check_quota(){
 				<div class="col-md-8">
 					<div class="panel panel-midnightblue" data-widget='{"draggable": "false"}'>
 						<div class="panel-heading">
-							<h2 class = "h7"><font size = "5px">Quota</font></h2>
+							<h2><font size = "5px"><b>Quota</b></font></h2>
 								<div class="panel-ctrls" data-actions-container="" data-action-collapse='{"target": ".panel-body"}'>
 								</div>
 						</div>
@@ -200,9 +198,12 @@ function check_quota(){
 				</div>
 			</div>
 			<button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
+			<div class="panel-ctrls">
+			
+			
 				<button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button>
-			<div class = "col-md-offset-11">
-				<button type="button" class="btn btn-warning" style="background-color:#0000CD;">Edit</button>
+				
+				
 			</div>
 		</div>
 	</div>
