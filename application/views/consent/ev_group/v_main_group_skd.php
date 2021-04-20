@@ -56,6 +56,7 @@ function Delete_data(gru_id){
             console.log(status)
         }
         });
+	window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
 }
 
 function get_idemployee(){

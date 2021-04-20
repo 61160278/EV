@@ -156,6 +156,7 @@ class Evs_group extends MainController_avenxo {
 	function save_edit_skd()
 	{
 
+		$this->load->model('Da_evs_group','sve_edt');
 		$sve_edt = $this->input->post('sve_edt');
 		$this->sve_edt->update();
 
