@@ -32,13 +32,13 @@
 
 
     <!-- new-->
-    <!-- <link type="text/css" href="<?php echo base_url();?>avenxo/assets/plugins/jquery-chained/jquery.chained.js" rel="stylesheet"> 
+    <link type="text/css" href="<?php echo base_url();?>avenxo/assets/plugins/jquery-chained/jquery.chained.js" rel="stylesheet"> 
     <link type="text/css" href="<?php echo base_url();?>avenxo/assets/plugins/jquery-chained/jquery.chained.min.js" rel="stylesheet"> 
     <link type="text/css" href="<?php echo base_url();?>avenxo/assets/plugins/jquery-chained/jquery.chained.remote.js" rel="stylesheet"> 
     <link type="text/css" href="<?php echo base_url();?>avenxo/assets/plugins/jquery-chained/jquery.chained.remote.min.js" rel="stylesheet"> 
 
     <link type="text/css" href="<?php echo base_url();?>avenxo/assets/plugins/jquery-editable/jquery.editable.js" rel="stylesheet"> 
-    <link type="text/css" href="<?php echo base_url();?>avenxo/assets/plugins/jquery-editable/ jquery.editable.min.js" rel="stylesheet">  -->
+    <link type="text/css" href="<?php echo base_url();?>avenxo/assets/plugins/jquery-editable/ jquery.editable.min.js" rel="stylesheet"> 
     <!-- new-->
 
     
