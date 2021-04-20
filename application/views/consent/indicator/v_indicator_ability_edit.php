@@ -1004,19 +1004,19 @@ function edit_key_and_expected(kcp_id) {
                                             Staff = "";
                                             Officier = "";
                                             index_ept++;
-                                            if (row_expected.pos_psl_id == "1") {
+                                            if (row_expected.position_level_id == "1") {
                                                 Top_Management = "selected";
                                             }
-                                            if (row_expected.pos_psl_id == "2") {
+                                            if (row_expected.position_level_id == "2") {
                                                 Middle_Management = "selected";
                                             }
-                                            if (row_expected.pos_psl_id == "3") {
+                                            if (row_expected.position_level_id == "3") {
                                                 Junior_Management = "selected";
                                             }
-                                            if (row_expected.pos_psl_id == "4") {
+                                            if (row_expected.position_level_id == "4") {
                                                 Staff = "selected";
                                             }
-                                            if (row_expected.pos_psl_id == "5") {
+                                            if (row_expected.position_level_id == "5") {
                                                 Officier = "selected";
                                             }
                                             table_data +=
@@ -1471,7 +1471,7 @@ foreach ($competency_table as $value) {
         echo "<br>";
         echo $value->kcp_key_component_detail_th;
         echo '</div>';
-        echo '<div class="col-5">';
+        echo '<div class="col-4">';
         //start foreach
         foreach ($competency_table as $chack_expect) {
             //start if
@@ -1494,7 +1494,7 @@ foreach ($competency_table as $value) {
         } //end foreach
 
         echo '</div>
-                            <div class="col-1">
+                            <div class="col-2">
                                 <button class="btn btn-warning float-center" value = "' . $value->kcp_id . '"  Onclick="edit_key_and_expected(value)" ><i class="fa fa-pencil"></i></button>
                                 <br>
                                 <button type="button" name="remove" id="' . $index_table . '" class="btn btn-danger btn_ept_remove" value = "' . $value->kcp_key_component_detail_en . '" Onclick="delete_key_component_and_expected(value)" ><i class="fa fa-times"></i></button>

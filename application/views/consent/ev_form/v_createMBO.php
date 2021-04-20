@@ -92,38 +92,9 @@ function save_dataMBO(){
 			}
         });
 		// ajax
-
-		edit_dataMBO();
 	
 }
 // function save_dataMBO
-
-function edit_dataMBO(){
-
-	var check_emp_id = document.getElementById("emp_id").innerHTML;
-
-	$.ajax({
-            type:"post",
-            dataType:"json",
-            url: "<?php echo base_url(); ?>ev_form/Evs_form/get_mbo_by_emp",
-            data: {
-				"Emp_ID" : check_emp_id
-			},
-            success: function(data) {
-                console.log("11-11");
-            },
-			// success
-			error: function(){
-				console.log("99-99");
-			}
-			// error
-        });
-		// ajax
-
-
-}
-// function edit_dataMBO
-
 
 function creatembo(){
 	

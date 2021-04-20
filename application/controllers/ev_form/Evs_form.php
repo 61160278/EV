@@ -52,34 +52,31 @@ class Evs_form extends MainController_avenxo {
 	function createMBO()
 	{
 		$emp_id = $this->input->post("emp_id");
-		
-		$this->load->model('M_evs_employee','memp');
-		$this->memp->Emp_ID = $emp_id;
-		$data['emp_info'] = $this->memp->get_by_empid();
-		
-		$this->output('/consent/ev_form/v_createMBO',$data);
-	}
-	// function createMBO
-
-	/*
-	* get_mbo_by_emp
-	* @input emp_id
-	* @output infomation employee
-	* @author 	Kunanya Singmee
-	* @Create Date 2564-04-17
-	*/
-	function get_mbo_by_emp()
-	{
 
 		$Emp_ID = $this->input->post("Emp_ID");
 		$this->load->model('M_evs_data_mbo','medm');
-		$this->medm->Emp_ID = $Emp_ID;
-		$data = $this->medm->get_by_empID();
+		$this->medm->dtm_emp_id = $Emp_ID;
+		$data['mbo_emp'] = $this->medm->get_by_empID()->result();
 
-		echo json_encode($data);
+		if(isset($data['mbo_emp'])){
+			$this->load->model('M_evs_employee','memp');
+			$this->memp->Emp_ID = $emp_id;
+			$data['emp_info'] = $this->memp->get_by_empid();
+			$this->output('/consent/ev_form/v_editMBO',$data);
+		}
+		// if
+
+		else{
+			$this->load->model('M_evs_employee','memp');
+			$this->memp->Emp_ID = $emp_id;
+			$data['emp_info'] = $this->memp->get_by_empid();
+			
+			$this->output('/consent/ev_form/v_createMBO',$data);
+		}
+		// else	
+
 	}
-	// function get_mbo_by_emp
-	
+	// function createMBO
 	
 	function get_mbo_by_pos(){
 		
