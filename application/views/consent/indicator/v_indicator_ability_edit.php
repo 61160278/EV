@@ -467,7 +467,7 @@ function update_data_key_component_and_expected_behavior() {
 
     for (i = 0; i < table_for_count; i++) {
 
-        table_arr_for_count = document.getElementsByName("arr_edit_pos_" + (i + 1) + "").length
+        table_arr_for_count = document.getElementsByName("id_exp").length
         arr_save_posittion_other_to_database[i] = [table_arr_for_count];
         arr_save_expected_en_todatabase[i] = document.getElementsByName("arr_add_expected_en_edit")[i].value;
         arr_save_expected_th_todatabase[i] = document.getElementsByName("arr_add_expected_th_edit")[i].value;
@@ -1024,6 +1024,7 @@ function edit_key_and_expected(kcp_id) {
                                             }
                                             table_data +=
                                                 '<!-- Start input position  -->'
+                                                table_data +=  '<input type= "hidden" id = "id_exp" name = "id_exp" value = "'+row_expected.ept_id+'">' 
                                             table_data += '<div class="row">'
                                             table_data += '<div class="col-6">'
                                             table_data += '<div class="row">'
@@ -1055,7 +1056,7 @@ function edit_key_and_expected(kcp_id) {
                                             table_data += '</div>'
                                             table_data += '<div class="col-8" >'
                                             
-                                            table_data +=  '<input type= "hidden" id = "id_exp" name = "id_exp" value = "'+row_expected.ept_id+'">' 
+                                         
                                             table_data += '<select name="arr_edit_pos_'+index_loop+'" id="select" class="form-control">'
                                             table_data +=
                                                 '<option >Select position level</option>'
