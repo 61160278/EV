@@ -106,7 +106,7 @@ class M_evs_key_component extends Da_evs_key_component {
 				LEFT JOIN evs_database.evs_expected_behavior
 				ON ept_kcp_id = kcp_id
 				LEFT JOIN dbmc.position
-				ON ept_pos_id = pos_id
+				ON ept_pos_id = Position_ID
 				WHERE kcp_id=?
 				ORDER BY ept_expected_detail_en ASC";
 		$query = $this->db->query($sql, array($this->kcp_id));
