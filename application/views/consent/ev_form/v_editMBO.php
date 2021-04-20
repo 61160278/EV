@@ -40,9 +40,6 @@ th{
 var count = 0;
 
 $(document).ready(function(){
-  creatembo();
-  createACM();
-  createAtt();
   $("#btn_save").attr("disabled", true);
 });
 // document ready
@@ -186,7 +183,7 @@ function clearMBO(){
 								<!-- col-md-6 -->
 								
 								<div class="col-md-6" align="right">
-									<button class="btn btn-warnning" id="btn_save" onclick="save_dataMBO()">EDIT</button>
+									<button class="btn btn-warning" id="btn_save" onclick="save_dataMBO()">EDIT</button>
 									<button class="btn btn-primary" data-toggle="modal" data-target="#add_app">SEND <i class="fa fa-share-square-o"></i></button>
 								</div>
 								<!-- col-md-6 add_app -->
