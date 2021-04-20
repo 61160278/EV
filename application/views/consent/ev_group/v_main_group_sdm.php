@@ -74,7 +74,7 @@ function Delete_data(gru_id){
 
 
 function get_idemployee(){
-	empid = document.getElementById("empid").value;
+	var empid = document.getElementById("empid").value;
 	console.log(empid)
 	$.ajax({
         type: "POST",
@@ -89,7 +89,7 @@ function get_idemployee(){
 			if(data.length != 0){
 				document.getElementById("nameEmp").value = data[0].Empname_eng + " " + data[0].Empsurname_eng;
 			}else{
-				document.getElementById("nameEmp").value = "";
+				document.getElementById("nameEmp").value = " " ;
 			}
 
 
@@ -98,19 +98,22 @@ function get_idemployee(){
 }
 
 function Save_edit_data(){
-	empid = document.getElementById("empid").value;
+	 var empid = document.getElementById("empid").value;
 	console.log(empid)
 	$.ajax({
-        type: "POST",
+        type: "post",
         url: "<?php echo base_url(); ?>/ev_group/Evs_group/save_edit_sdm",
         data: {
+			"gru_id":gru_id,
 			"empid":empid
+			
         },
         dataType: "JSON",
         success: function(data,status) {
             console.log(status)
         }
         });
+	  window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_sdm";
 }
 
 
@@ -248,7 +251,7 @@ function Save_edit_data(){
 															<button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
 														</div>
 															<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_sdm">
-																<button type="button" class="btn btn-success">SAVE</button>
+																<button type="button" class="btn btn-success" onclick="Save_edit_data(<?php echo $row->gru_id; ?>)">SAVE</button>
 															</a>
 													</div>
 													<!-- modal-footer -->
