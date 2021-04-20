@@ -36,7 +36,6 @@ class M_evs_group extends Da_evs_group {
 	*/
 	function get_all_com(){	
 		$sql = "SELECT *
-<<<<<<< HEAD
 				FROM evs_database.evs_group as evg
 				LEFT JOIN dbmc.employee as emp ON emp.Emp_ID = evg.gru_head_dept
 				WHERE evg.gru_company_id = ? ";
@@ -52,12 +51,7 @@ class M_evs_group extends Da_evs_group {
 				WHERE employee.Emp_ID = ? ";
 		$query = $this->db->query($sql, array($this->Emp_ID));
 		return $query->result();
-=======
-				FROM evs_database.evs_group 
-				WHERE gru_company_id = ?";
-		$query = $this->db->query($sql, array($this->gru_company_id));
-		return $query;
-	
+
 	}//get_all_com  INNER JOIN dbmc.employee as emp ON emp.Emp_ID = evg.gru_head_dept
 	
 	
@@ -71,8 +65,5 @@ class M_evs_group extends Da_evs_group {
 
 	}
 	// connect
->>>>>>> 75c02a84819111521dc0f92d0d22d298de37d07f
-	
-	}//get_name_emp_by_IDemp 
 } 
 ?>
