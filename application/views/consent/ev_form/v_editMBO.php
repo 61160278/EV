@@ -32,18 +32,21 @@ th {
 <!-- END style -->
 
 <script>
-var count = 0;
+var count=0;
 
 $(document).ready(function() {
-	check_weight()
+    check_weight()
     $("#btn_edit").attr("disabled", true);
+	count = document.getElementById("row_index").value;
+	
 });
 // document ready
 
 function clearMBO() {
 
     console.log("clear");
-
+	count = document.getElementById("row_index").value;
+	console.log(count);
     for (var i = 1; i <= count; i++) {
         $("#inp_mbo" + i).val("");
         $("#inp_result" + i).val("");
@@ -57,72 +60,71 @@ function clearMBO() {
 
 function check_weight() {
 
-var check = "";
-var value_inp = 0;
-var index_check = 0;
-var val_check = 0;
+    var check = "";
+    var value_inp = 0;
+    var index_check = 0;
+    var val_check = 0;
 
-var number_index = document.getElementById("row_index").value;
-count = number_index;
-//console.log(number_index);
+    var number_index = document.getElementById("row_index").value;
+	count = number_index;
+    //console.log(number_index);
 
-for (i = 1; i <= number_index; i++) {
-	check = document.getElementById("inp_result" + i).value;
-	//console.log(check);
+    for (i = 1; i <= number_index; i++) {
+        check = document.getElementById("inp_result" + i).value;
+        //console.log(check);
 
-	if (check != "") {
-		value_inp += parseInt(check);
-		index_check++;
-	}
-	// if
+        if (check != "") {
+            value_inp += parseInt(check);
+            index_check++;
+        }
+        // if
 
-	if (parseInt(check) == 0) {
-		val_check++;
-	}
-	// if
+        if (parseInt(check) == 0) {
+            val_check++;
+        }
+        // if
 
-	//console.log(value_inp);
-}
-// for i
+        //console.log(value_inp);
+    }
+    // for i
 
-if (value_inp > 100) {
-	$("#show_weight").css("color", "#e60000");
-	$("#show_weight").css("background-color", "#ffe6e6");
-	$("#show_weight").css("border-style", "solid");
-	$("#btn_save").attr("disabled", true);
-}
-// if
-else if (value_inp < 100) {
-	$("#btn_save").attr("disabled", true);
-	$("#show_weight").css("background-color", "#ffffff");
-	$("#show_weight").css("border-style", "solid");
-}
-// else if
-else if (index_check != number_index) {
-	$("#btn_save").attr("disabled", true);
-	$("#show_weight").css("background-color", "#ffffff");
-	$("#show_weight").css("border-style", "solid");
-}
-// else if 
-else if (val_check != 0) {
-	$("#btn_save").attr("disabled", true);
-	$("#show_weight").css("background-color", "#ffffff");
-	$("#show_weight").css("border-style", "solid");
-}
-// else if 
-else {
-	$("#show_weight").css("color", "#000000");
-	$("#show_weight").css("background-color", "#ffffff");
-	$("#show_weight").css("border-style", "solid");
-	$("#btn_save").attr("disabled", false);
+    if (value_inp > 100) {
+        $("#show_weight").css("color", "#e60000");
+        $("#show_weight").css("background-color", "#ffe6e6");
+        $("#show_weight").css("border-style", "solid");
+        $("#btn_save").attr("disabled", true);
+    }
+    // if
+    else if (value_inp < 100) {
+        $("#btn_save").attr("disabled", true);
+        $("#show_weight").css("background-color", "#ffffff");
+        $("#show_weight").css("border-style", "solid");
+    }
+    // else if
+    else if (index_check != number_index) {
+        $("#btn_save").attr("disabled", true);
+        $("#show_weight").css("background-color", "#ffffff");
+        $("#show_weight").css("border-style", "solid");
+    }
+    // else if 
+    else if (val_check != 0) {
+        $("#btn_save").attr("disabled", true);
+        $("#show_weight").css("background-color", "#ffffff");
+        $("#show_weight").css("border-style", "solid");
+    }
+    // else if 
+    else {
+        $("#show_weight").css("color", "#000000");
+        $("#show_weight").css("background-color", "#ffffff");
+        $("#show_weight").css("border-style", "solid");
+        $("#btn_save").attr("disabled", false);
 
-}
-// else 
+    }
+    // else 
 
-$("#show_weight").text(value_inp);
+    $("#show_weight").text(value_inp);
 }
 // function check_weight
-
 </script>
 <!-- script -->
 
@@ -153,7 +155,6 @@ $("#show_weight").text(value_inp);
                         <br>
                         <?php foreach($emp_info->result() as $row){?>
                         <input type="text" id="pos_id" value="<?php echo $row->Position_ID; ?>" hidden>
-                        <input type="text" id="row_index" value="" hidden>
 
                         <div class="row">
                             <div class="col-md-2">
@@ -255,16 +256,21 @@ $("#show_weight").text(value_inp);
                             <!-- thead -->
                             <tbody id="row_mbo">
 
-							<?php foreach($mbo_emp as $index => $row) {?>
+                                <?php 
+							$num = 0;
+							foreach($mbo_emp as $index => $row) {?>
                                 <tr>
                                     <td>
                                         <center><?php echo $index+1; ?></center>
                                     </td>
                                     <td>
-                                        <input class="form-control" id="inp_mbo<?php echo $index+1; ?>" type="text" value="<?php echo $row->dtm_mbo; ?>">
+                                        <input class="form-control" id="inp_mbo<?php echo $index+1; ?>" type="text"
+                                            value="<?php echo $row->dtm_mbo; ?>">
                                     </td>
                                     <td>
-                                        <input class="form-control" id="inp_result<?php echo $index+1; ?>" type="number" min="0" max="100" value="<?php echo $row->dtm_weight; ?>">
+                                        <input class="form-control" id="inp_result<?php echo $index+1; ?>" type="number"
+                                            min="0" max="100" value="<?php echo $row->dtm_weight; ?>"
+                                            onchange="check_weight()">
                                     </td>
                                     <td id="dis_color">
                                         <center>
@@ -294,7 +300,12 @@ $("#show_weight").text(value_inp);
                                     </td>
                                     <td id="dis_color"></td>
                                 </tr>
-								<?php };?>
+                                <?php 
+								$num++;
+							
+								};?>
+
+                                <input type="text" id="row_index" value="<?php echo $num; ?>" hidden>
 
                             </tbody>
                             <!-- tbody -->
