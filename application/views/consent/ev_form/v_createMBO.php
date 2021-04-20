@@ -255,7 +255,7 @@ function check_weight(){
 function createACM(){
 	
 	var data_row = '';
-	var info_row = 0;
+	var info_row = 5;
 	
 	for(i=0; i<info_row; i++){
 		data_row += '<tr id="dis_color">'
