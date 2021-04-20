@@ -73,8 +73,6 @@ function get_idemployee(){
 			}else{
 				document.getElementById("nameEmp").value = "";
 			}
-
-
         }
 	});
 }
@@ -210,7 +208,7 @@ function Save_edit_data(gru_id){
 															<div class="form-group">
 																<label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
 																	<div class="col-sm-6">
-																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" name="Empname_eng" placeholder="JS000xxx">
+																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" name="Empname_eng" id="empid" placeholder="JS000xxx" onkeyup="get_idemployee()">
 																		<input type="hidden" class="form-control" value="<?php echo $row->gru_id; ?>" name = "gru_id" >
 																	</div>
 															</div>
