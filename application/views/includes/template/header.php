@@ -44,6 +44,7 @@
 
     <link href="<?php echo base_url();?>elaadmin/assets/css/chartist.min.css" rel="stylesheet">
     <link href="<?php echo base_url();?>elaadmin/assets/css/jqvmap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- End include stylesheet -->
 	<?php date_default_timezone_set("Asia/Bangkok"); ?>
