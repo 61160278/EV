@@ -73,39 +73,19 @@ function Delete_data(gru_id){
 }
 
 
-function get_idemployee(){
-	var empid = document.getElementById("empid").value;
-	console.log(empid)
-	$.ajax({
-        type: "POST",
-        url: "<?php echo base_url(); ?>/ev_group/Evs_group/search_by_employee_id",
-        data: {
-			"empid":empid
-        },
-        dataType: "JSON",
-        success: function(data,status) {
-            console.log(status)
-
-			if(data.length != 0){
-				document.getElementById("nameEmp").value = data[0].Empname_eng + " " + data[0].Empsurname_eng;
-			}else{
-				document.getElementById("nameEmp").value = " " ;
-			}
 
 
-        }
-	});
-}
-
-function Save_edit_data(){
-	 var empid = document.getElementById("empid").value;
-	console.log(empid)
+function Save_edit_data(gru_id){
+	var group = document.getElementById("grouptext").value;
+	var Emp_id = document.getElementById("Emp_id").value;
+	console.log(gru_id)
 	$.ajax({
         type: "post",
         url: "<?php echo base_url(); ?>/ev_group/Evs_group/save_edit_sdm",
         data: {
 			
-			"empid":empid
+			"group":group,
+			"Emp_id":Emp_id
 			
         },
         dataType: "JSON",
@@ -219,7 +199,7 @@ function Save_edit_data(){
 															<div class="form-group">
 																<label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
 																	<div class="col-sm-6">
-																		<input type="text" class="form-control" value="<?php echo $row->gru_name; ?>" id="focusedinput" placeholder="HR AGM">
+																		<input type="text" class="form-control" value="<?php echo $row->gru_name; ?>" id="grouptext" placeholder="HR AGM">
 																	</div>						
 															</div>
 															<!-- Group Name -->
@@ -229,7 +209,7 @@ function Save_edit_data(){
 															<div class="form-group">
 																<label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
 																	<div class="col-sm-6">
-																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" id="empid" placeholder="JS000xxx" onkeyup="get_idemployee()">
+																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" id="Emp_id" placeholder="JS000xxx">
 																	</div>
 															</div>
 															<!--Emp. ID -->
