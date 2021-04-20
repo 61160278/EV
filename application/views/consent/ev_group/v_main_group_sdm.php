@@ -104,7 +104,7 @@ function Save_edit_data(){
         type: "post",
         url: "<?php echo base_url(); ?>/ev_group/Evs_group/save_edit_sdm",
         data: {
-			"gru_id":gru_id,
+			
 			"empid":empid
 			
         },
