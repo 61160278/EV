@@ -133,7 +133,6 @@ class Evs_group extends MainController_avenxo {
 	}
 	// function delete_group_skd
 	
-<<<<<<< HEAD
 	/*
 	* Evs_form
 	* Form
@@ -163,7 +162,6 @@ class Evs_group extends MainController_avenxo {
 		echo json_encode($status);
 	}
 	// function save_edit_skd
-=======
 	
 	
 		
@@ -172,6 +170,5 @@ class Evs_group extends MainController_avenxo {
 		
 	
 	
->>>>>>> 75c02a84819111521dc0f92d0d22d298de37d07f
 }
 ?>
