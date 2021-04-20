@@ -1,7 +1,7 @@
 <?php
 /*
 * v_main_group.php
-* Display v_main_group
+* Display v_main_group_skd
 * @input    
 * @output
 * @author Tippawan Aiemsaad, Jirayu Jaravichit
