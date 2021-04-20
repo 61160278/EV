@@ -423,8 +423,7 @@ class Evs_ability_indicators_form extends MainController {
 					}
 					//end if
 				}
-				//end foreach
-
+			//end foreach
 
 			}
 			$this->debv->ept_kcp_id = $key_component_id;
@@ -433,7 +432,7 @@ class Evs_ability_indicators_form extends MainController {
 		}
 
 		$status = "key_component_and_expected_behavior_to_database_edit";
-		echo json_encode($status);
+		echo json_encode($add_position_other);
 	}
 	// function key_component_and_expected_behavior_to_database_edit()
 

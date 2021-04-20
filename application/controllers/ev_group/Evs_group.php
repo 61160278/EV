@@ -165,7 +165,6 @@ class Evs_group extends MainController_avenxo {
 	// function save_edit_sdm
 
 
-
 	/*
 	* Evs_form
 	* Form
@@ -175,11 +174,16 @@ class Evs_group extends MainController_avenxo {
 	function save_edit_skd()
 	{
 
-		$this->load->model('Da_evs_group','sve_edt');
-		$sve_edt = $this->input->post('sve_edt');
-		$this->sve_edt->update();
+		$gru_id = $this->input->post('gru_id');
+		$group = $this->input->post("group_text");
+		$Empname_eng = $this->input->post("Empname_eng");
 
-		echo json_encode($status);
+		$this->load->model('Da_evs_group','sav_edit');
+		$this->sav_edit->gru_id = $gru_id;
+		$this->sav_edit->gru_name = $group;
+		$this->sav_edit->gru_head_dept = $Empname_eng;
+		$this->sav_edit->update();
+		$this->select_company_skd();
 	}
 	// function save_edit_skd
 	
