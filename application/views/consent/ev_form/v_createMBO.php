@@ -37,6 +37,8 @@ th{
 
 <script>
 
+var count = 0;
+
 $(document).ready(function(){
   creatembo();
   createACM();
@@ -44,6 +46,59 @@ $(document).ready(function(){
   $("#btn_save").attr("disabled", true);
 });
 // document ready
+
+function clearMBO(){
+	
+	console.log("clear");
+	
+	for(var i=1; i<=count; i++){
+		$("#inp_mbo"+ i).val("");
+		$("#inp_result"+ i).val("");
+	}
+	// for
+	
+	check_weight();
+	
+}
+// function clearMBO
+
+function save_dataMBO(){
+	
+	var check_emp_id = document.getElementById("emp_id").innerHTML;
+	console.log(check_emp_id);
+	console.log(count);
+	var dataMBO = [];
+	var resultMBO = [];
+	
+	for(var i=1; i<=count; i++){
+		dataMBO.push(document.getElementById("inp_mbo"+ i).value);
+		resultMBO.push(document.getElementById("inp_result"+ i).value);
+		
+		console.log(dataMBO);
+		console.log(resultMBO);
+		console.log("-----");
+	}
+	// for
+	
+		$.ajax({
+            type:"post",
+            dataType:"json",
+            url: "<?php echo base_url(); ?>ev_form/Evs_form/save_mbo_by_emp",
+            data: {
+				"dataMBO" : dataMBO,
+				"resultMBO" : resultMBO,
+				"Emp_ID" : check_emp_id,
+				"count" : count
+			},
+            success: function(data) {
+                console.log("1111");
+            },
+			// success
+        });
+		// ajax
+	
+}
+// function save_dataMBO
 
 
 function creatembo(){
@@ -63,12 +118,12 @@ function creatembo(){
 				"pos" : check_pos
 			},
             success: function(data) {
-                console.log("1111");
-				console.log(data);
+                //console.log("1111");
+				//console.log(data);
 				var rowmbo = data.sfm_index_field;
 				info_row = parseInt(rowmbo);
 				
-				console.log(info_row);
+				//console.log(info_row);
 				
 				for(i=0; i<info_row; i++){
 					data_row += '<tr>'
@@ -108,7 +163,6 @@ function creatembo(){
 					data_row += '</tr>'
 					
 					number++
-					
 				}
 				// for
 				
@@ -118,7 +172,7 @@ function creatembo(){
             },
 			// success
             error: function(data) {
-				console.log("9999");
+				console.log("9999 : error");
             }
 			// error
         });
@@ -132,21 +186,28 @@ function check_weight(){
 	var check = "";
 	var value_inp = 0;
 	var index_check = 0;
+	var val_check = 0;
 	
 	var number_index = document.getElementById("row_index").value;
-	console.log(number_index);
+	count = number_index;
+	//console.log(number_index);
 	
 	for(i=1; i<=number_index; i++){
 		check = document.getElementById("inp_result"+i).value;
-		console.log(check);
+		//console.log(check);
 		
 		if(check != ""){
 			value_inp += parseInt(check);
 			index_check++;
 		}
 		// if
+		
+		if(parseInt(check) == 0){
+			val_check++;
+		}
+		// if
 
-		console.log(value_inp);
+		//console.log(value_inp);
 	}
 	// for i
 	
@@ -171,6 +232,13 @@ function check_weight(){
 	}
 	// else if 
 	
+	else if(val_check != 0){
+		$("#btn_save").attr("disabled", true);
+		$("#show_weight").css("background-color", "#ffffff");
+        $("#show_weight").css("border-style", "solid");
+	}
+	// else if 
+	
 	else{
 		$("#show_weight").css("color", "#000000");
 		$("#show_weight").css("background-color", "#ffffff");
@@ -184,15 +252,10 @@ function check_weight(){
 }
 // function check_weight
 
-function clearMBO(){
-	
-}
-// function clearMBO
-
 function createACM(){
 	
 	var data_row = '';
-	var info_row = 6;
+	var info_row = 0;
 	
 	for(i=0; i<info_row; i++){
 		data_row += '<tr id="dis_color">'
@@ -392,7 +455,7 @@ function createAtt(){
 								<tfoot>
 									<tr>
 										<td colspan="2" align="right"><b>Total Weight</b></td>
-										<td id="show_weight"align="center"></td>
+										<td id="show_weight"align="center">0</td>
 										<td colspan="2"></td>
 									</tr>
 								</tfoot>
@@ -404,12 +467,12 @@ function createAtt(){
 							<div class="row">
 								<div class="col-md-6">
 									<button class="btn btn-inverse">CANCEL</button>
-									<button class="btn btn-default">CLEAR</button>
+									<button class="btn btn-default" onclick="clearMBO()">CLEAR</button>
 								</div>
 								<!-- col-md-6 -->
 								
 								<div class="col-md-6" align="right">
-									<button class="btn btn-success" id="btn_save">SAVE</button>
+									<button class="btn btn-success" id="btn_save" onclick="save_dataMBO()">SAVE</button>
 									<button class="btn btn-primary" data-toggle="modal" data-target="#add_app">SEND <i class="fa fa-share-square-o"></i></button>
 								</div>
 								<!-- col-md-6 add_app -->
