@@ -1,4 +1,3 @@
-
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once(dirname(__FILE__) . "/../MainController_avenxo.php");
@@ -52,16 +51,17 @@ class Evs_form extends MainController_avenxo {
 	function createMBO()
 	{
 		$emp_id = $this->input->post("emp_id");
-
-		$Emp_ID = $this->input->post("Emp_ID");
 		$this->load->model('M_evs_data_mbo','medm');
-		$this->medm->dtm_emp_id = $Emp_ID;
+		$this->medm->dtm_emp_id = $emp_id;
 		$data['mbo_emp'] = $this->medm->get_by_empID()->result();
 
-		if(isset($data['mbo_emp'])){
+		$check = sizeof($data['mbo_emp']);
+
+		if($check != 0){
 			$this->load->model('M_evs_employee','memp');
 			$this->memp->Emp_ID = $emp_id;
 			$data['emp_info'] = $this->memp->get_by_empid();
+
 			$this->output('/consent/ev_form/v_editMBO',$data);
 		}
 		// if
@@ -70,7 +70,6 @@ class Evs_form extends MainController_avenxo {
 			$this->load->model('M_evs_employee','memp');
 			$this->memp->Emp_ID = $emp_id;
 			$data['emp_info'] = $this->memp->get_by_empid();
-			
 			$this->output('/consent/ev_form/v_createMBO',$data);
 		}
 		// else	
