@@ -200,9 +200,7 @@ function Save_edit_data(gru_id){
 															<div class="form-group">
 																<label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
 																	<div class="col-sm-6">
-																	<input type="hidden" class="form-control" value="<?php echo $row->gru_id; ?>" name = "gru_id" >
-																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" name="Empname_eng" placeholder="JS000xxx">
-																		<input type="hidden" class="form-control" value="<?php echo $row->gru_id; ?>" name = "gru_id" >
+																		<input type="text" class="form-control" value="<?php echo $row->gru_name; ?>" name="group_text" placeholder="HR AGM">
 																	</div>						
 															</div>
 															<!-- Group Name -->
@@ -212,7 +210,8 @@ function Save_edit_data(gru_id){
 															<div class="form-group">
 																<label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
 																	<div class="col-sm-6">
-																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" id="empid" placeholder="JS000xxx" onkeyup="get_idemployee()">
+																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" name="Empname_eng" placeholder="JS000xxx">
+																		<input type="hidden" class="form-control" value="<?php echo $row->gru_id; ?>" name = "gru_id" >
 																	</div>
 															</div>
 															<!--Emp. ID -->
