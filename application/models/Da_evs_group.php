@@ -95,5 +95,8 @@ class Da_evs_group extends evs_model {
 		return $query;
 	}
 
+
+
+
 }		 
 ?>
