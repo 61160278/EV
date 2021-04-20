@@ -639,7 +639,7 @@ function pos_level(id) {
             drop_pos += '<option>Select position</option>'
             //Start forEach
             data.forEach((row, index) => {
-                drop_pos += '<option value="' + row.pos_name + '">' + row.pos_name + '</option>'
+                drop_pos += '<option value="' + row.Position_name + '">' + row.Position_name + '</option>'
             });
             //End forEach
             drop_pos += '</select>'
@@ -703,7 +703,7 @@ function pos_level_add(id) {
             drop_pos += '<option>Select position</option>'
             //Start forEach
             data.forEach((row, index) => {
-                drop_pos += '<option value="' + row.pos_name + '">' + row.pos_name + '</option>'
+                drop_pos += '<option value="' + row.Position_name + '">' + row.Position_name + '</option>'
             });
             //End forEach
             drop_pos += '</select>'
@@ -755,7 +755,7 @@ function pos_level_main_edit(id) {
             drop_pos += '<option>Select position</option>'
             //Start forEach
             data.forEach((row, index) => {
-                drop_pos += '<option value="' + row.pos_name + '">' + row.pos_name + '</option>'
+                drop_pos += '<option value="' + row.Position_name + '">' + row.Position_name + '</option>'
             });
             //End forEach
             drop_pos += '</select>'
@@ -817,7 +817,7 @@ function add_pos_level(id) {
             drop_pos += '<option>Select position</option>'
             //Start forEach
             data.forEach((row, index) => {
-                drop_pos += '<option value="' + row.pos_id + '">' + row.pos_name + '</option>'
+                drop_pos += '<option value="' + row.pos_id + '">' + row.Position_name + '</option>'
             });
             //end forEach
             drop_pos += '</select>'
@@ -1054,8 +1054,8 @@ function edit_key_and_expected(kcp_id) {
                                             table_data += '<select name="arr_edit_pos_'+index_loop+'" id="select" class="form-control">'
                                             table_data +=
                                                 '<option >Select position level</option>'
-                                            table_data += '<option selected  value="' + row_expected.pos_name + '">' +
-                                                row_expected.pos_name + '</option>'
+                                            table_data += '<option selected  value="' + row_expected.Position_name + '">' +
+                                                row_expected.Position_name + '</option>'
                                             table_data += '</select>'
                                             table_data += '</div>'
                                             table_data += '</div>'
@@ -1488,7 +1488,7 @@ foreach ($competency_table as $value) {
         foreach ($competency_table as $chack_expect) {
             //start if
             if ($value->kcp_key_component_detail_en == $chack_expect->kcp_key_component_detail_en) {
-                echo $chack_expect->pos_name;
+                echo $chack_expect->Position_name;
                 echo "<br>";
                 echo "<hr>";} //end if
         } //end foreach

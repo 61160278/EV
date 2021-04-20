@@ -369,8 +369,8 @@ function insert_data_key_component_and_expected_behavior() {
 					table_arr_for_count = arr_save_posittion_other_to_database[i].length
                 table_data += '' + arr_save_expected_en_todatabase[i] + '<br>'
                 table_data += '' + arr_save_expected_th_todatabase[i] + '<br>'
-				for (j = 0; j < table_arr_for_count; j++) {
-                    table_data += "1"+'<br>'
+				for (j = 1; j < table_arr_for_count; j++) {
+                    table_data += '<br>'
                 }				
 				table_data += '<hr>'
 				}
@@ -382,7 +382,7 @@ function insert_data_key_component_and_expected_behavior() {
                 table_arr_for_count = arr_save_posittion_other_to_database[i].length
                 for (j = 0; j < table_arr_for_count; j++) {
                     
-                    table_data += '' + arr_save_posittion_other_to_database[i][j]+"<br>"
+                    if(arr_save_posittion_other_to_database[i][j] != 0){table_data += '' + arr_save_posittion_other_to_database[i][j]+"<br>"}
                     
                 }
                 table_data += '<hr>'
