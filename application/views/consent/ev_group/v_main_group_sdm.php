@@ -195,11 +195,12 @@ function Save_edit_data(gru_id){
 													<!-- modal header -->
 													
 													<div class="modal-body">
-														<form class="form-horizontal">
+														<form class="form-horizontal" action = "<?php echo base_url(); ?>ev_group/Evs_group/save_edit_sdm" method = "post">
 															<div class="form-group">
 																<label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
 																	<div class="col-sm-6">
-																		<input type="text" class="form-control" value="<?php echo $row->gru_name; ?>" id="grouptext" placeholder="HR AGM">
+																		<input type="text" class="form-control" value="<?php echo $row->gru_name; ?>" name="grouptext" placeholder="HR AGM">
+																	
 																	</div>						
 															</div>
 															<!-- Group Name -->
@@ -209,7 +210,8 @@ function Save_edit_data(gru_id){
 															<div class="form-group">
 																<label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
 																	<div class="col-sm-6">
-																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" id="Emp_id" placeholder="JS000xxx">
+																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" name="Emp_id" placeholder="JS000xxx">
+																		<input type="hidden" class="form-control" value="<?php echo $row->gru_id; ?>" name = "gru_id" >
 																	</div>
 															</div>
 															<!--Emp. ID -->
@@ -221,8 +223,7 @@ function Save_edit_data(gru_id){
 																	</div>
 															</div>
 															<!-- Name Surname -->
-														</form>
-														<!-- form-horizontal -->
+														
 													</div>
 													<!-- modal-body -->
 																
@@ -230,11 +231,13 @@ function Save_edit_data(gru_id){
 														<div class="btn-group pull-left">	
 															<button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
 														</div>
-															<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_sdm">
-																<button type="button" class="btn btn-success" onclick="Save_edit_data(<?php echo $row->gru_id; ?>)">SAVE</button>
-															</a>
+														
+																<input type="submit" class="btn btn-success" value = "SAVE">
+															
 													</div>
 													<!-- modal-footer -->
+													</form>
+														<!-- form-horizontal -->
 												</div>
 												<!-- modal-content -->
 											</div>
