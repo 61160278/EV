@@ -10,7 +10,7 @@
 ?>
 
 <script>
-
+	
 function test(value){
 if(value == "0"){window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/index";}
 	else if(value == "1"){
@@ -68,14 +68,9 @@ function Delete_data(gru_id){
      
         });
 
-
-
-
+	window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_sdm";
 
 }
-
-
-
 
 
 </script>
@@ -133,13 +128,23 @@ function Delete_data(gru_id){
 									</thead>
 									
 									<tbody>
-									<?php 
+									<?php
 									$num = 1;
 									foreach($grp_sdm->result() as $row ) { ?>
 										<tr class="odd gradeX" align = 'center'>
 											<td> <?php echo $num;?> </td>
 											<td><?php echo $row->gru_name; ?></td>
-											<td><?php //echo $row->Empname_eng . "  " . $row->Empsurname_eng; ?></td>
+											<td id="name<?php echo $num; ?>" >
+												<?php
+												if($row->gru_head_dept != NULL){
+													echo $row->gru_head_dept;
+												}else{		
+													echo "-";		
+												}
+												?>
+												
+									
+											</td>
 											<td>
 												<div class="demo-btns">
 													<a data-toggle="modal" class="btn btn btn-danger" href="#Delete<?php echo $row->gru_id?>">
@@ -154,6 +159,7 @@ function Delete_data(gru_id){
 												</div>
 											</td>
 										</tr>
+										
 										<!-- Model Edit -->	
 										<div class="modal fade" id="Edit<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
@@ -212,7 +218,7 @@ function Delete_data(gru_id){
 										</div>
 										<!-- End Modal Edit_add-->	
 										
-										<!-- Modal Delete -->
+									<!-- Modal Delete -->
 										<div class="modal fade" id="Delete<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
@@ -247,9 +253,11 @@ function Delete_data(gru_id){
 											<!-- modal-dialog -->
 										</div>
 										<!-- End Modal Delete -->	
+	
 									<?php 
 									$num++;
 									} ?> 
+							
 									</tbody>
 								</table>
 								<!-- table -->
@@ -268,6 +276,10 @@ function Delete_data(gru_id){
 						<!-- panel-footer -->
 					</div>
 					<!-- panel-addtable -->
+					
+					
+					
+					
 					<h4 class="text">Description</h4>
 					<div>
 						<a class="btn btn-danger" >
@@ -294,6 +306,7 @@ function Delete_data(gru_id){
 		<!-- head panel -->
 	</div>
 	<!-- head outside -->
+	
 </html>
 
 <head>
@@ -367,6 +380,38 @@ function Delete_data(gru_id){
 		<!-- modal-dialog -->
 	</div>
 	<!-- End Modal Add-->
+	
+	
+										
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 	
