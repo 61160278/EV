@@ -74,9 +74,12 @@ function Delete_data(gru_id) {
 
 }
 
-function get_idemployee() {
-      Emp_id = document.getElementById("Emp_id").value;
+function get_idemployee(gru_id) {
+      Emp_id = document.getElementById("Emp_id"+gru_id).value;
+	var empname = "";
+	console.log(gru_id)
       console.log(Emp_id)
+	console.log("1,2,3,4,5")
       $.ajax({
             type: "POST",
             url: "<?php echo base_url(); ?>/ev_group/Evs_group/search_by_employee_id_sdm",
@@ -86,13 +89,20 @@ function get_idemployee() {
             dataType: "JSON",
             success: function(data, status) {
                   console.log(status)
+			console.log(data)
+			
+                  if (data.length == 0) {
 
-                  if (data.length != 0) {
-                        document.getElementById("nameEmp").value = data[0].Empname_eng + " " + data[0]
-                              .Empsurname_eng;
+				document.getElementById("nameEmp"+gru_id).value="ไม่มีข้อมูล";
+				    console.log(gru_id)
                   } else {
-                        document.getElementById("nameEmp").value = "";
+				empname = data[0].Empname_eng + " " + data[0].Empsurname_eng
+				document.getElementById("nameEmp"+gru_id).value=empname;
+				console.log(gru_id)
+				console.log(999)
+				console.log(empname)
                   }
+
                   // if-else
             }
       });
@@ -282,13 +292,13 @@ function Save_edit_data(gru_id) {
                                                                                                       class="form-control"
                                                                                                       value="<?php echo $row->gru_head_dept; ?>"
                                                                                                       name="Emp_id"
-                                                                                                      id="Emp_id"
+                                                                                                      id="Emp_id<?php echo $row->gru_id; ?>"
                                                                                                       placeholder="JS000xxx"
-                                                                                                      onkeyup="get_idemployee()">
+                                                                                                      onkeyup="get_idemployee('<?php echo $row->gru_id; ?>')">
                                                                                                 <input type="hidden"
                                                                                                       class="form-control"
                                                                                                       value="<?php echo $row->gru_id; ?>"
-                                                                                                      name="gru_id">
+                                                                                                      name="gru_id" id="gru_id">
                                                                                           </div>
                                                                                     </div>
                                                                                     <!--Emp. ID -->
