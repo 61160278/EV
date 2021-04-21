@@ -42,15 +42,11 @@ $(document).ready(function() {
 });
 // document ready
 
-$(document).ready(function() {
-   
-});
-// document ready
-
 function clearMBO() {
 
     console.log("clear");
     for (var i = 1; i <= count; i++) {
+        $("#show_weight").css("color", "#000000");
         $("#inp_mbo" + i).val("");
         $("#inp_result" + i).val("");
     }
@@ -123,11 +119,11 @@ function creatembo() {
                 data_row += '<tr>'
                 data_row += '<td><center>' + (i + 1) + '</center></td>'
                 data_row += '<td>'
-                data_row += '<input id="inp_mbo' + (i + 1) + '" class="form-control" type="text" value="">'
+                data_row += '<input id="inp_mbo' + (i + 1) + '" class="form-control" type="text" value="" onkeyup="clear_css_inp('+ (i + 1) +')">'
                 data_row += '</td>'
                 data_row += '<td>'
                 data_row += '<input id="inp_result' + (i + 1) + '" class="form-control" type="number"'
-                data_row += 'min="0" max="100" onchange="check_weight()" >'
+                data_row += 'min="0" max="100" onkeyup="check_weight()" >'
                 data_row += '</td>'
                 data_row += '<td id="dis_color">'
                 data_row += '<center>'
@@ -280,6 +276,14 @@ function check_mbo() {
 
 }
 // function check_mbo
+
+function clear_css_inp(index){
+    $("#inp_mbo" + index).css("background-color", "#ffffff");
+    $("#inp_mbo" + index).css("border-style", "solid");
+
+}
+// function clear_css_inp
+
 
 function createACM() {
 
