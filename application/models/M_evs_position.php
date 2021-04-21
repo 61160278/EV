@@ -137,7 +137,7 @@ class M_evs_position extends Da_evs_position {
 				LEFT JOIN sectioncode 
 				on employee.Sectioncode_ID = sectioncode.Sectioncode
 				WHERE company.Company_shortname = 'SDM'
-				ORDER BY company.Company_ID";
+				GROUP BY sectioncode.dep_id";
 		$query = $this->db->query($sql);
 		return $query;
 	}//get_all WHERE NOT pos_psl_id=6
