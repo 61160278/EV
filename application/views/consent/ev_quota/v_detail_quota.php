@@ -121,8 +121,8 @@ function check_quota_plan() {
     // draw X and Y axis  
     context.beginPath();
     context.moveTo(475, 375);
-    context.lineTo(30, 375);
-    context.lineTo(25, 25);
+    context.lineTo(40, 375);
+    context.lineTo(40, 25);
     context.stroke();
 
     // draw reference line  แถวมบนสุด เส้นระดับ
