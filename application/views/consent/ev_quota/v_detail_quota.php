@@ -96,7 +96,7 @@ function check_quota_plan() {
 	 var mean_quotaPlan;
 	for (i = 1; i <= 5; i++) {
        
-		mean_quotaPlan = document.getElementById("quotaPlan" + i).innerHTML;
+		mean_quotaPlan = document.getElementById("quota" + i).innerHTML;
 		 
 	   dataArr[i] = mean_quotaPlan;
 	   
