@@ -11,7 +11,7 @@
 
 <script>
 	
-function test(value){
+function select_company(value){
 if(value == "0"){window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/index";}
 	else if(value == "1"){
 	window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_sdm";}
@@ -106,7 +106,7 @@ function Save_edit_data(gru_id){
 			<div class="panel-heading">
 				<h1 style="font-family:'Times New Roman'"><font color = "#ffffff" size = "7px"><b>Manage Group SDM</b></font>
 					<div class="panel pull-right" id="addtable_filter">
-							<select name="example_length" class="form-control" aria-controls="example" onChange="test(value)">
+							<select name="example_length" class="form-control" aria-controls="example" onChange="select_company(value)">
 								<option value="0">Select Company</option>
 								<option value="1" selected>SDM</option>
 								<option value="2">SKD</option>
@@ -177,7 +177,7 @@ function Save_edit_data(gru_id){
 													<a data-toggle="modal" class="btn btn-warning" href="#Edit<?php echo $row->gru_id?>">
 														<i class="ti ti-pencil-alt"></i>
 													</a>
-													<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/add_group_sdm" data-toggle="modal" class="btn btn-info" href="#">
+													<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/add_group_sdm"  class="btn btn-info" >
 														<i class="ti ti-info-alt"></i>
 													</a>
 												</div>

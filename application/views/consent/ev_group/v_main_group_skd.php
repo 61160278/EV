@@ -1,10 +1,10 @@
 <?php
 /*
-* v_main_group.php
+* v_main_group_skd.php
 * Display v_main_group_skd
 * @input    
 * @output
-* @author Tippawan Aiemsaad, Jirayu Jaravichit
+* @author Tippawan Aiemsaad
 * @Create Date 2564-04-08
 */  
 ?>
@@ -17,6 +17,7 @@ if(value == "0"){window.location.href = "<?php echo base_url();?>/ev_group/Evs_g
 	window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_sdm";}
 	else{window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";}
 }
+// function test
 
 function add_group(){
 	
@@ -36,8 +37,9 @@ function add_group(){
         }
         // success function
     });
+	// ajax
 }
-
+// function add_group
 
 function Delete_data(gru_id){
 	console.log(gru_id);
@@ -52,17 +54,19 @@ function Delete_data(gru_id){
             console.log(status)
         }
         });
+		// ajax
 	window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
 }
+// function Delete_data
 
 function get_idemployee(){
-	empid = document.getElementById("empid").value;
-	console.log(empid)
+	Emp_id = document.getElementById("Emp_id").value;
+	console.log(Emp_id)
 	$.ajax({
         type: "POST",
         url: "<?php echo base_url(); ?>/ev_group/Evs_group/search_by_employee_id",
         data: {
-			"empid":empid
+			"Emp_id":Emp_id
         },
         dataType: "JSON",
         success: function(data,status) {
@@ -73,9 +77,12 @@ function get_idemployee(){
 			}else{
 				document.getElementById("nameEmp").value = "";
 			}
+			// if-else
         }
 	});
+	// ajax
 }
+// function get_idemployee
 
 function Save_edit_data(gru_id){
 	var group = document.getElementById("group_text").value;
@@ -95,8 +102,10 @@ function Save_edit_data(gru_id){
             console.log(status)
         }
         });
+		// ajax
 	  window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
 }
+// function Save_edit_data
 
 </script>
 
@@ -107,11 +116,11 @@ function Save_edit_data(gru_id){
 			<div class="panel-heading">
 				<h1 style="font-family:'Times New Roman'"><font color = "#ffffff" size = "7px"><b>Manage Group SKD</b></font>
 					<div class="panel pull-right" id="addtable_filter">
-							<select name="example_length" class="form-control" aria-controls="example" onChange="test(value)">
-								<option value="0">Select Company</option>
-								<option value="1" >SDM</option>
-								<option value="2" selected>SKD</option>
-							</select>
+						<select name="example_length" class="form-control" aria-controls="example" onChange="test(value)">
+							<option value="0">Select Company</option>
+							<option value="1" >SDM</option>
+							<option value="2" selected>SKD</option>
+						</select>
 					</div>
 					<!-- select company -->
 				</h1>
@@ -131,9 +140,9 @@ function Save_edit_data(gru_id){
 											<span>ADD</span>
 									</a>
 								</div>
-								<!-- add page 1 -->
-						</div>
-						<!-- panel-heading -->
+								<!-- DTTT -->
+							</div>
+							<!-- panel-ctrls -->
 						
 						<div class="panel-body no-padding">
 							<div id="example_wrapper" class="dataTables_wrapper form-inline no-footer">
@@ -152,7 +161,7 @@ function Save_edit_data(gru_id){
 										</tr>
 									</thead>
 									
-									<tbody>
+								<tbody>
 									<?php 
 									$num = 1;
 									foreach($grp_sdm->result() as $row ) { ?>
@@ -165,7 +174,6 @@ function Save_edit_data(gru_id){
 												} else {
 													echo $row->Empname_eng." ".$row->Empsurname_eng;
 												}
-												
 												?> 
 											</td>
 											<td>
@@ -176,7 +184,7 @@ function Save_edit_data(gru_id){
 													<a data-toggle="modal" class="btn btn-warning" href="#Edit<?php echo $row->gru_id?>">
 														<i class="ti ti-pencil-alt"></i>
 													</a>
-													<a data-toggle="modal" class="btn btn-info" href = "<?php echo base_url();?>/ev_group/Evs_group/add_group_skd">
+													<a data-toggle="modal" class="btn btn-info" href = "<?php echo base_url();?>/ev_group/Evs_group/select_skd">
 														<i class="ti ti-info-alt"></i>
 													</a>
 												</div>
@@ -208,7 +216,7 @@ function Save_edit_data(gru_id){
 															<div class="form-group">
 																<label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
 																	<div class="col-sm-6">
-																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" name="Empname_eng" id="empid" placeholder="JS000xxx" onkeyup="get_idemployee()">
+																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" name="Empname_eng" id="Emp_id" placeholder="JS000xxx" onkeyup="get_idemployee()">
 																		<input type="hidden" class="form-control" value="<?php echo $row->gru_id; ?>" name = "gru_id" >
 																	</div>
 															</div>
@@ -282,7 +290,8 @@ function Save_edit_data(gru_id){
 									<?php 
 									$num++;
 									} ?> 
-									</tbody>
+								</tbody>
+								<!-- tbody -->
 								</table>
 								<!-- table -->
 							</div>
