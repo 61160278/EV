@@ -72,8 +72,8 @@ var value_pos_id = document.getElementById("value_pos_id").value; // position id
                                         <div class="text-left dib">
                                             <div class="stat-text"><span>
                                                     <?php 
-                                                    $position_name = $row->pos_name;
-                                                    echo $row->pos_name;
+                                                    $position_name = $row->Position_name;
+                                                    echo $row->Position_name;
                                                     // display name of position
 
                                                     ?>

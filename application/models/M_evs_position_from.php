@@ -137,9 +137,9 @@ class M_evs_position_from extends Da_evs_position_from {
     function get_by_level_pos(){
 		$sql = "SELECT * 
 				FROM evs_database.evs_position_from
-        left join bdmc.position 
+        left join dbmc.position 
 		ON ps_pos_id = Position_ID
-		left join bdmc.position_level
+		left join dbmc.position_level
 		ON position_level_id = psl_id
 		WHERE position_level_id=?
 		ORDER BY ps_pos_id";

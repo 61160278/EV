@@ -183,8 +183,6 @@
             //    if 
         }
         // foreach
-        ?>
-                    <?php
 
         $progess_percent = (($count_evaluation / $count_pos) * 100);
         $percent = 100 / $count_deactivate;
@@ -288,7 +286,7 @@
                                 </font>
                             </td>
                             <td rowspan="2" style="vertical-align : middle;text-align:left;">
-                                <font color="black"><?php echo $row->pos_name; ?></font>
+                                <font color="black"><?php echo $row->Position_name; ?></font>
                             </td>
                             <td valign="center" style="vertical-align : middle;text-align:left;">
                                 <center>
@@ -343,17 +341,17 @@
                             <td rowspan="2" style="vertical-align : middle;text-align:left;">
                                 <p align="center">
                                     <a
-                                        href="<?php echo base_url(); ?>/Evs_form/form_position/<?php echo $row->pos_id; ?>/<?php echo $row->ps_pay_id; ?>">
+                                        href="<?php echo base_url(); ?>/Evs_form/form_position/<?php echo $row->Position_ID; ?>/<?php echo $row->ps_pay_id; ?>">
                                         <button id="<?php echo "manage_".$index; ?>" class="btn btn-warning"
-                                            name="pos_id[<?php echo $index; ?>]" value="<?php echo $row->pos_id; ?>">
+                                            name="Position_ID[<?php echo $index; ?>]" value="<?php echo $row->Position_ID; ?>">
                                             <i class="fa fa-pencil"></i> Edit
                                         </button> <!-- Edit button manage form evaluation  -->
                                     </a>
                                     <br><br>
                                     <a
-                                        href="<?php echo base_url(); ?>/Evs_form/preview_form/<?php echo $row->pos_id; ?>/<?php echo $row->ps_pay_id; ?>">
+                                        href="<?php echo base_url(); ?>/Evs_form/preview_form/<?php echo $row->Position_ID; ?>/<?php echo $row->ps_pay_id; ?>">
                                         <button id="<?php echo "perview_".$index; ?>" class="btn btn-info"
-                                            name="pos_id[<?php echo $index; ?>]" value="<?php echo $row->pos_id; ?>">
+                                            name="Position_ID[<?php echo $index; ?>]" value="<?php echo $row->Position_ID; ?>">
                                             <i class="fa fa-bar-chart-o"></i> Preview
                                         </button> <!-- Edit button manage form evaluation  -->
                                 </p>
@@ -371,9 +369,9 @@
                             <td rowspan="2" valign="center">
                                 <p align="center">
                                     <a
-                                        href="<?php echo base_url(); ?>/Evs_form/form_position/<?php echo $row->pos_id; ?>/<?php echo $row->ps_pay_id; ?>">
+                                        href="<?php echo base_url(); ?>/Evs_form/form_position/<?php echo $row->Position_ID; ?>/<?php echo $row->ps_pay_id; ?>">
                                         <button id="<?php echo "manage_".$index; ?>" class="btn btn-success"
-                                            name="pos_id[<?php echo $index; ?>]" value="<?php echo $row->pos_id; ?>">
+                                            name="Position_ID[<?php echo $index; ?>]" value="<?php echo $row->Position_ID; ?>">
                                             <i class="fa fa-file-text-o"></i> Activate
                                         </button> <!-- Perform button manage form evaluation  -->
                                     </a>
@@ -389,7 +387,7 @@
                             <td rowspan="2" valign="center">
                                 <p align="center">
                                     <button id="<?php echo "manage_".$index; ?>" class="btn btn-success"
-                                        name="pos_id[<?php echo $index; ?>]" value="<?php echo $row->pos_id; ?>"
+                                        name="Position_ID[<?php echo $index; ?>]" value="<?php echo $row->Position_ID; ?>"
                                         disabled><i class="fa fa-file-text-o"></i> Deactivate
                                     </button> <!-- disable button manage form evaluation  -->
                                 </p>

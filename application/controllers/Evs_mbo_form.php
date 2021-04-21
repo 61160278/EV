@@ -50,7 +50,7 @@ class Evs_mbo_form extends MainController {
 		$this->load->model('M_evs_set_form_mbo','msfm');
 		$this->load->model('M_evs_position','mpos');
 		$this->load->model('M_evs_pattern_and_year','myear');
-		$this->load->model('M_evs_person','mps');
+		$this->load->model('M_evs_position_from','mpf');
 
 		$data['info_pattern_year'] = $this->myear->get_by_year(); // show value pattern and year by year_id
 		$data['info_pos'] = $this->mpos->get_all(); // show value position all
@@ -60,9 +60,9 @@ class Evs_mbo_form extends MainController {
 		$this->msfm->sfm_pay_id = $year_id;
 		$data['info_pos_form_mbo'] = $this->msfm->get_all_by_key_by_year(); // show value position by form MBO by year
 
-		$this->mps->ps_pos_id = $pos_id;
-		$this->mps->ps_pay_id = $year_id;
-		$data['info_position_form'] = $this->mps->get_all_by_key_by_year(); // show value position by form MBO by year
+		$this->mpf->ps_pos_id = $pos_id;
+		$this->mpf->ps_pay_id = $year_id;
+		$data['info_position_form'] = $this->mpf->get_all_by_key_by_year(); // show value position by form MBO by year
 
 		foreach($data['info_position_form']->result() as $row){ 
 

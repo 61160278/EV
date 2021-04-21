@@ -119,11 +119,11 @@ function creatembo() {
                 data_row += '<tr>'
                 data_row += '<td><center>' + (i + 1) + '</center></td>'
                 data_row += '<td>'
-                data_row += '<input id="inp_mbo' + (i + 1) + '" class="form-control" type="text" >'
+                data_row += '<input id="inp_mbo' + (i + 1) + '" class="form-control" type="text" value="">'
                 data_row += '</td>'
                 data_row += '<td>'
                 data_row += '<input id="inp_result' + (i + 1) + '" class="form-control" type="number"'
-                data_row += 'min="0" max="100" onchange="check_weight()">'
+                data_row += 'min="0" max="100" onchange="check_weight()" >'
                 data_row += '</td>'
                 data_row += '<td id="dis_color">'
                 data_row += '<center>'
@@ -234,7 +234,6 @@ function check_weight() {
 
     }
     // else 
-    
     $("#show_weight").text(value_inp);
 }
 // function check_weight
@@ -242,10 +241,27 @@ function check_weight() {
 function check_mbo(){
 
     var check = "";
+    var num = 0;
     var number_index = document.getElementById("row_index").value;
+
     for (i = 1; i <= number_index; i++) {
-        check = document.getElementById("inp_mbos" + i).value;
+        check = document.getElementById("inp_mbo" + i).value;
         console.log(check);
+
+        if(check == ""){
+            console.log(i+"-");
+            $("#inp_mbo" + i).css("background-color", "#ffe6e6");
+            $("#inp_mbo" + i).css("border-style", "solid");
+        }
+        // if
+
+        else{
+            console.log("-"+i); 
+            $("#inp_mbo" + i).css("background-color", "#ffffff");
+            $("#inp_mbo" + i).css("border-style", "solid");
+            num++;
+        }
+        // else
     }
     // for i
 
