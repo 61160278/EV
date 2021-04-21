@@ -65,7 +65,7 @@ class Evs_form extends MainController {
 	* @Create Date 2564-02-10
 	*/
 	function preview_form($pos_id,$year_id){
-		$this->load->model('M_evs_position_form','mps');
+		$this->load->model('M_evs_position_from','mpf');
 		$this->load->model('M_evs_position','mpos');
 		$this->load->model('M_evs_expected_behavior','mept');
 		$this->load->model('M_evs_identification','midf');
@@ -103,9 +103,9 @@ class Evs_form extends MainController {
 		
 		$data['info_pos_id'] = $pos_id; // position id
 
-		$this->mps->ps_pos_id = $pos_id;
-		$this->mps->ps_pay_id = $year_id;
-		$data['info_pos_form'] = $this->mps->get_all_by_key_by_year(); // position form by year
+		$this->mpf->ps_pos_id = $pos_id;
+		$this->mpf->ps_pay_id = $year_id;
+		$data['info_pos_form'] = $this->mpf->get_all_by_key_by_year(); // position form by year
 
 		$this->output("consent/form/v_preview_form",$data);
 	}
@@ -120,10 +120,10 @@ class Evs_form extends MainController {
 	* @Create Date 2563-10-10
 	*/
 	function manage_form($position_level){
-		$this->load->model('M_evs_position_form','mps');
+		$this->load->model('M_evs_position_from','mpf');
 		$this->load->model('M_evs_pattern_and_year','myear');
-		$this->mps->pos_psl_id = $position_level;
-		$data['info_position'] = $this->mps->get_by_level_pos(); //show value position level by position id
+		$this->mpf->pos_psl_id = $position_level;
+		$data['info_position'] = $this->mpf->get_by_level_pos(); //show value position level by position id
 		$data['info_pattern_year'] = $this->myear->get_by_year_now_year(); //show value pattern and year by year now
 		$data['position_level'] = $position_level; // show value position level 
 
@@ -141,7 +141,7 @@ class Evs_form extends MainController {
 	* @Create Date 2563-10-01
 	*/
 	function form_position($pos_id,$year_id){
-		$this->load->model('M_evs_position_form','mps');
+		$this->load->model('M_evs_position_from','mpf');
 		$this->load->model('M_evs_position','mpos');
 		$this->load->model('M_evs_set_form_attitude','mstf');
 		$this->load->model('M_evs_set_form_ability','msfa');
@@ -172,9 +172,9 @@ class Evs_form extends MainController {
 		
 		$data['info_pos_id'] = $pos_id; // position id
 
-		$this->mps->ps_pos_id = $pos_id;
-		$this->mps->ps_pay_id = $year_id;
-		$data['info_pos_form'] = $this->mps->get_all_by_key_by_year(); // position form by year
+		$this->mpf->ps_pos_id = $pos_id;
+		$this->mpf->ps_pay_id = $year_id;
+		$data['info_pos_form'] = $this->mpf->get_all_by_key_by_year(); // position form by year
 
 		$this->output("consent/form/v_position_form_insert",$data);
 	}
@@ -190,13 +190,13 @@ class Evs_form extends MainController {
 	*/
 	function change_status_ce(){
 		// ACM, Attitude, ACM & Attitude, GCM
-		$this->load->model('M_evs_position_form','mps');
+		$this->load->model('M_evs_position_from','mpf');
 		$pos_id = $this->input->post('pos_id'); // position ID
 		$form_name = $this->input->post('form_name'); // form name
-		$this->mps->ps_pos_id = $pos_id;
-		$this->mps->ps_form_ce = $form_name;
-		$this->mps->ps_status_set_form_ce = 2;
-		$this->mps->update_status_ce();
+		$this->mpf->ps_pos_id = $pos_id;
+		$this->mpf->ps_form_ce = $form_name;
+		$this->mpf->ps_status_set_form_ce = 2;
+		$this->mpf->update_status_ce();
 	}
 	//chang_status_ce()
 
@@ -210,13 +210,13 @@ class Evs_form extends MainController {
 	*/
 	function change_status_pe(){
 		// MBO, G&O, MHRD
-		$this->load->model('M_evs_position_form','mps');
+		$this->load->model('M_evs_position_from','mpf');
 		$pos_id = $this->input->post('pos_id'); // position ID
 		$form_name = $this->input->post('form_name'); // form name
-		$this->mps->ps_pos_id = $pos_id;
-		$this->mps->ps_form_ce = $form_name;
-		$this->mps->ps_status_set_form_pe = 2;
-		$this->mps->update_status_pe();
+		$this->mpf->ps_pos_id = $pos_id;
+		$this->mpf->ps_form_ce = $form_name;
+		$this->mpf->ps_status_set_form_pe = 2;
+		$this->mpf->update_status_pe();
 	}
 	//chang_status_pe()
 

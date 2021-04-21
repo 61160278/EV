@@ -260,7 +260,7 @@ function send_id_to_delete(ctg_id) {
                                                     <div class="stat-text"><span>
                                                             <?php 
                                                             
-                                                            echo $row->pos_name;
+                                                            echo $row->Position_name;
                                                             // display name of position
 
                                                             ?>

@@ -492,7 +492,7 @@ function change_status() {
                                         <div class="text-left dib">
                                             <div class="stat-text"><span>
                                                     <?php 
-                                                    echo $row->pos_name;
+                                                    echo $row->Position_ID;
                                                     // display name of position
                                                     ?>
 
@@ -659,7 +659,7 @@ function change_status() {
                 <h4 class="modal-title">Notice</h4>
             </div>
             <div class="modal-body">
-                <p>Not items data by <b><?php $row = $info_pos->row(); echo $row->pos_name; ?></b> Position.
+                <p>Not items data by <b><?php $row = $info_pos->row(); echo $row->Position_name; ?></b> Position.
                     <br>
                     If do want to insert items data please click Add items.
                 </p>

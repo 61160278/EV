@@ -48,7 +48,7 @@ class Evs_attitude_form extends Evs_form {
 	* @Create Date 2563-10-13
 	*/
 	function form_attitude($pos_id,$year_id){
-		$this->load->model('Da_evs_person','dps');
+		$this->load->model('Da_evs_position_from','dpf');
 		$this->load->model('M_evs_position','mpos');
 		$this->load->model('M_evs_pattern_and_year','myear');
 
@@ -57,8 +57,8 @@ class Evs_attitude_form extends Evs_form {
 		$data['info_pos'] = $this->mpos->get_position_level_by_id(); //show value position level by id
 		$data['info_pos_id'] = $pos_id; //position id
 
-		$this->dps->ps_pos_id = $pos_id;
-		$data['info_pos_form'] = $this->dps->get_by_key()->result(); // show value position by id on manage form 
+		$this->dpf->ps_pos_id = $pos_id;
+		$data['info_pos_form'] = $this->dpf->get_by_key()->result(); // show value position by id on manage form 
 
 		$this->load->model('Da_evs_set_form_attitude','dstf');
 		$this->dstf->sft_pos_id = $pos_id;
@@ -284,7 +284,7 @@ class Evs_attitude_form extends Evs_form {
 	* @Create Date 2563-12-03
 	*/
 	function indicator_attitude_view_insert_data($pos_id){
-		$this->load->model('Da_evs_person','dps');
+		$this->load->model('Da_evs_position_from','dpf');
 		$this->load->model('M_evs_position','mpos');
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['info_pattern_year'] = $this->myear->get_by_year_now_year(); //show value pattern and year by year now
@@ -294,8 +294,8 @@ class Evs_attitude_form extends Evs_form {
 		$data['info_pos_id'] = $pos_id; //position id
 		
 
-		$this->dps->ps_pos_id = $pos_id;
-		$data['info_pos_form'] = $this->dps->get_by_key()->result(); // show value position by id on manage form
+		$this->dpf->ps_pos_id = $pos_id;
+		$data['info_pos_form'] = $this->dpf->get_by_key()->result(); // show value position by id on manage form
 		 $this->output("consent/form/v_attitude_form_indicator_insert",$data);
 	}
 	// function indicator_attitude_view_insert_data()
@@ -310,7 +310,7 @@ class Evs_attitude_form extends Evs_form {
 	* @Create Date 2563-12-03
 	*/
 	function indicator_attitude_table($pos_id){
-		$this->load->model('Da_evs_person','dps');
+		$this->load->model('Da_evs_position_from','dpf');
 		$this->load->model('M_evs_position','mpos');
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$this->load->model('M_evs_category','mctg');
@@ -323,7 +323,7 @@ class Evs_attitude_form extends Evs_form {
 		$data['cate_data'] = $this->mctg->get_category_identification()->result(); //show value category all
 		$data['pos_lv_data'] = $this->mepl->get_all()->result(); // show value position all
 
-		$this->dps->ps_pos_id = $pos_id;
+		$this->dpf->ps_pos_id = $pos_id;
 		$this->output("consent/form/v_attitude_form_indicator_table",$data);
 	}
 	// function indicator_attitude_table()
@@ -337,7 +337,7 @@ class Evs_attitude_form extends Evs_form {
 	* @Create Date 2563-09-27
 	*/
 	function indicator_attitude_view_edit_data($id_catagory,$pos_id){
-		$this->load->model('Da_evs_person','dps');
+		$this->load->model('Da_evs_position_from','dpf');
 		$this->load->model('M_evs_position','mpos');
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$this->load->model('M_evs_category','mctg');
