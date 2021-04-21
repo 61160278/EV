@@ -234,10 +234,23 @@ function check_weight() {
 
     }
     // else 
-
+    
     $("#show_weight").text(value_inp);
 }
 // function check_weight
+
+function check_mbo(){
+
+    var check = "";
+    var number_index = document.getElementById("row_index").value;
+    for (i = 1; i <= number_index; i++) {
+        check = document.getElementById("inp_mbos" + i).value;
+        console.log(check);
+    }
+    // for i
+
+}
+// function check_mbo
 
 function createACM() {
 
