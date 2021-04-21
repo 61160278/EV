@@ -50,12 +50,14 @@ h2 {
 #numdatashow{
 	margin-right:290px;	
 }
-th{
+th {
 	color:black;
 	text-align: center;
+	font-size: 20px;
 }
 td{
 	text-align: center;
+	font-size: 15px;
 }
 h4 {
 	color : black;
@@ -65,7 +67,7 @@ h4 {
 <div class="col-md-12">		
 	<div class="panel panel-indigo" >
 		<div class="panel-heading">
-			<h2><font size = "5px">Manage Quota</font></h2>	
+			<h2><font size = "6px">Manage Quota</font></h2>	
 		</div>
 		<div class="panel-body">
 			<h4><b> Quota	:</b></h4>
@@ -133,7 +135,7 @@ h4 {
 									foreach ($pos_data as $row ) { ?>
 									<tr class="" role="">
 										<td><?php echo $row->Company_shortname; ?></td>
-										<td><?php echo $row->Department; ?></td>
+										<td><?php echo $row->Dep_Name; ?></td>
 										<td><?php echo $row->Position_name; ?></td>
 										<td class="center">
 											<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/detail_quota">
