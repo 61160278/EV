@@ -41,6 +41,7 @@ function get_company() {
 		}
 	});
 }
+
 </script>
 <style>
 h2 {
@@ -122,7 +123,7 @@ h4 {
 									<thead>
 										<tr role="row">
 											<th>Company</th>
-											<th>Departmantrtmant</th>
+											<th>Department</th>
 											<th>position</th>
 											<th>Action</th>
 										</tr>
@@ -130,9 +131,9 @@ h4 {
 									<tbody>
 									<?php	
 									foreach ($pos_data as $row ) { ?>
-									<tr class="gradeA odd" role="row">
-										<td class="sorting_1">SDM</td>
-										<td>Human Resource</td>
+									<tr class="" role="">
+										<td><?php echo $row->Company_shortname; ?></td>
+										<td><?php echo $row->Department; ?></td>
 										<td><?php echo $row->Position_name; ?></td>
 										<td class="center">
 											<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/detail_quota">

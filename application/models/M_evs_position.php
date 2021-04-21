@@ -40,7 +40,8 @@ class M_evs_position extends Da_evs_position {
 	*/
 	function get_all(){	
 		$sql = "SELECT * 
-				FROM dbmc.position" ;
+				FROM dbmc.position 
+				WHERE NOT position_level_id = '6'";
 		$query = $this->db->query($sql);
 		return $query;
 	}//get_all WHERE NOT pos_psl_id=6
@@ -117,5 +118,28 @@ class M_evs_position extends Da_evs_position {
 		return $query;
 	}//get_position_level_by_pls_id
 
+	/*
+	* get_pos_com_dep
+	* Get company position department from database
+	* @input  
+	* @output company
+	* @author Piyasak Srijan
+	* @Create Date 2563-04-21
+	*/	
+
+	function get_pos_com_dep(){	
+		$sql = "SELECT *
+				FROM employee
+				RIGHT JOIN company 
+				on employee.Company_ID = company.Company_ID
+				LEFT JOIN position 
+				on employee.Position_ID = position.Position_ID
+				LEFT JOIN sectioncode 
+				on employee.Sectioncode_ID = sectioncode.Sectioncode
+				WHERE company.Company_shortname = 'SDM'
+				ORDER BY company.Company_ID";
+		$query = $this->db->query($sql);
+		return $query;
+	}//get_all WHERE NOT pos_psl_id=6
 } 
 ?>
