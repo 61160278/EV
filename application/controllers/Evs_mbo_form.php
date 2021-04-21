@@ -52,7 +52,7 @@ class Evs_mbo_form extends MainController {
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$this->load->model('M_evs_position_from','mpf');
 
-		$data['info_pattern_year'] = $this->myear->get_by_year(); // show value pattern and year by year_id
+		$data['info_pattern_year'] = $this->myear->get_by_year_now_year(); // show value pattern and year by year_id
 		$data['info_pos'] = $this->mpos->get_all(); // show value position all
 		$data['info_pos_id'] = $pos_id; // show value position all by id
 
@@ -65,7 +65,6 @@ class Evs_mbo_form extends MainController {
 		$data['info_position_form'] = $this->mpf->get_all_by_key_by_year(); // show value position by form MBO by year
 
 		foreach($data['info_position_form']->result() as $row){ 
-
 			//start if
 			if($row->ps_status_set_form_pe == 1){
 				$this->output("consent/form/v_mbo_form_insert",$data);
@@ -74,16 +73,8 @@ class Evs_mbo_form extends MainController {
 				$this->output("consent/form/v_mbo_form_edit",$data);
 			}
 			// end if-else
-
 		}
-		//start if-else
-		// if(count($data['info_pos_form_mbo']) == 0){
-		// 	$this->output("consent/form/v_mbo_form_insert",$data);
-		// }
-		// else {
-		// 	$this->output("consent/form/v_mbo_form_edit",$data);
-		// }
-		//end if-else
+	
 	}
 	//function form_mbo()
 
