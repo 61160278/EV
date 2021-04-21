@@ -93,6 +93,8 @@ function save_dataMBO() {
     });
     // ajax
 
+    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/createMBO/"+check_emp_id+"";
+
 }
 // function save_dataMBO
 
@@ -121,11 +123,12 @@ function creatembo() {
             //console.log(info_row);
 
             for (i = 0; i < info_row; i++) {
-                clear = i+1;
+                clear = i + 1;
                 data_row += '<tr>'
                 data_row += '<td><center>' + (i + 1) + '</center></td>'
                 data_row += '<td>'
-                data_row += '<input id="inp_mbo' + (i + 1) + '" class="form-control" type="text" value="" onchange="clear_css_inp("1")">'
+                data_row += '<input id="inp_mbo' + (i + 1) +
+                    '" class="form-control" type="text" value="" onchange="clear_css_inp(' + clear + ')">'
                 data_row += '</td>'
                 data_row += '<td>'
                 data_row += '<input id="inp_result' + (i + 1) + '" class="form-control" type="number"'
@@ -283,7 +286,7 @@ function check_mbo() {
 }
 // function check_mbo
 
-function clear_css_inp(i){
+function clear_css_inp(i) {
     $("#inp_mbo" + i).css("background-color", "#ffffff");
     $("#inp_mbo" + i).css("border-style", "solid");
 
@@ -963,7 +966,8 @@ function createAtt() {
 
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="focusedinput" class="col-sm-12 control-label" align="center">Please verify the accuracy of the information.</label>
+                    <label for="focusedinput" class="col-sm-12 control-label" align="center">Please verify the accuracy
+                        of the information.</label>
                 </div>
                 <!-- Group Name -->
             </div>
