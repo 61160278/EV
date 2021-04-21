@@ -42,10 +42,14 @@ $(document).ready(function() {
 });
 // document ready
 
+$(document).ready(function() {
+   
+});
+// document ready
+
 function clearMBO() {
 
     console.log("clear");
-
     for (var i = 1; i <= count; i++) {
         $("#inp_mbo" + i).val("");
         $("#inp_result" + i).val("");
@@ -265,7 +269,7 @@ function check_mbo() {
     // for i
 
     if (num == count) {
-        save_dataMBO()
+        $("#save_mbo").modal('show');
         return true;
     }
     // if
@@ -525,7 +529,7 @@ function createAtt() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-success" id="btn_save" data-toggle="modal" data-target="#save_mbo" onclick="return check_mbo()">SAVE</button>
+                                <button class="btn btn-success" id="btn_save" onclick="return check_mbo()">SAVE</button>
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#add_app">SEND <i
                                         class="fa fa-share-square-o"></i></button>
                             </div>
@@ -537,7 +541,7 @@ function createAtt() {
                     </div>
                     <!-- form 1 -->
 
-                    <!-- *************************************************-->
+                    <!-- ************************************************* data-toggle="modal" data-target="#save_mbo"-->
 
                     <div class="tab-pane" id="form2">
                         <br>
@@ -949,7 +953,7 @@ function createAtt() {
 
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="focusedinput" class="col-sm-3 control-label" align="center">Please verify the accuracy of the information.</label>
+                    <label for="focusedinput" class="col-sm-12 control-label" align="center">Please verify the accuracy of the information.</label>
                 </div>
                 <!-- Group Name -->
             </div>
