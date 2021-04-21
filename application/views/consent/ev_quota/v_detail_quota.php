@@ -96,7 +96,7 @@ function check_quota_plan() {
 	 var mean_quotaPlan;
 	for (i = 1; i <= 5; i++) {
        
-		mean_quotaPlan = document.getElementById("quota" + i).innerHTML;
+		mean_quotaPlan = document.getElementById("show_quotaPlan" + i).innerHTML;
 		 
 	   dataArr[i] = mean_quotaPlan;
 	   
@@ -121,8 +121,8 @@ function check_quota_plan() {
     // draw X and Y axis  
     context.beginPath();
     context.moveTo(475, 375);
-    context.lineTo(40, 375);
-    context.lineTo(40, 25);
+    context.lineTo(25, 375);
+    context.lineTo(25, 25);
     context.stroke();
 
     // // draw reference line  แถวมบนสุด เส้นระดับ
@@ -159,21 +159,21 @@ function check_quota_plan() {
     // context.fillText(granY.toFixed(1), 0, (height_graph) / 4 + 25);
     // context.stroke();
 
-    context.beginPath();
-    context.lineJoin = "round";
-    context.strokeStyle = "black";
+    // context.beginPath();
+    // context.lineJoin = "round";
+    // context.strokeStyle = "black";
 
-    context.moveTo(50, (height_graph - dataArr[0] / largest * height_graph) + 25);
-    // draw reference value for day of the week  
-    var grad = ["S", "A", "B", "C", "D"];
-    //context.fillText("S", 50,400, 400);
+    // context.moveTo(50, (height_graph - dataArr[0] / largest * height_graph) + 25);
+    // // draw reference value for day of the week  
+    // var grad = ["S", "A", "B", "C", "D"];
+    // //context.fillText("S", 50,400, 400);
 	
-    for (var j = 0 ; j <= grad.length; j++) {
-        context.lineTo(475 / arrayLen * j + 50, (height_graph - dataArr[j] / largest * height_graph) + 25 );
-        // draw reference value for day of the week  
-        context.fillText(grad[j],475 / arrayLen * j + 50,400, 400);
-        context.stroke();
-    }
+    // for (var j = 0 ; j <= grad.length; j++) {
+    //     context.lineTo(475 / arrayLen * j + 50, (height_graph - dataArr[j] / largest * height_graph) + 25 );
+    //     // draw reference value for day of the week  
+    //     context.fillText(grad[j],475 / arrayLen * j + 50,400, 400);
+    //     context.stroke();
+    // }
 
 }
 
