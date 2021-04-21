@@ -44,6 +44,15 @@ class M_evs_group extends Da_evs_group {
 	
 	}//get_all_com
 
+	function get_name_emp_by_IDemp_sdm(){	
+		$sql = "SELECT *
+				FROM dbmc.employee
+				WHERE employee.Emp_ID = ? AND employee.Company_ID = 1";
+		$query = $this->db->query($sql, array($this->Emp_ID));
+		return $query->result();
+	}
+
+	
 	function get_name_emp_by_IDemp(){	
 		$sql = "SELECT *
 				FROM dbmc.employee
