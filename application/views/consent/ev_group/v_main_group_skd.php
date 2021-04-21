@@ -154,6 +154,24 @@ function Save_edit_data(gru_id) {
     window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
 }
 // function Save_edit_data
+
+function save_add() {
+
+    var group = document.getElementById("grouptext").value;
+    var Emp_id = document.getElementById("Emp_id_modol").value;
+
+    if (group == "" || Emp_id == "") {
+        add_group()
+        return false;
+    }
+    // if 
+    else {
+        return true;
+    }
+    // else 
+    }
+    
+//    save_add form
 </script>
 
 <!DOCTYPE html>
@@ -502,7 +520,7 @@ function Save_edit_data(gru_id) {
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
                 </div>
-                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="add_group()">SAVE</button>
+                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="save_add()">SAVE</button>
             </div>
             <!-- modal-footer -->
         </div>
