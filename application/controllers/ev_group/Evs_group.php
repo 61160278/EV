@@ -1,4 +1,3 @@
-
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once(dirname(__FILE__) . "/../MainController_avenxo.php");
@@ -72,10 +71,15 @@ class Evs_group extends MainController_avenxo {
 		$this->meg->gru_head_dept = $Emp_id;
 		$this->meg->gru_company_id = 2;
 		$this->meg->insert();
-		$this->output('/consent/ev_group/v_add_group_skd');
+		$this->meg->connect();
 	}
 	// function add_group_skd
 	
+//function select_skd()
+//{
+//	$this->output('/consent/ev_group/v_main_group_skd');
+//}
+
 	function select_company_sdm()
 	{
 		$this->load->model('M_evs_group','mevg');
@@ -140,9 +144,10 @@ class Evs_group extends MainController_avenxo {
 	* @Create Date 2564-04-19
 	*/
 	function search_by_employee_id(){
-		$empid = $this->input->post('empid');
+		$Emp_id = $this->input->post('Emp_id');
 		$this->load->model('M_evs_group','mevg');
-		$this->mevg->Emp_ID = $empid;
+		$this->mevg->Emp_ID = $Emp_id;
+		$this->mevg->gru_company_id = 2;
 		echo json_encode($this->mevg->get_name_emp_by_IDemp());
 	}
 	// function search_by_employee_id
@@ -182,6 +187,7 @@ class Evs_group extends MainController_avenxo {
 		$this->sav_edit->gru_id = $gru_id;
 		$this->sav_edit->gru_name = $group;
 		$this->sav_edit->gru_head_dept = $Empname_eng;
+		$this->sav_edit->Company_ID = 2;
 		$this->sav_edit->update();
 		$this->select_company_skd();
 	}
