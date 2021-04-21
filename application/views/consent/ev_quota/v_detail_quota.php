@@ -121,7 +121,7 @@ function check_quota_plan() {
     // draw X and Y axis  
     context.beginPath();
     context.moveTo(475, 375);
-    context.lineTo(25, 375);
+    context.lineTo(, 375);
     context.lineTo(25, 25);
     context.stroke();
 
