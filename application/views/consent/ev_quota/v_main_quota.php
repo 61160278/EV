@@ -15,26 +15,28 @@ h2 {
 th{
 	color:black;
 	text-align: center;
-	
+	font-size: 20px;
 }
 td{
 	text-align: center;
+	font-size: 15px;
 }
 #add{
 	margin-bottom: 4px;
 
 }
+
 #modelText{
 	text-align: center;
-	 color: #000000;
-	  font-size: 20px;
+	color: #000000;	
+	font-size: 20px;
 }
 
 </style>
 <div class="col-md-12">	
 	<div class="panel panel-indigo">
 	<div class="panel-heading">
-					<h2><font size = "5px">Manage Quota</font></h2>	
+					<h2><font size = "6px">Manage Quota</></font></h2>	
 	</div><!-- panel-heading -->
 	
 	<br>

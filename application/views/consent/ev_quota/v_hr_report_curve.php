@@ -42,14 +42,19 @@ function get_data() {
 		color : black;
 	}
 	th {
-		text-align : center;
+		color:black;
+		text-align: center;
+		font-size: 20px;
+	}
+	.tdbold {
+		font-weight: bold;
 	}
 </style>
 
 <div class="col-md-12">
 	<div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
 		<div class="panel-heading">
-			<h2><font size = "5px"><b>Report Curve</b></font></h2>
+			<h2><font size = "6px"><b>Report Curve</b></font></h2>
 			<div class="panel-ctrls" data-actions-container="" data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
 			</div>
 		</div>
@@ -141,7 +146,7 @@ function get_data() {
 								</thead>
 								<tbody>
 									<tr class="orange2">
-										<td>Quota</td>
+										<td class = "tdbold">Quota</td>
 										<td>
 											
 										</td>
@@ -162,7 +167,7 @@ function get_data() {
 										</td>						
 									</tr>
 									<tr class="orange2">
-										<td>Plan</td>
+										<td class = "tdbold">Plan</td>
 										<td>
 											
 										</td>
@@ -183,7 +188,7 @@ function get_data() {
 										</td>						
 									</tr>
 									<tr class="orange2">
-										<td>Actual</td>
+										<td class = "tdbold">Actual</td>
 										<td>
 											
 										</td>
@@ -204,7 +209,7 @@ function get_data() {
 										</td>						
 									</tr>
 									<tr class="orange2">
-										<td>Quota Actual</td>
+										<td class = "tdbold">Quota Actual</td>
 										<td>
 											
 										</td>
@@ -225,7 +230,7 @@ function get_data() {
 										</td>						
 									</tr>
 									<tr class="orange2">
-										<td>Total in level</td>
+										<td class = "tdbold">Total in level</td>
 										<td colspan = "6"></td>
 									</tr>
 								</tbody>

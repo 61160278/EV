@@ -172,6 +172,30 @@ function Save_edit_data(gru_id) {
       });
       window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_sdm";
 }
+
+function check_data(){
+	var group = document.getElementById("grouptext").value;
+      var Emp_id = document.getElementById("Emp_id_modol").value;
+	console.log(group)
+	console.log(Emp_id)
+
+
+	if (group != "" && Emp_id != "") {
+		add_group();
+        return true;
+    }
+    // if
+    else {
+        return false;
+    }
+    //else
+
+
+
+}
+
+
+
 </script>
 
 <!DOCTYPE html>
@@ -575,7 +599,7 @@ function Save_edit_data(gru_id) {
                         </div>
                       
                         <button type="button" class="btn btn-success" id="btnsaveadd"
-                              onclick="add_group()">SAVE</button>
+                              onclick="check_data()">SAVE</button>
                     
                   </div>
                   <!-- modal-footer -->
