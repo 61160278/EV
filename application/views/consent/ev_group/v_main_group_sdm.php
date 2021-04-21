@@ -207,7 +207,7 @@ function Save_edit_data(gru_id) {
                                                             <td id="name<?php echo $num; ?>">
                                                                   <?php
 												if($row->gru_head_dept != NULL){
-													echo $row->gru_head_dept;
+													echo $row->Empname_eng." ".$row->Empsurname_eng;
 												}else{		
 													echo "-";		
 												}
