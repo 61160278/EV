@@ -41,6 +41,23 @@ function get_company() {
 		}
 	});
 }
+function get_department() {
+	var dep_sel = document.getElementById("dep_select").value; // get kay by id
+	console.log(dep_sel);
+	
+	$.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_quota/v_mange_quota",
+        data: {
+            "pos_id": dep_sel
+        },
+        dataType: "JSON",
+        success: function(data) {
+            console.log(data)
+		}
+	});
+}
+
 
 </script>
 <style>
@@ -78,7 +95,7 @@ h4 {
 					<select id = "com_select" name="example_length" class="form-control">
 						<option value="0">Company</option>												
 						<!-- start foreach -->
-						<?php foreach($com_data as $value){ ?>
+						<?php foreach($com_data->result() as $value){ ?>
 						<option value="<?php echo $value->Company_ID;?>">
 						<?php echo $value->Company_shortname;?>
 						</option>
@@ -87,18 +104,22 @@ h4 {
 					</select>
 				</label>
 				<label class ="col-md-4">
-					<select name="example_length" class="form-control" >												
-						<option value="Human Resource">Human Resource</option>												
-						<option value="25">25</option>												
-						<option value="50">50</option>												
-						<option value="100">100</option>											
+					<select name="example_length" class="form-control" id ="dep_select">												
+						<option value="0">Department</option>												
+						<!-- start foreach -->
+						<?php foreach($pos_data->result() as $value){ ?>
+						<option value="<?php echo $value->Dep_id;?>">
+						<?php echo $value->Dep_Name;?>
+						</option>
+						<?php } ?>
+						<!-- end foreach -->											
 					</select>
 				</label>
 				<label class ="col-md-4">
 					<select name="example_length" class="form-control" id = "pos_select">									
 						<option value="0">Position</option>												
 						<!-- start foreach -->
-						<?php foreach($pos_data as $value){ ?>
+						<?php foreach($pos_data->result() as $value){ ?>
 						<option value="<?php echo $value->Position_ID;?>">
 						<?php echo $value->Position_name;?>
 						</option>
@@ -132,7 +153,7 @@ h4 {
 									</thead>
 									<tbody>
 									<?php	
-									foreach ($pos_data as $row ) { ?>
+									foreach ($pos_data->result() as $row ) { ?>
 									<tr class="" role="">
 										<td><?php echo $row->Company_shortname; ?></td>
 										<td><?php echo $row->Dep_Name; ?></td>
