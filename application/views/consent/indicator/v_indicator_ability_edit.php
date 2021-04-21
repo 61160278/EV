@@ -435,7 +435,8 @@ function insert_data_key_component_and_expected_behavior() {
     });
     // ajex
     $('#tr_Expected').html("");
-    document.getElementById("form_reset").reset();
+    //document.getElementById("form_reset").reset();
+    window.location.href = "<?php echo base_url();?>/Evs_ability_indicators_form/indicator_ability_view_edit_data/<?php echo $competency_id; ?>";
 }
 
 
@@ -467,8 +468,9 @@ function update_data_key_component_and_expected_behavior() {
 
     for (i = 0; i < table_for_count; i++) {
 
-        table_arr_for_count = document.getElementsByName("id_exp").length
+        table_arr_for_count = document.getElementsByName("arr_edit_pos_" + (i + 1) + "").length
         arr_save_posittion_other_to_database[i] = [table_arr_for_count];
+        arr_save_expected_id[i] = [table_arr_for_count];
         arr_save_expected_en_todatabase[i] = document.getElementsByName("arr_add_expected_en_edit")[i].value;
         arr_save_expected_th_todatabase[i] = document.getElementsByName("arr_add_expected_th_edit")[i].value;
         
@@ -476,10 +478,9 @@ function update_data_key_component_and_expected_behavior() {
         console.log(arr_save_expected_th_todatabase[i]);
   
         for (j = 0; j < table_arr_for_count; j++) {
-            arr_save_expected_id[j] = document.getElementsByName("id_exp")[j].value;
-            arr_save_posittion_other_to_database[i][j] = document.getElementsByName("arr_edit_pos_" + (i + 1) + "")[j]
-                .value;
-                console.log(arr_save_expected_id[j]);
+            arr_save_expected_id[i][j] = document.getElementsByName("id_exp_" + (i + 1) + "")[j].value;
+            arr_save_posittion_other_to_database[i][j] = document.getElementsByName("arr_edit_pos_" + (i + 1) + "")[j].value;
+            console.log(arr_save_expected_id[i][j]);
             console.log(arr_save_posittion_other_to_database[i][j]);
             console.log(" i : " + i + " J : " + j);
         }
@@ -593,8 +594,8 @@ function update_data_key_component_and_expected_behavior() {
         // success
     });
     // ajex
-
-    $("#edit_form").hide();
+    //$("#edit_form").hide();
+    window.location.href = "<?php echo base_url();?>/Evs_ability_indicators_form/indicator_ability_view_edit_data/<?php echo $competency_id; ?>";
 }
 
 <?php
@@ -1024,7 +1025,7 @@ function edit_key_and_expected(kcp_id) {
                                             }
                                             table_data +=
                                                 '<!-- Start input position  -->'
-                                                table_data +=  '<input type= "hidden" id = "id_exp" name = "id_exp" value = "'+row_expected.ept_id+'">' 
+                                            table_data +=  '<input type= "hidden"  name = "id_exp_'+index_loop+'" value = "'+row_expected.ept_id+'">' 
                                             table_data += '<div class="row">'
                                             table_data += '<div class="col-6">'
                                             table_data += '<div class="row">'
@@ -1105,7 +1106,7 @@ function edit_key_and_expected(kcp_id) {
 
             });
             $('#add_table_edit_key_and_expected').html(table_data);
-
+            
         }
         // success
     });
@@ -1449,10 +1450,10 @@ function clear_data_componet() {
                         <div class="col-4">
                             Expected Behavior
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
                             Position
                         </div>
-                        <div class="col-2">
+                        <div class="col-1">
                             Manage
                         </div>
                     </div>
@@ -1489,7 +1490,7 @@ foreach ($competency_table as $value) {
                 echo "<hr>";} //end if
         } //end foreach
         echo '</div>';
-        echo '<div class="col-2">';
+        echo '<div class="col-3">';
         //start foreach
         foreach ($competency_table as $chack_expect) {
             //start if
@@ -1500,9 +1501,9 @@ foreach ($competency_table as $value) {
         } //end foreach
 
         echo '</div>
-                            <div class="col-2">
+                            <div class="col-1">
                                 <button class="btn btn-warning float-center" value = "' . $value->kcp_id . '"  Onclick="edit_key_and_expected(value)" ><i class="fa fa-pencil"></i></button>
-                                <br>
+                                <br><br>
                                 <button type="button" name="remove" id="' . $index_table . '" class="btn btn-danger btn_ept_remove" value = "' . $value->kcp_key_component_detail_en . '" Onclick="delete_key_component_and_expected(value)" ><i class="fa fa-times"></i></button>
                             </div>
                         </div>

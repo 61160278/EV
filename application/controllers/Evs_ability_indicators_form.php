@@ -92,7 +92,7 @@ class Evs_ability_indicators_form extends MainController {
 		$this->mcpt->kcp_cpn_id = $competency_id;
 		$data['competency_table'] = $this->mcpt->get_competency_table()->result(); //show value competency table
 			
-		
+		$data['competency_id'] = $competency_id;
 		$this->output("consent/indicator/v_indicator_ability_edit",$data);
 	}
 	// function indicator_ability_view_insert_data()
@@ -425,7 +425,7 @@ class Evs_ability_indicators_form extends MainController {
 				}
 			//end foreach
 			$this->debv->ept_kcp_id = $key_component_id;
-			$this->debv->ept_id = $this->input->post("arr_save_expected_id[".$k."]");
+			$this->debv->ept_id = $this->input->post("arr_save_expected_id[".$j."][".$k."]");
 			$this->debv->update();
 			}
 	
