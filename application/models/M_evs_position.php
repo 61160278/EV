@@ -128,16 +128,14 @@ class M_evs_position extends Da_evs_position {
 	*/	
 
 	function get_pos_com_dep(){	
-		$sql = "SELECT *
-				FROM employee
-				RIGHT JOIN company 
-				on employee.Company_ID = company.Company_ID
-				LEFT JOIN position 
-				on employee.Position_ID = position.Position_ID
-				LEFT JOIN sectioncode 
-				on employee.Sectioncode_ID = sectioncode.Sectioncode
-				WHERE company.Company_shortname = 'SDM'
-				ORDER BY company.Company_ID";
+		$sql = "SELECT company.Company_shortname,position.Position_name,department.Dep_Name
+				FROM dbmc.department,dbmc.position,dbmc.company
+				WHERE company.Company_shortname ='SDM'
+				AND NOT position.Position_name = 'No-Data' 
+				AND NOT position.Position_name = 'Orther'
+				AND NOT position.Position_name = 'President'
+				AND NOT position.Position_name = 'Managing Director'
+				AND NOT position.Position_name = 'Vice President'";
 		$query = $this->db->query($sql);
 		return $query;
 	}//get_all WHERE NOT pos_psl_id=6

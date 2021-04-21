@@ -21,8 +21,13 @@
 		background-color : #ffe4b3;
 	}
 	th {
-		text-align : center;
-	
+		color:black;
+		text-align: center;
+		font-size: 20px;
+	}
+	td{
+		text-align: center;
+		font-size: 15px;
 	}
 
 </style>
@@ -54,9 +59,9 @@ function check_quota(){
 
 </script>
 <div class="col-md-12">
-	<div class="panel panel-midnightblue" data-widget='{"draggable": "false"}'>
+	<div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
 		<div class="panel-heading">
-			<h2><font size = "5px"><b>Add Quota</b></font></h2>
+			<h2><font size = "6px"><b>Edit Quota</b></font></h2>
 			<div class="panel-ctrls" data-actions-container="" data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
 			</div>
 		</div>

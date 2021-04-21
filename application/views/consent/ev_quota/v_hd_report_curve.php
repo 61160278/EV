@@ -24,15 +24,17 @@
 		color : black;
 	}
 	th {
-		text-align : center;
+		color:black;
+		text-align: center;
+		font-size: 20px;
 	}
-	table, th, td {
-  border: 2px solid #ffffff;
-  border-collapse: collapse;
-  text-align : center ;
-  color : black;
- font-size: 20px;
-}
+	td{
+		text-align: center;
+		font-size: 15px;
+	}
+	.tdbold {
+		font-weight: bold;
+	}
 
 tbody:hover {
   background-color: #ffffff;
@@ -106,7 +108,7 @@ function get_data() {
 <div class="col-md-12">
 	<div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
 		<div class="panel-heading">
-			<h2><font size = "5px"><b>Report Curve</b></font></h2>
+			<h2><font size = "6px"><b>Report Curve</b></font></h2>
 			<div class="panel-ctrls" data-actions-container="" data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
 			</div>
 		</div>
