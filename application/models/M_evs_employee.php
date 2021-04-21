@@ -112,14 +112,23 @@ class M_evs_employee extends Da_evs_employee {
 	* @Create Date 2564-04-09
 	*/
 	function get_all_emp(){	
-		$sql = "SELECT *
-				FROM dbmc.employee
-				WHERE Emptype_ID = 5
-				AND Statuswork_ID = 1
-				AND Emp_startingdate <= ?" ;
+
+		$sql = "SELECT *	
+		FROM dbmc.employee	
+		left join dbmc.group_secname		
+		on group_secname.Sectioncode = employee.Sectioncode_ID
+		left join dbmc.position		
+		on position.Position_ID = employee.Position_ID
+		WHERE Emptype_ID = 5	
+		AND Statuswork_ID = 1
+		AND Emp_startingdate <= ?" ;
+	
 		$query = $this->db->query($sql, array($this->Emp_startingdate));
+	
+	
 		return $query;
-	}//get_all_emp 
+		}//get_all_emp 
+
 	
 }
 
