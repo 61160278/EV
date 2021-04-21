@@ -24,7 +24,7 @@ function test(value) {
 function add_group() {
 
     var group = document.getElementById("grouptext").value;
-    var Emp_id = document.getElementById("Emp_id").value;
+    var Emp_id = document.getElementById("Emp_id_modol").value;
 
     $.ajax({
         type: "POST",
@@ -95,6 +95,42 @@ function get_idemployee(gru_id) {
     // ajax
 }
 // function get_idemployee
+
+function get_Emp() {
+      Emp_id = document.getElementById("Emp_id_modol").value;
+	var empname = "";
+	
+      console.log(Emp_id)
+	console.log("1,2,3,4,5")
+      $.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>/ev_group/Evs_group/search_by_employee_id_skd",
+            data: {
+                  "Emp_id": Emp_id
+            },
+            dataType: "JSON",
+            success: function(data, status) {
+                  console.log(status)
+			console.log(data)
+			
+                  if (data.length == 0) {
+
+				document.getElementById("Showname_modol").value="ไม่มีข้อมูล";
+				    
+                  } else {
+				empname = data[0].Empname_eng + " " + data[0].Empsurname_eng
+				document.getElementById("Showname_modol").value=empname;
+			
+				console.log(999)
+				console.log(empname)
+                  }
+
+                  // if-else
+            }
+      });
+      // ajax
+}
+// function get_Em
 
 function Save_edit_data(gru_id) {
     var group = document.getElementById("group_text").value;
@@ -440,7 +476,7 @@ function Save_edit_data(gru_id) {
                     <div class="form-group">
                         <label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="Emp_id" placeholder="JS000xxx">
+                            <input type="text" class="form-control" id="Emp_id_modol" placeholder="JS000xxx" onkeyup="get_Emp()">
                         </div>
                     </div>
                     <!--Emp. ID -->
@@ -448,7 +484,7 @@ function Save_edit_data(gru_id) {
                     <div class="form-group">
                         <label for="focusedinput" class="col-sm-3 control-label">Name - Surname</label>
                         <div class="col-sm-6">
-                            <input disabled type="text" class="form-control" id="Name" placeholder="Name Surname">
+                            <input disabled type="text" class="form-control" id="Showname_modol" placeholder="Name Surname">
                         </div>
                     </div>
                     <!-- Name Surname -->
