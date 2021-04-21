@@ -148,9 +148,10 @@ class Evs_group extends MainController_avenxo {
 		$this->load->model('M_evs_group','mevg');
 		$this->mevg->Emp_ID = $Emp_id;
 		$this->mevg->gru_company_id = 1;
-		echo json_encode($this->mevg->get_name_emp_by_IDemp_sdm());
+		$data = $this->mevg->get_name_emp_by_IDemp_sdm();
+		echo json_encode($data);
 	}
-	// function search_by_employee_id
+	// function search_by_employee_id    $this->mevg->get_name_emp_by_IDemp_sdm()
 
 
 
