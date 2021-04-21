@@ -44,12 +44,5 @@ class M_evs_company extends Da_evs_company {
 	* @author Piyasak Srijan
 	* @Create Date 2564-04-20
 	*/
-	function get_company() {	
-		$sql = "SELECT * 
-				FROM dbmc.company
-				WHERE company.Company_ID=?" ;
-		$query = $this->db->query($sql, array($this->cpn_id));
-		return $query;
-	}//get_position
 }
 ?>
