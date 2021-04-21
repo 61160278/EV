@@ -47,14 +47,6 @@ function test(value){
 						
 						</div>
 						<!-- col-12  -->
-				
-				
-				
-				
-				
-				
-				
-				
 	</div>
 	<!-- head outside -->
 	
