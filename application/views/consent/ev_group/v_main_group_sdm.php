@@ -28,7 +28,7 @@ function select_company(value) {
 function add_group() {
 
       var group = document.getElementById("grouptext").value;
-      var Emp_id = document.getElementById("Emp_id").value;
+      var Emp_id = document.getElementById("Emp_id_modol").value;
 
       $.ajax({
             type: "POST",
