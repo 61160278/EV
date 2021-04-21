@@ -72,8 +72,30 @@ function Delete_data(gru_id){
 
 }
 
+function get_idemployee(){
+	Emp_id = document.getElementById("Emp_id").value;
+	console.log(Emp_id)
+	$.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>/ev_group/Evs_group/search_by_employee_id_sdm",
+        data: {
+			"Emp_id":Emp_id
+        },
+        dataType: "JSON",
+        success: function(data,status) {
+            console.log(status)
 
-
+			if(data.length != 0){
+				document.getElementById("nameEmp").value = data[0].Empname_eng + " " + data[0].Empsurname_eng;
+			}else{
+				document.getElementById("nameEmp").value = "";
+			}
+			// if-else
+        }
+	});
+	// ajax
+}
+// function get_idemployee
 
 function Save_edit_data(gru_id){
 	var group = document.getElementById("grouptext").value;
@@ -210,7 +232,7 @@ function Save_edit_data(gru_id){
 															<div class="form-group">
 																<label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
 																	<div class="col-sm-6">
-																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" name="Emp_id" placeholder="JS000xxx">
+																		<input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>" name="Emp_id" id="Emp_id" placeholder="JS000xxx" onkeyup="get_idemployee()">
 																		<input type="hidden" class="form-control" value="<?php echo $row->gru_id; ?>" name = "gru_id" >
 																	</div>
 															</div>
@@ -219,7 +241,7 @@ function Save_edit_data(gru_id){
 															<div class="form-group">
 																<label for="focusedinput" class="col-sm-3 control-label">Name - Surname</label>
 																	<div class="col-sm-6">
-																		<input disabled type="text" class="form-control" id="focusedinput" placeholder="Name Surname">
+																		<input disabled type="text" class="form-control" value="<?php echo $row->Empname_eng , " ", $row->Empsurname_eng; ?>" id="nameEmp" placeholder="Name Surname">
 																	</div>
 															</div>
 															<!-- Name Surname -->
