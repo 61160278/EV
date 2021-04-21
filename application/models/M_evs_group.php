@@ -53,7 +53,7 @@ class M_evs_group extends Da_evs_group {
 	}
 
 	
-	function get_name_emp_by_IDemp(){	
+	function get_name_emp_by_IDemp_skd(){	
 		$sql = "SELECT *
 				FROM dbmc.employee
 				WHERE employee.Emp_ID = ? AND employee.Company_ID = 2";
