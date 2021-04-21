@@ -42,11 +42,16 @@ $(document).ready(function() {
 });
 // document ready
 
+$(document).ready(function() {
+
+});
+// document ready
+
 function clearMBO() {
 
     console.log("clear");
-
     for (var i = 1; i <= count; i++) {
+        $("#show_weight").css("color", "#000000");
         $("#inp_mbo" + i).val("");
         $("#inp_result" + i).val("");
     }
@@ -88,6 +93,8 @@ function save_dataMBO() {
     });
     // ajax
 
+    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/"+check_emp_id+"";
+
 }
 // function save_dataMBO
 
@@ -112,18 +119,20 @@ function creatembo() {
             //console.log(data);
             var rowmbo = data.sfm_index_field;
             info_row = parseInt(rowmbo);
-
+            var clear = 0;
             //console.log(info_row);
 
             for (i = 0; i < info_row; i++) {
+                clear = i + 1;
                 data_row += '<tr>'
                 data_row += '<td><center>' + (i + 1) + '</center></td>'
                 data_row += '<td>'
-                data_row += '<input id="inp_mbo' + (i + 1) + '" class="form-control" type="text" value="">'
+                data_row += '<input id="inp_mbo' + (i + 1) +
+                    '" class="form-control" type="text" value="" onchange="clear_css_inp(' + clear + ')">'
                 data_row += '</td>'
                 data_row += '<td>'
                 data_row += '<input id="inp_result' + (i + 1) + '" class="form-control" type="number"'
-                data_row += 'min="0" max="100" onchange="check_weight()" >'
+                data_row += 'min="0" max="100" onkeyup="check_weight()" >'
                 data_row += '</td>'
                 data_row += '<td id="dis_color">'
                 data_row += '<center>'
@@ -265,7 +274,7 @@ function check_mbo() {
     // for i
 
     if (num == count) {
-        save_dataMBO()
+        $("#save_mbo").modal('show');
         return true;
     }
     // if
@@ -276,6 +285,14 @@ function check_mbo() {
 
 }
 // function check_mbo
+
+function clear_css_inp(i) {
+    $("#inp_mbo" + i).css("background-color", "#ffffff");
+    $("#inp_mbo" + i).css("border-style", "solid");
+
+}
+// function clear_css_inp
+
 
 function createACM() {
 
@@ -525,7 +542,7 @@ function createAtt() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-success" id="btn_save" data-toggle="modal" data-target="#save_mbo" onclick="return check_mbo()">SAVE</button>
+                                <button class="btn btn-success" id="btn_save" onclick="return check_mbo()">SAVE</button>
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#add_app">SEND <i
                                         class="fa fa-share-square-o"></i></button>
                             </div>
@@ -537,7 +554,7 @@ function createAtt() {
                     </div>
                     <!-- form 1 -->
 
-                    <!-- *************************************************-->
+                    <!-- ************************************************* data-toggle="modal" data-target="#save_mbo"-->
 
                     <div class="tab-pane" id="form2">
                         <br>
@@ -949,7 +966,8 @@ function createAtt() {
 
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="focusedinput" class="col-sm-3 control-label" align="center">Please verify the accuracy of the information.</label>
+                    <label for="focusedinput" class="col-sm-12 control-label" align="center">Please verify the accuracy
+                        of the information.</label>
                 </div>
                 <!-- Group Name -->
             </div>

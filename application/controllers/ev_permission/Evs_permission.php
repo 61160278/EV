@@ -71,9 +71,17 @@ class Evs_permission extends MainController_avenxo {
 	// function select_date
 
 	
-	
-
-
- 
+	function select_emp()
+	{
+		$date = $this->input->post("Date");
+		$this->load->model('M_evs_employee','mevg');
+		$this->mevg->Emp_startingdate = $date;
+		
+		
+		
+		$data['select'] = $this->mevg->get_all_emp();
+		$this->output('/consent/ev_permission/v_list_permission',$data);
+	}
+	// function select_bas
 }
 ?>
