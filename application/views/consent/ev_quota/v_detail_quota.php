@@ -91,15 +91,12 @@ function check_quota_plan() {
 
 	window.onchange = function() {
     var canvas = document.getElementById("testCanvas");
-    var context = canvas.getContext("2d");
+   var context = canvas.getContext("2d");
 	var dataArr =[];
 	 var mean_quotaPlan;
-	for (i = 1; i <= 5; i++) {
-       
-		mean_quotaPlan = document.getElementById("show_quotaPlan" + i).innerHTML;
-		 
-	   dataArr[i] = mean_quotaPlan;
-	   
+	for (i = 1; i <= 5; i++) {     
+		mean_quotaPlan = document.getElementById("show_quotaPlan" + i).innerHTML;		 
+	   dataArr[i] = mean_quotaPlan;	   
     } //for
 	dataArr.shift();
 	console.log(dataArr);
@@ -121,8 +118,8 @@ function check_quota_plan() {
     // draw X and Y axis  
     context.beginPath();
     context.moveTo(475, 375);
-    context.lineTo(25, 375);
-    context.lineTo(25, 25);
+    context.lineTo(25, 375);//x
+    context.lineTo(25, 25);//y
     context.stroke();
 
     // draw reference line  แถวมบนสุด เส้นระดับ
@@ -136,7 +133,7 @@ function check_quota_plan() {
 
     // draw reference line แถวล่างสุด เส้นระดับ
     context.beginPath();
-    context.moveTo(25, (height_graph) / 4 * 3 + 25);
+    context.moveTo(25,(height_graph) / 4 * 3 + 25);
     context.lineTo(475, (height_graph) / 4 * 3 + 25);
     // draw reference value for hours  
     context.fillText(largest / 4, 0, (height_graph) / 4 * 3 + 25);
@@ -284,7 +281,7 @@ function check_quota_plan() {
                         </div>
                         <div class="panel-body">
  
-                           <canvas id="testCanvas"  width="500" height="400" ></canvas> 
+                           <canvas id="testCanvas" width="500%" height="500%" ></canvas> 
 
                             <!-- <canvas id="myCanvas" width="400" height="400" ></canvas>  -->
 

@@ -160,13 +160,13 @@ function save_add() {
     var group = document.getElementById("grouptext").value;
     var Emp_id = document.getElementById("Emp_id_modol").value;
 
-    if (group == "" || Emp_id == "") {
-        add_group()
-        return false;
+    if (group != "" || Emp_id != "") {
+        add_group();
+        return true;
     }
     // if 
     else {
-        return true;
+        return false;
     }
     // else 
     }
