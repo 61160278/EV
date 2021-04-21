@@ -125,39 +125,39 @@ function check_quota_plan() {
     context.lineTo(40, 25);
     context.stroke();
 
-    // draw reference line  แถวมบนสุด เส้นระดับ
-    context.beginPath();
-    context.strokeStyle = "#BBB";
-    context.moveTo(25, 25);
-    context.lineTo(475, 25);
-    // draw reference value for hours  
-    context.fillText(largest, 0, 25);
-    context.stroke();
+    // // draw reference line  แถวมบนสุด เส้นระดับ
+    // context.beginPath();
+    // context.strokeStyle = "#BBB";
+    // context.moveTo(25, 25);
+    // context.lineTo(475, 25);
+    // // draw reference value for hours  
+    // context.fillText(largest, 0, 25);
+    // context.stroke();
 
-    // draw reference line แถวล่างสุด เส้นระดับ
-    context.beginPath();
-    context.moveTo(25, (height_graph) / 4 * 3 + 25);
-    context.lineTo(475, (height_graph) / 4 * 3 + 25);
-    // draw reference value for hours  
-    context.fillText(largest / 4, 0, (height_graph) / 4 * 3 + 25);
-    context.stroke();
+    // // draw reference line แถวล่างสุด เส้นระดับ
+    // context.beginPath();
+    // context.moveTo(25, (height_graph) / 4 * 3 + 25);
+    // context.lineTo(475, (height_graph) / 4 * 3 + 25);
+    // // draw reference value for hours  
+    // context.fillText(largest / 4, 0, (height_graph) / 4 * 3 + 25);
+    // context.stroke();
 
-    // draw reference line  แถวที่ 2 เส้นระดับ
-    context.beginPath();
-    context.moveTo(25, (height_graph) / 2 + 25);
-    context.lineTo(475, (height_graph) / 2 + 25);
-    // draw reference value for hours  
-    context.fillText(largest / 2, 0, (height_graph) / 2 + 25);
-    context.stroke();
+    // // draw reference line  แถวที่ 2 เส้นระดับ
+    // context.beginPath();
+    // context.moveTo(25, (height_graph) / 2 + 25);
+    // context.lineTo(475, (height_graph) / 2 + 25);
+    // // draw reference value for hours  
+    // context.fillText(largest / 2, 0, (height_graph) / 2 + 25);
+    // context.stroke();
 
-    // draw reference line  แถวที่ 3 เส้นระดับ
-    context.beginPath();
-    context.moveTo(25, (height_graph) / 4 + 25);
-    context.lineTo(475, (height_graph) / 4 + 25);
-    // draw reference value for hours  
-    var granY = (largest / 2) + 0.8;
-    context.fillText(granY.toFixed(1), 0, (height_graph) / 4 + 25);
-    context.stroke();
+    // // draw reference line  แถวที่ 3 เส้นระดับ
+    // context.beginPath();
+    // context.moveTo(25, (height_graph) / 4 + 25);
+    // context.lineTo(475, (height_graph) / 4 + 25);
+    // // draw reference value for hours  
+    // var granY = (largest / 2) + 0.8;
+    // context.fillText(granY.toFixed(1), 0, (height_graph) / 4 + 25);
+    // context.stroke();
 
     context.beginPath();
     context.lineJoin = "round";
