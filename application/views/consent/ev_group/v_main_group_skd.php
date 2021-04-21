@@ -40,7 +40,7 @@ function add_group() {
         // success function
     });
     // ajax
-	window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
+    window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
 }
 // function add_group
 
@@ -63,9 +63,9 @@ function Delete_data(gru_id) {
 // function Delete_data
 
 function get_idemployee(gru_id) {
-    Emp_id = document.getElementById("Emp_id"+gru_id).value;
+    Emp_id = document.getElementById("Emp_id" + gru_id).value;
     var empname = "";
-	console.log(gru_id)
+    console.log(gru_id)
     console.log(Emp_id)
 
     $.ajax({
@@ -81,14 +81,14 @@ function get_idemployee(gru_id) {
 
             if (data.length == 0) {
 
-				document.getElementById("nameEmp"+gru_id).value="ไม่มีข้อมูล";
-				    console.log(gru_id)
-                  } else {
-				empname = data[0].Empname_eng + " " + data[0].Empsurname_eng
-				document.getElementById("nameEmp"+gru_id).value=empname;
-				console.log(gru_id)
-				console.log(empname)
-                  }
+                document.getElementById("nameEmp" + gru_id).value = "ไม่มีข้อมูล";
+                console.log(gru_id)
+            } else {
+                empname = data[0].Empname_eng + " " + data[0].Empsurname_eng
+                document.getElementById("nameEmp" + gru_id).value = empname;
+                console.log(gru_id)
+                console.log(empname)
+            }
             // if-else
         }
     });
@@ -97,38 +97,38 @@ function get_idemployee(gru_id) {
 // function get_idemployee
 
 function get_Emp() {
-      Emp_id = document.getElementById("Emp_id_modol").value;
-	var empname = "";
-	
-      console.log(Emp_id)
-	console.log("1,2,3,4,5")
-      $.ajax({
-            type: "POST",
-            url: "<?php echo base_url(); ?>/ev_group/Evs_group/search_by_employee_id_skd",
-            data: {
-                  "Emp_id": Emp_id
-            },
-            dataType: "JSON",
-            success: function(data, status) {
-                  console.log(status)
-			console.log(data)
-			
-                  if (data.length == 0) {
+    Emp_id = document.getElementById("Emp_id_modol").value;
+    var empname = "";
 
-				document.getElementById("Showname_modol").value="ไม่มีข้อมูล";
-				    
-                  } else {
-				empname = data[0].Empname_eng + " " + data[0].Empsurname_eng
-				document.getElementById("Showname_modol").value=empname;
-			
-				console.log(999)
-				console.log(empname)
-                  }
+    console.log(Emp_id)
+    console.log("1,2,3,4,5")
+    $.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>/ev_group/Evs_group/search_by_employee_id_skd",
+        data: {
+            "Emp_id": Emp_id
+        },
+        dataType: "JSON",
+        success: function(data, status) {
+            console.log(status)
+            console.log(data)
 
-                  // if-else
+            if (data.length == 0) {
+
+                document.getElementById("Showname_modol").value = "ไม่มีข้อมูล";
+
+            } else {
+                empname = data[0].Empname_eng + " " + data[0].Empsurname_eng
+                document.getElementById("Showname_modol").value = empname;
+
+                console.log(999)
+                console.log(empname)
             }
-      });
-      // ajax
+
+            // if-else
+        }
+    });
+    // ajax
 }
 // function get_Em
 
@@ -294,9 +294,11 @@ function Save_edit_data(gru_id) {
                                                                 <input type="text" class="form-control"
                                                                     value="<?php echo $row->gru_head_dept; ?>"
                                                                     name="Emp_id" id="Emp_id<?php echo $row->gru_id; ?>"
-                                                                    placeholder="JS000xxx" onkeyup="get_idemployee('<?php echo $row->gru_id; ?>')">
+                                                                    placeholder="JS000xxx"
+                                                                    onkeyup="get_idemployee('<?php echo $row->gru_id; ?>')">
                                                                 <input type="hidden" class="form-control"
-                                                                    value="<?php echo $row->gru_id; ?>" name="gru_id" id="gru_id">
+                                                                    value="<?php echo $row->gru_id; ?>" name="gru_id"
+                                                                    id="gru_id">
                                                             </div>
                                                         </div>
                                                         <!--Emp. ID -->
@@ -307,7 +309,8 @@ function Save_edit_data(gru_id) {
                                                             <div class="col-sm-6">
                                                                 <input disabled type="text" class="form-control"
                                                                     value="<?php echo $row->Empname_eng , " ", $row->Empsurname_eng; ?>"
-                                                                    id="nameEmp<?php echo $row->gru_id ?>" placeholder="Name Surname">
+                                                                    id="nameEmp<?php echo $row->gru_id ?>"
+                                                                    placeholder="Name Surname">
                                                             </div>
                                                         </div>
                                                         <!-- Name Surname -->
@@ -476,7 +479,8 @@ function Save_edit_data(gru_id) {
                     <div class="form-group">
                         <label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="Emp_id_modol" placeholder="JS000xxx" onkeyup="get_Emp()">
+                            <input type="text" class="form-control" id="Emp_id_modol" placeholder="JS000xxx"
+                                onkeyup="get_Emp()">
                         </div>
                     </div>
                     <!--Emp. ID -->
@@ -484,7 +488,8 @@ function Save_edit_data(gru_id) {
                     <div class="form-group">
                         <label for="focusedinput" class="col-sm-3 control-label">Name - Surname</label>
                         <div class="col-sm-6">
-                            <input disabled type="text" class="form-control" id="Showname_modol" placeholder="Name Surname">
+                            <input disabled type="text" class="form-control" id="Showname_modol"
+                                placeholder="Name Surname">
                         </div>
                     </div>
                     <!-- Name Surname -->
@@ -497,9 +502,7 @@ function Save_edit_data(gru_id) {
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
                 </div>
-                <!--<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">-->
                 <button type="button" class="btn btn-success" id="btnsaveadd" onclick="add_group()">SAVE</button>
-                <!--</a>-->
             </div>
             <!-- modal-footer -->
         </div>
