@@ -110,11 +110,12 @@ class Evs_quota extends MainController_avenxo {
 	*/
 	function manage_quota()
 	{
+		$this->load->model('M_evs_department','mdep');
+		$data['dep_data'] = $this->mdep->get_all(); // show value position all
 		$this->load->model('M_evs_position','meps');
-		$data['pos_data'] = $this->meps->get_pos_com_dep()->result(); // show value position all
+		$data['pos_data'] = $this->meps->get_pos_com_dep(); // show value position all
 		$this->load->model('M_evs_company','mcpn');
-		$data['com_data'] = $this->mcpn->get_all()->result(); // show value company all
-		
+		$data['com_data'] = $this->mcpn->get_all(); // show value company all
 		
 		$this->output('/consent/ev_quota/v_manage_quota',$data);
 	}

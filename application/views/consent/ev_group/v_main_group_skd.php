@@ -24,7 +24,7 @@ function test(value) {
 function add_group() {
 
     var group = document.getElementById("grouptext").value;
-    var Emp_id = document.getElementById("Emp_id").value;
+    var Emp_id = document.getElementById("Emp_id_modol").value;
 
     $.ajax({
         type: "POST",
@@ -40,7 +40,7 @@ function add_group() {
         // success function
     });
     // ajax
-	window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
+    window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
 }
 // function add_group
 
@@ -63,9 +63,9 @@ function Delete_data(gru_id) {
 // function Delete_data
 
 function get_idemployee(gru_id) {
-    Emp_id = document.getElementById("Emp_id"+gru_id).value;
+    Emp_id = document.getElementById("Emp_id" + gru_id).value;
     var empname = "";
-	console.log(gru_id)
+    console.log(gru_id)
     console.log(Emp_id)
 
     $.ajax({
@@ -81,20 +81,56 @@ function get_idemployee(gru_id) {
 
             if (data.length == 0) {
 
-				document.getElementById("nameEmp"+gru_id).value="ไม่มีข้อมูล";
-				    console.log(gru_id)
-                  } else {
-				empname = data[0].Empname_eng + " " + data[0].Empsurname_eng
-				document.getElementById("nameEmp"+gru_id).value=empname;
-				console.log(gru_id)
-				console.log(empname)
-                  }
+                document.getElementById("nameEmp" + gru_id).value = "ไม่มีข้อมูล";
+                console.log(gru_id)
+            } else {
+                empname = data[0].Empname_eng + " " + data[0].Empsurname_eng
+                document.getElementById("nameEmp" + gru_id).value = empname;
+                console.log(gru_id)
+                console.log(empname)
+            }
             // if-else
         }
     });
     // ajax
 }
 // function get_idemployee
+
+function get_Emp() {
+    Emp_id = document.getElementById("Emp_id_modol").value;
+    var empname = "";
+
+    console.log(Emp_id)
+    console.log("1,2,3,4,5")
+    $.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>/ev_group/Evs_group/search_by_employee_id_skd",
+        data: {
+            "Emp_id": Emp_id
+        },
+        dataType: "JSON",
+        success: function(data, status) {
+            console.log(status)
+            console.log(data)
+
+            if (data.length == 0) {
+
+                document.getElementById("Showname_modol").value = "ไม่มีข้อมูล";
+
+            } else {
+                empname = data[0].Empname_eng + " " + data[0].Empsurname_eng
+                document.getElementById("Showname_modol").value = empname;
+
+                console.log(999)
+                console.log(empname)
+            }
+
+            // if-else
+        }
+    });
+    // ajax
+}
+// function get_Em
 
 function Save_edit_data(gru_id) {
     var group = document.getElementById("group_text").value;
@@ -118,6 +154,24 @@ function Save_edit_data(gru_id) {
     window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
 }
 // function Save_edit_data
+
+function save_add() {
+
+    var group = document.getElementById("grouptext").value;
+    var Emp_id = document.getElementById("Emp_id_modol").value;
+
+    if (group != "" || Emp_id != "") {
+        add_group();
+        return true;
+    }
+    // if 
+    else {
+        return false;
+    }
+    // else 
+}
+
+//    save_add form
 </script>
 
 <!DOCTYPE html>
@@ -185,8 +239,8 @@ function Save_edit_data(gru_id) {
 
                                 <tbody>
                                     <?php 
-									$num = 1;
-									foreach($grp_sdm->result() as $row ) { ?>
+								$num = 1;
+								foreach($grp_sdm->result() as $row ) { ?>
                                     <tr class="odd gradeX" align='center'>
                                         <td><?php echo $num;?> </td>
                                         <td><?php echo $row->gru_name; ?></td>
@@ -258,9 +312,11 @@ function Save_edit_data(gru_id) {
                                                                 <input type="text" class="form-control"
                                                                     value="<?php echo $row->gru_head_dept; ?>"
                                                                     name="Emp_id" id="Emp_id<?php echo $row->gru_id; ?>"
-                                                                    placeholder="JS000xxx" onkeyup="get_idemployee('<?php echo $row->gru_id; ?>')">
+                                                                    placeholder="JS000xxx"
+                                                                    onkeyup="get_idemployee('<?php echo $row->gru_id; ?>')">
                                                                 <input type="hidden" class="form-control"
-                                                                    value="<?php echo $row->gru_id; ?>" name="gru_id" id="gru_id">
+                                                                    value="<?php echo $row->gru_id; ?>" name="gru_id"
+                                                                    id="gru_id">
                                                             </div>
                                                         </div>
                                                         <!--Emp. ID -->
@@ -271,7 +327,8 @@ function Save_edit_data(gru_id) {
                                                             <div class="col-sm-6">
                                                                 <input disabled type="text" class="form-control"
                                                                     value="<?php echo $row->Empname_eng , " ", $row->Empsurname_eng; ?>"
-                                                                    id="nameEmp<?php echo $row->gru_id ?>" placeholder="Name Surname">
+                                                                    id="nameEmp<?php echo $row->gru_id ?>"
+                                                                    placeholder="Name Surname">
                                                             </div>
                                                         </div>
                                                         <!-- Name Surname -->
@@ -315,8 +372,7 @@ function Save_edit_data(gru_id) {
                                                             <div class="col-sm-12">
                                                                 <label for="focusedinput" class="control-label"
                                                                     style="font-family:'Courier New'" align="center">
-                                                                    <font size="5px">Do you want to Delete Data YES or
-                                                                        NO ?</font>
+                                                                    <font size="5px">Do you want to Delete Data YES orNO ?</font>
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -340,13 +396,9 @@ function Save_edit_data(gru_id) {
                                         <!-- modal-dialog -->
                                     </div>
                                     <!-- End Modal Delete -->
-
-
-
-
                                     <?php 
 									$num++;
-									} ?>
+								} ?>
                                 </tbody>
                                 <!-- tbody -->
                             </table>
@@ -392,22 +444,21 @@ function Save_edit_data(gru_id) {
     <!-- head panel -->
 </div>
 <!-- head outside -->
-
 </html>
 
-<head>
-    <style>
-    thead {
-        color: black;
-        font-size: 17px;
-    }
+    <head>
+        <style>
+        thead {
+            color: black;
+            font-size: 17px;
+        }
 
-    tbody {
-        color: black;
-        font-size: 14px;
-    }
-    </style>
-</head>
+        tbody {
+            color: black;
+            font-size: 14px;
+        }
+        </style>
+    </head>
 
 <!-- Modal Add -->
 <div class="modal fade" id="Add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -440,7 +491,8 @@ function Save_edit_data(gru_id) {
                     <div class="form-group">
                         <label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="Emp_id" placeholder="JS000xxx">
+                            <input type="text" class="form-control" id="Emp_id_modol" placeholder="JS000xxx"
+                                onkeyup="get_Emp()">
                         </div>
                     </div>
                     <!--Emp. ID -->
@@ -448,7 +500,8 @@ function Save_edit_data(gru_id) {
                     <div class="form-group">
                         <label for="focusedinput" class="col-sm-3 control-label">Name - Surname</label>
                         <div class="col-sm-6">
-                            <input disabled type="text" class="form-control" id="Name" placeholder="Name Surname">
+                            <input disabled type="text" class="form-control" id="Showname_modol"
+                                placeholder="Name Surname">
                         </div>
                     </div>
                     <!-- Name Surname -->
@@ -461,9 +514,7 @@ function Save_edit_data(gru_id) {
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
                 </div>
-                <!--<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">-->
-                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="add_group()">SAVE</button>
-                <!--</a>-->
+                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="save_add()">SAVE</button>
             </div>
             <!-- modal-footer -->
         </div>

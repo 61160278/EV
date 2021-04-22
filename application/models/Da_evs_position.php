@@ -29,10 +29,12 @@ include_once("evs_model.php");
 */ 
 class Da_evs_position extends evs_model {		
 	
-	public $Num; //Position Sequence	
+	public $Num; //Position Sequence
+	public $Position_ID; //Position ID	
 	public $Position_name; //Position Name	
 	public $Pos_shortName; //Position Name Shotcut	
 	public $Position_Level; //Position Level Sequence
+
 
 	function __construct() {
 		parent::__construct();

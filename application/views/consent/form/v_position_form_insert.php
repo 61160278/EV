@@ -13,7 +13,7 @@
 <!-- <input type="hidden" id="year" name="year" value="<?php echo $year_id; ?>"> -->
 <script>
 var value_pos_id = document.getElementById("value_pos_id").value; // position id
-//var value_year_id = document.getElementById("year").value; // year now ID
+// var value_year_id = document.getElementById("year").value; // year now ID
 </script>
 
 <style>

@@ -55,27 +55,27 @@ tbody:hover {
 
 <script>
 //$(document).ready(function() {
-	
-  //  check_quota_plan();
-	//$)("#testCanvas").ready(function(){
-  //   var testValues = [0.4, 2, 3.2, 2, 0.4];
-  //  drawGraph(testValues);
+
+//  check_quota_plan();
+//$)("#testCanvas").ready(function(){
+//   var testValues = [0.4, 2, 3.2, 2, 0.4];
+//  drawGraph(testValues);
 //});
 //});
 
 /*
-* check_quota_plan
-* Display v_detail_quota
-* @input    
-* @output
-* @author   Lapatrada Puttamongkol
-* @Create Date 2564-04-20
-*/  
+ * check_quota_plan
+ * Display v_detail_quota
+ * @input    
+ * @output
+ * @author   Lapatrada Puttamongkol
+ * @Create Date 2564-04-20
+ */
 function check_quota_plan() {
 
     var check = "";
     var value_quotaPlan = 0;
-	
+
     var quota = 0;
 
     check = document.getElementById("quotaPlan").value;
@@ -89,20 +89,19 @@ function check_quota_plan() {
 }
 
 
-	window.onchange = function() {
-    var canvas = document.getElementById("testCanvas");
-    var context = canvas.getContext("2d");
-	var dataArr =[];
-	 var mean_quotaPlan;
-	for (i = 1; i <= 5; i++) {
-       
-		mean_quotaPlan = document.getElementById("show_quotaPlan" + i).innerHTML;
-		 
-	   dataArr[i] = mean_quotaPlan;
-	   
+window.onchange = function() {
+    var dataArr = [];
+    var myCanvas = document.getElementById('testCanvas');
+    var context = myCanvas.getContext('2d');
+    for (var i = 1; i <= 5; i++) {
+        var mean_quotaPlan = document.getElementById("show_quotaPlan" + i).innerHTML;
+        // var dataArr = [0.4, 2, 3.2, 2, 0.4];
+        dataArr[i] = mean_quotaPlan;
+
     } //for
-	dataArr.shift();
-	console.log(dataArr);
+    dataArr.shift();
+    console.log(dataArr);
+
     var height_graph = 350;
 
     var arrayLen = dataArr.length;
@@ -111,21 +110,20 @@ function check_quota_plan() {
         if (dataArr[i] > largest) {
             largest = dataArr[i];
         }
-
     }
-	
-    //context.clearRect(50,25, 200, 400);
+    context.clearRect(0, 0, 200, 400);
     // set font for fillText()  
     context.font = "16px Arial";
 
     // draw X and Y axis  
     context.beginPath();
-    context.moveTo(600, 375);
-    context.lineTo(60, 375);
-    context.lineTo(60, 60);
+    ctx.moveTo(75, 75);
+    ctx.lineTo(75, 425);
+    ctx.lineTo(425, 425);
+    context.fillText((largest / largest) - 1, 0, height_graph + 25);
     context.stroke();
 
-    // // draw reference line  แถวมบนสุด เส้นระดับ
+    // draw reference line  แถวมบนสุด เส้นระดับ
     // context.beginPath();
     // context.strokeStyle = "#BBB";
     // context.moveTo(25, 25);
@@ -158,25 +156,22 @@ function check_quota_plan() {
     // var granY = (largest / 2) + 0.8;
     // context.fillText(granY.toFixed(1), 0, (height_graph) / 4 + 25);
     // context.stroke();
-
     // context.beginPath();
     // context.lineJoin = "round";
     // context.strokeStyle = "black";
 
-    // context.moveTo(50, (height_graph - dataArr[0] / largest * height_graph) + 25);
-    // // draw reference value for day of the week  
-    // var grad = ["S", "A", "B", "C", "D"];
-    // //context.fillText("S", 50,400, 400);
-	
-    // for (var j = 0 ; j <= grad.length; j++) {
-    //     context.lineTo(475 / arrayLen * j + 50, (height_graph - dataArr[j] / largest * height_graph) + 25 );
-    //     // draw reference value for day of the week  
-    //     context.fillText(grad[j],475 / arrayLen * j + 50,400, 400);
-    //     context.stroke();
-    // }
+    context.moveTo(50, (height_graph - dataArr[0] / largest * height_graph) + 25);
+    // draw reference value for day of the week  
+    var grad = ["S", "A", "B", "C", "D"];
+    // context.fillText("S", 15, 400);
+    for (var j = 0; j < grad.length; j++) {
+        context.lineTo(475 / arrayLen * j + 50, (height_graph - dataArr[j] / largest * height_graph) + 25);
+        // draw reference value for day of the week  
+        context.fillText(grad[j], 475 / arrayLen * j, 400, 425);
+        context.stroke();
+    }
 
 }
-
 </script>
 
 <div class="col-md-12">
@@ -185,7 +180,8 @@ function check_quota_plan() {
             <h2>
                 <font size="5px">Detail Quota </font>
             </h2>
-            <div class="panel-ctrls" data-actions-container="" data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
+            <div class="panel-ctrls" data-actions-container=""
+                data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
             </div>
         </div>
         <div class="panel-body" style="">
@@ -283,8 +279,8 @@ function check_quota_plan() {
                             </div>
                         </div>
                         <div class="panel-body">
- 
-                           <canvas id="testCanvas"  width="500" height="400" ></canvas> 
+
+                            <canvas id="testCanvas" width="500" height="500"></canvas>
 
                             <!-- <canvas id="myCanvas" width="400" height="400" ></canvas>  -->
 
