@@ -147,9 +147,9 @@ function check_add() {
 // check_add form
 
 function check_edit_skd(check) {
-    var group = document.getElementById("group_text"+check).value;
-    var Emp_id = document.getElementById("Emp_id"+check).value;
-    var Showname_modol = document.getElementById("nameEmp"+check).value;
+    var group = document.getElementById("group_text" + check).value;
+    var Emp_id = document.getElementById("Emp_id" + check).value;
+    var Showname_modol = document.getElementById("nameEmp" + check).value;
     console.log(group)
     console.log(Emp_id)
     console.log(Showname_modol)
@@ -225,10 +225,18 @@ function add_alert() {
                                 style="width: 100%;">
                                 <thead>
                                     <tr style="background-color:lavender;">
-                                        <th><center>No.</th>
-                                        <th><center>Group</th>
-                                        <th><center>Head Dept.</th>
-                                        <th> <center>Action</th>
+                                        <th>
+                                            <center>No.
+                                        </th>
+                                        <th>
+                                            <center>Group
+                                        </th>
+                                        <th>
+                                            <center>Head Dept.
+                                        </th>
+                                        <th>
+                                            <center>Action
+                                        </th>
                                     </tr>
                                 </thead>
 
@@ -258,7 +266,7 @@ function add_alert() {
                                                     <i class="ti ti-pencil-alt"></i>
                                                 </a>
                                                 <a class="btn btn-info"
-                                                    href ="<?php echo base_url();?>/ev_group/Evs_group/select_group">
+                                                    href="<?php echo base_url();?>/ev_group/Evs_group/select_group">
                                                     <i class="ti ti-info-alt"></i>
                                                 </a>
                                             </div>
@@ -277,21 +285,22 @@ function add_alert() {
                                                     </button>
                                                     <h2 class="modal-title"><b>
                                                             <font color="white">Edit SKD Group Data & Head Dept.</font>
-                                                    </b></h2>
+                                                        </b></h2>
                                                 </div>
                                                 <!-- modal header -->
 
                                                 <div class="modal-body">
                                                     <form class="form-horizontal"
                                                         action="<?php echo base_url(); ?>ev_group/Evs_group/save_edit_skd"
-                                                        method="post" onsubmit = "return check_edit_skd('<?php echo $row->gru_id; ?>')">
+                                                        method="post"
+                                                        onsubmit="return check_edit_skd('<?php echo $row->gru_id; ?>')">
                                                         <div class="form-group">
                                                             <label for="focusedinput"
                                                                 class="col-sm-3 control-label">Group Name</label>
                                                             <div class="col-sm-6">
                                                                 <input type="text" class="form-control"
                                                                     value="<?php echo $row->gru_name; ?>"
-                                                                    id = "group_text<?php echo $row->gru_id; ?>"
+                                                                    id="group_text<?php echo $row->gru_id; ?>"
                                                                     name="group_text" placeholder="HR AGM">
                                                             </div>
                                                         </div>
@@ -368,7 +377,8 @@ function add_alert() {
                                                             <div class="col-sm-12">
                                                                 <label for="focusedinput" class="control-label"
                                                                     style="font-family:'Courier New'" align="center">
-                                                                    <font size="5px">Do you want to Delete Data YES or NO ?</font>
+                                                                    <font size="5px">Do you want to Delete Data YES or
+                                                                        NO ?</font>
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -523,46 +533,46 @@ function add_alert() {
 
 <!-- Modal Warning -->
 <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-            <div class="modal-content">
-                  <div class="modal-header" style="background-color:#FF9800;">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                              <font color="White"><b>&times;</b>
-                              </font>
-                        </button>
-                        <h2 class="modal-title"><b>
-                                    <font color="white">Warning</font>
-                              </b></h2>
-                  </div>
-                  <!-- Modal header -->
-
-                  <div class="modal-body">
-                        <div class="form-horizontal">
-                              <div class="form-group" align="center">
-                                    <div class="col-sm-12">
-                                          <label for="focusedinput" class="control-label"
-                                                style="font-family:'Courier New'" align="center">
-                                                <font size="3px">
-                                                      Please fill in the correct information.</font>
-                                          </label>
-
-                                    </div>
-                              </div>
-                        </div>
-                        <!-- form-horizontal -->
-                  </div>
-                  <!-- Modal body -->
-
-                  <div class="modal-footer">
-                        <div class="btn-group pull-right">
-                              <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
-                        </div>
-
-                  </div>
-                  <!-- Modal footer -->
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#FF9800;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b>
+                    </font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Warning</font>
+                    </b></h2>
             </div>
-            <!-- modal-content -->
-      </div>
-      <!-- modal-dialog -->
+            <!-- Modal header -->
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group" align="center">
+                        <div class="col-sm-12">
+                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                                align="center">
+                                <font size="3px">
+                                    Please fill in the correct information.</font>
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- form-horizontal -->
+            </div>
+            <!-- Modal body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                </div>
+
+            </div>
+            <!-- Modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
 </div>
 <!-- End Modal Warning -->
