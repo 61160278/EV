@@ -24,6 +24,25 @@ class Da_evs_employee extends evs_model {
 		parent::__construct();
 	}
 
+	/*
+	* insert
+	* Insert Category into database
+	* @input ctg_category_name
+	* @output -
+	* @author Jakkarin Pimpaeng
+	* @Create Date 2563-09-28
+	*/
+
+	function insert() {
+	 
+		$sql = "INSERT INTO evs_database.evs_employee (emp_employee_id,emp_company_id,emp_position_id,emp_section_code_ID,emp_pay_id,emp_ghr_id)
+				VALUES(?, ?, ? , ? , ? , ?)";
+		
+		$this->db->query($sql, array($this->emp_employee_id, $this->emp_company_id,$this->emp_position_id,$this->emp_section_code_ID,$this->emp_pay_id,$this->emp_ghr_id));
+   
+	}
+	
+
 	
 }
 // Da_evs_employee

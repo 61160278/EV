@@ -107,7 +107,7 @@ class Evs_form extends MainController {
 		$this->mpf->ps_pay_id = $year_id;
 		$data['info_pos_form'] = $this->mpf->get_all_by_key_by_year(); // position form by year
 
-		//$this->output("consent/form/v_preview_form",$data);
+		$this->output("consent/form/v_preview_form",$data);
 	}
 	// function preview_form()
 

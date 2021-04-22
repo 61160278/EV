@@ -107,6 +107,28 @@ class Evs_form extends MainController_avenxo {
 	}
 	// function save_mbo_by_emp
 
+	function update_mbo_by_emp(){
+		
+		$idMBO = $this->input->post("idMBO");
+		$dataMBO = $this->input->post("dataMBO");
+		$resultMBO = $this->input->post("resultMBO");
+		$Emp_ID = $this->input->post("Emp_ID");
+		$count = $this->input->post("count");
+
+		$this->load->model('Da_evs_data_mbo','dedm');
+		
+		for($i=0; $i<$count; $i++){
+			$this->dedm->dtm_id = $idMBO[$i];
+			$this->dedm->dtm_mbo = $dataMBO[$i];
+			$this->dedm->dtm_weight = $resultMBO[$i];
+			$this->dedm->dtm_emp_id = $Emp_ID;
+			$this->dedm->dtm_year = 2021;
+			$this->dedm->update();
+		}
+		// for
+	}
+	// function save_mbo_by_emp
+
 	function edit_mbo($emp_id_edit){
 
 		$this->load->model('M_evs_data_mbo','medm');
