@@ -153,7 +153,7 @@ function get_Emp() {
 
 function warning() {
 
-      // alert("Please input data !");
+
       $('#warning').modal('show');
 
 }
@@ -328,180 +328,7 @@ function check_data_edt(check) {
                                                             </td>
                                                       </tr>
 
-                                                      <!-- Model Edit -->
-                                                      <div class="modal fade" id="Edit<?php echo $row->gru_id?>"
-                                                            tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                                                            aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                  <div class="modal-content">
-                                                                        <div class="modal-header"
-                                                                              style="background-color:gray;">
-                                                                              <button type="button" class="close"
-                                                                                    data-dismiss="modal"
-                                                                                    aria-hidden="true">
-                                                                                    <font color="White"><b>&times;</b>
-                                                                                    </font>
-                                                                              </button>
-                                                                              <h2 class="modal-title"><b>
-                                                                                          <font color="white">Edit Group
-                                                                                                Data & Head Dept.</font>
-                                                                                    </b></h2>
-                                                                        </div>
-                                                                        <!-- modal header -->
 
-                                                                        <div class="modal-body">
-                                                                              <form class="form-horizontal"
-                                                                                    action="<?php echo base_url(); ?>ev_group/Evs_group/save_edit_sdm"
-                                                                                    method="post"
-                                                                                    onsubmit="return check_data_edt('<?php echo $row->gru_id; ?>')">
-                                                                                    <div class="form-group">
-                                                                                          <label for="focusedinput"
-                                                                                                class="col-sm-3 control-label">Group
-                                                                                                Name</label>
-                                                                                          <div class="col-sm-6">
-                                                                                                <input type="text"
-                                                                                                      class="form-control"
-                                                                                                      value="<?php echo $row->gru_name; ?>"
-                                                                                                      id="grouptext<?php echo $row->gru_id; ?>"
-                                                                                                      name="grouptext"
-                                                                                                      placeholder="HR AGM">
-
-                                                                                          </div>
-                                                                                    </div>
-                                                                                    <!-- Group Name -->
-
-                                                                                    <h2
-                                                                                          style="font-family:'Courier New'">
-                                                                                          <b>
-                                                                                                <font size="4px"
-                                                                                                      color="Black">
-                                                                                                      Select Head Dept.
-                                                                                                </font>
-                                                                                          </b>
-                                                                                    </h2>
-
-                                                                                    <div class="form-group">
-                                                                                          <label for="focusedinput"
-                                                                                                class="col-sm-3 control-label">Emp.
-                                                                                                ID</label>
-                                                                                          <div class="col-sm-6">
-                                                                                                <input type="text"
-                                                                                                      class="form-control"
-                                                                                                      value="<?php echo $row->gru_head_dept; ?>"
-                                                                                                      name="Emp_id"
-                                                                                                      id="Emp_id<?php echo $row->gru_id; ?>"
-                                                                                                      placeholder="JS000xxx"
-                                                                                                      onkeyup="get_idemployee('<?php echo $row->gru_id; ?>')">
-                                                                                                <input type="hidden"
-                                                                                                      class="form-control"
-                                                                                                      value="<?php echo $row->gru_id; ?>"
-                                                                                                      name="gru_id"
-                                                                                                      id="gru_id">
-                                                                                          </div>
-                                                                                    </div>
-                                                                                    <!--Emp. ID -->
-
-                                                                                    <div class="form-group">
-                                                                                          <label for="focusedinput"
-                                                                                                class="col-sm-3 control-label">Name
-                                                                                                - Surname</label>
-
-
-                                                                                          <div class="col-sm-6">
-                                                                                                <input disabled
-                                                                                                      type="text"
-                                                                                                      class="form-control"
-                                                                                                      value="<?php echo $row->Empname_eng , " ", $row->Empsurname_eng; ?>"
-                                                                                                      id="nameEmp<?php echo $row->gru_id ?>"
-                                                                                                      placeholder="Name Surname">
-                                                                                          </div>
-
-
-                                                                                    </div>
-                                                                                    <!-- Name Surname -->
-
-                                                                        </div>
-                                                                        <!-- modal-body -->
-
-                                                                        <div class="modal-footer">
-                                                                              <div class="btn-group pull-left">
-                                                                                    <button type="button"
-                                                                                          class="btn btn-inverse"
-                                                                                          data-dismiss="modal">CANCEL</button>
-                                                                              </div>
-
-                                                                              <input type="submit"
-                                                                                    class="btn btn-success"
-                                                                                    value="SAVE">
-
-                                                                        </div>
-                                                                        <!-- modal-footer -->
-                                                                        </form>
-                                                                        <!-- form-horizontal -->
-                                                                  </div>
-                                                                  <!-- modal-content -->
-                                                            </div>
-                                                            <!-- modal-dialog -->
-                                                      </div>
-                                                      <!-- End Modal Edit_add-->
-
-                                                      <!-- Modal Delete -->
-                                                      <div class="modal fade" id="Delete<?php echo $row->gru_id?>"
-                                                            tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                                                            aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                  <div class="modal-content">
-                                                                        <div class="modal-header"
-                                                                              style="background-color:gray;">
-                                                                              <button type="button" class="close"
-                                                                                    data-dismiss="modal"
-                                                                                    aria-hidden="true">
-                                                                                    <font color="White"><b>&times;</b>
-                                                                                    </font>
-                                                                              </button>
-                                                                        </div>
-                                                                        <!-- Modal header -->
-
-                                                                        <div class="modal-body">
-                                                                              <div class="form-horizontal">
-                                                                                    <div class="form-group"
-                                                                                          align="center">
-                                                                                          <div class="col-sm-12">
-                                                                                                <label for="focusedinput"
-                                                                                                      class="control-label"
-                                                                                                      style="font-family:'Courier New'"
-                                                                                                      align="center">
-                                                                                                      <font size="5px">
-                                                                                                            Do you want
-                                                                                                            to Delete
-                                                                                                            Data YES or
-                                                                                                            NO ?</font>
-                                                                                                </label>
-
-                                                                                          </div>
-                                                                                    </div>
-                                                                              </div>
-                                                                              <!-- form-horizontal -->
-                                                                        </div>
-                                                                        <!-- Modal body -->
-
-                                                                        <div class="modal-footer">
-                                                                              <div class="btn-group pull-left">
-                                                                                    <button type="button"
-                                                                                          class="btn btn-inverse"
-                                                                                          data-dismiss="modal">NO</button>
-                                                                              </div>
-                                                                              <button type="button"
-                                                                                    class="btn btn-success"
-                                                                                    onClick="Delete_data(<?php echo $row->gru_id; ?>)">YES</button>
-                                                                        </div>
-                                                                        <!-- Modal footer -->
-                                                                  </div>
-                                                                  <!-- modal-content -->
-                                                            </div>
-                                                            <!-- modal-dialog -->
-                                                      </div>
-                                                      <!-- End Modal Delete -->
 
                                                       <?php 
 									$num++;
@@ -686,3 +513,149 @@ function check_data_edt(check) {
       <!-- modal-dialog -->
 </div>
 <!-- End Modal Warning -->
+
+<?php
+	$num = 1;
+	foreach($grp_sdm->result() as $row ) { ?>
+
+<!-- Model Edit -->
+<div class="modal fade" id="Edit<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+            <div class="modal-content">
+                  <div class="modal-header" style="background-color:gray;">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                              <font color="White"><b>&times;</b>
+                              </font>
+                        </button>
+                        <h2 class="modal-title"><b>
+                                    <font color="white">Edit Group
+                                          Data & Head Dept.</font>
+                              </b></h2>
+                  </div>
+                  <!-- modal header -->
+
+                  <div class="modal-body">
+                        <form class="form-horizontal" action="<?php echo base_url(); ?>ev_group/Evs_group/save_edit_sdm"
+                              method="post" onsubmit="return check_data_edt('<?php echo $row->gru_id; ?>')">
+                              <div class="form-group">
+                                    <label for="focusedinput" class="col-sm-3 control-label">Group
+                                          Name</label>
+                                    <div class="col-sm-6">
+                                          <input type="text" class="form-control" value="<?php echo $row->gru_name; ?>"
+                                                id="grouptext<?php echo $row->gru_id; ?>" name="grouptext"
+                                                placeholder="HR AGM">
+
+                                    </div>
+                              </div>
+                              <!-- Group Name -->
+
+                              <h2 style="font-family:'Courier New'">
+                                    <b>
+                                          <font size="4px" color="Black">
+                                                Select Head Dept.
+                                          </font>
+                                    </b>
+                              </h2>
+
+                              <div class="form-group">
+                                    <label for="focusedinput" class="col-sm-3 control-label">Emp.
+                                          ID</label>
+                                    <div class="col-sm-6">
+                                          <input type="text" class="form-control"
+                                                value="<?php echo $row->gru_head_dept; ?>" name="Emp_id"
+                                                id="Emp_id<?php echo $row->gru_id; ?>" placeholder="JS000xxx"
+                                                onkeyup="get_idemployee('<?php echo $row->gru_id; ?>')">
+                                          <input type="hidden" class="form-control" value="<?php echo $row->gru_id; ?>"
+                                                name="gru_id" id="gru_id">
+                                    </div>
+                              </div>
+                              <!--Emp. ID -->
+
+                              <div class="form-group">
+                                    <label for="focusedinput" class="col-sm-3 control-label">Name
+                                          - Surname</label>
+
+
+                                    <div class="col-sm-6">
+                                          <input disabled type="text" class="form-control"
+                                                value="<?php echo $row->Empname_eng , " ", $row->Empsurname_eng; ?>"
+                                                id="nameEmp<?php echo $row->gru_id ?>" placeholder="Name Surname">
+                                    </div>
+
+
+                              </div>
+                              <!-- Name Surname -->
+
+                  </div>
+                  <!-- modal-body -->
+
+                  <div class="modal-footer">
+                        <div class="btn-group pull-left">
+                              <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                        </div>
+
+                        <input type="submit" class="btn btn-success" value="SAVE">
+
+                  </div>
+                  <!-- modal-footer -->
+                  </form>
+                  <!-- form-horizontal -->
+            </div>
+            <!-- modal-content -->
+      </div>
+      <!-- modal-dialog -->
+</div>
+<!-- End Modal Edit_add-->
+
+<!-- Modal Delete -->
+<div class="modal fade" id="Delete<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+            <div class="modal-content">
+                  <div class="modal-header" style="background-color:gray;">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                              <font color="White"><b>&times;</b>
+                              </font>
+                        </button>
+                  </div>
+                  <!-- Modal header -->
+
+                  <div class="modal-body">
+                        <div class="form-horizontal">
+                              <div class="form-group" align="center">
+                                    <div class="col-sm-12">
+                                          <label for="focusedinput" class="control-label"
+                                                style="font-family:'Courier New'" align="center">
+                                                <font size="5px">
+                                                      Do you want
+                                                      to Delete
+                                                      Data YES or
+                                                      NO ?</font>
+                                          </label>
+
+                                    </div>
+                              </div>
+                        </div>
+                        <!-- form-horizontal -->
+                  </div>
+                  <!-- Modal body -->
+
+                  <div class="modal-footer">
+                        <div class="btn-group pull-left">
+                              <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
+                        </div>
+                        <button type="button" class="btn btn-success"
+                              onClick="Delete_data(<?php echo $row->gru_id; ?>)">YES</button>
+                  </div>
+                  <!-- Modal footer -->
+            </div>
+            <!-- modal-content -->
+      </div>
+      <!-- modal-dialog -->
+</div>
+<!-- End Modal Delete -->
+
+<?php 
+$num++;
+} ?>

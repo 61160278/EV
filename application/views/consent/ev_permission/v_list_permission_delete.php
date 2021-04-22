@@ -9,7 +9,7 @@
 */  
 ?>
 <script>
-function emp_insert(){
+function emp_delete(){
 	var count = document.getElementById("count").value; 
       
     console.log(count);
@@ -38,7 +38,7 @@ function emp_insert(){
 	$.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_permission/Evs_permission/insert_emp",
+        url: "<?php echo base_url(); ?>ev_permission/Evs_permission/select_emp_delete",
         data: {
             "empid": empid,
             "Posid": Posid,
@@ -64,7 +64,7 @@ function emp_insert(){
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h2>List of Permission for Create MBO</h2>
-					<input id="date" type="hidden" value="<?php echo $_POST["Date"]?>">
+					
 					<div class="panel-ctrls"></div>
 				</div>
 				<div class="panel-body no-padding">

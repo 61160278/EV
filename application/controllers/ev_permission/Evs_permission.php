@@ -76,11 +76,15 @@ class Evs_permission extends MainController_avenxo {
 		$date = $this->input->post("Date");
 		$this->load->model('M_evs_employee','mevg');
 		$this->mevg->Emp_startingdate = $date;
-		
-		
-		
+
 		$data['select'] = $this->mevg->get_all_emp();
 		$this->output('/consent/ev_permission/v_list_permission',$data);
+          
+
+
+         
+
+
 	}
 	// function select_bas
 
@@ -109,22 +113,20 @@ class Evs_permission extends MainController_avenxo {
 		//emp_employee_id,emp_company_id,emp_position_id,emp_section_code_ID,emp_pay_id,emp_ghr_id	
 	} // function insert_emp
 
-	function delete_emp()
-	{
-		$this->output('/consent/ev_permission/v_list_permission_delete');
+	function delete_emp($pay_id){
+      
+		$this->load->model('M_evs_employee','mevg');
+		$this->mevg->emp_pay_id= $pay_id;
+		$data['select'] = $this->mevg->get_all_emp_delete();
+
+		$this->output('/consent/ev_permission/v_list_permission_delete',$data);
 	}
 	// delete_emp()
 
-	function select_emp_delete()
-	{
-		$date = $this->input->post("Date");
-		$this->load->model('M_evs_employee','mevg');
-		$this->mevg->Emp_startingdate = $date;
+	function select_emp_delete(){
 		
+
 		
-		
-		$data['select'] = $this->mevg->get_all_emp();
-		$this->output('/consent/ev_permission/v_list_permission_delete',$data);
 	}
 	// select_emp_delete
 
