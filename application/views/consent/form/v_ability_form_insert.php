@@ -31,21 +31,14 @@ var arr_weight_check = []; // array to check is value by weight
  */
 function check_weight_all() {
     //start for loop
-    for (i = 1; i <= index; i++) {
-        arr_weight_check.push($('#weight_' + i).val());
-        sum_weight += Number(arr_weight_check[Number(i - 1)]);
-        Number(sum_weight);
-        console.log(Number(arr_weight_check[Number(i - 1)]));
-    }
-    //end for loop
-
-    console.log(sum_weight);
-    document.getElementById('value_total_weight').innerHTML = sum_weight;
+   
+   
+    sum_weight_all  = document.getElementById('value_total_weight').value;
 
     //start if-else
-    if (sum_weight == 100) {
+    if (sum_weight_all == 100) {
         return true;
-    } else if (sum_weight < 100 || sum_weight > 100) {
+    } else if (sum_weight_all < 100 || sum_weight_all > 100) {
         var alert = "";
         alert += '<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">';
         alert += '<span class="badge badge-pill badge-danger">Wrong</span>';
@@ -55,8 +48,6 @@ function check_weight_all() {
         alert += '</button>';
         alert += '</div>';
         $('#success_save').html(alert);
-        arr_weight_check = [];
-        sum_weight = 0;
         return false;
     }
     //end if-else
@@ -72,26 +63,28 @@ function check_weight_all() {
  * @Create Date 2563-10-29
  */
 function total_weight() {
-
+    sum_weight = 0;
     //start for loop
-    for (i = 1; i <= index; i++) {
-        arr_weight_check.push($('#weight_' + i).val());
-        sum_weight += Number(arr_weight_check[Number(i - 1)]);
+    table_arr_for_count = document.getElementsByName("arr_weight").length
+   for (i = 0; i < table_arr_for_count; i++) {
+        arr_weight_check = document.getElementsByName("arr_weight")[i].value;
+        Number(arr_weight_check);
+        sum_weight += Number(arr_weight_check); 
         Number(sum_weight);
-        console.log(Number(arr_weight_check[Number(i - 1)]));
-    }
+        console.log(index);
+   }
     //end for loop
 
     if (sum_weight == 100) {
-        document.getElementById('value_total_weight').innerHTML = sum_weight;
+        document.getElementById('value_total_weight').value = sum_weight;
         document.getElementById('value_total_weight').style.color = "black"
     } else {
-        document.getElementById('value_total_weight').innerHTML = sum_weight;
+        document.getElementById('value_total_weight').value = sum_weight;
         document.getElementById('value_total_weight').style.color = "red"
     }
 
-    arr_weight_check = [];
-    sum_weight = 0;
+   
+    
 
 }
 //total_weight
@@ -146,8 +139,8 @@ $(document).ready(function() {
             // show expected 
 
             table_ready += '<td id="weight_tr_' + index + '" >';
-            table_ready += '<input type="number" class="form-control" id="weight_' + index +
-                '" name="arr_weight[]" min="0" max="100" required onchange="total_weight()" placeholder="Ex.50">';
+            table_ready += '<input type="number" class="form-control"  id="weight_' + index +
+                '" name="arr_weight" min="0" max="100" required onchange="total_weight()" placeholder="Ex.50">';
             table_ready += '</td>';
             // insert weight 
 
@@ -165,7 +158,8 @@ $(document).ready(function() {
             table_ready_score += '<font color="black"><b>Total weight</b></font>';
             table_ready_score += '</center>';
             table_ready_score += '</td>';
-            table_ready_score += '<td id="value_total_weight" style="text-align:center">';
+            table_ready_score += '<td >';
+            table_ready_score += '<input id="value_total_weight" style="text-align:center" value = "0" disabled>';
             table_ready_score += '</td>';
             table_ready_score += '<td>';
             table_ready_score += '</td>';
@@ -233,8 +227,8 @@ $(document).ready(function() {
                 // show expected 
 
                 table += '<td id="weight_tr_' + index + '" >';
-                table += '<input type="number" class="form-control" id="weight_' + index +
-                    '" name="arr_weight[]" min="0" max="100" required onchange="total_weight()" placeholder="Ex.50">';
+                table += '<input type="number" class="form-control"  id="weight_' + index +
+                    '" name="arr_weight" min="0" max="100" required onchange="total_weight()" placeholder="Ex.50">';
                 table += '</td>';
                 // insert weight 
 
@@ -258,9 +252,23 @@ $(document).ready(function() {
     $(document).on('click', '.btn_remove', function() {
         console.log("-----delete -------");
         var button_id = $(this).attr("id");
-        var res = button_id.substring(10, 11);
+        var res = button_id.substring(10);
+
+        arr_weight_check = document.getElementById('weight_' + res + '').value;
+        Number(arr_weight_check);
+        sum_weight -= Number(arr_weight_check); 
+        Number(sum_weight);
+        console.log(arr_weight_check);
+
+    if (sum_weight == 100) {
+        document.getElementById('value_total_weight').value = sum_weight;
+        document.getElementById('value_total_weight').style.color = "black"
+    } else {
+        document.getElementById('value_total_weight').value = sum_weight;
+        document.getElementById('value_total_weight').style.color = "red"
+    }
         $('#row_com' + res + '').remove();
-        index--;
+        //index--;
     }); // delete compentency
 
 });
@@ -480,10 +488,7 @@ input[type=number] {
         <div class="card shadow mb-4">
             <div class="card-header py-3" id="panel_th_topManage">
                 <div class="col-xl-12">
-                    <a href="<?php echo base_url(); ?>/Evs_ability_form/indicator_ability/<?php echo $info_pos_id; ?>">
-                        <button type="button" class="btn btn-success float-right"><i class="fa fa-plus"> </i>
-                            Item</button>
-                    </a>
+           
                     <h1 class="m-0 font-weight-bold text-primary">
                         <a
                             href="<?php echo base_url(); ?>/Evs_form/form_position/<?php echo $info_pos_id; ?>/<?php echo $row->pay_id; ?>">

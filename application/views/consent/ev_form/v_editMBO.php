@@ -73,7 +73,7 @@ $.ajax({
             data_row += '</td>'
             data_row += '<td>'
             data_row += '<input id="inp_result' + (index + 1) + '" class="form-control" type="number"'
-            data_row += 'min="0" max="100" onkeyup="check_weight()" value="'+ row.dtm_weight +'" >'
+            data_row += 'min="0" max="100" onchange="check_weight()" value="'+ row.dtm_weight +'" >'
             data_row += '</td>'
             data_row += '<td id="dis_color">'
             data_row += '<center>'
@@ -430,7 +430,7 @@ $("#inp_mbo" + i).css("border-style", "solid");
                                     <td id="inp_mbo<?php echo $index+1; ?>">
                                         <?php echo $row->dtm_mbo; ?>
                                     </td>
-                                    <td id="inp_result<?php echo $index+1; ?>">
+                                    <td align="center" id="inp_result<?php echo $index+1; ?>">
                                         <?php echo $row->dtm_weight; 
                                         $sum += $row->dtm_weight;
                                         ?>
@@ -476,7 +476,7 @@ $("#inp_mbo" + i).css("border-style", "solid");
                                 <tr>
                                     <td colspan="2" align="right"><b>Total Weight</b></td>
                                     <td id="show_weight" align="center"><?php echo $sum; ?></td>
-                                    <td colspan="2"></td>
+                                    <td colspan="2"><font color="#e60000"></font></td>
                                 </tr>
                             </tfoot>
                             <!-- tfoot -->
