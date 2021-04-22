@@ -89,26 +89,27 @@ function check_quota_plan() {
 }
 
 
-window.onchange = function() {
-    var arrQuotaPlan = [];
+// window.onchange = function() {
+    window.onload = function() {
+    var arrQuota = [];
     var myCanvas = document.getElementById('testCanvas');
     var context = myCanvas.getContext('2d');
     for (var i = 1; i <= 5; i++) {
-        var mean_quotaPlan = document.getElementById("show_quotaPlan" + i).innerHTML;
-        // var arrQuotaPlan = [0.4, 2, 3.2, 2, 0.4];
-        arrQuotaPlan[i] = mean_quotaPlan;
+        var show_quota = document.getElementById("quota" + i).innerHTML;
+        // var arrQuota = [0.4, 2, 3.2, 2, 0.4];
+        arrQuota[i] = show_quota;
 
     } //for
-    arrQuotaPlan.shift();
-    console.log(arrQuotaPlan);
+    arrQuota.shift();
+    console.log(arrQuota);
 
     var height_graph = 400;
 
-    var arrlen = arrQuotaPlan.length;
+    var arrlen = arrQuota.length;
     var maxData = 0;
     for (var i = 0; i < arrlen; i++) {
-        if (arrQuotaPlan[i] > maxData) {
-            maxData = arrQuotaPlan[i];
+        if (arrQuota[i] > maxData) {
+            maxData = arrQuota[i];
         }
     }
     context.clearRect(0, 0, 500, 500);
@@ -117,58 +118,67 @@ window.onchange = function() {
 
     // draw X and Y axis  
     context.beginPath();
-    context.moveTo(25, 25);
-    context.lineTo(25, 400);
-    context.lineTo(680, 400);
+   
+    context.moveTo(25, 25); // context.moveTo(L,B);
+    context.lineTo(25, 420);//y context.lineTo(T,B)
+    context.lineTo(680, 420);//x  context.lineTo(R,B)
 
-    context.fillText((maxData / maxData) - 1, 0, height_graph + 25);
+    context.fillText(0, 0, 425);
     context.stroke();
 
     // draw reference line  แถวมบนสุด เส้นระดับ
     context.beginPath();
     context.strokeStyle = "#BBB";
     context.moveTo(25, 25);
-    context.lineTo(680, 25);
+    context.lineTo(680, 25);//context.lineTo(R, T)
     // draw reference value for hours  
-    context.fillText(maxData, 0, 25);
+    context.fillText(100, 0, 25);
     context.stroke();
 
     // draw reference line แถวล่างสุด เส้นระดับ
     context.beginPath();
-    context.moveTo(25, (height_graph) / 4 * 3 + 25);
-    context.lineTo(680, (height_graph) / 4 * 3 + 25);
+    context.moveTo(25, 336);
+    context.lineTo(680, 336);
     // draw reference value for hours  
-    context.fillText(maxData / 4, 0, (height_graph) / 4 * 3 + 25);
+    context.fillText(20, 0, 336);
     context.stroke();
 
     // draw reference line  แถวที่ 2 เส้นระดับ
     context.beginPath();
-    context.moveTo(25, (height_graph) / 2 + 25);
-    context.lineTo(680, (height_graph) / 2 + 25);
+    context.moveTo(25,252);
+    context.lineTo(680, 252);
     // draw reference value for hours  
-    context.fillText(maxData / 2, 0, (height_graph) / 2 + 25);
+    context.fillText(40, 0, 252);
     context.stroke();
 
-    // draw reference line  แถวที่ 3 เส้นระดับ
-    context.beginPath();
-    context.moveTo(25, (height_graph) / 4 + 25);
-    context.lineTo(680, (height_graph) / 4 + 25);
-    // draw reference value for hours  
-    var granY = (maxData / 2) + 0.8;
-    context.fillText(granY.toFixed(1), 0, (height_graph) / 4 + 25);
-    context.stroke();
+
+        // draw reference line  แถวที่ 3 เส้นระดับ
+        context.beginPath();
+        context.moveTo(25, 168);
+        context.lineTo(680, 168);
+        // draw reference value for hours  
+        context.fillText(60, 0,168);
+        context.stroke();
+      // draw reference line  แถวที่ 4 เส้นระดับ
+      context.beginPath();
+        context.moveTo(25, 84);
+        context.lineTo(680, 84);
+        // draw reference value for hours  
+        context.fillText(80, 0, 84);
+        context.stroke();
+
     context.beginPath();
     context.lineJoin = "round";
-    context.strokeStyle = "black";
+    context.strokeStyle = "red";
 
-    context.moveTo(100, (height_graph - arrQuotaPlan[0] / maxData * height_graph) + 25);
+    context.moveTo(100, (height_graph - arrQuota[0] / maxData * height_graph) + 25);
     // draw reference value for day of the week  
     var grad = ["S", "A", "B", "C", "D"];
     // context.fillText("S", 15, 400);
     for (var j = 0; j < grad.length; j++) {
 
 
-        context.lineTo(680 / arrlen * j + 100, (height_graph - arrQuotaPlan[j] / maxData * height_graph) + 25);
+        context.lineTo(680 / arrlen * j + 100, (height_graph - arrQuota[j] / maxData * height_graph) + 25);
 
         // draw reference value for day of the week  
         context.fillText(grad[j], 680 / arrlen * j + 100, 450, 475);
