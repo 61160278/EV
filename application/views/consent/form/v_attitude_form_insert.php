@@ -453,11 +453,7 @@ function change_status() {
         <div class="card shadow mb-4">
             <div class="card-header py-3" id="panel_th_topManage">
                 <div class="col-xl-12">
-                    <a
-                        href="<?php echo base_url(); ?>/Evs_attitude_form/indicator_attitude_table/<?php echo $info_pos_id; ?>">
-                        <button type="button" class="btn btn-success float-right"><i class="fa fa-plus"> </i>
-                            Items</button>
-                    </a>
+                   
                     <h1 class="m-0 font-weight-bold text-primary">
                         <a
                             href="<?php echo base_url(); ?>/Evs_form/form_position/<?php echo $info_pos_id; ?>/<?php echo $row->pay_id; ?>">
