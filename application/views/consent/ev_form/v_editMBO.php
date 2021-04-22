@@ -43,116 +43,126 @@ $(document).ready(function() {
 });
 // document ready
 
-function editmbo(){
+function editmbo() {
 
-var dtm_emp_id = document.getElementById("emp_id").innerHTML;
-console.log(dtm_emp_id);
+    var dtm_emp_id = document.getElementById("emp_id").innerHTML;
+    console.log(dtm_emp_id);
 
-var data_row = '';
-var info_row = 0;
-var number = 0;
+    var data_row = '';
+    var info_row = 0;
+    var number = 0;
 
-$.ajax({
-    type: "post",
-    dataType: "json",
-    url: "<?php echo base_url(); ?>ev_form/Evs_form/get_mbo_to_edit",
-    data: {
-        "dtm_emp_id": dtm_emp_id
-    },
-    success: function(data) {
-        var clear = 0;
-        console.log(data);
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/get_mbo_to_edit",
+        data: {
+            "dtm_emp_id": dtm_emp_id
+        },
+        success: function(data) {
+            var clear = 0;
+            console.log(data);
 
-        data.forEach((row, index) => {
-            clear = index + 1;
-            data_row += '<tr>'
-            data_row += '<td><center>' + (index + 1) + '</center></td>'
-            data_row += '<td>'
-            data_row += '<input id="inp_mbo' + (index + 1) +
-                '" class="form-control" type="text" value="'+ row.dtm_mbo +'" onchange="clear_css_inp(' + clear + ')">'
-            data_row += '</td>'
-            data_row += '<td>'
-            data_row += '<input id="inp_result' + (index + 1) + '" class="form-control" type="number"'
-            data_row += 'min="0" max="100" onchange="check_weight()" value="'+ row.dtm_weight +'" >'
-            data_row += '</td>'
-            data_row += '<td id="dis_color">'
-            data_row += '<center>'
-            data_row += '<div class="col-md-12">'
-            data_row += '<form action="">'
-            data_row += '<input type="radio" name="result" value="1"Disabled Unchecked>'
-            data_row += '<label for="1">&nbsp; 1</label>'
-            data_row += '&nbsp;&nbsp;'
-            data_row += '<input type="radio" name="result" value="2" Disabled Unchecked>'
-            data_row += '<label for="2">&nbsp; 2</label>'
-            data_row += '&nbsp;&nbsp;'
-            data_row += '<input type="radio" name="result" value="3" Disabled Unchecked>'
-            data_row += '<label for="3">&nbsp; 3</label>'
-            data_row += '&nbsp;&nbsp;'
-            data_row += '<input type="radio" name="result" value="4" Disabled Unchecked>'
-            data_row += '<label for="4">&nbsp; 4</label>'
-            data_row += '&nbsp;&nbsp;'
-            data_row += '<input type="radio" name="result" value="5" Disabled Unchecked>'
-            data_row += '<label for="5">&nbsp; 5</label>'
-            data_row += '&nbsp;&nbsp;'
-            data_row += '</form>'
-            data_row += '</div>'
-            data_row += '<!-- col-12 -->'
-            data_row += '</center>'
-            data_row += '</td>'
-            data_row += '<td id="dis_color"></td>'
-            data_row += '</tr>'
-            number++
-        });
-        // for
+            data.forEach((row, index) => {
+                clear = index + 1;
+                data_row += '<tr>'
+                data_row += '<td><center>' + (index + 1) + '</center>'
+                data_row += '<input type="text" id="inp_id'+ (index+1) +'" value="'+row.dtm_id+'" hidden></td>'
+                data_row += '<td>'
+                data_row += '<input id="inp_mbo' + (index + 1) +
+                    '" class="form-control" type="text" value="' + row.dtm_mbo +
+                    '" onchange="clear_css_inp(' + clear + ')">'
+                data_row += '</td>'
+                data_row += '<td>'
+                data_row += '<input id="inp_result' + (index + 1) +
+                    '" class="form-control" type="number"'
+                data_row += 'min="0" max="100" onchange="check_weight()" value="' + row.dtm_weight +
+                    '" >'
+                data_row += '</td>'
+                data_row += '<td id="dis_color">'
+                data_row += '<center>'
+                data_row += '<div class="col-md-12">'
+                data_row += '<form action="">'
+                data_row += '<input type="radio" name="result" value="1"Disabled Unchecked>'
+                data_row += '<label for="1">&nbsp; 1</label>'
+                data_row += '&nbsp;&nbsp;'
+                data_row += '<input type="radio" name="result" value="2" Disabled Unchecked>'
+                data_row += '<label for="2">&nbsp; 2</label>'
+                data_row += '&nbsp;&nbsp;'
+                data_row += '<input type="radio" name="result" value="3" Disabled Unchecked>'
+                data_row += '<label for="3">&nbsp; 3</label>'
+                data_row += '&nbsp;&nbsp;'
+                data_row += '<input type="radio" name="result" value="4" Disabled Unchecked>'
+                data_row += '<label for="4">&nbsp; 4</label>'
+                data_row += '&nbsp;&nbsp;'
+                data_row += '<input type="radio" name="result" value="5" Disabled Unchecked>'
+                data_row += '<label for="5">&nbsp; 5</label>'
+                data_row += '&nbsp;&nbsp;'
+                data_row += '</form>'
+                data_row += '</div>'
+                data_row += '<!-- col-12 -->'
+                data_row += '</center>'
+                data_row += '</td>'
+                data_row += '<td id="dis_color"></td>'
+                data_row += '</tr>'
+                number++
+            });
+            // for
 
-        $("#row_index").val(number);
-        //console.log("123456::"+number);
-        $("#row_mbo").html(data_row);
-        $("#btn_save").show();
-        $("#btn_edit").hide();
-        check_weight();
-    },
-    // success
-    error: function(data) {
-        console.log("9999 : error");
-    }
-    // error
-});
-// ajax
-    
+            $("#row_index").val(number);
+            //console.log("123456::"+number);
+            $("#row_mbo").html(data_row);
+            $("#btn_save").show();
+            $("#btn_edit").hide();
+            check_weight();
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+
 }
 // function editmbo
 
 function update_dataMBO() {
 
-var check_emp_id = document.getElementById("emp_id").innerHTML;
-count = document.getElementById("row_index").value;
-console.log(count);
-var dataMBO = [];
-var resultMBO = [];
+    var check_emp_id = document.getElementById("emp_id").innerHTML;
+    count = document.getElementById("row_index").value;
+    console.log(count);
+    var idMBO = [];
+    var dataMBO = [];
+    var resultMBO = [];
 
-for (var i = 1; i <= count; i++) {
-    dataMBO.push(document.getElementById("inp_mbo" + i).value);
-    resultMBO.push(document.getElementById("inp_result" + i).value);
+    for (var i = 1; i <= count; i++) {
+        idMBO.push(document.getElementById("inp_id" + i).value);
+        dataMBO.push(document.getElementById("inp_mbo" + i).value);
+        resultMBO.push(document.getElementById("inp_result" + i).value);
 
-    console.log(dataMBO);
-    console.log(resultMBO);
-    console.log("-----");
-}
-// for
-
-$.ajax({
-    type: "post",
-    dataType: "json",
-    url: "<?php echo base_url(); ?>ev_form/Evs_form/update_mbo_by_emp",
-    data: {
-        "dataMBO": dataMBO,
-        "resultMBO": resultMBO,
-        "Emp_ID": check_emp_id,
-        "count": count
+        // console.log(idMBO);
+        // console.log(dataMBO);
+        // console.log(resultMBO);
+        // console.log("-----");
     }
-});
-// ajax
+    // for
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/update_mbo_by_emp",
+        data: {
+            "idMBO":idMBO,
+            "dataMBO": dataMBO,
+            "resultMBO": resultMBO,
+            "Emp_ID": check_emp_id,
+            "count": count
+        }
+    });
+    // ajax
+
+    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id + "";
 
 }
 // function update_dataMBO
@@ -182,7 +192,7 @@ function check_weight() {
 
     var number_index = document.getElementById("row_index").value;
     count = number_index;
-    console.log(number_index);
+    //console.log(number_index);
 
     for (i = 1; i <= number_index; i++) {
         check = document.getElementById("inp_result" + i).value;
@@ -243,51 +253,49 @@ function check_weight() {
 
 function check_mbo() {
 
-var check = "";
-var num = 0;
-var number_index = document.getElementById("row_index").value;
+    var check = "";
+    var num = 0;
+    var number_index = document.getElementById("row_index").value;
 
-for (i = 1; i <= number_index; i++) {
-    check = document.getElementById("inp_mbo" + i).value;
-    console.log(check);
+    for (i = 1; i <= number_index; i++) {
+        check = document.getElementById("inp_mbo" + i).value;
+        console.log(check);
 
-    if (check == "") {
-        console.log(i + "-");
-        $("#inp_mbo" + i).css("background-color", "#ffe6e6");
-        $("#inp_mbo" + i).css("border-style", "solid");
+        if (check == "") {
+            console.log(i + "-");
+            $("#inp_mbo" + i).css("background-color", "#ffe6e6");
+            $("#inp_mbo" + i).css("border-style", "solid");
+        }
+        // if
+        else {
+            console.log("-" + i);
+            $("#inp_mbo" + i).css("background-color", "#ffffff");
+            $("#inp_mbo" + i).css("border-style", "solid");
+            num++;
+        }
+        // else
+    }
+    // for i
+
+    if (num == count) {
+        $("#save_mbo").modal('show');
+        return true;
     }
     // if
     else {
-        console.log("-" + i);
-        $("#inp_mbo" + i).css("background-color", "#ffffff");
-        $("#inp_mbo" + i).css("border-style", "solid");
-        num++;
+        return false;
     }
-    // else
-}
-// for i
-
-if (num == count) {
-    $("#save_mbo").modal('show');
-    return true;
-}
-// if
-else {
-    return false;
-}
-//else
+    //else
 
 }
 // function check_mbo
 
 function clear_css_inp(i) {
-$("#inp_mbo" + i).css("background-color", "#ffffff");
-$("#inp_mbo" + i).css("border-style", "solid");
+    $("#inp_mbo" + i).css("background-color", "#ffffff");
+    $("#inp_mbo" + i).css("border-style", "solid");
 
 }
 // function clear_css_inp
-
-
 </script>
 <!-- script -->
 
@@ -476,7 +484,9 @@ $("#inp_mbo" + i).css("border-style", "solid");
                                 <tr>
                                     <td colspan="2" align="right"><b>Total Weight</b></td>
                                     <td id="show_weight" align="center"><?php echo $sum; ?></td>
-                                    <td colspan="2"><font color="#e60000"></font></td>
+                                    <td colspan="2">
+                                        <font color="#e60000"></font>
+                                    </td>
                                 </tr>
                             </tfoot>
                             <!-- tfoot -->
@@ -492,7 +502,7 @@ $("#inp_mbo" + i).css("border-style", "solid");
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-                                
+
                                 <button class="btn btn-warning" id="btn_edit" onclick="editmbo()">EDIT</button>
                                 <button class="btn btn-success" id="btn_save" onclick="return check_mbo()">SAVE</button>
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#add_app">SEND <i
