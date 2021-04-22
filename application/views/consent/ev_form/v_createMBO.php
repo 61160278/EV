@@ -93,7 +93,6 @@ function save_dataMBO() {
     });
     // ajax
 
-    
     window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/"+check_emp_id+"";
     
 }
