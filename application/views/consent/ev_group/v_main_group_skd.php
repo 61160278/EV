@@ -124,30 +124,7 @@ function get_Emp() {
 }
 // function get_Emp
 
-function Save_edit_data(gru_id) {
-    var group = document.getElementById("group_text").value;
-    var Emp_id = document.getElementById("Emp_id").value;
-    console.log(gru_id)
-    $.ajax({
-        type: "POST",
-        url: "<?php echo base_url(); ?>/ev_group/Evs_group/save_edit_skd",
-        data: {
-
-            "group": group,
-            "Emp_id": Emp_id
-
-        },
-        dataType: "JSON",
-        success: function(data, status) {
-            console.log(status)
-        }
-    });
-    // ajax
-    window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
-}
-// function Save_edit_data
-
-function save_add() {
+function check_add() {
     var group = document.getElementById("grouptext").value;
     var Emp_id = document.getElementById("Emp_id_modol").value;
     var Showname_modol = document.getElementById("Showname_modol").value;
@@ -161,14 +138,21 @@ function save_add() {
             return false;
         }
         // if-else 
+    } else {
+        add_alert();
+        return false;
     }
+    //else
 }
-// save_add form
+// check_add form
 
-function save_edit_skd(chack) {
-    var group = document.getElementById("grouptext"+chack).value;
-    var Emp_id = document.getElem gentById("Emp_id"+chack).value;
-    var Showname_modol = document.getElementById("nameEmp").value;
+function check_edit_skd(check) {
+    var group = document.getElementById("group_text"+check).value;
+    var Emp_id = document.getElementById("Emp_id"+check).value;
+    var Showname_modol = document.getElementById("nameEmp"+check).value;
+    console.log(group)
+    console.log(Emp_id)
+    console.log(Showname_modol)
 
     if (group != "" && Emp_id != "") {
         if (Showname_modol != "ไม่มีข้อมูล") {
@@ -178,12 +162,17 @@ function save_edit_skd(chack) {
             return false;
         }
         // if-else 
+    } else {
+        add_alert();
+        return false;
     }
+    // if-else
+
 }
-// save_add form
+// check_edit_skd form
 
 function add_alert() {
-    alert("Please fill up this form.");
+    $('#warning').modal('show');
 }
 // add_alert
 </script>
@@ -288,21 +277,21 @@ function add_alert() {
                                                     </button>
                                                     <h2 class="modal-title"><b>
                                                             <font color="white">Edit SKD Group Data & Head Dept.</font>
-                                                        </b></h2>
+                                                    </b></h2>
                                                 </div>
                                                 <!-- modal header -->
 
                                                 <div class="modal-body">
                                                     <form class="form-horizontal"
                                                         action="<?php echo base_url(); ?>ev_group/Evs_group/save_edit_skd"
-                                                        method="post" onsubmit = "return save_edit('<?php echo $row->gru_id; ?>')">
+                                                        method="post" onsubmit = "return check_edit_skd('<?php echo $row->gru_id; ?>')">
                                                         <div class="form-group">
                                                             <label for="focusedinput"
                                                                 class="col-sm-3 control-label">Group Name</label>
                                                             <div class="col-sm-6">
                                                                 <input type="text" class="form-control"
                                                                     value="<?php echo $row->gru_name; ?>"
-                                                                    id = "<?php echo $row->gru_id; ?>"
+                                                                    id = "group_text<?php echo $row->gru_id; ?>"
                                                                     name="group_text" placeholder="HR AGM">
                                                             </div>
                                                         </div>
@@ -522,7 +511,7 @@ function add_alert() {
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
                 </div>
-                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="save_add()">SAVE</button>
+                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="check_add()">SAVE</button>
             </div>
             <!-- modal-footer -->
         </div>
@@ -531,3 +520,49 @@ function add_alert() {
     <!-- modal-dialog -->
 </div>
 <!-- End Modal Add-->
+
+<!-- Modal Warning -->
+<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+            <div class="modal-content">
+                  <div class="modal-header" style="background-color:#FF9800;">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                              <font color="White"><b>&times;</b>
+                              </font>
+                        </button>
+                        <h2 class="modal-title"><b>
+                                    <font color="white">Warning</font>
+                              </b></h2>
+                  </div>
+                  <!-- Modal header -->
+
+                  <div class="modal-body">
+                        <div class="form-horizontal">
+                              <div class="form-group" align="center">
+                                    <div class="col-sm-12">
+                                          <label for="focusedinput" class="control-label"
+                                                style="font-family:'Courier New'" align="center">
+                                                <font size="3px">
+                                                      Please fill in the correct information.</font>
+                                          </label>
+
+                                    </div>
+                              </div>
+                        </div>
+                        <!-- form-horizontal -->
+                  </div>
+                  <!-- Modal body -->
+
+                  <div class="modal-footer">
+                        <div class="btn-group pull-right">
+                              <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                        </div>
+
+                  </div>
+                  <!-- Modal footer -->
+            </div>
+            <!-- modal-content -->
+      </div>
+      <!-- modal-dialog -->
+</div>
+<!-- End Modal Warning -->
