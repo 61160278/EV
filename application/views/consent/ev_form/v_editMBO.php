@@ -39,6 +39,10 @@ $(document).ready(function() {
     $("#btn_save").hide();
     $("#btn_edit").show();
     $("#btn_save").attr("disabled", true);
+    $("#btn_clear").attr("disabled", true);
+
+    $("#btn_cencel_clear").hide();
+    $("#btn_cencel_show").show();
 
 });
 // document ready
@@ -67,7 +71,8 @@ function editmbo() {
                 clear = index + 1;
                 data_row += '<tr>'
                 data_row += '<td><center>' + (index + 1) + '</center>'
-                data_row += '<input type="text" id="inp_id'+ (index+1) +'" value="'+row.dtm_id+'" hidden></td>'
+                data_row += '<input type="text" id="inp_id' + (index + 1) + '" value="' + row
+                    .dtm_id + '" hidden></td>'
                 data_row += '<td>'
                 data_row += '<input id="inp_mbo' + (index + 1) +
                     '" class="form-control" type="text" value="' + row.dtm_mbo +
@@ -115,6 +120,9 @@ function editmbo() {
             $("#btn_save").show();
             $("#btn_edit").hide();
             check_weight();
+            $("#btn_clear").attr("disabled", false);
+            $("#btn_cencel_clear").show();
+            $("#btn_cencel_back").hide();
         },
         // success
         error: function(data) {
@@ -153,7 +161,7 @@ function update_dataMBO() {
         dataType: "json",
         url: "<?php echo base_url(); ?>ev_form/Evs_form/update_mbo_by_emp",
         data: {
-            "idMBO":idMBO,
+            "idMBO": idMBO,
             "dataMBO": dataMBO,
             "resultMBO": resultMBO,
             "Emp_ID": check_emp_id,
@@ -297,6 +305,19 @@ function clear_css_inp(i) {
 
 }
 // function clear_css_inp
+
+function check_cancel(){
+    $("#cancel_mbo").modal('show');
+}
+// function check_cancel
+
+function cancel_form(){
+    var check_emp_id = document.getElementById("emp_id").innerHTML;
+    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id + "";
+}
+// function cancel_form
+
+
 </script>
 <!-- script -->
 
@@ -497,13 +518,17 @@ function clear_css_inp(i) {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <button class="btn btn-inverse">CANCEL</button>
-                                <button class="btn btn-default" onclick="clearMBO()">CLEAR</button>
+                                <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
+                                    <button class="btn btn-inverse" id="btn_cencel_back">CANCEL</button>
+                                </a>
+                                <!-- cancel to back to main  -->
+                                <button class="btn btn-inverse" id="btn_cencel_clear" onclick="check_cancel()">CANCEL</button>
+                                <!-- cancel to cancel edit form -->
+                                <button class="btn btn-default" onclick="clearMBO()" id="btn_clear">CLEAR</button>
                             </div>
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-
                                 <button class="btn btn-warning" id="btn_edit" onclick="editmbo()">EDIT</button>
                                 <button class="btn btn-success" id="btn_save" onclick="return check_mbo()">SAVE</button>
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#add_app">SEND <i
@@ -652,3 +677,40 @@ function clear_css_inp(i) {
     <!-- modal-dialog -->
 </div>
 <!-- End Modal save-->
+
+<!-- Modal cancel -->
+<div class="modal fade" id="cancel_mbo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:gray;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b></font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Do you want to back to menu YES or NO ?</font>
+                    </b></h2>
+            </div>
+            <!-- modal header -->
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="focusedinput" class="col-sm-12 control-label" align="center">Please verify the accuracy
+                        of the information.</label>
+                </div>
+                <!-- Group Name -->
+            </div>
+            <!-- modal-body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-left">
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                </div>
+                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="cancel_form()">Yes</button>
+            </div>
+            <!-- modal-footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal cancel-->
