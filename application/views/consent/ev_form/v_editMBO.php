@@ -32,21 +32,100 @@ th {
 <!-- END style -->
 
 <script>
-var count=0;
+var count = 0;
 
 $(document).ready(function() {
-    check_weight()
-    $("#btn_edit").attr("disabled", true);
-	count = document.getElementById("row_index").value;
-	
+
+    $("#btn_save").hide();
+    $("#btn_edit").show();
+
 });
 // document ready
+
+function editmbo(){
+
+var dtm_emp_id = document.getElementById("emp_id").innerHTML;
+console.log(dtm_emp_id);
+
+var data_row = '';
+var info_row = 0;
+var number = 0;
+
+$.ajax({
+    type: "post",
+    dataType: "json",
+    url: "<?php echo base_url(); ?>ev_form/Evs_form/get_mbo_to_edit",
+    data: {
+        "dtm_emp_id": dtm_emp_id
+    },
+    success: function(data) {
+        var clear = 0;
+        console.log(data);
+
+        data.forEach((row, index) => {
+            clear = index + 1;
+            data_row += '<tr>'
+            data_row += '<td><center>' + (index + 1) + '</center></td>'
+            data_row += '<td>'
+            data_row += '<input id="inp_mbo' + (index + 1) +
+                '" class="form-control" type="text" value="'+ row.dtm_mbo +'" onchange="clear_css_inp(' + clear + ')">'
+            data_row += '</td>'
+            data_row += '<td>'
+            data_row += '<input id="inp_result' + (index + 1) + '" class="form-control" type="number"'
+            data_row += 'min="0" max="100" onkeyup="check_weight()" value="'+ row.dtm_weight +'" >'
+            data_row += '</td>'
+            data_row += '<td id="dis_color">'
+            data_row += '<center>'
+            data_row += '<div class="col-md-12">'
+            data_row += '<form action="">'
+            data_row += '<input type="radio" name="result" value="1"Disabled Unchecked>'
+            data_row += '<label for="1">&nbsp; 1</label>'
+            data_row += '&nbsp;&nbsp;'
+            data_row += '<input type="radio" name="result" value="2" Disabled Unchecked>'
+            data_row += '<label for="2">&nbsp; 2</label>'
+            data_row += '&nbsp;&nbsp;'
+            data_row += '<input type="radio" name="result" value="3" Disabled Unchecked>'
+            data_row += '<label for="3">&nbsp; 3</label>'
+            data_row += '&nbsp;&nbsp;'
+            data_row += '<input type="radio" name="result" value="4" Disabled Unchecked>'
+            data_row += '<label for="4">&nbsp; 4</label>'
+            data_row += '&nbsp;&nbsp;'
+            data_row += '<input type="radio" name="result" value="5" Disabled Unchecked>'
+            data_row += '<label for="5">&nbsp; 5</label>'
+            data_row += '&nbsp;&nbsp;'
+            data_row += '</form>'
+            data_row += '</div>'
+            data_row += '<!-- col-12 -->'
+            data_row += '</center>'
+            data_row += '</td>'
+            data_row += '<td id="dis_color"></td>'
+            data_row += '</tr>'
+            number++
+        });
+        // for
+
+        $("#row_index").val(number);
+        //console.log("123456::"+number);
+        $("#row_mbo").html(data_row);
+        $("#btn_save").show();
+        $("#btn_edit").show();
+    },
+    // success
+    error: function(data) {
+        console.log("9999 : error");
+    }
+    // error
+});
+// ajax
+
+}
+// function editmbo
 
 function clearMBO() {
 
     console.log("clear");
-	count = document.getElementById("row_index").value;
-	console.log(count);
+    count = document.getElementById("row_index").value;
+    console.log(count);
     for (var i = 1; i <= count; i++) {
         $("#inp_mbo" + i).val("");
         $("#inp_result" + i).val("");
@@ -66,7 +145,7 @@ function check_weight() {
     var val_check = 0;
 
     var number_index = document.getElementById("row_index").value;
-	count = number_index;
+    count = number_index;
     //console.log(number_index);
 
     for (i = 1; i <= number_index; i++) {
@@ -263,14 +342,11 @@ function check_weight() {
                                     <td>
                                         <center><?php echo $index+1; ?></center>
                                     </td>
-                                    <td>
-                                        <input class="form-control" id="inp_mbo<?php echo $index+1; ?>" type="text"
-                                            value="<?php echo $row->dtm_mbo; ?>">
+                                    <td id="inp_mbo<?php echo $index+1; ?>">
+                                        <?php echo $row->dtm_mbo; ?>
                                     </td>
-                                    <td>
-                                        <input class="form-control" id="inp_result<?php echo $index+1; ?>" type="number"
-                                            min="0" max="100" value="<?php echo $row->dtm_weight; ?>"
-                                            onchange="check_weight()">
+                                    <td id="inp_result<?php echo $index+1; ?>">
+                                        <?php echo $row->dtm_weight; ?>
                                     </td>
                                     <td id="dis_color">
                                         <center>
@@ -329,7 +405,9 @@ function check_weight() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-warning" id="btn_edit" onclick="save_dataMBO()">EDIT</button>
+                                
+                                <button class="btn btn-warning" id="btn_edit" onclick="editmbo()">EDIT</button>
+                                <button class="btn btn-success" id="btn_save" onclick="return check_mbo()">SAVE</button>
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#add_app">SEND <i
                                         class="fa fa-share-square-o"></i></button>
                             </div>
