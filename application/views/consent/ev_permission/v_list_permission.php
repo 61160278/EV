@@ -48,8 +48,8 @@ function emp_insert(){
         }
     });
     // ajax
-
-	window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp"
+	var pay_id = 2; 
+	window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/"+pay_id+""
 
 }  //function emp_insert
 
