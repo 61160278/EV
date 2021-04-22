@@ -19,7 +19,7 @@
 				</div>
 			</div>
 			<!-- heading -->
-		<form method="POST" action="<?php echo base_url(); ?>/ev_permission/Evs_permission/select_emp"">	
+		<form method="POST" action="<?php echo base_url(); ?>/ev_permission/Evs_permission/select_emp">	
 		<div class="panel-editbox" data-widget-controls=""></div>
 		<div class="panel-body">
 				<h3>Please select Position & Probation due date</h3>

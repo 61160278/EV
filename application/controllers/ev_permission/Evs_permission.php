@@ -106,14 +106,32 @@ class Evs_permission extends MainController_avenxo {
 		$this->deep->insert();
 
 		}
-		
-		//emp_employee_id,emp_company_id,emp_position_id,emp_section_code_ID,emp_pay_id,emp_ghr_id
-		
-		
-		
-		
-		
+		//emp_employee_id,emp_company_id,emp_position_id,emp_section_code_ID,emp_pay_id,emp_ghr_id	
+	} // function insert_emp
+
+	function delete_emp()
+	{
+		$this->output('/consent/ev_permission/v_list_permission_delete');
 	}
-	// function insert_emp
+	// delete_emp()
+
+	function select_emp_delete()
+	{
+		$date = $this->input->post("Date");
+		$this->load->model('M_evs_employee','mevg');
+		$this->mevg->Emp_startingdate = $date;
+		
+		
+		
+		$data['select'] = $this->mevg->get_all_emp();
+		$this->output('/consent/ev_permission/v_list_permission_delete',$data);
+	}
+	// select_emp_delete
+
+
+
+ 
+
+
 }
 ?>
