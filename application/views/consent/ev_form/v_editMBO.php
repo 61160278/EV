@@ -38,6 +38,7 @@ $(document).ready(function() {
 
     $("#btn_save").hide();
     $("#btn_edit").show();
+    $("#btn_save").attr("disabled", true);
 
 });
 // document ready
@@ -109,6 +110,7 @@ $.ajax({
         $("#row_mbo").html(data_row);
         $("#btn_save").show();
         $("#btn_edit").hide();
+        check_weight();
     },
     // success
     error: function(data) {
@@ -117,9 +119,43 @@ $.ajax({
     // error
 });
 // ajax
-
+    
 }
 // function editmbo
+
+function update_dataMBO() {
+
+var check_emp_id = document.getElementById("emp_id").innerHTML;
+count = document.getElementById("row_index").value;
+console.log(count);
+var dataMBO = [];
+var resultMBO = [];
+
+for (var i = 1; i <= count; i++) {
+    dataMBO.push(document.getElementById("inp_mbo" + i).value);
+    resultMBO.push(document.getElementById("inp_result" + i).value);
+
+    console.log(dataMBO);
+    console.log(resultMBO);
+    console.log("-----");
+}
+// for
+
+$.ajax({
+    type: "post",
+    dataType: "json",
+    url: "<?php echo base_url(); ?>ev_form/Evs_form/update_mbo_by_emp",
+    data: {
+        "dataMBO": dataMBO,
+        "resultMBO": resultMBO,
+        "Emp_ID": check_emp_id,
+        "count": count
+    }
+});
+// ajax
+
+}
+// function update_dataMBO
 
 function clearMBO() {
 
@@ -146,7 +182,7 @@ function check_weight() {
 
     var number_index = document.getElementById("row_index").value;
     count = number_index;
-    //console.log(number_index);
+    console.log(number_index);
 
     for (i = 1; i <= number_index; i++) {
         check = document.getElementById("inp_result" + i).value;
@@ -204,6 +240,54 @@ function check_weight() {
     $("#show_weight").text(value_inp);
 }
 // function check_weight
+
+function check_mbo() {
+
+var check = "";
+var num = 0;
+var number_index = document.getElementById("row_index").value;
+
+for (i = 1; i <= number_index; i++) {
+    check = document.getElementById("inp_mbo" + i).value;
+    console.log(check);
+
+    if (check == "") {
+        console.log(i + "-");
+        $("#inp_mbo" + i).css("background-color", "#ffe6e6");
+        $("#inp_mbo" + i).css("border-style", "solid");
+    }
+    // if
+    else {
+        console.log("-" + i);
+        $("#inp_mbo" + i).css("background-color", "#ffffff");
+        $("#inp_mbo" + i).css("border-style", "solid");
+        num++;
+    }
+    // else
+}
+// for i
+
+if (num == count) {
+    $("#save_mbo").modal('show');
+    return true;
+}
+// if
+else {
+    return false;
+}
+//else
+
+}
+// function check_mbo
+
+function clear_css_inp(i) {
+$("#inp_mbo" + i).css("background-color", "#ffffff");
+$("#inp_mbo" + i).css("border-style", "solid");
+
+}
+// function clear_css_inp
+
+
 </script>
 <!-- script -->
 
@@ -337,6 +421,7 @@ function check_weight() {
 
                                 <?php 
 							$num = 0;
+                            $sum = 0;
 							foreach($mbo_emp as $index => $row) {?>
                                 <tr>
                                     <td>
@@ -346,7 +431,9 @@ function check_weight() {
                                         <?php echo $row->dtm_mbo; ?>
                                     </td>
                                     <td id="inp_result<?php echo $index+1; ?>">
-                                        <?php echo $row->dtm_weight; ?>
+                                        <?php echo $row->dtm_weight; 
+                                        $sum += $row->dtm_weight;
+                                        ?>
                                     </td>
                                     <td id="dis_color">
                                         <center>
@@ -388,7 +475,7 @@ function check_weight() {
                             <tfoot>
                                 <tr>
                                     <td colspan="2" align="right"><b>Total Weight</b></td>
-                                    <td id="show_weight" align="center">0</td>
+                                    <td id="show_weight" align="center"><?php echo $sum; ?></td>
                                     <td colspan="2"></td>
                                 </tr>
                             </tfoot>
@@ -515,3 +602,42 @@ function check_weight() {
     <!-- Modal dialog-->
 </div>
 <!-- Modal-->
+
+<!-- Modal save -->
+<div class="modal fade" id="save_mbo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:gray;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b></font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Do you want to Save Data YES or NO ?</font>
+                    </b></h2>
+            </div>
+            <!-- modal header -->
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="focusedinput" class="col-sm-12 control-label" align="center">Please verify the accuracy
+                        of the information.</label>
+                </div>
+                <!-- Group Name -->
+            </div>
+            <!-- modal-body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-left">
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                </div>
+                <!--<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_sdm">-->
+                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="update_dataMBO()">SAVE</button>
+                <!--</a>-->
+            </div>
+            <!-- modal-footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal save-->
