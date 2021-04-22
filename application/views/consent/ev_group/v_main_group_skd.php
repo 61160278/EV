@@ -169,8 +169,8 @@ function save_add() {
         return false;
     }
     // else 
-    }
-    
+}
+
 //    save_add form
 </script>
 
@@ -239,8 +239,8 @@ function save_add() {
 
                                 <tbody>
                                     <?php 
-									$num = 1;
-									foreach($grp_sdm->result() as $row ) { ?>
+								$num = 1;
+								foreach($grp_sdm->result() as $row ) { ?>
                                     <tr class="odd gradeX" align='center'>
                                         <td><?php echo $num;?> </td>
                                         <td><?php echo $row->gru_name; ?></td>
@@ -372,8 +372,7 @@ function save_add() {
                                                             <div class="col-sm-12">
                                                                 <label for="focusedinput" class="control-label"
                                                                     style="font-family:'Courier New'" align="center">
-                                                                    <font size="5px">Do you want to Delete Data YES or
-                                                                        NO ?</font>
+                                                                    <font size="5px">Do you want to Delete Data YES orNO ?</font>
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -397,13 +396,9 @@ function save_add() {
                                         <!-- modal-dialog -->
                                     </div>
                                     <!-- End Modal Delete -->
-
-
-
-
                                     <?php 
 									$num++;
-									} ?>
+								} ?>
                                 </tbody>
                                 <!-- tbody -->
                             </table>
@@ -449,22 +444,21 @@ function save_add() {
     <!-- head panel -->
 </div>
 <!-- head outside -->
-
 </html>
 
-<head>
-    <style>
-    thead {
-        color: black;
-        font-size: 17px;
-    }
+    <head>
+        <style>
+        thead {
+            color: black;
+            font-size: 17px;
+        }
 
-    tbody {
-        color: black;
-        font-size: 14px;
-    }
-    </style>
-</head>
+        tbody {
+            color: black;
+            font-size: 14px;
+        }
+        </style>
+    </head>
 
 <!-- Modal Add -->
 <div class="modal fade" id="Add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
