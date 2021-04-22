@@ -151,30 +151,6 @@ function get_Emp() {
 
 
 
-
-function Save_edit_data(gru_id) {
-      var group = document.getElementById("grouptext").value;
-      var Emp_id = document.getElementById("Emp_id").value;
-      console.log(gru_id)
-      $.ajax({
-            type: "post",
-            url: "<?php echo base_url(); ?>/ev_group/Evs_group/save_edit_sdm",
-            data: {
-
-                  "group": group,
-                  "Emp_id": Emp_id
-
-            },
-            dataType: "JSON",
-            success: function(data, status) {
-                  console.log(status)
-            }
-      });
-      window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_sdm";
-}
-
-
-
 function warning() {
 
       alert("Please input data !");
