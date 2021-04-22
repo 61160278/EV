@@ -49,8 +49,6 @@ function emp_insert(){
     });
     // ajax
 
-	window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp"
-
 }  //function emp_insert
 
 
