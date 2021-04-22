@@ -170,7 +170,6 @@ window.onchange = function() {
         context.fillText(grad[j], 475 / arrayLen * j, 400, 425);
         context.stroke();
     }
-
 }
 </script>
 

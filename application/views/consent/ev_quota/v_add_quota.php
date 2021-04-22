@@ -56,7 +56,89 @@ function check_quota(){
 	// for i
 	
 }
+window.onchange = function() {
+    var dataArr = [];
+    var myCanvas = document.getElementById('testCanvas');
+    var context = myCanvas.getContext('2d');
+    for (var i = 1; i <= 5; i++) {
+        var mean_quotaPlan = document.getElementById("show_quota" + i).innerHTML;
+        // var dataArr = [0.4, 2, 3.2, 2, 0.4];
+        dataArr[i] = mean_quotaPlan;
 
+    } //for
+    dataArr.shift();
+    console.log(dataArr);
+
+    var height_graph = 350;
+
+    var arrayLen = dataArr.length;
+    var largest = 0;
+    for (var i = 0; i < arrayLen; i++) {
+        if (dataArr[i] > largest) {
+            largest = dataArr[i];
+        }
+    }
+    context.clearRect(0, 0, 200, 400);
+    // set font for fillText()  
+    context.font = "16px Arial";
+
+    // draw X and Y axis  
+    context.beginPath();
+    ctx.moveTo(75, 75);
+    ctx.lineTo(75, 425);
+    ctx.lineTo(425, 425);
+    context.fillText((largest / largest) - 1, 0, height_graph + 25);
+    context.stroke();
+
+    // draw reference line  แถวมบนสุด เส้นระดับ
+    // context.beginPath();
+    // context.strokeStyle = "#BBB";
+    // context.moveTo(25, 25);
+    // context.lineTo(475, 25);
+    // // draw reference value for hours  
+    // context.fillText(largest, 0, 25);
+    // context.stroke();
+
+    // // draw reference line แถวล่างสุด เส้นระดับ
+    // context.beginPath();
+    // context.moveTo(25, (height_graph) / 4 * 3 + 25);
+    // context.lineTo(475, (height_graph) / 4 * 3 + 25);
+    // // draw reference value for hours  
+    // context.fillText(largest / 4, 0, (height_graph) / 4 * 3 + 25);
+    // context.stroke();
+
+    // // draw reference line  แถวที่ 2 เส้นระดับ
+    // context.beginPath();
+    // context.moveTo(25, (height_graph) / 2 + 25);
+    // context.lineTo(475, (height_graph) / 2 + 25);
+    // // draw reference value for hours  
+    // context.fillText(largest / 2, 0, (height_graph) / 2 + 25);
+    // context.stroke();
+
+    // // draw reference line  แถวที่ 3 เส้นระดับ
+    // context.beginPath();
+    // context.moveTo(25, (height_graph) / 4 + 25);
+    // context.lineTo(475, (height_graph) / 4 + 25);
+    // // draw reference value for hours  
+    // var granY = (largest / 2) + 0.8;
+    // context.fillText(granY.toFixed(1), 0, (height_graph) / 4 + 25);
+    // context.stroke();
+    // context.beginPath();
+    // context.lineJoin = "round";
+    // context.strokeStyle = "black";
+
+    context.moveTo(50, (height_graph - dataArr[0] / largest * height_graph) + 25);
+    // draw reference value for day of the week  
+    var grad = ["S", "A", "B", "C", "D"];
+    // context.fillText("S", 15, 400);
+    for (var j = 0; j < grad.length; j++) {
+        context.lineTo(475 / arrayLen * j + 50, (height_graph - dataArr[j] / largest * height_graph) + 25);
+        // draw reference value for day of the week  
+        context.fillText(grad[j], 475 / arrayLen * j, 400, 425);
+        context.stroke();
+    }
+
+}
 </script>
 <div class="col-md-12">
 	<div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
@@ -139,79 +221,15 @@ function check_quota(){
 								</div>
 						</div>
 						<div class="panel-body">
-							<div id="line-example" style="position: relative;">
-								<svg xmlns="http://www.w3.org/2000/svg" style="top: -0.13px; overflow: hidden; position: relative;" width="700" height="350" version="1.1">
-								<desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.0</desc>
-								<defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs>
-								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: end; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="end" x="32.51" y="308" font="10px &quot;Arial&quot;">
-									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">0</tspan>
-								</text>
-								<path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#aaaaaa" stroke-width="1" d="M 45.01 308.2 H 650"></path>
-								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: end; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="end" x="32.51" y="248" font="10px &quot;Arial&quot;">
-									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">25</tspan>
-								</text>
-								<path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#aaaaaa" stroke-width="1" d="M 45.01 248 H 650"></path>
-								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: end; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="end" x="32.51" y="188" font="10px &quot;Arial&quot;">
-									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">50</tspan>
-								</text>
-								<path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#aaaaaa" stroke-width="1" d="M 45.01 188 H 650"></path>
-								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: end; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="end" x="32.51" y="128" font="10px &quot;Arial&quot;">
-									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">75</tspan>
-								</text>
-								<path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#aaaaaa" stroke-width="1" d="M 45.01 128 H 650"></path>
-								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: end; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="end" x="32.51" y="68" font="10px &quot;Arial&quot;">
-									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">100</tspan>
-								</text>
-								<path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#aaaaaa" stroke-width="1" d="M 45.01 68 H 650"></path>
-								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: middle; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="middle" transform="matrix(1, 0, 0, 1, 0, 6.9)" x="580" y="320.7" font="10px &quot;Arial&quot;">
-									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">D</tspan>
-								</text>
-								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: middle; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="middle" transform="matrix(1, 0, 0, 1, 0, 6.9)" x="460" y="320.7" font="10px &quot;Arial&quot;">
-									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">C</tspan>
-								</text>
-								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: middle; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="middle" transform="matrix(1, 0, 0, 1, 0, 6.9)" x="340" y="320.7" font="10px &quot;Arial&quot;">
-									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">B</tspan>
-								</text>
-								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: middle; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="middle" transform="matrix(1, 0, 0, 1, 0, 6.9)" x="220" y="320.7" font="10px &quot;Arial&quot;">
-									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">A</tspan>
-								</text>
-								<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: middle; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="middle" transform="matrix(1, 0, 0, 1, 0, 6.9)" x="100" y="320.7" font="10px &quot;Arial&quot;">
-									<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">S</tspan>
-								</text>
-								<path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#37474f" stroke-width="3" d="M 100 300 C 100 300 200 200 350 100 C 450 190 350 110 580 300 C">
-								</path>
-								<!-- <path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#37474f" stroke-width="3" d="M 100 300 C 60.4192 71.02 300 300 180 270 C 122.056 141.82 152.874 194.92 168.284 194.92 C 183.735 194.92 214.638 124.12 230.089 124.12 C 245.499 124.12 276.317 194.92 291.726 194.92 C 307.135 194.92 337.954 141.82 353.363 124.12 C 100 106.42 399.591 71.02 415 53.32">
-								</path> -->
-								<!-- <circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#37474f" stroke="#ffffff" stroke-width="1" cx="45.01" cy="53.32" r="7" ></circle> 
-								<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#37474f" stroke="#ffffff" stroke-width="1" cx="106.647" cy="124.12" r="4"></circle>
-								<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#37474f" stroke="#ffffff" stroke-width="1" cx="168.284" cy="194.92" r="4">
-								<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#37474f" stroke="#ffffff" stroke-width="1" cx="230.089" cy="124.12" r="4"></circle>
-								<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#37474f" stroke="#ffffff" stroke-width="1" cx="291.726" cy="194.92" r="4"></circle>
-								<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#37474f" stroke="#ffffff" stroke-width="1" cx="353.363" cy="124.12" r="4"></circle>
-								<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#37474f" stroke="#ffffff" stroke-width="1" cx="415" cy="53.32" r="4" ></circle>
-								<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#ffffff" stroke-width="1" cx="45.01" cy="25" r="7" ></circle>
-								<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#ffffff" stroke-width="1" cx="106.647" cy="95.8" r="4" ></circle>
-								<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#ffffff" stroke-width="1" cx="168.284" cy="166.6" r="4"></circle>
-								<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#ffffff" stroke-width="1" cx="230.089" cy="95.8" r="4" ></circle>
-								<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#ffffff" stroke-width="1" cx="291.726" cy="166.6" r="4"></circle>
-								<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#ffffff" stroke-width="1" cx="353.363" cy="95.8" r="4" ></circle>
-								<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#ffffff" stroke-width="1" cx="415" cy="25" r="4"></circle> -->
-							</svg>
-							</div>
+						<canvas id="testCanvas" width="100%" height="100%"></canvas>
 						</div>
 					</div>
 				</div>
 			</div>
-			
 				<button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
 				<button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button>
-								
-							</div>
-			
-			
+			</div>					
 		</div>
-	</div>
-	
-	
+	</div>	
 </div>
 
