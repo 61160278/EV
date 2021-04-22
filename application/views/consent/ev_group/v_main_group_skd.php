@@ -165,14 +165,13 @@ function save_add() {
 }
 // save_add form
 
-function save_edit(chack) {
-    var group = document.getElementById("grouptext").value;
-    var Emp_id = document.getElem gentById("Emp_id_modol").value;
-    var Showname_modol = document.getElementById("Showname_modol").value;
+function save_edit_skd(chack) {
+    var group = document.getElementById("grouptext"+chack).value;
+    var Emp_id = document.getElem gentById("Emp_id"+chack).value;
+    var Showname_modol = document.getElementById("nameEmp").value;
 
     if (group != "" && Emp_id != "") {
         if (Showname_modol != "ไม่มีข้อมูล") {
-            add_group();
             return true;
         } else {
             add_alert();
