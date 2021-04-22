@@ -225,24 +225,7 @@ class M_evs_category extends Da_evs_category {
 
 	}//get_category_identification
 
-		/*
-	* get_category_identification_by_position_check
-	* get category and identification from database
-	* @input position id
-	* @output category and identification for check data
-	* @author 	Tanadon Tangjaimongkhon
-	* @Create Date 2563-12-03
-	*/
-	function get_category_identification_by_position_check(){
-		$sql = "SELECT * 
-				FROM evs_database.evs_category
-				LEFT JOIN evs_database.evs_identification
-				ON idf_ctg_id = ctg_id
-				where idf_pos_id = ? ";
-        $query = $this->db->query($sql, array($this->idf_pos_id));
-		return $query;
 
-	}//get_category_identification_by_position_check
 
 } 
 ?>

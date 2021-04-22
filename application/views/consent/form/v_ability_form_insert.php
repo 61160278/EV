@@ -30,8 +30,6 @@ var arr_weight_check = []; // array to check is value by weight
  * @Create Date 2563-10-29
  */
 function check_weight_all() {
-    //start for loop
-   
    
     sum_weight_all  = document.getElementById('value_total_weight').value;
 

@@ -112,23 +112,6 @@ class Evs_attitude_form extends Evs_form {
 	}
 	//get_category_by_position()
 
-		/*
-	* get_category_by_position_check
-	* get category data by position ID from database
-	* @input  -
-	* @output category data by position ID
-	* @author Tanadon Tangjaimongkhon
-	* @Create Date 2563-10-15
-	*/
-	function get_category_by_position_check(){
-		$this->load->model('M_evs_category','mctg');
-		$pos_id = $this->input->post('pos_id'); // position ID
-		$this->mctg->idf_pos_id = $pos_id;
-		$data = $this->mctg->get_category_identification_by_position_check()->result(); // value category and identification by position id for check
-		echo json_encode($data);
-	}
-	//get_category_by_position_check()
-
 	/*
 	* form_attitude_input
 	* insert category ID, position ID, weight of category ID to database

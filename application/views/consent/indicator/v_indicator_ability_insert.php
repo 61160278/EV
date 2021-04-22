@@ -323,7 +323,7 @@ function insert_data_key_component_and_expected_behavior() {
 
         table_arr_for_count = document.getElementsByName("arr_add_pos_" + (i + 1) + "").length
         arr_save_posittion_other_to_database[i] = [table_arr_for_count];
-        console.log(table_arr_for_count);
+        
         for (j = 0; j < table_arr_for_count; j++) {
             arr_save_posittion_other_to_database[i][j] = document.getElementsByName("arr_add_pos_" + (i + 1) + "")[j]
                 .value;

@@ -114,32 +114,6 @@ function total_weight() {
 //total_weight
 
 
-/*
- * modal_check_data
- * Display modal for input data
- * @input  -
- * @output modal
- * @author Tanadon Tangjaimongkhon
- * @Create Date 2563-12-03
- */
-function modal_check_data() {
-    $.ajax({
-        type: "post",
-        url: "<?php echo base_url(); ?>/Evs_attitude_form/get_category_by_position_check",
-        data: {
-            "pos_id": value_pos_id
-        },
-        dataType: "JSON",
-        success: function(data) {
-            console.log(data);
-            //start if
-            if (data.length == 0) {
-                $('#modal_check_data').modal('show');
-            }
-            //end if
-        }
-    });
-}
 
 
 
@@ -148,7 +122,7 @@ $(document).ready(function() {
     var button_add; // button for add data
     var table_ready_score = '';
 
-    modal_check_data();
+
 
     //start get
     $.get("<?php echo base_url(); ?>/Evs_attitude_form/get_category", function(data) {
@@ -488,7 +462,7 @@ function change_status() {
                                         <div class="text-left dib">
                                             <div class="stat-text"><span>
                                                     <?php 
-                                                    echo $row->Position_ID;
+                                                    echo $row->Position_name;
                                                     // display name of position
                                                     ?>
 
@@ -645,33 +619,6 @@ function change_status() {
 </div>
 <!-- End Page Content -->
 
-<!-- Modal -->
-<div class="modal fade" id="modal_check_data" role="dialog">
-    <div class="modal-dialog">
-        <!-- Start Modal content-->
-        <div class="modal-content">
-            <div class="modal-header btn-warning">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Notice</h4>
-            </div>
-            <div class="modal-body">
-                <p>Not items data by <b><?php $row = $info_pos->row(); echo $row->Position_name; ?></b> Position.
-                    <br>
-                    If do want to insert items data please click Add items.
-                </p>
-            </div>
-            <div class="modal-footer">
-                <a
-                    href="<?php echo base_url(); ?>/Evs_attitude_form/indicator_attitude_table/<?php echo $info_pos_id; ?>">
-                    <button type="button" class="btn btn-primary">Add items</button>
-                </a>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-    <!-- End Modal content-->
-</div>
-<!-- end modal -->
 
 <!-- Start modal -->
 <div class="modal fade" id="confirm_save" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel"
