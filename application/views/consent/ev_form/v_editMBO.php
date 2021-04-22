@@ -108,7 +108,7 @@ $.ajax({
         //console.log("123456::"+number);
         $("#row_mbo").html(data_row);
         $("#btn_save").show();
-        $("#btn_edit").show();
+        $("#btn_edit").hide();
     },
     // success
     error: function(data) {
