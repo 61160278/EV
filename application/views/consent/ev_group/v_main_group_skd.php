@@ -99,9 +99,7 @@ function get_idemployee(gru_id) {
 function get_Emp() {
     Emp_id = document.getElementById("Emp_id_modol").value;
     var empname = "";
-
     console.log(Emp_id)
-    console.log("1,2,3,4,5")
     $.ajax({
         type: "POST",
         url: "<?php echo base_url(); ?>/ev_group/Evs_group/search_by_employee_id_skd",
@@ -114,17 +112,12 @@ function get_Emp() {
             console.log(data)
 
             if (data.length == 0) {
-
                 document.getElementById("Showname_modol").value = "ไม่มีข้อมูล";
-
             } else {
                 empname = data[0].Empname_eng + " " + data[0].Empsurname_eng
                 document.getElementById("Showname_modol").value = empname;
-
-                console.log(999)
                 console.log(empname)
             }
-
             // if-else
         }
     });
@@ -156,22 +149,26 @@ function Save_edit_data(gru_id) {
 // function Save_edit_data
 
 function save_add() {
-
     var group = document.getElementById("grouptext").value;
     var Emp_id = document.getElementById("Emp_id_modol").value;
+    var Showname_modol = document.getElementById("Showname_modol").value;
 
-    if (group != "" || Emp_id != "") {
-        add_group();
-        return true;
+    if (group != "" && Emp_id != "") {
+        if(Showname_modol != "ไม่มีข้อมูล"){
+            add_group();
+            return true;
+        } else {
+            add_alert();
+            return false;
+        }
+        // if-else 
     }
-    // if 
-    else {
-        return false;
-    }
-    // else 
 }
-
 //    save_add form
+
+function add_alert() {
+    alert("Please fill up this form.");
+}
 </script>
 
 <!DOCTYPE html>
@@ -263,7 +260,7 @@ function save_add() {
                                                     <i class="ti ti-pencil-alt"></i>
                                                 </a>
                                                 <a data-toggle="modal" class="btn btn-info"
-                                                    href="<?php echo base_url();?>/ev_group/Evs_group/select_skd">
+                                                    href="<?php echo base_url();?>/ev_group/Evs_group/select_group">
                                                     <i class="ti ti-info-alt"></i>
                                                 </a>
                                             </div>
@@ -372,7 +369,7 @@ function save_add() {
                                                             <div class="col-sm-12">
                                                                 <label for="focusedinput" class="control-label"
                                                                     style="font-family:'Courier New'" align="center">
-                                                                    <font size="5px">Do you want to Delete Data YES orNO ?</font>
+                                                                    <font size="5px">Do you want to Delete Data YES or NO ?</font>
                                                                 </label>
                                                             </div>
                                                         </div>
