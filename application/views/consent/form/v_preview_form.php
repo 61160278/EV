@@ -99,7 +99,7 @@
                             <center><b>Position</b></center>
                         </td>
                         <td>
-                            <center><?php echo $row->pos_name; ?></center>
+                            <center><?php echo $row->Position_name; ?></center>
                         </td>
                     </tr>
 

@@ -93,8 +93,8 @@ class M_evs_position extends Da_evs_position {
 		$sql = "SELECT * 
 				FROM dbmc.position
 				left join dbmc.position_level
-				on position_level.psl_id = position.position_level_id
-				where position.Position_ID= ?" ;
+				on psl_id = position_level_id
+				where Position_ID= ?" ;
 		$query = $this->db->query($sql, array($this->pos_id));
 		return $query;
 	}//get_position_level_by_id

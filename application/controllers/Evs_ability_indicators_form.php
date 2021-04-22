@@ -291,7 +291,13 @@ class Evs_ability_indicators_form extends MainController {
 		$this->debv->ept_kcp_id = $key_component_id;
 		$this->debv->insert();
 		}
+		//$chack_arr_posittion_other = cout($this->input->post("arr_save_posittion_other_to_database[0][0]"));
+		$chack_posittion_other_to_database = false;
 
+		$chack_arr_posittion_other_to_database = $this->input->post("arr_save_posittion_other_to_database[0][0]");
+		if($chack_arr_posittion_other_to_database != "0" ){$chack_posittion_other_to_database = true;}
+
+		if($chack_posittion_other_to_database){
 		for($j = 0; $j < $add_expected_behavior; $j++){
 			$this->debv->ept_expected_detail_en = $this->input->post("arr_save_expected_en_todatabase[".$j."]");
 			$this->debv->ept_expected_detail_th = $this->input->post("arr_save_expected_th_todatabase[".$j."]");
@@ -310,11 +316,11 @@ class Evs_ability_indicators_form extends MainController {
 				//end foreach
 				$this->debv->ept_kcp_id = $key_component_id;
 				$this->debv->insert();
+				}
 			}
-			}
-
+		}
 		$status = "get_post_key_component_and_expected_behavior_to_database";
-		echo json_encode($status);
+		echo json_encode($chack_arr_posittion_other_to_database);
 	}
 	// function key_component_and_expected_behavior_to_database_insert()
 

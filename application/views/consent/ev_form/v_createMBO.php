@@ -39,13 +39,13 @@ $(document).ready(function() {
     createACM();
     createAtt();
     $("#btn_save").attr("disabled", true);
-});
-// document ready
+    $("#btn_send").attr("disabled", true);
 
-$(document).ready(function() {
 
 });
 // document ready
+
+
 
 function clearMBO() {
 
@@ -74,9 +74,9 @@ function save_dataMBO() {
         dataMBO.push(document.getElementById("inp_mbo" + i).value);
         resultMBO.push(document.getElementById("inp_result" + i).value);
 
-        console.log(dataMBO);
-        console.log(resultMBO);
-        console.log("-----");
+        // console.log(dataMBO);
+        // console.log(resultMBO);
+        // console.log("-----");
     }
     // for
 
@@ -93,7 +93,7 @@ function save_dataMBO() {
     });
     // ajax
 
-    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/"+check_emp_id+"";
+    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id + "";
 
 }
 // function save_dataMBO
@@ -389,6 +389,17 @@ function createAtt() {
 
 }
 // function createAtt
+
+function check_cancel(){
+    $("#cancel_mbo").modal('show');
+}
+// function check_cancel
+
+function cancel_form(){
+    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/index";
+}
+// function cancel_form
+
 </script>
 <!-- script -->
 
@@ -536,14 +547,14 @@ function createAtt() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <button class="btn btn-inverse">CANCEL</button>
+                                <button class="btn btn-inverse" id="cancel_back" onclick="check_cancel()">CANCEL</button>
                                 <button class="btn btn-default" onclick="clearMBO()">CLEAR</button>
                             </div>
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
                                 <button class="btn btn-success" id="btn_save" onclick="return check_mbo()">SAVE</button>
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#add_app">SEND <i
+                                <button class="btn btn-primary" id="btn_send">SEND<i
                                         class="fa fa-share-square-o"></i></button>
                             </div>
                             <!-- col-md-6 add_app -->
@@ -554,7 +565,7 @@ function createAtt() {
                     </div>
                     <!-- form 1 -->
 
-                    <!-- ************************************************* data-toggle="modal" data-target="#save_mbo"-->
+                    <!-- ************************************************************************************ -->
 
                     <div class="tab-pane" id="form2">
                         <br>
@@ -885,9 +896,7 @@ function createAtt() {
                 </h4>
             </div>
             <!-- Modal header-->
-
             <br>
-
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6" align="center">
@@ -924,7 +933,6 @@ function createAtt() {
                     <!-- col-6 -->
                 </div>
                 <!--  row -->
-
             </div>
             <!-- Modal body-->
             <div class="modal-footer">
@@ -988,3 +996,79 @@ function createAtt() {
     <!-- modal-dialog -->
 </div>
 <!-- End Modal Add-->
+
+<!-- Modal save -->
+<div class="modal fade" id="save_mbo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:gray;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b></font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Do you want to Save Data YES or NO ?</font>
+                    </b></h2>
+            </div>
+            <!-- modal header -->
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="focusedinput" class="col-sm-12 control-label" align="center">Please verify the accuracy
+                        of the information.</label>
+                </div>
+                <!-- Group Name -->
+            </div>
+            <!-- modal-body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-left">
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                </div>
+                <!--<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_sdm">-->
+                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="update_dataMBO()">SAVE</button>
+                <!--</a>-->
+            </div>
+            <!-- modal-footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal save-->
+
+<!-- Modal cancel -->
+<div class="modal fade" id="cancel_mbo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:gray;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b></font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Do you want to back to menu YES or NO ?</font>
+                    </b></h2>
+            </div>
+            <!-- modal header -->
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="focusedinput" class="col-sm-12 control-label" align="center">Please verify the accuracy
+                        of the information.</label>
+                </div>
+                <!-- Group Name -->
+            </div>
+            <!-- modal-body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-left">
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                </div>
+                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="cancel_form()">Yes</button>
+            </div>
+            <!-- modal-footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal cancel-->

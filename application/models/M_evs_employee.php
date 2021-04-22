@@ -129,6 +129,24 @@ class M_evs_employee extends Da_evs_employee {
 		return $query;
 		}//get_all_emp 
 
+		function get_all_emp_delete(){	
+
+			$sql = "SELECT *	
+			FROM evs_database.evs_employee	
+			left join dbmc.employee
+			on employee.Emp_ID=evs_employee.emp_employee_id 
+			left join dbmc.group_secname		
+			on group_secname.Sectioncode = evs_employee.emp_section_code_ID
+			left join dbmc.position
+			on position.Position_ID = evs_employee.emp_position_id
+			WHERE emp_pay_id = ?";
+			
+		
+			$query = $this->db->query($sql, array($this->emp_pay_id));
+		
+		
+			return $query;
+			}//get_all_emp 
 		
 
 		

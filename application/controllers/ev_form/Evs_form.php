@@ -53,11 +53,15 @@ class Evs_form extends MainController_avenxo {
 		$emp_id = $this->input->post("emp_id");
 		$this->load->model('M_evs_data_mbo','medm');
 		$this->medm->dtm_emp_id = $emp_id;
-		$data['mbo_emp'] = $this->medm->get_by_empID()->result();
+		$data['check'] = $this->medm->get_by_empID()->result();
 
-		$check = sizeof($data['mbo_emp']);
+		$check = sizeof($data['check']);
 
 		if($check != 0){
+			$this->load->model('M_evs_data_mbo','medm');
+			$this->medm->dtm_emp_id = $emp_id;
+			$data['mbo_emp'] = $this->medm->get_by_empID()->result();
+
 			$this->load->model('M_evs_employee','memp');
 			$this->memp->Emp_ID = $emp_id;
 			$data['emp_info'] = $this->memp->get_by_empid();
