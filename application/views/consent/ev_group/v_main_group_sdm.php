@@ -187,9 +187,46 @@ function check_data() {
       }
       //else
 
+}
+//check_data
+
+
+
+
+function check_data_edt(check) {
+      var group = document.getElementById("grouptext"+check).value;
+      var Emp_id = document.getElementById("Emp_id_modol"+check).value;
+      var Showname_modol = document.getElementById("Showname_modol"+check).value;
+      console.log(group)
+      console.log(Emp_id)
+      console.log(Showname_modol)
+
+
+      if (group != "" && Emp_id != "") {
+            if (Showname_modol != "ไม่มีข้อมูล") {
+                  return false;
+            }
+            // if
+            else {
+                  warning();
+                  return false;
+            }
+            //else
+      }
+      // if
+      else {
+            warning();
+            return false;
+      }
+      //else
+
 
 
 }
+
+
+
+
 </script>
 
 <!DOCTYPE html>
@@ -318,7 +355,7 @@ function check_data() {
                                                                         <div class="modal-body">
                                                                               <form class="form-horizontal"
                                                                                     action="<?php echo base_url(); ?>ev_group/Evs_group/save_edit_sdm"
-                                                                                    method="post">
+                                                                                    method="post" onsubmit="return check_data_edt('<?php echo $row->gru_id; ?>')">
                                                                                     <div class="form-group">
                                                                                           <label for="focusedinput"
                                                                                                 class="col-sm-3 control-label">Group
@@ -327,6 +364,7 @@ function check_data() {
                                                                                                 <input type="text"
                                                                                                       class="form-control"
                                                                                                       value="<?php echo $row->gru_name; ?>"
+                                                                                                      id="grouptext<?php echo $row->gru_id; ?>"
                                                                                                       name="grouptext"
                                                                                                       placeholder="HR AGM">
 
@@ -379,9 +417,6 @@ function check_data() {
                                                                                                       id="nameEmp<?php echo $row->gru_id ?>"
                                                                                                       placeholder="Name Surname">
                                                                                           </div>
-
-
-
 
 
                                                                                     </div>
