@@ -119,7 +119,7 @@ window.onchange = function() {
             context.beginPath();
             context.moveTo(25,25);
             context.lineTo(25, 400);
-            context.lineTo(600, 400);
+            context.lineTo(650, 400);
            
             context.fillText((maxData / maxData) - 1, 0, height_graph + 25);
             context.stroke();
@@ -128,7 +128,7 @@ window.onchange = function() {
             context.beginPath();
             context.strokeStyle = "#BBB";
             context.moveTo(25, 25);
-            context.lineTo(600, 25);
+            context.lineTo(650, 25);
             // draw reference value for hours  
             context.fillText(maxData, 0, 25);
             context.stroke();
@@ -136,7 +136,7 @@ window.onchange = function() {
             // draw reference line แถวล่างสุด เส้นระดับ
             context.beginPath();
             context.moveTo(25, (height_graph) / 4 * 3 + 25);
-            context.lineTo(600, (height_graph) / 4 * 3 + 25);
+            context.lineTo(650, (height_graph) / 4 * 3 + 25);
             // draw reference value for hours  
             context.fillText(maxData / 4, 0, (height_graph) / 4 * 3 + 25);
             context.stroke();
@@ -144,7 +144,7 @@ window.onchange = function() {
             // draw reference line  แถวที่ 2 เส้นระดับ
             context.beginPath();
             context.moveTo(25, (height_graph) / 2 + 25);
-            context.lineTo(600, (height_graph) / 2 + 25);
+            context.lineTo(650, (height_graph) / 2 + 25);
             // draw reference value for hours  
             context.fillText(maxData / 2, 0, (height_graph) / 2 + 25);
             context.stroke();
@@ -152,7 +152,7 @@ window.onchange = function() {
             // draw reference line  แถวที่ 3 เส้นระดับ
             context.beginPath();
             context.moveTo(25, (height_graph) / 4 + 25);
-            context.lineTo(600, (height_graph) / 4 + 25);
+            context.lineTo(650, (height_graph) / 4 + 25);
             // draw reference value for hours  
             var granY = (maxData / 2) + 0.8;
             context.fillText(granY.toFixed(1), 0, (height_graph) / 4 + 25);
@@ -168,10 +168,10 @@ window.onchange = function() {
             for (var j = 0; j < grad.length; j++) {
                
                 
-                context.lineTo(600 / arrlen * j + 100, (height_graph - arrQuotaPlan[j] / maxData * height_graph) + 25);
+                context.lineTo(650 / arrlen * j + 100, (height_graph - arrQuotaPlan[j] / maxData * height_graph) + 25);
 
                 // draw reference value for day of the week  
-                context.fillText(grad[j], 600 / arrlen * j+100,450, 475);
+                context.fillText(grad[j], 650 / arrlen * j+100,450, 475);
                 context.stroke();
             }
 
@@ -286,7 +286,7 @@ window.onchange = function() {
                         </div>
                         <div class="panel-body">
  
-                           <canvas id="testCanvas" width="600" height="500" ></canvas> 
+                           <canvas id="testCanvas" width="650" height="500" ></canvas> 
 
                             <!-- <canvas id="myCanvas" width="400" height="400" ></canvas>  -->
 
