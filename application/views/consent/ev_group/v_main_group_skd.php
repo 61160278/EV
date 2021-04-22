@@ -124,27 +124,27 @@ function get_Emp() {
 }
 // function get_Emp
 
-// function Save_edit_data(gru_id) {
-//     var group = document.getElementById("group_text").value;
-//     var Emp_id = document.getElementById("Emp_id").value;
-//     console.log(gru_id)
-//     $.ajax({
-//         type: "POST",
-//         url: "<?php echo base_url(); ?>/ev_group/Evs_group/save_edit_skd",
-//         data: {
+function Save_edit_data(gru_id) {
+    var group = document.getElementById("group_text").value;
+    var Emp_id = document.getElementById("Emp_id").value;
+    console.log(gru_id)
+    $.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>/ev_group/Evs_group/save_edit_skd",
+        data: {
 
-//             "group": group,
-//             "Emp_id": Emp_id
+            "group": group,
+            "Emp_id": Emp_id
 
-//         },
-//         dataType: "JSON",
-//         success: function(data, status) {
-//             console.log(status)
-//         }
-//     });
-//     // ajax
-//     window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
-// }
+        },
+        dataType: "JSON",
+        success: function(data, status) {
+            console.log(status)
+        }
+    });
+    // ajax
+    window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
+}
 // function Save_edit_data
 
 function save_add() {
@@ -165,9 +165,9 @@ function save_add() {
 }
 // save_add form
 
-function save_edit() {
+function save_edit(chack) {
     var group = document.getElementById("grouptext").value;
-    var Emp_id = document.getElementById("Emp_id_modol").value;
+    var Emp_id = document.getElem gentById("Emp_id_modol").value;
     var Showname_modol = document.getElementById("Showname_modol").value;
 
     if (group != "" && Emp_id != "") {
@@ -296,13 +296,14 @@ function add_alert() {
                                                 <div class="modal-body">
                                                     <form class="form-horizontal"
                                                         action="<?php echo base_url(); ?>ev_group/Evs_group/save_edit_skd"
-                                                        method="post">
+                                                        method="post" onsubmit = "return save_edit('<?php echo $row->gru_id; ?>')">
                                                         <div class="form-group">
                                                             <label for="focusedinput"
                                                                 class="col-sm-3 control-label">Group Name</label>
                                                             <div class="col-sm-6">
                                                                 <input type="text" class="form-control"
                                                                     value="<?php echo $row->gru_name; ?>"
+                                                                    id = "<?php echo $row->gru_id; ?>"
                                                                     name="group_text" placeholder="HR AGM">
                                                             </div>
                                                         </div>
@@ -347,7 +348,7 @@ function add_alert() {
                                                         <button type="button" class="btn btn-inverse"
                                                             data-dismiss="modal">CANCEL</button>
                                                     </div>
-                                                    <input type="submit" class="btn btn-success" value="SAVE" onclick=save_edit()>
+                                                    <input type="submit" class="btn btn-success" value="SAVE">
                                                 </div>
                                                 <!-- modal-footer -->
                                                 </form>
