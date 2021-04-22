@@ -25,6 +25,38 @@ function get_data() {
 		}
 	});
 }
+function get_department() {
+	var dep_sel = document.getElementById("dep_select").value; // get kay by id
+	console.log(dep_sel);
+	
+	$.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_quota/v_mange_quota",
+        data: {
+            "dep_id": dep_sel
+        },
+        dataType: "JSON",
+        success: function(data) {
+            console.log(data)
+		}
+	});
+}
+function get_company() {
+	var cpn_sel = document.getElementById("com_select").value; // get kay by id
+	console.log(cpn_sel);
+	
+	$.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_quota/v_mange_quota",
+        data: {
+            "cpn_id": cpn_sel
+        },
+        dataType: "JSON",
+        success: function(data) {
+            console.log(data)
+		}
+	});
+}
 </script>
 <style>
 	.text {
@@ -64,10 +96,15 @@ function get_data() {
 					<div class="col-md-3">
 					</div>
 					<div class="col-md-2">
-						<select class="form-control text" id="" >
-							<option value="yearEndBonus">Company</option>
-							<option value="yearEndBonus">SDM</option>
-							<option value="salaryIncrement">SKD</option>
+						<select class="form-control text" id="com_select" >
+							<option value="0">Company</option>
+							<!-- start foreach -->
+							<?php foreach($com_data->result() as $value){ ?>
+							<option value="<?php echo $value->Company_ID;?>">
+							<?php echo $value->Company_shortname;?>
+							</option>
+							<?php } ?>
+							<!-- end foreach -->
 						</select>
 					</div>
 					<div class="col-md-2">
@@ -92,10 +129,15 @@ function get_data() {
 					<div class="col-md-4">
 					</div>
 					<div class="col-md-2">
-						<select class="form-control text" id="" >
-							<option value="yearEndBonus">Select Department</option>
-							<option value="yearEndBonus">HR</option>
-							<option value="salaryIncrement">PE</option>
+						<select class="form-control text" id="dep_select" >
+							<option value="0">Select Department</option>
+							<!-- start foreach -->
+							<?php foreach($dep_data->result() as $value){ ?>
+							<option value="<?php echo $value->Dep_id;?>">
+							<?php echo $value->Dep_Name;?>
+							</option>
+							<?php } ?>
+							<!-- end foreach -->
 						</select>
 					</div>
 					<div class="col-md-2">
