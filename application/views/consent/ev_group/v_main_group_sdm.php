@@ -151,33 +151,9 @@ function get_Emp() {
 
 
 
-
-function Save_edit_data(gru_id) {
-      var group = document.getElementById("grouptext").value;
-      var Emp_id = document.getElementById("Emp_id").value;
-      console.log(gru_id)
-      $.ajax({
-            type: "post",
-            url: "<?php echo base_url(); ?>/ev_group/Evs_group/save_edit_sdm",
-            data: {
-
-                  "group": group,
-                  "Emp_id": Emp_id
-
-            },
-            dataType: "JSON",
-            success: function(data, status) {
-                  console.log(status)
-            }
-      });
-      window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_sdm";
-}
-
-
-
 function warning() {
 
-  alert("Please input data !");
+      alert("Please input data !");
 
 
 }
@@ -186,13 +162,23 @@ function warning() {
 function check_data() {
       var group = document.getElementById("grouptext").value;
       var Emp_id = document.getElementById("Emp_id_modol").value;
+      var Showname_modol = document.getElementById("Showname_modol").value;
       console.log(group)
       console.log(Emp_id)
+      console.log(Showname_modol)
 
 
       if (group != "" && Emp_id != "") {
-            add_group();
-            return true;
+            if (Showname_modol != "ไม่มีข้อมูล") {
+                  add_group();
+                  return true;
+            }
+            // if
+            else {
+                  warning();
+                  return false;
+            }
+            //else
       }
       // if
       else {
@@ -412,7 +398,8 @@ function check_data() {
                                                                               </div>
 
                                                                               <input type="submit"
-                                                                                    class="btn btn-success" value="SAVE">
+                                                                                    class="btn btn-success"
+                                                                                    value="SAVE">
 
                                                                         </div>
                                                                         <!-- modal-footer -->
@@ -609,7 +596,7 @@ function check_data() {
                         </div>
 
                         <button type="button" class="btn btn-success" id="btnsaveadd"
-                              onclick="check_data()">SAVE</button>
+                              onclick="return check_data()">SAVE</button>
 
                   </div>
                   <!-- modal-footer -->

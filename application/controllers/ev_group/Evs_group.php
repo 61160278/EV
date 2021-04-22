@@ -71,8 +71,9 @@ class Evs_group extends MainController_avenxo {
 		$this->meg->gru_name = $group;
 		$this->meg->gru_head_dept = $Emp_id;
 		$this->meg->gru_company_id = 2;
+		$this->select_company_skd();
 		$this->meg->insert();
-		$this->meg->connect();
+		
 	}
 	// function add_group_skd
 
@@ -202,7 +203,9 @@ class Evs_group extends MainController_avenxo {
 	}
 	// function save_edit_skd
 	
-	
+	function select_group(){
+		$this->output('/consent/ev_group/v_add_group_skd');
+	}
 		
 		
 		
