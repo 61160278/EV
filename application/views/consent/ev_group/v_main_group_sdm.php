@@ -355,7 +355,7 @@ function check_data_edt(check) {
 
                                                                         <div class="modal-body">
                                                                               <form class="form-horizontal"
-                                                                                    
+                                                                              action="<?php echo base_url(); ?>ev_group/Evs_group/save_edit_sdm"                      
                                                                                     method="post" onsubmit="return check_data_edt('<?php echo $row->gru_id; ?>')">
                                                                                     <div class="form-group">
                                                                                           <label for="focusedinput"
