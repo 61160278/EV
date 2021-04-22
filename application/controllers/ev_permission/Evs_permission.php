@@ -83,5 +83,37 @@ class Evs_permission extends MainController_avenxo {
 		$this->output('/consent/ev_permission/v_list_permission',$data);
 	}
 	// function select_bas
+
+	function insert_emp()
+	{
+
+		$empid = $this->input->post("empid");
+		$Posid = $this->input->post("Posid");
+		$Sectioncode = $this->input->post("Sectioncode");
+		$Company = $this->input->post("Company");
+		$count = $this->input->post("count");
+		
+		$this->load->model('Da_evs_employee','deep');
+		for($i=0;$i<$count;$i++){
+
+		$this->deep->emp_employee_id = $empid[$i];
+		$this->deep->emp_position_id = $Posid[$i];
+		$this->deep->emp_section_code_ID = $Sectioncode[$i];
+		$this->deep->emp_company_id = $Company[$i];
+
+		$this->deep->emp_pay_id = 2;
+		$this->deep->emp_ghr_id = 1;
+		$this->deep->insert();
+
+		}
+		
+		//emp_employee_id,emp_company_id,emp_position_id,emp_section_code_ID,emp_pay_id,emp_ghr_id
+		
+		
+		
+		
+		
+	}
+	// function insert_emp
 }
 ?>
