@@ -174,8 +174,8 @@ h4 {
 					</div>
 				</div>
 				<div class="DTTT btn-group pull-left mt-sm">
-					<!--<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/main_group">	</a>-->				
-					<button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>		
+					<a href ="<?php echo base_url(); ?>/ev_quota/Evs_quota/index">				
+					<button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button></a>		
 				</div>
 			</div><!--panel-body-->	
 		</div>
