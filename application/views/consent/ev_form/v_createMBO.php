@@ -74,9 +74,9 @@ function save_dataMBO() {
         dataMBO.push(document.getElementById("inp_mbo" + i).value);
         resultMBO.push(document.getElementById("inp_result" + i).value);
 
-        console.log(dataMBO);
-        console.log(resultMBO);
-        console.log("-----");
+        // console.log(dataMBO);
+        // console.log(resultMBO);
+        // console.log("-----");
     }
     // for
 
@@ -93,8 +93,9 @@ function save_dataMBO() {
     });
     // ajax
 
+    
     window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/"+check_emp_id+"";
-
+    
 }
 // function save_dataMBO
 
