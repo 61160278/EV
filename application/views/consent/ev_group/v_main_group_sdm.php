@@ -153,7 +153,7 @@ function get_Emp() {
 
 function warning() {
 
-      // alert("Please input data !");
+      
       $('#warning').modal('show');
 
 }
