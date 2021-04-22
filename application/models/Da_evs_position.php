@@ -34,8 +34,7 @@ class Da_evs_position extends evs_model {
 	public $Position_name; //Position Name	
 	public $Pos_shortName; //Position Name Shotcut	
 	public $Position_Level; //Position Level Sequence
-	public $Dep_id; //Department ID	
-	public $Dep_Name; //Department Name	
+
 
 	function __construct() {
 		parent::__construct();
