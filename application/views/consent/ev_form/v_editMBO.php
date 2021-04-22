@@ -171,13 +171,14 @@ function clearMBO() {
 
     console.log("clear");
     count = document.getElementById("row_index").value;
+    var check = 0;
     console.log(count);
     for (var i = 1; i <= count; i++) {
         $("#inp_mbo" + i).val("");
         $("#inp_result" + i).val("");
+        check++;
     }
     // for
-
     check_weight();
 
 }

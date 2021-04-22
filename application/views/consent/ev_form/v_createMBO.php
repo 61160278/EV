@@ -39,13 +39,13 @@ $(document).ready(function() {
     createACM();
     createAtt();
     $("#btn_save").attr("disabled", true);
-});
-// document ready
+    $("#btn_send").attr("disabled", true);
 
-$(document).ready(function() {
 
 });
 // document ready
+
+
 
 function clearMBO() {
 
@@ -93,8 +93,8 @@ function save_dataMBO() {
     });
     // ajax
 
-    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/"+check_emp_id+"";
-    
+    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id + "";
+
 }
 // function save_dataMBO
 
@@ -543,7 +543,7 @@ function createAtt() {
 
                             <div class="col-md-6" align="right">
                                 <button class="btn btn-success" id="btn_save" onclick="return check_mbo()">SAVE</button>
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#add_app">SEND <i
+                                <button class="btn btn-primary" id="btn_send">SEND<i
                                         class="fa fa-share-square-o"></i></button>
                             </div>
                             <!-- col-md-6 add_app -->
@@ -554,7 +554,7 @@ function createAtt() {
                     </div>
                     <!-- form 1 -->
 
-                    <!-- ************************************************* data-toggle="modal" data-target="#save_mbo"-->
+                    <!-- ************************************************************************************ -->
 
                     <div class="tab-pane" id="form2">
                         <br>
@@ -885,9 +885,7 @@ function createAtt() {
                 </h4>
             </div>
             <!-- Modal header-->
-
             <br>
-
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6" align="center">
@@ -924,7 +922,6 @@ function createAtt() {
                     <!-- col-6 -->
                 </div>
                 <!--  row -->
-
             </div>
             <!-- Modal body-->
             <div class="modal-footer">
