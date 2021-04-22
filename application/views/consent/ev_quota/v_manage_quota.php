@@ -49,7 +49,7 @@ function get_department() {
         type: "post",
         url: "<?php echo base_url(); ?>/ev_quota/v_mange_quota",
         data: {
-            "pos_id": dep_sel
+            "dep_id": dep_sel
         },
         dataType: "JSON",
         success: function(data) {
@@ -107,7 +107,7 @@ h4 {
 					<select name="example_length" class="form-control" id ="dep_select">												
 						<option value="0">Department</option>												
 						<!-- start foreach -->
-						<?php foreach($pos_data->result() as $value){ ?>
+						<?php foreach($dep_data->result() as $value){ ?>
 						<option value="<?php echo $value->Dep_id;?>">
 						<?php echo $value->Dep_Name;?>
 						</option>
@@ -174,8 +174,8 @@ h4 {
 					</div>
 				</div>
 				<div class="DTTT btn-group pull-left mt-sm">
-					<!--<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/main_group">	</a>-->				
-					<button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>		
+					<a href ="<?php echo base_url(); ?>/ev_quota/Evs_quota/index">				
+					<button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button></a>		
 				</div>
 			</div><!--panel-body-->	
 		</div>
