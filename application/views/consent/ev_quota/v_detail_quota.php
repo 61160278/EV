@@ -87,13 +87,12 @@ window.onload = function() {
     var context = myCanvas.getContext('2d');
     for (var i = 1; i <= 5; i++) {
         var show_quota = document.getElementById("quota" + i).innerHTML;
-        // var arrQuota = [5, 25, 40, 25, 5];
+       //  var arrQuota = [5, 25, 40, 25, 5];
         arrQuota[i] = show_quota;
-
     } //for
     arrQuota.shift();
     console.log(arrQuota);
-    //var arrQuota = [ 5,25,40,25,5];  
+    var arrQuota = [ 5,25,40,25,5];  
     var canvas = document.getElementById( "testCanvas" );  
     var context = canvas.getContext( "2d" );  
     var GRAPH_TOP = 25;  
