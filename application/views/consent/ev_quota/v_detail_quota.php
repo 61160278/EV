@@ -90,7 +90,7 @@ function check_quota_plan() {
 
 
 // window.onchange = function() {
-    window.onload = function() {
+window.onload = function() {
     var arrQuota = [];
     var myCanvas = document.getElementById('testCanvas');
     var context = myCanvas.getContext('2d');
@@ -103,7 +103,7 @@ function check_quota_plan() {
     arrQuota.shift();
     console.log(arrQuota);
 
-    var height_graph = 400;
+    var height_graph = 500;
 
     var arrlen = arrQuota.length;
     var maxData = 0;
@@ -118,10 +118,10 @@ function check_quota_plan() {
 
     // draw X and Y axis  
     context.beginPath();
-   
+
     context.moveTo(25, 25); // context.moveTo(L,B);
-    context.lineTo(25, 420);//y context.lineTo(T,B)
-    context.lineTo(680, 420);//x  context.lineTo(R,B)
+    context.lineTo(25, 395); //y context.lineTo(T,B)
+    context.lineTo(680, 395); //x  context.lineTo(R,B)
 
     context.fillText(0, 0, 425);
     context.stroke();
@@ -130,66 +130,66 @@ function check_quota_plan() {
     context.beginPath();
     context.strokeStyle = "#BBB";
     context.moveTo(25, 25);
-    context.lineTo(680, 25);//context.lineTo(R, T)
+    context.lineTo(680, 25); //context.lineTo(R, T)
     // draw reference value for hours  
     context.fillText(100, 0, 25);
     context.stroke();
 
     // draw reference line แถวล่างสุด เส้นระดับ
     context.beginPath();
-    context.moveTo(25, 336);
-    context.lineTo(680, 336);
+    context.moveTo(25, 316);
+    context.lineTo(680, 316);
     // draw reference value for hours  
-    context.fillText(20, 0, 336);
+    context.fillText(20, 0,316);
     context.stroke();
 
     // draw reference line  แถวที่ 2 เส้นระดับ
     context.beginPath();
-    context.moveTo(25,252);
-    context.lineTo(680, 252);
+    context.moveTo(25, 237);
+    context.lineTo(680, 237);
     // draw reference value for hours  
-    context.fillText(40, 0, 252);
+    context.fillText(40, 0, 237);
     context.stroke();
 
 
-        // draw reference line  แถวที่ 3 เส้นระดับ
-        context.beginPath();
-        context.moveTo(25, 168);
-        context.lineTo(680, 168);
-        // draw reference value for hours  
-        context.fillText(60, 0,168);
-        context.stroke();
-      // draw reference line  แถวที่ 4 เส้นระดับ
-      context.beginPath();
-        context.moveTo(25, 84);
-        context.lineTo(680, 84);
-        // draw reference value for hours  
-        context.fillText(80, 0, 84);
-        context.stroke();
-
+    // draw reference line  แถวที่ 3 เส้นระดับ
     context.beginPath();
-    context.lineJoin = "round";
-    context.strokeStyle = "red";
+    context.moveTo(25, 158);
+    context.lineTo(680, 158);
+    // draw reference value for hours  
+    context.fillText(60, 0, 158);
+    context.stroke();
+    // draw reference line  แถวที่ 4 เส้นระดับ
+    context.beginPath();
+    context.moveTo(25, 79);
+    context.lineTo(680, 79);
+    // draw reference value for hours  
+    context.fillText(80, 0, 79);
+    context.stroke();
 
-    context.moveTo(100, (height_graph - arrQuota[0] / maxData * height_graph) + 25);
-    // draw reference value for day of the week  
-    var grad = ["S", "A", "B", "C", "D"];
-    // context.fillText("S", 15, 400);
-    for (var j = 0; j < grad.length; j++) {
+    // context.beginPath();
+    // context.lineJoin = "round";
+    // context.strokeStyle = "red";
+
+    // context.moveTo(100, (height_graph - arrQuota[0] / maxData * height_graph) + 25);
+    // // draw reference value for day of the week  
+    // var grad = ["S", "A", "B", "C", "D"];
+    // // context.fillText("S", 15, 400);
+    // for (var j = 0; j < grad.length; j++) {
 
 
-        context.lineTo(680 / arrlen * j + 100, (height_graph - arrQuota[j] / maxData * height_graph) + 25);
+    //     context.lineTo(680 / arrlen * j + 100, (height_graph - arrQuota[j] / maxData * height_graph) + 25);
 
-        // draw reference value for day of the week  
-        context.fillText(grad[j], 680 / arrlen * j + 100, 450, 475);
-        context.stroke();
-    }
+    //     // draw reference value for day of the week  
+    //     context.fillText(grad[j], 680 / arrlen * j + 100, 450, 475);
+    //     context.stroke();
+    // }
 
 }
 </script>
 
 <div class="col-md-12">
-    <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
+    <div class="panel panel-midnightblue" data-widget='{"draggable": "false"}'>
         <div class="panel-heading">
             <h2>
                 <font size="5px">Detail Quota </font>
@@ -294,7 +294,7 @@ function check_quota_plan() {
                         </div>
                         <div class="panel-body">
 
-                            <canvas id="testCanvas" width="700" height="500"></canvas>
+                            <canvas id="testCanvas" width="700" height="450"></canvas>
 
                             <!-- <canvas id="myCanvas" width="400" height="400" ></canvas>  -->
 
