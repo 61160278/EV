@@ -39,11 +39,16 @@
 var index = 1; //index table
 var index_position = 1; //index position
 var chack_insert_component = 0; //chack component one use
+var arr_save_index_arr_add_pos = [];
 $(document).ready(function() {
+    arr_save_index_arr_add_pos.push(index-1);
     $("#addExpected").hide();
     $("#btn_mange").hide();
+    console.log(arr_save_index_arr_add_pos);
     $("#addExpected").click(function() {
         index++;
+        arr_save_index_arr_add_pos.push(index-1);
+        console.log(arr_save_index_arr_add_pos);
         $('#tr_Expected').append(
             '<div id="row_expected' + index + '">' +
             '<!-- Start insert expected  -->' +
@@ -105,10 +110,10 @@ $(document).ready(function() {
             '<!-- col-6  -->' +
             '<div class="col-6" id="add_table_' + index + '">' +
             '</div>' +
-			
+
             '</div>' +
-			'<br>' +
-              '<div  id="tr_Position_' + index + '">' +
+            '<br>' +
+            '<div  id="tr_Position_' + index + '">' +
             '</div>' +
             '<div class="col-12" class="row">' +
             '<div  align="right">' +
@@ -125,54 +130,55 @@ $(document).ready(function() {
             '</div>' +
             '</div>' +
             '<br>' +
-            '<hr>'+
+            '<hr>' +
             '</div>' +
-            '</div>' 
+            '</div>'
 
-            );
+        );
 
         $('#addPostion' + index).click(function() {
             $('#tr_Position_' + $(this).attr("value") + '').append(
-              '<input type= "hidden" id = "id_index' + index_position + '" value = "' + $(this).attr(
-                "value") + '">' +
-            '<div id="row_position' + index_position + '">' +
-            '<!-- Start input position  -->' +
-            '<div class="row">' +
-            '<div class="col-6">' +
-            '<div class="row">' +
-            '<div class="col-4" align="right">' +
-            '<label for="textarea-input" class=" form-control-label">Position level:</label>' +
-            '</div>' +
-            '<!-- col-4  -->' +
-            '<div class="col-8">' +
-            '<select id="pos_lv_add_' + index_position +
-            '" class="form-control" onchange="pos_level_add(id)">' +
-            '<option>Select position level</option>' +
-            '<option value="1">Top Management</option>' +
-            '<option value="2">Middle Management</option>' +
-            '<option value="3">Junior Management</option>' +
-            '<option value="4">Staff</option>' +
-            '<option value="5">Officer</option>' +
-            '</select>' +
-            '</div>' +
-            '<!-- seclect position level  -->' +
-            '</div>' +
-            '<!-- row  -->' +
-            '</div>' +
-            '<!-- col-6  -->' +
-            '<div class="col-5" id="add_table_position_' + index_position + '">' +
-            '</div>' +
-            '<div class="col-1" >' +
-            '<button type="button" name="remove" id="' + index_position +
-            '" class="btn btn-danger btn_remove_position">' +
-            '<i class="fa fa-times"></i></button>' +
-            '</div>' +
-            '<!-- include form function add_pos_level -->' +
-            '</div>' +
-            '<!-- row  -->' +
-            '<!-- End insert expected  -->' +
-            '<br>' +
-            '</div>'
+                '<input type= "hidden" id = "id_index' + index_position + '" value = "' + $(
+                    this).attr(
+                    "value") + '">' +
+                '<div id="row_position' + index_position + '">' +
+                '<!-- Start input position  -->' +
+                '<div class="row">' +
+                '<div class="col-6">' +
+                '<div class="row">' +
+                '<div class="col-4" align="right">' +
+                '<label for="textarea-input" class=" form-control-label">Position level:</label>' +
+                '</div>' +
+                '<!-- col-4  -->' +
+                '<div class="col-8">' +
+                '<select id="pos_lv_add_' + index_position +
+                '" class="form-control" onchange="pos_level_add(id)">' +
+                '<option>Select position level</option>' +
+                '<option value="1">Top Management</option>' +
+                '<option value="2">Middle Management</option>' +
+                '<option value="3">Junior Management</option>' +
+                '<option value="4">Staff</option>' +
+                '<option value="5">Officer</option>' +
+                '</select>' +
+                '</div>' +
+                '<!-- seclect position level  -->' +
+                '</div>' +
+                '<!-- row  -->' +
+                '</div>' +
+                '<!-- col-6  -->' +
+                '<div class="col-5" id="add_table_position_' + index_position + '">' +
+                '</div>' +
+                '<div class="col-1" >' +
+                '<button type="button" name="remove" id="' + index_position +
+                '" class="btn btn-danger btn_remove_position">' +
+                '<i class="fa fa-times"></i></button>' +
+                '</div>' +
+                '<!-- include form function add_pos_level -->' +
+                '</div>' +
+                '<!-- row  -->' +
+                '<!-- End insert expected  -->' +
+                '<br>' +
+                '</div>'
             );
             index_position++;
 
@@ -229,7 +235,16 @@ $(document).ready(function() {
     }); // add Postion
 
     $(document).on('click', '.btn_remove', function() {
+        number_arry = NULL;
         var button_id = $(this).attr("id");
+        console.log("button : "+button_id);
+        for(i = 0; i< arr_save_index_arr_add_pos.length; i++){
+             if(arr_save_index_arr_add_pos[i] == button_id){number_arry = i}
+             console.log("inx_i : "+arr_save_index_arr_add_pos[i]);
+        }
+        arr_save_index_arr_add_pos.splice(number_arry,1)
+        
+        console.log(arr_save_index_arr_add_pos);
         $('#row_expected' + button_id + '').remove();
 
     }); //delect expected
@@ -243,7 +258,7 @@ $(document).ready(function() {
     $(document).on('click', '.table_remove', function() {
         var button_id = $(this).attr("id");
         $('#row_table' + button_id + '').remove();
-		
+
 
     });
     $(document).on('click', '.disabled_component', function() {
@@ -283,7 +298,7 @@ $(document).ready(function() {
 */
 ?>
 var index_table = 1; //index table
-var index_next_table = 2; //create next table
+var index_arr_add_pos = 1; //create next table
 
 
 function insert_data_key_component_and_expected_behavior() {
@@ -307,30 +322,26 @@ function insert_data_key_component_and_expected_behavior() {
 
 
     for (i = 0; i < table_for_count; i++) {
-
-        table_arr_for_count = document.getElementsByName("arr_add_pos_" + (i + 1) + "").length
-        arr_save_posittion_other_to_database[i] = [table_arr_for_count];
         arr_save_expected_en_todatabase[i] = document.getElementsByName("arr_add_expected_en")[i].value;
         arr_save_expected_th_todatabase[i] = document.getElementsByName("arr_add_expected_th")[i].value;
         arr_save_posittion_to_database[i] = document.getElementsByName("arr_add_pos")[i].value;
-        for (j = 0; j < table_arr_for_count; j++) {
-            arr_save_posittion_other_to_database[i][j] = document.getElementsByName("arr_add_pos_" + (i + 1) + "")[j]
-                .value;
-        }
     }
 
+    
     for (i = 0; i < table_for_count; i++) {
-
-        table_arr_for_count = document.getElementsByName("arr_add_pos_" + (i + 1) + "").length
+        table_arr_for_count = document.getElementsByName("arr_add_pos_" + (arr_save_index_arr_add_pos[i]+1) + "").length
+        console.log("arr_add : "+arr_save_index_arr_add_pos[i]);
+        console.log("arr_add_pos : "+table_arr_for_count);
         arr_save_posittion_other_to_database[i] = [table_arr_for_count];
-        
-        for (j = 0; j < table_arr_for_count; j++) {
-            arr_save_posittion_other_to_database[i][j] = document.getElementsByName("arr_add_pos_" + (i + 1) + "")[j]
-                .value;
-            console.log(arr_save_posittion_other_to_database[i][j]);
-            console.log(" i : " + i + " J : " + j);
-        }
+    
+            for (j = 0; j < table_arr_for_count; j++) {
+                arr_save_posittion_other_to_database[i][j] = document.getElementsByName("arr_add_pos_" + (arr_save_index_arr_add_pos[i]+1) +"")[j].value;
+                console.log(arr_save_posittion_other_to_database[i][j]);
+                console.log(" i : " + i + " J : " + j);
+            }
+       
     }
+    console.log(arr_save_posittion_other_to_database);
 
     $.ajax({
         type: "post",
@@ -349,8 +360,8 @@ function insert_data_key_component_and_expected_behavior() {
         success: function(status) {
             console.log(status);
 
-			
-			table_data += ' <tr id = "row_table'+index_table+'">'
+
+            table_data += ' <tr id = "row_table' + index_table + '">'
             table_data += ' <td>'
             table_data += '' + index_table + ''
             table_data += '</td>'
@@ -360,60 +371,65 @@ function insert_data_key_component_and_expected_behavior() {
             table_data += '' + save_key_component_th_todatabase + ''
             table_data += '</td>'
             //Start for loop
-          
-			
-		  
-		
-                table_data += '<td>'
-				for (i = 0; i < table_for_count; i++) {
-					table_arr_for_count = arr_save_posittion_other_to_database[i].length
+
+
+
+
+            table_data += '<td>'
+            for (i = 0; i < table_for_count; i++) {
+                table_arr_for_count = arr_save_posittion_other_to_database[i].length
                 table_data += '' + arr_save_expected_en_todatabase[i] + '<br>'
                 table_data += '' + arr_save_expected_th_todatabase[i] + '<br>'
-				for (j = 1; j < table_arr_for_count; j++) {
+                for (j = 1; j < table_arr_for_count; j++) {
                     table_data += '<br>'
-                }				
-				table_data += '<hr>'
-				}
-                table_data += '</td>'
-				
-                table_data += '<td>'
-				for (i = 0; i < table_for_count; i++) {
-                table_data += '' + arr_save_posittion_to_database[i] + "<br>"
-                table_arr_for_count = arr_save_posittion_other_to_database[i].length
-                for (j = 0; j < table_arr_for_count; j++) {
-                    
-                    if(arr_save_posittion_other_to_database[i][j] != 0){table_data += '' + arr_save_posittion_other_to_database[i][j]+"<br>"}
-                    
                 }
                 table_data += '<hr>'
-				}
-				table_data += '</td>'
-			
-                //Start if
-             
-                    table_data += '<td>'
-					table_data += '<center>'
-                    table_data += '<button  name="remove" id="' + index_table +
-                        '" class="btn btn-danger table_remove" value = "' +
-                        save_key_component_en_todatabase +
-                        '" onclick="delete_key_component_and_expected(value)" ><i class="fa fa-times"></i></button>'
-						table_data += '</center>'
-                    table_data += '</td>'
-          
-   
+            }
+            table_data += '</td>'
 
-             //End for loop
-        
-			table_data += ' </tr>'
+            table_data += '<td>'
+            for (i = 0; i < table_for_count; i++) {
+                table_data += '' + arr_save_posittion_to_database[i] + "<br>"
+               
+             
+                 table_arr_for_count = arr_save_posittion_other_to_database[i].length
+                    for (j = 0; j < table_arr_for_count; j++) {
+                      
+                    if (arr_save_posittion_other_to_database[i][j] != 0) {
+                        
+                        table_data += '' + arr_save_posittion_other_to_database[i][j] + "<br>"
+                    }
+                    }
+            
+                table_data += '<hr>'
+            }
+            table_data += '</td>'
+
+            //Start if
+
+            table_data += '<td>'
+            table_data += '<center>'
+            table_data += '<button  name="remove" id="' + index_table +
+                '" class="btn btn-danger table_remove" value = "' +
+                save_key_component_en_todatabase +
+                '" onclick="delete_key_component_and_expected(value)" ><i class="fa fa-times"></i></button>'
+            table_data += '</center>'
+            table_data += '</td>'
+
+
+
+            //End for loop
+
+            table_data += ' </tr>'
 
             $('#table_key').append(table_data);
-			index_table++; //table update
+            index_table++; //table update
         }
         // success 
     });
     // ajex 
-  
-    document.getElementById("form_reset").reset();
+
+    // document.getElementById("form_reset").reset();
 }
 
 <?php
@@ -461,7 +477,8 @@ function pos_level(id) {
             drop_pos += '<option>Select position</option>'
             //Start forEach
             data.forEach((row, index) => {
-                drop_pos += '<option value="' + row.Position_name + '">' + row.Position_name + '</option>'
+                drop_pos += '<option value="' + row.Position_name + '">' + row.Position_name +
+                    '</option>'
             });
             //End forEach
             drop_pos += '</select>'
@@ -525,7 +542,8 @@ function pos_level_add(id) {
             drop_pos += '<option>Select position</option>'
             //Start forEach
             data.forEach((row, index) => {
-                drop_pos += '<option value="' + row.Position_name + '">' + row.Position_name + '</option>'
+                drop_pos += '<option value="' + row.Position_name + '">' + row.Position_name +
+                    '</option>'
             });
             //End forEach
             drop_pos += '</select>'
@@ -671,7 +689,6 @@ function clear_data_componet() {
 
 <!-- Start Css  -->
 <style>
-
 #panel {
     background-color: #c1432e;
 }
@@ -930,49 +947,50 @@ function clear_data_componet() {
                 </div>
                 <!-- End Card Header -->
                 <!-- Start Card Body -->
-                        <table class="table" id="t01" width="100%">
-                            <thead>
-                                <th width="2%">
-                                    <center>#</center>
-                                </th>
-                                <th width="20%">
-                                    <center>Key Component</center>
-                                </th>
-                                <th width="20%">
-                                    <center>Expected Behavior</center>
-                                </th>
-                                <th width="15%">
-                                    <center>Position</center>
-                                </th>
-                                <th width="5%">
-                                    <center>Manage</center>
-                                </th>
-                            </thead>
-                            <tbody id="table_key"></tbody>
-                        </table>
-   
-            <!-- End Card Body -->
-            <div class="row">
-                <div class="col-12" align="right">
-                    <!-- Start Back To Main Position -->
-                    <a href="<?php echo base_url();?>/Evs_ability_indicators_form/indicator_ability">
-                        <button type="button" class="btn btn-secondary" onclick="clear_data_componet()">Back</button>
-                    </a>
-                    <!-- End Back To Main Position -->
-                    <!-- Start Save data -->
-                    <a href="<?php echo base_url();?>/Evs_ability_indicators_form/indicator_ability">
-                        <button type="button" class="btn btn-success">Save</button>
-                    </a>
-                    <!-- End Save data -->
+                <table class="table" id="t01" width="100%">
+                    <thead>
+                        <th width="2%">
+                            <center>#</center>
+                        </th>
+                        <th width="20%">
+                            <center>Key Component</center>
+                        </th>
+                        <th width="20%">
+                            <center>Expected Behavior</center>
+                        </th>
+                        <th width="15%">
+                            <center>Position</center>
+                        </th>
+                        <th width="5%">
+                            <center>Manage</center>
+                        </th>
+                    </thead>
+                    <tbody id="table_key"></tbody>
+                </table>
+
+                <!-- End Card Body -->
+                <div class="row">
+                    <div class="col-12" align="right">
+                        <!-- Start Back To Main Position -->
+                        <a href="<?php echo base_url();?>/Evs_ability_indicators_form/indicator_ability">
+                            <button type="button" class="btn btn-secondary"
+                                onclick="clear_data_componet()">Back</button>
+                        </a>
+                        <!-- End Back To Main Position -->
+                        <!-- Start Save data -->
+                        <a href="<?php echo base_url();?>/Evs_ability_indicators_form/indicator_ability">
+                            <button type="button" class="btn btn-success">Save</button>
+                        </a>
+                        <!-- End Save data -->
+                    </div>
+                    <!-- col-12 -->
                 </div>
-                <!-- col-12 -->
+                <!-- row  -->
+                <br>
             </div>
-            <!-- row  -->
-            <br>
+            <!-- col-12  -->
         </div>
-        <!-- col-12  -->
+        <!-- card  -->
     </div>
-    <!-- card  -->
-</div>
-<!-- End Page Content -->
-<!-- col-12 -->
+    <!-- End Page Content -->
+    <!-- col-12 -->
