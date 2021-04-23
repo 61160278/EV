@@ -452,7 +452,7 @@ function check_data_edt(check) {
                                     <label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
                                     <div class="col-sm-6">
                                           <input type="text" class="form-control" id="grouptext" placeholder="HR AGM">
-                                          <p id="alert_grouptext"> ******* </p>
+                                          <p id="alert_grouptext"> Already have an Group? </p>
                                     </div>
                               </div>
                               <!-- Group Name -->
