@@ -452,17 +452,23 @@ function check_data_edt(check) {
                                     <label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
                                     <div class="col-sm-6">
                                           <input type="text" class="form-control" id="grouptext" placeholder="HR AGM">
-                                          
-                                          <label for="focusedinput" class="col-sm-1 control-label"></label>
-                                          &nbsp
-                                                <p id="alert_grouptext"> <font color="red"><b>This data already to use! </b></font></p>
+                                          <label class="col-sm-12 control-label"></label>
+                                          <p id="alert_grouptext">
+                                                <font color="red"><b>This data already to used! </b></font>
+                                          </p>
                                     </div>
                               </div>
                               <!-- Group Name -->
 
-                              <h2 style="font-family:'Courier New'"><b>
-                                          <font size="4px" color="Black">Select Head Dept.</font>
-                                    </b></h2>
+                              <div class="form-group">
+                                    <label class="col-sm-1 control-label"></label>
+                                    <div class="col-sm-8">
+                                          <label style="font-family:'Courier New'"><b>
+                                                      <font size="4px" color="Black">Select Head Dept.</font>
+                                                </b></label>
+                                    </div>
+                              </div>
+                              <!-- Select Head Dept. -->
 
                               <div class="form-group">
                                     <label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
