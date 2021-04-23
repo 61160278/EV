@@ -306,18 +306,24 @@ function clear_css_inp(i) {
 }
 // function clear_css_inp
 
-function check_cancel(){
+function check_cancel() {
     $("#cancel_mbo").modal('show');
 }
 // function check_cancel
 
-function cancel_form(){
+function cancel_form() {
     var check_emp_id = document.getElementById("emp_id").innerHTML;
     window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id + "";
 }
 // function cancel_form
 
+function show_approve() {
+    var approve1 = document.getElementById("approve1").value;
+    var approve2 = document.getElementById("approve2").value;
 
+
+}
+// function show_approve
 </script>
 <!-- script -->
 
@@ -516,13 +522,53 @@ function cancel_form(){
                         <!-- table -->
                         <hr>
                         <br>
+                        <div class="row" id="show_approver">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="control-label"><strong>
+                                                <font size="3px">Approver 1 : </font>
+                                            </strong></label>
+                                    </div>
+                                    <!-- col-2  -->
+                                    <div class="col-md-8">
+                                        <p id="app1">dddd</p>
+                                    </div>
+                                    <!-- col-4  -->
+                                </div>
+                                <!-- row  -->
+                            </div>
+                            <!-- col-6  -->
+                            <!-- -------------------- -->
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="control-label"><strong>
+                                                <font size="3px">Approver 2 : </font>
+                                            </strong></label>
+                                    </div>
+                                    <!-- col-2  -->
+                                    <div class="col-md-8">
+                                        <p id="app">daaaaddd</p>
+                                    </div>
+                                    <!-- col-4  -->
+                                </div>
+                                <!-- row  -->
+                            </div>
+                            <!-- col-6  -->
+                            <!-- -------------------- -->
+                        </div>
+                        <!-- row  -->
+                        <hr>
+                        <br>
                         <div class="row">
                             <div class="col-md-6">
                                 <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
                                     <button class="btn btn-inverse" id="btn_cencel_back">CANCEL</button>
                                 </a>
                                 <!-- cancel to back to main  -->
-                                <button class="btn btn-inverse" id="btn_cencel_clear" onclick="check_cancel()">CANCEL</button>
+                                <button class="btn btn-inverse" id="btn_cencel_clear"
+                                    onclick="check_cancel()">CANCEL</button>
                                 <!-- cancel to cancel edit form -->
                                 <button class="btn btn-default" onclick="clearMBO()" id="btn_clear">CLEAR</button>
                             </div>
@@ -556,10 +602,9 @@ function cancel_form(){
 </div>
 <!-- row -->
 
+<!-- ****************************************** modal ************************************** -->
 
-
-
-<!-- Modal -->
+<!-- Modal approver -->
 <div class="modal fade" id="add_app" role="dialog">
     <div class="modal-dialog">
 
@@ -593,7 +638,7 @@ function cancel_form(){
 
                 <div class="row">
                     <div class="col-md-6" align="center">
-                        <select class="form-control" id="source">
+                        <select class="form-control" id="approve1">
                             <option value="0">----- Please Select-----</option>
                             <option value="1">Alaska</option>
                             <option value="2">Hawaii</option>
@@ -603,7 +648,7 @@ function cancel_form(){
                     <!-- col-6 -->
 
                     <div class="col-md-6" align="center">
-                        <select class="form-control" id="source">
+                        <select class="form-control" id="approve2">
                             <option value="0">----- Please Select-----</option>
                             <option value="1">Alaska</option>
                             <option value="2">Hawaii</option>
@@ -624,7 +669,7 @@ function cancel_form(){
                     <!-- col-6 -->
 
                     <div class="col-md-6" align="rigth">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">SAVE</button>
+                        <button type="button" class="btn btn-success" onclick="show_approve()">SAVE</button>
                     </div>
                     <!-- col-6 -->
 
@@ -637,7 +682,7 @@ function cancel_form(){
     </div>
     <!-- Modal dialog-->
 </div>
-<!-- Modal-->
+<!-- Modal approver-->
 
 <!-- Modal save -->
 <div class="modal fade" id="save_mbo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -265,8 +265,8 @@ function add_alert() {
                                                     href="#Edit<?php echo $row->gru_id?>">
                                                     <i class="ti ti-pencil-alt"></i>
                                                 </a>
-                                                <a class="btn btn-info"
-                                                    href="<?php echo base_url();?>/ev_group/Evs_group/select_group">
+                                                <a class="btn btn-info" 
+                                                    href="<?php echo base_url(); ?>/ev_group/Evs_group/select_group">
                                                     <i class="ti ti-info-alt"></i>
                                                 </a>
                                             </div>

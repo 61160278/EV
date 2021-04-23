@@ -30,9 +30,8 @@
 						<div class="panel pull-right" id="addtable_filter">
 							<select name="example_length" class="form-control" aria-controls="example" >
 								<option value="">Select Group Contact </option>
-								<?php foreach($info_sec->result() as $row) {?>
-									<option value="<?php echo $row->Group; ?>"><?php echo $row->Group;?></option>
-								<?php } ?>
+								
+								
 							</select>
 					</div>
 						
