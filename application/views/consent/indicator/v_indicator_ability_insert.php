@@ -239,11 +239,10 @@ $(document).ready(function() {
         var button_id = $(this).attr("id");
         console.log("button : "+button_id);
         for(i = 0; i< arr_save_index_arr_add_pos.length; i++){
-             if(arr_save_index_arr_add_pos[i] == button_id){number_arry = i}
+             if(arr_save_index_arr_add_pos[i] == button_id){arr_save_index_arr_add_pos.splice(i,1) }
              console.log("inx_i : "+arr_save_index_arr_add_pos[i]);
         }
-        arr_save_index_arr_add_pos.splice(number_arry,1)
-        
+
         console.log(arr_save_index_arr_add_pos);
         $('#row_expected' + button_id + '').remove();
 
@@ -428,8 +427,7 @@ function insert_data_key_component_and_expected_behavior() {
         // success 
     });
     // ajex 
-
-    // document.getElementById("form_reset").reset();
+     document.getElementById("form_reset").reset();
 }
 
 <?php
