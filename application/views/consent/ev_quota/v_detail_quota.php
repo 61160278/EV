@@ -189,7 +189,7 @@ function check_quota_plan() {
 </script>
 
 <div class="col-md-12">
-    <div class="panel panel-midnightblue" data-widget='{"draggable": "false"}'>
+    <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
         <div class="panel-heading">
             <h2>
                 <font size="5px">Detail Quota </font>
