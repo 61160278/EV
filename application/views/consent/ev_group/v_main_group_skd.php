@@ -21,6 +21,15 @@ function test(value) {
 }
 // function test
 
+$(document).ready(function() {
+    // $("#alert_grouptext").hide();
+    
+    $("#grouptext").keyup(function() {
+        $("#alert_grouptext").hide();
+    });
+});
+// document ready
+
 function add_group() {
     var group = document.getElementById("grouptext").value;
     var Emp_id = document.getElementById("Emp_id_modol").value;
@@ -131,8 +140,25 @@ function check_add() {
 
     if (group != "" && Emp_id != "") {
         if (Showname_modol != "ไม่มีข้อมูล") {
-            add_group();
-            return true;
+            var count = 0;
+            $.get("<?php echo base_url(); ?>/ev_group/Evs_group/get_group_skd ", function(data, status) {
+                var obj = JSON.parse(data); //แปลงค่าข้อมูล JSON
+                obj.forEach((row, index) => { //row =data
+                    if (group == row.gru_name) {
+                        count++;
+                    }
+                    // if-else
+                });
+                // forEach
+                if (count == 0) {
+                    add_group();
+                    return true;
+                } else {
+                    $("#alert_grouptext").show();
+                    return false;
+                }
+            });
+            // $.get
         } else {
             add_alert();
             return false;
@@ -173,6 +199,24 @@ function check_edit_skd(check) {
 
 function add_alert() {
     $('#warning').modal('show');
+}
+
+function check_group_repeatedly() {
+    var group = document.getElementById("grouptext").value;
+
+    $.get("<?php echo base_url(); ?>/ev_group/Evs_group/get_group_skd ", function(data, status) {
+        console.log(data);
+        data.forEach((row, index) => {
+            if (group == row.gru_name) {
+                add_alert();
+                return false;
+            } else {
+                return true;
+            }
+        });
+    });
+
+
 }
 // add_alert
 </script>
@@ -266,7 +310,7 @@ function add_alert() {
                                                     href="#Edit<?php echo $row->gru_id?>">
                                                     <i class="ti ti-pencil-alt"></i>
                                                 </a>
-                                                <a class="btn btn-info" 
+                                                <a class="btn btn-info"
                                                     href="<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_skd">
                                                     <i class="ti ti-file"></i>
                                                 </a>
@@ -321,6 +365,7 @@ function add_alert() {
     <!-- head panel -->
 </div>
 <!-- head outside -->
+
 </html>
 
 <head>
@@ -356,7 +401,8 @@ function add_alert() {
                     <div class="form-group">
                         <label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="grouptext" placeholder="HR AGM">
+                            <input type="text" class="form-control" id="grouptext" placeholder="HR AGM" name="Emp_id">
+                            <p id="alert_grouptext"> ******* </p>
                         </div>
                     </div>
                     <!-- Group Name -->
