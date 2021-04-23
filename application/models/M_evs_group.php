@@ -70,5 +70,14 @@ class M_evs_group extends Da_evs_group {
 		return $query;
 	}
 	// connect
+
+	function get_all_group(){	
+		$sql = "SELECT gru_id, gru_name
+				FROM evs_database.evs_group as evg
+				WHERE evg.gru_company_id = ? ";
+		$query = $this->db->query($sql, array($this->gru_company_id));
+		return $query;
+	
+	}//get_all_com
 } 
 ?>
