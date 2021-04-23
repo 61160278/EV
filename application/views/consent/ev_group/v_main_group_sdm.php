@@ -452,10 +452,10 @@ function check_data_edt(check) {
                                     <label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
                                     <div class="col-sm-6">
                                           <input type="text" class="form-control" id="grouptext" placeholder="HR AGM">
-                                          
-                                          <label for="focusedinput" class="col-sm-1 control-label"></label>
-                                          &nbsp
-                                                <p id="alert_grouptext"> <font color="red"><b>This data already to use! </b></font></p>
+                                          <label  class="col-sm-12 control-label"></label>
+                                                <p id="alert_grouptext">
+                                                      <font color="red"><b>This data already to use! </b></font>
+                                                </p>
                                     </div>
                               </div>
                               <!-- Group Name -->
