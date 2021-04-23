@@ -39,16 +39,6 @@ class Evs_group extends MainController_avenxo {
 		$this->output('/consent/ev_group/v_select_company');
 	}
 	// function index
-
-	/*
-	* Evs_form
-	* Form
-	* @author  Tippawan Aiemsaad
-	* @Create Date 2564-04-023
-	*/
-	function select_group(){
-		$this->output('/consent/ev_group/v_add_group_skd');
-	}
 	
 	function manage_data()
 	{
@@ -109,7 +99,6 @@ class Evs_group extends MainController_avenxo {
 		$this->output('/consent/ev_group/v_main_group_skd',$data);
 	}
 	// function select_company_skd
-	
 	
 	/*
 	* Evs_form
@@ -216,8 +205,31 @@ class Evs_group extends MainController_avenxo {
 		$this->select_company_skd();
 	}
 	// function save_edit_skd
+
+
+
+
+	function select_group_company_sdm()
+	{
+		$this->load->model('M_evs_group','mgc');
+		$this->mgc->gru_company_id = 1;
+		$data['gcp_gcm'] = $this->mgc->get_all_com();
+		$this->output('/consent/ev_group/v_add_group_sdm',$data);
+	}
+	// function select_company_skd
+
+
 	
 	
+	function select_group_company_skd()
+	{
+		$this->load->model('M_evs_group','mgc');
+		$this->mgc->gru_company_id = 2;
+		$data['gcp_gcm'] = $this->mgc->get_all_com();
+		$this->output('/consent/ev_group/v_add_group_skd',$data);
+	}
+	// function select_company_skd
+
 		
 		
 		
