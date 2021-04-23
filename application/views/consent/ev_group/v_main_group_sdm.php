@@ -22,11 +22,11 @@ function select_company(value) {
 
 
 $(document).ready(function() {
-     $("#alert_grouptext").hide();
-    
-    $("#grouptext").keyup(function() {
-        $("#alert_grouptext").hide();
-    });
+      $("#alert_grouptext").hide();
+
+      $("#grouptext").keyup(function() {
+            $("#alert_grouptext").hide();
+      });
 });
 // document ready
 
@@ -168,40 +168,40 @@ function warning() {
 
 function check_data() {
       var group = document.getElementById("grouptext").value;
-    var Emp_id = document.getElementById("Emp_id_modol").value;
-    var Showname_modol = document.getElementById("Showname_modol").value;
+      var Emp_id = document.getElementById("Emp_id_modol").value;
+      var Showname_modol = document.getElementById("Showname_modol").value;
 
-    if (group != "" && Emp_id != "") {
-        if (Showname_modol != "ไม่มีข้อมูล") {
-            var count = 0;
-            $.get("<?php echo base_url(); ?>/ev_group/Evs_group/get_group_sdm ", function(data, status) {
-                var obj = JSON.parse(data); //แปลงค่าข้อมูล JSON
-                obj.forEach((row, index) => { //row =data
-                    if (group == row.gru_name) {
-                        count++;
-                    }
-                    // if-else
-                });
-                // forEach
-                if (count == 0) {
-                    add_group();
-                    return true;
-                } else {
-                    $("#alert_grouptext").show();
-                    return false;
-                }
-            });
-            // $.get
-        } else {
+      if (group != "" && Emp_id != "") {
+            if (Showname_modol != "ไม่มีข้อมูล") {
+                  var count = 0;
+                  $.get("<?php echo base_url(); ?>/ev_group/Evs_group/get_group_sdm ", function(data, status) {
+                        var obj = JSON.parse(data); //แปลงค่าข้อมูล JSON
+                        obj.forEach((row, index) => { //row =data
+                              if (group == row.gru_name) {
+                                    count++;
+                              }
+                              // if-else
+                        });
+                        // forEach
+                        if (count == 0) {
+                              add_group();
+                              return true;
+                        } else {
+                              $("#alert_grouptext").show();
+                              return false;
+                        }
+                  });
+                  // $.get
+            } else {
+                  warning();
+                  return false;
+            }
+            // if-else 
+      } else {
             warning();
             return false;
-        }
-        // if-else 
-    } else {
-      warning();
-        return false;
-    }
-    //else
+      }
+      //else
 
 }
 //check_data
@@ -452,7 +452,10 @@ function check_data_edt(check) {
                                     <label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
                                     <div class="col-sm-6">
                                           <input type="text" class="form-control" id="grouptext" placeholder="HR AGM">
-                                          <p id="alert_grouptext"> Already have an Group? </p>
+                                          
+                                          <label for="focusedinput" class="col-sm-1 control-label"></label>
+                                          &nbsp
+                                                <p id="alert_grouptext"> <font color="red"><b>This data already to use! </b></font></p>
                                     </div>
                               </div>
                               <!-- Group Name -->
