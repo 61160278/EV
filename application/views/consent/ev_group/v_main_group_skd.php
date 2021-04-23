@@ -407,7 +407,7 @@ function check_group_repeatedly() {
                     <div class="form-group">
                     <label class="col-sm-3 control-label"></label>
                         <div class="col-sm-6">
-                            <p id="alert_grouptext"><font color="red"> Duplicate groups please check. </font></p>
+                            <p id="alert_grouptext"><font color="red"><b> This data already to use! </b></font></p>
                         </div>
                     </div>
                     <!-- Duplicate groups please check. -->
