@@ -39,6 +39,16 @@ class Evs_group extends MainController_avenxo {
 		$this->output('/consent/ev_group/v_select_company');
 	}
 	// function index
+
+	/*
+	* Evs_form
+	* Form
+	* @author  Tippawan Aiemsaad
+	* @Create Date 2564-04-023
+	*/
+	function select_group(){
+		$this->output('/consent/ev_group/v_add_group_skd');
+	}
 	
 	/*
 	* Evs_form
@@ -203,9 +213,7 @@ class Evs_group extends MainController_avenxo {
 	}
 	// function save_edit_skd
 	
-	function select_group(){
-		$this->output('/consent/ev_group/v_add_group_skd');
-	}
+	
 		
 		
 		
