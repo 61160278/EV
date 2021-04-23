@@ -93,7 +93,7 @@ window.onload = function() {
     } //for
     arrQuota.shift();
     console.log(arrQuota);
-    var arrQuota = [ 5,25,40,25,5];  
+    //var arrQuota = [ 5,25,40,25,5];  
     var canvas = document.getElementById( "testCanvas" );  
     var context = canvas.getContext( "2d" );  
     var GRAPH_TOP = 25;  
