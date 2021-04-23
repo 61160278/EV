@@ -92,7 +92,7 @@ window.onchange = function() {
         }  
     }  
   
-    context.clearRect( 0, 0, 500, 400);  
+    context.clearRect( 0, 0, 1000, 400);  
     // set font for fillText()  
     context.font = "16px Arial";  
        
@@ -244,7 +244,7 @@ window.onchange = function() {
                             </div>
                         </div>
                         <div class="panel-body">
-                            <canvas id="testCanvas" width="1000" height="600"></canvas>
+                            <canvas id="testCanvas" width="1000" height="450"></canvas>
                         </div>
                     </div>
                 </div>
