@@ -39,8 +39,6 @@ $(document).ready(function() {
     createACM();
     createAtt();
     $("#btn_save").attr("disabled", true);
-    $("#btn_send").attr("disabled", true);
-
 
 });
 // document ready
@@ -554,8 +552,6 @@ function cancel_form(){
 
                             <div class="col-md-6" align="right">
                                 <button class="btn btn-success" id="btn_save" onclick="return check_mbo()">SAVE</button>
-                                <button class="btn btn-primary" id="btn_send">SEND<i
-                                        class="fa fa-share-square-o"></i></button>
                             </div>
                             <!-- col-md-6 add_app -->
 
