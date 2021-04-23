@@ -36,7 +36,8 @@
                                           <select name="example_length" class="form-control" aria-controls="example">
                                                 <option value="">Select Group Contact </option>
                                                 <?php foreach($gcp_gcm->result() as $row) {?>
-                                                <option value="<?php echo $row->gru_name; ?>"><?php echo $row->gru_name;?>
+                                                <option value="<?php echo $row->gru_name; ?>">
+                                                      <?php echo $row->gru_name;?>
                                                 </option>
                                                 <?php } ?>
 
@@ -76,16 +77,23 @@
                                                 </thead>
 
                                                 <tbody>
+                                                      <?php
+									$num = 1;
+									foreach($gcp_gcm->result() as $row ) { ?>
                                                       <tr class="odd gradeX" align='center'>
                                                             <td>
                                                                   <div class="checked block">
                                                                         <input name="checkbox" type="checkbox">
                                                                   </div>
                                                             </td>
-                                                            <td>00000</td>
-                                                            <td>KOBSOOK INTACHOT</td>
-                                                            <td>6190</td>
+                                                            <td><?php echo $row->gru_head_dept; ?></td>
+                                                            <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng; ?>
+                                                            </td>
+                                                            <td><?php echo $row->Sectioncode_ID; ?></td>
                                                       </tr>
+                                                      <?php
+									$num++;
+									} ?>
                                                 </tbody>
                                           </table>
                                           <!-- table -->
