@@ -124,7 +124,12 @@ class Evs_permission extends MainController_avenxo {
 	// delete_emp()
 
 	function select_emp_delete(){
-		
+		$emp_id = $this->input->post('emp_id');
+		$this->load->model('Da_evs_employee','deemp');
+		$this->deemp->emp_id = $emp_id;
+		$this->deemp->delete();
+
+		echo json_encode($status);
 
 		
 	}

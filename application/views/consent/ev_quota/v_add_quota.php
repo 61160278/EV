@@ -81,7 +81,7 @@ window.onchange = function() {
             maxData = arrQuotaPlan[i];
         }
     }
-    context.clearRect(0, 0, 500, 500);
+    context.clearRect(0, 0, 600, 1000);
     // set font for fillText()  
     context.font = "16px Arial";
 
@@ -136,8 +136,6 @@ window.onchange = function() {
     var grad = ["S", "A", "B", "C", "D"];
     // context.fillText("S", 15, 400);
     for (var j = 0; j < grad.length; j++) {
-
-
         context.lineTo(680 / arrlen * j + 100, (height_graph - arrQuotaPlan[j] / maxData * height_graph) + 25);
 
         // draw reference value for day of the week  
@@ -234,7 +232,7 @@ window.onchange = function() {
                             </div>
                         </div>
                         <div class="panel-body">
-                            <canvas id="testCanvas" width="700" height="3000"></canvas>
+                            <canvas id="testCanvas" width="700" height="600"></canvas>
                         </div>
                     </div>
                 </div>
