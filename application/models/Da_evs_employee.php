@@ -41,6 +41,23 @@ class Da_evs_employee extends evs_model {
 		$this->db->query($sql, array($this->emp_employee_id, $this->emp_company_id,$this->emp_position_id,$this->emp_section_code_ID,$this->emp_pay_id,$this->emp_ghr_id));
    
 	}
+
+	/*
+	* delete
+	* Delete from database
+	* @input 
+	* @output -
+	* @author Tippawan Aiemsaad
+	* @Create Date 2564-04-8
+	*/
+
+	function delete() {
+	 	
+		$sql = "DELETE FROM evs_database.evs_employee 
+	   WHERE  emp_id = ? ";
+		$this->db->query($sql, array($this->emp_id));
+	}
+
 	
 
 	
