@@ -51,7 +51,6 @@ class M_evs_group extends Da_evs_group {
 		$query = $this->db->query($sql, array($this->Emp_ID));
 		return $query->result();
 	}
-
 	
 	function get_name_emp_by_IDemp_skd(){	
 		$sql = "SELECT *
@@ -69,7 +68,6 @@ class M_evs_group extends Da_evs_group {
 				ON employee.Emp_ID = evs_group.gru_head_dept";
 		$query = $this->db->query($sql);
 		return $query;
-
 	}
 	// connect
 } 
