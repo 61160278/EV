@@ -320,7 +320,7 @@ function check_data_edt(check) {
                                                                               href="#Edit<?php echo $row->gru_id?>">
                                                                               <i class="ti ti-pencil-alt"></i>
                                                                         </a>
-                                                                        <a href="<?php echo base_url(); ?>/ev_group/Evs_group/add_group_sdm"
+                                                                        <a href="<?php echo base_url(); ?>/ev_group/Evs_group/manage_data"
                                                                               class="btn btn-info">
                                                                               <i class="ti ti-info-alt"></i>
                                                                         </a>
