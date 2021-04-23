@@ -556,10 +556,9 @@ function cancel_form(){
 </div>
 <!-- row -->
 
+<!-- ****************************************** modal ************************************** -->
 
-
-
-<!-- Modal -->
+<!-- Modal approver -->
 <div class="modal fade" id="add_app" role="dialog">
     <div class="modal-dialog">
 
@@ -637,7 +636,7 @@ function cancel_form(){
     </div>
     <!-- Modal dialog-->
 </div>
-<!-- Modal-->
+<!-- Modal approver-->
 
 <!-- Modal save -->
 <div class="modal fade" id="save_mbo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

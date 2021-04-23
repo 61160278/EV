@@ -50,6 +50,10 @@ class Evs_group extends MainController_avenxo {
 		$this->output('/consent/ev_group/v_add_group_skd');
 	}
 	
+	function manage_data()
+	{
+		$this->output('/consent/ev_group/v_add_group_sdm');
+	}
 	/*
 	* Evs_form
 	* Form
