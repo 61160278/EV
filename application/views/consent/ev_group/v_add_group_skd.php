@@ -4,12 +4,12 @@
 * Display v_add_group_skd
 * @input    
 * @output
-* @author Tippawan Aiemsaad, Jirayu Jaravichit
+* @author Tippawan Aiemsaad
 * @Create Date 2564-04-08
 */  
 ?>
-
-
+<!DOCTYPE html>
+<html>
 <!-- Add group contact-->
 	<div class="col-md-12">
 		<div class="panel panel-indigo">
@@ -25,15 +25,16 @@
 				<div class="panel-body">
 					<div class="panel panel-indigo" id="table_contact">
 						<div class="panel-heading">
-						
 						<div class="panel pull-right" id="addtable_filter">
 							<select name="example_length" class="form-control" aria-controls="example" >
 								<option value="">Select Group Contact </option>
-								
+								<?php foreach($gcp_gcm->result() as $row) {?>
+								<option value="<?php echo $row->gru_name; ?>"><?php echo $row->gru_name;?></option>
+								<?php } ?>
 							</select>
 					</div>
 						
-							<div class="panel-ctrls"></div>
+						<div class="panel-ctrls"></div>
 						</div>
 						
 						<div class="panel-body no-padding">
@@ -54,16 +55,22 @@
 									</thead>
 									
 									<tbody>
+									<?php
+									$num = 1;
+									foreach($gcp_gcm->result() as $row ) { ?>
 										<tr class="odd gradeX" align = 'center'>
 											<td>
 												<div class="checked block">
 													<input name="checkbox" type="checkbox">
 												</div>
 											</td>
-											<td>00000</td>
-											<td>KOBSOOK INTACHOT</td>
-											<td>6190</td>
+											<td><?php echo $row->gru_head_dept; ?></td>
+											<td><?php echo $row->Empname_eng." ".$row->Empsurname_eng; ?></td>
+											<td><?php echo $row->Sectioncode_ID; ?></td>
 										</tr>
+									<?php
+									$num++;
+									} ?>
 									</tbody>
 								</table>
 								<!-- table -->
@@ -94,7 +101,7 @@
 					
 					
 					<div class="DTTT btn-group pull-left mt-sm">
-						<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/index">					
+						<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">					
 							<button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
 						</a>
 					</div>
@@ -131,16 +138,22 @@
 								</thead>
 								
 								<tbody>
-									<tr class="odd gradeX" align = 'center'>
-										<td >
-											<div class="checked block">
-												<input name="example" type="checkbox">
-											</div>
-										</td>
-										<td>00453</td>
-										<td>KOBSOOK INTACHOT</td>
-										<td>6190</td>
-									</tr>
+								<?php
+									$num = 1;
+									foreach($gcp_gcm->result() as $row ) { ?>
+										<tr class="odd gradeX" align = 'center'>
+											<td>
+												<div class="checked block">
+													<input name="checkbox" type="checkbox">
+												</div>
+											</td>
+											<td><?php echo $row->gru_head_dept; ?></td>
+											<td><?php echo $row->Empname_eng." ".$row->Empsurname_eng; ?></td>
+											<td><?php echo $row->Sectioncode_ID; ?></td>
+										</tr>
+									<?php
+									$num++;
+									} ?>
 								</tbody>
 							</table>
 							<!-- table -->
@@ -192,6 +205,7 @@
 		<!-- head panel -->
 	</div>
 	<!-- head outside -->
+</html>
 
 <style>
 thead{

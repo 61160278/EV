@@ -177,6 +177,7 @@ function add_alert() {
 // add_alert
 </script>
 
+
 <!DOCTYPE html>
 <html>
 <div class="col-md-12">
@@ -266,8 +267,8 @@ function add_alert() {
                                                     <i class="ti ti-pencil-alt"></i>
                                                 </a>
                                                 <a class="btn btn-info" 
-                                                    href="<?php echo base_url(); ?>/ev_group/Evs_group/select_group">
-                                                    <i class="ti ti-info-alt"></i>
+                                                    href="<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_skd">
+                                                    <i class="ti ti-file"></i>
                                                 </a>
                                             </div>
                                         </td>
@@ -307,9 +308,9 @@ function add_alert() {
                         Edit
                     </a>
                     <a class="btn btn-info">
-                        <i class="ti ti-info-alt"></i>
+                        <i class="ti ti-file"></i>
                         &nbsp;
-                        Info
+                        Preview
                     </a>
                 </div>
             </div>
