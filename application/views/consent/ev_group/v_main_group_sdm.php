@@ -454,7 +454,7 @@ function check_data_edt(check) {
                                           <input type="text" class="form-control" id="grouptext" placeholder="HR AGM">
                                           <label  class="col-sm-12 control-label"></label>
                                                 <p id="alert_grouptext">
-                                                      <font color="red"><b>This data already to use! </b></font>
+                                                      <font color="red"><b>This data already to used! </b></font>
                                                 </p>
                                     </div>
                               </div>
