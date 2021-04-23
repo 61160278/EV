@@ -127,6 +127,7 @@ class Evs_form extends MainController_avenxo {
 			$this->dedm->dtm_weight = $resultMBO[$i];
 			$this->dedm->dtm_emp_id = $Emp_ID;
 			$this->dedm->dtm_year = 2021;
+			$this->dedm->dtm_evs_emp_id = $Emp_ID;
 			$this->dedm->update();
 		}
 		// for
