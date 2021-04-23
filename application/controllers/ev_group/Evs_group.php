@@ -230,6 +230,21 @@ class Evs_group extends MainController_avenxo {
 	}
 	// function select_company_skd
 
+
+
+
+
+	function get_group_sdm()
+	{
+		$this->load->model('M_evs_group','mggp');
+		$this->mggp->gru_company_id = 1;
+		$data = $this->mggp->get_all_group()->result();
+		echo json_encode($data);
+	}
+
+
+
+
 	function get_group_skd()
 	{
 		$this->load->model('M_evs_group','mggp');
