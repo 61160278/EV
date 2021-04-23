@@ -86,6 +86,7 @@ function emp_delete(emp_id) {
                                         <a data-toggle="modal" class="btn btn btn-danger"
                                             href="#Delete<?php echo $row->emp_id?>">
                                             <i class="ti ti-trash"></i>
+											
                                         </a>
 
                                     </div>
@@ -125,19 +126,8 @@ function emp_delete(emp_id) {
 
                 </div>
 
-            </div>
-            <div class="row">
-                <div class="col-sm-8" align="left">
-                    <button class="btn btn-inverse">BACK</button>
-                </div>
-                <div class="col-sm-4" align="right">
-                    <button class="btn btn-success btn" onclick="emp_insert()">Submit</button>
-
-
-                </div>
-                <!-- col-sm-4 -->
-            </div>
-        </div>
+           
+       </div>
 
     </div>
 </div>

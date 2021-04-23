@@ -125,7 +125,9 @@ function emp_insert(){
 			</div>
 			<div class="row">
 						<div class="col-sm-8" align= "left">
-							<button class="btn btn-inverse">BACK</button>
+						<a href="http://localhost/EV/ev_permission/Evs_permission/index">
+						<button class="btn btn-inverse"><i class="fa fa-mail-reply"></i> Back</button>
+						</a>
 						</div>
 						<div class="col-sm-4" align= "right">
 							<button class="btn btn-success btn" onclick="emp_insert()">Submit</button>
