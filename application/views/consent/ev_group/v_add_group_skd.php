@@ -61,7 +61,7 @@
 										<tr class="odd gradeX" align = 'center'>
 											<td>
 												<div class="checked block">
-													<input name="checkbox" type="checkbox">
+													<input name="checkbox" type="checkbox" multiple data-mdb-placeholder="Example placeholder" multiple>
 												</div>
 											</td>
 											<td><?php echo $row->gru_head_dept; ?></td>
@@ -219,7 +219,7 @@ tbody{
 }
 </style>
 
-<!-- RESIGN -->
+<!-- Model RESIGN -->
 <div class="modal fade" id="Resign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -247,7 +247,7 @@ tbody{
 					</div><!-- modal-dialog -->
 				</div><!-- /.modal-->
 				
-<!-- RESIGN -->
+<!-- Model RESIGN -->
 <div class="modal fade" id="Remove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
