@@ -39,7 +39,10 @@ class Evs_group extends MainController_avenxo {
 		$this->output('/consent/ev_group/v_select_company');
 	}
 	// function index
-	
+	function manage_data()
+	{
+		$this->output('/consent/ev_group/v_add_group_sdm');
+	}
 	/*
 	* Evs_form
 	* Form
