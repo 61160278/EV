@@ -320,6 +320,42 @@ function cancel_form() {
 function show_approve() {
     var approve1 = document.getElementById("approve1").value;
     var approve2 = document.getElementById("approve2").value;
+    console.log(approve1);
+    console.log(approve2);
+
+    var data_show = "";
+
+    data_show = '<div class="row">'
+    data_show += '<div class="col-md-2">'
+    data_show += ' <label class="control-label"><strong>'
+    data_show += '<font size="3px">Approver 1 : </font>'
+    data_show += '</strong></label>'
+    data_show += '</div>'
+    data_show += '<!-- col-2  -->'
+    data_show += '<div class="col-md-4">'
+    data_show += '<p id="app1">'+ approve1 +'</p>'
+    data_show += '</div>'
+    data_show += '<!-- col-4  -->'
+    data_show += '<!-- -------------------- -->'
+    data_show += '<div class="col-md-2">'
+    data_show += '<label class="control-label"><strong>'
+    data_show += '<font size="3px">Approver 2 : </font>'
+    data_show += '</strong></label>'
+    data_show += '</div>'
+    data_show += '<!-- col-2  -->'
+    data_show += '<div class="col-md-4">'
+    data_show += '<p id="app">'+ approve2 +'</p>'
+    data_show += '</div>'
+    data_show += '<!-- col-4  -->'
+    data_show += '<!-- -------------------- -->'
+    data_show += '</div>'
+    data_show += '<!-- row  -->'
+    data_show += '<hr>'
+
+
+    $("#show_approver").html(data_show);
+
+
 
 
 }
@@ -521,45 +557,9 @@ function show_approve() {
                         </table>
                         <!-- table -->
                         <hr>
-                        <br>
-                        <div class="row" id="show_approver">
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label class="control-label"><strong>
-                                                <font size="3px">Approver 1 : </font>
-                                            </strong></label>
-                                    </div>
-                                    <!-- col-2  -->
-                                    <div class="col-md-8">
-                                        <p id="app1">dddd</p>
-                                    </div>
-                                    <!-- col-4  -->
-                                </div>
-                                <!-- row  -->
-                            </div>
-                            <!-- col-6  -->
-                            <!-- -------------------- -->
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label class="control-label"><strong>
-                                                <font size="3px">Approver 2 : </font>
-                                            </strong></label>
-                                    </div>
-                                    <!-- col-2  -->
-                                    <div class="col-md-8">
-                                        <p id="app">daaaaddd</p>
-                                    </div>
-                                    <!-- col-4  -->
-                                </div>
-                                <!-- row  -->
-                            </div>
-                            <!-- col-6  -->
-                            <!-- -------------------- -->
+                        <div id="show_approver">
                         </div>
-                        <!-- row  -->
-                        <hr>
+                        <!-- show_approver -->
                         <br>
                         <div class="row">
                             <div class="col-md-6">
@@ -640,9 +640,9 @@ function show_approve() {
                     <div class="col-md-6" align="center">
                         <select class="form-control" id="approve1">
                             <option value="0">----- Please Select-----</option>
-                            <option value="1">Alaska</option>
-                            <option value="2">Hawaii</option>
-                            <option value="3">Kunanya</option>
+                            <option value="Alaska">Alaska</option>
+                            <option value="Hawaii">Hawaii</option>
+                            <option value="Kunanya">Kunanya</option>
                         </select>
                     </div>
                     <!-- col-6 -->
@@ -650,9 +650,9 @@ function show_approve() {
                     <div class="col-md-6" align="center">
                         <select class="form-control" id="approve2">
                             <option value="0">----- Please Select-----</option>
-                            <option value="1">Alaska</option>
-                            <option value="2">Hawaii</option>
-                            <option value="3">Kunanya</option>
+                            <option value="Alaska">Alaska</option>
+                            <option value="Hawaii">Hawaii</option>
+                            <option value="Kunanya">Kunanya</option>
                         </select>
                     </div>
                     <!-- col-6 -->
