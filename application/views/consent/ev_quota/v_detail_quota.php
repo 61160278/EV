@@ -179,7 +179,7 @@ window.onload = function() {
     context.strokeStyle = "black";
     var grad = ["S", "A", "B", "C", "D"];
     console.log(data[0]);
-    context.moveTo(GRAPH_LEFT + 25, (GRAPH_HEIGHT - arrQuota[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
+    context.moveTo(GRAPH_LEFT + 25, ((GRAPH_HEIGHT+ 11.5) - arrQuota[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
     //context.moveTo(GRAPH_LEFT + 25, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
 
     // draw reference value for day of the week  
@@ -193,7 +193,7 @@ window.onload = function() {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - arrQuota[i] / largest *
                 (GRAPH_HEIGHT / 5) * 4) + GRAPH_TOP);
         } else if (largest <= 40) {
-            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT +100, (GRAPH_HEIGHT - arrQuota[i] / largest *
+            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - arrQuota[i] / largest *
                 (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP);
         } else if (largest <= 60) {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - arrQuota[i] / largest *
