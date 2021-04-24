@@ -86,20 +86,20 @@ window.onload = function() {
     var arrQuota = [];
     var myCanvas = document.getElementById('testCanvas');
     var context = myCanvas.getContext('2d');
-    for (var i = 1; i <= 5; i++) {
-        //  var show_quota = document.getElementById("quota" + i).innerHTML;
-        var show_quota = document.getElementById("quota" + i).innerHTML;
-        //  var arrQuota = [5, 25, 40, 25, 5];
-        arrQuota[i] = show_quota;
-    } //for
-    arrQuota.shift();
-    console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
-    for (var a = 0; a < arrQuota.length ; a++) {
-        data[a]  = arrQuota[a] * 1; 
-      
-    } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
-     console.log(data);
-    //var arrQuota = [5, 25, 40, 25, 5];
+    // for (var i = 1; i <= 5; i++) {
+    //     //  var show_quota = document.getElementById("quota" + i).innerHTML;
+    //     var show_quota = document.getElementById("quota" + i).innerHTML;
+    //     //  var arrQuota = [5, 25, 40, 25, 5];
+    //     arrQuota[i] = show_quota;
+    // } //for
+    // arrQuota.shift();
+    // console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
+    // for (var a = 0; a < arrQuota.length; a++) {
+    //     data[a] = arrQuota[a] * 1;
+
+    // } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
+    // console.log(data);
+    var arrQuota = [5, 25, 60, 25, 5];
     var canvas = document.getElementById("testCanvas");
     var context = canvas.getContext("2d");
     var GRAPH_TOP = 25;
@@ -110,12 +110,12 @@ window.onload = function() {
     var GRAPH_HEIGHT = 350;
     // var GRAPH_WIDTH = 900;
 
-    var arrayLen = data.length;
+    var arrayLen = arrQuota.length;
     console.log(arrayLen);
     var largest = 0;
     for (var i = 0; i < arrayLen; i++) {
-        if (data[i] > largest) {
-            largest = data[i];
+        if (arrQuota[i] > largest) {
+            largest = arrQuota[i];
         }
     }
 
@@ -179,31 +179,32 @@ window.onload = function() {
     context.strokeStyle = "black";
     var grad = ["S", "A", "B", "C", "D"];
     console.log(data[0]);
-    context.moveTo(GRAPH_LEFT + 25, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
+    context.moveTo(GRAPH_LEFT + 25, (GRAPH_HEIGHT - arrQuota[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
     //context.moveTo(GRAPH_LEFT + 25, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
 
     // draw reference value for day of the week  
     context.fillText("S", 150, GRAPH_BOTTOM + 25);
 
 
-  
+
     for (var i = 1; i < arrayLen; i++) {
-        if(largest <=40){
-            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-            ((GRAPH_HEIGHT/ 5) * 2))  + GRAPH_TOP);
-         }//elseif(largest >20 && largest<=40 ){
-        //     context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-        //     (GRAPH_HEIGHT/ 5) * 3)  + GRAPH_TOP);
-        // }elseif(largest >40 && largest<=60){
-        //     context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-        //     (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP);
-        // }elseif(largest >60 && largest<=80){
-        //     context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-        //     GRAPH_HEIGHT/ 5)  + GRAPH_TOP);
-        // }else{
-        //     context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-        //     GRAPH_HEIGHT) + GRAPH_TOP);
-        // }
+
+        if (largest <= 20) {
+            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - arrQuota[i] / largest *
+                (GRAPH_HEIGHT / 5) * 4) + GRAPH_TOP);
+        } else if (largest <= 40) {
+            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT +100, (GRAPH_HEIGHT - arrQuota[i] / largest *
+                (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP);
+        } else if (largest <= 60) {
+            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - arrQuota[i] / largest *
+                (GRAPH_HEIGHT / 5) * 3) + GRAPH_TOP);
+        } else if (largest <= 80) {
+            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - arrQuota[i] / largest *
+                (GRAPH_HEIGHT / 5)) + GRAPH_TOP);
+        } else {
+            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - arrQuota[i] / largest *
+                GRAPH_HEIGHT) + GRAPH_TOP);
+        }
 
         //context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i]  / largest *GRAPH_HEIGHT) + GRAPH_TOP);
         // context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
@@ -323,7 +324,7 @@ window.onload = function() {
                         </div>
                         <div class="panel-body">
 
-                            <canvas id="testCanvas" width="900" height="450"></canvas>
+                            <canvas id="testCanvas" width="1000" height="450"></canvas>
 
                             <!-- <canvas id="myCanvas" width="400" height="400" ></canvas>  -->
 
