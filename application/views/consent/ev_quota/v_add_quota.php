@@ -68,18 +68,22 @@ function check_quota() {
 
 }
 window.onchange = function() {
-    
-    var arrQuota = [];
+    var data = [];
+    var data = [];
     var myCanvas = document.getElementById('testCanvas');
     var context = myCanvas.getContext('2d');
     for (var i = 1; i <= 5; i++) {
         var show_quota = document.getElementById("quota" + i).value;
-        // var arrQuota = [5, 25, 40, 25, 5];
-        arrQuota[i] = show_quota;
+        // var data = [5, 25, 40, 25, 5];
+        data[i] = show_quota;
 
     } //for
-    arrQuota.shift();
-    console.log(arrQuota);
+    data.shift();
+    console.log(data);
+    for (var a = 0; a < data.length ; a++) {
+        data[a]  = data[a] * 1; 
+      
+    }
     
     var canvas = document.getElementById( "testCanvas" );  
     var context = canvas.getContext( "2d" );  
@@ -91,12 +95,12 @@ window.onchange = function() {
     var GRAPH_HEIGHT = 350;  
     var GRAPH_WIDTH = 1000;  
   
-    var arrayLen = arrQuota.length;  
+    var arrayLen = data.length;  
   
     var largest = 0;  
     for( var i = 0; i < arrayLen; i++ ){  
-        if( arrQuota[ i ] > largest ){  
-            largest = arrQuota[ i ];  
+        if( data[ i ] > largest ){  
+            largest = data[ i ];  
         }  
     }  
   
@@ -152,11 +156,11 @@ window.onchange = function() {
     context.lineJoin = "round";  
     context.strokeStyle = "black";  
   var grad = ["S", "A", "B", "C", "D"];
-    context.moveTo( GRAPH_LEFT +25, ( GRAPH_HEIGHT - arrQuota[ 0 ] / largest * GRAPH_HEIGHT ) + GRAPH_TOP );  
+    context.moveTo( GRAPH_LEFT +25, ( GRAPH_HEIGHT - data[ 0 ] / largest * GRAPH_HEIGHT ) + GRAPH_TOP );  
     // draw reference value for day of the week  
     context.fillText( "S", 150, GRAPH_BOTTOM + 25);  
     for( var i = 1; i < arrayLen; i++ ){  
-        context.lineTo( GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, ( GRAPH_HEIGHT - arrQuota[ i ] / largest * GRAPH_HEIGHT ) + GRAPH_TOP );  
+        context.lineTo( GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, ( GRAPH_HEIGHT - data[ i ] / largest * GRAPH_HEIGHT ) + GRAPH_TOP );  
         // draw reference value for day of the week  
         context.fillText( grad[i], GRAPH_RIGHT / arrayLen * i+150 , GRAPH_BOTTOM + 25); 
         
