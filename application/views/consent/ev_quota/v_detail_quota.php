@@ -54,6 +54,7 @@ tbody:hover {
 </style>
 
 <script>
+
 /*
  * check_quota_plan
  * Display v_detail_quota
@@ -62,6 +63,7 @@ tbody:hover {
  * @author   Lapatrada Puttamongkol
  * @Create Date 2564-04-20
  */
+
 function check_quota_plan() {
 
     var check = "";
@@ -82,6 +84,12 @@ function check_quota_plan() {
 
 // window.onchange = function() {
 window.onload = function() {
+//     $(document).ready(function() {
+//     $('.btn-warning').tooltip({
+//         title: "Hooray",
+//         placement: "top"
+//     });
+// });
     var data = [];
     var arrQuota = [];
     var myCanvas = document.getElementById('testCanvas');
@@ -201,7 +209,7 @@ window.onload = function() {
                 (GRAPH_HEIGHT / 5) * 3) + GRAPH_TOP);
         } else if (largest <= 80) {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-                (GRAPH_HEIGHT / 5)*4) + GRAPH_TOP);
+                (GRAPH_HEIGHT / 5) * 4) + GRAPH_TOP);
         } else {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
                 GRAPH_HEIGHT) + GRAPH_TOP);
