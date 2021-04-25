@@ -51,10 +51,48 @@ td {
 tbody:hover {
     background-color: #ffffff;
 }
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
 </style>
 
 <script>
-
 /*
  * check_quota_plan
  * Display v_detail_quota
@@ -80,16 +118,33 @@ function check_quota_plan() {
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
     } //for
 }
+// $(document).ready(function() {
+//     $('.tooltiptext').tooltip({
+// var data = [];
+// var arrQuota = [];
+// var myCanvas = document.getElementById('testCanvas');
+// var context = myCanvas.getContext('2d');
+// for (var i = 1; i <= 5; i++) {
+//     //  var show_quota = document.getElementById("quota" + i).innerHTML;
+//     var show_quota = document.getElementById("quota" + i).innerHTML;
+//     //  var arrQuota = [5, 25, 40, 25, 5];
+//     arrQuota[i] = show_quota;
+// } //for
+// arrQuota.shift();
+// console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
+// for (var a = 0; a < arrQuota.length; a++) {
+//     data[a] = arrQuota[a] * 1;
 
-
-// window.onchange = function() {
-window.onload = function() {
-//     $(document).ready(function() {
-//     $('.btn-warning').tooltip({
+// } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
+// console.log(data);
 //         title: "Hooray",
 //         placement: "top"
 //     });
 // });
+
+// window.onchange = function() {
+window.onload = function() {
+
     var data = [];
     var arrQuota = [];
     var myCanvas = document.getElementById('testCanvas');
@@ -188,15 +243,15 @@ window.onload = function() {
     context.strokeStyle = "black";
     var grad = ["S", "A", "B", "C", "D"];
     console.log(data[0]);
-    context.moveTo(GRAPH_LEFT + 25, ((GRAPH_HEIGHT + 11.5) - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
+    context.moveTo(GRAPH_LEFT + 25, ((GRAPH_HEIGHT + 5) - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
     //context.moveTo(GRAPH_LEFT + 25, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
 
     // draw reference value for day of the week  
-    context.fillText("S", 150, GRAPH_BOTTOM + 25);
+    //context.fillText("S", 150, GRAPH_BOTTOM + 25);
 
 
 
-    for (var i = 1; i < arrayLen; i++) {
+    for (var i = 0; i < arrayLen; i++) {
 
         if (largest <= 20) {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
@@ -210,6 +265,8 @@ window.onload = function() {
         } else if (largest <= 80) {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
                 (GRAPH_HEIGHT / 5) * 4) + GRAPH_TOP);
+            //document.write(grad[i] + "," + data[i)];
+
         } else {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
                 GRAPH_HEIGHT) + GRAPH_TOP);
@@ -219,7 +276,7 @@ window.onload = function() {
         // context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
         //     GRAPH_HEIGHT) + GRAPH_TOP);
         // draw reference value for day of the week  
-        context.fillText(grad[i], (GRAPH_RIGHT - 25) / arrayLen * i + 150, GRAPH_BOTTOM + 25);
+        context.fillText(grad[i], (GRAPH_RIGHT) / arrayLen * i + 130, GRAPH_BOTTOM + 25);
 
     }
 
@@ -291,7 +348,7 @@ window.onload = function() {
                                     <td><b>Quota</b></td>
                                     <td id="quota1" value="5">5</td>
                                     <td id="quota2" value="25">25</td>
-                                    <td id="quota3" value="40">80</td>
+                                    <td id="quota3" value="60">60</td>
                                     <td id="quota4" value="25">25</td>
                                     <td id="quota5" value="5">5</td>
                                     <td>100</td>
@@ -335,6 +392,9 @@ window.onload = function() {
 
                             <canvas id="testCanvas" width="1000" height="450"></canvas>
 
+                            <!-- <div class="well well-lg tooltips" data-trigger="hover" data-original-title=".well.well-lg">
+
+                            </div> -->
                             <!-- <canvas id="myCanvas" width="400" height="400" ></canvas>  -->
 
                         </div>
