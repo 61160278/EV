@@ -67,28 +67,24 @@ function check_quota_plan() {
         console.log(value_quotaPlan);
     } //for 
 }
+
 function check_quota_actual() {
 
-var check = "";
-var actual = 0;
+    var check = "";
+    var actual = 0;
 
-for (var i = 1; i <= 6; i++) {
-	check = document.getElementById("quotActual" + i);
+    for (var i = 1; i <= 6; i++) {
+        check = document.getElementById("quotActual" + i).value;
+        if (check != " ") {
+            actual += parseInt(check);
+        }
+        // if 
 
-	if (check != "") {
-		actual += parseInt(check);
-	}
-	// if 
-	if (actual > 100) {
-		$("#show_quota").css("color", "red");
-	} else {
-		$("#show_quota").css("color", "#000000");
-	}
-	document.getElementById("quotaActualToT").innerHTML = actual;
+        document.getElementById("show_Actual").innerHTML = actual;
 
-	//console.log(value_quota);
-}
-// for i
+        //console.log(value_quota);
+    }
+    // for i
 }
 
 
@@ -374,7 +370,7 @@ window.onload = function() {
                                                     <input type="text" class="form-control" id="quotaActual6"
                                                         onchang="check_quota_actual()">
                                                 </td>
-                                                <td id="quotaActualToT"></td>
+                                                <td id="show_Actual"></td>
                                             </tr>
                                         </div>
                                         <div class="col-md-1">
