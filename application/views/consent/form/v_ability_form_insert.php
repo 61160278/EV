@@ -115,7 +115,7 @@ $(document).ready(function() {
             table_ready += '<option value = "0"> Please select</option>';
             //start foreach
             data.forEach((row, i) => {
-
+                
                 //start if
                 if (value_pos_id == row.ept_pos_id) {
                     table_ready += '<option value="' + row.cpn_id + '">' + row

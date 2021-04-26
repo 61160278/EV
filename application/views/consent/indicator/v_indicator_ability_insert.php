@@ -41,6 +41,7 @@ var index_position = 1; //index position
 var chack_insert_component = 0; //chack component one use
 var arr_save_index_arr_add_pos = [];
 $(document).ready(function() {
+    //arr_save_index_arr_add_pos = index-1;
     arr_save_index_arr_add_pos.push(index-1);
     $("#addExpected").hide();
     $("#btn_mange").hide();
@@ -235,14 +236,14 @@ $(document).ready(function() {
     }); // add Postion
 
     $(document).on('click', '.btn_remove', function() {
-        number_arry = NULL;
         var button_id = $(this).attr("id");
         console.log("button : "+button_id);
         for(i = 0; i< arr_save_index_arr_add_pos.length; i++){
-             if(arr_save_index_arr_add_pos[i] == button_id){arr_save_index_arr_add_pos.splice(i,1) }
+             chack_arr = parseInt(arr_save_index_arr_add_pos[i])
+             console.log("chack_arr : "+(chack_arr));
+             if(parseInt(chack_arr) == parseInt(button_id)-1){arr_save_index_arr_add_pos.splice(i,1); }
              console.log("inx_i : "+arr_save_index_arr_add_pos[i]);
         }
-
         console.log(arr_save_index_arr_add_pos);
         $('#row_expected' + button_id + '').remove();
 
@@ -329,7 +330,7 @@ function insert_data_key_component_and_expected_behavior() {
     
     for (i = 0; i < table_for_count; i++) {
         table_arr_for_count = document.getElementsByName("arr_add_pos_" + (arr_save_index_arr_add_pos[i]+1) + "").length
-        console.log("arr_add : "+arr_save_index_arr_add_pos[i]);
+        console.log("arr_add : "+arr_save_index_arr_add_pos[i]+1);
         console.log("arr_add_pos : "+table_arr_for_count);
         arr_save_posittion_other_to_database[i] = [table_arr_for_count];
     
@@ -427,7 +428,7 @@ function insert_data_key_component_and_expected_behavior() {
         // success 
     });
     // ajex 
-     document.getElementById("form_reset").reset();
+     //document.getElementById("form_reset").reset();
 }
 
 <?php

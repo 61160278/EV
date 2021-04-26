@@ -185,7 +185,7 @@ window.onchange = function() {
                 (GRAPH_HEIGHT / 5) * 3) + GRAPH_TOP);
         } else if (largest = 80) {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-                (GRAPH_HEIGHT / 5)*4) + GRAPH_TOP);
+                (GRAPH_HEIGHT / 5) * 4) + GRAPH_TOP);
         } else {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
                 GRAPH_HEIGHT) + GRAPH_TOP);
@@ -199,8 +199,8 @@ window.onchange = function() {
 
     }
 
-    context.stroke();  
-}   
+    context.stroke();
+}
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
