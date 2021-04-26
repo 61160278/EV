@@ -41,14 +41,14 @@ var index_position = 1; //index position
 var chack_insert_component = 0; //chack component one use
 var arr_save_index_arr_add_pos = [];
 $(document).ready(function() {
-    //arr_save_index_arr_add_pos = index-1;
-    arr_save_index_arr_add_pos.push(index-1);
+
+    arr_save_index_arr_add_pos.push(index - 1);
     $("#addExpected").hide();
     $("#btn_mange").hide();
     console.log(arr_save_index_arr_add_pos);
     $("#addExpected").click(function() {
         index++;
-        arr_save_index_arr_add_pos.push(index-1);
+        arr_save_index_arr_add_pos.push(index - 1);
         console.log(arr_save_index_arr_add_pos);
         $('#tr_Expected').append(
             '<div id="row_expected' + index + '">' +
@@ -237,12 +237,14 @@ $(document).ready(function() {
 
     $(document).on('click', '.btn_remove', function() {
         var button_id = $(this).attr("id");
-        console.log("button : "+button_id);
-        for(i = 0; i< arr_save_index_arr_add_pos.length; i++){
-             chack_arr = parseInt(arr_save_index_arr_add_pos[i])
-             console.log("chack_arr : "+(chack_arr));
-             if(parseInt(chack_arr) == parseInt(button_id)-1){arr_save_index_arr_add_pos.splice(i,1); }
-             console.log("inx_i : "+arr_save_index_arr_add_pos[i]);
+        console.log("button : " + button_id);
+        for (i = 0; i < arr_save_index_arr_add_pos.length; i++) {
+            chack_arr = parseInt(arr_save_index_arr_add_pos[i])
+            console.log("chack_arr : " + (chack_arr));
+            if (parseInt(chack_arr) == parseInt(button_id) - 1) {
+                arr_save_index_arr_add_pos.splice(i, 1);
+            }
+            console.log("inx_i : " + arr_save_index_arr_add_pos[i]);
         }
         console.log(arr_save_index_arr_add_pos);
         $('#row_expected' + button_id + '').remove();
@@ -327,19 +329,21 @@ function insert_data_key_component_and_expected_behavior() {
         arr_save_posittion_to_database[i] = document.getElementsByName("arr_add_pos")[i].value;
     }
 
-    
+
     for (i = 0; i < table_for_count; i++) {
-        table_arr_for_count = document.getElementsByName("arr_add_pos_" + (arr_save_index_arr_add_pos[i]+1) + "").length
-        console.log("arr_add : "+arr_save_index_arr_add_pos[i]+1);
-        console.log("arr_add_pos : "+table_arr_for_count);
+        table_arr_for_count = document.getElementsByName("arr_add_pos_" + (arr_save_index_arr_add_pos[i] + 1) + "")
+            .length
+        console.log("arr_add : " + arr_save_index_arr_add_pos[i] + 1);
+        console.log("arr_add_pos : " + table_arr_for_count);
         arr_save_posittion_other_to_database[i] = [table_arr_for_count];
-    
-            for (j = 0; j < table_arr_for_count; j++) {
-                arr_save_posittion_other_to_database[i][j] = document.getElementsByName("arr_add_pos_" + (arr_save_index_arr_add_pos[i]+1) +"")[j].value;
-                console.log(arr_save_posittion_other_to_database[i][j]);
-                console.log(" i : " + i + " J : " + j);
-            }
-       
+
+        for (j = 0; j < table_arr_for_count; j++) {
+            arr_save_posittion_other_to_database[i][j] = document.getElementsByName("arr_add_pos_" + (
+                arr_save_index_arr_add_pos[i] + 1) + "")[j].value;
+            console.log(arr_save_posittion_other_to_database[i][j]);
+            console.log(" i : " + i + " J : " + j);
+        }
+
     }
     console.log(arr_save_posittion_other_to_database);
 
@@ -390,17 +394,17 @@ function insert_data_key_component_and_expected_behavior() {
             table_data += '<td>'
             for (i = 0; i < table_for_count; i++) {
                 table_data += '' + arr_save_posittion_to_database[i] + "<br>"
-               
-             
-                 table_arr_for_count = arr_save_posittion_other_to_database[i].length
-                    for (j = 0; j < table_arr_for_count; j++) {
-                      
+
+
+                table_arr_for_count = arr_save_posittion_other_to_database[i].length
+                for (j = 0; j < table_arr_for_count; j++) {
+
                     if (arr_save_posittion_other_to_database[i][j] != 0) {
-                        
+
                         table_data += '' + arr_save_posittion_other_to_database[i][j] + "<br>"
                     }
-                    }
-            
+                }
+
                 table_data += '<hr>'
             }
             table_data += '</td>'
@@ -428,7 +432,7 @@ function insert_data_key_component_and_expected_behavior() {
         // success 
     });
     // ajex 
-     //document.getElementById("form_reset").reset();
+    document.getElementById("form_reset").reset();
 }
 
 <?php
