@@ -51,7 +51,6 @@ $(document).ready(function() {
     check_quota_plan()
     check_quota_actual()
 });
-
 function check_quota_plan() {
 
     var check = "";
@@ -69,20 +68,16 @@ function check_quota_plan() {
 }
 
 function check_quota_actual() {
-
     var check = "";
     var actual = 0;
-
+	
     for (var i = 1; i <= 6; i++) {
-        check = document.getElementById("quotActual" + i).value;
-        if (check != " ") {
+        check = document.getElementById("quotaActual"+i).value;
+        if (check != "") {
             actual += parseInt(check);
         }
         // if 
-
         document.getElementById("show_Actual").innerHTML = actual;
-
-        //console.log(value_quota);
     }
     // for i
 }
@@ -153,6 +148,7 @@ window.onload = function() {
     context.moveTo(GRAPH_RIGHT, GRAPH_BOTTOM);
     context.lineTo(GRAPH_LEFT, GRAPH_BOTTOM); //x
     context.lineTo(GRAPH_LEFT, GRAPH_TOP); //y  
+	//context.lineTo(GRAPH_LEFT+GRAPH_RIGHT, GRAPH_TOP);
     context.stroke();
 
     // draw reference line  เส้นที่ 5
@@ -212,6 +208,7 @@ window.onload = function() {
             context.lineTo((GRAPH_RIGHT - 25) / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] /
                 largest *
                 (GRAPH_HEIGHT / 5)) + GRAPH_TOP);
+				
         } else if (largest <= 40) {
             context.lineTo((GRAPH_RIGHT) / arrayLen * i + (GRAPH_LEFT + 10), (GRAPH_HEIGHT - data[i] / largest *
                 (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP);
@@ -347,28 +344,28 @@ window.onload = function() {
                                             <tr class="orange2">
                                                 <td><b>Actual</b></td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotActual1"
-                                                        onchang="check_quota_actual()">
+                                                    <input type="text" class="form-control" id="quotaActual1"
+                                                        onchange="check_quota_actual()">
                                                 </td>
                                                 <td>
                                                     <input type="text" class="form-control" id="quotaActual2"
-                                                        onchang="check_quota_actual()">
+                                                        onchange="check_quota_actual()">
                                                 </td>
                                                 <td>
                                                     <input type="text" class="form-control" id="quotaActual3"
-                                                        onchang="check_quota_actual()">
+                                                        onchange="check_quota_actual()">
                                                 </td>
                                                 <td>
                                                     <input type="text" class="form-control" id="quotaActual4"
-                                                        onchang="check_quota_actual()">
+                                                        onchange="check_quota_actual()">
                                                 </td>
                                                 <td>
                                                     <input type="text" class="form-control" id="quotaActual5"
-                                                        onchang="check_quota_actual()">
+                                                        onchange="check_quota_actual()">
                                                 </td>
                                                 <td>
                                                     <input type="text" class="form-control" id="quotaActual6"
-                                                        onchang="check_quota_actual()">
+                                                        onchange="check_quota_actual()">
                                                 </td>
                                                 <td id="show_Actual"></td>
                                             </tr>
@@ -376,12 +373,12 @@ window.onload = function() {
                                         <div class="col-md-1">
                                             <tr class="orange2">
                                                 <td><b>Quota Actual</b></td>
-                                                <td id="show_quotActual1"></td>
-                                                <td id="show_quotActual2"></td>
-                                                <td id="show_quotActual3"></td>
-                                                <td id="show_quotActual4"></td>
-                                                <td id="show_quotActual5"></td>
-                                                <td id="show_quotActual6"></td>
+                                                <td id="show_quotaActual1"></td>
+                                                <td id="show_quotaActual2"></td>
+                                                <td id="show_quotaActual3"></td>
+                                                <td id="show_quotaActual4"></td>
+                                                <td id="show_quotaActual5"></td>
+                                                <td id="show_quotaActual6"></td>
                                                 <td></td>
                                             </tr>
                                         </div>
@@ -395,7 +392,7 @@ window.onload = function() {
                             </table>
                             <br>
                             <br>
-                            <h1>hi</h1>
+                            
                             <canvas id="testCanvas" width="1000" height="450"></canvas>
 
                             <!-- //<div id="line-example" style="position: relative;">
