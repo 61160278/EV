@@ -50,7 +50,9 @@ class M_evs_employee extends Da_evs_employee {
 				ON gsec.Sectioncode = emp.Sectioncode_ID
 				INNER JOIN dbmc.position AS pos
 				ON pos.Position_ID = emp.Position_ID
-				WHERE Emp_ID=?" ;
+				INNER JOIN evs_database.evs_employee AS evs_emp
+				ON evs_emp.emp_employee_id = emp.Emp_ID
+				WHERE emp.Emp_ID=?" ;
 		$query = $this->db->query($sql,array($this->Emp_ID));
 		return $query;
 	}//get_by_empid

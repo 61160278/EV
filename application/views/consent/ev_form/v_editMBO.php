@@ -138,6 +138,7 @@ function editmbo() {
 function update_dataMBO() {
 
     var check_emp_id = document.getElementById("emp_id").innerHTML;
+    var evs_emp_id = document.getElementById("evs_emp_id").value;
     count = document.getElementById("row_index").value;
     console.log(count);
     var idMBO = [];
@@ -165,6 +166,7 @@ function update_dataMBO() {
             "dataMBO": dataMBO,
             "resultMBO": resultMBO,
             "Emp_ID": check_emp_id,
+            "evs_emp_id":evs_emp_id,
             "count": count
         }
     });
@@ -433,7 +435,7 @@ function show_approve() {
                         <br>
                         <?php foreach($emp_info->result() as $row){?>
                         <input type="text" id="pos_id" value="<?php echo $row->Position_ID; ?>" hidden>
-
+                        <input type="text" id="evs_emp_id" value="<?php echo $row->emp_id; ?>" hidden>
                         <div class="row">
                             <div class="col-md-2">
                                 <label class="control-label"><strong>
@@ -607,7 +609,7 @@ function show_approve() {
                         <div class="row">
                             <div class="col-md-6">
                                 <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
-                                    <button class="btn btn-inverse" id="btn_cencel_back">CANCEL</button>
+                                    <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
                                 </a>
                                 <!-- cancel to back to main  -->
                                 <button class="btn btn-inverse" id="btn_cencel_clear"

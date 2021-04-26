@@ -40,10 +40,10 @@ class Da_evs_data_mbo extends evs_model {
 	
 	function insert() {
 	 
-	 	$sql = "INSERT INTO evs_database.evs_data_mbo (dtm_mbo, dtm_weight,dtm_emp_id,dtm_year,dtm_evs_emp_id)
-	 	VALUES(?,?,?,?,?)";
+	 	$sql = "INSERT INTO evs_database.evs_data_mbo (dtm_mbo, dtm_weight,dtm_emp_id,dtm_evs_emp_id)
+	 	VALUES(?,?,?,?)";
 		 
-	 	$this->db->query($sql, array($this->dtm_mbo, $this->dtm_weight, $this->dtm_emp_id, $this->dtm_year, $this->dtm_evs_emp_id));
+	 	$this->db->query($sql, array($this->dtm_mbo, $this->dtm_weight, $this->dtm_emp_id, $this->dtm_evs_emp_id));
 	 }
 	 
 	/*
@@ -58,10 +58,10 @@ class Da_evs_data_mbo extends evs_model {
 	function update() {
 	
 	 	$sql = "UPDATE evs_database.evs_data_mbo 
-	 			SET dtm_mbo=?, dtm_weight=?, dtm_emp_id=?, dtm_year=? , dtm_evs_emp_id=?
+	 			SET dtm_mbo=?, dtm_weight=?, dtm_emp_id=? , dtm_evs_emp_id=?
 	 			WHERE dtm_id=?";
 		
-		$this->db->query($sql, array($this->dtm_mbo, $this->dtm_weight, $this->dtm_emp_id, $this->dtm_year, $this->dtm_evs_emp_id, $this->dtm_id));
+		$this->db->query($sql, array($this->dtm_mbo, $this->dtm_weight, $this->dtm_emp_id, $this->dtm_evs_emp_id, $this->dtm_id));
 		 
 	 }
 
