@@ -65,11 +65,11 @@ function check_quota() {
         //console.log(value_quota);
     }
     // for i
-
 }
 window.onchange = function() {
     var data = [];
     var arrQuota = [];
+    var show_value = [];
     var myCanvas = document.getElementById('testCanvas');
     var context = myCanvas.getContext('2d');
     for (var i = 1; i <= 6; i++) {
@@ -165,18 +165,28 @@ window.onchange = function() {
     context.lineJoin = "round";
     context.strokeStyle = "black";
     var grad = ["S", "A", "B", "B-", "C", "D"];
-    console.log(data[0]);
+
     // context.moveTo(GRAPH_LEFT + 25, ((GRAPH_HEIGHT + 26.2) - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
     //context.moveTo(GRAPH_LEFT + 25, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
 
     // draw reference value for day of the week  
     //context.fillText("S", 150, GRAPH_BOTTOM + 25);
+    // context.fillStyle = "red";
+    for (var k = 0; k < data.length; k++) {
+        show_value[k] = data[k];
+        context.fillStyle = "Blue";
+    }
+    console.log(show_value);
+
+    console.log(data[0]);
 
     for (var i = 0; i < arrayLen; i++) {
 
         if (largest = 20) {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
                 GRAPH_HEIGHT / 5) + GRAPH_TOP);
+            context.fillText(show_value[i], GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] /
+                largest * GRAPH_HEIGHT / 5) + GRAPH_TOP);
         } else if (largest = 40) {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
                 (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP);

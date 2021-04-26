@@ -166,7 +166,7 @@ function update_dataMBO() {
             "dataMBO": dataMBO,
             "resultMBO": resultMBO,
             "Emp_ID": check_emp_id,
-            "evs_emp_id":evs_emp_id,
+            "evs_emp_id": evs_emp_id,
             "count": count
         }
     });
@@ -323,27 +323,12 @@ function check_approve() {
     var approve1 = document.getElementById("approve1").value;
     var approve2 = document.getElementById("approve2").value;
 
-    if (approve1 != "0" && approve2 != "0") {
+    if (approve2 != "0") {
         console.log(1);
         show_approve()
         return true;
     }
     // if
-    else if (approve1 == "0" && approve2 == "0") {
-        $("#approve1").css("background-color", "#ffe6e6");
-        $("#approve1").css("border-style", "solid");
-
-        $("#approve2").css("background-color", "#ffe6e6");
-        $("#approve2").css("border-style", "solid");
-        return false;
-    }
-    // else if
-    else if (approve1 == "0") {
-        $("#approve1").css("background-color", "#ffe6e6");
-        $("#approve1").css("border-style", "solid");
-        return false;
-    }
-    // else if
     else if (approve2 == "0") {
         $("#approve2").css("background-color", "#ffe6e6");
         $("#approve2").css("border-style", "solid");
@@ -368,39 +353,87 @@ function clear_css_approve2() {
 function show_approve() {
     var approve1 = document.getElementById("approve1").value;
     var approve2 = document.getElementById("approve2").value;
+    var evs_emp_id = document.getElementById("evs_emp_id").value;
+
     console.log(approve1);
     console.log(approve2);
-
     var data_show = "";
 
-    data_show = '<div class="row">'
-    data_show += '<div class="col-md-2">'
-    data_show += ' <label class="control-label"><strong>'
-    data_show += '<font size="3px">Approver 1 : </font>'
-    data_show += '</strong></label>'
-    data_show += '</div>'
-    data_show += '<!-- col-2  -->'
-    data_show += '<div class="col-md-4">'
-    data_show += '<p id="app1">' + approve1 + '</p>'
-    data_show += '</div>'
-    data_show += '<!-- col-4  -->'
-    data_show += '<!-- -------------------- -->'
-    data_show += '<div class="col-md-2">'
-    data_show += '<label class="control-label"><strong>'
-    data_show += '<font size="3px">Approver 2 : </font>'
-    data_show += '</strong></label>'
-    data_show += '</div>'
-    data_show += '<!-- col-2  -->'
-    data_show += '<div class="col-md-4">'
-    data_show += '<p id="app">' + approve2 + '</p>'
-    data_show += '</div>'
-    data_show += '<!-- col-4  -->'
-    data_show += '<!-- -------------------- -->'
-    data_show += '</div>'
-    data_show += '<!-- row  -->'
-    data_show += '<hr>'
-    $("#show_approver").html(data_show);
-    $("#add_app").modal('hide');
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/save_approve",
+        data: {
+            "approve1": approve1,
+            "approve2": approve2,
+            "evs_emp_id": evs_emp_id
+
+        },
+        success: function(data) {
+            console.log(data);
+            var app1 = "";
+            var app2 = "";
+            var id_app1 = "";
+            var id_app2 = "";
+
+            data['app1'].forEach((row, index) => {
+                app1 = row.Empname_eng + " " + row.Empsurname_eng;
+                id_app1 = row.Emp_id;
+            });
+            // foreach app 1
+            data['app2'].forEach((row, index) => {
+                app2 = row.Empname_eng + " " + row.Empsurname_eng;
+                id_app2 = row.Emp_id;
+            });
+            // foreach app 1
+
+            data_show = '<div class="row">'
+            data_show += '<div class="col-md-2">'
+            data_show += ' <label class="control-label"><strong>'
+            data_show += '<font size="3px">Approver 1 : </font>'
+            data_show += '</strong></label>'
+            data_show += '</div>'
+            data_show += '<!-- col-2  -->'
+            data_show += '<div class="col-md-4">'
+            data_show += '<p id="app1">' + app1 + '</p>'
+            data_show += '</div>'
+            data_show += '<!-- col-4  -->'
+            data_show += '<!-- -------------------- -->'
+            data_show += '<div class="col-md-2">'
+            data_show += '<label class="control-label"><strong>'
+            data_show += '<font size="3px">Approver 2 : </font>'
+            data_show += '</strong></label>'
+            data_show += '</div>'
+            data_show += '<!-- col-2  -->'
+            data_show += '<div class="col-md-4">'
+            data_show += '<p id="app">' + app2 + '</p>'
+            data_show += '</div>'
+            data_show += '<!-- col-4  -->'
+            data_show += '<!-- -------------------- -->'
+            data_show += '</div>'
+            data_show += '<!-- row  -->'
+            data_show += '<hr>'
+            $("#approve1").val(id_app1);
+            $("#approve1").val(id_app2);
+
+
+            $("#add_app").modal('hide');
+            $("#btn_edit").hide();
+
+            $("#show_approver").html(data_show);
+
+
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+
+
+
 
 
 }
@@ -685,9 +718,9 @@ function show_approve() {
                     <div class="col-md-6" align="center">
                         <select class="form-control" id="approve1" onchange="clear_css_approve1()">
                             <option value="0">----- Please Select-----</option>
-                            <option value="Alaska">Alaska</option>
-                            <option value="Hawaii">Hawaii</option>
-                            <option value="Kunanya">Kunanya</option>
+                            <option value="00029">Alaska</option>
+                            <option value="00030">Hawaii</option>
+                            <option value="00031">Kunanya</option>
                         </select>
                     </div>
                     <!-- col-6 -->
@@ -695,9 +728,9 @@ function show_approve() {
                     <div class="col-md-6" align="center">
                         <select class="form-control" id="approve2" onchange="clear_css_approve2()">
                             <option value="0">----- Please Select-----</option>
-                            <option value="Alaska">Alaska</option>
-                            <option value="Hawaii">Hawaii</option>
-                            <option value="Kunanya">Kunanya</option>
+                            <option value="00029">Alaska</option>
+                            <option value="00030">Hawaii</option>
+                            <option value="00031">Kunanya</option>
                         </select>
                     </div>
                     <!-- col-6 -->

@@ -10,10 +10,48 @@
 ?>
 
 <script>
-function select_group_name(value) {
-    console.log(value);
+function manage_group(){
+      var gru_id = document.getElementById("select").value;
+      var data_row = " ";
+      $.ajax({
+            type: "post",
+            url: "<?php echo base_url(); ?>/ev_group/Evs_group/query_man",
+            data: {
+                  "gru_id": gru_id
+            },
+            dataType: "JSON",
+            success: function(data, status) {
+                  console.log(status)
+                  console.log(data)
+                  data.forEach((row, index) => {
+                        data_row += '<tr>'
+                        data_row += '<td>'
+                        data_row += '<div class="checked block">'
+                        data_row += '<input name="checkbox" type="checkbox">'
+                        data_row += '</div>'                          
+                        data_row += '</td>'
+                        data_row += '<td>'
+                        data_row += row.Emp_ID
+                        data_row += '</td>'
+                        data_row += '<td>'
+                        data_row += row.Empname_eng+" "+row.Empsurname_eng;
+                        data_row += '</td>'
+                        data_row += '<td>'
+                        data_row += row.emp_section_code_ID
+                        data_row += '</td>'
+                        data_row += '</tr>'
+
+            })
+            console.log(data_row)
+            $("#select_data").html(data_row)
+      }//success
+      
+
+      });
+
+           
+
 }
-// function test
 
 
 </script>
@@ -39,11 +77,12 @@ function select_group_name(value) {
             <div class="panel-body">
                 <div class="panel panel-indigo" id="table_contact">
                     <div class="panel-heading">
+
                         <div class="panel pull-right" id="addtable_filter">
-                            <select name="example_length" class="form-control" aria-controls="example" onChange = "select_group_name(value)">
+                            <select onchange ="manage_group()" id = "select" name="example_length" class="form-control" aria-controls="example">
                                 <option value="">Select Group Contact </option>
-                                <?php foreach($gcp_gcm->result() as $row) {?>
-                                <option value="<?php echo $row->gru_name; ?>">
+                                <?php foreach($gcp_gdk->result() as $row) {?>
+                                <option value="<?php echo $row->gru_id; ?>">
                                     <?php echo $row->gru_name;?>
                                 </option>
                                 <?php } ?>
@@ -80,26 +119,9 @@ function select_group_name(value) {
                                     </tr>
                                 </thead>
 
-                                <tbody>
-                                    <?php
-									$num = 1;
-									foreach($gcp_gcm->result() as $row ) { ?>
-                                    <tr class="odd gradeX" align='center'>
-                                        <td>
-                                            <input name="checkbox" type="checkbox" multiple
-                                                data-mdb-placeholder="Example placeholder">
-                                            <!-- <div class="checked block">
-													<input name="checkbox" type="checkbox" multiple data-mdb-placeholder="Example placeholder" multiple>
-												</div> -->
-                                        </td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <?php
-									$num++;
-									} ?>
-                                </tbody>
+                                <tbody id="select_data">
+                                                     
+                                                </tbody>
                             </table>
                             <!-- table -->
                         </div>
@@ -144,7 +166,7 @@ function select_group_name(value) {
                 <div class="panel panel-indigo" id="panel-addtable">
                     <div class="panel-heading">
                         <?php
-							foreach($group_skd->result() as $row ) { ?>
+							foreach($grpskd->result() as $row ) { ?>
                         <h2>
                             <font size="4px"><?php echo $row->gru_name; ?> </font>
                         </h2>
@@ -181,16 +203,23 @@ function select_group_name(value) {
                                 </thead>
 
                                 <tbody>
-                                    <tr class="odd gradeX" align='center'>
-                                        <td>
-                                            <div class="checked block">
-                                                <input name="example" type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td><?php echo $row->gru_head_dept; ?></td>
-                                        <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng; ?></td>
-                                        <td><?php echo $row->Sectioncode_ID; ?></td>
-                                    </tr>
+                                <?php
+									$num = 1;
+									foreach($group_skd->result() as $row ) { ?>
+                                                      <tr class="odd gradeX" align='center'>
+                                                            <td>
+                                                                  <div class="checked block">
+                                                                        <input name="checkbox" type="checkbox">
+                                                                  </div>
+                                                            </td>
+                                                            <td><?php echo $row->Emp_ID; ?></td>
+                                                            <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng; ?>
+                                                            </td>
+                                                            <td><?php echo $row->Sectioncode_ID; ?></td>
+                                                      </tr>
+                                                      <?php
+									$num++;
+									} ?>
                                 </tbody>
                             </table>
                             <!-- table -->

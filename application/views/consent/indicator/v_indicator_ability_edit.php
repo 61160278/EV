@@ -14,11 +14,17 @@
 var index = 1; //index table
 var index_position = 1; //index position
 var chack_insert_component = 0; //chack component one use
+var arr_save_index_arr_add_pos = [];
 $(document).ready(function() {
+
+    arr_save_index_arr_add_pos.push(index - 1);
     $("#addExpected").hide();
     $("#btn_mange").hide();
+    console.log(arr_save_index_arr_add_pos);
     $("#addExpected").click(function() {
         index++;
+        arr_save_index_arr_add_pos.push(index - 1);
+        console.log(arr_save_index_arr_add_pos);
         $('#tr_Expected').append(
             '<div id="row_expected' + index + '">' +
             '<!-- Start insert expected  -->' +
@@ -99,11 +105,11 @@ $(document).ready(function() {
             '</div>' +
             '</div>' +
             '<br>' +
-            '<hr>'+
+            '<hr>' +
             '</div>' +
-            '</div>' 
+            '</div>'
 
-            );
+        );
 
         $('#addPostion' + index).click(function() {
             $('#tr_Position_' + $(this).attr("value") + '').append(
@@ -201,10 +207,20 @@ $(document).ready(function() {
         index_position++;
 
     }); // add Postion
-   
+
 
     $(document).on('click', '.btn_remove', function() {
         var button_id = $(this).attr("id");
+        console.log("button : " + button_id);
+        for (i = 0; i < arr_save_index_arr_add_pos.length; i++) {
+            chack_arr = parseInt(arr_save_index_arr_add_pos[i])
+            console.log("chack_arr : " + (chack_arr));
+            if (parseInt(chack_arr) == parseInt(button_id) - 1) {
+                arr_save_index_arr_add_pos.splice(i, 1);
+            }
+            console.log("inx_i : " + arr_save_index_arr_add_pos[i]);
+        }
+        console.log(arr_save_index_arr_add_pos);
         $('#row_expected' + button_id + '').remove();
 
     }); //delect expected
@@ -293,11 +309,6 @@ function insert_data_key_component_and_expected_behavior() {
     arr_save_posittion_to_database = []; //save posittion to database
     arr_save_posittion_other_to_database = [];
 
-    if (chack_table_id == 0) {
-        save_table_insert_data = parseInt(document.getElementById("insert_table").value);
-        index_next_table = save_table_insert_data + 1;
-    }
-
     save_key_component_en_todatabase = document.getElementsByName("arr_add_key_component_en")[0]
         .value; //save key component en to database
     save_key_component_th_todatabase = document.getElementsByName("arr_add_key_component_th")[0]
@@ -311,19 +322,28 @@ function insert_data_key_component_and_expected_behavior() {
 
 
     for (i = 0; i < table_for_count; i++) {
-
-        table_arr_for_count = document.getElementsByName("arr_add_pos_" + (i + 1) + "").length
-        arr_save_posittion_other_to_database[i] = [table_arr_for_count];
         arr_save_expected_en_todatabase[i] = document.getElementsByName("arr_add_expected_en")[i].value;
         arr_save_expected_th_todatabase[i] = document.getElementsByName("arr_add_expected_th")[i].value;
         arr_save_posittion_to_database[i] = document.getElementsByName("arr_add_pos")[i].value;
+    }
+
+
+    for (i = 0; i < table_for_count; i++) {
+        table_arr_for_count = document.getElementsByName("arr_add_pos_" + (arr_save_index_arr_add_pos[i] + 1) + "")
+            .length
+        console.log("arr_add : " + arr_save_index_arr_add_pos[i] + 1);
+        console.log("arr_add_pos : " + table_arr_for_count);
+        arr_save_posittion_other_to_database[i] = [table_arr_for_count];
+
         for (j = 0; j < table_arr_for_count; j++) {
-            arr_save_posittion_other_to_database[i][j] = document.getElementsByName("arr_add_pos_" + (i + 1) + "")[j]
-                .value;
+            arr_save_posittion_other_to_database[i][j] = document.getElementsByName("arr_add_pos_" + (
+                arr_save_index_arr_add_pos[i] + 1) + "")[j].value;
             console.log(arr_save_posittion_other_to_database[i][j]);
             console.log(" i : " + i + " J : " + j);
         }
+
     }
+    console.log(arr_save_posittion_other_to_database);
 
     $.ajax({
         type: "post",
@@ -379,10 +399,14 @@ function insert_data_key_component_and_expected_behavior() {
                 table_arr_for_count = arr_save_posittion_other_to_database[i].length
                 for (j = 0; j < table_arr_for_count; j++) {
 
-                    if(arr_save_posittion_other_to_database[i][j] != 0){table_data += '' + arr_save_posittion_other_to_database[i][j] + '<hr>'}
+                    if (arr_save_posittion_other_to_database[i][j] != 0) {
+                        table_data += '' + arr_save_posittion_other_to_database[i][j] + '<hr>'
+                    }
 
                 }
-                if(arr_save_posittion_other_to_database[i][j] == 0){table_data += '' + '<hr>'}
+                if (arr_save_posittion_other_to_database[i][j] == 0) {
+                    table_data += '' + '<hr>'
+                }
 
 
                 table_data += '</div>'
@@ -434,9 +458,8 @@ function insert_data_key_component_and_expected_behavior() {
         // success
     });
     // ajex
-    $('#tr_Expected').html("");
-    //document.getElementById("form_reset").reset();
-    window.location.href = "<?php echo base_url();?>/Evs_ability_indicators_form/indicator_ability_view_edit_data/<?php echo $competency_id; ?>";
+    window.location.href =
+        "<?php echo base_url();?>/Evs_ability_indicators_form/indicator_ability_view_edit_data/<?php echo $competency_id; ?>";
 }
 
 
@@ -473,13 +496,14 @@ function update_data_key_component_and_expected_behavior() {
         arr_save_expected_id[i] = [table_arr_for_count];
         arr_save_expected_en_todatabase[i] = document.getElementsByName("arr_add_expected_en_edit")[i].value;
         arr_save_expected_th_todatabase[i] = document.getElementsByName("arr_add_expected_th_edit")[i].value;
-        
+
         console.log(arr_save_expected_en_todatabase[i]);
         console.log(arr_save_expected_th_todatabase[i]);
-  
+
         for (j = 0; j < table_arr_for_count; j++) {
             arr_save_expected_id[i][j] = document.getElementsByName("id_exp_" + (i + 1) + "")[j].value;
-            arr_save_posittion_other_to_database[i][j] = document.getElementsByName("arr_edit_pos_" + (i + 1) + "")[j].value;
+            arr_save_posittion_other_to_database[i][j] = document.getElementsByName("arr_edit_pos_" + (i + 1) + "")[j]
+                .value;
             console.log(arr_save_expected_id[i][j]);
             console.log(arr_save_posittion_other_to_database[i][j]);
             console.log(" i : " + i + " J : " + j);
@@ -535,14 +559,18 @@ function update_data_key_component_and_expected_behavior() {
 
                 table_data += '</div>'
                 table_data += '<div class="col-2">'
-     
+
                 table_arr_for_count = arr_save_posittion_other_to_database[i].length
                 for (j = 0; j < table_arr_for_count; j++) {
 
-                    if(arr_save_posittion_other_to_database[i][j] != 0){table_data += '' + arr_save_posittion_other_to_database[i][j] + '<hr>'}
+                    if (arr_save_posittion_other_to_database[i][j] != 0) {
+                        table_data += '' + arr_save_posittion_other_to_database[i][j] + '<hr>'
+                    }
 
                 }
-                if(arr_save_posittion_other_to_database[i][j] == 0){table_data += '' + '<hr>'}
+                if (arr_save_posittion_other_to_database[i][j] == 0) {
+                    table_data += '' + '<hr>'
+                }
 
 
                 table_data += '</div>'
@@ -595,7 +623,8 @@ function update_data_key_component_and_expected_behavior() {
     });
     // ajex
     //$("#edit_form").hide();
-    window.location.href = "<?php echo base_url();?>/Evs_ability_indicators_form/indicator_ability_view_edit_data/<?php echo $competency_id; ?>";
+    window.location.href =
+        "<?php echo base_url();?>/Evs_ability_indicators_form/indicator_ability_view_edit_data/<?php echo $competency_id; ?>";
 }
 
 <?php
@@ -643,7 +672,8 @@ function pos_level(id) {
             drop_pos += '<option>Select position</option>'
             //Start forEach
             data.forEach((row, index) => {
-                drop_pos += '<option value="' + row.Position_name + '">' + row.Position_name + '</option>'
+                drop_pos += '<option value="' + row.Position_name + '">' + row.Position_name +
+                    '</option>'
             });
             //End forEach
             drop_pos += '</select>'
@@ -707,7 +737,8 @@ function pos_level_add(id) {
             drop_pos += '<option>Select position</option>'
             //Start forEach
             data.forEach((row, index) => {
-                drop_pos += '<option value="' + row.Position_name + '">' + row.Position_name + '</option>'
+                drop_pos += '<option value="' + row.Position_name + '">' + row.Position_name +
+                    '</option>'
             });
             //End forEach
             drop_pos += '</select>'
@@ -755,11 +786,13 @@ function pos_level_main_edit(id) {
 
             // Start select
             drop_pos += '<div class="col-8">'
-            drop_pos += '<select name="arr_edit_pos_'+ index_Expected +'" id="select" class="form-control">'
+            drop_pos += '<select name="arr_edit_pos_' + index_Expected +
+                '" id="select" class="form-control">'
             drop_pos += '<option>Select position</option>'
             //Start forEach
             data.forEach((row, index) => {
-                drop_pos += '<option value="' + row.Position_name + '">' + row.Position_name + '</option>'
+                drop_pos += '<option value="' + row.Position_name + '">' + row.Position_name +
+                    '</option>'
             });
             //End forEach
             drop_pos += '</select>'
@@ -919,7 +952,7 @@ function edit_key_and_expected(kcp_id) {
                 if (chack_kcp_key_component_detail_en != row_key.kcp_key_component_detail_en) {
                     chack_kcp_key_component_detail_en = row_key.kcp_key_component_detail_en;
 
-                    
+
                     table_data += '<!-- Start add key component -->'
                     table_data += '<div class="row">'
                     table_data += '<div class="col-xl-12">'
@@ -932,7 +965,7 @@ function edit_key_and_expected(kcp_id) {
                         '<textarea type="text" id="text_key_component_en" name="arr_add_key_component_en_edit"'
                     table_data += 'placeholder="Enter Key component" class="form-control">' +
                         row_key.kcp_key_component_detail_en + '</textarea>'
-                        
+
                     table_data += '</div>'
                     table_data += '<div class="col-3">'
                     table_data += '<label class=" form-control-label">Key component TH : </label>'
@@ -948,7 +981,7 @@ function edit_key_and_expected(kcp_id) {
                     table_data += '<!-- end add key component -->'
                     table_data += '<hr>'
                     data.forEach((row_expected, index) => {
-                        
+
                         if (row_key.kcp_key_component_detail_en == row_expected
                             .kcp_key_component_detail_en) {
 
@@ -970,7 +1003,7 @@ function edit_key_and_expected(kcp_id) {
                                     'placeholder="Enter Expected" class="form-control" style="resize: none"'
                                 table_data += 'required>' + row_expected
                                     .ept_expected_detail_en + '</textarea>'
-                                   
+
                                 table_data += '</div>'
                                 table_data += '</div>'
                                 table_data += '<!-- row -->'
@@ -1008,61 +1041,98 @@ function edit_key_and_expected(kcp_id) {
                                             Staff = "";
                                             Officier = "";
                                             index_ept++;
-                                            if (row_expected.position_level_id == "1") {
+                                            if (row_expected.position_level_id ==
+                                                "1") {
                                                 Top_Management = "selected";
                                             }
-                                            if (row_expected.position_level_id == "2") {
+                                            if (row_expected.position_level_id ==
+                                                "2") {
                                                 Middle_Management = "selected";
                                             }
-                                            if (row_expected.position_level_id == "3") {
+                                            if (row_expected.position_level_id ==
+                                                "3") {
                                                 Junior_Management = "selected";
                                             }
-                                            if (row_expected.position_level_id == "4") {
+                                            if (row_expected.position_level_id ==
+                                                "4") {
                                                 Staff = "selected";
                                             }
-                                            if (row_expected.position_level_id == "5") {
+                                            if (row_expected.position_level_id ==
+                                                "5") {
                                                 Officier = "selected";
                                             }
                                             table_data +=
                                                 '<!-- Start input position  -->'
-                                            table_data +=  '<input type= "hidden"  name = "id_exp_'+index_loop+'" value = "'+row_expected.ept_id+'">' 
+                                            table_data +=
+                                                '<input type= "hidden"  name = "id_exp_' +
+                                                index_loop + '" value = "' +
+                                                row_expected.ept_id + '">'
                                             table_data += '<div class="row">'
                                             table_data += '<div class="col-6">'
                                             table_data += '<div class="row">'
-                                            table_data +='<div class="col-4" align="right">'
-                                            table_data +='<label for="textarea-input" class=" form-control-label">Position level:</label>'
+                                            table_data +=
+                                                '<div class="col-4" align="right">'
+                                            table_data +=
+                                                '<label for="textarea-input" class=" form-control-label">Position level:</label>'
                                             table_data += '</div>'
                                             table_data += '<!-- col-4  -->'
                                             table_data += '<div class="col-8">'
-                                            table_data +='<select id="pos_lv_edit_'+index_ept+'" class="form-control" onchange="pos_level_main_edit(id)">'
-                                            table_data +='<option >Select position level</option>'
-                                            table_data += '<option value="1" ' +Top_Management +'>Top Management</option>'
-                                            table_data += '<option value="2" ' + Middle_Management +'>Middle Management</option>'
-                                            table_data += '<option value="3" ' + Junior_Management +'>Junior Management</option>'
-                                            table_data += '<option value="4" ' + Staff + '>Staff</option>'
-                                            table_data += '<option value="5" ' +  Officier + '>Officier</option>'
+                                            table_data +=
+                                                '<select id="pos_lv_edit_' +
+                                                index_ept +
+                                                '" class="form-control" onchange="pos_level_main_edit(id)">'
+                                            table_data +=
+                                                '<option >Select position level</option>'
+                                            table_data += '<option value="1" ' +
+                                                Top_Management +
+                                                '>Top Management</option>'
+                                            table_data += '<option value="2" ' +
+                                                Middle_Management +
+                                                '>Middle Management</option>'
+                                            table_data += '<option value="3" ' +
+                                                Junior_Management +
+                                                '>Junior Management</option>'
+                                            table_data += '<option value="4" ' +
+                                                Staff + '>Staff</option>'
+                                            table_data += '<option value="5" ' +
+                                                Officier + '>Officier</option>'
                                             table_data += '</select>'
                                             table_data += '</div>'
-                                            table_data +='<!-- seclect position level  -->'
+                                            table_data +=
+                                                '<!-- seclect position level  -->'
                                             table_data += '</div>'
                                             table_data += '<!-- row  -->'
                                             table_data += '</div>'
                                             table_data += '<!-- col-6  -->'
-                                            table_data +=  '<input type= "hidden" id = "id_index_edit' + index_ept + '" value = "'+index_loop+'">' 
+                                            table_data +=
+                                                '<input type= "hidden" id = "id_index_edit' +
+                                                index_ept + '" value = "' +
+                                                index_loop + '">'
                                             table_data += '<div class="col-6">'
-                                            table_data += '<div class = "row" id = "reset_position_'+index_ept+'">'
-                                            table_data += '<div class="col-4" align="right">'
-                                            table_data += '<label for="textarea-input"'
-                                            table_data += 'class=" form-control-label">Position :</label>'
+                                            table_data +=
+                                                '<div class = "row" id = "reset_position_' +
+                                                index_ept + '">'
+                                            table_data +=
+                                                '<div class="col-4" align="right">'
+                                            table_data +=
+                                                '<label for="textarea-input"'
+                                            table_data +=
+                                                'class=" form-control-label">Position :</label>'
                                             table_data += '</div>'
                                             table_data += '<div class="col-8" >'
-                                            
-                                         
-                                            table_data += '<select name="arr_edit_pos_'+index_loop+'" id="select" class="form-control">'
+
+
+                                            table_data +=
+                                                '<select name="arr_edit_pos_' +
+                                                index_loop +
+                                                '" id="select" class="form-control">'
                                             table_data +=
                                                 '<option >Select position level</option>'
-                                            table_data += '<option selected  value="' + row_expected.Position_name + '">' +
-                                                row_expected.Position_name + '</option>'
+                                            table_data +=
+                                                '<option selected  value="' +
+                                                row_expected.Position_name + '">' +
+                                                row_expected.Position_name +
+                                                '</option>'
                                             table_data += '</select>'
                                             table_data += '</div>'
                                             table_data += '</div>'
@@ -1072,7 +1142,9 @@ function edit_key_and_expected(kcp_id) {
                                             table_data += '</div>'
                                             table_data += '<!-- row  -->'
                                             table_data += '<br>'
-                                            table_data += '<div id="tr_Position_edit_'+index_loop+'">'
+                                            table_data +=
+                                                '<div id="tr_Position_edit_' +
+                                                index_loop + '">'
                                             table_data += '</div>'
                                             table_data += '<br>'
                                         }
@@ -1080,9 +1152,9 @@ function edit_key_and_expected(kcp_id) {
                                     }
                                 });
 
-                       
+
                                 table_data += '<hr>'
-                         
+
                                 index_loop++;
                             }
 
@@ -1106,7 +1178,7 @@ function edit_key_and_expected(kcp_id) {
 
             });
             $('#add_table_edit_key_and_expected').html(table_data);
-            
+
         }
         // success
     });
