@@ -186,7 +186,6 @@ $(document).ready(function() {
             data: {
                 "pos_id": value_pos_id
             },
-            dataType: "JSON",
             success: function(data) {
 
                 // start tr
