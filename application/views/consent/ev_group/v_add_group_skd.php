@@ -136,7 +136,7 @@
                 <div class="panel panel-indigo" id="panel-addtable">
                     <div class="panel-heading">
                         <?php
-							foreach($gcp_gcm->result() as $row ) { ?>
+							foreach($group_skd->result() as $row ) { ?>
                         <h2>
                             <font size="4px"><?php echo $row->gru_name; ?> </font>
                         </h2>
@@ -221,7 +221,7 @@
                 <!-- panel-addtable -->
 
                 <div class="DTTT btn-group pull-right mt-sm">
-                    <a href="<?php echo base_url(); ?>/ev_group/Evs_group/index">
+                    <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">
                         <button type="button" class="btn btn-success" data-dismiss="modal">SUBMIT</button>
                     </a>
                 </div>
