@@ -40,10 +40,6 @@ class Evs_group extends MainController_avenxo {
 	}
 	// function index
 	
-	function manage_data()
-	{
-		$this->output('/consent/ev_group/v_add_group_sdm');
-	}
 	/*
 	* Evs_form
 	* Form
@@ -209,11 +205,14 @@ class Evs_group extends MainController_avenxo {
 
 
 
-	function select_group_company_sdm()
+	function select_group_company_sdm($gru_id)
 	{
 		$this->load->model('M_evs_group','mgc');
 		$this->mgc->gru_company_id = 1;
 		$data['gcp_gcm'] = $this->mgc->get_all_com();
+		$this->load->model('M_evs_group','mevg');
+		$this->mevg->gru_id = $gru_id;
+		$data['group_sdm'] = $this->mevg->get_by_id();
 		$this->output('/consent/ev_group/v_add_group_sdm',$data);
 	}
 	// function select_company_skd
@@ -253,7 +252,7 @@ class Evs_group extends MainController_avenxo {
 		echo json_encode($data);
 	}
 		
-		
+	
 		
 	
 	

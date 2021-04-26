@@ -44,6 +44,18 @@ class M_evs_group extends Da_evs_group {
 	
 	}//get_all_com
 
+	function get_by_id(){	
+		$sql = "SELECT *
+				FROM evs_database.evs_group as evg
+				LEFT JOIN dbmc.employee as emp ON emp.Emp_ID = evg.gru_head_dept
+				WHERE evg.gru_id = ? ";
+		$query = $this->db->query($sql, array($this->gru_id));
+		return $query;
+	
+	}//get_by_id
+
+	
+
 	function get_name_emp_by_IDemp_sdm(){	
 		$sql = "SELECT *
 				FROM dbmc.employee
@@ -79,5 +91,6 @@ class M_evs_group extends Da_evs_group {
 		return $query;
 	
 	}//get_all_com
+
 } 
 ?>
