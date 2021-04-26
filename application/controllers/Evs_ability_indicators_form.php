@@ -339,13 +339,13 @@ class Evs_ability_indicators_form extends MainController {
 						$this->debv->ept_expected_detail_en = $this->input->post("arr_save_expected_en_todatabase[".$i."]");
 						$this->debv->ept_expected_detail_th = $this->input->post("arr_save_expected_th_todatabase[".$i."]");
 	
-						$add_position_other = count($this->input->post("arr_save_posittion_other_to_database[".$i."]"));//max loop key component
+					
 	
-					for($k = 0; $k < $add_position_other; $k++){
+				
 					//start foreach 
 					foreach ($data_pos->result() as $row) {
 							//start if
-						if($row->Position_name==$this->input->post("arr_save_posittion_other_to_database[".$i."][".$k."]") ){
+						if($row->Position_name==$this->input->post("arr_save_posittion_other_to_database[".$i."][".$m."]") ){
 							$this->debv->ept_pos_id = $row->Position_ID;
 						}
 						//end if
@@ -353,7 +353,7 @@ class Evs_ability_indicators_form extends MainController {
 						//end foreach
 						$this->debv->ept_kcp_id = $key_component_id;
 						$this->debv->insert();
-					}//for loop K
+				
 					
 				}//if chack_arr_posittion_other_to_database
 			}//for loop M
