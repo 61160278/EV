@@ -140,7 +140,7 @@
                         <div class="panel panel-indigo" id="panel-addtable">
                               <div class="panel-heading">
                                     <h2>
-                                          <font size="4px">HR AGM</font>
+                                          <font size="4px"><?php echo $row->gru_name; ?></font>
                                     </h2>
                                     <div class="panel-ctrls"></div>
                               </div>
