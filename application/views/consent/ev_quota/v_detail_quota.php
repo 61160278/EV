@@ -244,16 +244,16 @@ window.onload = function() {
     var grad = ["S", "A", "B", "B-", "C", "D"];
     console.log(data[0]);
    
-    context.moveTo(156, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
+    context.moveTo(GRAPH_LEFT+((GRAPH_BOTTOM - 25) - GRAPH_HEIGHT), (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
    
     //context.moveTo(GRAPH_LEFT + 25, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
 
     // draw reference value for day of the week  
-    //context.fillText("S", 150, GRAPH_BOTTOM + 25);
+    context.fillText("S", 150, GRAPH_BOTTOM + 25);
 
 
 
-    for (var i = 0; i < arrayLen; i++) {
+    for (var i = 1; i < arrayLen; i++) {
 
         if (largest <= 20) {
 
@@ -354,8 +354,8 @@ window.onload = function() {
                                     <td><b>Quota</b></td>
                                     <td id="quota1" value="5">5</td>
                                     <td id="quota2" value="25">25</td>
-                                    <td id="quota3" value="60">40</td>
-                                    <td id="quota4" value="25">40</td>
+                                    <td id="quota3" value="60">60</td>
+                                    <td id="quota4" value="25">60</td>
                                     <td id="quota5" value="25">25</td>
                                     <td id="quota6" value="5">5</td>
                                     <td>100</td>
