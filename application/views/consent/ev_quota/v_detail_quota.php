@@ -149,7 +149,7 @@ window.onload = function() {
     var arrQuota = [];
     var myCanvas = document.getElementById('testCanvas');
     var context = myCanvas.getContext('2d');
-    for (var i = 1; i <= 5; i++) {
+    for (var i = 1; i <= 6; i++) {
         //  var show_quota = document.getElementById("quota" + i).innerHTML;
         var show_quota = document.getElementById("quota" + i).innerHTML;
         //  var arrQuota = [5, 25, 40, 25, 5];
@@ -241,9 +241,11 @@ window.onload = function() {
     context.beginPath();
     context.lineJoin = "round";
     context.strokeStyle = "black";
-    var grad = ["S", "A", "B", "C", "D"];
+    var grad = ["S", "A", "B", "B-", "C", "D"];
     console.log(data[0]);
-    context.moveTo(GRAPH_LEFT + 25, ((GRAPH_HEIGHT + 5) - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
+   
+    context.moveTo(156, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
+   
     //context.moveTo(GRAPH_LEFT + 25, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
 
     // draw reference value for day of the week  
@@ -254,15 +256,17 @@ window.onload = function() {
     for (var i = 0; i < arrayLen; i++) {
 
         if (largest <= 20) {
-            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-                GRAPH_HEIGHT / 5) + GRAPH_TOP);
+
+            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] /
+                largest *
+                (GRAPH_HEIGHT / 5)) + GRAPH_TOP);
         } else if (largest <= 40) {
-            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
+            context.lineTo((GRAPH_RIGHT) / arrayLen * i + (GRAPH_LEFT + 10), (GRAPH_HEIGHT - data[i] / largest *
                 (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP);
         } else if (largest <= 60) {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
                 (GRAPH_HEIGHT / 5) * 3) + GRAPH_TOP);
-        
+            //document.getE;
         } else if (largest <= 80) {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
                 (GRAPH_HEIGHT / 5) * 4) + GRAPH_TOP);
@@ -334,12 +338,13 @@ window.onload = function() {
                             <div class="col-md-1">
                                 <tr class="orange">
                                     <th>Grade</th>
-                                    <th style="width: 20%;" id="grad1">S</th>
-                                    <th style="width: 20%;" id="grad2">A</th>
-                                    <th style="width: 20%;" id="grad3">B</th>
-                                    <th style="width: 20%;" id="grad4">C</th>
-                                    <th style="width: 20%;" id="grad5">D</th>
-                                    <th style="width:20%;">Total</th>
+                                    <th style="width: 15%;" id="grad1">S</th>
+                                    <th style="width: 15%;" id="grad2">A</th>
+                                    <th style="width: 15%;" id="grad3">B</th>
+                                    <th style="width: 15%;" id="grad4">B-</th>
+                                    <th style="width: 15%;" id="grad5">C</th>
+                                    <th style="width: 15%;" id="grad6">D</th>
+                                    <th style="width:15%;">Total</th>
                                 </tr>
                             </div>
                         </thead>
@@ -349,9 +354,10 @@ window.onload = function() {
                                     <td><b>Quota</b></td>
                                     <td id="quota1" value="5">5</td>
                                     <td id="quota2" value="25">25</td>
-                                    <td id="quota3" value="60">60</td>
-                                    <td id="quota4" value="25">25</td>
-                                    <td id="quota5" value="5">5</td>
+                                    <td id="quota3" value="60">40</td>
+                                    <td id="quota4" value="25">40</td>
+                                    <td id="quota5" value="25">25</td>
+                                    <td id="quota6" value="5">5</td>
                                     <td>100</td>
                                 </tr>
                             </div>
@@ -362,7 +368,8 @@ window.onload = function() {
                                     <td id="show_quotaPlan2"></td>
                                     <td id="show_quotaPlan3"></td>
                                     <td id="show_quotaPlan4"></td>
-                                    <td id="show_quotaPlan5"> </td>
+                                    <td id="show_quotaPlan5"></td>
+                                    <td id="show_quotaPlan6"> </td>
                                     <td>
                                         <input type="text" class="form-control" id="quotaPlan"
                                             onchange="check_quota_plan()">
