@@ -123,7 +123,7 @@ window.onchange = function() {
     context.moveTo(GRAPH_RIGHT, GRAPH_TOP);
     context.lineTo(GRAPH_LEFT, GRAPH_TOP);
     // draw reference value for hours  
-    context.fillText(100, GRAPH_LEFT - 25, GRAPH_TOP);
+    context.fillText(100, GRAPH_LEFT - 30, GRAPH_TOP);
     context.stroke();
     // draw reference line  เส้นที่ 4
     context.beginPath();
