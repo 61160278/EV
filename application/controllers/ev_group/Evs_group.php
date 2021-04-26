@@ -226,8 +226,8 @@ class Evs_group extends MainController_avenxo {
 		$this->mgc->gru_company_id = 2;
 		$data['gcp_gcm'] = $this->mgc->get_all_com();
 		$this->load->model('M_evs_group','mevg');
-		$this->mgc->gru_id = $gru_id;
-		$data['gcp_gcm'] = $this->mgc->get_by_id();
+		$this->mevg->gru_id = $gru_id;
+		$data['group_skd'] = $this->mevg->get_by_id();
 		$this->output('/consent/ev_group/v_add_group_skd',$data);
 	}
 	// function select_company_skd
