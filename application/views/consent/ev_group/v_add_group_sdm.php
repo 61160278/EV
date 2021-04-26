@@ -187,9 +187,9 @@
                                                                         <input name="example" type="checkbox">
                                                                   </div>
                                                             </td>
-                                                            <td>00453</td>
-                                                            <td>KOBSOOK INTACHOT</td>
-                                                            <td>6190</td>
+                                                            <td><?php echo $row->gru_head_dept; ?></td>
+                                                            <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng; ?></td>
+                                                            <td><?php echo $row->Sectioncode_ID; ?></td>
                                                       </tr>
                                                 </tbody>
                                           </table>
