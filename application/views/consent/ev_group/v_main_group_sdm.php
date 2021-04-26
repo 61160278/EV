@@ -353,7 +353,7 @@ function check_data_edt(check) {
                                                                               <i class="ti ti-pencil-alt"></i>
                                                                         </a>
                                                                         <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_sdm"
-                                                                              class="btn btn-info">
+                                                                              class="btn btn-info" >
                                                                               <i class="ti ti-info-alt"></i>
                                                                         </a>
                                                                   </div>
