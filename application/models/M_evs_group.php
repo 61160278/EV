@@ -92,5 +92,23 @@ class M_evs_group extends Da_evs_group {
 	
 	}//get_all_com
 
+
+	function get_group(){	
+		$sql = "SELECT *
+				FROM evs_database.evs_employee as evg
+				LEFT JOIN dbmc.employee as em
+				ON em.Emp_ID = evg.emp_employee_id
+				WHERE evg.emp_ghr_id = ? ";
+		$query = $this->db->query($sql, array($this->emp_ghr_id));
+		return $query;
+	
+	}//get_group
+
+
+
+
+
+
+
 } 
 ?>
