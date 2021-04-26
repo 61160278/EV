@@ -19,6 +19,7 @@
 <script>
 $(document).ready(function() {
     $("#show_noti").hide();
+    $("#show_noti_his").hide();
 });
 // document ready
 
@@ -29,6 +30,14 @@ function onChangeBG() {
     $("#show_noti").hide();
 }
 // function onChangeBG
+
+function onChangeBG_his() {
+    $("#emp_id_his").css("background-color", "#ffffff");
+    $("#emp_id_his").css("border-style", "solid");
+    $("#emp_id_his").css("border-color", "#d9d9d9");
+    $("#show_noti_his").hide();
+}
+// function onChangeBG_his
 
 
 function validate() {
@@ -49,10 +58,30 @@ function validate() {
         return true;
     }
     // else 
-
-
 }
 // function varidate
+
+function validate_his() {
+
+var check = document.getElementById("emp_id_his").value;
+console.log(check);
+
+if (check == "" || check.length <= 4 || check.length >= 8) {
+    $("#emp_id_his").css("background-color", "#ffe6e6");
+    $("#emp_id_his").css("border-style", "solid");
+    $("#emp_id_his").css("border-color", "#e60000");
+    $("#show_noti_his").show();
+
+    return false;
+}
+// if 
+else {
+    return true;
+}
+// else 
+}
+// function varidate_his
+
 </script>
 
 <div class="row">
@@ -75,14 +104,14 @@ function validate() {
                     <!-- col-4  -->
 
                     <div class="col-md-4" align="center">
-                        <a href="" disable>
+                        <a href="">
                             <img src="<?php echo base_url();?>/pic/evaluation.png" height="350px">
                         </a>
                     </div>
                     <!-- col-4  -->
 
                     <div class="col-md-4" align="center">
-                        <a href="" disable>
+                        <a data-toggle="modal" href="#input_empid_his">
                             <img src="<?php echo base_url();?>/pic/historyMBO.png" height="350px">
                         </a>
                     </div>
@@ -174,3 +203,75 @@ function validate() {
 <!-- Modal dialog-->
 </div>
 <!-- Modal-->
+
+<!-- Modal -->
+<div class="modal fade" id="input_empid_his" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" id="color_head">
+                <button type="button" class="close" data-dismiss="modal">
+                    <font color="white">&times;</font>
+                </button>
+                <h4 class="modal-title">
+                    <font color="white"><b> Please enter Employee ID </b></font>
+                </h4>
+            </div>
+            <!-- Modal header-->
+
+            <br>
+            <form method="POST" action="<?php echo base_url(); ?>ev_form/Evs_form/historyMBO"
+                onSubmit="return validate_his()">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-5" align="right">
+                            <label class="control-label"><strong>
+                                    <font size="3px"> Employee ID : </font>
+                                </strong></label>
+                        </div>
+                        <!-- col-6 -->
+                        <div class="col-md-4">
+                            <input class="form-control" id="emp_id_his" name="emp_id_his" type="text" onchange="onChangeBG_his()">
+                        </div>
+                        <!-- col-6 -->
+                    </div>
+                    <!--  row -->
+
+                    <br>
+
+                    <div class="row">
+                        <div class="col-12" align="center">
+                            <p id="show_noti_his">
+                                <font color="#e60000"> *Please enter the Employee ID correctly</font>
+                            </p>
+                        </div>
+                        <!-- col-12 -->
+                    </div>
+                    <!--  row -->
+
+                </div>
+                <!-- Modal body-->
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-6" align="left">
+                            <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                        </div>
+                        <!-- col-6 -->
+
+                        <div class="col-md-6" align="rigth">
+                            <input type="submit" class="btn btn-success" value="SAVE">
+                        </div>
+                        <!-- col-6 -->
+            </form>
+            <!-- form  -->
+        </div>
+        <!-- row -->
+    </div>
+    <!-- Modal footer-->
+</div>
+<!-- Modal content-->
+</div>
+<!-- Modal dialog-->
+</div>
+<!-- Modal emp-->
