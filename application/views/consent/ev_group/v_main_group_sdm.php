@@ -82,18 +82,10 @@ function Delete_data(gru_id) {
 }
 
 function manage_data(gru_id){
-
+      
+     
       console.log(gru_id);
-
-
-
-
-
-
-
-
-
-      window.location.href = "<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_sdm";
+      window.location.href = "<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_sdm/" + gru_id;
 }
 
 
