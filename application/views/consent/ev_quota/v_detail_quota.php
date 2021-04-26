@@ -250,22 +250,22 @@ window.onload = function() {
     context.strokeStyle = "black";
     var grad = ["S", "A", "B", "B-", "C", "D"];
     console.log(data[0]);
-    if (largest <= 20) {
-        context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + ((GRAPH_TOP +(GRAPH_HEIGHT / 5) * 4)/2+10));
+//     if (largest <= 20) {
+//         context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + ((GRAPH_TOP +(GRAPH_HEIGHT / 5) * 4)/2+10));
     
-} else if (largest <= 40) {
-    context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + (GRAPH_TOP + 25));
-} else if (largest <= 60) {
-    context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + (GRAPH_TOP + 10));
-//document.getE;
-} else if (largest <= 80) {
-    context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest *  (GRAPH_HEIGHT / 5)) + (GRAPH_TOP));
-//document.write(grad[i] + "," + data[i)];
+// } else if (largest <= 40) {
+//     context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + (GRAPH_TOP + 25));
+// } else if (largest <= 60) {
+//     context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + (GRAPH_TOP + 10));
+// //document.getE;
+// } else if (largest <= 80) {
+//     context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest *  (GRAPH_HEIGHT / 5)) + (GRAPH_TOP));
+// //document.write(grad[i] + "," + data[i)];
 
-} else {
-context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-    GRAPH_HEIGHT) + GRAPH_TOP);
-}
+// } else {
+// context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
+//     GRAPH_HEIGHT) + GRAPH_TOP);
+// }
 
   
    
@@ -280,7 +280,7 @@ context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - dat
 
         if (largest <= 20) {
 
-            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] /
+            context.lineTo((GRAPH_RIGHT - 25) / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] /
                 largest *
                 (GRAPH_HEIGHT / 5)) + GRAPH_TOP);
         } else if (largest <= 40) {
@@ -375,7 +375,7 @@ context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - dat
                             <div class="col-md-1">
                                 <tr class="orange2">
                                     <td><b>Quota</b></td>
-                                    <td id="quota1" value="5">10</td>
+                                    <td id="quota1" value="5">5</td>
                                     <td id="quota2" value="25">20</td>
                                     <td id="quota3" value="60">20</td>
                                     <td id="quota4" value="25">20</td>

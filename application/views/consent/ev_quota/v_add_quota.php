@@ -164,13 +164,13 @@ window.onchange = function() {
     context.beginPath();
     context.lineJoin = "round";
     context.strokeStyle = "black";
-    var grad = ["S", "A", "B -", "B", "C", "D"];
+    var grad = ["S", "A", "B", "B-", "C", "D"];
     console.log(data[0]);
     // context.moveTo(GRAPH_LEFT + 25, ((GRAPH_HEIGHT + 26.2) - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
     //context.moveTo(GRAPH_LEFT + 25, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
 
     // draw reference value for day of the week  
-    context.fillText("S", 150, GRAPH_BOTTOM + 25);
+    //context.fillText("S", 150, GRAPH_BOTTOM + 25);
 
     for (var i = 0; i < arrayLen; i++) {
 
@@ -244,8 +244,8 @@ window.onchange = function() {
                                 <th>Grade</th>
                                 <th>S</th>
                                 <th>A</th>
-                                <th>B-</th>
                                 <th>B</th>
+                                <th>B-</th>
                                 <th>C</th>
                                 <th>D</th>
                                 <th>Total</th>
