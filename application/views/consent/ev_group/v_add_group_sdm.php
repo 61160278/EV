@@ -139,9 +139,15 @@
                   <div class="panel-body">
                         <div class="panel panel-indigo" id="panel-addtable">
                               <div class="panel-heading">
+                                    <?php
+									
+						      foreach($group_sdm->result() as $row ) { ?>
+                                          
                                     <h2>
-                                          <font size="4px"><?php echo $row->gru_name; ?></font>
+                                          <font size="4px"><?php echo $row->gru_name; ?> </font>
                                     </h2>
+                                    <?php }; ?>
+                                                      
                                     <div class="panel-ctrls"></div>
                               </div>
                               <!-- panel-heading -->
