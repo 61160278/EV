@@ -210,25 +210,32 @@ class Evs_group extends MainController_avenxo {
 		$this->load->model('M_evs_group','mgc');
 		$this->mgc->gru_company_id = 1;
 		$data['gcp_gcm'] = $this->mgc->get_all_com();
+
 		$this->load->model('M_evs_group','mevg');
+		$this->mevg->emp_ghr_id = $gru_id;
+		$data['group_sdm'] = $this->mevg->get_group();
 		$this->mevg->gru_id = $gru_id;
-		$data['group_sdm'] = $this->mevg->get_by_id();
+		$data['grpsdm'] = $this->mevg->get_by_id();
 		$this->output('/consent/ev_group/v_add_group_sdm',$data);
 	}
-	// function select_company_skd
+	// function select_company_sdm   
 
 
 	
 	
 	function select_group_company_skd($gru_id)
 	{
-		$this->load->model('M_evs_group','mgc');
-		$this->mgc->gru_company_id = 2;
-		$data['gcp_gcm'] = $this->mgc->get_all_com();
+		$this->load->model('M_evs_group','mdk');
+		$this->mdk->gru_company_id = 2;
+		$data['gcp_gdk'] = $this->mdk->get_all_com();
+
 		$this->load->model('M_evs_group','mevg');
+		$this->mevg->emp_ghr_id = $gru_id;
+		$data['group_skd'] = $this->mevg->get_group();
 		$this->mevg->gru_id = $gru_id;
-		$data['group_skd'] = $this->mevg->get_by_id();
+		$data['grpskd'] = $this->mevg->get_by_id();
 		$this->output('/consent/ev_group/v_add_group_skd',$data);
+		
 	}
 	// function select_company_skd
 
@@ -255,7 +262,14 @@ class Evs_group extends MainController_avenxo {
 		echo json_encode($data);
 	}
 		
-	
+	function query_man(){
+		$gru_id = $this->input->post('gru_id');
+		$this->load->model('M_evs_group','mevg');
+		$this->mevg->emp_ghr_id = $gru_id;
+		$data = $this->mevg->get_group()->result();
+		echo json_encode($data);
+
+	}
 		
 	
 	

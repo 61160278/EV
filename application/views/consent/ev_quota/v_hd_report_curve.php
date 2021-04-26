@@ -9,84 +9,90 @@
 */  
 ?>
 <style>
-	.text {
-		color : black;
-	}
-	.orange {
-		background-color : orange;
-		color : black;
-		text-align : center;
-	}
-	.orange2 {
-		background-color : #ffe4b3;
-	}
-	table {
-		color : black;
-	}
-	th {
-		color:black;
-		text-align: center;
-		font-size: 20px;
-	}
-	td{
-		text-align: center;
-		font-size: 15px;
-	}
-	.tdbold {
-		font-weight: bold;
-	}
+.text {
+    color: black;
+}
+
+.orange {
+    background-color: orange;
+    color: black;
+    text-align: center;
+}
+
+.orange2 {
+    background-color: #ffe4b3;
+}
+
+table {
+    color: black;
+}
+
+th {
+    color: black;
+    text-align: center;
+    font-size: 20px;
+}
+
+td {
+    text-align: center;
+    font-size: 15px;
+}
+
+.tdbold {
+    font-weight: bold;
+}
 
 tbody:hover {
-  background-color: #ffffff;
+    background-color: #ffffff;
 }
-
 </style>
 <script>
-
-$(document).ready(function(){
-	check_quota_plan()
-	check_quota_actual()
+$(document).ready(function() {
+    check_quota_plan()
+    check_quota_actual()
 });
 
-function check_quota_plan(){
-	
-	var check = "";
-	var value_quotaPlan = 0;
-	var quota = 0;
-	//console.log(quota);
-	check = document.getElementById("quotaPlanToT").innerHTML;
-	//console.log(check);
-	for(i=1; i<=5; i++){
-		quota = document.getElementById("quota"+i).innerHTML;
-			value_quotaPlan = parseInt(check) * parseInt(quota)/100;
-		document.getElementById("show_quotaPlan"+i).innerHTML = value_quotaPlan;
-		console.log(value_quotaPlan);
-	}//for 
+function check_quota_plan() {
+
+    var check = "";
+    var value_quotaPlan = 0;
+    var quota = 0;
+    //console.log(quota);
+    check = document.getElementById("quotaPlanToT").innerHTML;
+    //console.log(check);
+    for (var i = 1; i <= 6; i++) {
+        quota = document.getElementById("quota" + i).innerHTML;
+        value_quotaPlan = parseInt(check) * parseInt(quota) / 100;
+        document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
+        console.log(value_quotaPlan);
+    } //for 
 }
-function check_quota_actual(){
-	var check = "";
-	var value_quotaActual = 0;
-	var actual = 0;
-	var Sactual = 0;
-	//console.log(quota);
-	check = document.getElementById("quotaActualToT").innerHTML;
-	
-	//	console.log(check);
-	//console.log(check);
-	for(i=1; i<=5; i++){
-		actual = document.getElementById("quotActua"+i);
-		
-		value_quotaPlan = parseInt(check) * 100 / parseInt(actual);
-		//document.getElementById("show_quotActual"+i).innerHTML = value_quotaPlan;
-		//console.log(value_quotaPlan);
-	}//for 
-	
+
+function check_quota_actual() {
+
+    var check = "";
+    var actual = 0;
+
+    for (var i = 1; i <= 6; i++) {
+        check = document.getElementById("quotActual" + i).value;
+        if (check != " ") {
+            actual += parseInt(check);
+        }
+        // if 
+
+        document.getElementById("show_Actual").innerHTML = actual;
+
+        //console.log(value_quota);
+    }
+    // for i
 }
+
+
 function get_data() {
-	var pos_sel = document.getElementById("pos_select").value; // get kay by id
-	console.log(pos_sel);
-	
-	$.ajax({
+    var pos_sel = document.getElementById("pos_select").value; // get kay by id
+    console.log(pos_sel);
+
+    $.ajax({
         type: "post",
         url: "<?php echo base_url(); ?>/ev_quota/v_hd_report_curve",
         data: {
@@ -95,333 +101,304 @@ function get_data() {
         dataType: "JSON",
         success: function(data) {
             console.log(data)
-		}
-	});
+        }
+    });
 }
 window.onload = function() {
 
-var data = [];
-var arrQuota = [];
-var myCanvas = document.getElementById('testCanvas');
-var context = myCanvas.getContext('2d');
-for (var i = 1; i <= 6; i++) {
-	//  var show_quota = document.getElementById("quota" + i).innerHTML;
-	var show_quota = document.getElementById("quota" + i).innerHTML;
-	//  var arrQuota = [5, 25, 40, 25, 5];
-	arrQuota[i] = show_quota;
-} //for
-arrQuota.shift();
-console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
-for (var a = 0; a < arrQuota.length; a++) {
-	data[a] = arrQuota[a] * 1;
+    var data = [];
+    var arrQuota = [];
+    var myCanvas = document.getElementById('testCanvas');
+    var context = myCanvas.getContext('2d');
+    for (var i = 1; i <= 6; i++) {
+        //  var show_quota = document.getElementById("quota" + i).innerHTML;
+        var show_quota = document.getElementById("quota" + i).innerHTML;
+        //  var arrQuota = [5, 25, 40, 25, 5];
+        arrQuota[i] = show_quota;
+    } //for
+    arrQuota.shift();
+    console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
+    for (var a = 0; a < arrQuota.length; a++) {
+        data[a] = arrQuota[a] * 1;
 
-} //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
-console.log(data);
-//var arrQuota = [5, 25, 60, 25, 5];
-var canvas = document.getElementById("testCanvas");
-var context = canvas.getContext("2d");
-var GRAPH_TOP = 25;
-var GRAPH_BOTTOM = 375;
-var GRAPH_LEFT = 125;
-var GRAPH_RIGHT = 800;
+    } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
+    console.log(data);
+    //var arrQuota = [5, 25, 60, 25, 5];
+    var canvas = document.getElementById("testCanvas");
+    var context = canvas.getContext("2d");
+    var GRAPH_TOP = 25;
+    var GRAPH_BOTTOM = 375;
+    var GRAPH_LEFT = 125;
+    var GRAPH_RIGHT = 800;
 
-var GRAPH_HEIGHT = 350;
-// var GRAPH_WIDTH = 900;
+    var GRAPH_HEIGHT = 350;
+    // var GRAPH_WIDTH = 900;
 
-var arrayLen = data.length;
-console.log(arrayLen);
-var largest = 0;
-for (var i = 0; i < arrayLen; i++) {
-	if (data[i] > largest) {
-		largest = data[i];
-	}
-}
-console.log(largest);
+    var arrayLen = data.length;
+    console.log(arrayLen);
+    var largest = 0;
+    for (var i = 0; i < arrayLen; i++) {
+        if (data[i] > largest) {
+            largest = data[i];
+        }
+    }
+    console.log(largest);
 
-context.clearRect(0, 0, 1000, 450);
-// set font for fillText()  
-context.font = "16px Arial";
+    context.clearRect(0, 0, 1000, 450);
+    // set font for fillText()  
+    context.font = "16px Arial";
 
-// draw X and Y axis  
-context.beginPath();
-context.moveTo(GRAPH_RIGHT, GRAPH_BOTTOM);
-context.lineTo(GRAPH_LEFT, GRAPH_BOTTOM); //x
-context.lineTo(GRAPH_LEFT, GRAPH_TOP); //y  
-context.stroke();
+    // draw X and Y axis  
+    context.beginPath();
+    context.moveTo(GRAPH_RIGHT, GRAPH_BOTTOM);
+    context.lineTo(GRAPH_LEFT, GRAPH_BOTTOM); //x
+    context.lineTo(GRAPH_LEFT, GRAPH_TOP); //y  
+    context.stroke();
 
-// draw reference line  เส้นที่ 5
-context.beginPath();
-context.strokeStyle = "#BBB";
-context.moveTo(GRAPH_RIGHT, GRAPH_TOP);
-context.lineTo(GRAPH_LEFT, GRAPH_TOP);
-// draw reference value for hours  
-context.fillText(100, GRAPH_LEFT - 25, GRAPH_TOP);
-context.stroke();
-// draw reference line  เส้นที่ 4
-context.beginPath();
-context.strokeStyle = "#BBB";
-context.moveTo(GRAPH_RIGHT, (GRAPH_HEIGHT) / 5 + GRAPH_TOP);
-context.lineTo(GRAPH_LEFT, (GRAPH_HEIGHT) / 5 + GRAPH_TOP);
-// draw reference value for hours  
-context.fillText(80, GRAPH_LEFT - 25, (GRAPH_HEIGHT) / 5 + GRAPH_TOP);
-context.stroke();
+    // draw reference line  เส้นที่ 5
+    context.beginPath();
+    context.strokeStyle = "#BBB";
+    context.moveTo(GRAPH_RIGHT, GRAPH_TOP);
+    context.lineTo(GRAPH_LEFT, GRAPH_TOP);
+    // draw reference value for hours  
+    context.fillText(100, GRAPH_LEFT - 25, GRAPH_TOP);
+    context.stroke();
+    // draw reference line  เส้นที่ 4
+    context.beginPath();
+    context.strokeStyle = "#BBB";
+    context.moveTo(GRAPH_RIGHT, (GRAPH_HEIGHT) / 5 + GRAPH_TOP);
+    context.lineTo(GRAPH_LEFT, (GRAPH_HEIGHT) / 5 + GRAPH_TOP);
+    // draw reference value for hours  
+    context.fillText(80, GRAPH_LEFT - 25, (GRAPH_HEIGHT) / 5 + GRAPH_TOP);
+    context.stroke();
 
-// draw reference line  เส้นที่ 1
-context.beginPath();
-context.moveTo(GRAPH_RIGHT, ((GRAPH_HEIGHT) / 5) * 4 + GRAPH_TOP);
-context.lineTo(GRAPH_LEFT, ((GRAPH_HEIGHT) / 5) * 4 + GRAPH_TOP);
-// draw reference value for hours  
-context.fillText(20, GRAPH_LEFT - 25, ((GRAPH_HEIGHT) / 5) * 4 + GRAPH_TOP);
-context.stroke();
+    // draw reference line  เส้นที่ 1
+    context.beginPath();
+    context.moveTo(GRAPH_RIGHT, ((GRAPH_HEIGHT) / 5) * 4 + GRAPH_TOP);
+    context.lineTo(GRAPH_LEFT, ((GRAPH_HEIGHT) / 5) * 4 + GRAPH_TOP);
+    // draw reference value for hours  
+    context.fillText(20, GRAPH_LEFT - 25, ((GRAPH_HEIGHT) / 5) * 4 + GRAPH_TOP);
+    context.stroke();
 
-// draw reference line เส้นที่ 2 
-context.beginPath();
-context.moveTo(GRAPH_RIGHT, ((GRAPH_HEIGHT) / 5) * 3 + GRAPH_TOP);
-context.lineTo(GRAPH_LEFT, ((GRAPH_HEIGHT) / 5) * 3 + GRAPH_TOP);
-// draw reference value for hours  
-context.fillText(40, GRAPH_LEFT - 25, ((GRAPH_HEIGHT) / 5) * 3 + GRAPH_TOP);
-context.stroke();
+    // draw reference line เส้นที่ 2 
+    context.beginPath();
+    context.moveTo(GRAPH_RIGHT, ((GRAPH_HEIGHT) / 5) * 3 + GRAPH_TOP);
+    context.lineTo(GRAPH_LEFT, ((GRAPH_HEIGHT) / 5) * 3 + GRAPH_TOP);
+    // draw reference value for hours  
+    context.fillText(40, GRAPH_LEFT - 25, ((GRAPH_HEIGHT) / 5) * 3 + GRAPH_TOP);
+    context.stroke();
 
-// draw reference line //เส้นที่ 3
-context.beginPath();
-context.moveTo(GRAPH_RIGHT, ((GRAPH_HEIGHT) / 5) * 2 + GRAPH_TOP);
-context.lineTo(GRAPH_LEFT, ((GRAPH_HEIGHT) / 5) * 2 + GRAPH_TOP);
-// draw reference value for hours  
-context.fillText(60, GRAPH_LEFT - 25, ((GRAPH_HEIGHT) / 5) * 2 + GRAPH_TOP);
-context.stroke();
+    // draw reference line //เส้นที่ 3
+    context.beginPath();
+    context.moveTo(GRAPH_RIGHT, ((GRAPH_HEIGHT) / 5) * 2 + GRAPH_TOP);
+    context.lineTo(GRAPH_LEFT, ((GRAPH_HEIGHT) / 5) * 2 + GRAPH_TOP);
+    // draw reference value for hours  
+    context.fillText(60, GRAPH_LEFT - 25, ((GRAPH_HEIGHT) / 5) * 2 + GRAPH_TOP);
+    context.stroke();
 
-// draw titles (คำบรรยายเส้นกราฟ)
-context.fillText("Grad", (790 / 2) + 55, GRAPH_BOTTOM + 50);
-context.fillText("Quota", GRAPH_LEFT - 115, GRAPH_HEIGHT / 2);
-context.beginPath();
-context.lineJoin = "round";
-context.strokeStyle = "black";
-var grad = ["S", "A", "B", "B-", "C", "D"];
-console.log(data[0]);
-if (largest <= 20) {
-	context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + ((GRAPH_TOP +(GRAPH_HEIGHT / 5) * 4)/2+10));
+    // draw titles (คำบรรยายเส้นกราฟ)
+    context.fillText("Grad", (790 / 2) + 55, GRAPH_BOTTOM + 50);
+    context.fillText("Quota", GRAPH_LEFT - 115, GRAPH_HEIGHT / 2);
+    context.beginPath();
+    context.lineJoin = "round";
+    context.strokeStyle = "black";
+    var grad = ["S", "A", "B", "B-", "C", "D"];
+    console.log(data[0]);
 
-} else if (largest <= 40) {
-context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + (GRAPH_TOP + 25));
-} else if (largest <= 60) {
-context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + (GRAPH_TOP + 10));
-//document.getE;
-} else if (largest <= 80) {
-context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest *  (GRAPH_HEIGHT / 5)) + (GRAPH_TOP));
-//document.write(grad[i] + "," + data[i)];
+    for (var i = 0; i < arrayLen; i++) {
 
-} else {
-context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-GRAPH_HEIGHT) + GRAPH_TOP);
-}
+        if (largest <= 20) {
 
+            context.lineTo((GRAPH_RIGHT - 25) / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] /
+                largest *
+                (GRAPH_HEIGHT / 5)) + GRAPH_TOP);
+        } else if (largest <= 40) {
+            context.lineTo((GRAPH_RIGHT) / arrayLen * i + (GRAPH_LEFT + 10), (GRAPH_HEIGHT - data[i] / largest *
+                (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP);
+        } else if (largest <= 60) {
+            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
+                (GRAPH_HEIGHT / 5) * 3) + GRAPH_TOP);
+            //document.getE;
+        } else if (largest <= 80) {
+            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
+                (GRAPH_HEIGHT / 5) * 4) + GRAPH_TOP);
+            //document.write(grad[i] + "," + data[i)];
 
+        } else {
+            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
+                GRAPH_HEIGHT) + GRAPH_TOP);
+        }
 
-//context.moveTo(GRAPH_LEFT + 25, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
+        //context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i]  / largest *GRAPH_HEIGHT) + GRAPH_TOP);
+        // context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
+        //     GRAPH_HEIGHT) + GRAPH_TOP);
+        // draw reference value for day of the week  
+        context.fillText(grad[i], (GRAPH_RIGHT) / arrayLen * i + 130, GRAPH_BOTTOM + 25);
 
-// draw reference value for day of the week  
-context.fillText("S", 150, GRAPH_BOTTOM + 25);
+    }
 
-
-
-for (var i = 1; i < arrayLen; i++) {
-
-	if (largest <= 20) {
-
-		context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] /
-			largest *
-			(GRAPH_HEIGHT / 5)) + GRAPH_TOP);
-	} else if (largest <= 40) {
-		context.lineTo((GRAPH_RIGHT) / arrayLen * i + (GRAPH_LEFT + 10), (GRAPH_HEIGHT - data[i] / largest *
-			(GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP);
-	} else if (largest <= 60) {
-		context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-			(GRAPH_HEIGHT / 5) * 3) + GRAPH_TOP);
-		//document.getE;
-	} else if (largest <= 80) {
-		context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-			(GRAPH_HEIGHT / 5) * 4) + GRAPH_TOP);
-		//document.write(grad[i] + "," + data[i)];
-
-	} else {
-		context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-			GRAPH_HEIGHT) + GRAPH_TOP);
-	}
-
-	//context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i]  / largest *GRAPH_HEIGHT) + GRAPH_TOP);
-	// context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-	//     GRAPH_HEIGHT) + GRAPH_TOP);
-	// draw reference value for day of the week  
-	context.fillText(grad[i], (GRAPH_RIGHT) / arrayLen * i + 130, GRAPH_BOTTOM + 25);
-
-}
-
-context.stroke();
+    context.stroke();
 }
 </script>
 <div class="col-md-12">
-	<div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
-		<div class="panel-heading">
-			<h2><font size = "6px"><b>Report Curve</b></font></h2>
-			<div class="panel-ctrls" data-actions-container="" data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
-			</div>
-		</div>
-		<div class="panel-body">
-			<div class = "row">
-				<div class="form-group">
-					<div class="col-md-3">
-					</div>
-					<div class="col-md-2">
-						<select class="form-control text" id="" >
-							<option value="yearEndBonus">Quota</option>
-							<option value="yearEndBonus">Year End Bonus</option>
-							<option value="salaryIncrement">Salary Increment</option>
-						</select>
-					</div>
-					<div class="col-md-2">
-						<select class="form-control text" id="" >
-							<option value="yearEndBonus">Quota of position</option>
-							<option value="yearEndBonus">Team Associate above</option>
-							<option value="salaryIncrement">Operational Associate</option>
-						</select>
-					</div>
-					<div class="col-md-2">
-						<select for = "pos_select" id="pos_select" class="form-control text">
-							<option value="select">Select Position</option>
-							<option value="0">All Position</option>
-							<!-- start foreach -->
-                             <?php foreach($pos_data as $value){ ?>
-                             <option value="<?php echo $value->Position_ID;?>">
-                             <?php echo $value->Pos_shortName;?>
-                             </option>
-                             <?php } ?>
-                             <!-- end foreach -->
-						</select>
-					</div>
-					<div class="col-md-1">
-					</div>
-					<div class="col-md-2">
-						<button class="btn-success btn">SUBMIT</button>
-					</div>
-				</div>
-			</div>
-			<br>
-			<legend></legend>
-			<div class = "row">
-				<div class="col-md-2">
-				</div>
-				<div class="col-md-8">
-					<div class="panel panel-orange" data-widget='{"draggable": "false"}' >
-						<div class="panel-heading">
-							<h2><font size = "5px"><b>ตางราง Report</b></font></h2>
-							<div class="panel-ctrls" data-actions-container="" data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
-							</div>
-						</div>
-						<div class="panel-body" style="">
-							<table style="width:100%" class="table table-hover m-n orange">
-								<thead>
-								<div class="col-md-1">
-									<tr class = "orange">
-										<th>Grade</th>
-										<th>S</th>
-										<th>A</th>
-										<th>B</th>
-										<th>C</th>
-										<th>D</th>
-										<th>Total</th>
-									</tr>
-								</thead>
-								<tbody>
-								<div class="col-md-1">
-									<tr class="orange2">
-										<td><b>Quota</b></td>
-										<td id = "quota1" value="5">5</td>
-										<td id = "quota2" value="25">25</td>
-										<td id = "quota3" value="40">40</td>
-										<td id = "quota4" value="25">25</td>
-										<td id = "quota5" value="5">5</td>
-								<td>100</td>											
-									</tr>
-									<div class="col-md-1">
-									<tr class="orange2" >
-										<td><b>Plan</b></td>
-								<td id ="show_quotaPlan1"></td>
-								<td id ="show_quotaPlan2"></td>
-								<td id ="show_quotaPlan3"></td>
-								<td id ="show_quotaPlan4"></td>
-								<td id ="show_quotaPlan5"></td>
-								<td id="quotaPlanToT">8</td>	
-									</div>								
-									</tr>
-									<div class="col-md-1">
-									<tr class="orange2">
-										<td><b>Actual</b></td>
-										<td>
-											<input type="text" class="form-control" id="quotActual1" onchang ="check_quota_actual()">
-										</td>
-										<td>
-											<input type="text" class="form-control" id="quotaActual2" onchang ="check_quota_actual()">
-										</td>
-										<td>
-											<input type="text" class="form-control" id="quotaActual3" onchang ="check_quota_actual()">
-										</td>
-										<td>
-											<input type="text" class="form-control" id="quotaActual4" onchang ="check_quota_actual()">
-										</td>
-										<td>
-											<input type="text" class="form-control" id="quotaActual5" onchang ="check_quota_actual()">
-										</td>
-										<td id = "quotaActualToT">8</td>						
-									</tr>
-									</div>
-									<div class="col-md-1">
-									<tr class="orange2">
-										<td><b>Quota Actual</b></td>
-										<td id = "show_quotActual1"></td>
-										<td id = "show_quotActual2"></td>
-										<td id = "show_quotActual3"></td>
-										<td id = "show_quotActual4"></td>
-										<td id = "show_quotActual5"></td>
-										<td></td>						
-									</tr>
-									</div>
-									<tr class="orange2">
-									<div class="col-md-1">
-										<td><b>Total in level</b></td>
-										<td colspan = "6"></td>
-									</tr>
-									</div>
-								</tbody>
-							</table>
-							<br>
-							<br>
-							<div class="row">
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-8">
-                    <div class="panel panel-midnightblue" data-widget='{"draggable": "false"}'>
-                        <div class="panel-heading">
-                            <h2>
-                                <font size="5px">Quota</font>
-                            </h2>
-                            <div class="panel-ctrls" data-actions-container=""
-                                data-action-collapse='{"target": ".panel-body"}'>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-
-                            <canvas id="testCanvas" width="1000" height="450"></canvas>
-
-                            <!-- <div class="well well-lg tooltips" data-trigger="hover" data-original-title=".well.well-lg">
-
-                            </div> -->
-                            <!-- <canvas id="myCanvas" width="400" height="400" ></canvas>  -->
-
-                        </div>
+    <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
+        <div class="panel-heading">
+            <h2>
+                <font size="6px"><b>Report Curve</b></font>
+            </h2>
+            <div class="panel-ctrls" data-actions-container=""
+                data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-control text" id="">
+                            <option value="yearEndBonus">Quota</option>
+                            <option value="yearEndBonus">Year End Bonus</option>
+                            <option value="salaryIncrement">Salary Increment</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-control text" id="">
+                            <option value="yearEndBonus">Quota of position</option>
+                            <option value="yearEndBonus">Team Associate above</option>
+                            <option value="salaryIncrement">Operational Associate</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select for="pos_select" id="pos_select" class="form-control text">
+                            <option value="select">Select Position</option>
+                            <option value="0">All Position</option>
+                            <!-- start foreach -->
+                            <?php foreach($pos_data as $value){ ?>
+                            <option value="<?php echo $value->Position_ID;?>">
+                                <?php echo $value->Pos_shortName;?>
+                            </option>
+                            <?php } ?>
+                            <!-- end foreach -->
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn-success btn">SUBMIT</button>
                     </div>
                 </div>
             </div>
-							<!-- //<div id="line-example" style="position: relative;">
+            <br>
+            <legend></legend>
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                    <div class="panel panel-orange" data-widget='{"draggable": "false"}'>
+                        <div class="panel-heading">
+                            <h2>
+                                <font size="5px"><b>ตางราง Report</b></font>
+                            </h2>
+                            <div class="panel-ctrls" data-actions-container=""
+                                data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
+                            </div>
+                        </div>
+                        <div class="panel-body" style="">
+                            <table style="width:100%" class="table table-hover m-n orange">
+                                <thead>
+                                    <div class="col-md-1">
+                                        <tr class="orange">
+                                            <th>Grade</th>
+                                            <th>S</th>
+                                            <th>A</th>
+                                            <th>B</th>
+                                            <th>B-</th>
+                                            <th>C</th>
+                                            <th>D</th>
+                                            <th>Total</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                    <div class="col-md-1">
+                                        <tr class="orange2">
+                                            <td><b>Quota</b></td>
+                                            <td id="quota1" value="5">5</td>
+                                            <td id="quota2" value="25">25</td>
+                                            <td id="quota3" value="40">40</td>
+                                            <td id="quota4" value="40">40</td>
+                                            <td id="quota5" value="25">25</td>
+                                            <td id="quota6" value="5">5</td>
+                                            <td>100</td>
+                                        </tr>
+                                        <div class="col-md-1">
+                                            <tr class="orange2">
+                                                <td><b>Plan</b></td>
+                                                <td id="show_quotaPlan1"></td>
+                                                <td id="show_quotaPlan2"></td>
+                                                <td id="show_quotaPlan3"></td>
+                                                <td id="show_quotaPlan4"></td>
+                                                <td id="show_quotaPlan5"></td>
+                                                <td id="show_quotaPlan6"></td>
+                                                <td id="quotaPlanToT">8</td>
+                                        </div>
+                                        </tr>
+                                        <div class="col-md-1">
+                                            <tr class="orange2">
+                                                <td><b>Actual</b></td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="quotActual1"
+                                                        onchang="check_quota_actual()">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="quotaActual2"
+                                                        onchang="check_quota_actual()">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="quotaActual3"
+                                                        onchang="check_quota_actual()">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="quotaActual4"
+                                                        onchang="check_quota_actual()">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="quotaActual5"
+                                                        onchang="check_quota_actual()">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="quotaActual6"
+                                                        onchang="check_quota_actual()">
+                                                </td>
+                                                <td id="show_Actual"></td>
+                                            </tr>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <tr class="orange2">
+                                                <td><b>Quota Actual</b></td>
+                                                <td id="show_quotActual1"></td>
+                                                <td id="show_quotActual2"></td>
+                                                <td id="show_quotActual3"></td>
+                                                <td id="show_quotActual4"></td>
+                                                <td id="show_quotActual5"></td>
+                                                <td id="show_quotActual6"></td>
+                                                <td></td>
+                                            </tr>
+                                        </div>
+                                        <tr class="orange2">
+                                            <div class="col-md-1">
+                                                <td><b>Total in level</b></td>
+                                                <td colspan="6"></td>
+                                        </tr>
+                                    </div>
+                                </tbody>
+                            </table>
+                            <br>
+                            <br>
+                            <h1>hi</h1>
+                            <canvas id="testCanvas" width="1000" height="450"></canvas>
+
+                            <!-- //<div id="line-example" style="position: relative;">
 								<div class = "bar-example" style="position: relative;">
 									<svg xmlns="http://www.w3.org/2000/svg" style="top: -0.13px; overflow: hidden; position: relative;" width="700" height="350" version="1.1">
 									<desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.0</desc>
@@ -487,7 +464,7 @@ context.stroke();
 									</div>
 								<path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#37474f" stroke-width="3" d="M 100 300 C 60.4192 71.02 300 300 180 270 C 122.056 141.82 152.874 194.92 168.284 194.92 C 183.735 194.92 214.638 124.12 230.089 124.12 C 245.499 124.12 276.317 194.92 291.726 194.92 C 307.135 194.92 337.954 141.82 353.363 124.12 C 100 106.42 399.591 71.02 415 53.32">
 									</path> -->
-									<!-- <circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#37474f" stroke="#ffffff" stroke-width="1" cx="45.01" cy="53.32" r="7" ></circle> 
+                            <!-- <circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#37474f" stroke="#ffffff" stroke-width="1" cx="45.01" cy="53.32" r="7" ></circle> 
 									<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#37474f" stroke="#ffffff" stroke-width="1" cx="106.647" cy="124.12" r="4"></circle>
 									<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#37474f" stroke="#ffffff" stroke-width="1" cx="168.284" cy="194.92" r="4">
 									<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#37474f" stroke="#ffffff" stroke-width="1" cx="230.089" cy="124.12" r="4"></circle>
@@ -503,10 +480,11 @@ context.stroke();
 									<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#ffffff" stroke-width="1" cx="415" cy="25" r="4"></circle> 
 								</svg>
 							//</div> -->
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
