@@ -60,27 +60,36 @@ function check_quota_plan() {
     //console.log(quota);
     check = document.getElementById("quotaPlanToT").innerHTML;
     //console.log(check);
-    for (i = 1; i <= 6; i++) {
+    for (var i = 1; i <= 6; i++) {
         quota = document.getElementById("quota" + i).innerHTML;
         value_quotaPlan = parseInt(check) * parseInt(quota) / 100;
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
         console.log(value_quotaPlan);
     } //for 
 }
-
 function check_quota_actual() {
-    var check = "";
-    var actual = 0;
-    for (i = 1; i <= 6; i++) {
-        check = document.getElementById("quotActual" + i).value;
-		if (check != " ") {
-			actual += parseInt(check);
+
+var check = "";
+var actual = 0;
+
+for (var i = 1; i <= 6; i++) {
+	check = document.getElementById("quotActual" + i);
+
+	if (check != "") {
+		actual += parseInt(check);
+	}
+	// if 
+	if (actual > 100) {
+		$("#show_quota").css("color", "red");
+	} else {
+		$("#show_quota").css("color", "#000000");
 	}
 	document.getElementById("quotaActualToT").innerHTML = actual;
-	console.log(actual+"////////////////");
 
-    } //for 
-}	
+	//console.log(value_quota);
+}
+// for i
+}
 
 
 function get_data() {
@@ -365,7 +374,7 @@ window.onload = function() {
                                                     <input type="text" class="form-control" id="quotaActual6"
                                                         onchang="check_quota_actual()">
                                                 </td>
-                                                <td id="quotaActualToT"> </td>
+                                                <td id="quotaActualToT"></td>
                                             </tr>
                                         </div>
                                         <div class="col-md-1">
