@@ -32,6 +32,10 @@ th {
 <!-- END style -->
 
 <script>
+function cancel_form() {
+    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/index";
+}
+// function cancel_form
 </script>
 <!-- script -->
 
@@ -56,80 +60,80 @@ th {
                 <!-- row  -->
 
                 <br>
-                                <?php foreach($emp_info->result() as $row){?>
-                                <input type="text" id="pos_id" value="<?php echo $row->Position_ID; ?>" hidden>
-                                <input type="text" id="row_index" value="" hidden>
+                <?php foreach($emp_info->result() as $row){?>
+                <input type="text" id="pos_id" value="<?php echo $row->Position_ID; ?>" hidden>
+                <input type="text" id="row_index" value="" hidden>
 
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <label class="control-label"><strong>
-                                                <font size="3px">Employee ID : </font>
-                                            </strong></label>
-                                    </div>
-                                    <!-- col-md-2 -->
-                                    <div class="col-md-2">
-                                        <p id="emp_id"><?php echo $row->Emp_ID; ?></p>
-                                    </div>
-                                    <!-- col-md-2 -->
-                                    <div class="col-md-2">
-                                        <label class="control-label"><strong>
-                                                <font size="3px">Name : </font>
-                                            </strong></label>
-                                    </div>
-                                    <!-- col-md-2 -->
-                                    <div class="col-md-2">
-                                        <p id="emp_name"><?php echo $row->Empname_eng; ?></p>
-                                    </div>
-                                    <!-- col-md-2 -->
-                                    <div class="col-md-2">
-                                        <label class="control-label"><strong>
-                                                <font size="3px">Surname : </font>
-                                            </strong></label>
-                                    </div>
-                                    <!-- col-md-2 -->
-                                    <div class="col-md-2">
-                                        <p id="emp_lname"><?php echo $row->Empsurname_eng; ?></p>
-                                    </div>
-                                    <!-- col-md-2 -->
-                                </div>
-                                <!-- row -->
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <label class="control-label"><strong>
-                                                <font size="3px">Section Code : </font>
-                                            </strong></label>
-                                    </div>
-                                    <!-- col-md-2 -->
-                                    <div class="col-md-2">
-                                        <p id="emp_sec"><?php echo $row->Sectioncode_ID; ?></p>
-                                    </div>
-                                    <!-- col-md-2 -->
-                                    <div class="col-md-2">
-                                        <label class="control-label"><strong>
-                                                <font size="3px">Department : </font>
-                                            </strong></label>
-                                    </div>
-                                    <!-- col-md-2 -->
-                                    <div class="col-md-2">
-                                        <p id="emp_dep"><?php echo $row->Department; ?></p>
-                                    </div>
-                                    <!-- col-md-2 -->
-                                    <div class="col-md-2">
-                                        <label class="control-label"><strong>
-                                                <font size="3px">Position : </font>
-                                            </strong></label>
-                                    </div>
-                                    <!-- col-md-2 -->
-                                    <div class="col-md-2">
-                                        <p id="emp_pos"><?php echo $row->Position_name; ?></p>
-                                    </div>
-                                    <!-- col-md-2 -->
-                                </div>
-                                <!-- row -->
-                                <?php }; ?>
-                                <!-- show infomation employee -->
-                                <hr>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label class="control-label"><strong>
+                                <font size="3px">Employee ID : </font>
+                            </strong></label>
+                    </div>
+                    <!-- col-md-2 -->
+                    <div class="col-md-2">
+                        <p id="emp_id"><?php echo $row->Emp_ID; ?></p>
+                    </div>
+                    <!-- col-md-2 -->
+                    <div class="col-md-2">
+                        <label class="control-label"><strong>
+                                <font size="3px">Name : </font>
+                            </strong></label>
+                    </div>
+                    <!-- col-md-2 -->
+                    <div class="col-md-2">
+                        <p id="emp_name"><?php echo $row->Empname_eng; ?></p>
+                    </div>
+                    <!-- col-md-2 -->
+                    <div class="col-md-2">
+                        <label class="control-label"><strong>
+                                <font size="3px">Surname : </font>
+                            </strong></label>
+                    </div>
+                    <!-- col-md-2 -->
+                    <div class="col-md-2">
+                        <p id="emp_lname"><?php echo $row->Empsurname_eng; ?></p>
+                    </div>
+                    <!-- col-md-2 -->
+                </div>
+                <!-- row -->
+                <hr>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label class="control-label"><strong>
+                                <font size="3px">Section Code : </font>
+                            </strong></label>
+                    </div>
+                    <!-- col-md-2 -->
+                    <div class="col-md-2">
+                        <p id="emp_sec"><?php echo $row->Sectioncode_ID; ?></p>
+                    </div>
+                    <!-- col-md-2 -->
+                    <div class="col-md-2">
+                        <label class="control-label"><strong>
+                                <font size="3px">Department : </font>
+                            </strong></label>
+                    </div>
+                    <!-- col-md-2 -->
+                    <div class="col-md-2">
+                        <p id="emp_dep"><?php echo $row->Department; ?></p>
+                    </div>
+                    <!-- col-md-2 -->
+                    <div class="col-md-2">
+                        <label class="control-label"><strong>
+                                <font size="3px">Position : </font>
+                            </strong></label>
+                    </div>
+                    <!-- col-md-2 -->
+                    <div class="col-md-2">
+                        <p id="emp_pos"><?php echo $row->Position_name; ?></p>
+                    </div>
+                    <!-- col-md-2 -->
+                </div>
+                <!-- row -->
+                <?php }; ?>
+                <!-- show infomation employee -->
+                <hr>
 
 
                 <div class="row">
@@ -170,7 +174,13 @@ th {
                 </div>
                 <!-- row  -->
 
-
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-inverse" id="cancel_back" onclick="cancel_form()">BACK</button>
+                    </div>
+                    <!-- col-md-6 -->
+                </div>
+                <!-- row -->
             </div>
             <!-- body -->
         </div>

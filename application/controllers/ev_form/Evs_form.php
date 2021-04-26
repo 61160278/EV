@@ -97,6 +97,7 @@ class Evs_form extends MainController_avenxo {
 		$dataMBO = $this->input->post("dataMBO");
 		$resultMBO = $this->input->post("resultMBO");
 		$Emp_ID = $this->input->post("Emp_ID");
+		$emp_employee_id = $this->input->post("evs_emp_id");
 		$count = $this->input->post("count");
 		$this->load->model('Da_evs_data_mbo','dedm');
 		
@@ -104,7 +105,7 @@ class Evs_form extends MainController_avenxo {
 			$this->dedm->dtm_mbo = $dataMBO[$i];
 			$this->dedm->dtm_weight = $resultMBO[$i];
 			$this->dedm->dtm_emp_id = $Emp_ID;
-			$this->dedm->dtm_year = 2021;
+			$this->dedm->dtm_evs_emp_id = $emp_employee_id;
 			$this->dedm->insert();
 		}
 		// for
@@ -117,6 +118,7 @@ class Evs_form extends MainController_avenxo {
 		$dataMBO = $this->input->post("dataMBO");
 		$resultMBO = $this->input->post("resultMBO");
 		$Emp_ID = $this->input->post("Emp_ID");
+		$emp_employee_id = $this->input->post("evs_emp_id");
 		$count = $this->input->post("count");
 
 		$this->load->model('Da_evs_data_mbo','dedm');
@@ -126,8 +128,7 @@ class Evs_form extends MainController_avenxo {
 			$this->dedm->dtm_mbo = $dataMBO[$i];
 			$this->dedm->dtm_weight = $resultMBO[$i];
 			$this->dedm->dtm_emp_id = $Emp_ID;
-			$this->dedm->dtm_year = 2021;
-			$this->dedm->dtm_evs_emp_id = $Emp_ID;
+			$this->dedm->dtm_evs_emp_id = $emp_employee_id;
 			$this->dedm->update();
 		}
 		// for
