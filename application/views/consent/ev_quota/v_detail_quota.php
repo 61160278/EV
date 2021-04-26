@@ -243,8 +243,24 @@ window.onload = function() {
     context.strokeStyle = "black";
     var grad = ["S", "A", "B", "B-", "C", "D"];
     console.log(data[0]);
-   
-    context.moveTo(GRAPH_LEFT+((GRAPH_BOTTOM - 25) - GRAPH_HEIGHT), (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
+    if (largest <= 20) {
+        context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + (GRAPH_TOP + 70));
+    
+} else if (largest <= 40) {
+    context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + (GRAPH_TOP + 25));
+} else if (largest <= 60) {
+    context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + (GRAPH_TOP + 10));
+//document.getE;
+} else if (largest <= 80) {
+    context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + (GRAPH_TOP + 5));
+//document.write(grad[i] + "," + data[i)];
+
+} else {
+context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
+    GRAPH_HEIGHT) + GRAPH_TOP);
+}
+
+  
    
     //context.moveTo(GRAPH_LEFT + 25, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
 
@@ -353,10 +369,10 @@ window.onload = function() {
                                 <tr class="orange2">
                                     <td><b>Quota</b></td>
                                     <td id="quota1" value="5">5</td>
-                                    <td id="quota2" value="25">25</td>
-                                    <td id="quota3" value="60">60</td>
-                                    <td id="quota4" value="25">60</td>
-                                    <td id="quota5" value="25">25</td>
+                                    <td id="quota2" value="25">15</td>
+                                    <td id="quota3" value="60">20</td>
+                                    <td id="quota4" value="25">20</td>
+                                    <td id="quota5" value="25">15</td>
                                     <td id="quota6" value="5">5</td>
                                     <td>100</td>
                                 </tr>
