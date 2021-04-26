@@ -81,6 +81,23 @@ function Delete_data(gru_id) {
 
 }
 
+function manage_data(gru_id){
+
+      console.log(gru_id);
+
+
+
+
+
+
+
+
+
+      window.location.href = "<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_sdm";
+}
+
+
+
 function get_idemployee(gru_id) {
       Emp_id = document.getElementById("Emp_id" + gru_id).value;
       var empname = "";
@@ -352,8 +369,7 @@ function check_data_edt(check) {
                                                                               href="#Edit<?php echo $row->gru_id?>">
                                                                               <i class="ti ti-pencil-alt"></i>
                                                                         </a>
-                                                                        <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_sdm"
-                                                                              class="btn btn-info">
+                                                                        <a class="btn btn-info"  onClick="manage_data(<?php echo $row->gru_id; ?>)">
                                                                               <i class="ti ti-info-alt"></i>
                                                                         </a>
                                                                   </div>
