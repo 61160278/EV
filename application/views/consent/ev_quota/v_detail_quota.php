@@ -250,31 +250,6 @@ window.onload = function() {
     context.strokeStyle = "black";
     var grad = ["S", "A", "B", "B-", "C", "D"];
     console.log(data[0]);
-//     if (largest <= 20) {
-//         context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + ((GRAPH_TOP +(GRAPH_HEIGHT / 5) * 4)/2+10));
-    
-// } else if (largest <= 40) {
-//     context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + (GRAPH_TOP + 25));
-// } else if (largest <= 60) {
-//     context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + (GRAPH_TOP + 10));
-// //document.getE;
-// } else if (largest <= 80) {
-//     context.moveTo(GRAPH_LEFT / arrayLen  + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[0] / largest *  (GRAPH_HEIGHT / 5)) + (GRAPH_TOP));
-// //document.write(grad[i] + "," + data[i)];
-
-// } else {
-// context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-//     GRAPH_HEIGHT) + GRAPH_TOP);
-// }
-
-  
-   
-    //context.moveTo(GRAPH_LEFT + 25, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
-
-    // draw reference value for day of the week  
-    //context.fillText("S", 150, GRAPH_BOTTOM + 25);
-
-
 
     for (var i = 0; i < arrayLen; i++) {
 
