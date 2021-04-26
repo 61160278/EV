@@ -62,7 +62,8 @@ function clearMBO() {
 
 function save_dataMBO() {
 
-    var check_emp_id = document.getElementById("emp_id").innerHTML;
+    var check_emp_id = document.getElementById("emp_id").innerHTML; 
+    var evs_emp_id = document.getElementById("evs_emp_id").value;
     console.log(check_emp_id);
     console.log(count);
     var dataMBO = [];
@@ -86,6 +87,7 @@ function save_dataMBO() {
             "dataMBO": dataMBO,
             "resultMBO": resultMBO,
             "Emp_ID": check_emp_id,
+            "evs_emp_id":evs_emp_id,
             "count": count
         }
     });
@@ -428,6 +430,7 @@ function cancel_form(){
                         <br>
                         <?php foreach($emp_info->result() as $row){?>
                         <input type="text" id="pos_id" value="<?php echo $row->Position_ID; ?>" hidden>
+                        <input type="text" id="evs_emp_id" value="<?php echo $row->emp_id; ?>" hidden>
                         <input type="text" id="row_index" value="" hidden>
 
                         <div class="row">
@@ -545,7 +548,7 @@ function cancel_form(){
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <button class="btn btn-inverse" id="cancel_back" onclick="check_cancel()">CANCEL</button>
+                                <button class="btn btn-inverse" id="cancel_back" onclick="check_cancel()">BACK</button>
                                 <button class="btn btn-default" onclick="clearMBO()">CLEAR</button>
                             </div>
                             <!-- col-md-6 -->
