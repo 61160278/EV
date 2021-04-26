@@ -10,7 +10,7 @@
 ?>
 
 <script>
-function test(value) {
+function manage_skd(value) {
     if (value == "0") {
         window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/index";
     } else if (value == "1") {
@@ -19,7 +19,7 @@ function test(value) {
         window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
     }
 }
-// function test
+// function manage_skd
 
 $(document).ready(function() {
     $("#alert_grouptext").hide();
@@ -234,7 +234,7 @@ function manage_data(gru_id) {
             <h1 style="font-family:'Times New Roman'">
                 <font color="#ffffff" size="7px"><b>Manage Group SKD</b></font>
                 <div class="panel pull-right" id="addtable_filter">
-                    <select name="example_length" class="form-control" aria-controls="example" onChange="test(value)">
+                    <select name="example_length" class="form-control" aria-controls="example" onChange="manage_skd(value)">
                         <option value="0">Select Company</option>
                         <option value="1">SDM</option>
                         <option value="2" selected>SKD</option>
