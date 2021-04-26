@@ -272,11 +272,11 @@ window.onload = function() {
     //context.moveTo(GRAPH_LEFT + 25, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
 
     // draw reference value for day of the week  
-    context.fillText("S", 150, GRAPH_BOTTOM + 25);
+    //context.fillText("S", 150, GRAPH_BOTTOM + 25);
 
 
 
-    for (var i = 1; i < arrayLen; i++) {
+    for (var i = 0; i < arrayLen; i++) {
 
         if (largest <= 20) {
 
