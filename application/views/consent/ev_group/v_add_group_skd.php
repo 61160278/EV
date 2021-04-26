@@ -60,10 +60,13 @@
 									foreach($gcp_gcm->result() as $row ) { ?>
 										<tr class="odd gradeX" align = 'center'>
 											<td>
-												<div class="checked block">
+												<input name="checkbox" type="checkbox" multiple data-mdb-placeholder="Example placeholder" multiple="multiple">	
+											<!-- <div class="checked block">
 													<input name="checkbox" type="checkbox" multiple data-mdb-placeholder="Example placeholder" multiple>
-												</div>
+												</div> -->
 											</td>
+
+											
 											<td><?php echo $row->gru_head_dept; ?></td>
 											<td><?php echo $row->Empname_eng." ".$row->Empsurname_eng; ?></td>
 											<td><?php echo $row->Sectioncode_ID; ?></td>
@@ -115,7 +118,7 @@
 				<div class="panel-body">
 					<div class="panel panel-indigo" id="panel-addtable">
 						<div class="panel-heading">
-							<h2><font size = "4px">HR AGM</font></h2>
+							<h2 value="<?php echo $row->gru_name; ?>" name="group_text"></h2>
 						<div class="panel-ctrls"></div>
 						</div>
 						<!-- panel-heading -->
