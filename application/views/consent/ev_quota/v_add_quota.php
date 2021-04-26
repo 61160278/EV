@@ -48,7 +48,7 @@ function check_quota() {
     var check = "";
     var value_quota = 0;
 
-    for (i = 1; i <= 5; i++) {
+    for (i = 1; i <= 6; i++) {
         check = document.getElementById("quota" + i).value;
 
         if (check != "") {
@@ -72,7 +72,7 @@ window.onchange = function() {
     var arrQuota = [];
     var myCanvas = document.getElementById('testCanvas');
     var context = myCanvas.getContext('2d');
-    for (var i = 1; i <= 5; i++) {
+    for (var i = 1; i <= 6; i++) {
         var show_quota = document.getElementById("quota" + i).value;
         // var arrQuota = [5, 25, 40, 25, 5];
         arrQuota[i] = show_quota;
@@ -159,33 +159,31 @@ window.onchange = function() {
     context.stroke();
 
     // draw titles (คำบรรยายเส้นกราฟ)
-    context.fillText("Grad", (790 / 2) + 55, GRAPH_BOTTOM + 50);
-    context.fillText("Quota", GRAPH_LEFT - 115, GRAPH_HEIGHT / 2);
+    context.fillText("Grade", (790 / 2) + 55, GRAPH_BOTTOM + 50);
+    context.fillText("Percent", GRAPH_LEFT - 115, GRAPH_HEIGHT / 2);
     context.beginPath();
     context.lineJoin = "round";
     context.strokeStyle = "black";
-    var grad = ["S", "A", "B", "C", "D"];
+    var grad = ["S", "A", "B -","B", "C", "D"];
     console.log(data[0]);
-    context.moveTo(GRAPH_LEFT + 25, ((GRAPH_HEIGHT + 11.5) - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
+    context.moveTo(GRAPH_LEFT + 25, ((GRAPH_HEIGHT + 26.2) - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
     //context.moveTo(GRAPH_LEFT + 25, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
 
     // draw reference value for day of the week  
     context.fillText("S", 150, GRAPH_BOTTOM + 25);
 
+    for (var i = 0; i < arrayLen; i++) {
 
-
-    for (var i = 1; i < arrayLen; i++) {
-
-        if (largest <= 20) {
+        if (largest = 20) {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
                 GRAPH_HEIGHT / 5) + GRAPH_TOP);
-        } else if (largest <= 40) {
+        } else if (largest = 40) {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
                 (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP);
-        } else if (largest <= 60) {
+        } else if (largest = 60) {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
                 (GRAPH_HEIGHT / 5) * 3) + GRAPH_TOP);
-        } else if (largest <= 80) {
+        } else if (largest = 80) {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
                 (GRAPH_HEIGHT / 5)*4) + GRAPH_TOP);
         } else {
@@ -246,6 +244,7 @@ window.onchange = function() {
                                 <th>Grade</th>
                                 <th>S</th>
                                 <th>A</th>
+                                <th>B-</th>
                                 <th>B</th>
                                 <th>C</th>
                                 <th>D</th>
@@ -269,6 +268,9 @@ window.onchange = function() {
                                 </td>
                                 <td>
                                     <input type="text" class="form-control" id="quota5" onchange="check_quota()">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="quota6" onchange="check_quota()">
                                 </td>
                                 <td id="show_quota"></td>
                             </tr>
