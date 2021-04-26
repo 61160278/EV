@@ -217,6 +217,8 @@ function check_group_repeatedly() {
     });
 }
 // add_alert
+
+
 </script>
 
 
@@ -458,52 +460,6 @@ function check_group_repeatedly() {
 </div>
 <!-- End Modal Add-->
 
-<!-- Modal Warning -->
-<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:#FF9800;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b>
-                    </font>
-                </button>
-                <h2 class="modal-title"><b>
-                        <font color="white">Warning</font>
-                    </b></h2>
-            </div>
-            <!-- Modal header -->
-
-            <div class="modal-body">
-                <div class="form-horizontal">
-                    <div class="form-group" align="center">
-                        <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
-                                align="center">
-                                <font size="3px">
-                                    Please fill in the correct information.</font>
-                            </label>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- form-horizontal -->
-            </div>
-            <!-- Modal body -->
-
-            <div class="modal-footer">
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
-                </div>
-
-            </div>
-            <!-- Modal footer -->
-        </div>
-        <!-- modal-content -->
-    </div>
-    <!-- modal-dialog -->
-</div>
-<!-- End Modal Warning -->
-
 <?php
 	$num = 1;
 	foreach($grp_sdm->result() as $row ) { ?>
@@ -579,6 +535,51 @@ function check_group_repeatedly() {
 </div>
 <!-- End Modal Edit_add-->
 
+<!-- Modal Warning -->
+<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#FF9800;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b>
+                    </font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Warning</font>
+                    </b></h2>
+            </div>
+            <!-- Modal header -->
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group" align="center">
+                        <div class="col-sm-12">
+                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                                align="center">
+                                <font size="3px">
+                                    Please fill in the correct information.</font>
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- form-horizontal -->
+            </div>
+            <!-- Modal body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                </div>
+
+            </div>
+            <!-- Modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal Warning -->
 
 <!-- Modal Delete -->
 <div class="modal fade" id="Delete<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
