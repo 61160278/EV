@@ -8,6 +8,16 @@
 * @Create Date 2564-04-08
 */  
 ?>
+
+<script>
+function select_group_name(value) {
+    console.log(value);
+}
+// function test
+
+
+</script>
+
 <!DOCTYPE html>
 <html>
 <!-- Add group contact-->
@@ -30,7 +40,7 @@
                 <div class="panel panel-indigo" id="table_contact">
                     <div class="panel-heading">
                         <div class="panel pull-right" id="addtable_filter">
-                            <select name="example_length" class="form-control" aria-controls="example">
+                            <select name="example_length" class="form-control" aria-controls="example" onChange = "select_group_name(value)">
                                 <option value="">Select Group Contact </option>
                                 <?php foreach($gcp_gcm->result() as $row) {?>
                                 <option value="<?php echo $row->gru_name; ?>">
@@ -77,16 +87,14 @@
                                     <tr class="odd gradeX" align='center'>
                                         <td>
                                             <input name="checkbox" type="checkbox" multiple
-                                                data-mdb-placeholder="Example placeholder" multiple="multiple">
+                                                data-mdb-placeholder="Example placeholder">
                                             <!-- <div class="checked block">
 													<input name="checkbox" type="checkbox" multiple data-mdb-placeholder="Example placeholder" multiple>
 												</div> -->
                                         </td>
-
-
-                                        <td><?php echo $row->gru_head_dept; ?></td>
-                                        <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng; ?></td>
-                                        <td><?php echo $row->Sectioncode_ID; ?></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                     <?php
 									$num++;
@@ -136,7 +144,7 @@
                 <div class="panel panel-indigo" id="panel-addtable">
                     <div class="panel-heading">
                         <?php
-							foreach($gcp_gcm->result() as $row ) { ?>
+							foreach($group_skd->result() as $row ) { ?>
                         <h2>
                             <font size="4px"><?php echo $row->gru_name; ?> </font>
                         </h2>
@@ -221,7 +229,7 @@
                 <!-- panel-addtable -->
 
                 <div class="DTTT btn-group pull-right mt-sm">
-                    <a href="<?php echo base_url(); ?>/ev_group/Evs_group/index">
+                    <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">
                         <button type="button" class="btn btn-success" data-dismiss="modal">SUBMIT</button>
                     </a>
                 </div>

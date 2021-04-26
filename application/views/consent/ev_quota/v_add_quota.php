@@ -123,7 +123,7 @@ window.onchange = function() {
     context.moveTo(GRAPH_RIGHT, GRAPH_TOP);
     context.lineTo(GRAPH_LEFT, GRAPH_TOP);
     // draw reference value for hours  
-    context.fillText(100, GRAPH_LEFT - 25, GRAPH_TOP);
+    context.fillText(100, GRAPH_LEFT - 30, GRAPH_TOP);
     context.stroke();
     // draw reference line  เส้นที่ 4
     context.beginPath();
@@ -164,9 +164,9 @@ window.onchange = function() {
     context.beginPath();
     context.lineJoin = "round";
     context.strokeStyle = "black";
-    var grad = ["S", "A", "B -","B", "C", "D"];
-    console.log(data[0]+"*****************");
-    //context.moveTo(GRAPH_LEFT + 25, ((GRAPH_HEIGHT + 10) - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
+    var grad = ["S", "A", "B", "B-", "C", "D"];
+    console.log(data[0]);
+    // context.moveTo(GRAPH_LEFT + 25, ((GRAPH_HEIGHT + 26.2) - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
     //context.moveTo(GRAPH_LEFT + 25, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
 
     // draw reference value for day of the week  
@@ -244,8 +244,8 @@ window.onchange = function() {
                                 <th>Grade</th>
                                 <th>S</th>
                                 <th>A</th>
-                                <th>B-</th>
                                 <th>B</th>
+                                <th>B-</th>
                                 <th>C</th>
                                 <th>D</th>
                                 <th>Total</th>
