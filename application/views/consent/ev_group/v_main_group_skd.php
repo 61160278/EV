@@ -23,7 +23,7 @@ function test(value) {
 
 $(document).ready(function() {
     $("#alert_grouptext").hide();
-    
+
     $("#grouptext").keyup(function() {
         $("#alert_grouptext").hide();
     });
@@ -219,6 +219,10 @@ function check_group_repeatedly() {
 // add_alert
 
 
+function manage_data(gru_id) {
+    console.log(gru_id);
+    window.location.href = "<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_skd/" + gru_id;
+}
 </script>
 
 
@@ -311,9 +315,9 @@ function check_group_repeatedly() {
                                                     <i class="ti ti-pencil-alt"></i>
                                                 </a>
                                                 <a class="btn btn-info"
-                                                    href="<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_skd">
+                                                    onClick="manage_data(<?php echo $row->gru_id; ?>)">
                                                     <i class="ti ti-file"></i>
-                                                </a>
+                                                    </a>
                                             </div>
                                         </td>
                                     </tr>
@@ -407,23 +411,25 @@ function check_group_repeatedly() {
                     <!-- Group Name -->
 
                     <div class="form-group">
-                    <label class="col-sm-3 control-label"></label>
+                        <label class="col-sm-3 control-label"></label>
                         <div class="col-sm-6">
-                            <p id="alert_grouptext"><font color="red"><b> This data already to use! </b></font></p>
+                            <p id="alert_grouptext">
+                                <font color="red"><b> This data already to use! </b></font>
+                            </p>
                         </div>
                     </div>
                     <!-- Duplicate groups please check. -->
 
                     <div class="form-group">
-                    <label class="col-sm-1 control-label"></label>
+                        <label class="col-sm-1 control-label"></label>
                         <div class="col-sm-8">
-                        <label style="font-family:'Courier New'"><b>
-                            <font size="4px" color="Black">Select Head Dept.</font>
-                        </b></label>
+                            <label style="font-family:'Courier New'"><b>
+                                    <font size="4px" color="Black">Select Head Dept.</font>
+                                </b></label>
                         </div>
                     </div>
                     <!-- Select Head Dept. -->
-                    
+
                     <div class="form-group">
                         <label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
                         <div class="col-sm-6">
