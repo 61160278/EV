@@ -51,6 +51,7 @@ $(document).ready(function() {
     check_quota_plan()
     check_quota_actual()
 });
+
 function check_quota_plan() {
 
     var check = "";
@@ -70,9 +71,9 @@ function check_quota_plan() {
 function check_quota_actual() {
     var check = "";
     var actual = 0;
-	
+
     for (var i = 1; i <= 6; i++) {
-        check = document.getElementById("quotaActual"+i).value;
+        check = document.getElementById("quotaActual" + i).value;
         if (check != "") {
             actual += parseInt(check);
         }
@@ -100,7 +101,8 @@ function get_data() {
     });
 }
 window.onload = function() {
-
+    var width = 40; //bar chart
+    var x = 125;
     var data = [];
     var arrQuota = [];
     var myCanvas = document.getElementById('testCanvas');
@@ -121,6 +123,8 @@ window.onload = function() {
     //var arrQuota = [5, 25, 60, 25, 5];
     var canvas = document.getElementById("testCanvas");
     var context = canvas.getContext("2d");
+    var width = 40; //bar chart
+    var x = 125;
     var GRAPH_TOP = 25;
     var GRAPH_BOTTOM = 375;
     var GRAPH_LEFT = 125;
@@ -140,16 +144,49 @@ window.onload = function() {
     console.log(largest);
 
     context.clearRect(0, 0, 1000, 450);
+    context.save();
     // set font for fillText()  
     context.font = "16px Arial";
-
+//context.rotate(Math.PI / 2);
     // draw X and Y axis  
     context.beginPath();
     context.moveTo(GRAPH_RIGHT, GRAPH_BOTTOM);
     context.lineTo(GRAPH_LEFT, GRAPH_BOTTOM); //x
     context.lineTo(GRAPH_LEFT, GRAPH_TOP); //y  
-	//context.lineTo(GRAPH_LEFT+GRAPH_RIGHT, GRAPH_TOP);
+    //context.lineTo(GRAPH_LEFT+GRAPH_RIGHT, GRAPH_TOP);
     context.stroke();
+
+
+    context.fillStyle = '#000000';
+
+     //for(var b = 0;b < arrayLen;b++){
+
+     //var h = data[b];    
+     
+     var arr = [10,20,30,40,50,60]
+     context.fillRect(x,(GRAPH_HEIGHT - arr[0] / largest *(GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP,width,(GRAPH_BOTTOM-GRAPH_LEFT)-arr[0]); 
+     x += width + 89;
+      
+     context.fillRect(x,(myCanvas.height-75) - data[1],width,data[1]);
+     x += width + 89;
+    
+     context.fillRect(x,(myCanvas.height-75) - data[2],width,data[2]);
+     x += width + 89;
+    
+     context.fillRect(x,(myCanvas.height-75) - data[3],width,data[3]);
+     x += width + 89;
+ 
+     context.fillRect(x,(myCanvas.height-75) - data[4],width,data[4]);
+     x += width + 89;
+  
+     context.fillRect(x,(myCanvas.height-75) - data[5],width,data[5]);
+     x += width + 89;
+  
+    // context.fillRect(x,(GRAPH_HEIGHT - data[b] / largest * (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP,width,GRAPH_BOTTOM);
+    // x += width + 89;
+    // }
+
+
 
     // draw reference line  เส้นที่ 5
     context.beginPath();
@@ -203,27 +240,35 @@ window.onload = function() {
 
     for (var i = 0; i < arrayLen; i++) {
 
-        if (largest <= 20) {
+        if (largest == 20) {
 
             context.lineTo((GRAPH_RIGHT - 25) / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] /
                 largest *
                 (GRAPH_HEIGHT / 5)) + GRAPH_TOP);
-				
-        } else if (largest <= 40) {
-            context.lineTo((GRAPH_RIGHT) / arrayLen * i + (GRAPH_LEFT + 10), (GRAPH_HEIGHT - data[i] / largest *
-                (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP);
-        } else if (largest <= 60) {
+            // context.fillRect(x, (GRAPH_HEIGHT - data[i] / largest * GRAPH_HEIGHT / 5) + GRAPH_TOP, width,
+            //    GRAPH_BOTTOM);
+           // x += width + 89;
+
+        } else if (largest == 40) {
+            context.lineTo((GRAPH_RIGHT) / arrayLen * i + (GRAPH_LEFT + 10), (GRAPH_HEIGHT - data[i] / largest *(GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP);
+            //context.fillRect(x, (GRAPH_HEIGHT - data[i] / largest * (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP, width,(GRAPH_HEIGHT / 5) * 2);
+           // context.fillRect(x,(myCanvas.height-75) - data[i],width,data[i]);
+//x += width + 89;
+        } else if (largest == 60) {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
                 (GRAPH_HEIGHT / 5) * 3) + GRAPH_TOP);
-            //document.getE;
-        } else if (largest <= 80) {
-            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-                (GRAPH_HEIGHT / 5) * 4) + GRAPH_TOP);
+//context.fillRect(x, (GRAPH_HEIGHT - data[i] / largest * (GRAPH_HEIGHT / 5) * 3) + GRAPH_TOP, width,GRAPH_BOTTOM);
+         //   x += width + 89;
+        } else if (largest == 80) {
+            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *(GRAPH_HEIGHT / 5) * 4) + GRAPH_TOP);
             //document.write(grad[i] + "," + data[i)];
-
+           // context.fillRect(x, (GRAPH_HEIGHT - data[i] / largest * (GRAPH_HEIGHT / 5) * 4) + GRAPH_TOP, width,GRAPH_BOTTOM);
+           /// x += width + 89;
         } else {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
                 GRAPH_HEIGHT) + GRAPH_TOP);
+           // context.fillRect(x, (GRAPH_HEIGHT - data[i] / largest * GRAPH_HEIGHT) + GRAPH_TOP, width, GRAPH_BOTTOM);
+           // x += width + 89;
         }
 
         //context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i]  / largest *GRAPH_HEIGHT) + GRAPH_TOP);
@@ -392,7 +437,7 @@ window.onload = function() {
                             </table>
                             <br>
                             <br>
-                            
+
                             <canvas id="testCanvas" width="1000" height="450"></canvas>
 
                             <!-- //<div id="line-example" style="position: relative;">
