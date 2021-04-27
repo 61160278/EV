@@ -10,48 +10,47 @@
 ?>
 
 <script>
-function manage_group(){
-      var gru_id = document.getElementById("select").value;
-      var data_row = " ";
-      $.ajax({
-            type: "post",
-            url: "<?php echo base_url(); ?>/ev_group/Evs_group/query_man",
-            data: {
-                  "gru_id": gru_id
-            },
-            dataType: "JSON",
-            success: function(data, status) {
-                  console.log(status)
-                  console.log(data)
-                  data.forEach((row, index) => {
-                        data_row += '<tr>'
-                        data_row += '<td>'
-                        data_row += '<div class="checked block">'
-                        data_row += '<input name="checkbox" type="checkbox">'
-                        data_row += '</div>'                          
-                        data_row += '</td>'
-                        data_row += '<td>'
-                        data_row += row.Emp_ID
-                        data_row += '</td>'
-                        data_row += '<td>'
-                        data_row += row.Empname_eng+" "+row.Empsurname_eng;
-                        data_row += '</td>'
-                        data_row += '<td>'
-                        data_row += row.emp_section_code_ID
-                        data_row += '</td>'
-                        data_row += '</tr>'
+
+array_change_group = [   ]
+
+function manage_group() {
+    var gru_id = document.getElementById("select").value;
+    var data_row = " ";
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_group/Evs_group/query_man",
+        data: {
+            "gru_id": gru_id
+        },
+        dataType: "JSON",
+        success: function(data, status) {
+            console.log(status)
+            console.log(data)
+            data.forEach((row, index) => {
+                data_row += '<tr>'
+                data_row += '<td>'
+                data_row += '<div class="checked block">'
+                data_row += '<input name="checkbox" type="checkbox">'
+                data_row += '</div>'
+                data_row += '</td>'
+                data_row += '<td>'
+                data_row += row.Emp_ID
+                data_row += '</td>'
+                data_row += '<td>'
+                data_row += row.Empname_eng + " " + row.Empsurname_eng;
+                data_row += '</td>'
+                data_row += '<td>'
+                data_row += row.emp_section_code_ID
+                data_row += '</td>'
+                data_row += '</tr>'
 
             })
             console.log(data_row)
             $("#select_data").html(data_row)
-      }//success
-      
-
-      });
-
-           
-
+        } //success
+    });
 }
+// manage_group
 
 
 </script>
@@ -79,7 +78,8 @@ function manage_group(){
                     <div class="panel-heading">
 
                         <div class="panel pull-right" id="addtable_filter">
-                            <select onchange ="manage_group()" id = "select" name="example_length" class="form-control" aria-controls="example">
+                            <select onchange="manage_group()" id="select" name="example_length" class="form-control"
+                                aria-controls="example">
                                 <option value="">Select Group Contact </option>
                                 <?php foreach($gcp_gdk->result() as $row) {?>
                                 <option value="<?php echo $row->gru_id; ?>">
@@ -119,9 +119,9 @@ function manage_group(){
                                     </tr>
                                 </thead>
 
-                                <tbody id="select_data">
-                                                     
-                                                </tbody>
+                                <tbody id="select_data" align="center">
+
+                                </tbody>
                             </table>
                             <!-- table -->
                         </div>
@@ -203,21 +203,21 @@ function manage_group(){
                                 </thead>
 
                                 <tbody>
-                                <?php
+                                    <?php
 									$num = 1;
 									foreach($group_skd->result() as $row ) { ?>
-                                                      <tr class="odd gradeX" align='center'>
-                                                            <td>
-                                                                  <div class="checked block">
-                                                                        <input name="checkbox" type="checkbox">
-                                                                  </div>
-                                                            </td>
-                                                            <td><?php echo $row->Emp_ID; ?></td>
-                                                            <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng; ?>
-                                                            </td>
-                                                            <td><?php echo $row->Sectioncode_ID; ?></td>
-                                                      </tr>
-                                                      <?php
+                                    <tr class="odd gradeX" align='center'>
+                                        <td>
+                                            <div class="checked block">
+                                                <input name="checkbox" type="checkbox">
+                                            </div>
+                                        </td>
+                                        <td><?php echo $row->Emp_ID; ?></td>
+                                        <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng; ?>
+                                        </td>
+                                        <td><?php echo $row->Sectioncode_ID; ?></td>
+                                    </tr>
+                                    <?php
 									$num++;
 									} ?>
                                 </tbody>
@@ -258,9 +258,7 @@ function manage_group(){
                 <!-- panel-addtable -->
 
                 <div class="DTTT btn-group pull-right mt-sm">
-                    <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">SUBMIT</button>
-                    </a>
+                    <button type="submit" class="btn btn-success" value="SAVE">SUBMIT</button>
                 </div>
                 <!-- SUBMIT -->
             </div>
@@ -321,33 +319,33 @@ tbody {
 
 <!-- Model RESIGN -->
 <div class="modal fade" id="Remove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:gray;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b></font>
-                </button>
-            </div><!-- Modal header -->
-            <div class="modal-body">
-
-                <div class="form-horizontal">
-                    <div class="form-group" align="center">
-                        <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
-                                align="center">
-                                <font size="5px">Do you want to Remove Data YES or NO ?</font>
-                            </label>
-                        </div> <!-- Name - Surname -->
-                    </div>
-                </div> <!-- form-horizontal -->
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group pull-left">
-                    <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
-                </div>
-                <button type="button" class="btn btn-success" data-dismiss="modal">YES</button>
-            </div>
-
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
+    <div class="jp-multiselect">
+        <div class="from-panel">
+            <select name="from[]" class="form-control" size="8" multiple="multiple">
+                <option value="1">Item 1</option>
+                <option value="2">Item 2</option>
+                <option value="3">Item 3</option>
+                <option value="4">Item 4</option>
+                <option value="5">Item 5</option>
+            </select>
+        </div>
+        <div class="move-panel">
+            <button type="button" class="btn-move-all-right btn-primary"></button>
+            <button type="button" class="btn-move-selected-right"></button>
+            <button type="button" class="btn-move-all-left"></button>
+            <button type="button" class="btn-move-selected-left"></button>
+        </div>
+        <div class="to-panel">
+            <select name="to[]" class="form-control" size="8" multiple="multiple">
+                <option value="6">Item 6</option>
+                <option value="7">Item 7</option>
+                <option value="8">Item 8</option>
+            </select>
+        </div>
+        <div class="control-panel">
+            <button type="button" class="btn-delete"></button>
+            <button type="button" class="btn-up"></button>
+            <button type="button" class="btn-down"></button>
+        </div>
+    </div>
 </div><!-- /.modal-->
