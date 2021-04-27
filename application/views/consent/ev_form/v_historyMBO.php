@@ -148,7 +148,7 @@ function cancel_form() {
                                 <table id="example" class="table table-striped table-bordered" cellspacing="0"
                                     width="100%">
                                     <thead>
-                                        <tr>
+                                        <tr align="center">
                                             <th>NO.</th>
                                             <th>Year’s MBO</th>
                                             <th>Approver 1</th>

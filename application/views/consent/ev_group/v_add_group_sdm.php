@@ -9,8 +9,7 @@
 */  
 ?>
 <script>
-
-function manage_group(){
+function manage_group() {
       var gru_id = document.getElementById("select").value;
       var data_row = " ";
       $.ajax({
@@ -22,41 +21,130 @@ function manage_group(){
             dataType: "JSON",
             success: function(data, status) {
                   console.log(status)
-                  console.log(data)
+                  // console.log(data)
+                  var count = 0;
                   data.forEach((row, index) => {
                         data_row += '<tr>'
                         data_row += '<td>'
-                        data_row += '<div class="checked block">'
-                        data_row += '<input name="checkbox" type="checkbox">'
-                        data_row += '</div>'                          
+                        data_row += '<div align="center" class="checked block">'
+                        data_row += '<input id = "check_group' + index +
+                              '" name="checkbox" type="checkbox">'
+                        data_row += '</div>'
                         data_row += '</td>'
-                        data_row += '<td>'
+                        data_row += '<td id="emp_' + index + '">'
                         data_row += row.Emp_ID
                         data_row += '</td>'
                         data_row += '<td>'
-                        data_row += row.Empname_eng+" "+row.Empsurname_eng;
+                        data_row += row.Empname_eng + " " + row.Empsurname_eng;
                         data_row += '</td>'
                         data_row += '<td>'
                         data_row += row.emp_section_code_ID
                         data_row += '</td>'
                         data_row += '</tr>'
+                        count++
 
-            })
-            console.log(data_row)
-            $("#select_data").html(data_row)
-      }//success
-      
+
+                  })
+                  // console.log(data_row)
+                  $("#select_data").html(data_row)
+                  $("#count_check").val(count)
+            } //success
+
 
       });
 
-           
+
 
 }
 
 
 
 
+function manage_group_right() {
+      var gru_id = document.getElementById("new_group").value;
+      var data_row = " ";
+      $.ajax({
+            type: "post",
+            url: "<?php echo base_url(); ?>/ev_group/Evs_group/query_man_new",
+            data: {
+                  "gru_id": gru_id
+            },
+            dataType: "JSON",
+            success: function(data, status) {
+                  console.log(status)
+                  console.log(data)
+                  var count = 0;
+                  data.forEach((row, index) => {
+                        data_row += '<tr>'
+                        data_row += '<td>'
+                        data_row += '<div align="center" class="checked block">'
+                        data_row += '<input id = "new_check_group' + index +
+                              '" name="checkbox" type="checkbox">'
+                        data_row += '</div>'
+                        data_row += '</td>'
+                        data_row += '<td id="emp_new' + index + '">'
+                        data_row += row.Emp_ID
+                        data_row += '</td>'
+                        data_row += '<td>'
+                        data_row += row.Empname_eng + " " + row.Empsurname_eng;
+                        data_row += '</td>'
+                        data_row += '<td>'
+                        data_row += row.emp_section_code_ID
+                        data_row += '</td>'
+                        data_row += '</tr>'
+                        count++
 
+
+                  })
+                  console.log(data_row)
+                  $("#table_r").html(data_row)
+                  $("#count_group").val(count)
+            } //success
+
+
+      });
+
+
+
+}
+
+
+
+function change_group() {
+      var count_check = document.getElementById("count_check").value;
+      var new_group = document.getElementById("new_group").value;
+      var old_group = document.getElementById("select").value;
+      var get_emp=[];
+      for (i = 0; i < count_check; i++) {
+            if(document.getElementById("check_group"+i).checked){
+                  get_emp.push(document.getElementById("emp_"+i).innerHTML)
+                  console.log(get_emp)
+            }
+      }//for
+
+      // $("#select").val(old_group)
+      $.ajax({
+            type: "post",
+            url: "<?php echo base_url(); ?>/ev_group/Evs_group/add_new_group",
+            data: {
+                  "new_group": new_group,
+                  "get_emp": get_emp,
+                  "count_check": count_check
+                  
+            },
+            dataType: "JSON",
+            error: function(status) {
+                  console.log(status)
+                  console.log("Yoooo")
+                  manage_group();
+                  manage_group_right(); 
+            } //error ไม่ส่งค่ากลับมาเลยใช้ฟังก์ชันนี้
+
+
+      });//ajax
+     
+     
+}
 </script>
 
 
@@ -85,7 +173,8 @@ function manage_group(){
                               <div class="panel-heading">
 
                                     <div class="panel pull-right" id="addtable_filter">
-                                          <select id = "select" onchange ="manage_group()" name="example_length" class="form-control" aria-controls="example">
+                                          <select id="select" onchange="manage_group()" name="example_length"
+                                                class="form-control" aria-controls="example">
                                                 <option value="">Select Group Contact </option>
                                                 <?php foreach($gcp_gcm->result() as $row) {?>
                                                 <option value="<?php echo $row->gru_id; ?>">
@@ -129,8 +218,9 @@ function manage_group(){
                                                 </thead>
 
                                                 <tbody id="select_data">
-                                                     
+
                                                 </tbody>
+                                                <input type="text" id="count_check" value="" hidden>
                                           </table>
                                           <!-- table -->
                                     </div>
@@ -149,10 +239,10 @@ function manage_group(){
                               <!-- panel-footer -->
 
                               <div class="DTTT btn-group pull-right mt-sm">
-                                    <a data-toggle="modal" class="btn btn btn-success">
+                                    <button class="btn btn-success" onclick="change_group()">
                                           <i class="ti ti-plus"></i>
                                           <span>ADD</span>
-                                    </a>
+                                    </button>
                               </div>
                               <!-- add -->
 
@@ -178,12 +268,13 @@ function manage_group(){
                                     <?php
 									
 						      foreach($grpsdm->result() as $row ) { ?>
-                                          
+
                                     <h2>
                                           <font size="4px"><?php echo $row->gru_name; ?> </font>
                                     </h2>
+                                    <input type="text" value="<?php echo $row->gru_id; ?>" hidden id = "new_group">
                                     <?php }; ?>
-                                                      
+
                                     <div class="panel-ctrls"></div>
                               </div>
                               <!-- panel-heading -->
@@ -216,10 +307,10 @@ function manage_group(){
                                                       </tr>
                                                 </thead>
 
-                                                <tbody>
-                                                <?php
-									$num = 1;
-									foreach($group_sdm->result() as $row ) { ?>
+                                                <tbody id ="table_r">
+                                                      <?php
+									$num = 0;
+									foreach($group_sdm->result() as $index => $row ) { ?>
                                                       <tr class="odd gradeX" align='center'>
                                                             <td>
                                                                   <div class="checked block">
@@ -235,6 +326,7 @@ function manage_group(){
 									$num++;
 									} ?>
                                                 </tbody>
+                                                <input type="text" id = "count_group" value="<?php echo $num;?>" hidden>
                                           </table>
                                           <!-- table -->
                                     </div>

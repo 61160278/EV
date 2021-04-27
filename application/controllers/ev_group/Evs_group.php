@@ -227,7 +227,7 @@ class Evs_group extends MainController_avenxo {
 	{
 		$this->load->model('M_evs_group','mdk');
 		$this->mdk->gru_company_id = 2;
-		$data['gcp_gdk'] = $this->mdk->get_all_com();
+		$data['gcp_gkd'] = $this->mdk->get_all_com();
 
 		$this->load->model('M_evs_group','mevg');
 		$this->mevg->emp_ghr_id = $gru_id;
@@ -270,8 +270,44 @@ class Evs_group extends MainController_avenxo {
 		echo json_encode($data);
 
 	}
+
+	function query_man_new(){
+		$gru_id = $this->input->post('gru_id');
+		$this->load->model('M_evs_group','mevg');
+		$this->mevg->emp_ghr_id = $gru_id;
+		$data = $this->mevg->get_group()->result();
+		echo json_encode($data);
+
+	}
 		
 	
-	
+	function add_new_group()
+	{
+		$group = $this->input->post('group');
+		$get_emp = $this->input->post("get_emp");
+		$count = $this->input->post("count");
+		
+
+		$this->load->model('M_evs_group','egs');
+		for ($i = 0; $i < $count; $i++) {
+			$this->egs->emp_ghr_id = $group;
+			$this->egs->emp_employee_id = $get_emp[$i];
+			$this->egs->emp_pay_id = 2;
+			$this->egs->update_group();
+		}
+		// for
+	}
+	// function add_new_group
+
+
+
+
+
+
+
+
+
+
+
 }
 ?>

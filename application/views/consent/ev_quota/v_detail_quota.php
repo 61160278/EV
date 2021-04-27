@@ -98,7 +98,7 @@ tbody:hover {
     opacity: 1;
 }
 </style>
-
+<script src="path/to/chartjs/dist/chart.js"></script>
 <script>
 /*
  * check_quota_plan
@@ -125,166 +125,41 @@ function check_quota_plan() {
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
     } //for
 }
-// $(document).ready(function() {
-//     $('.tooltiptext').tooltip({
-// var data = [];
-// var arrQuota = [];
-// var myCanvas = document.getElementById('testCanvas');
-// var context = myCanvas.getContext('2d');
-// for (var i = 1; i <= 5; i++) {
-//     //  var show_quota = document.getElementById("quota" + i).innerHTML;
-//     var show_quota = document.getElementById("quota" + i).innerHTML;
-//     //  var arrQuota = [5, 25, 40, 25, 5];
-//     arrQuota[i] = show_quota;
-// } //for
-// arrQuota.shift();
-// console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
-// for (var a = 0; a < arrQuota.length; a++) {
-//     data[a] = arrQuota[a] * 1;
 
-// } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
-// console.log(data);
-//         title: "Hooray",
-//         placement: "top"
-//     });
-// });
+// <block:setup:1>
+const labels = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+];
+const data = {
+  labels: labels,
+  datasets: [{
+    label: 'My First dataset',
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: [0, 10, 5, 2, 20, 30, 45],
+  }]
+};
+// </block:setup>
 
-// window.onchange = function() {
-window.onload = function() {
+// <block:config:0>
+const config = {
+  type: 'line',
+  data,
+  options: {}
+};
+// </block:config>
 
-    var data = [];
-    var arrQuota = [];
-    var myCanvas = document.getElementById('testCanvas');
-    var context = myCanvas.getContext('2d');
-    for (var i = 1; i <= 6; i++) {
-        //  var show_quota = document.getElementById("quota" + i).innerHTML;
-        var show_quota = document.getElementById("quota" + i).innerHTML;
-        //  var arrQuota = [5, 25, 40, 25, 5];
-        arrQuota[i] = show_quota;
-    } //for
-    arrQuota.shift();
-    console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
-    for (var a = 0; a < arrQuota.length; a++) {
-        data[a] = arrQuota[a] * 1;
 
-    } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
-    console.log(data);
-    //var arrQuota = [5, 25, 60, 25, 5];
-    var canvas = document.getElementById("testCanvas");
-    var context = canvas.getContext("2d");
-    var GRAPH_TOP = 25;
-    var GRAPH_BOTTOM = 375;
-    var GRAPH_LEFT = 125;
-    var GRAPH_RIGHT = 800;
+var myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
 
-    var GRAPH_HEIGHT = 350;
-    // var GRAPH_WIDTH = 900;
-
-    var arrayLen = data.length;
-    console.log(arrayLen);
-    var largest = 0;
-    for (var i = 0; i < arrayLen; i++) {
-        if (data[i] > largest) {
-            largest = data[i];
-        }
-    }
-    console.log(largest);
-
-    context.clearRect(0, 0, 1000, 450);
-    // set font for fillText()  
-    context.font = "16px Arial";
-
-    // draw X and Y axis  
-    context.beginPath();
-    context.moveTo(GRAPH_RIGHT, GRAPH_BOTTOM);
-    context.lineTo(GRAPH_LEFT, GRAPH_BOTTOM); //x
-    context.lineTo(GRAPH_LEFT, GRAPH_TOP); //y  
-    context.stroke();
-
-    // draw reference line  เส้นที่ 5
-    context.beginPath();
-    context.strokeStyle = "#BBB";
-    context.moveTo(GRAPH_RIGHT, GRAPH_TOP);
-    context.lineTo(GRAPH_LEFT, GRAPH_TOP);
-    // draw reference value for hours  
-    context.fillText(100, GRAPH_LEFT - 25, GRAPH_TOP);
-    context.stroke();
-    // draw reference line  เส้นที่ 4
-    context.beginPath();
-    context.strokeStyle = "#BBB";
-    context.moveTo(GRAPH_RIGHT, (GRAPH_HEIGHT) / 5 + GRAPH_TOP);
-    context.lineTo(GRAPH_LEFT, (GRAPH_HEIGHT) / 5 + GRAPH_TOP);
-    // draw reference value for hours  
-    context.fillText(80, GRAPH_LEFT - 25, (GRAPH_HEIGHT) / 5 + GRAPH_TOP);
-    context.stroke();
-
-    // draw reference line  เส้นที่ 1
-    context.beginPath();
-    context.moveTo(GRAPH_RIGHT, ((GRAPH_HEIGHT) / 5) * 4 + GRAPH_TOP);
-    context.lineTo(GRAPH_LEFT, ((GRAPH_HEIGHT) / 5) * 4 + GRAPH_TOP);
-    // draw reference value for hours  
-    context.fillText(20, GRAPH_LEFT - 25, ((GRAPH_HEIGHT) / 5) * 4 + GRAPH_TOP);
-    context.stroke();
-
-    // draw reference line เส้นที่ 2 
-    context.beginPath();
-    context.moveTo(GRAPH_RIGHT, ((GRAPH_HEIGHT) / 5) * 3 + GRAPH_TOP);
-    context.lineTo(GRAPH_LEFT, ((GRAPH_HEIGHT) / 5) * 3 + GRAPH_TOP);
-    // draw reference value for hours  
-    context.fillText(40, GRAPH_LEFT - 25, ((GRAPH_HEIGHT) / 5) * 3 + GRAPH_TOP);
-    context.stroke();
-
-    // draw reference line //เส้นที่ 3
-    context.beginPath();
-    context.moveTo(GRAPH_RIGHT, ((GRAPH_HEIGHT) / 5) * 2 + GRAPH_TOP);
-    context.lineTo(GRAPH_LEFT, ((GRAPH_HEIGHT) / 5) * 2 + GRAPH_TOP);
-    // draw reference value for hours  
-    context.fillText(60, GRAPH_LEFT - 25, ((GRAPH_HEIGHT) / 5) * 2 + GRAPH_TOP);
-    context.stroke();
-
-    // draw titles (คำบรรยายเส้นกราฟ)
-    context.fillText("Grad", (790 / 2) + 55, GRAPH_BOTTOM + 50);
-    context.fillText("Quota", GRAPH_LEFT - 115, GRAPH_HEIGHT / 2);
-    context.beginPath();
-    context.lineJoin = "round";
-    context.strokeStyle = "black";
-    var grad = ["S", "A", "B", "B-", "C", "D"];
-    console.log(data[0]);
-
-    for (var i = 0; i < arrayLen; i++) {
-
-        if (largest <= 20) {
-
-            context.lineTo((GRAPH_RIGHT - 25) / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] /
-                largest *
-                (GRAPH_HEIGHT / 5)) + GRAPH_TOP);
-        } else if (largest <= 40) {
-            context.lineTo((GRAPH_RIGHT) / arrayLen * i + (GRAPH_LEFT + 10), (GRAPH_HEIGHT - data[i] / largest *
-                (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP);
-        } else if (largest <= 60) {
-            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-                (GRAPH_HEIGHT / 5) * 3) + GRAPH_TOP);
-            //document.getE;
-        } else if (largest <= 80) {
-            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-                (GRAPH_HEIGHT / 5) * 4) + GRAPH_TOP);
-            //document.write(grad[i] + "," + data[i)];
-
-        } else {
-            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-                GRAPH_HEIGHT) + GRAPH_TOP);
-        }
-
-        //context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i]  / largest *GRAPH_HEIGHT) + GRAPH_TOP);
-        // context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-        //     GRAPH_HEIGHT) + GRAPH_TOP);
-        // draw reference value for day of the week  
-        context.fillText(grad[i], (GRAPH_RIGHT) / arrayLen * i + 130, GRAPH_BOTTOM + 25);
-
-    }
-
-    context.stroke();
-}
 </script>
 
 <div class="col-md-12">
@@ -396,12 +271,12 @@ window.onload = function() {
                         </div>
                         <div class="panel-body">
 
-                            <canvas id="testCanvas" width="1000" height="450"></canvas>
+                            <!-- <canvas id="testCanvas" width="1000" height="450"></canvas> -->
 
                             <!-- <div class="well well-lg tooltips" data-trigger="hover" data-original-title=".well.well-lg">
 
                             </div> -->
-                            <!-- <canvas id="myCanvas" width="400" height="400" ></canvas>  -->
+                            <canvas id="myChart" width="400" height="400" ></canvas> 
 
                         </div>
                     </div>
