@@ -151,17 +151,31 @@ class Evs_form extends MainController_avenxo {
 		$this->meda->dma_dtm_emp_id = $emp_employee_id;
 		$data['data_app'] = $this->meda->get_by_id()->row();
 
-		$this->load->model('M_evs_employee','memp');
-		$this->memp->Emp_ID = $data['data_app']->dma_approve1;
-		$data['app1'] = $this->memp->get_by_empid()->result();
+		echo json_encode($data);
+	}
+	// function save_approve
 
-		$this->load->model('M_evs_employee','memp');
-		$this->memp->Emp_ID = $data['data_app']->dma_approve2;
-		$data['app2'] = $this->memp->get_by_empid()->result();
+	function update_approve(){
+
+		$approve1 = $this->input->post("approve1");
+		$approve2 = $this->input->post("approve2");
+		$emp_employee_id = $this->input->post("evs_emp_id");
+
+		$this->load->model('Da_evs_data_mbo_approve','deda');
+		$this->deda->dma_approve1 = $approve1;
+		$this->deda->dma_approve2 = $approve2;
+		$this->deda->dma_dtm_emp_id = $emp_employee_id;
+		$this->deda->update();
+
+		$this->load->model('M_evs_data_mbo_approve','meda');
+		$this->meda->dma_dtm_emp_id = $emp_employee_id;
+		$data['data_app'] = $this->meda->get_by_id()->row();
 
 		echo json_encode($data);
 	}
 	// function save_approve
+
+	
 
 	function get_approve(){
 

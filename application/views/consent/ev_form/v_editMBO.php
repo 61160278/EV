@@ -341,12 +341,13 @@ function check_approve() {
 }
 // function check_approve
 
-function check_approve() {
+function check_approve_edt() {
     var approve1 = document.getElementById("approve1_edt").value;
     var approve2 = document.getElementById("approve2_edt").value;
 
     if (approve2 != "0") {
         console.log(1);
+        update_approve();
         return true;
     }
     // if
@@ -404,6 +405,42 @@ function save_approve() {
         },
         success: function(data) {
             console.log(data);
+            show_approve()
+
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+
+}
+// function show_approve
+
+function update_approve() {
+    var approve1 = document.getElementById("approve1_edt").value;
+    var approve2 = document.getElementById("approve2_edt").value;
+    var evs_emp_id = document.getElementById("evs_emp_id").value;
+
+    console.log(approve1);
+    console.log(approve2);
+    var data_show = "";
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/update_approve",
+        data: {
+            "approve1": approve1,
+            "approve2": approve2,
+            "evs_emp_id": evs_emp_id
+
+        },
+        success: function(data) {
+            console.log(data);
+            $("#edt_app").modal('hide');
             show_approve()
 
         },
@@ -489,6 +526,12 @@ function show_approve() {
 
             }
             // if
+            else{
+                $("#btn_send_insert").show();
+                $("#btn_send_edit").hide();
+
+            }
+            // else
 
         },
         // success
@@ -785,7 +828,7 @@ function show_approve() {
                             <option value="0">----- Please Select-----</option>
                             <option value="00029">Alaska</option>
                             <option value="00030">Hawaii</option>
-                            <option value="00031">Kunanya</option>
+                            <option value="00032">Kunanya</option>
                         </select>
                     </div>
                     <!-- col-6 -->
@@ -795,7 +838,7 @@ function show_approve() {
                             <option value="0">----- Please Select-----</option>
                             <option value="00029">Alaska</option>
                             <option value="00030">Hawaii</option>
-                            <option value="00031">Kunanya</option>
+                            <option value="00032">Kunanya</option>
                         </select>
                     </div>
                     <!-- col-6 -->
@@ -865,7 +908,7 @@ function show_approve() {
                             <option value="0">----- Please Select-----</option>
                             <option value="00029">Alaska</option>
                             <option value="00030">Hawaii</option>
-                            <option value="00031">Kunanya</option>
+                            <option value="00032">Kunanya</option>
                         </select>
                     </div>
                     <!-- col-6 -->
@@ -875,7 +918,7 @@ function show_approve() {
                             <option value="0">----- Please Select-----</option>
                             <option value="00029">Alaska</option>
                             <option value="00030">Hawaii</option>
-                            <option value="00031">Kunanya</option>
+                            <option value="00032">Kunanya</option>
                         </select>
                     </div>
                     <!-- col-6 -->
