@@ -211,6 +211,7 @@ window.onchange = function() {
 
     context.stroke();
 }
+
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
@@ -304,6 +305,7 @@ window.onchange = function() {
                         </div>
                         <div class="panel-body">
                             <canvas id="testCanvas" width="1000" height="450"></canvas>
+                        
                         </div>
                     </div>
                 </div>
