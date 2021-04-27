@@ -133,17 +133,17 @@ function change_group() {
                   
             },
             dataType: "JSON",
-            success: function(data, status) {
+            error: function(status) {
                   console.log(status)
-                  console.log(data)
-                 
-            } //success
+                  console.log("Yoooo")
+                  manage_group();
+                  manage_group_right(); 
+            } //error ไม่ส่งค่ากลับมา
 
 
       });//ajax
      
-      manage_group();
-      manage_group_right(); 
+     
 }
 </script>
 
