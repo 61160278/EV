@@ -41,7 +41,7 @@
     <link type="text/css" href="<?php echo base_url();?>avenxo/assets/plugins/jquery-editable/ jquery.editable.min.js" rel="stylesheet"> 
     <!-- new-->
 
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
     <!--[if lt IE 10]>
