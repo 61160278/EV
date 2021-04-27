@@ -526,7 +526,7 @@ function show_approve() {
 
             }
             // if
-            else{
+            else {
                 $("#btn_send_insert").show();
                 $("#btn_send_edit").hide();
 
