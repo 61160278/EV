@@ -227,7 +227,7 @@ class Evs_group extends MainController_avenxo {
 	{
 		$this->load->model('M_evs_group','mdk');
 		$this->mdk->gru_company_id = 2;
-		$data['gcp_gdk'] = $this->mdk->get_all_com();
+		$data['gcp_gkd'] = $this->mdk->get_all_com();
 
 		$this->load->model('M_evs_group','mevg');
 		$this->mevg->emp_ghr_id = $gru_id;
@@ -294,10 +294,9 @@ class Evs_group extends MainController_avenxo {
 			$this->egs->emp_employee_id = $get_emp[$i];
 			$this->egs->emp_pay_id = 2;
 			$this->egs->update_group();
-		}//for
+		}
+		// for
 		echo json_encode($status);
-		
-
 	}
 	// function add_new_group
 

@@ -104,8 +104,6 @@ class M_evs_group extends Da_evs_group {
 	
 	}//get_group
 
-
-
 	function update_group() {
 	
 		$sql = "UPDATE evs_database.evs_employee 
