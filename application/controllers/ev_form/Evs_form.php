@@ -163,6 +163,26 @@ class Evs_form extends MainController_avenxo {
 	}
 	// function save_approve
 
+	function get_approve(){
+
+		$emp_employee_id = $this->input->post("evs_emp_id");
+		$this->load->model('M_evs_data_mbo_approve','meda');
+		$this->meda->dma_dtm_emp_id = $emp_employee_id;
+		$data['data_app'] = $this->meda->get_by_id()->row();
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $data['data_app']->dma_approve1;
+		$data['app1'] = $this->memp->get_by_empid()->result();
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $data['data_app']->dma_approve2;
+		$data['app2'] = $this->memp->get_by_empid()->result();
+
+		echo json_encode($data);
+
+	}
+	// function get_approve
+
 	function edit_mbo($emp_id_edit){
 
 		$this->load->model('M_evs_data_mbo','medm');

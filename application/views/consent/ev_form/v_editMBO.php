@@ -43,6 +43,9 @@ $(document).ready(function() {
 
     $("#btn_cencel_clear").hide();
     $("#btn_cencel_show").show();
+    $("#btn_send_insert").show();
+    $("#btn_send_edit").hide();
+    show_approve()
 
 });
 // document ready
@@ -325,13 +328,31 @@ function check_approve() {
 
     if (approve2 != "0") {
         console.log(1);
-        show_approve()
+        save_approve()
         return true;
     }
     // if
     else if (approve2 == "0") {
         $("#approve2").css("background-color", "#ffe6e6");
         $("#approve2").css("border-style", "solid");
+        return false;
+    }
+    // else if
+}
+// function check_approve
+
+function check_approve() {
+    var approve1 = document.getElementById("approve1_edt").value;
+    var approve2 = document.getElementById("approve2_edt").value;
+
+    if (approve2 != "0") {
+        console.log(1);
+        return true;
+    }
+    // if
+    else if (approve2 == "0") {
+        $("#approve2_edt").css("background-color", "#ffe6e6");
+        $("#approve2_edt").css("border-style", "solid");
         return false;
     }
     // else if
@@ -350,7 +371,19 @@ function clear_css_approve2() {
 }
 // function clear_css_approve1
 
-function show_approve() {
+function clear_css_approve1_edt() {
+    $("#approve1_edt").css("background-color", "#ffffff");
+    $("#approve1_edt").css("border-style", "solid");
+}
+// function clear_css_approve1
+
+function clear_css_approve2_edt() {
+    $("#approve2_edt").css("background-color", "#ffffff");
+    $("#approve2_edt").css("border-style", "solid");
+}
+// function clear_css_approve1
+
+function save_approve() {
     var approve1 = document.getElementById("approve1").value;
     var approve2 = document.getElementById("approve2").value;
     var evs_emp_id = document.getElementById("evs_emp_id").value;
@@ -371,57 +404,7 @@ function show_approve() {
         },
         success: function(data) {
             console.log(data);
-            var app1 = "";
-            var app2 = "";
-            var id_app1 = "";
-            var id_app2 = "";
-
-            data['app1'].forEach((row, index) => {
-                app1 = row.Empname_eng + " " + row.Empsurname_eng;
-                id_app1 = row.Emp_id;
-            });
-            // foreach app 1
-            data['app2'].forEach((row, index) => {
-                app2 = row.Empname_eng + " " + row.Empsurname_eng;
-                id_app2 = row.Emp_id;
-            });
-            // foreach app 1
-
-            data_show = '<div class="row">'
-            data_show += '<div class="col-md-2">'
-            data_show += ' <label class="control-label"><strong>'
-            data_show += '<font size="3px">Approver 1 : </font>'
-            data_show += '</strong></label>'
-            data_show += '</div>'
-            data_show += '<!-- col-2  -->'
-            data_show += '<div class="col-md-4">'
-            data_show += '<p id="app1">' + app1 + '</p>'
-            data_show += '</div>'
-            data_show += '<!-- col-4  -->'
-            data_show += '<!-- -------------------- -->'
-            data_show += '<div class="col-md-2">'
-            data_show += '<label class="control-label"><strong>'
-            data_show += '<font size="3px">Approver 2 : </font>'
-            data_show += '</strong></label>'
-            data_show += '</div>'
-            data_show += '<!-- col-2  -->'
-            data_show += '<div class="col-md-4">'
-            data_show += '<p id="app">' + app2 + '</p>'
-            data_show += '</div>'
-            data_show += '<!-- col-4  -->'
-            data_show += '<!-- -------------------- -->'
-            data_show += '</div>'
-            data_show += '<!-- row  -->'
-            data_show += '<hr>'
-            $("#approve1").val(id_app1);
-            $("#approve1").val(id_app2);
-
-
-            $("#add_app").modal('hide');
-            $("#btn_edit").hide();
-
-            $("#show_approver").html(data_show);
-
+            show_approve()
 
         },
         // success
@@ -432,9 +415,89 @@ function show_approve() {
     });
     // ajax
 
+}
+// function show_approve
 
+function show_approve() {
 
+    var evs_emp_id = document.getElementById("evs_emp_id").value;
+    var data_show = "";
 
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/get_approve",
+        data: {
+            "evs_emp_id": evs_emp_id
+
+        },
+        success: function(data) {
+            // console.log(data);
+            var app1 = "";
+            var app2 = "";
+            var id_app1 = "";
+            var id_app2 = "";
+
+            if (data['app2'].length != 0) {
+                data['app1'].forEach((row, index) => {
+                    app1 = row.Empname_eng + " " + row.Empsurname_eng;
+                    id_app1 = row.Emp_ID;
+                });
+                // foreach app 1
+                data['app2'].forEach((row, index) => {
+                    app2 = row.Empname_eng + " " + row.Empsurname_eng;
+                    id_app2 = row.Emp_ID;
+                });
+                // foreach app 1
+
+                data_show = '<div class="row">'
+                data_show += '<div class="col-md-2">'
+                data_show += ' <label class="control-label"><strong>'
+                data_show += '<font size="3px">Approver 1 : </font>'
+                data_show += '</strong></label>'
+                data_show += '</div>'
+                data_show += '<!-- col-2  -->'
+                data_show += '<div class="col-md-4">'
+                data_show += '<p id="app1">' + app1 + '</p>'
+                data_show += '</div>'
+                data_show += '<!-- col-4  -->'
+                data_show += '<!-- -------------------- -->'
+                data_show += '<div class="col-md-2">'
+                data_show += '<label class="control-label"><strong>'
+                data_show += '<font size="3px">Approver 2 : </font>'
+                data_show += '</strong></label>'
+                data_show += '</div>'
+                data_show += '<!-- col-2  -->'
+                data_show += '<div class="col-md-4">'
+                data_show += '<p id="app">' + app2 + '</p>'
+                data_show += '</div>'
+                data_show += '<!-- col-4  -->'
+                data_show += '<!-- -------------------- -->'
+                data_show += '</div>'
+                data_show += '<!-- row  -->'
+                data_show += '<hr>'
+                $("#approve1_edt").val(id_app1);
+                $("#approve2_edt").val(id_app2);
+                console.log(id_app1 + "....." + id_app2);
+                $("#btn_send_insert").hide();
+                $("#btn_send_edit").show();
+
+                $("#add_app").modal('hide');
+                $("#btn_edit").hide();
+
+                $("#show_approver").html(data_show);
+
+            }
+            // if
+
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
 
 }
 // function show_approve
@@ -655,8 +718,10 @@ function show_approve() {
                             <div class="col-md-6" align="right">
                                 <button class="btn btn-warning" id="btn_edit" onclick="editmbo()">EDIT</button>
                                 <button class="btn btn-success" id="btn_save" onclick="return check_mbo()">SAVE</button>
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#add_app">SEND <i
-                                        class="fa fa-share-square-o"></i></button>
+                                <button class="btn btn-primary" id="btn_send_insert" data-toggle="modal"
+                                    data-target="#add_app">SEND <i class="fa fa-share-square-o"></i></button>
+                                <button class="btn btn-warning" id="btn_send_edit" data-toggle="modal"
+                                    data-target="#edt_app">SEND <i class="fa fa-share-square-o"></i></button>
                             </div>
                             <!-- col-md-6 add_app -->
 
@@ -761,6 +826,86 @@ function show_approve() {
     <!-- Modal dialog-->
 </div>
 <!-- Modal approver-->
+
+<!-- Modal edt approver -->
+<div class="modal fade" id="edt_app" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" id="color_head">
+                <button type="button" class="close" data-dismiss="modal">
+                    <font color="white">&times;</font>
+                </button>
+                <h4 class="modal-title">
+                    <font color="white"><b> Please Select Approver </b></font>
+                </h4>
+            </div>
+            <!-- Modal header-->
+
+            <br>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6" align="center">
+                        <label class="control-label"><strong>Approver 1 : </strong></label>
+                    </div>
+                    <!-- col-6 -->
+
+                    <div class="col-md-6" align="center">
+                        <label class="control-label"><strong>Approver 2 : </strong></label>
+                    </div>
+                    <!-- col-6 -->
+                </div>
+                <!--  row -->
+
+                <div class="row">
+                    <div class="col-md-6" align="center">
+                        <select class="form-control" id="approve1_edt" onchange="clear_css_approve1_edt()">
+                            <option value="0">----- Please Select-----</option>
+                            <option value="00029">Alaska</option>
+                            <option value="00030">Hawaii</option>
+                            <option value="00031">Kunanya</option>
+                        </select>
+                    </div>
+                    <!-- col-6 -->
+
+                    <div class="col-md-6" align="center">
+                        <select class="form-control" id="approve2_edt" onchange="clear_css_approve2_edt()">
+                            <option value="0">----- Please Select-----</option>
+                            <option value="00029">Alaska</option>
+                            <option value="00030">Hawaii</option>
+                            <option value="00031">Kunanya</option>
+                        </select>
+                    </div>
+                    <!-- col-6 -->
+                </div>
+                <!--  row -->
+
+            </div>
+            <!-- Modal body-->
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-6" align="left">
+                        <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                    </div>
+                    <!-- col-6 -->
+
+                    <div class="col-md-6" align="rigth">
+                        <button type="button" class="btn btn-success" onclick="return check_approve_edt()">SAVE</button>
+                    </div>
+                    <!-- col-6 -->
+
+                </div>
+                <!-- row -->
+            </div>
+            <!-- Modal footer-->
+        </div>
+        <!-- Modal content-->
+    </div>
+    <!-- Modal dialog-->
+</div>
+<!-- Modal edt approver-->
 
 <!-- Modal save -->
 <div class="modal fade" id="save_mbo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
