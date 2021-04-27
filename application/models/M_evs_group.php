@@ -104,9 +104,15 @@ class M_evs_group extends Da_evs_group {
 	
 	}//get_group
 
-
-
-
+	function update_group() {
+	
+		$sql = "UPDATE evs_database.evs_employee 
+				SET emp_ghr_id = ? 
+				WHERE emp_employee_id = ? AND emp_pay_id = ?" ;
+	     
+	     $this->db->query($sql, array($this->emp_ghr_id, $this->emp_employee_id ,$this->emp_pay_id));
+	    
+	}      
 
 
 

@@ -224,7 +224,7 @@ class Evs_ability_form extends Evs_form {
 			$this->dcpw->insert();
 		}
 		//end for loop
-		header("Location: " . base_url() . "Evs_form/form_position/" . $pos_id . "/" . $year_id);
+		// header("Location: " . base_url() . "Evs_form/form_position/" . $pos_id . "/" . $year_id);
 	}
 	//form_ability_input()
 
