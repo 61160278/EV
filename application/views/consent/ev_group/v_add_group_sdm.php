@@ -26,7 +26,7 @@ function manage_group(){
                   data.forEach((row, index) => {
                         data_row += '<tr>'
                         data_row += '<td>'
-                        data_row += '<div class="checked block">'
+                        data_row += '<div align="center" class="checked block">'
                         data_row += '<input name="checkbox" type="checkbox">'
                         data_row += '</div>'                          
                         data_row += '</td>'
