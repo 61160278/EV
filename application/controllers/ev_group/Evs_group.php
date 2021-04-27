@@ -270,8 +270,43 @@ class Evs_group extends MainController_avenxo {
 		echo json_encode($data);
 
 	}
+
+	function query_man_new(){
+		$gru_id = $this->input->post('gru_id');
+		$this->load->model('M_evs_group','mevg');
+		$this->mevg->emp_ghr_id = $gru_id;
+		$data = $this->mevg->get_group()->result();
+		echo json_encode($data);
+
+	}
 		
 	
-	
+	function add_new_group()
+	{
+		$new_group = $this->input->post('new_group');
+		$get_emp = $this->input->post("get_emp");
+		$count_check = $this->input->post("count_check");
+		
+
+		$this->load->model('M_evs_group','egs');
+		for ($i = 0; $i < $count_check; $i++) {
+			$this->egs->emp_ghr_id = $new_group;
+			$this->egs->emp_employee_id = $get_emp[$i];
+			$this->egs->emp_pay_id = 2;
+			$this->egs->update_group();
+		}//for
+		echo json_encode($status);
+		
+
+	}
+	// function add_new_group
+
+
+
+
+
+
+
+
 }
 ?>
