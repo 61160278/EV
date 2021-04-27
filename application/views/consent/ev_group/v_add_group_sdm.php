@@ -138,7 +138,7 @@ function change_group() {
                   console.log("Yoooo")
                   manage_group();
                   manage_group_right(); 
-            } //error ไม่ส่งค่ากลับมา
+            } //error ไม่ส่งค่ากลับมาเลยใช้ฟังก์ชันนี้
 
 
       });//ajax
