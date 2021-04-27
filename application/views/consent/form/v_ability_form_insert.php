@@ -20,6 +20,7 @@ var value_pos_id = document.getElementById("value_pos_id").value; // position id
 var value_year_id = document.getElementById("year").value; // year now ID
 var sum_weight = 0; // sum by weight to competency 
 var arr_weight_check = []; // array to check is value by weight
+var arr_save_index_arr_add_pos = [];
 
 /*
  * check_weight_all
@@ -90,7 +91,7 @@ function total_weight() {
 $(document).ready(function() {
     var table_ready = ""; // table document ready
     var table_ready_score = ""; // table document ready_score
-
+    arr_save_index_arr_add_pos.push(index - 1);
 
     //start ajax
     $.ajax({
@@ -170,15 +171,13 @@ $(document).ready(function() {
         }
 
     }); //end ajax
-});
-
-
-
-$(document).ready(function() {
+    console.log(arr_save_index_arr_add_pos);
     $(document).on('click', '#addCompentency', function() {
         index++;
         var table; // value for show in table
 
+        arr_save_index_arr_add_pos.push(index - 1);
+        console.log(arr_save_index_arr_add_pos);
         //start ajax
         $.ajax({
             type: "post",
@@ -187,7 +186,8 @@ $(document).ready(function() {
                 "pos_id": value_pos_id
             },
             success: function(data) {
-
+                
+                data = JSON.parse(data)
                 // start tr
                 table += '<tr id="row_com' + index + '">';
                 table += '<td>';
@@ -264,6 +264,15 @@ $(document).ready(function() {
         document.getElementById('value_total_weight').value = sum_weight;
         document.getElementById('value_total_weight').style.color = "red"
     }
+
+        console.log("button : " + res);
+        for (i = 0; i < arr_save_index_arr_add_pos.length; i++) {
+            chack_arr = parseInt(arr_save_index_arr_add_pos[i])
+            if (parseInt(chack_arr) == parseInt(res) - 1) {
+                arr_save_index_arr_add_pos.splice(i, 1);
+            }
+        }
+        console.log(arr_save_index_arr_add_pos);
         $('#row_com' + res + '').remove();
         //index--;
     }); // delete compentency
@@ -358,11 +367,12 @@ function get_compentency(value, index) {
 function form_ability_input() {
     var arr_competency = []; // array of competency
     var arr_weight = []; // array of weight
-
+    
     //start for loop
-    for (i = 1; i <= index; i++) {
-        arr_competency.push($('#compentency' + i).val());
-        arr_weight.push($('#weight_' + i).val());
+    for (i = 0; i < arr_save_index_arr_add_pos.length; i++) {
+        arr_competency.push($('#compentency' + (parseInt(arr_save_index_arr_add_pos[i])+1)).val());
+        arr_weight.push($('#weight_' + (parseInt(arr_save_index_arr_add_pos[i])+1)).val());
+        console.log(arr_save_index_arr_add_pos[i]);
     }
     //end for loop
 
@@ -375,7 +385,7 @@ function form_ability_input() {
         data: {
             "arr_competency": arr_competency,
             "arr_weight": arr_weight,
-            "index": index,
+            "index": arr_save_index_arr_add_pos.length,
             "pos_id": value_pos_id,
             "year_id": value_year_id
         },

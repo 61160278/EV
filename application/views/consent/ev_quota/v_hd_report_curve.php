@@ -100,6 +100,22 @@ function get_data() {
         }
     });
 }
+function barchrat(){
+    var myCanvas = document.getElementById('testCanvas');
+    var context = myCanvas.getContext('2d');
+    var width = 40; //bar chart
+    var x = 125;
+    var arrayLen = arr.length;
+    context.fillStyle = '#000000';
+var arr = [5,25,40,40,25,5];
+     for(var b = 0;b < arrayLen;b++){
+
+    // var h = data[b];    
+        context.fillRect(x,(myCanvas.height-75) + arr[b],width,arr[b]);
+        x += width + 89;
+       
+     }
+}
 window.onload = function() {
     var width = 40; //bar chart
     var x = 125;
@@ -144,7 +160,7 @@ window.onload = function() {
     console.log(largest);
 
     context.clearRect(0, 0, 1000, 450);
-    context.save();
+    //context.save();
     // set font for fillText()  
     context.font = "16px Arial";
 //context.rotate(Math.PI / 2);
@@ -157,34 +173,27 @@ window.onload = function() {
     context.stroke();
 
 
-    context.fillStyle = '#000000';
-
-     //for(var b = 0;b < arrayLen;b++){
-
-     //var h = data[b];    
-     
-     var arr = [10,20,30,40,50,60]
-     context.fillRect(x,(GRAPH_HEIGHT - arr[0] / largest *(GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP,width,(GRAPH_BOTTOM-GRAPH_LEFT)-arr[0]); 
-     x += width + 89;
+    //  //context.fillRect(x,(GRAPH_HEIGHT - arr[0] / largest * (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP,width,(GRAPH_BOTTOM)arr[0]); 
+    //  x += width + 89;
       
-     context.fillRect(x,(myCanvas.height-75) - data[1],width,data[1]);
-     x += width + 89;
+    //  //context.fillRect(x,(GRAPH_HEIGHT - arr[1] / largest * (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP,width,arr[1]);
+    //  x += width + 89;
     
-     context.fillRect(x,(myCanvas.height-75) - data[2],width,data[2]);
-     x += width + 89;
+    //  //context.fillRect(x,(GRAPH_HEIGHT - arr[2] / largest * (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP,width,arr[2]);
+    //  x += width + 89;
     
-     context.fillRect(x,(myCanvas.height-75) - data[3],width,data[3]);
-     x += width + 89;
+    //  //context.fillRect(x,(GRAPH_HEIGHT - arr[3] / largest * (GRAPH_HEIGHT / 5) * 2)+ GRAPH_TOP,width,arr[3]);
+    //  x += width + 89;
  
-     context.fillRect(x,(myCanvas.height-75) - data[4],width,data[4]);
-     x += width + 89;
+    //  //context.fillRect(x,(GRAPH_HEIGHT - arr[4] / largest * (GRAPH_HEIGHT / 5) * 2)+ GRAPH_TOP,width,arr[4]);
+    //  x += width + 89;
   
-     context.fillRect(x,(myCanvas.height-75) - data[5],width,data[5]);
-     x += width + 89;
+    //  context.fillRect(x,(GRAPH_HEIGHT - arr[5] / largest * (GRAPH_HEIGHT / 5) * 2)+ GRAPH_TOP,width,arr[5]);
+    //  x += width + 89;
   
-    // context.fillRect(x,(GRAPH_HEIGHT - data[b] / largest * (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP,width,GRAPH_BOTTOM);
-    // x += width + 89;
-    // }
+    // // context.fillRect(x,(GRAPH_HEIGHT - data[b] / largest * (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP,width,GRAPH_BOTTOM);
+    // // x += width + 89;
+    // // }
 
 
 
@@ -280,6 +289,8 @@ window.onload = function() {
     }
 
     context.stroke();
+    barchrat();
+   // context.rotate(Math.PI / 180);
 }
 </script>
 <div class="col-md-12">
@@ -440,88 +451,6 @@ window.onload = function() {
 
                             <canvas id="testCanvas" width="1000" height="450"></canvas>
 
-                            <!-- //<div id="line-example" style="position: relative;">
-								<div class = "bar-example" style="position: relative;">
-									<svg xmlns="http://www.w3.org/2000/svg" style="top: -0.13px; overflow: hidden; position: relative;" width="700" height="350" version="1.1">
-									<desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.0</desc>
-									<defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs>
-									<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: end; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="end" x="32.51" y="308" font="10px &quot;Arial&quot;">
-										<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">0</tspan>
-									</text>
-									<path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#aaaaaa" stroke-width="1" d="M 45.01 308.2 H 650"></path>
-									<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: end; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="end" x="32.51" y="248" font="10px &quot;Arial&quot;">
-										<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">25</tspan>
-									</text>
-									<path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#aaaaaa" stroke-width="1" d="M 45.01 248 H 650"></path>
-									<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: end; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="end" x="32.51" y="188" font="10px &quot;Arial&quot;">
-										<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">50</tspan>
-									</text>
-									<path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#aaaaaa" stroke-width="1" d="M 45.01 188 H 650"></path>
-									<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: end; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="end" x="32.51" y="128" font="10px &quot;Arial&quot;">
-										<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">75</tspan>
-									</text>
-									<path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#aaaaaa" stroke-width="1" d="M 45.01 128 H 650"></path>
-									<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: end; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="end" x="32.51" y="68" font="10px &quot;Arial&quot;">
-										<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">100</tspan>
-									</text>
-									<path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#aaaaaa" stroke-width="1" d="M 45.01 68 H 650"></path>
-									<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: middle; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="middle" transform="matrix(1, 0, 0, 1, 0, 6.9)" x="580" y="320.7" font="10px &quot;Arial&quot;">
-										<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">D</tspan>
-									</text>
-									<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: middle; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="middle" transform="matrix(1, 0, 0, 1, 0, 6.9)" x="460" y="320.7" font="10px &quot;Arial&quot;">
-										<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">C</tspan>
-									</text>
-									<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: middle; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="middle" transform="matrix(1, 0, 0, 1, 0, 6.9)" x="340" y="320.7" font="10px &quot;Arial&quot;">
-										<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">B</tspan>
-									</text>
-									<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: middle; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="middle" transform="matrix(1, 0, 0, 1, 0, 6.9)" x="220" y="320.7" font="10px &quot;Arial&quot;">
-										<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">A</tspan>
-									</text>
-									<text font-family="sans-serif" font-size="12px" font-weight="normal" style="font: 12px sans-serif; font-size-adjust: none; font-stretch: normal; text-anchor: middle; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#888888" stroke="none" text-anchor="middle" transform="matrix(1, 0, 0, 1, 0, 6.9)" x="100" y="320.7" font="10px &quot;Arial&quot;">
-										<tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.17">S</tspan>
-									</text>
-									<rect xmlns="http://www.w3.org/2000/svg" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#000" stroke-width="0" x="90" y="298" width="18.3209" height="11" rx="0" ry="0" r="0"></rect>
-									<rect xmlns="http://www.w3.org/2000/svg" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#000" stroke-width="0" x="210" y="187" width="18.3209" height="122" rx="0" ry="0" r="0" />
-									<rect xmlns="http://www.w3.org/2000/svg" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#000" stroke-width="0" x="330" y="99" width="18.3209" height="210" rx="0" ry="0" r="0"></rect>
-									<rect xmlns="http://www.w3.org/2000/svg" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#000" stroke-width="0" x="450" y="187" width="18.3209" height="122" rx="0" ry="0" r="0"></rect>
-									<rect xmlns="http://www.w3.org/2000/svg" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#000" stroke-width="0" x="570" y="298" width="18.3209" height="11" rx="0" ry="0" r="0"></rect>
-									<path style="-webkit-tap-highlight-color: rgba(0,188,212);" fill="none" stroke="#e51c23" stroke-width="3" d="M 100 300 C 100 300 200 200 350 100 C 450 190 350 110 580 300 C">
-									</path>
-									<div class="legend">
-										<div style="top: 13px; width: 56px; height: 58px; right: 13px; position: absolute; opacity: 0.85; background-color: rgb(255, 255, 255);"> 
-										</div>
-										<table style="position:absolute;top:13px;right:13px;;font-size:smaller;color:#545454">
-											<tbody>
-												<tr>
-													<td class="legendColorBox">
-														<div style="border:1px solid #ccc;padding:1px">
-															<div style="width:4px;height:0;border:5px solid rgb(117,117,117);overflow:hidden">
-															</div>
-														</div>
-													</td>
-													<td class = "legendLabel">Actual</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								<path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" stroke="#37474f" stroke-width="3" d="M 100 300 C 60.4192 71.02 300 300 180 270 C 122.056 141.82 152.874 194.92 168.284 194.92 C 183.735 194.92 214.638 124.12 230.089 124.12 C 245.499 124.12 276.317 194.92 291.726 194.92 C 307.135 194.92 337.954 141.82 353.363 124.12 C 100 106.42 399.591 71.02 415 53.32">
-									</path> -->
-                            <!-- <circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#37474f" stroke="#ffffff" stroke-width="1" cx="45.01" cy="53.32" r="7" ></circle> 
-									<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#37474f" stroke="#ffffff" stroke-width="1" cx="106.647" cy="124.12" r="4"></circle>
-									<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#37474f" stroke="#ffffff" stroke-width="1" cx="168.284" cy="194.92" r="4">
-									<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#37474f" stroke="#ffffff" stroke-width="1" cx="230.089" cy="124.12" r="4"></circle>
-									<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#37474f" stroke="#ffffff" stroke-width="1" cx="291.726" cy="194.92" r="4"></circle>
-									<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#37474f" stroke="#ffffff" stroke-width="1" cx="353.363" cy="124.12" r="4"></circle>
-									<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#37474f" stroke="#ffffff" stroke-width="1" cx="415" cy="53.32" r="4" ></circle>
-									<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#ffffff" stroke-width="1" cx="45.01" cy="25" r="7" ></circle>
-									<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#ffffff" stroke-width="1" cx="106.647" cy="95.8" r="4" ></circle>
-									<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#ffffff" stroke-width="1" cx="168.284" cy="166.6" r="4"></circle>
-									<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#ffffff" stroke-width="1" cx="230.089" cy="95.8" r="4" ></circle>
-									<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#ffffff" stroke-width="1" cx="291.726" cy="166.6" r="4"></circle>
-									<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#ffffff" stroke-width="1" cx="353.363" cy="95.8" r="4" ></circle>
-									<circle style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="#757575" stroke="#ffffff" stroke-width="1" cx="415" cy="25" r="4"></circle> 
-								</svg>
-							//</div> -->
 
                         </div>
                     </div>

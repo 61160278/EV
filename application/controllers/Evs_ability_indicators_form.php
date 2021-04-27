@@ -338,9 +338,6 @@ class Evs_ability_indicators_form extends MainController {
 					
 						$this->debv->ept_expected_detail_en = $this->input->post("arr_save_expected_en_todatabase[".$i."]");
 						$this->debv->ept_expected_detail_th = $this->input->post("arr_save_expected_th_todatabase[".$i."]");
-	
-					
-	
 				
 					//start foreach 
 					foreach ($data_pos->result() as $row) {
