@@ -53,6 +53,7 @@ function check_quota() {
 
         if (check != "") {
             value_quota += parseInt(check);
+
         }
         // if 
         if (value_quota > 100) {
@@ -62,70 +63,99 @@ function check_quota() {
         }
         document.getElementById("show_quota").innerHTML = value_quota;
 
+
         //console.log(value_quota);
     }
     // for i
-}
-window.onchange = function() {
-    var dataQuota = [];
-    var arrQuota = [];
-    for (var i = 1; i <= 6; i++) {
-        //  var show_quota = document.getElementById("quota" + i).innerHTML;
-        var show_quota = document.getElementById("quota" + i).value;
-        //  var arrQuota = [5, 25, 40, 25, 5];
-        arrQuota[i] = show_quota;
-    } //for
-    arrQuota.shift();
-    console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
-    for (var a = 0; a < arrQuota.length; a++) {
-        dataQuota[a] = arrQuota[a] * 1;
+    //
 
-    } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
-    
-    console.log(dataQuota);
-//<block:setup:1>
-const labels = [
-  'S',
-  'A',
-  'B',
-  'B-',
-  'C',
-  'D',
-];
-const data = {
-  labels: labels,
-  datasets: [{
-    label: 'Quota',
-    backgroundColor: 'rgb(255, 99, 132)',
-    borderColor: 'rgb(255, 99, 132)',
-    data:dataQuota,
-  }]
-
-};
-// </block:setup>
-// <block:config:0>
-const config = {
-  type: 'line',
-  data: data,
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  }
-};
-
-// </block:config>
+    showChart();
+   // destroy();
 
 
-var myChart = new Chart(
-    document.getElementById('myChart'),
-    config
-    
-  );
 }
 
+// function destroy() {
+
+//     var myChart = new Chart(
+//         document.getElementById('myChart'), {
+//             type: 'line',
+//             data: data,
+//             options: {
+//                 scales: {
+//                     y: {
+//                         beginAtZero: true
+//                     }
+//                 }
+//             }
+//         }
+
+
+//     );
+    // myChart.destroy();
+    // }
+    function showChart() {
+        var dataQuota = [];
+        var arrQuota = [];
+
+        for (var i = 1; i <= 6; i++) {
+
+            arrQuota.push(document.getElementById("quota" + i).value);
+            console.log(987654);
+            console.log(arrQuota);
+
+
+        } //for
+        // arrQuota.shift();
+        console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
+        for (var a = 0; a < arrQuota.length; a++) {
+            dataQuota[a] = arrQuota[a] * 1;
+
+        } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
+
+        console.log(dataQuota);
+        //<block:setup:1>
+        const labels = [
+            'S',
+            'A',
+            'B',
+            'B-',
+            'C',
+            'D',
+        ];
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Quota',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: dataQuota,
+            }]
+
+        };
+        // </block:setup>
+        // <block:config:0>
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // </block:config>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        if (ctx.myChart) {
+           // myChart = null;
+           myChart.destroy();
+        } else {
+            myChart = new Chart(ctx, config);
+        }
+    } //showChart
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
@@ -219,7 +249,7 @@ var myChart = new Chart(
                         </div>
                         <div class="panel-body">
                             <canvas id="myChart" width="1000" height="450" style="position: relative;"></canvas>
-                        
+
                         </div>
                     </div>
                 </div>
