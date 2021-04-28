@@ -23,6 +23,7 @@ function manage_group() {
         success: function(data, status) {
             console.log(status)
             //console.log(data)
+
             var count = 0;
             data.forEach((row, index) => {
                 data_row += '<tr>'
@@ -32,7 +33,7 @@ function manage_group() {
                     '" name="checkbox" type="checkbox">'
                 data_row += '</div>'
                 data_row += '</td>'
-                data_row += '<td id="emp_' + index + '">'
+                data_row += '<td id="emp_'+index+'">'
                 data_row += row.Emp_ID
                 data_row += '</td>'
                 data_row += '<td>'
@@ -44,11 +45,12 @@ function manage_group() {
                 data_row += '</tr>'
                 count++
             })
-            // console.log(data_row)
+
             $("#select_data").html(data_row)
             $("#count_check").val(count)
         } //success
     });
+    // ajax
 }
 // manage_group
 
@@ -71,11 +73,11 @@ function manage_group_right() {
                 data_row += '<tr>'
                 data_row += '<td>'
                 data_row += '<div align="center" class="checked block">'
-                data_row += '<input id = "new_check_group' + index +
+                data_row += '<input id = "old_check_group' + index +
                     '" name="checkbox" type="checkbox">'
                 data_row += '</div>'
                 data_row += '</td>'
-                data_row += '<td id="emp_new' + index + '">'
+                data_row += '<td id="emp_new'+index+'">'
                 data_row += row.Emp_ID
                 data_row += '</td>'
                 data_row += '<td>'
@@ -108,7 +110,7 @@ function change_group() {
         }
         // if
     }
-    //for
+    // for
 
     $.ajax({
         type: "POST",
@@ -117,15 +119,14 @@ function change_group() {
             "group": new_group,
             "get_emp": get_emp,
             "count": count_check
-
         },
         dataType: "JSON",
-        success: function(status) {
+        error: function(status) {
             console.log(status)
             manage_group();
             manage_group_right();
         }
-        //success จะไม่มีการส่งค่ากลับมา
+        //error จะไม่มีการส่งค่ากลับมา
     });
     //ajax
 }
@@ -133,7 +134,6 @@ function change_group() {
 
 function change_group_remove() {
     var count_group = document.getElementById("count_group").value;
-    // var new_group = document.getElementById("new_group").value;
     var old_group = document.getElementById("select").value;
     var get_emp = [];
     for (i = 0; i < count_group; i++) {
@@ -143,7 +143,7 @@ function change_group_remove() {
         }
         // if
     }
-    //for
+    // for
 
     $.ajax({
         type: "POST",
@@ -155,12 +155,12 @@ function change_group_remove() {
 
         },
         dataType: "JSON",
-        success: function(status) {
+        error: function(status) {
             console.log(status)
             manage_group();
             manage_group_right();
         }
-        //success จะไม่มีการส่งค่ากลับมา
+        //error จะไม่มีการส่งค่ากลับมา
     });
     //ajax
 }
@@ -169,30 +169,31 @@ function change_group_remove() {
 
 <!DOCTYPE html>
 <html>
-<!-- Add group contact-->
 <div class="col-md-12">
     <div class="panel panel-indigo">
         <div class="panel-heading">
             <h1 style="font-family:'Times New Roman'">
-                <font color="#ffffff" size="7px"><b> Manage Group SKD & Head Dept. </b></font>
+                <font color="#ffffff" size="7px"><b> Manage Group SKD & Head Dept.</b></font>
             </h1>
         </div>
+        <!-- panel-heading h1 -->
 
-        <div class="col-sm-12">
+        <div class="panel-body">
             <h3 style="font-family:'Arial'">
-                <font size="3px" font color="black"> Please select contact group for add contact to the group.</font>
+                <font size="5px" font color="black"> &emsp; Please select contact group for add contact to the group.
+                </font>
             </h3>
         </div>
+        <!-- panel-body h3 -->
 
         <div class="col-md-6">
             <div class="panel-body">
                 <div class="panel panel-indigo" id="table_contact">
                     <div class="panel-heading">
-
                         <div class="panel pull-right" id="addtable_filter">
                             <select onchange="manage_group()" id="select" name="example_length" class="form-control"
                                 aria-controls="example">
-                                <option value="">Select Group Contact </option>
+                                <option disabled selected> Select Group Contact </option>
                                 <?php foreach($gcp_gkd->result() as $row) {?>
                                 <option value="<?php echo $row->gru_id; ?>">
                                     <?php echo $row->gru_name;?>
@@ -200,10 +201,10 @@ function change_group_remove() {
                                 <?php } ?>
                             </select>
                         </div>
-
+                        <!-- addtable_filter -->
                         <div class="panel-ctrls"></div>
                     </div>
-
+                    <!-- panel-heading -->
                     <div class="panel-body no-padding">
                         <div id="row_addtable" class="dataTables_wrapper form-inline no-footer">
                             <div class="row">
@@ -233,7 +234,6 @@ function change_group_remove() {
 
                                 <tbody id="select_data" align="center">
                                 </tbody>
-
                                 <input type="text" id="count_check" value="" hidden>
                             </table>
                             <!-- table -->
@@ -251,24 +251,18 @@ function change_group_remove() {
                     </div>
                     <!-- panel-footer -->
 
-                    <div class="DTTT btn-group pull-right mt-sm">
-                        <button class="btn btn-success" onclick="change_group()">
-                            <i class="ti ti-plus"></i>
-                            <span>ADD</span>
-                        </button>
+                    <div class="panel-body">
+                        <div class="DTTT btn-group pull-right mt-sm">
+                            <button class="btn btn-success" onclick="change_group()">
+                                <i class="ti ti-plus"></i>
+                                <span>ADD</span>
+                            </button>
+                        </div>
+                        <!-- add -->
                     </div>
-                    <!-- add -->
-
+                    <!-- panel-body -->
                 </div>
                 <!-- table_contact -->
-
-
-                <div class="DTTT btn-group pull-left mt-sm">
-                    <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">
-                        <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
-                    </a>
-                </div>
-                <!-- CANCEL -->
             </div>
             <!-- panel-body -->
         </div>
@@ -281,7 +275,7 @@ function change_group_remove() {
                         <?php
 							foreach($grpskd->result() as $row ) { ?>
                         <h2>
-                            <font size="4px"><?php echo $row->gru_name; ?> </font>
+                            <font size="5px"><?php echo $row->gru_name; ?> </font>
                         </h2>
                         <input type="text" value="<?php echo $row->gru_id; ?>" hidden id="new_group">
                         <?php }; ?>
@@ -324,7 +318,8 @@ function change_group_remove() {
                                     <tr class="odd gradeX">
                                         <td>
                                             <div class="checked block">
-                                                <input name="checkbox" type="checkbox" id="old_check_group<?php echo $index; ?>">
+                                                <input name="checkbox" type="checkbox"
+                                                    id="old_check_group<?php echo $index; ?>">
                                             </div>
                                         </td>
                                         <td id="emp_new<?php echo $index; ?>"><?php echo $row->Emp_ID; ?></td>
@@ -335,59 +330,79 @@ function change_group_remove() {
                                     <?php
 									$num++;
 									} ?>
+                                    <!-- for -->
                                 </tbody>
+                                <!-- tbody -->
                                 <input type="text" id="count_group" value="<?php echo $num;?>" hidden>
                             </table>
                             <!-- table -->
                         </div>
+                        <!-- example_wrapper -->
                     </div>
-                    <!-- no-padding -->
+                    <!-- panel-body no-padding -->
 
                     <div class="panel-footer">
                         <div class="row">
                             <div class="col-sm-6">
-                                <div class="dataTables_info" id="example_info" role="status" aria-live="polite"></div>
+                                <div class="dataTables_info" id="example_info" role="status" aria-live="polite">
+                                </div>
                             </div>
                         </div>
                     </div>
                     <!-- panel-footer -->
 
-                    <div class="DTTT btn-group pull-left mt-sm">
-                        &emsp;
-                        <a data-toggle="modal" class="btn btn btn-danger" href="#Resign">
-                            <i class="ti ti-share-alt"></i>
-                            &nbsp
-                            <span>RESIGN</span>
-                        </a>
-                    </div>
-                    <!-- RESIGN -->
+                    <div class="panel-body">
+                        <div class="DTTT btn-group pull-left mt-sm">
+                            &emsp;
+                            <a data-toggle="modal" class="btn btn btn-danger" href="#Resign">
+                                <i class="ti ti-trash"></i>
+                                &nbsp
+                                <span>RESIGN</span>
+                            </a>
+                        </div>
+                        <!-- RESIGN -->
 
-                    <div class="DTTT btn-group pull-right mt-sm">
-                        <button class="btn btn-danger" onclick="change_group_remove()">
-                            <i class="ti ti-share-alt"></i>
-                            &nbsp
-                            <span>REMOVE</span>
-                        </button>
+                        <div class="DTTT btn-group pull-right mt-sm">
+                            <button class="btn btn-danger" onclick="change_group_remove()">
+                                <i class="ti ti-share-alt"></i>
+                                &nbsp
+                                <span>REMOVE</span>
+                            </button>
+                        </div>
+                        <!-- REMOVE -->
                     </div>
-                    <!-- REMOVE -->
+                    <!-- panel-body right -->
                 </div>
                 <!-- panel-addtable -->
-
-                <div class="DTTT btn-group pull-right mt-sm">
-                    <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_sdm">
-                        <button type="submit" class="btn btn-success" value="SAVE">SUBMIT</button>
-                    </a>
-                </div>
-                <!-- SUBMIT -->
             </div>
             <!-- panel-body -->
         </div>
         <!-- table right -->
+
+        <div class="col-md-12">
+            <div class="panel-body">
+                <div class="DTTT btn-group pull-left mt-sm">
+                    <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">
+                        <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                    </a>
+                </div>
+                <!-- CANCEL -->
+
+                <div class="DTTT btn-group pull-right mt-sm">
+                    <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">
+                        <button type="submit" class="btn btn-success" value="SAVE">SUBMIT</button>
+                    </a>
+                </div>
+                <!-- SUBMIT -->
+
+            </div>
+            <!-- panel-body -->
+        </div>
+        <!-- col-sm-12 -->
     </div>
     <!-- head panel -->
 </div>
 <!-- head outside -->
-
 </html>
 
 <style>
@@ -433,37 +448,4 @@ tbody {
 
         </div><!-- modal-content -->
     </div><!-- modal-dialog -->
-</div><!-- /.modal-->
-
-<!-- Model Remove -->
-<div class="modal fade" id="Remove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-            <div class="modal-content">
-                  <div class="modal-header" style="background-color:gray;">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                              <font color="White"><b>&times;</b></font>
-                        </button>
-                  </div><!-- Modal header -->
-                  <div class="modal-body">
-
-                        <div class="form-horizontal">
-                              <div class="form-group" align="center">
-                                    <div class="col-sm-12">
-                                          <label for="focusedinput" class="control-label"
-                                                style="font-family:'Courier New'" align="center">
-                                                <font size="5px">Do you want to Remove Data YES or NO ?</font>
-                                          </label>
-                                    </div> <!-- Name - Surname -->
-                              </div>
-                        </div> <!-- form-horizontal -->
-                  </div>
-                  <div class="modal-footer">
-                        <div class="btn-group pull-left">
-                              <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
-                        </div>
-                        <button type="button" class="btn btn-success" data-dismiss="modal">YES</button>
-                  </div>
-
-            </div><!-- modal-content -->
-      </div><!-- modal-dialog -->
 </div><!-- /.modal-->

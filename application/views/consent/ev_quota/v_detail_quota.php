@@ -98,7 +98,7 @@ tbody:hover {
     opacity: 1;
 }
 </style>
-<script src="path/to/chartjs/dist/chart.js"></script>
+<!-- <script src="path/to/chartjs/dist/chart.js"></script> -->
 <script>
 /*
  * check_quota_plan
@@ -117,49 +117,68 @@ function check_quota_plan() {
     var quota = 0;
 
     check = document.getElementById("quotaPlan").value;
-    for (i = 1; i <= 5; i++) {
+    for (i = 1; i <= 6; i++) {
         quota = document.getElementById("quota" + i).innerHTML;
         value_quotaPlan = parseInt(check) * quota / 100;
 
 
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
     } //for
-}
+}//check_quota_plan
 
-// <block:setup:1>
+
+window.onload = function() {
+    var dataQuota = [];
+    var arrQuota = [];
+    for (var i = 1; i <= 6; i++) {
+        //  var show_quota = document.getElementById("quota" + i).innerHTML;
+        var show_quota = document.getElementById("quota" + i).innerHTML;
+        //  var arrQuota = [5, 25, 40, 25, 5];
+        arrQuota[i] = show_quota;
+    } //for
+    arrQuota.shift();
+    console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
+    for (var a = 0; a < arrQuota.length; a++) {
+        dataQuota[a] = arrQuota[a] * 1;
+
+    } //for ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
+    console.log(dataQuota);
+//<block:setup:1>
 const labels = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
+  'S',
+  'A',
+  'B',
+  'B-',
+  'C',
+  'D',
 ];
 const data = {
   labels: labels,
   datasets: [{
-    label: 'My First dataset',
+    label: 'Quota',
     backgroundColor: 'rgb(255, 99, 132)',
     borderColor: 'rgb(255, 99, 132)',
-    data: [0, 10, 5, 2, 20, 30, 45],
+    data:dataQuota,
   }]
+
 };
 // </block:setup>
-
 // <block:config:0>
 const config = {
   type: 'line',
   data,
   options: {}
 };
+
 // </block:config>
 
 
 var myChart = new Chart(
     document.getElementById('myChart'),
     config
+    
   );
-
+}
 </script>
 
 <div class="col-md-12">
@@ -276,7 +295,7 @@ var myChart = new Chart(
                             <!-- <div class="well well-lg tooltips" data-trigger="hover" data-original-title=".well.well-lg">
 
                             </div> -->
-                            <canvas id="myChart" width="400" height="400" ></canvas> 
+                            <canvas id="myChart" width="100" ></canvas>
 
                         </div>
                     </div>

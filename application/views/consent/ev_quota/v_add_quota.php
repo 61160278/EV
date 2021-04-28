@@ -53,165 +53,91 @@ function check_quota() {
 
         if (check != "") {
             value_quota += parseInt(check);
+
         }
         // if 
         if (value_quota > 100) {
             $("#show_quota").css("color", "red");
+
+            add_alert();
+
         } else {
             $("#show_quota").css("color", "#000000");
         }
         document.getElementById("show_quota").innerHTML = value_quota;
-
         //console.log(value_quota);
     }
     // for i
+
 }
-window.onchange = function() {
-    var data = [];
+
+function add_alert() {
+    $('#warning').modal('show');
+}
+
+
+function show_qouta() {
+
+    var dataQuota = [];
     var arrQuota = [];
-    var show_value = [];
-    var myCanvas = document.getElementById('testCanvas');
-    var context = myCanvas.getContext('2d');
-    for (var i = 1; i <= 6; i++) {
-        var show_quota = document.getElementById("quota" + i).value;
-        // var arrQuota = [5, 25, 40, 25, 5];
-        arrQuota[i] = show_quota;
+    for (var i = 0; i < 6; i++) {
+        dataQuota[i] = 0;
 
     } //for
+    for (var i = 1; i <= 6; i++) {
+        //  var show_quota = document.getElementById("quota" + i).innerHTML;
+        var show_quota = document.getElementById("quota" + i).value;
+        //  var arrQuota = [5, 25, 40, 25, 5];
+        arrQuota[i] = show_quota;
+    } //for
     arrQuota.shift();
-    console.log(arrQuota);
+    console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
     for (var a = 0; a < arrQuota.length; a++) {
-        data[a] = arrQuota[a] * 1;
+        dataQuota[a] = arrQuota[a] * 1;
 
     } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
-    console.log(data);
-    //var arrQuota = [5, 25, 60, 25, 5];
-    var canvas = document.getElementById("testCanvas");
-    var context = canvas.getContext("2d");
-    var GRAPH_TOP = 25;
-    var GRAPH_BOTTOM = 375;
-    var GRAPH_LEFT = 125;
-    var GRAPH_RIGHT = 800;
+    console.log(dataQuota);
 
-    var GRAPH_HEIGHT = 350;
-    // var GRAPH_WIDTH = 900;
+    //<block:setup:1>
+    const labels = [
+        'S',
+        'A',
+        'B',
+        'B-',
+        'C',
+        'D',
+    ];
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Quota',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: dataQuota,
+        }]
 
-    var arrayLen = data.length;
-    console.log(arrayLen);
-    var largest = 0;
-    for (var i = 0; i < arrayLen; i++) {
-        if (data[i] > largest) {
-            largest = data[i];
+    };
+    // </block:setup>
+    // <block:config:0>
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
         }
-    }
-    console.log(largest);
+    };
 
-    context.clearRect(0, 0, 1000, 450);
-    // set font for fillText()  
-    context.font = "16px Arial";
+    // </block:config>
+    var ctx = document.getElementById('myChart').getContext('2d');
 
-    // draw X and Y axis  
-    context.beginPath();
-    context.moveTo(GRAPH_RIGHT, GRAPH_BOTTOM);
-    context.lineTo(GRAPH_LEFT, GRAPH_BOTTOM); //x
-    context.lineTo(GRAPH_LEFT, GRAPH_TOP); //y  
-    context.stroke();
+    var myChart = new Chart(ctx, config);
 
-    // draw reference line  เส้นที่ 5
-    context.beginPath();
-    context.strokeStyle = "#BBB";
-    context.moveTo(GRAPH_RIGHT, GRAPH_TOP);
-    context.lineTo(GRAPH_LEFT, GRAPH_TOP);
-    // draw reference value for hours  
-    context.fillText(100, GRAPH_LEFT - 30, GRAPH_TOP);
-    context.stroke();
-    // draw reference line  เส้นที่ 4
-    context.beginPath();
-    context.strokeStyle = "#BBB";
-    context.moveTo(GRAPH_RIGHT, (GRAPH_HEIGHT) / 5 + GRAPH_TOP);
-    context.lineTo(GRAPH_LEFT, (GRAPH_HEIGHT) / 5 + GRAPH_TOP);
-    // draw reference value for hours  
-    context.fillText(80, GRAPH_LEFT - 25, (GRAPH_HEIGHT) / 5 + GRAPH_TOP);
-    context.stroke();
 
-    // draw reference line  เส้นที่ 1
-    context.beginPath();
-    context.moveTo(GRAPH_RIGHT, ((GRAPH_HEIGHT) / 5) * 4 + GRAPH_TOP);
-    context.lineTo(GRAPH_LEFT, ((GRAPH_HEIGHT) / 5) * 4 + GRAPH_TOP);
-    // draw reference value for hours  
-    context.fillText(20, GRAPH_LEFT - 25, ((GRAPH_HEIGHT) / 5) * 4 + GRAPH_TOP);
-    context.stroke();
-
-    // draw reference line เส้นที่ 2 
-    context.beginPath();
-    context.moveTo(GRAPH_RIGHT, ((GRAPH_HEIGHT) / 5) * 3 + GRAPH_TOP);
-    context.lineTo(GRAPH_LEFT, ((GRAPH_HEIGHT) / 5) * 3 + GRAPH_TOP);
-    // draw reference value for hours  
-    context.fillText(40, GRAPH_LEFT - 25, ((GRAPH_HEIGHT) / 5) * 3 + GRAPH_TOP);
-    context.stroke();
-
-    // draw reference line //เส้นที่ 3
-    context.beginPath();
-    context.moveTo(GRAPH_RIGHT, ((GRAPH_HEIGHT) / 5) * 2 + GRAPH_TOP);
-    context.lineTo(GRAPH_LEFT, ((GRAPH_HEIGHT) / 5) * 2 + GRAPH_TOP);
-    // draw reference value for hours  
-    context.fillText(60, GRAPH_LEFT - 25, ((GRAPH_HEIGHT) / 5) * 2 + GRAPH_TOP);
-    context.stroke();
-
-    // draw titles (คำบรรยายเส้นกราฟ)
-    context.fillText("Grade", (790 / 2) + 55, GRAPH_BOTTOM + 50);
-    context.fillText("Percent", GRAPH_LEFT - 115, GRAPH_HEIGHT / 2);
-    context.beginPath();
-    context.lineJoin = "round";
-    context.strokeStyle = "black";
-    var grad = ["S", "A", "B", "B-", "C", "D"];
-
-    // context.moveTo(GRAPH_LEFT + 25, ((GRAPH_HEIGHT + 26.2) - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
-    //context.moveTo(GRAPH_LEFT + 25, (GRAPH_HEIGHT - data[0] / largest * GRAPH_HEIGHT) + GRAPH_TOP);
-
-    // draw reference value for day of the week  
-    //context.fillText("S", 150, GRAPH_BOTTOM + 25);
-    // context.fillStyle = "red";
-    for (var k = 0; k < data.length; k++) {
-        show_value[k] = data[k];
-        context.fillStyle = "Blue";
-    }
-    console.log(show_value);
-
-    console.log(data[0]);
-
-    for (var i = 0; i < arrayLen; i++) {
-
-        if (largest = 20) {
-            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-                GRAPH_HEIGHT / 5) + GRAPH_TOP);
-            context.fillText(show_value[i], GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] /
-                largest * GRAPH_HEIGHT / 5) + GRAPH_TOP);
-        } else if (largest = 40) {
-            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-                (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP);
-        } else if (largest = 60) {
-            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-                (GRAPH_HEIGHT / 5) * 3) + GRAPH_TOP);
-        } else if (largest = 80) {
-            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-                (GRAPH_HEIGHT / 5) * 4) + GRAPH_TOP);
-        } else {
-            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-                GRAPH_HEIGHT) + GRAPH_TOP);
-        }
-
-        //context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i]  / largest *GRAPH_HEIGHT) + GRAPH_TOP);
-        // context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-        //     GRAPH_HEIGHT) + GRAPH_TOP);
-        // draw reference value for day of the week  
-        context.fillText(grad[i], (GRAPH_RIGHT - 25) / arrayLen * i + 150, GRAPH_BOTTOM + 25);
-
-    }
-
-    context.stroke();
-}
-
+} //showChart
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
@@ -224,95 +150,155 @@ window.onchange = function() {
             </div>
         </div>
         <div class="panel-body" style="">
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-3">
+            <form>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control text" id="">
+                                <option value="yearEndBonus">Quota</option>
+                                <option value="yearEndBonus">Year End Bonus</option>
+                                <option value="salaryIncrement">Salary Increment</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control text" id="">
+                                <option value="yearEndBonus">Position Of Quota</option>
+                                <option value="yearEndBonus">Team Associate above</option>
+                                <option value="salaryIncrement">Operational Associate</option>
+                            </select>
+                        </div>
+
                     </div>
-                    <div class="col-md-3">
-                        <select class="form-control text" id="">
-                            <option value="yearEndBonus">Quota</option>
-                            <option value="yearEndBonus">Year End Bonus</option>
-                            <option value="salaryIncrement">Salary Increment</option>
-                        </select>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-2">
                     </div>
-                    <div class="col-md-3">
-                        <select class="form-control text" id="">
-                            <option value="yearEndBonus">Position Of Quota</option>
-                            <option value="yearEndBonus">Team Associate above</option>
-                            <option value="salaryIncrement">Operational Associate</option>
-                        </select>
+                    <div class="col-md-8">
+                        <table class="table table-hover m-n orange">
+                            <thead>
+                                <tr>
+                                    <th>Grade</th>
+                                    <th>S</th>
+                                    <th>A</th>
+                                    <th>B</th>
+                                    <th>B-</th>
+                                    <th>C</th>
+                                    <th>D</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="orange2">
+                                    <td>Quota</td>
+                                    <td>
+                                        <input type="text" class="form-control" id="quota1" onchange="check_quota()">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="quota2" onchange="check_quota()">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="quota3" onchange="check_quota()">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="quota4" onchange="check_quota()">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="quota5" onchange="check_quota()">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="quota6" onchange="check_quota()">
+                                    </td>
+                                    <td id="show_quota"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-md-offset-9">
+
+                        <buuton class="btn btn-success" type="submit" onclick="show_qouta()">Submit</buuton>
+                        <!-- <buuton class="btn btn-success" type = "reset" ></buuton> -->
+                        </from>
                     </div>
                 </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-8">
-                    <table class="table table-hover m-n orange">
-                        <thead>
-                            <tr>
-                                <th>Grade</th>
-                                <th>S</th>
-                                <th>A</th>
-                                <th>B</th>
-                                <th>B-</th>
-                                <th>C</th>
-                                <th>D</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="orange2">
-                                <td>Quota</td>
-                                <td>
-                                    <input type="text" class="form-control" id="quota1" onchange="check_quota()">
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" id="quota2" onchange="check_quota()">
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" id="quota3" onchange="check_quota()">
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" id="quota4" onchange="check_quota()">
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" id="quota5" onchange="check_quota()">
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" id="quota6" onchange="check_quota()">
-                                </td>
-                                <td id="show_quota"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-8">
-                    <div class="panel panel-midnightblue" data-widget='{"draggable": "false"}'>
-                        <div class="panel-heading">
-                            <h2>
-                                <font size="5px"><b>Quota</b></font>
-                            </h2>
-                            <div class="panel-ctrls" data-actions-container=""
-                                data-action-collapse='{"target": ".panel-body"}'>
+                <br>
+                <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="panel panel-midnightblue" data-widget='{"draggable": "false"}'>
+                            <div class="panel-heading">
+                                <h2>
+                                    <font size="5px"><b>Quota</b></font>
+                                </h2>
+                                <div class="panel-ctrls" data-actions-container=""
+                                    data-action-collapse='{"target": ".panel-body"}'>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <canvas id="myChart" width="1000" height="450" style="position: relative;"></canvas>
+
                             </div>
                         </div>
-                        <div class="panel-body">
-                            <canvas id="testCanvas" width="1000" height="450"></canvas>
-                        
-                        </div>
                     </div>
                 </div>
-            </div>
-            <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
-            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button>
+                <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
+                <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button>
         </div>
+        <!-- Modal Warning -->
+        <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#FF9800;">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <font color="White"><b>&times;</b>
+                            </font>
+                        </button>
+                        <h2 class="modal-title"><b>
+                                <font color="white">Warning</font>
+                            </b></h2>
+                    </div>
+                    <!-- Modal header -->
+
+                    <div class="modal-body">
+                        <div class="form-horizontal">
+                            <div class="form-group" align="center">
+                                <div class="col-sm-12">
+                                    <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                                        align="center">
+                                        <font size="3px">
+                                            Value is more than 100</font>
+                                    </label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- form-horizontal -->
+                    </div>
+                    <!-- Modal body -->
+
+                    <div class="modal-footer">
+                        <div class="btn-group pull-right"> 
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                        </div>
+
+                    </div>
+                    <!-- Modal footer -->
+                </div>
+                <!-- modal-content -->
+            </div>
+            <!-- modal-dialog -->
+        </div>
+        <!-- End Modal Warning -->
     </div>
-</div>
 </div>
