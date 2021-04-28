@@ -117,14 +117,14 @@ function check_quota_plan() {
     var quota = 0;
 
     check = document.getElementById("quotaPlan").value;
-    for (i = 1; i <= 5; i++) {
+    for (i = 1; i <= 6; i++) {
         quota = document.getElementById("quota" + i).innerHTML;
         value_quotaPlan = parseInt(check) * quota / 100;
 
 
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
     } //for
-}
+}//check_quota_plan
 
 
 window.onload = function() {
@@ -141,7 +141,7 @@ window.onload = function() {
     for (var a = 0; a < arrQuota.length; a++) {
         dataQuota[a] = arrQuota[a] * 1;
 
-    } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
+    } //for ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
     console.log(dataQuota);
 //<block:setup:1>
 const labels = [
