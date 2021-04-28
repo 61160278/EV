@@ -98,7 +98,7 @@ tbody:hover {
     opacity: 1;
 }
 </style>
-<script src="path/to/chartjs/dist/chart.js"></script>
+<!-- <script src="path/to/chartjs/dist/chart.js"></script> -->
 <script>
 /*
  * check_quota_plan
@@ -125,60 +125,25 @@ function check_quota_plan() {
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
     } //for
 }
-function barChart(){
-   const labels = [
-  'S',
-  'A',
-  'B',
-  'B-',
-  'C',
-  'D',
-];
-const data = {
-  labels: labels,
-  datasets: [{
-    label: 'My First Dataset',
-    data: [65, 59, 80, 81, 56, 55, 40],
-    backgroundColor: [
-      'rgba(255, 99, 132, 0.2)',
-      'rgba(255, 159, 64, 0.2)',
-      'rgba(255, 205, 86, 0.2)',
-      'rgba(75, 192, 192, 0.2)',
-      'rgba(54, 162, 235, 0.2)',
-      'rgba(153, 102, 255, 0.2)',
-      'rgba(201, 203, 207, 0.2)'
-    ],
-    borderColor: [
-      'rgb(255, 99, 132)',
-      'rgb(255, 159, 64)',
-      'rgb(255, 205, 86)',
-      'rgb(75, 192, 192)',
-      'rgb(54, 162, 235)',
-      'rgb(153, 102, 255)',
-      'rgb(201, 203, 207)'
-    ],
-    borderWidth: 1
-  }]
-};
-// </block:setup>
 
-// <block:config:0>
-const config = {
-  type: 'bar',
-  data: data,
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  },
-};
-// </block:config>
- 
-}
+
 window.onload = function() {
-// <block:setup:1>
+    var dataQuota = [];
+    var arrQuota = [];
+    for (var i = 1; i <= 6; i++) {
+        //  var show_quota = document.getElementById("quota" + i).innerHTML;
+        var show_quota = document.getElementById("quota" + i).innerHTML;
+        //  var arrQuota = [5, 25, 40, 25, 5];
+        arrQuota[i] = show_quota;
+    } //for
+    arrQuota.shift();
+    console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
+    for (var a = 0; a < arrQuota.length; a++) {
+        dataQuota[a] = arrQuota[a] * 1;
+
+    } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
+    console.log(dataQuota);
+//<block:setup:1>
 const labels = [
   'S',
   'A',
@@ -193,11 +158,11 @@ const data = {
     label: 'Quota',
     backgroundColor: 'rgb(255, 99, 132)',
     borderColor: 'rgb(255, 99, 132)',
-    data: [5, 25, 40, 40, 25, 5],
+    data:dataQuota,
   }]
+
 };
 // </block:setup>
-
 // <block:config:0>
 const config = {
   type: 'line',
@@ -206,13 +171,13 @@ const config = {
 };
 
 // </block:config>
-barChart();
+
 
 var myChart = new Chart(
     document.getElementById('myChart'),
     config
+    
   );
-  
 }
 </script>
 
@@ -330,7 +295,7 @@ var myChart = new Chart(
                             <!-- <div class="well well-lg tooltips" data-trigger="hover" data-original-title=".well.well-lg">
 
                             </div> -->
-                            <canvas id="myChart" width="100" height="100" ></canvas> 
+                            <canvas id="myChart" width="100" ></canvas>
 
                         </div>
                     </div>
