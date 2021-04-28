@@ -288,7 +288,7 @@ function show_qouta() {
                     <!-- Modal body -->
 
                     <div class="modal-footer">
-                        <div class="btn-group pull-right">
+                        <div class="btn-group pull-right"> 
                             <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
                         </div>
 
