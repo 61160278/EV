@@ -57,6 +57,26 @@ class M_evs_employee extends Da_evs_employee {
 		return $query;
 	}//get_by_empid
 
+		/*
+	* get_by_empid
+	* Get employee by Emp_ID
+	* @input  Emp_ID
+	* @output Employee by Emp_ID
+	* @author Kunanya Singmee
+	* @Create Date 2564-04-07
+	*/
+	function get_his_by_id(){	
+		$sql = "SELECT * 
+				FROM evs_database.evs_employee AS evs_emp
+				INNER JOIN evs_database.evs_pattern_and_year AS evs_pay
+				ON evs_pay.pay_id = evs_emp.emp_pay_id
+				INNER JOIN evs_database.evs_data_mbo_approve AS evs_mbo
+				ON evs_mbo.dma_dtm_emp_id = evs_emp.emp_employee_id
+				WHERE emp.emp_employee_id=?" ;
+		$query = $this->db->query($sql,array($this->emp_employee_id));
+		return $query;
+	}//get_his_by_id 
+
 	/*
 	* get_empid_group
 	* Get employee by Emp_ID

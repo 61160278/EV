@@ -22,7 +22,14 @@ var sum_weight = 0; // sum by weight to competency
 var arr_weight_check = []; // array to check is value by weight
 var temp_weight;
 
-
+var table_ready = ""; // table document ready
+var table_ready_score = ""; // table document ready_score
+var table_key = '' // value key component for show on table
+var table_expected = ''; // value expected for show on table
+var temp_competency_en = ""; //value competency_en name
+var temp_competency_id = ""; //value competency_th name
+var arr_check_competency = []; //array check competency
+var arr_check_expected = []; //array check expected
 
 /*
  * check_weight_all
@@ -88,20 +95,66 @@ function total_weight() {
 }
 //total_weight
 
-$(document).ready(function() {
-
-    var table_ready = ""; // table document ready
-    var table_ready_score = ""; // table document ready_score
-    var table_key = '' // value key component for show on table
-    var table_expected = ''; // value expected for show on table
-    var temp_competency_en = ""; //value competency_en name
-    var temp_competency_id = ""; //value competency_th name
-    var arr_check_competency = []; //array check competency
-    var arr_check_expected = []; //array check expected
 
 
 
 
+/*
+ * key_component_and_expected_data
+ * Display -
+ * @input  -
+ * @output -
+ * @author  Chackkarin Pimpaeng
+ * @Create Date 2564-4-28
+ */
+function key_component_and_expected_data() {
+    chack_key_component = 0;
+    chack_expected = 0;
+
+
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/Evs_ability_form/get_key_component_ability_form",
+        data: {
+            "pos_id": value_pos_id, // position id
+            "year_id": value_year_id // year id
+        },
+        dataType: "JSON",
+        success: function(data) {
+
+            key_component_data = data;
+            chack_key_component = 1;
+        }
+    });
+
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/Evs_ability_form/get_expected_ability_form",
+        data: {
+            "pos_id": value_pos_id, // position id
+            "year_id": value_year_id // year id
+        },
+        dataType: "JSON",
+        success: function(data) {
+
+            expected_data = data;
+            chack_expected = 1;
+            table_data();
+
+        }
+    });
+    
+}
+
+/*
+ * table_data
+ * Display -
+ * @input  -
+ * @output -
+ * @author  Chackkarin Pimpaeng
+ * @Create Date 2564-4-28
+ */
+function table_data() {
     //start ajax
     $.ajax({
         type: "post",
@@ -175,56 +228,40 @@ $(document).ready(function() {
                 //console.log(arr_check_competency[0]);
                 var check_number = 0; //value for check loop 
 
-                $.ajax({
-                    type: "post",
-                    url: "<?php echo base_url(); ?>/Evs_ability_form/get_key_component_ability_form",
-                    data: {
-                        "pos_id": value_pos_id, // position id
-                        "year_id": value_year_id // year id
-                    },
-                    dataType: "JSON",
-                    success: function(data) {
-                      
-                        key_component_data = data;
 
-                        //start foreach
-                        key_component_data.forEach((row, j) => {
-                            //start if
-                            if (row.kcp_cpn_id == arr_check_competency[
-                                    0]) {
-                                //start if
+                //start foreach
+                key_component_data.forEach((row, j) => {
+                    //start if
+                    if (row.kcp_cpn_id == arr_check_competency[
+                            0]) {
+                        //start if
 
-                                if (check_number == 0) {
-                                    table_ready += row
-                                        .kcp_key_component_detail_en +
-                                        " (" +
-                                        row
-                                        .kcp_key_component_detail_th +
-                                        ")";
+                        if (check_number == 0) {
+                            table_ready += row
+                                .kcp_key_component_detail_en +
+                                " (" +
+                                row
+                                .kcp_key_component_detail_th +
+                                ")";
 
-                                }
+                        }
 
-                                if (check_number >= 1) {
+                        if (check_number >= 1) {
 
-                                    table_ready += '<hr>';
-                                    table_ready += row
-                                        .kcp_key_component_detail_en +
-                                        " (" +
-                                        row
-                                        .kcp_key_component_detail_th +
-                                        ")";
-                                }
-                                //end if-else
-                                check_number++;
-                            }
-                            //end if                    
-                        });
-                        //end foreach
-
+                            table_ready += '<hr>';
+                            table_ready += row
+                                .kcp_key_component_detail_en +
+                                " (" +
+                                row
+                                .kcp_key_component_detail_th +
+                                ")";
+                        }
+                        //end if-else
+                        check_number++;
                     }
+                    //end if                    
                 });
-
-
+                //end foreach
 
                 check_number = 0;
                 var temp_expected_en = "";
@@ -235,21 +272,6 @@ $(document).ready(function() {
 
                 table_ready += '<td id="expected_' + index + '">';
 
-
-
-
-                $.ajax({
-                    type: "post",
-                    url: "<?php echo base_url(); ?>/Evs_ability_form/get_expected_ability_form",
-                    data: {
-                        "pos_id": value_pos_id, // position id
-                        "year_id": value_year_id // year id
-                    },
-                    dataType: "JSON",
-                    success: function(data) {
-                        data = JSON.parse(data);
-                        expected_data = data;
-                            //start foreach
                 expected_data.forEach((row, k) => {
                     //start if
                     if (temp_expected_en != row.ept_expected_detail_en &&
@@ -275,9 +297,6 @@ $(document).ready(function() {
                 });
                 //end foreach
 
-                    }
-                });
-            
                 arr_check_competency = [];
                 check_number = 0;
 
@@ -331,6 +350,12 @@ $(document).ready(function() {
         }
     }); //end ajax competency
 
+}
+
+
+
+$(document).ready(function() {
+    key_component_and_expected_data();
 });
 
 

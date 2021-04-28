@@ -211,7 +211,7 @@ function change_group_remove() {
                         <div class="panel pull-right" id="addtable_filter">
                             <select id="select" onchange="manage_group()" name="example_length" class="form-control"
                                 aria-controls="example">
-                                <option value="">Select Group Contact </option>
+                                <option value="" selected disabled>Select Group Contact </option>
                                 <?php foreach($gcp_gcm->result() as $row) {?>
                                 <option value="<?php echo $row->gru_id; ?>">
                                     <?php echo $row->gru_name;?>
