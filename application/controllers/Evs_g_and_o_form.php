@@ -56,7 +56,7 @@ class Evs_g_and_o_form extends MainController {
 	* @Update Date 2563-12-30
 	*/
 	function form_g_and_o($pos_id,$year_id){
-		$this->load->model('Da_evs_person','dps');
+		$this->load->model('Da_evs_position_from','dpf');
 		$this->load->model('M_evs_position','mpos');
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$this->load->model("M_evs_set_form_g_and_o","msfg");
@@ -67,9 +67,9 @@ class Evs_g_and_o_form extends MainController {
 		$data['info_pos_id'] = $pos_id; // show value position by id
 		$data['info_year_id'] = $year_id; // show value year_id
 		
-		$this->dps->sfg_pos_id = $pos_id;
-		$this->dps->sfg_pay_id = $year_id;
-		$data['qu_form'] = $this->dps->get_by_key()->result(); // show value position by id by year_id
+		$this->dpf->sfg_pos_id = $pos_id;
+		$this->dpf->sfg_pay_id = $year_id;
+		$data['qu_form'] = $this->dpf->get_by_key()->result(); // show value position by id by year_id
 
 		$this->msfg->sfg_pos_id = $pos_id;
 		$this->msfg->sfg_pay_id = $year_id;
