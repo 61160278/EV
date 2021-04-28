@@ -59,8 +59,8 @@ function check_quota() {
         if (value_quota > 100) {
             $("#show_quota").css("color", "red");
         
-         
-    }
+            alert("The sum of qouta values more than 100!");
+    
         } else {
             $("#show_quota").css("color", "#000000");
         }
