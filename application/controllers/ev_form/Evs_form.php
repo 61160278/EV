@@ -140,11 +140,13 @@ class Evs_form extends MainController_avenxo {
 		$approve1 = $this->input->post("approve1");
 		$approve2 = $this->input->post("approve2");
 		$emp_employee_id = $this->input->post("evs_emp_id");
+		$dma_emp_id = $this->input->post("dma_emp_id");
 
 		$this->load->model('Da_evs_data_mbo_approve','deda');
 		$this->deda->dma_approve1 = $approve1;
 		$this->deda->dma_approve2 = $approve2;
 		$this->deda->dma_dtm_emp_id = $emp_employee_id;
+		$this->deda->dma_emp_id = $dma_emp_id;
 		$this->deda->insert();
 
 		$this->load->model('M_evs_data_mbo_approve','meda');
@@ -160,15 +162,17 @@ class Evs_form extends MainController_avenxo {
 		$approve1 = $this->input->post("approve1");
 		$approve2 = $this->input->post("approve2");
 		$emp_employee_id = $this->input->post("evs_emp_id");
+		$dma_emp_id = $this->input->post("dma_emp_id");
 
 		$this->load->model('Da_evs_data_mbo_approve','deda');
 		$this->deda->dma_approve1 = $approve1;
 		$this->deda->dma_approve2 = $approve2;
 		$this->deda->dma_dtm_emp_id = $emp_employee_id;
+		$this->deda->dma_emp_id = $dma_emp_id;
 		$this->deda->update();
 
 		$this->load->model('M_evs_data_mbo_approve','meda');
-		$this->meda->dma_dtm_emp_id = $emp_employee_id;
+		$this->meda->dma_emp_id = $emp_employee_id;
 		$data['data_app'] = $this->meda->get_by_id()->row();
 
 		echo json_encode($data);
@@ -179,9 +183,10 @@ class Evs_form extends MainController_avenxo {
 
 	function get_approve(){
 
-		$emp_employee_id = $this->input->post("evs_emp_id");
+		$evs_emp_id = $this->input->post("evs_emp_id");
+
 		$this->load->model('M_evs_data_mbo_approve','meda');
-		$this->meda->dma_dtm_emp_id = $emp_employee_id;
+		$this->meda->dma_emp_id = $evs_emp_id;
 		$data['data_app'] = $this->meda->get_by_id()->row();
 
 		$this->load->model('M_evs_employee','memp');
@@ -231,11 +236,23 @@ class Evs_form extends MainController_avenxo {
 		$data['emp_info'] = $this->memp->get_by_empid();
 		
 		$this->load->model('M_evs_employee','memp');
-		$this->memp->dma_emp_id = $emp_id;
-		$data['data_his'] = $this->memp->get_his_by_id();	
-		
+		$this->memp->Emp_ID = $emp_id;
+		$data['data_his'] = $this->memp->get_his_by_id();
+
 		$this->output('/consent/ev_form/v_historyMBO',$data);
 	}
 	// function createMBO
+
+	function get_approve_his(){
+
+		$app_emp = $this->input->post("app_emp");
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $app_emp;
+		$data = $this->memp->get_by_empid()->result();
+		echo json_encode($data);
+
+	}
+	// function get_approve_his
 }
 ?>

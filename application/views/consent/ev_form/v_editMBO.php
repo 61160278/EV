@@ -388,6 +388,7 @@ function save_approve() {
     var approve1 = document.getElementById("approve1").value;
     var approve2 = document.getElementById("approve2").value;
     var evs_emp_id = document.getElementById("evs_emp_id").value;
+    var dma_emp_id = document.getElementById("emp_id").innerHTML;
 
     console.log(approve1);
     console.log(approve2);
@@ -400,7 +401,8 @@ function save_approve() {
         data: {
             "approve1": approve1,
             "approve2": approve2,
-            "evs_emp_id": evs_emp_id
+            "evs_emp_id": evs_emp_id,
+            "dma_emp_id":dma_emp_id
 
         },
         success: function(data) {
@@ -422,10 +424,13 @@ function save_approve() {
 function update_approve() {
     var approve1 = document.getElementById("approve1_edt").value;
     var approve2 = document.getElementById("approve2_edt").value;
-    var evs_emp_id = document.getElementById("evs_emp_id").value;
+    var dma_emp_id = document.getElementById("evs_emp_id").value;
+    var evs_emp_id = document.getElementById("emp_id").innerHTML;
 
     console.log(approve1);
     console.log(approve2);
+    console.log(evs_emp_id);
+    console.log(dma_emp_id);
     var data_show = "";
 
     $.ajax({
@@ -435,7 +440,8 @@ function update_approve() {
         data: {
             "approve1": approve1,
             "approve2": approve2,
-            "evs_emp_id": evs_emp_id
+            "evs_emp_id": evs_emp_id,
+            "dma_emp_id":dma_emp_id
 
         },
         success: function(data) {

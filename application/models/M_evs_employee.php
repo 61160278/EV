@@ -59,22 +59,22 @@ class M_evs_employee extends Da_evs_employee {
 	}//get_by_empid
 
 		/*
-	* get_by_empid
-	* Get employee by Emp_ID
-	* @input  Emp_ID
-	* @output Employee by Emp_ID
+	* get_his_by_id
+	* Get employee by get_his_by_id
+	* @input  dma_emp_id
+	* @output Employee by dma_emp_id
 	* @author Kunanya Singmee
-	* @Create Date 2564-04-07
+	* @Create Date 2564-04-28
 	*/
 	function get_his_by_id(){	
 		$sql = "SELECT * 
 				FROM evs_database.evs_data_mbo_approve AS evs_mbo
 				INNER JOIN evs_database.evs_employee AS evs_emp
 				ON evs_emp.emp_id = evs_mbo.dma_dtm_emp_id
-				INNER JOIN evs_database.evs_pattern_and_year AS evs_pay
-				ON evs_pay.pay_id = evs_emp.emp_pay_id
-				WHERE evs_mbo.dma_emp_id=?" ;
-		$query = $this->db->query($sql,array($this->dma_emp_id));
+				-- INNER JOIN evs_database.evs_pattern_and_year AS evs_pay
+				-- ON evs_pay.pay_id = evs_emp.emp_pay_id
+				WHERE evs_emp.Emp_ID=? " ;
+		$query = $this->db->query($sql,array($this->Emp_ID));
 		return $query;
 	}//get_his_by_id 
 
