@@ -224,7 +224,7 @@ class Evs_ability_form extends Evs_form {
 			$this->dcpw->insert();
 		}
 		//end for loop
-		// header("Location: " . base_url() . "Evs_form/form_position/" . $pos_id . "/" . $year_id);
+	
 	}
 	//form_ability_input()
 
@@ -243,18 +243,22 @@ class Evs_ability_form extends Evs_form {
 		$year_id = $this->input->post('year_id'); // sum of index
 		$arr_competency = []; // array competency data
 		$arr_weight = []; // array weight data
-		$arr_key_component = []; // array key component
+		//$arr_key_component = []; // array key component
 		//start for loop
 		for($i=0 ; $i<$index ; $i++)
 		{
 			$arr_competency[$i] = $this->input->post('arr_competency['.$i.']');
 			$arr_weight[$i] = $this->input->post('arr_weight['.$i.']');
-			$arr_key_component[$i] = $this->input->post('arr_key_component['.$i.']');
+			//$arr_key_component[$i] = $this->input->post('arr_key_component['.$i.']');
 		}
 		//end for loop
 
-		$this->da_cpw->sfa_pos_id = $pos_id;
-		$this->da_cpw->delete();
+		print_r($pos_id);
+		print_r($year_id);
+		$this->load->model('M_evs_set_form_ability','mcpw');
+		$this->mcpw->sfa_pos_id = $pos_id;
+		$this->mcpw->sfa_pay_id = $year_id;
+		$this->mcpw->delete_competency();
 		//start for loop
 		for($i=0 ; $i<$index ; $i++)
 		{
@@ -265,7 +269,7 @@ class Evs_ability_form extends Evs_form {
 			$this->dcpw->insert();
 		}
 		//end for loop
-		header("Location: " . base_url() . "Evs_form/form_position/" . $pos_id . "/" . $year_id);
+		
 	}
 	//form_ability_update()
 

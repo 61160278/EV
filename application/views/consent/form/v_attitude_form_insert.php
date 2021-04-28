@@ -47,17 +47,7 @@ var arr_weight_check = []; // array check weight
  */
 function check_weight_all() {
 
-    //start for loop
-    for (i = 1; i <= index; i++) {
-        arr_weight_check.push($('#weight_' + i).val());
-        sum_weight += Number(arr_weight_check[Number(i - 1)]);
-        Number(sum_weight);
-        console.log(Number(arr_weight_check[Number(i - 1)]));
-    }
-    //end for loop
-
-    console.log(sum_weight);
-    document.getElementById('value_total_weight').innerHTML = sum_weight;
+    sum_weight  = document.getElementById('value_total_weight').value;
 
     //start if-else
     if (sum_weight == 100) {
@@ -90,25 +80,27 @@ function check_weight_all() {
  */
 function total_weight() {
 
+    sum_weight = 0;
     //start for loop
-    for (i = 1; i <= index; i++) {
-        arr_weight_check.push($('#weight_' + i).val());
-        sum_weight += Number(arr_weight_check[Number(i - 1)]);
+    table_arr_for_count = document.getElementsByName("weight").length
+   for (i = 0; i < table_arr_for_count; i++) {
+        arr_weight_check = document.getElementsByName("weight")[i].value;
+        Number(arr_weight_check);
+        sum_weight += Number(arr_weight_check); 
         Number(sum_weight);
-        console.log(Number(arr_weight_check[Number(i - 1)]));
-    }
+        console.log(index);
+   }
     //end for loop
 
     if (sum_weight == 100) {
-        document.getElementById('value_total_weight').innerHTML = sum_weight;
+        document.getElementById('value_total_weight').value = sum_weight;
         document.getElementById('value_total_weight').style.color = "black"
     } else {
-        document.getElementById('value_total_weight').innerHTML = sum_weight;
+        document.getElementById('value_total_weight').value = sum_weight;
         document.getElementById('value_total_weight').style.color = "red"
     }
 
-    arr_weight_check = [];
-    sum_weight = 0;
+   
 
 }
 //total_weight
@@ -121,6 +113,7 @@ $(document).ready(function() {
     var table_ready; // table ready
     var button_add; // button for add data
     var table_ready_score = '';
+    var arr_save_index_arr_add_pos = [];
 
 
 
@@ -132,7 +125,7 @@ $(document).ready(function() {
         table_ready += '<center>' + index + '</center>';
         table_ready += '</td>';
         table_ready += '<td>';
-        table_ready += '<select name="category[]" id="category' + index +
+        table_ready += '<select name="category" id="category' + index +
             '" class="form-control" onchange="get_category(value,' + index + ')">';
         table_ready += '<option value = "0"> Please select</option>';
 
@@ -154,10 +147,10 @@ $(document).ready(function() {
         table_ready += '</td>';
         table_ready += '<td id="iden_' + index + '"> </td>';
         table_ready += '<td id="weight_tr_' + index + '">';
-        table_ready += '<input type="number" id="weight_' + index +
-            '" name="weight[]" min="0" max="100" onchange = "total_weight()" required>';
+        table_ready += '<input type="number" class="form-control" id="weight_' + index +
+            '" name="weight" min="0" max="100" onchange = "total_weight()" placeholder="Ex.50"  required>';
         table_ready += '</td>';
-        table_ready += '<td width="20%">';
+        table_ready += '<td ">';
         table_ready +=
             '<center><button type="button" class="btn btn-danger float-center btn_remove" id="delete_com' +
             index + '" ><i class="fa fa-times"></i></button></center>';
@@ -169,7 +162,8 @@ $(document).ready(function() {
         table_ready_score += '<font color="black"><b>Total weight</b></font>';
         table_ready_score += '</center>';
         table_ready_score += '</td>';
-        table_ready_score += '<td id="value_total_weight" style="text-align:center">';
+        table_ready_score += '<td >';
+        table_ready_score += '<input id="value_total_weight" style="text-align:center" value = "0" disabled>';
         table_ready_score += '</td>';
         table_ready_score += '<td>';
         table_ready_score += '</td>';
@@ -181,10 +175,9 @@ $(document).ready(function() {
 
     });
     //end get
-});
 
-$(document).ready(function() {
     $(document).on('click', '#add_category', function() {
+        arr_save_index_arr_add_pos.push(index - 1);
         var table; // value for show on table
         index++;
         //start get
@@ -195,7 +188,7 @@ $(document).ready(function() {
             table += '<center>' + index + '</center>';
             table += '</td>';
             table += '<td>';
-            table += '<select name="category[]" id="category' + index +
+            table += '<select name="category" id="category' + index +
                 '" class="form-control" onchange="get_category(value,' + index + ')">';
             table += '<option value = "0"> Please select</option>';
 
@@ -215,8 +208,8 @@ $(document).ready(function() {
             table += '</td>';
             table += '<td id="iden_' + index + '"> </td>';
             table += '<td id="weight_tr_' + index + '">';
-            table += '<input type="number" id="weight_' + index +
-                '" name="weight[]" min="0" max="100" onchange = "total_weight()" required>';
+            table += '<input type="number"  class="form-control" id="weight_' + index +
+                '" name="weight" min="0" max="100" onchange = "total_weight() " placeholder="Ex.50" required>';
             table += '</td>';
             table += '<td width="20%">';
             table +=
@@ -233,9 +226,19 @@ $(document).ready(function() {
     $(document).on('click', '.btn_remove', function() {
         //console.log("-----delete -------");
         var button_id = $(this).attr("id");
-        var res = button_id.substring(10, 11);
+        var res = button_id.substring(10);
+
+        console.log("button : " + res);
+        for (i = 0; i < arr_save_index_arr_add_pos.length; i++) {
+            chack_arr = parseInt(arr_save_index_arr_add_pos[i])
+            if (parseInt(chack_arr) == parseInt(res) - 1) {
+                arr_save_index_arr_add_pos.splice(i, 1);
+            }
+        }
+        console.log(arr_save_index_arr_add_pos);
+
         $('#row_ctg' + res + '').remove();
-        index--;
+        //index--;
     }); // delete category data 
 
 });
@@ -302,12 +305,14 @@ function form_attitude_insert() {
     var arr_category = []; //array category data
     var arr_weight = []; // array weight data
 
-    //start forloop
-    for (i = 1; i <= index; i++) {
-        arr_category.push($('#category' + i).val());
-        arr_weight.push($('#weight_' + i).val());
+
+
+    for (i = 0; i < arr_save_index_arr_add_pos.length; i++) {
+        arr_category.push($('#category' + (parseInt(arr_save_index_arr_add_pos[i])+1)).val());
+        arr_weight.push($('#weight_' + (parseInt(arr_save_index_arr_add_pos[i])+1)).val());
+        console.log(arr_save_index_arr_add_pos[i]);
     }
-    //end forloop
+    //end for loop
 
     //console.log(arr_category);
     //console.log(arr_weight);
@@ -319,7 +324,7 @@ function form_attitude_insert() {
         data: {
             "arr_category": arr_category,
             "arr_weight": arr_weight,
-            "index": index,
+            "index": arr_save_index_arr_add_pos.length,
             "pos_id": value_pos_id,
             "value_year_id": value_year_id
 
@@ -400,6 +405,9 @@ function change_status() {
 </script>
 
 <style>
+input[type=number] {
+    text-align: center;
+}
 #t01 th {
 
     background-color: #2c2c2c;
