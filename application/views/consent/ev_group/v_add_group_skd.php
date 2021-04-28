@@ -71,11 +71,11 @@ function manage_group_right() {
                 data_row += '<tr>'
                 data_row += '<td>'
                 data_row += '<div align="center" class="checked block">'
-                data_row += '<input id = "new_check_group' + index +
+                data_row += '<input id = "old_check_group' + index +
                     '" name="checkbox" type="checkbox">'
                 data_row += '</div>'
                 data_row += '</td>'
-                data_row += '<td id="emp_new' + index + '">'
+                data_row += '<td id="emp_new'+index+'">'
                 data_row += row.Emp_ID
                 data_row += '</td>'
                 data_row += '<td>'
@@ -120,12 +120,12 @@ function change_group() {
 
         },
         dataType: "JSON",
-        success: function(status) {
+        error: function(status) {
             console.log(status)
             manage_group();
             manage_group_right();
         }
-        //success จะไม่มีการส่งค่ากลับมา
+        //error จะไม่มีการส่งค่ากลับมา
     });
     //ajax
 }
@@ -155,12 +155,12 @@ function change_group_remove() {
 
         },
         dataType: "JSON",
-        success: function(status) {
+        error: function(status) {
             console.log(status)
             manage_group();
             manage_group_right();
         }
-        //success จะไม่มีการส่งค่ากลับมา
+        //error จะไม่มีการส่งค่ากลับมา
     });
     //ajax
 }
