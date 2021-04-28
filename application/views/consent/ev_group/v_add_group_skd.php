@@ -120,12 +120,12 @@ function change_group() {
 
         },
         dataType: "JSON",
-        success: function(status) {
+        error: function(status) {
             console.log(status)
             manage_group();
             manage_group_right();
         }
-        //success จะไม่มีการส่งค่ากลับมา
+        //error จะไม่มีการส่งค่ากลับมา
     });
     //ajax
 }
