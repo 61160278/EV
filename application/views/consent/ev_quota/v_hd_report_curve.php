@@ -100,25 +100,24 @@ function get_data() {
         }
     });
 }
-function barchrat(){
-    var myCanvas = document.getElementById('testCanvas');
-    var context = myCanvas.getContext('2d');
-    var width = 40; //bar chart
-    var x = 125;
-    var arrayLen = arr.length;
-    context.fillStyle = '#000000';
-var arr = [5,25,40,40,25,5];
-     for(var b = 0;b < arrayLen;b++){
+// function barchrat(){
+//     var myCanvas = document.getElementById('testCanvas');
+//     var context = myCanvas.getContext('2d');
+//     var width = 40; //bar chart
+//     var x = 125;
+//     var arrayLen = arr.length;
+//     context.fillStyle = '#000000';
+// var arr = [5,25,40,40,25,5];
+//      for(var b = 0;b < arrayLen;b++){
 
-    // var h = data[b];    
-        context.fillRect(x,(myCanvas.height-75) + arr[b],width,arr[b]);
-        x += width + 89;
+//     // var h = data[b];    
+//         context.fillRect(x,(myCanvas.height-75) + arr[b],width,arr[b]);
+//         x += width + 89;
        
-     }
-}
+//      }
+// }
 window.onload = function() {
-    var width = 40; //bar chart
-    var x = 125;
+   
     var data = [];
     var arrQuota = [];
     var myCanvas = document.getElementById('testCanvas');
@@ -137,8 +136,8 @@ window.onload = function() {
     } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
     console.log(data);
     //var arrQuota = [5, 25, 60, 25, 5];
-    var canvas = document.getElementById("testCanvas");
-    var context = canvas.getContext("2d");
+    // var canvas = document.getElementById("testCanvas");
+    // var context = canvas.getContext("2d");
     var width = 40; //bar chart
     var x = 125;
     var GRAPH_TOP = 25;
@@ -172,30 +171,15 @@ window.onload = function() {
     //context.lineTo(GRAPH_LEFT+GRAPH_RIGHT, GRAPH_TOP);
     context.stroke();
 
-
-    //  //context.fillRect(x,(GRAPH_HEIGHT - arr[0] / largest * (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP,width,(GRAPH_BOTTOM)arr[0]); 
-    //  x += width + 89;
-      
-    //  //context.fillRect(x,(GRAPH_HEIGHT - arr[1] / largest * (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP,width,arr[1]);
-    //  x += width + 89;
-    
-    //  //context.fillRect(x,(GRAPH_HEIGHT - arr[2] / largest * (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP,width,arr[2]);
-    //  x += width + 89;
-    
-    //  //context.fillRect(x,(GRAPH_HEIGHT - arr[3] / largest * (GRAPH_HEIGHT / 5) * 2)+ GRAPH_TOP,width,arr[3]);
-    //  x += width + 89;
- 
-    //  //context.fillRect(x,(GRAPH_HEIGHT - arr[4] / largest * (GRAPH_HEIGHT / 5) * 2)+ GRAPH_TOP,width,arr[4]);
-    //  x += width + 89;
-  
-    //  context.fillRect(x,(GRAPH_HEIGHT - arr[5] / largest * (GRAPH_HEIGHT / 5) * 2)+ GRAPH_TOP,width,arr[5]);
-    //  x += width + 89;
-  
-    // // context.fillRect(x,(GRAPH_HEIGHT - data[b] / largest * (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP,width,GRAPH_BOTTOM);
-    // // x += width + 89;
-    // // }
-
-
+   
+    context.fillStyle = '#000000';
+var arr = [5,25,40,40,25,5];
+     for(var b = 0;b < arr.length;b++){
+    // var h = data[b];    
+        context.fillRect(x,myCanvas.height + arr[b],width,arr[b]);
+        x += width + 15;
+       
+     }
 
     // draw reference line  เส้นที่ 5
     context.beginPath();
@@ -254,42 +238,29 @@ window.onload = function() {
             context.lineTo((GRAPH_RIGHT - 25) / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] /
                 largest *
                 (GRAPH_HEIGHT / 5)) + GRAPH_TOP);
-            // context.fillRect(x, (GRAPH_HEIGHT - data[i] / largest * GRAPH_HEIGHT / 5) + GRAPH_TOP, width,
-            //    GRAPH_BOTTOM);
-           // x += width + 89;
-
+            
         } else if (largest == 40) {
             context.lineTo((GRAPH_RIGHT) / arrayLen * i + (GRAPH_LEFT + 10), (GRAPH_HEIGHT - data[i] / largest *(GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP);
-            //context.fillRect(x, (GRAPH_HEIGHT - data[i] / largest * (GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP, width,(GRAPH_HEIGHT / 5) * 2);
-           // context.fillRect(x,(myCanvas.height-75) - data[i],width,data[i]);
-//x += width + 89;
+           
         } else if (largest == 60) {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
                 (GRAPH_HEIGHT / 5) * 3) + GRAPH_TOP);
-//context.fillRect(x, (GRAPH_HEIGHT - data[i] / largest * (GRAPH_HEIGHT / 5) * 3) + GRAPH_TOP, width,GRAPH_BOTTOM);
-         //   x += width + 89;
+
         } else if (largest == 80) {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *(GRAPH_HEIGHT / 5) * 4) + GRAPH_TOP);
-            //document.write(grad[i] + "," + data[i)];
-           // context.fillRect(x, (GRAPH_HEIGHT - data[i] / largest * (GRAPH_HEIGHT / 5) * 4) + GRAPH_TOP, width,GRAPH_BOTTOM);
-           /// x += width + 89;
+         
         } else {
             context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
                 GRAPH_HEIGHT) + GRAPH_TOP);
-           // context.fillRect(x, (GRAPH_HEIGHT - data[i] / largest * GRAPH_HEIGHT) + GRAPH_TOP, width, GRAPH_BOTTOM);
-           // x += width + 89;
+         
         }
-
-        //context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i]  / largest *GRAPH_HEIGHT) + GRAPH_TOP);
-        // context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-        //     GRAPH_HEIGHT) + GRAPH_TOP);
         // draw reference value for day of the week  
         context.fillText(grad[i], (GRAPH_RIGHT) / arrayLen * i + 130, GRAPH_BOTTOM + 25);
 
     }
 
     context.stroke();
-    barchrat();
+   // barchrat();
    // context.rotate(Math.PI / 180);
 }
 </script>
