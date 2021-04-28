@@ -284,12 +284,7 @@ function change_group_remove() {
                 <!-- table_contact -->
 
 
-                <div class="DTTT btn-group pull-left mt-sm">
-                    <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_sdm">
-                        <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
-                    </a>
-                </div>
-                <!-- CANCEL -->
+               
             </div>
             <!-- panel-body -->
         </div>
@@ -396,21 +391,34 @@ function change_group_remove() {
                     <!-- REMOVE -->
                 </div>
                 <!-- panel-addtable -->
-
+                
+            </div>
+            <!-- panel-body -->
+            
+        </div>
+        <!-- table right -->
+        <div class="col-md-12">
+        <div class="panel-body">
+        <div class="DTTT btn-group pull-left mt-sm">
+                    <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_sdm">
+                        <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                    </a>
+                </div>
+                <!-- CANCEL -->
                 <div class="DTTT btn-group pull-right mt-sm">
                     <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_sdm">
                         <button type="button" class="btn btn-success" data-dismiss="modal">SUBMIT</button>
                     </a>
                 </div>
                 <!-- SUBMIT -->
-            </div>
-            <!-- panel-body -->
-        </div>
-        <!-- table right -->
+                </div> <!--   panelbody -->
+                </div> <!--   col-md-6 -->
     </div>
     <!-- head panel -->
 </div>
 <!-- head outside -->
+
+
 
 </html>
 
@@ -460,34 +468,3 @@ tbody {
 </div><!-- /.modal-->
 
 <!-- RESIGN -->
-<div class="modal fade" id="Remove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:gray;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b></font>
-                </button>
-            </div><!-- Modal header -->
-            <div class="modal-body">
-
-                <div class="form-horizontal">
-                    <div class="form-group" align="center">
-                        <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
-                                align="center">
-                                <font size="5px">Do you want to Remove Data YES or NO ?</font>
-                            </label>
-                        </div> <!-- Name - Surname -->
-                    </div>
-                </div> <!-- form-horizontal -->
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group pull-left">
-                    <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
-                </div>
-                <button type="button" class="btn btn-success" data-dismiss="modal">YES</button>
-            </div>
-
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div><!-- /.modal-->
