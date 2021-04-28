@@ -100,28 +100,9 @@ function get_data() {
         }
     });
 }
-// function barchrat(){
-//     var myCanvas = document.getElementById('testCanvas');
-//     var context = myCanvas.getContext('2d');
-//     var width = 40; //bar chart
-//     var x = 125;
-//     var arrayLen = arr.length;
-//     context.fillStyle = '#000000';
-// var arr = [5,25,40,40,25,5];
-//      for(var b = 0;b < arrayLen;b++){
-
-//     // var h = data[b];    
-//         context.fillRect(x,(myCanvas.height-75) + arr[b],width,arr[b]);
-//         x += width + 89;
-       
-//      }
-// }
 window.onload = function() {
-   
-    var data = [];
+    var dataQuota = [];
     var arrQuota = [];
-    var myCanvas = document.getElementById('testCanvas');
-    var context = myCanvas.getContext('2d');
     for (var i = 1; i <= 6; i++) {
         //  var show_quota = document.getElementById("quota" + i).innerHTML;
         var show_quota = document.getElementById("quota" + i).innerHTML;
@@ -131,137 +112,41 @@ window.onload = function() {
     arrQuota.shift();
     console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
     for (var a = 0; a < arrQuota.length; a++) {
-        data[a] = arrQuota[a] * 1;
+        dataQuota[a] = arrQuota[a] * 1;
 
     } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
-    console.log(data);
-    //var arrQuota = [5, 25, 60, 25, 5];
-    // var canvas = document.getElementById("testCanvas");
-    // var context = canvas.getContext("2d");
-    var width = 40; //bar chart
-    var x = 125;
-    var GRAPH_TOP = 25;
-    var GRAPH_BOTTOM = 375;
-    var GRAPH_LEFT = 125;
-    var GRAPH_RIGHT = 800;
-
-    var GRAPH_HEIGHT = 350;
-    // var GRAPH_WIDTH = 900;
-
-    var arrayLen = data.length;
-    console.log(arrayLen);
-    var largest = 0;
-    for (var i = 0; i < arrayLen; i++) {
-        if (data[i] > largest) {
-            largest = data[i];
-        }
-    }
-    console.log(largest);
-
-    context.clearRect(0, 0, 1000, 450);
-    //context.save();
-    // set font for fillText()  
-    context.font = "16px Arial";
-//context.rotate(Math.PI / 2);
-    // draw X and Y axis  
-    context.beginPath();
-    context.moveTo(GRAPH_RIGHT, GRAPH_BOTTOM);
-    context.lineTo(GRAPH_LEFT, GRAPH_BOTTOM); //x
-    context.lineTo(GRAPH_LEFT, GRAPH_TOP); //y  
-    //context.lineTo(GRAPH_LEFT+GRAPH_RIGHT, GRAPH_TOP);
-    context.stroke();
-
+    console.log(dataQuota);
    
-    context.fillStyle = '#000000';
-var arr = [5,25,40,40,25,5];
-     for(var b = 0;b < arr.length;b++){
-    // var h = data[b];    
-        context.fillRect(x,myCanvas.height + arr[b],width,arr[b]);
-        x += width + 15;
-       
-     }
-
-    // draw reference line  เส้นที่ 5
-    context.beginPath();
-    context.strokeStyle = "#BBB";
-    context.moveTo(GRAPH_RIGHT, GRAPH_TOP);
-    context.lineTo(GRAPH_LEFT, GRAPH_TOP);
-    // draw reference value for hours  
-    context.fillText(100, GRAPH_LEFT - 25, GRAPH_TOP);
-    context.stroke();
-    // draw reference line  เส้นที่ 4
-    context.beginPath();
-    context.strokeStyle = "#BBB";
-    context.moveTo(GRAPH_RIGHT, (GRAPH_HEIGHT) / 5 + GRAPH_TOP);
-    context.lineTo(GRAPH_LEFT, (GRAPH_HEIGHT) / 5 + GRAPH_TOP);
-    // draw reference value for hours  
-    context.fillText(80, GRAPH_LEFT - 25, (GRAPH_HEIGHT) / 5 + GRAPH_TOP);
-    context.stroke();
-
-    // draw reference line  เส้นที่ 1
-    context.beginPath();
-    context.moveTo(GRAPH_RIGHT, ((GRAPH_HEIGHT) / 5) * 4 + GRAPH_TOP);
-    context.lineTo(GRAPH_LEFT, ((GRAPH_HEIGHT) / 5) * 4 + GRAPH_TOP);
-    // draw reference value for hours  
-    context.fillText(20, GRAPH_LEFT - 25, ((GRAPH_HEIGHT) / 5) * 4 + GRAPH_TOP);
-    context.stroke();
-
-    // draw reference line เส้นที่ 2 
-    context.beginPath();
-    context.moveTo(GRAPH_RIGHT, ((GRAPH_HEIGHT) / 5) * 3 + GRAPH_TOP);
-    context.lineTo(GRAPH_LEFT, ((GRAPH_HEIGHT) / 5) * 3 + GRAPH_TOP);
-    // draw reference value for hours  
-    context.fillText(40, GRAPH_LEFT - 25, ((GRAPH_HEIGHT) / 5) * 3 + GRAPH_TOP);
-    context.stroke();
-
-    // draw reference line //เส้นที่ 3
-    context.beginPath();
-    context.moveTo(GRAPH_RIGHT, ((GRAPH_HEIGHT) / 5) * 2 + GRAPH_TOP);
-    context.lineTo(GRAPH_LEFT, ((GRAPH_HEIGHT) / 5) * 2 + GRAPH_TOP);
-    // draw reference value for hours  
-    context.fillText(60, GRAPH_LEFT - 25, ((GRAPH_HEIGHT) / 5) * 2 + GRAPH_TOP);
-    context.stroke();
-
-    // draw titles (คำบรรยายเส้นกราฟ)
-    context.fillText("Grad", (790 / 2) + 55, GRAPH_BOTTOM + 50);
-    context.fillText("Quota", GRAPH_LEFT - 115, GRAPH_HEIGHT / 2);
-    context.beginPath();
-    context.lineJoin = "round";
-    context.strokeStyle = "black";
-    var grad = ["S", "A", "B", "B-", "C", "D"];
-    console.log(data[0]);
-
-    for (var i = 0; i < arrayLen; i++) {
-
-        if (largest == 20) {
-
-            context.lineTo((GRAPH_RIGHT - 25) / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] /
-                largest *
-                (GRAPH_HEIGHT / 5)) + GRAPH_TOP);
-            
-        } else if (largest == 40) {
-            context.lineTo((GRAPH_RIGHT) / arrayLen * i + (GRAPH_LEFT + 10), (GRAPH_HEIGHT - data[i] / largest *(GRAPH_HEIGHT / 5) * 2) + GRAPH_TOP);
-           
-        } else if (largest == 60) {
-            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-                (GRAPH_HEIGHT / 5) * 3) + GRAPH_TOP);
-
-        } else if (largest == 80) {
-            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *(GRAPH_HEIGHT / 5) * 4) + GRAPH_TOP);
-         
-        } else {
-            context.lineTo(GRAPH_RIGHT / arrayLen * i + GRAPH_LEFT + 10, (GRAPH_HEIGHT - data[i] / largest *
-                GRAPH_HEIGHT) + GRAPH_TOP);
-         
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var mixedChart = new Chart(ctx, {
+   type: 'bar',
+   data: {
+       datasets: [{
+           label: 'Bar Dataset',
+           data: [10, 20, 30, 40],
+           // this dataset is drawn below
+           order: 2,
+           borderColor: 'rgb(255, 99, 132)',
+             backgroundColor: 'rgba(255, 99, 132, 0.2)'
+       }, {
+           label: 'Line Dataset',
+           data: [10, 20, 10, 10],
+           type: 'line',
+          
+           // this dataset is drawn on top
+           order: 1 ,
+           borderColor: 'rgb(54, 162, 235)'
+       }],
+       labels: ['January', 'February', 'March', 'April']
+   },
+   options:{
+        scales: {
+            y: {
+                beginAtZero: true
+            }
         }
-        // draw reference value for day of the week  
-        context.fillText(grad[i], (GRAPH_RIGHT) / arrayLen * i + 130, GRAPH_BOTTOM + 25);
-
     }
-
-    context.stroke();
-   // barchrat();
-   // context.rotate(Math.PI / 180);
+});
 }
 </script>
 <div class="col-md-12">
@@ -420,7 +305,7 @@ var arr = [5,25,40,40,25,5];
                             <br>
                             <br>
 
-                            <canvas id="testCanvas" width="1000" height="450"></canvas>
+                            <canvas id="myChart" width="100" ></canvas>
 
 
                         </div>
