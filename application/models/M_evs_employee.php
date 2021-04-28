@@ -52,7 +52,8 @@ class M_evs_employee extends Da_evs_employee {
 				ON pos.Position_ID = emp.Position_ID
 				INNER JOIN evs_database.evs_employee AS evs_emp
 				ON evs_emp.emp_employee_id = emp.Emp_ID
-				WHERE emp.Emp_ID=?" ;
+				WHERE emp.Emp_ID=?
+				GROUP BY emp_employee_id" ;
 		$query = $this->db->query($sql,array($this->Emp_ID));
 		return $query;
 	}//get_by_empid
@@ -67,13 +68,13 @@ class M_evs_employee extends Da_evs_employee {
 	*/
 	function get_his_by_id(){	
 		$sql = "SELECT * 
-				FROM evs_database.evs_employee AS evs_emp
+				FROM evs_database.evs_data_mbo_approve AS evs_mbo
+				INNER JOIN evs_database.evs_employee AS evs_emp
+				ON evs_emp.emp_id = evs_mbo.dma_dtm_emp_id
 				INNER JOIN evs_database.evs_pattern_and_year AS evs_pay
 				ON evs_pay.pay_id = evs_emp.emp_pay_id
-				INNER JOIN evs_database.evs_data_mbo_approve AS evs_mbo
-				ON evs_mbo.dma_dtm_emp_id = evs_emp.emp_employee_id
-				WHERE emp.emp_employee_id=?" ;
-		$query = $this->db->query($sql,array($this->emp_employee_id));
+				WHERE evs_mbo.dma_emp_id=?" ;
+		$query = $this->db->query($sql,array($this->dma_emp_id));
 		return $query;
 	}//get_his_by_id 
 
