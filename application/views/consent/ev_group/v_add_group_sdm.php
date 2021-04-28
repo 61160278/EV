@@ -127,15 +127,14 @@ function change_group() {
             type: "post",
             url: "<?php echo base_url(); ?>/ev_group/Evs_group/add_new_group",
             data: {
-                  "new_group": new_group,
+                  "group": new_group,
                   "get_emp": get_emp,
-                  "count_check": count_check
+                  "count": count_check
                   
             },
             dataType: "JSON",
             error: function(status) {
                   console.log(status)
-                  console.log("Yoooo")
                   manage_group();
                   manage_group_right(); 
             } //error ไม่ส่งค่ากลับมาเลยใช้ฟังก์ชันนี้
