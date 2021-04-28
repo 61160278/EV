@@ -89,9 +89,9 @@ function check_quota_actual() {
     quota = document.getElementById("quotaPlanToT").innerHTML;
 
     for (var j = 1; j <= 6; j++) {
-        //     if (check != "") {
+             if (check != "") {
         quotaActual = (parseInt(check) * 100) / parseInt(quota);
-        //     }
+            }
         document.getElementById("show_quotaActual" + j).innerHTML = quotaActual;
     }
 }
