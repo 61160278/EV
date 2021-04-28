@@ -33,7 +33,7 @@ function manage_group() {
                     '" name="checkbox" type="checkbox">'
                 data_row += '</div>'
                 data_row += '</td>'
-                data_row += '<td id="emp_' + index + '">'
+                data_row += '<td id="emp_'+index+'">'
                 data_row += row.Emp_ID
                 data_row += '</td>'
                 data_row += '<td>'
@@ -77,7 +77,7 @@ function manage_group_right() {
                     '" name="checkbox" type="checkbox">'
                 data_row += '</div>'
                 data_row += '</td>'
-                data_row += '<td id="emp_new' + index + '">'
+                data_row += '<td id="emp_new'+index+'">'
                 data_row += row.Emp_ID
                 data_row += '</td>'
                 data_row += '<td>'
