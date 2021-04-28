@@ -236,7 +236,7 @@ class Evs_form extends MainController_avenxo {
 		$data['emp_info'] = $this->memp->get_by_empid();
 		
 		$this->load->model('M_evs_employee','memp');
-		$this->memp->Emp_ID = $emp_id;
+		$this->memp->dma_dtm_emp_id = $emp_id;
 		$data['data_his'] = $this->memp->get_his_by_id();
 
 		$this->output('/consent/ev_form/v_historyMBO',$data);

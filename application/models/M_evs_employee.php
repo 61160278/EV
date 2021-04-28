@@ -70,11 +70,11 @@ class M_evs_employee extends Da_evs_employee {
 		$sql = "SELECT * 
 				FROM evs_database.evs_data_mbo_approve AS evs_mbo
 				INNER JOIN evs_database.evs_employee AS evs_emp
-				ON evs_emp.emp_id = evs_mbo.dma_dtm_emp_id
-				-- INNER JOIN evs_database.evs_pattern_and_year AS evs_pay
-				-- ON evs_pay.pay_id = evs_emp.emp_pay_id
-				WHERE evs_emp.Emp_ID=? " ;
-		$query = $this->db->query($sql,array($this->Emp_ID));
+				ON evs_emp.emp_employee_id = evs_mbo.dma_dtm_emp_id
+				INNER JOIN evs_database.evs_pattern_and_year AS evs_pay
+				ON evs_pay.pay_id = evs_emp.emp_pay_id
+				WHERE evs_mbo.dma_dtm_emp_id=? " ;
+		$query = $this->db->query($sql,array($this->dma_dtm_emp_id));
 		return $query;
 	}//get_his_by_id 
 
