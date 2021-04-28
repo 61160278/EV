@@ -125,23 +125,75 @@ function check_quota_plan() {
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
     } //for
 }
-
-// <block:setup:1>
-const labels = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
+function barChart(){
+   const labels = [
+  'S',
+  'A',
+  'B',
+  'B-',
+  'C',
+  'D',
 ];
 const data = {
   labels: labels,
   datasets: [{
-    label: 'My First dataset',
+    label: 'My First Dataset',
+    data: [65, 59, 80, 81, 56, 55, 40],
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+      'rgba(255, 205, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(201, 203, 207, 0.2)'
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgb(201, 203, 207)'
+    ],
+    borderWidth: 1
+  }]
+};
+// </block:setup>
+
+// <block:config:0>
+const config = {
+  type: 'bar',
+  data: data,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  },
+};
+// </block:config>
+ 
+}
+window.onload = function() {
+// <block:setup:1>
+const labels = [
+  'S',
+  'A',
+  'B',
+  'B-',
+  'C',
+  'D',
+];
+const data = {
+  labels: labels,
+  datasets: [{
+    label: 'Quota',
     backgroundColor: 'rgb(255, 99, 132)',
     borderColor: 'rgb(255, 99, 132)',
-    data: [0, 10, 5, 2, 20, 30, 45],
+    data: [5, 25, 40, 40, 25, 5],
   }]
 };
 // </block:setup>
@@ -152,14 +204,16 @@ const config = {
   data,
   options: {}
 };
-// </block:config>
 
+// </block:config>
+barChart();
 
 var myChart = new Chart(
     document.getElementById('myChart'),
     config
   );
-
+  
+}
 </script>
 
 <div class="col-md-12">
@@ -276,7 +330,7 @@ var myChart = new Chart(
                             <!-- <div class="well well-lg tooltips" data-trigger="hover" data-original-title=".well.well-lg">
 
                             </div> -->
-                            <canvas id="myChart" width="400" height="400" ></canvas> 
+                            <canvas id="myChart" width="100" height="100" ></canvas> 
 
                         </div>
                     </div>
