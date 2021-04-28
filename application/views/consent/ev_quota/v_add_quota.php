@@ -62,18 +62,13 @@ function check_quota() {
             $("#show_quota").css("color", "#000000");
         }
         document.getElementById("show_quota").innerHTML = value_quota;
-
-
         //console.log(value_quota);
     }
     // for i
 
-
-
 }
 
-
-window.onchange = function() {
+function show_qouta() {
 
     var dataQuota = [];
     var arrQuota = [];
@@ -82,20 +77,17 @@ window.onchange = function() {
 
     } //for
     for (var i = 1; i <= 6; i++) {
-
-        arrQuota.push(document.getElementById("quota" + i).value);
-        // console.log(987654);
-        console.log(arrQuota);
-        // data: [dataQuota[0], dataQuota[1], dataQuota[2], dataQuota[3], dataQuota[4], dataQuota[5]],
-
+        //  var show_quota = document.getElementById("quota" + i).innerHTML;
+        var show_quota = document.getElementById("quota" + i).value;
+        //  var arrQuota = [5, 25, 40, 25, 5];
+        arrQuota[i] = show_quota;
     } //for
-    // arrQuota.shift();
+    arrQuota.shift();
     console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
     for (var a = 0; a < arrQuota.length; a++) {
         dataQuota[a] = arrQuota[a] * 1;
 
     } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
-
     console.log(dataQuota);
     //<block:setup:1>
     const labels = [
@@ -134,34 +126,7 @@ window.onchange = function() {
     var ctx = document.getElementById('myChart').getContext('2d');
 
     var myChart = new Chart(ctx, config);
-    //myChart.clear();
-    //  myChart.destroy();
-    //  myChart = new Chart(ctx, config);
-
-
-    // function addData(myChart, label, data) {
-    //     myChart.data.labels.push(label);
-    //     myChart.data.datasets.forEach((dataset) => {
-    //         dataset.data.push(dataQuota);
-    //     });
-    //     myChart.update();
-    // }
-
-    // function removeData(myChart) {
-    //     myChart.data.labels.pop();
-    //     myChart.data.datasets.forEach((dataset) => {
-    //         dataset.data.pop();
-    //     });
-    //     myChart.update();
-    //}
-
-   // $(document).ready(function() {
-           
-            $("#myChart").append('<canvas id="myChart" ></canvas>');
-            var ctx = document.getElementById("myChart").getContext("2d");
-            chartreport = new Chart(ctx, config); 
-            $("#myChart").remove();
-  //  });
+    myChart.clear();
 } //showChart
 </script>
 <div class="col-md-12">
@@ -174,7 +139,8 @@ window.onchange = function() {
                 data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
             </div>
         </div>
-        <div class="panel-body" style="">
+        <div class="panel-body" style="">  
+        <form>
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-3">
@@ -193,6 +159,7 @@ window.onchange = function() {
                             <option value="salaryIncrement">Operational Associate</option>
                         </select>
                     </div>
+
                 </div>
             </div>
             <br>
@@ -238,6 +205,19 @@ window.onchange = function() {
                             </tr>
                         </tbody>
                     </table>
+
+                </div>
+
+
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-md-offset-9">
+              
+                    <buuton class="btn btn-success" type = "submit" onclick="show_qouta()">Submit</buuton>
+                    <!-- <buuton class="btn btn-success" type = "reset" ></buuton> -->
+                </from>
                 </div>
             </div>
             <br>
