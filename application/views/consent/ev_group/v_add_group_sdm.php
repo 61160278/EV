@@ -133,7 +133,7 @@ function change_group() {
                   
             },
             dataType: "JSON",
-            error: function(status) {
+            success: function(status) {
                   console.log(status)
                   manage_group();
                   manage_group_right(); 
@@ -144,6 +144,41 @@ function change_group() {
      
      
 }
+
+function change_group_remove() {
+    var count_group = document.getElementById("count_group").value;
+    // var new_group = document.getElementById("new_group").value;
+    var old_group = document.getElementById("select").value;
+    var get_emp = [];
+    for (i = 0; i < count_group; i++) {
+        if (document.getElementById("old_check_group" + i).checked){
+            get_emp.push(document.getElementById("emp_new" + i).innerHTML)
+            console.log(get_emp)
+        }
+        // if
+    }
+    //for
+
+    $.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>/ev_group/Evs_group/add_new_group",
+        data: {
+            "group": old_group,
+            "get_emp": get_emp,
+            "count": count_group
+
+        },
+        dataType: "JSON",
+        success: function(status) {
+            console.log(status)
+            manage_group();
+            manage_group_right();
+        }
+        //success จะไม่มีการส่งค่ากลับมา
+    });
+    //ajax
+}
+// change_group_remove
 </script>
 
 
@@ -313,7 +348,7 @@ function change_group() {
                                                       <tr class="odd gradeX" align='center'>
                                                             <td>
                                                                   <div class="checked block">
-                                                                        <input name="checkbox" type="checkbox">
+                                                                        <input name="checkbox" type="checkbox" id="old_check_group<?php echo $index; ?>">
                                                                   </div>
                                                             </td>
                                                             <td><?php echo $row->Emp_ID; ?></td>
@@ -353,11 +388,11 @@ function change_group() {
                               <!-- RESIGN -->
 
                               <div class="DTTT btn-group pull-right mt-sm">
-                                    <a data-toggle="modal" class="btn btn btn-danger" href="#Remove">
+                                    <button class="btn btn-danger" onclick="change_group_remove()">
                                           <i class="ti ti-share-alt"></i>
                                           &nbsp
                                           <span>REMOVE</span>
-                                    </a>
+                                    </button>
                               </div>
                               <!-- REMOVE -->
                         </div>
