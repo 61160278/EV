@@ -167,5 +167,31 @@ class M_evs_set_form_ability extends Da_evs_set_form_ability {
 		return $query;
 	}
 	//get_all_by_key_by_year
+
+
+
+	/*
+	* delete
+	* Delete Competency Weight from database
+	* @input sfa_id
+	* @output -
+	* @author Jakkarin Pimpaeng
+	* @update Date 2563-12-08
+	*/
+	function delete_competency() {
+	 	$sql = "DELETE FROM evs_database.evs_set_form_ability
+	 			WHERE sfa_pos_id=? AND sfa_pay_id=? ";
+	 	$this->db->query($sql, array($this->sfa_pos_id,$this->sfa_pay_id));
+		
+	 }
+
+
 } 
+
+
+
+
+
+
+
 ?>

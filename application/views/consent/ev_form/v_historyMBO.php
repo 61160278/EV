@@ -28,14 +28,40 @@ th {
 #dis_color {
     background-color: #F5F5F5;
 }
+
+th {
+    text-align: center;
+}
 </style>
 <!-- END style -->
 
 <script>
+$(document).ready(function() {
+    get_approve()
+});
+// document ready
+
+
 function cancel_form() {
     window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/index";
 }
 // function cancel_form
+
+function get_approve() {
+    var count = document.getElementById("count").value;
+    var app_emp = [];
+
+    for (i = 0; i < count; i++) {
+        app_emp.push(document.getElementById("app1_"+i).value);
+        console.log(app_emp);
+        app_emp.push(document.getElementById("app2_"+i).value);
+        console.log(app_emp);
+    }
+    // for
+
+
+}
+// function get_approve
 </script>
 <!-- script -->
 
@@ -145,10 +171,10 @@ function cancel_form() {
                             <!-- heading -->
 
                             <div class="panel-body no-padding">
-                                <table id="example" class="table table-striped table-bordered" cellspacing="0"
+                                <table id="his_mbo" class="table table-striped table-bordered" cellspacing="0"
                                     width="100%">
                                     <thead>
-                                        <tr align="center">
+                                        <tr>
                                             <th>NO.</th>
                                             <th>Year’s MBO</th>
                                             <th>Approver 1</th>
@@ -159,7 +185,32 @@ function cancel_form() {
                                     </thead>
                                     <!-- thead  -->
                                     <tbody>
+                                        <?php
+                                        $count = 0;
+                                         foreach($data_his->result() as $index => $row){ ?>
 
+                                        <tr>
+                                            <td align="center"><?php echo $index+1; ?></td>
+                                            <td align="center"><?php echo $row->pay_year; ?></td>
+                                            <td id="t_app1_<?php echo $index; ?>"></td>
+                                            <td id="t_app2_<?php echo $index; ?>"></td>
+                                            <td>-</td>
+                                            <td align="center"> <button class="btn btn-info"><i
+                                                        class="ti ti-info-alt"></button></td>
+                                        </tr>
+                                        <!-- show history  -->
+
+                                        <input type="text" id="app1_<?php echo $index; ?>" value="<?php echo $row->dma_approve1;?>"
+                                            hidden>
+                                        <input type="text" id="app2_<?php echo $index; ?>" value="<?php echo $row->dma_approve2;?>"
+                                            hidden>
+
+                                        <?php 
+                                        $count++;
+                                        }; ?>
+                                        <!-- foreach  -->
+
+                                        <input type="text" id="count" value="<?php echo $count;?>" hidden>
                                     </tbody>
                                     <!-- tbody  -->
                                 </table>
