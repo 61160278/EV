@@ -71,17 +71,31 @@ function check_quota_plan() {
 function check_quota_actual() {
     var check = "";
     var actual = 0;
-
+    var quotaActual = 0;
+    var quota = "";
     for (var i = 1; i <= 6; i++) {
         check = document.getElementById("quotaActual" + i).value;
         if (check != "") {
             actual += parseInt(check);
+
         }
         // if 
+
         document.getElementById("show_Actual").innerHTML = actual;
+
+
     }
-    // for i
+    // for i  
+    quota = document.getElementById("quotaPlanToT").innerHTML;
+
+    for (var j = 1; j <= 6; j++) {
+        //     if (check != "") {
+        quotaActual = (parseInt(check) * 100) / parseInt(quota);
+        //     }
+        document.getElementById("show_quotaActual" + j).innerHTML = quotaActual;
+    }
 }
+
 
 
 function get_data() {
@@ -100,53 +114,61 @@ function get_data() {
         }
     });
 }
-window.onload = function() {
+
+function show_linebarChart() {
     var dataQuota = [];
     var arrQuota = [];
+    var dataActua = [];
+    var arrActua = [];
     for (var i = 1; i <= 6; i++) {
-        //  var show_quota = document.getElementById("quota" + i).innerHTML;
+
         var show_quota = document.getElementById("quota" + i).innerHTML;
-        //  var arrQuota = [5, 25, 40, 25, 5];
         arrQuota[i] = show_quota;
+        var show_actual = document.getElementById("quotaActual" + i).value;
+        arrActua[i] = show_actual;
     } //for
     arrQuota.shift();
-    console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
+    arrActua.shift();
+    //console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
     for (var a = 0; a < arrQuota.length; a++) {
         dataQuota[a] = arrQuota[a] * 1;
+        dataActua[a] = arrActua[a] * 1;
 
     } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
+
     console.log(dataQuota);
-   
+    console.log(dataActua);
+
     var ctx = document.getElementById('myChart').getContext('2d');
     var mixedChart = new Chart(ctx, {
-   type: 'bar',
-   data: {
-       datasets: [{
-           label: 'Bar Dataset',
-           data: [10, 20, 30, 40],
-           // this dataset is drawn below
-           order: 2,
-           borderColor: 'rgb(255, 99, 132)',
-             backgroundColor: 'rgba(255, 99, 132, 0.2)'
-       }, {
-           label: 'Line Dataset',
-           data: [10, 20, 10, 10],
-           type: 'line',
-          
-           // this dataset is drawn on top
-           order: 1 ,
-           borderColor: 'rgb(54, 162, 235)'
-       }],
-       labels: ['January', 'February', 'March', 'April']
-   },
-   options:{
-        scales: {
-            y: {
-                beginAtZero: true
+        type: 'bar',
+        data: {
+            datasets: [{
+                label: 'Bar Dataset',
+                data: dataActua,
+                // this dataset is drawn below
+                order: 2,
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)'
+            }, {
+                label: 'Line Dataset',
+                data: dataQuota,
+                type: 'line',
+
+                // this dataset is drawn on top
+                order: 1,
+                borderColor: 'rgb(54, 162, 235)'
+            }],
+            labels: ['S', 'A', 'B', 'B-', 'C', 'D']
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
             }
         }
-    }
-});
+    });
 }
 </script>
 <div class="col-md-12">
@@ -194,7 +216,7 @@ window.onload = function() {
                     <div class="col-md-1">
                     </div>
                     <div class="col-md-2">
-                        <button class="btn-success btn">SUBMIT</button>
+                        <button class="btn-success btn" type="submit" onclick="show_linebarChart()">SUBMIT</button>
                     </div>
                 </div>
             </div>
@@ -305,7 +327,7 @@ window.onload = function() {
                             <br>
                             <br>
 
-                            <canvas id="myChart" width="100" ></canvas>
+                            <canvas id="myChart" width="100"></canvas>
 
 
                         </div>
