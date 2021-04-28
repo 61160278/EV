@@ -58,6 +58,9 @@ function check_quota() {
         // if 
         if (value_quota > 100) {
             $("#show_quota").css("color", "red");
+        
+         
+    }
         } else {
             $("#show_quota").css("color", "#000000");
         }
@@ -89,6 +92,7 @@ function show_qouta() {
 
     } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
     console.log(dataQuota);
+   
     //<block:setup:1>
     const labels = [
         'S',
@@ -126,7 +130,8 @@ function show_qouta() {
     var ctx = document.getElementById('myChart').getContext('2d');
 
     var myChart = new Chart(ctx, config);
-    myChart.clear();
+   
+
 } //showChart
 </script>
 <div class="col-md-12">
