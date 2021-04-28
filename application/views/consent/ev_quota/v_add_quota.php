@@ -67,95 +67,102 @@ function check_quota() {
         //console.log(value_quota);
     }
     // for i
-    //
 
-    showChart();
-   // destroy();
 
 
 }
 
-// function destroy() {
 
-//     var myChart = new Chart(
-//         document.getElementById('myChart'), {
-//             type: 'line',
-//             data: data,
-//             options: {
-//                 scales: {
-//                     y: {
-//                         beginAtZero: true
-//                     }
-//                 }
-//             }
-//         }
+window.onchange = function() {
 
+    var dataQuota = [];
+    var arrQuota = [];
+    for (var i = 0; i < 6; i++) {
+        dataQuota[i] = 0;
 
-//     );
-    // myChart.destroy();
-    // }
-    function showChart() {
-        var dataQuota = [];
-        var arrQuota = [];
+    } //for
+    for (var i = 1; i <= 6; i++) {
 
-        for (var i = 1; i <= 6; i++) {
+        arrQuota.push(document.getElementById("quota" + i).value);
+        // console.log(987654);
+        console.log(arrQuota);
+        // data: [dataQuota[0], dataQuota[1], dataQuota[2], dataQuota[3], dataQuota[4], dataQuota[5]],
 
-            arrQuota.push(document.getElementById("quota" + i).value);
-            console.log(987654);
-            console.log(arrQuota);
+    } //for
+    // arrQuota.shift();
+    console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
+    for (var a = 0; a < arrQuota.length; a++) {
+        dataQuota[a] = arrQuota[a] * 1;
 
+    } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
 
-        } //for
-        // arrQuota.shift();
-        console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
-        for (var a = 0; a < arrQuota.length; a++) {
-            dataQuota[a] = arrQuota[a] * 1;
+    console.log(dataQuota);
+    //<block:setup:1>
+    const labels = [
+        'S',
+        'A',
+        'B',
+        'B-',
+        'C',
+        'D',
+    ];
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Quota',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: dataQuota,
+        }]
 
-        } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
-
-        console.log(dataQuota);
-        //<block:setup:1>
-        const labels = [
-            'S',
-            'A',
-            'B',
-            'B-',
-            'C',
-            'D',
-        ];
-        const data = {
-            labels: labels,
-            datasets: [{
-                label: 'Quota',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: dataQuota,
-            }]
-
-        };
-        // </block:setup>
-        // <block:config:0>
-        const config = {
-            type: 'line',
-            data: data,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+    };
+    // </block:setup>
+    // <block:config:0>
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
                 }
             }
-        };
-
-        // </block:config>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        if (ctx.myChart) {
-           // myChart = null;
-           myChart.destroy();
-        } else {
-            myChart = new Chart(ctx, config);
         }
-    } //showChart
+    };
+
+    // </block:config>
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    var myChart = new Chart(ctx, config);
+    //myChart.clear();
+    //  myChart.destroy();
+    //  myChart = new Chart(ctx, config);
+
+
+    // function addData(myChart, label, data) {
+    //     myChart.data.labels.push(label);
+    //     myChart.data.datasets.forEach((dataset) => {
+    //         dataset.data.push(dataQuota);
+    //     });
+    //     myChart.update();
+    // }
+
+    // function removeData(myChart) {
+    //     myChart.data.labels.pop();
+    //     myChart.data.datasets.forEach((dataset) => {
+    //         dataset.data.pop();
+    //     });
+    //     myChart.update();
+    //}
+
+   // $(document).ready(function() {
+           
+            $("#myChart").append('<canvas id="myChart" ></canvas>');
+            var ctx = document.getElementById("myChart").getContext("2d");
+            chartreport = new Chart(ctx, config); 
+            $("#myChart").remove();
+  //  });
+} //showChart
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
