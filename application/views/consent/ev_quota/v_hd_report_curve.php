@@ -180,63 +180,6 @@ function show_linebarChart() {
     });
 }
 
-// function reset() {
-//     var dataQuota = [];
-//     var arrQuota = [];
-//     var dataActual = [];
-//     var arrActual = [];
-//     for (var i = 1; i <= 6; i++) {
-
-//         var show_quota = document.getElementById("quota" + i).innerHTML;
-//         arrQuota[i] = show_quota;
-//         var show_actual = document.getElementById("show_quotaActual" + i).innerHTML;
-//         arrActual[i] = show_actual;
-//     } //for
-//     arrQuota.shift();
-//     arrActual.shift();
-//     //console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
-//     for (var a = 0; a < arrQuota.length; a++) {
-//         dataQuota[a] = arrQuota[a] * 1;
-//         dataActual[a] = arrActual[a] * 1;
-
-//     } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
-
-//     console.log(dataQuota);
-//     console.log(dataActual);
-
-//     var ctx = document.getElementById('myChart').getContext('2d');
-
-//     var mixedChart = new Chart(ctx, {
-//         type: 'bar',
-//         data: {
-//             datasets: [{
-//                 label: 'Actual',
-//                 data: dataActual,
-//                 // this dataset is drawn below
-//                 order: 2,
-//                 borderColor: 'rgb(255, 99, 132)',
-//                 backgroundColor: 'rgba(255, 99, 132, 0.2)'
-//             }, {
-//                 label: 'Quota',
-//                 data: dataQuota,
-//                 type: 'line',
-
-//                 // this dataset is drawn on top
-//                 order: 1,
-//                 borderColor: 'rgb(54, 162, 235)'
-//             }],
-//             labels: ['S', 'A', 'B', 'B-', 'C', 'D']
-//         },
-//         options: {
-//             scales: {
-//                 y: {
-//                     beginAtZero: true
-//                 }
-//             }
-//         }
-//     });
-//     mixedChart.destroy() ;
-// }
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
