@@ -405,21 +405,7 @@ function check_data_edt(check) {
 </div>
 <!-- head outside -->
 
-</html>
 
-<head>
-      <style>
-      thead {
-            color: black;
-            font-size: 17px;
-      }
-
-      tbody {
-            color: black;
-            font-size: 14px;
-      }
-      </style>
-</head>
 
 <!-- Modal Add -->
 <div class="modal fade" id="Add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -532,6 +518,10 @@ function check_data_edt(check) {
                                           <input type="text" class="form-control" value="<?php echo $row->gru_name; ?>"
                                                 id="grouptext<?php echo $row->gru_id; ?>" name="grouptext"
                                                 placeholder="HR AGM">
+                                                <label class="col-sm-12 control-label"></label>
+                                          <p id="alert_grouptext">
+                                                <font color="red"><b>This data already to used! </b></font>
+                                          </p>
 
                                     </div>
                               </div>
