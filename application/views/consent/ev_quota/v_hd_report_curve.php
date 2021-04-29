@@ -70,30 +70,42 @@ function check_quota_plan() {
 
 function check_quota_actual() {
     var check = "";
+    var valueActual = 0;
     var actual = 0;
     var quotaActual = 0;
     var quota = "";
+    var sumQuotaActual = 0;
+    quota = document.getElementById("quotaPlanToT").innerHTML;
     for (var i = 1; i <= 6; i++) {
         check = document.getElementById("quotaActual" + i).value;
+        if (check == "") {
+            quotaActual = null;
+        }
         if (check != "") {
-            actual += parseInt(check);
+            valueActual = parseInt(check);
+            console.log(valueActual);
+            quotaActual = (valueActual * 100) / parseInt(quota);
+            sumQuotaActual += quotaActual;
+            console.log(quotaActual + "=" + valueActual + "* 100 /" + parseInt(quota));
+            actual += valueActual;
 
         }
         // if 
-
+        document.getElementById("show_quotaActual" + i).innerHTML = quotaActual;
         document.getElementById("show_Actual").innerHTML = actual;
-
+        document.getElementById("show_sumquotaActual").innerHTML = sumQuotaActual;
+        document.getElementById("TOTplan").innerHTML = quota;
 
     }
     // for i  
-    quota = document.getElementById("quotaPlanToT").innerHTML;
 
-    for (var j = 1; j <= 6; j++) {
-             if (check != "") {
-        quotaActual = (parseInt(check) * 100) / parseInt(quota);
-            }
-        document.getElementById("show_quotaActual" + j).innerHTML = quotaActual;
-    }
+    // //console.log(quota);
+    // for (var j = 1; j <= 6; j++) {
+
+    //     //quotaActual = (parseInt(check) * 100) / parseInt(quota);
+
+
+    // }
 }
 
 
@@ -118,40 +130,40 @@ function get_data() {
 function show_linebarChart() {
     var dataQuota = [];
     var arrQuota = [];
-    var dataActua = [];
-    var arrActua = [];
+    var dataActual = [];
+    var arrActual = [];
     for (var i = 1; i <= 6; i++) {
 
         var show_quota = document.getElementById("quota" + i).innerHTML;
         arrQuota[i] = show_quota;
-        var show_actual = document.getElementById("quotaActual" + i).value;
-        arrActua[i] = show_actual;
+        var show_actual = document.getElementById("show_quotaActual" + i).innerHTML;
+        arrActual[i] = show_actual;
     } //for
     arrQuota.shift();
-    arrActua.shift();
+    arrActual.shift();
     //console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
     for (var a = 0; a < arrQuota.length; a++) {
         dataQuota[a] = arrQuota[a] * 1;
-        dataActua[a] = arrActua[a] * 1;
+        dataActual[a] = arrActual[a] * 1;
 
     } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
 
     console.log(dataQuota);
-    console.log(dataActua);
+    console.log(dataActual);
 
     var ctx = document.getElementById('myChart').getContext('2d');
     var mixedChart = new Chart(ctx, {
         type: 'bar',
         data: {
             datasets: [{
-                label: 'Bar Dataset',
-                data: dataActua,
+                label: 'Actual',
+                data: dataActual,
                 // this dataset is drawn below
                 order: 2,
                 borderColor: 'rgb(255, 99, 132)',
                 backgroundColor: 'rgba(255, 99, 132, 0.2)'
             }, {
-                label: 'Line Dataset',
+                label: 'Quota',
                 data: dataQuota,
                 type: 'line',
 
@@ -256,8 +268,8 @@ function show_linebarChart() {
                                             <td><b>Quota</b></td>
                                             <td id="quota1" value="5">5</td>
                                             <td id="quota2" value="25">25</td>
-                                            <td id="quota3" value="40">40</td>
-                                            <td id="quota4" value="40">40</td>
+                                            <td id="quota3" value="40">30</td>
+                                            <td id="quota4" value="40">10</td>
                                             <td id="quota5" value="25">25</td>
                                             <td id="quota6" value="5">5</td>
                                             <td>100</td>
@@ -313,13 +325,13 @@ function show_linebarChart() {
                                                 <td id="show_quotaActual4"></td>
                                                 <td id="show_quotaActual5"></td>
                                                 <td id="show_quotaActual6"></td>
-                                                <td></td>
+                                                <td id="show_sumquotaActual"></td>
                                             </tr>
                                         </div>
                                         <tr class="orange2">
                                             <div class="col-md-1">
-                                                <td><b>Total in level</b></td>
-                                                <td colspan="6"></td>
+                                                <td colspan="7"><b>Total in level</b></td>
+                                                <td id = "TOTplan" ></td>
                                         </tr>
                                     </div>
                                 </tbody>
