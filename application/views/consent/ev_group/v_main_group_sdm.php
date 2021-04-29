@@ -81,9 +81,8 @@ function Delete_data(gru_id) {
 
 }
 
-function manage_data(gru_id){
-      
-     
+function manage_data(gru_id) {
+
       console.log(gru_id);
       window.location.href = "<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_sdm/" + gru_id;
 }
@@ -244,7 +243,7 @@ function check_data_edt(check) {
       }
       //else
 
-    
+
 }
 </script>
 
@@ -342,7 +341,8 @@ function check_data_edt(check) {
                                                                               href="#Edit<?php echo $row->gru_id?>">
                                                                               <i class="ti ti-pencil-alt"></i>
                                                                         </a>
-                                                                        <a class="btn btn-info"  onClick="manage_data(<?php echo $row->gru_id; ?>)">
+                                                                        <a class="btn btn-info"
+                                                                              onClick="manage_data(<?php echo $row->gru_id; ?>)">
                                                                               <i class="ti ti-info-alt"></i>
                                                                         </a>
                                                                   </div>
@@ -518,7 +518,7 @@ function check_data_edt(check) {
                                           <input type="text" class="form-control" value="<?php echo $row->gru_name; ?>"
                                                 id="grouptext<?php echo $row->gru_id; ?>" name="grouptext"
                                                 placeholder="HR AGM">
-                                                <label class="col-sm-12 control-label"></label>
+                                          <label class="col-sm-12 control-label"></label>
                                           <p id="alert_grouptext">
                                                 <font color="red"><b>This data already to used! </b></font>
                                           </p>
@@ -571,9 +571,7 @@ function check_data_edt(check) {
                         <div class="btn-group pull-left">
                               <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
                         </div>
-
                         <input type="submit" class="btn btn-success" value="SAVE">
-
                   </div>
                   <!-- modal-footer -->
                   </form>
