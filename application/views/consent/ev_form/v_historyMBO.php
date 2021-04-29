@@ -49,16 +49,57 @@ function cancel_form() {
 
 function get_approve() {
     var count = document.getElementById("count").value;
-    var app_emp = [];
+    var app1_emp;
+    var app2_emp;
+    var name_app1 = "";
+    var name_app2 = "";
+    var num_id1 = 0;
+    var num_id2 = 0;
 
     for (i = 0; i < count; i++) {
-        app_emp.push(document.getElementById("app1_"+i).value);
-        console.log(app_emp);
-        app_emp.push(document.getElementById("app2_"+i).value);
-        console.log(app_emp);
+        app1_emp = document.getElementById("app1_" + i).value;
+        app2_emp = document.getElementById("app2_" + i).value;
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "<?php echo base_url(); ?>ev_form/Evs_form/get_approve_his",
+            data: {
+                "app_emp": app1_emp
+            },
+            success: function(data) {
+                console.log(name_app1);
+                data.forEach((row, index) => {
+                    name_app1 = row.Empname_eng + " " + row.Empsurname_eng;
+                });
+                // foreach
+                $("#t_app1_" + num_id1.toString()).text(name_app1);
+                num_id1++;
+            }
+            // success
+        });
+        // ajax
+
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "<?php echo base_url(); ?>ev_form/Evs_form/get_approve_his",
+            data: {
+                "app_emp": app2_emp
+            },
+            success: function(data) {
+                console.log(name_app2);
+                data.forEach((row, index) => {
+                    name_app2 = row.Empname_eng + " " + row.Empsurname_eng;
+                });
+                // foreach
+                $("#t_app2_" + num_id2.toString()).text(name_app2);
+                num_id2++;
+            }
+            // success
+        });
+        // ajax
     }
     // for
-
 
 }
 // function get_approve
@@ -194,16 +235,21 @@ function get_approve() {
                                             <td align="center"><?php echo $row->pay_year; ?></td>
                                             <td id="t_app1_<?php echo $index; ?>"></td>
                                             <td id="t_app2_<?php echo $index; ?>"></td>
-                                            <td>-</td>
-                                            <td align="center"> <button class="btn btn-info"><i
-                                                        class="ti ti-info-alt"></button></td>
+                                            <td align="center"></td>
+                                            <td align="center">
+                                                <a href="<?php echo base_url(); ?>ev_form/Evs_form/show_mbo_his/<?php echo $row->emp_employee_id; ?>">
+                                                    <button class="btn btn-info" id="his_mbo">
+                                                        <i class="ti ti-info-alt"></i>
+                                                    </button>
+                                                </a>
+                                            </td>
                                         </tr>
                                         <!-- show history  -->
 
-                                        <input type="text" id="app1_<?php echo $index; ?>" value="<?php echo $row->dma_approve1;?>"
-                                            hidden>
-                                        <input type="text" id="app2_<?php echo $index; ?>" value="<?php echo $row->dma_approve2;?>"
-                                            hidden>
+                                        <input type="text" id="app1_<?php echo $index; ?>"
+                                            value="<?php echo $row->dma_approve1;?>" hidden>
+                                        <input type="text" id="app2_<?php echo $index; ?>"
+                                            value="<?php echo $row->dma_approve2;?>" hidden>
 
                                         <?php 
                                         $count++;

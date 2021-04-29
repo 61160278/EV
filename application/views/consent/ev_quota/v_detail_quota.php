@@ -117,17 +117,24 @@ function check_quota_plan() {
     var quota = 0;
 
     check = document.getElementById("quotaPlan").value;
-    for (i = 1; i <= 6; i++) {
+    if (check === "") {
+        $("#submit").attr("disabled", true);
+    }
+    for (var i = 1; i <= 6; i++) {
+
+
         quota = document.getElementById("quota" + i).innerHTML;
         value_quotaPlan = parseInt(check) * quota / 100;
-
-
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
+
+
     } //for
-}//check_quota_plan
+} //check_quota_plan
 
 
-window.onload = function() {
+function show_quotaplan() {
+    $("#quotaPlan").attr("disabled", true);
+
     var dataQuota = [];
     var arrQuota = [];
     for (var i = 1; i <= 6; i++) {
@@ -143,42 +150,52 @@ window.onload = function() {
 
     } //for ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
     console.log(dataQuota);
-//<block:setup:1>
-const labels = [
-  'S',
-  'A',
-  'B',
-  'B-',
-  'C',
-  'D',
-];
-const data = {
-  labels: labels,
-  datasets: [{
-    label: 'Quota',
-    backgroundColor: 'rgb(255, 99, 132)',
-    borderColor: 'rgb(255, 99, 132)',
-    data:dataQuota,
-  }]
+    //<block:setup:1>
+    const labels = [
+        'S',
+        'A',
+        'B',
+        'B-',
+        'C',
+        'D',
+    ];
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Quota',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: dataQuota,
+        }]
 
-};
-// </block:setup>
-// <block:config:0>
-const config = {
-  type: 'line',
-  data,
-  options: {}
-};
+    };
+    // </block:setup>
+    // <block:config:0>
+    const config = {
+        type: 'line',
+        data,
+        options: {}
+    };
 
-// </block:config>
+    // </block:config>
 
 
-var myChart = new Chart(
-    document.getElementById('myChart'),
-    config
-    
-  );
-}
+    var myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+
+    );
+} //show_quotaplan
+$(document).ready(function() {
+    $("#reset").click(function() {
+
+        $("#quotaPlan").attr("disabled", false);
+
+
+    });
+
+
+});
 </script>
 
 <div class="col-md-12">
@@ -264,7 +281,7 @@ var myChart = new Chart(
                                     <td id="show_quotaPlan6"> </td>
                                     <td>
                                         <input type="text" class="form-control" id="quotaPlan"
-                                            onchange="check_quota_plan()">
+                                            onchange="check_quota_plan()" required>
 
                                         <!-- <input class="form-control" id="inp_result1" onchange="functionJS()" type="number" min="0" max="100"> -->
                                     </td>
@@ -273,6 +290,11 @@ var myChart = new Chart(
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <br>
+            <div class="col-md-offset-9">
+                <button class="btn-success btn" id="submit" type="submit" onclick="show_quotaplan()">SUBMIT</button>
+                <button class="btn btn-warning" type="reset" id="reset">edit</button>
             </div>
             <br>
             <div class="row">
@@ -295,7 +317,7 @@ var myChart = new Chart(
                             <!-- <div class="well well-lg tooltips" data-trigger="hover" data-original-title=".well.well-lg">
 
                             </div> -->
-                            <canvas id="myChart" width="100" ></canvas>
+                            <canvas id="myChart" width="100"></canvas>
 
                         </div>
                     </div>

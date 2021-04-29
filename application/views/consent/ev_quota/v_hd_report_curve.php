@@ -50,6 +50,7 @@ tbody:hover {
 $(document).ready(function() {
     check_quota_plan()
     check_quota_actual()
+
 });
 
 function check_quota_plan() {
@@ -70,32 +71,47 @@ function check_quota_plan() {
 
 function check_quota_actual() {
     var check = "";
+    var valueActual = 0;
     var actual = 0;
     var quotaActual = 0;
     var quota = "";
+    var sumQuotaActual = 0;
+    quota = document.getElementById("quotaPlanToT").innerHTML;
     for (var i = 1; i <= 6; i++) {
         check = document.getElementById("quotaActual" + i).value;
+        if (check == "") {
+            quotaActual = null;
+        }
         if (check != "") {
-            actual += parseInt(check);
+            valueActual = parseInt(check);
+            console.log(valueActual);
+            quotaActual = (valueActual * 100) / parseInt(quota);
+            sumQuotaActual += quotaActual;
+            console.log(quotaActual + "=" + valueActual + "* 100 /" + parseInt(quota));
+            actual += valueActual;
 
         }
+        if (valueActual > parseInt(quota)) {
+            $("#show_Actual").css("color", "red");
+            add_alert();
+            $("#submit").attr("disabled", true);
+        } else if(valueActual ==parseInt(quota)){
+            $("#submit").attr("disabled", false);
+            $("#show_Actual").css("color", "#000000");
+        }
         // if 
-
+        document.getElementById("show_quotaActual" + i).innerHTML = quotaActual;
         document.getElementById("show_Actual").innerHTML = actual;
-
+        document.getElementById("show_sumquotaActual").innerHTML = sumQuotaActual;
+        document.getElementById("TOTplan").innerHTML = quota;
 
     }
     // for i  
-    quota = document.getElementById("quotaPlanToT").innerHTML;
-
-    for (var j = 1; j <= 6; j++) {
-        //     if (check != "") {
-        quotaActual = (parseInt(check) * 100) / parseInt(quota);
-        //     }
-        document.getElementById("show_quotaActual" + j).innerHTML = quotaActual;
-    }
 }
 
+function add_alert() {
+    $('#warning').modal('show');
+}
 
 
 function get_data() {
@@ -116,48 +132,55 @@ function get_data() {
 }
 
 function show_linebarChart() {
+
+    for (var i = 1; i <= 6; i++) {
+        $("#quotaActual" + i).attr("disabled", true);
+    }
     var dataQuota = [];
     var arrQuota = [];
-    var dataActua = [];
-    var arrActua = [];
+    var dataActual = [];
+    var arrActual = [];
     for (var i = 1; i <= 6; i++) {
-
         var show_quota = document.getElementById("quota" + i).innerHTML;
         arrQuota[i] = show_quota;
-        var show_actual = document.getElementById("quotaActual" + i).value;
-        arrActua[i] = show_actual;
+        var show_actual = document.getElementById("show_quotaActual" + i).innerHTML;
+        arrActual[i] = show_actual;
     } //for
     arrQuota.shift();
-    arrActua.shift();
+    arrActual.shift();
     //console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
     for (var a = 0; a < arrQuota.length; a++) {
         dataQuota[a] = arrQuota[a] * 1;
-        dataActua[a] = arrActua[a] * 1;
+        dataActual[a] = arrActual[a] * 1;
 
     } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
 
     console.log(dataQuota);
-    console.log(dataActua);
+    console.log(dataActual);
 
     var ctx = document.getElementById('myChart').getContext('2d');
+
     var mixedChart = new Chart(ctx, {
         type: 'bar',
         data: {
             datasets: [{
-                label: 'Bar Dataset',
-                data: dataActua,
+                label: 'Quota Actual',
+                data: dataActual,
                 // this dataset is drawn below
                 order: 2,
                 borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)'
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 1
             }, {
-                label: 'Line Dataset',
+                label: 'Quota',
                 data: dataQuota,
                 type: 'line',
 
                 // this dataset is drawn on top
                 order: 1,
-                borderColor: 'rgb(54, 162, 235)'
+                borderColor: 'rgb(54, 162, 235)',
+                backgroundColor: 'rgb(54, 162, 235)'
+
             }],
             labels: ['S', 'A', 'B', 'B-', 'C', 'D']
         },
@@ -169,6 +192,20 @@ function show_linebarChart() {
             }
         }
     });
+    $('#reset').on('click', function() {
+        mixedChart.destroy();
+
+    });
+
+    $(document).ready(function() {
+        $("#reset").click(function() {
+            for (var i = 1; i <= 6; i++) {
+                $("#quotaActual" + i).attr("disabled", false);
+            }
+
+        });
+    });
+
 }
 </script>
 <div class="col-md-12">
@@ -182,6 +219,7 @@ function show_linebarChart() {
             </div>
         </div>
         <div class="panel-body">
+
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-3">
@@ -216,7 +254,8 @@ function show_linebarChart() {
                     <div class="col-md-1">
                     </div>
                     <div class="col-md-2">
-                        <button class="btn-success btn" type="submit" onclick="show_linebarChart()">SUBMIT</button>
+                        <button class="btn-success btn" id = "submit" type="submit" onclick="show_linebarChart()">SUBMIT</button>
+
                     </div>
                 </div>
             </div>
@@ -235,6 +274,7 @@ function show_linebarChart() {
                                 data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
                             </div>
                         </div>
+
                         <div class="panel-body" style="">
                             <table style="width:100%" class="table table-hover m-n orange">
                                 <thead>
@@ -256,8 +296,8 @@ function show_linebarChart() {
                                             <td><b>Quota</b></td>
                                             <td id="quota1" value="5">5</td>
                                             <td id="quota2" value="25">25</td>
-                                            <td id="quota3" value="40">40</td>
-                                            <td id="quota4" value="40">40</td>
+                                            <td id="quota3" value="40">30</td>
+                                            <td id="quota4" value="40">10</td>
                                             <td id="quota5" value="25">25</td>
                                             <td id="quota6" value="5">5</td>
                                             <td>100</td>
@@ -313,24 +353,74 @@ function show_linebarChart() {
                                                 <td id="show_quotaActual4"></td>
                                                 <td id="show_quotaActual5"></td>
                                                 <td id="show_quotaActual6"></td>
-                                                <td></td>
+                                                <td id="show_sumquotaActual"></td>
                                             </tr>
                                         </div>
                                         <tr class="orange2">
                                             <div class="col-md-1">
-                                                <td><b>Total in level</b></td>
-                                                <td colspan="6"></td>
+                                                <td colspan="7"><b>Total in level</b></td>
+                                                <td id="TOTplan"></td>
                                         </tr>
                                     </div>
                                 </tbody>
                             </table>
                             <br>
+                            <div class="col-md-offset-11">
+                                <button class="btn btn-warning" type="reset" id="reset">edit</button>
+                            </div>
                             <br>
 
                             <canvas id="myChart" width="100"></canvas>
 
 
                         </div>
+                        <!-- Modal Warning -->
+                        <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header" style="background-color:#FF9800;">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            <font color="White"><b>&times;</b>
+                                            </font>
+                                        </button>
+                                        <h2 class="modal-title"><b>
+                                                <font color="white">Warning</font>
+                                            </b></h2>
+                                    </div>
+                                    <!-- Modal header -->
+
+                                    <div class="modal-body">
+                                        <div class="form-horizontal">
+                                            <div class="form-group" align="center">
+                                                <div class="col-sm-12">
+                                                    <label for="focusedinput" class="control-label"
+                                                        style="font-family:'Courier New'" align="center">
+                                                        <font size="3px">
+                                                            Actual value is more than plan!</font>
+                                                    </label>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- form-horizontal -->
+                                    </div>
+                                    <!-- Modal body -->
+
+                                    <div class="modal-footer">
+                                        <div class="btn-group pull-right">
+                                            <button type="button" class="btn btn-success"
+                                                data-dismiss="modal">Yes</button>
+                                        </div>
+
+                                    </div>
+                                    <!-- Modal footer -->
+                                </div>
+                                <!-- modal-content -->
+                            </div>
+                            <!-- modal-dialog -->
+                        </div>
+                        <!-- End Modal Warning -->
                     </div>
                 </div>
             </div>

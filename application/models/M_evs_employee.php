@@ -52,29 +52,48 @@ class M_evs_employee extends Da_evs_employee {
 				ON pos.Position_ID = emp.Position_ID
 				INNER JOIN evs_database.evs_employee AS evs_emp
 				ON evs_emp.emp_employee_id = emp.Emp_ID
-				WHERE emp.Emp_ID=?
-				GROUP BY emp_employee_id" ;
-		$query = $this->db->query($sql,array($this->Emp_ID));
+				WHERE emp.Emp_ID=? AND evs_emp.emp_pay_id=?" ;
+		$query = $this->db->query($sql,array($this->Emp_ID, $this->emp_pay_id));
 		return $query;
 	}//get_by_empid
 
 		/*
-	* get_by_empid
+	* get_by_appid
 	* Get employee by Emp_ID
 	* @input  Emp_ID
 	* @output Employee by Emp_ID
 	* @author Kunanya Singmee
 	* @Create Date 2564-04-07
 	*/
+	function get_by_appid(){	
+		$sql = "SELECT * 
+				FROM dbmc.employee AS emp
+				INNER JOIN dbmc.group_secname AS gsec 
+				ON gsec.Sectioncode = emp.Sectioncode_ID
+				INNER JOIN dbmc.position AS pos
+				ON pos.Position_ID = emp.Position_ID
+				WHERE emp.Emp_ID=?" ;
+		$query = $this->db->query($sql,array($this->Emp_ID));
+		return $query;
+	}//get_by_appid
+
+		/*
+	* get_his_by_id
+	* Get employee by get_his_by_id
+	* @input  dma_emp_id
+	* @output Employee by dma_emp_id
+	* @author Kunanya Singmee
+	* @Create Date 2564-04-28
+	*/
 	function get_his_by_id(){	
 		$sql = "SELECT * 
 				FROM evs_database.evs_data_mbo_approve AS evs_mbo
 				INNER JOIN evs_database.evs_employee AS evs_emp
-				ON evs_emp.emp_id = evs_mbo.dma_dtm_emp_id
+				ON evs_emp.emp_employee_id = evs_mbo.dma_dtm_emp_id
 				INNER JOIN evs_database.evs_pattern_and_year AS evs_pay
 				ON evs_pay.pay_id = evs_emp.emp_pay_id
-				WHERE evs_mbo.dma_emp_id=?" ;
-		$query = $this->db->query($sql,array($this->dma_emp_id));
+				WHERE evs_mbo.dma_dtm_emp_id=? " ;
+		$query = $this->db->query($sql,array($this->dma_dtm_emp_id));
 		return $query;
 	}//get_his_by_id 
 

@@ -60,10 +60,12 @@ function check_quota() {
             $("#show_quota").css("color", "red");
 
             add_alert();
-
-        } else {
+            $("#submit").attr("disabled", true);
+        } else if(value_quota == 100){
+            $("#submit").attr("disabled", false);
             $("#show_quota").css("color", "#000000");
         }
+        
         document.getElementById("show_quota").innerHTML = value_quota;
         //console.log(value_quota);
     }
@@ -77,6 +79,10 @@ function add_alert() {
 
 
 function show_qouta() {
+
+    for (var i = 1; i <= 6; i++) {
+        $("#quota" + i).attr("disabled", true);
+    }
 
     var dataQuota = [];
     var arrQuota = [];
@@ -111,8 +117,8 @@ function show_qouta() {
         labels: labels,
         datasets: [{
             label: 'Quota',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgb(54, 162, 235)',
+            borderColor: 'rgb(54, 162, 235)',
             data: dataQuota,
         }]
 
@@ -135,7 +141,19 @@ function show_qouta() {
     var ctx = document.getElementById('myChart').getContext('2d');
 
     var myChart = new Chart(ctx, config);
+    $('#reset').on('click', function() {
+        myChart.destroy();
 
+    });
+
+    $(document).ready(function() {
+        $("#reset").click(function() {
+            for (var i = 1; i <= 6; i++) {
+                $("#quota" + i).attr("disabled", false);
+            }
+
+        });
+    });
 
 } //showChart
 </script>
@@ -150,109 +168,108 @@ function show_qouta() {
             </div>
         </div>
         <div class="panel-body" style="">
-            <form>
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-md-3">
-                        </div>
-                        <div class="col-md-3">
-                            <select class="form-control text" id="">
-                                <option value="yearEndBonus">Quota</option>
-                                <option value="yearEndBonus">Year End Bonus</option>
-                                <option value="salaryIncrement">Salary Increment</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <select class="form-control text" id="">
-                                <option value="yearEndBonus">Position Of Quota</option>
-                                <option value="yearEndBonus">Team Associate above</option>
-                                <option value="salaryIncrement">Operational Associate</option>
-                            </select>
-                        </div>
 
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-3">
                     </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
+                        <select class="form-control text" id="">
+                            <option value="yearEndBonus">Quota</option>
+                            <option value="yearEndBonus">Year End Bonus</option>
+                            <option value="salaryIncrement">Salary Increment</option>
+                        </select>
                     </div>
-                    <div class="col-md-8">
-                        <table class="table table-hover m-n orange">
-                            <thead>
-                                <tr>
-                                    <th>Grade</th>
-                                    <th>S</th>
-                                    <th>A</th>
-                                    <th>B</th>
-                                    <th>B-</th>
-                                    <th>C</th>
-                                    <th>D</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="orange2">
-                                    <td>Quota</td>
-                                    <td>
-                                        <input type="text" class="form-control" id="quota1" onchange="check_quota()">
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="quota2" onchange="check_quota()">
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="quota3" onchange="check_quota()">
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="quota4" onchange="check_quota()">
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="quota5" onchange="check_quota()">
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="quota6" onchange="check_quota()">
-                                    </td>
-                                    <td id="show_quota"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-
+                    <div class="col-md-3">
+                        <select class="form-control text" id="">
+                            <option value="yearEndBonus">Position Of Quota</option>
+                            <option value="yearEndBonus">Team Associate above</option>
+                            <option value="salaryIncrement">Operational Associate</option>
+                        </select>
                     </div>
-
 
                 </div>
-                <br>
-
-                <div class="row">
-                    <div class="col-md-offset-9">
-
-                        <buuton class="btn btn-success" type="submit" onclick="show_qouta()">Submit</buuton>
-                        <!-- <buuton class="btn btn-success" type = "reset" ></buuton> -->
-                        </from>
-                    </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-2">
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-2">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="panel panel-midnightblue" data-widget='{"draggable": "false"}'>
-                            <div class="panel-heading">
-                                <h2>
-                                    <font size="5px"><b>Quota</b></font>
-                                </h2>
-                                <div class="panel-ctrls" data-actions-container=""
-                                    data-action-collapse='{"target": ".panel-body"}'>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <canvas id="myChart" width="1000" height="450" style="position: relative;"></canvas>
+                <div class="col-md-8">
+                    <table class="table table-hover m-n orange">
+                        <thead>
+                            <tr>
+                                <th>Grade</th>
+                                <th>S</th>
+                                <th>A</th>
+                                <th>B</th>
+                                <th>B-</th>
+                                <th>C</th>
+                                <th>D</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="orange2" id="input">
+                                <td>Quota</td>
+                                <td>
+                                    <input type="text" class="form-control" id="quota1" onchange="check_quota()">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="quota2" onchange="check_quota()">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="quota3" onchange="check_quota()">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="quota4" onchange="check_quota()">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="quota5" onchange="check_quota()">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="quota6" onchange="check_quota()">
+                                </td>
+                                <td id="show_quota"></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
+                </div>
+
+
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-md-offset-9">
+
+                    <buuton class="btn btn-success" type="submit" id="submit" onclick="show_qouta()">Submit</buuton>
+                    <button class="btn btn-warning" type="reset" id="reset">edit</button>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                    <div class="panel panel-midnightblue" data-widget='{"draggable": "false"}'>
+                        <div class="panel-heading">
+                            <h2>
+                                <font size="5px"><b>Quota</b></font>
+                            </h2>
+                            <div class="panel-ctrls" data-actions-container=""
+                                data-action-collapse='{"target": ".panel-body"}'>
                             </div>
                         </div>
+                        <div class="panel-body">
+                            <canvas id="myChart" width="1000" height="450" style="position: relative;"></canvas>
+
+                        </div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
-                <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button>
+            </div>
+            <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
+            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button>
         </div>
         <!-- Modal Warning -->
         <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -288,7 +305,7 @@ function show_qouta() {
                     <!-- Modal body -->
 
                     <div class="modal-footer">
-                        <div class="btn-group pull-right"> 
+                        <div class="btn-group pull-right">
                             <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
                         </div>
 
@@ -302,3 +319,6 @@ function show_qouta() {
         <!-- End Modal Warning -->
     </div>
 </div>
+<script>
+
+</script>

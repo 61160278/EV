@@ -200,29 +200,15 @@ function check_edit_skd(check) {
 function add_alert() {
     $('#warning').modal('show');
 }
-
-function check_group_repeatedly() {
-    var group = document.getElementById("grouptext").value;
-
-    $.get("<?php echo base_url(); ?>/ev_group/Evs_group/get_group_skd ", function(data, status) {
-        console.log(data);
-        data.forEach((row, index) => {
-            if (group == row.gru_name) {
-                add_alert();
-                return false;
-            } else {
-                return true;
-            }
-        });
-    });
-}
 // add_alert
+
 
 
 function manage_data(gru_id) {
     console.log(gru_id);
     window.location.href = "<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_skd/" + gru_id;
 }
+// manage_data
 </script>
 
 
@@ -298,7 +284,7 @@ function manage_data(gru_id) {
                                         <td><?php echo $row->gru_name; ?></td>
                                         <td>
                                             <?php if($row->gru_head_dept == NULL){ 
-													echo "ไม่พบข้อมูล";
+													echo "-";
 												} else {
 													echo $row->Empname_eng." ".$row->Empsurname_eng;
 												}
@@ -410,14 +396,12 @@ function manage_data(gru_id) {
                     </div>
                     <!-- Group Name -->
 
-                    <div class="form-group">
                         <label class="col-sm-3 control-label"></label>
                         <div class="col-sm-6">
                             <p id="alert_grouptext">
                                 <font color="red"><b> This data already to use! </b></font>
                             </p>
                         </div>
-                    </div>
                     <!-- Duplicate groups please check. -->
 
                     <div class="form-group">
@@ -433,7 +417,7 @@ function manage_data(gru_id) {
                     <div class="form-group">
                         <label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="Emp_id_modol" placeholder="JS000xxx"
+                            <input type="text" class="form-control" id="Emp_id_modol" placeholder="000xxx"
                                 onkeyup="get_Emp()">
                         </div>
                     </div>
@@ -497,15 +481,21 @@ function manage_data(gru_id) {
                     </div>
                     <!-- Group Name -->
 
-                    <h2 style="font-family:'Courier New'"><b>
-                            <font size="4px" color="Black">Select Head Dept.</font>
-                        </b></h2>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label"></label>
+                        <div class="col-sm-8">
+                            <label style="font-family:'Courier New'"><b>
+                                    <font size="4px" color="Black">Select Head Dept.</font>
+                                </b></label>
+                        </div>
+                    </div>
+                    <!-- Select Head Dept. -->
 
                     <div class="form-group">
                         <label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>"
-                                name="Emp_id" id="Emp_id<?php echo $row->gru_id; ?>" placeholder="JS000xxx"
+                                name="Emp_id" id="Emp_id<?php echo $row->gru_id; ?>" placeholder="000xxx"
                                 onkeyup="get_idemployee('<?php echo $row->gru_id; ?>')">
                             <input type="hidden" class="form-control" value="<?php echo $row->gru_id; ?>" name="gru_id"
                                 id="gru_id">

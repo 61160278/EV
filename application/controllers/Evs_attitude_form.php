@@ -113,7 +113,7 @@ class Evs_attitude_form extends Evs_form {
 	//get_category_by_position()
 
 	/*
-	* form_attitude_input
+	* form_attitude_insert
 	* insert category ID, position ID, weight of category ID to database
 	* @input -
 	* @output -
@@ -230,22 +230,18 @@ class Evs_attitude_form extends Evs_form {
 		//end for loop
 
 		$this->mctw->sft_pos_id = $pos_id;
-		$this->mctw->get_by_key_data(true);
-		$this->dctw->sft_pos_id = $pos_id;
-		$this->dctw->delete();
+		$this->mctw->sft_pay_id = $year_id;
+		$this->mctw->delete();
 		//start for loop
 		for($i=0 ; $i<$lenght_of_data ; $i++){
 
 			//start if
-			if(var_dump($arr_category[$i] , is_nan($arr_category[$i])) || var_dump($arr_weight[$i] , is_nan($arr_weight[$i]))  || $arr_category[$i] == NULL || $arr_weight[$i] == NULL){
-
-			}else{
 				$this->dctw->sft_weight = $arr_weight[$i];
 				$this->dctw->sft_pos_id = $pos_id;
 				$this->dctw->sft_ctg_id = $arr_category[$i];
 				$this->dctw->sft_pay_id = $year_id;
 				$this->dctw->insert();
-			}
+		
 			//end if
 			
 		}

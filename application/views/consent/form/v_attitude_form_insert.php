@@ -35,7 +35,7 @@ var value_pos_id = document.getElementById("value_pos_id").value; // position id
 var value_year_id = document.getElementById("year").value; // year now ID
 var sum_weight = 0; // sumary of weight
 var arr_weight_check = []; // array check weight 
-
+var arr_save_index_arr_add_pos = [];
 
 /*
  * check_weight_all
@@ -47,12 +47,12 @@ var arr_weight_check = []; // array check weight
  */
 function check_weight_all() {
 
-    sum_weight  = document.getElementById('value_total_weight').value;
+    sum_weight_all  = document.getElementById('value_total_weight').value;
 
     //start if-else
-    if (sum_weight == 100) {
+    if (sum_weight_all == 100) {
         return true;
-    } else if (sum_weight < 100 || sum_weight > 100) {
+    } else if (sum_weight_all < 100 || sum_weight_all > 100) {
         var alert = "";
         alert += '<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">';
         alert += '<span class="badge badge-pill badge-danger">Wrong</span>';
@@ -62,8 +62,7 @@ function check_weight_all() {
         alert += '</button>';
         alert += '</div>';
         $('#success_save').html(alert);
-        arr_weight_check = [];
-        sum_weight = 0;
+
         return false;
     }
     //end if-else
@@ -113,7 +112,7 @@ $(document).ready(function() {
     var table_ready; // table ready
     var button_add; // button for add data
     var table_ready_score = '';
-    var arr_save_index_arr_add_pos = [];
+    
 
 
 
@@ -175,11 +174,13 @@ $(document).ready(function() {
 
     });
     //end get
-
+    arr_save_index_arr_add_pos.push(index - 1);
+    console.log(arr_save_index_arr_add_pos);
     $(document).on('click', '#add_category', function() {
-        arr_save_index_arr_add_pos.push(index - 1);
         var table; // value for show on table
         index++;
+        arr_save_index_arr_add_pos.push(index - 1);
+        console.log(arr_save_index_arr_add_pos);
         //start get
         $.get("<?php echo base_url(); ?>/Evs_attitude_form/get_category", function(data) {
             data = JSON.parse(data)

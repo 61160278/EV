@@ -173,6 +173,21 @@ class M_evs_set_form_attitude extends Da_evs_set_form_attitude {
 	}
 	//get_all_by_key_by_year
 	
+	/*
+	* delete_data
+	* Delete Category Weight from database
+	* @input sft_id
+	* @output -
+	* @author Jakkarin Pimpaeng
+	* @update Date 2564-04-29
+	*/
+	function delete_data() {
+	 
+		$sql = "DELETE FROM evs_database.evs_set_form_attitude
+				WHERE sft_pos_id=? AND sft_pay_id = ?";
+		$this->db->query($sql, array($this->sft_pos_id, $this->sft_pay_id));
+	   
+	}
 
 } 
 ?>
