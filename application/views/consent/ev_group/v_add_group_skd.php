@@ -190,9 +190,9 @@ function change_group_remove() {
             <div class="panel-body">
                 <div class="panel panel-indigo" id="table_contact">
                     <div class="panel-heading">
-                        <div class="col-md-6">
+                        <div col-md-6>
                             <label class="col-sm-12 control-label">
-                            <label class="col-sm-12 control-label">
+                                <label class="col-sm-12 control-label">
                         </div>
                         <div class="panel pull-right" id="addtable_filter">
                             <select onchange="manage_group()" id="select" name="example_length" class="form-control"
@@ -276,10 +276,15 @@ function change_group_remove() {
             <div class="panel-body">
                 <div class="panel panel-indigo" id="panel-addtable">
                     <div class="panel-heading">
+                        <div col-md-6><center>
+                            <label class="col-sm-12 control-label">
+                                <label class="col-sm-12 control-label">
+                                    <label class="col-sm-12 control-label">
+                        </div>
                         <?php
 							foreach($grpskd->result() as $row ) { ?>
                         <h2>
-                            <font size="5px"><?php echo $row->gru_name; ?> </font>
+                            <font size="6px"><?php echo $row->gru_name; ?> </font>
                         </h2>
                         <input type="text" value="<?php echo $row->gru_id; ?>" hidden id="new_group">
                         <?php }; ?>
