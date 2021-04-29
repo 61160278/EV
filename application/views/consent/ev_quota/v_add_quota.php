@@ -60,10 +60,12 @@ function check_quota() {
             $("#show_quota").css("color", "red");
 
             add_alert();
-
-        } else {
+            $("#submit").attr("disabled", true);
+        } else if(value_quota == 100){
+            $("#submit").attr("disabled", false);
             $("#show_quota").css("color", "#000000");
         }
+        
         document.getElementById("show_quota").innerHTML = value_quota;
         //console.log(value_quota);
     }

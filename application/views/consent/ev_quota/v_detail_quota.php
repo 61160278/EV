@@ -117,12 +117,17 @@ function check_quota_plan() {
     var quota = 0;
 
     check = document.getElementById("quotaPlan").value;
-    for (i = 1; i <= 6; i++) {
+    if (check === "") {
+        $("#submit").attr("disabled", true);
+    }
+    for (var i = 1; i <= 6; i++) {
+
+
         quota = document.getElementById("quota" + i).innerHTML;
         value_quotaPlan = parseInt(check) * quota / 100;
-
-
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
+
+
     } //for
 } //check_quota_plan
 
@@ -180,17 +185,17 @@ function show_quotaplan() {
         config
 
     );
-}//show_quotaplan
-    $(document).ready(function() {
-            $("#reset").click(function() {
+} //show_quotaplan
+$(document).ready(function() {
+    $("#reset").click(function() {
 
-                $("#quotaPlan").attr("disabled", false);
+        $("#quotaPlan").attr("disabled", false);
 
 
-            });
-
-    
     });
+
+
+});
 </script>
 
 <div class="col-md-12">
@@ -288,7 +293,7 @@ function show_quotaplan() {
             </div>
             <br>
             <div class="col-md-offset-9">
-                <button class="btn-success btn" type="submit" onclick="show_quotaplan()">SUBMIT</button>
+                <button class="btn-success btn" id="submit" type="submit" onclick="show_quotaplan()">SUBMIT</button>
                 <button class="btn btn-warning" type="reset" id="reset">edit</button>
             </div>
             <br>
