@@ -118,6 +118,11 @@ function check_quota_actual() {
 
 
 function show_linebarChart() {
+
+    for (var i = 1; i <= 6; i++) {
+        $("#quotaActual" + i).attr("disabled", true);
+    }
+
     var dataQuota = [];
     var arrQuota = [];
     var dataActual = [];
@@ -146,7 +151,7 @@ function show_linebarChart() {
         type: 'bar',
         data: {
             datasets: [{
-                label: 'Actual',
+                label: 'Quota Actual',
                 data: dataActual,
                 // this dataset is drawn below
                 order: 2,
@@ -160,7 +165,8 @@ function show_linebarChart() {
 
                 // this dataset is drawn on top
                 order: 1,
-                borderColor: 'rgb(54, 162, 235)'
+                borderColor: 'rgb(54, 162, 235)',
+                backgroundColor:'rgb(54, 162, 235)'
             }],
             labels: ['S', 'A', 'B', 'B-', 'C', 'D']
         },
@@ -176,6 +182,16 @@ function show_linebarChart() {
         mixedChart.destroy();
 
     });
+
+    $(document).ready(function() {
+        $("#reset").click(function() {
+            for (var i = 1; i <= 6; i++) {
+                $("#quotaActual" + i).attr("disabled", false);
+            }
+
+        });
+    });
+
 }
 </script>
 <style>
@@ -294,7 +310,7 @@ tbody:hover {
                     <div class="col-md-2">
                     </div>
                     <div class="col-md-2">
-                    <button class="btn-success btn" type="submit" onclick="show_linebarChart()">SUBMIT</button>
+                        <button class="btn-success btn" type="submit" onclick="show_linebarChart()">SUBMIT</button>
                     </div>
                 </div>
             </div>
@@ -314,101 +330,101 @@ tbody:hover {
                             </div>
                         </div>
                         <div class="panel-body" style="">
-                        <table style="width:100%" class="table table-hover m-n orange">
-                                    <thead>
-                                        <div class="col-md-1">
-                                            <tr class="orange">
-                                                <th>Grade</th>
-                                                <th>S</th>
-                                                <th>A</th>
-                                                <th>B</th>
-                                                <th>B-</th>
-                                                <th>C</th>
-                                                <th>D</th>
-                                                <th>Total</th>
-                                            </tr>
-                                    </thead>
-                                    <tbody>
+                            <table style="width:100%" class="table table-hover m-n orange">
+                                <thead>
+                                    <div class="col-md-1">
+                                        <tr class="orange">
+                                            <th>Grade</th>
+                                            <th>S</th>
+                                            <th>A</th>
+                                            <th>B</th>
+                                            <th>B-</th>
+                                            <th>C</th>
+                                            <th>D</th>
+                                            <th>Total</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                    <div class="col-md-1">
+                                        <tr class="orange2">
+                                            <td><b>Quota</b></td>
+                                            <td id="quota1" value="5">5</td>
+                                            <td id="quota2" value="25">10</td>
+                                            <td id="quota3" value="40">30</td>
+                                            <td id="quota4" value="40">30</td>
+                                            <td id="quota5" value="25">10</td>
+                                            <td id="quota6" value="5">5</td>
+                                            <td>100</td>
+                                        </tr>
                                         <div class="col-md-1">
                                             <tr class="orange2">
-                                                <td><b>Quota</b></td>
-                                                <td id="quota1" value="5">5</td>
-                                                <td id="quota2" value="25">25</td>
-                                                <td id="quota3" value="40">30</td>
-                                                <td id="quota4" value="40">10</td>
-                                                <td id="quota5" value="25">25</td>
-                                                <td id="quota6" value="5">5</td>
-                                                <td>100</td>
-                                            </tr>
-                                            <div class="col-md-1">
-                                                <tr class="orange2">
-                                                    <td><b>Plan</b></td>
-                                                    <td id="show_quotaPlan1"></td>
-                                                    <td id="show_quotaPlan2"></td>
-                                                    <td id="show_quotaPlan3"></td>
-                                                    <td id="show_quotaPlan4"></td>
-                                                    <td id="show_quotaPlan5"></td>
-                                                    <td id="show_quotaPlan6"></td>
-                                                    <td id="quotaPlanToT">8</td>
-                                            </div>
-                                            </tr>
-                                            <div class="col-md-1">
-                                                <tr class="orange2">
-                                                    <td><b>Actual</b></td>
-                                                    <td>
-                                                        <input type="text" class="form-control" id="quotaActual1"
-                                                            onchange="check_quota_actual()">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control" id="quotaActual2"
-                                                            onchange="check_quota_actual()">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control" id="quotaActual3"
-                                                            onchange="check_quota_actual()">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control" id="quotaActual4"
-                                                            onchange="check_quota_actual()">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control" id="quotaActual5"
-                                                            onchange="check_quota_actual()">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control" id="quotaActual6"
-                                                            onchange="check_quota_actual()">
-                                                    </td>
-                                                    <td id="show_Actual"></td>
-                                                </tr>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <tr class="orange2">
-                                                    <td><b>Quota Actual</b></td>
-                                                    <td id="show_quotaActual1"></td>
-                                                    <td id="show_quotaActual2"></td>
-                                                    <td id="show_quotaActual3"></td>
-                                                    <td id="show_quotaActual4"></td>
-                                                    <td id="show_quotaActual5"></td>
-                                                    <td id="show_quotaActual6"></td>
-                                                    <td id="show_sumquotaActual"></td>
-                                                </tr>
-                                            </div>
+                                                <td><b>Plan</b></td>
+                                                <td id="show_quotaPlan1"></td>
+                                                <td id="show_quotaPlan2"></td>
+                                                <td id="show_quotaPlan3"></td>
+                                                <td id="show_quotaPlan4"></td>
+                                                <td id="show_quotaPlan5"></td>
+                                                <td id="show_quotaPlan6"></td>
+                                                <td id="quotaPlanToT">8</td>
+                                        </div>
+                                        </tr>
+                                        <div class="col-md-1">
                                             <tr class="orange2">
-                                                <div class="col-md-1">
-                                                    <td colspan="7"><b>Total in level</b></td>
-                                                    <td id="TOTplan"></td>
+                                                <td><b>Actual</b></td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="quotaActual1"
+                                                        onchange="check_quota_actual()">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="quotaActual2"
+                                                        onchange="check_quota_actual()">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="quotaActual3"
+                                                        onchange="check_quota_actual()">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="quotaActual4"
+                                                        onchange="check_quota_actual()">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="quotaActual5"
+                                                        onchange="check_quota_actual()">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="quotaActual6"
+                                                        onchange="check_quota_actual()">
+                                                </td>
+                                                <td id="show_Actual"></td>
                                             </tr>
                                         </div>
-                                    </tbody>
-                                </table>
+                                        <div class="col-md-1">
+                                            <tr class="orange2">
+                                                <td><b>Quota Actual</b></td>
+                                                <td id="show_quotaActual1"></td>
+                                                <td id="show_quotaActual2"></td>
+                                                <td id="show_quotaActual3"></td>
+                                                <td id="show_quotaActual4"></td>
+                                                <td id="show_quotaActual5"></td>
+                                                <td id="show_quotaActual6"></td>
+                                                <td id="show_sumquotaActual"></td>
+                                            </tr>
+                                        </div>
+                                        <tr class="orange2">
+                                            <div class="col-md-1">
+                                                <td colspan="7"><b>Total in level</b></td>
+                                                <td id="TOTplan"></td>
+                                        </tr>
+                                    </div>
+                                </tbody>
+                            </table>
                             <br>
-                                <div class="col-md-offset-11">
+                            <div class="col-md-offset-11">
                                 <button class="btn btn-warning" type="reset" id="reset">edit</button>
-                                </div>
+                            </div>
                             <br>
                             <div id="line-example" style="position: relative;">
-							<canvas id="myChart"></canvas>
+                                <canvas id="myChart"></canvas>
                             </div>
                         </div>
                     </div>
