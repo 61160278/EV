@@ -5,7 +5,7 @@
 * @input    
 * @output
 * @author   Kunanya Singmee
-* @Create Date 2564-04-06
+* @Create Date 2564-04-29
 */  
 ?>
 
@@ -26,7 +26,7 @@ th {
 }
 
 #dis_color {
-    background-color: #F5F5F5;
+    /* background-color: #F5F5F5; */
 }
 </style>
 <!-- END style -->
@@ -36,435 +36,16 @@ var count = 0;
 
 $(document).ready(function() {
 
-    $("#btn_save").hide();
-    $("#btn_edit").show();
-    $("#btn_save").attr("disabled", true);
-    $("#btn_clear").attr("disabled", true);
-
-    $("#btn_cencel_clear").hide();
-    $("#btn_cencel_show").show();
-    $("#btn_send_insert").show();
-    $("#btn_send_edit").hide();
     show_approve()
-
 });
 // document ready
-
-function editmbo() {
-
-    var dtm_emp_id = document.getElementById("emp_id").innerHTML;
-    console.log(dtm_emp_id);
-
-    var data_row = '';
-    var info_row = 0;
-    var number = 0;
-
-    $.ajax({
-        type: "post",
-        dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form/Evs_form/get_mbo_to_edit",
-        data: {
-            "dtm_emp_id": dtm_emp_id
-        },
-        success: function(data) {
-            var clear = 0;
-            console.log(data);
-
-            data.forEach((row, index) => {
-                clear = index + 1;
-                data_row += '<tr>'
-                data_row += '<td><center>' + (index + 1) + '</center>'
-                data_row += '<input type="text" id="inp_id' + (index + 1) + '" value="' + row
-                    .dtm_id + '" hidden></td>'
-                data_row += '<td>'
-                data_row += '<input id="inp_mbo' + (index + 1) +
-                    '" class="form-control" type="text" value="' + row.dtm_mbo +
-                    '" onchange="clear_css_inp(' + clear + ')">'
-                data_row += '</td>'
-                data_row += '<td>'
-                data_row += '<input id="inp_result' + (index + 1) +
-                    '" class="form-control" type="number"'
-                data_row += 'min="0" max="100" onchange="check_weight()" value="' + row.dtm_weight +
-                    '" >'
-                data_row += '</td>'
-                data_row += '<td id="dis_color">'
-                data_row += '<center>'
-                data_row += '<div class="col-md-12">'
-                data_row += '<form action="">'
-                data_row += '<input type="radio" name="result" value="1"Disabled Unchecked>'
-                data_row += '<label for="1">&nbsp; 1</label>'
-                data_row += '&nbsp;&nbsp;'
-                data_row += '<input type="radio" name="result" value="2" Disabled Unchecked>'
-                data_row += '<label for="2">&nbsp; 2</label>'
-                data_row += '&nbsp;&nbsp;'
-                data_row += '<input type="radio" name="result" value="3" Disabled Unchecked>'
-                data_row += '<label for="3">&nbsp; 3</label>'
-                data_row += '&nbsp;&nbsp;'
-                data_row += '<input type="radio" name="result" value="4" Disabled Unchecked>'
-                data_row += '<label for="4">&nbsp; 4</label>'
-                data_row += '&nbsp;&nbsp;'
-                data_row += '<input type="radio" name="result" value="5" Disabled Unchecked>'
-                data_row += '<label for="5">&nbsp; 5</label>'
-                data_row += '&nbsp;&nbsp;'
-                data_row += '</form>'
-                data_row += '</div>'
-                data_row += '<!-- col-12 -->'
-                data_row += '</center>'
-                data_row += '</td>'
-                data_row += '<td id="dis_color"></td>'
-                data_row += '</tr>'
-                number++
-            });
-            // for
-
-            $("#row_index").val(number);
-            //console.log("123456::"+number);
-            $("#row_mbo").html(data_row);
-            $("#btn_save").show();
-            $("#btn_edit").hide();
-            check_weight();
-            $("#btn_clear").attr("disabled", false);
-            $("#btn_cencel_clear").show();
-            $("#btn_cencel_back").hide();
-        },
-        // success
-        error: function(data) {
-            console.log("9999 : error");
-        }
-        // error
-    });
-    // ajax
-
-}
-// function editmbo
-
-function update_dataMBO() {
-
-    var check_emp_id = document.getElementById("emp_id").innerHTML;
-    var evs_emp_id = document.getElementById("evs_emp_id").value;
-    count = document.getElementById("row_index").value;
-    console.log(count);
-    var idMBO = [];
-    var dataMBO = [];
-    var resultMBO = [];
-
-    for (var i = 1; i <= count; i++) {
-        idMBO.push(document.getElementById("inp_id" + i).value);
-        dataMBO.push(document.getElementById("inp_mbo" + i).value);
-        resultMBO.push(document.getElementById("inp_result" + i).value);
-
-        // console.log(idMBO);
-        // console.log(dataMBO);
-        // console.log(resultMBO);
-        // console.log("-----");
-    }
-    // for
-
-    $.ajax({
-        type: "post",
-        dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form/Evs_form/update_mbo_by_emp",
-        data: {
-            "idMBO": idMBO,
-            "dataMBO": dataMBO,
-            "resultMBO": resultMBO,
-            "Emp_ID": check_emp_id,
-            "evs_emp_id": evs_emp_id,
-            "count": count
-        }
-    });
-    // ajax
-
-    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id + "";
-
-}
-// function update_dataMBO
-
-function clearMBO() {
-
-    console.log("clear");
-    count = document.getElementById("row_index").value;
-    var check = 0;
-    console.log(count);
-    for (var i = 1; i <= count; i++) {
-        $("#inp_mbo" + i).val("");
-        $("#inp_result" + i).val("");
-        check++;
-    }
-    // for
-    check_weight();
-
-}
-// function clearMBO
-
-function check_weight() {
-
-    var check = "";
-    var value_inp = 0;
-    var index_check = 0;
-    var val_check = 0;
-
-    var number_index = document.getElementById("row_index").value;
-    count = number_index;
-    //console.log(number_index);
-
-    for (i = 1; i <= number_index; i++) {
-        check = document.getElementById("inp_result" + i).value;
-        //console.log(check);
-
-        if (check != "") {
-            value_inp += parseInt(check);
-            index_check++;
-        }
-        // if
-
-        if (parseInt(check) == 0) {
-            val_check++;
-        }
-        // if
-
-        //console.log(value_inp);
-    }
-    // for i
-
-    if (value_inp > 100) {
-        $("#show_weight").css("color", "#e60000");
-        $("#show_weight").css("background-color", "#ffe6e6");
-        $("#show_weight").css("border-style", "solid");
-        $("#btn_save").attr("disabled", true);
-    }
-    // if
-    else if (value_inp < 100) {
-        $("#btn_save").attr("disabled", true);
-        $("#show_weight").css("background-color", "#ffffff");
-        $("#show_weight").css("border-style", "solid");
-    }
-    // else if
-    else if (index_check != number_index) {
-        $("#btn_save").attr("disabled", true);
-        $("#show_weight").css("background-color", "#ffffff");
-        $("#show_weight").css("border-style", "solid");
-    }
-    // else if 
-    else if (val_check != 0) {
-        $("#btn_save").attr("disabled", true);
-        $("#show_weight").css("background-color", "#ffffff");
-        $("#show_weight").css("border-style", "solid");
-    }
-    // else if 
-    else {
-        $("#show_weight").css("color", "#000000");
-        $("#show_weight").css("background-color", "#ffffff");
-        $("#show_weight").css("border-style", "solid");
-        $("#btn_save").attr("disabled", false);
-
-    }
-    // else 
-
-    $("#show_weight").text(value_inp);
-}
-// function check_weight
-
-function check_mbo() {
-
-    var check = "";
-    var num = 0;
-    var number_index = document.getElementById("row_index").value;
-
-    for (i = 1; i <= number_index; i++) {
-        check = document.getElementById("inp_mbo" + i).value;
-        console.log(check);
-
-        if (check == "") {
-            console.log(i + "-");
-            $("#inp_mbo" + i).css("background-color", "#ffe6e6");
-            $("#inp_mbo" + i).css("border-style", "solid");
-        }
-        // if
-        else {
-            console.log("-" + i);
-            $("#inp_mbo" + i).css("background-color", "#ffffff");
-            $("#inp_mbo" + i).css("border-style", "solid");
-            num++;
-        }
-        // else
-    }
-    // for i
-
-    if (num == count) {
-        $("#save_mbo").modal('show');
-        return true;
-    }
-    // if
-    else {
-        return false;
-    }
-    //else
-
-}
-// function check_mbo
-
-function clear_css_inp(i) {
-    $("#inp_mbo" + i).css("background-color", "#ffffff");
-    $("#inp_mbo" + i).css("border-style", "solid");
-
-}
-// function clear_css_inp
-
-function check_cancel() {
-    $("#cancel_mbo").modal('show');
-}
-// function check_cancel
-
-function cancel_form() {
-    var check_emp_id = document.getElementById("emp_id").innerHTML;
-    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id + "";
-}
-// function cancel_form
-
-function check_approve() {
-    var approve1 = document.getElementById("approve1").value;
-    var approve2 = document.getElementById("approve2").value;
-
-    if (approve2 != "0") {
-        console.log(1);
-        save_approve()
-        return true;
-    }
-    // if
-    else if (approve2 == "0") {
-        $("#approve2").css("background-color", "#ffe6e6");
-        $("#approve2").css("border-style", "solid");
-        return false;
-    }
-    // else if
-}
-// function check_approve
-
-function check_approve_edt() {
-    var approve1 = document.getElementById("approve1_edt").value;
-    var approve2 = document.getElementById("approve2_edt").value;
-
-    if (approve2 != "0") {
-        console.log(1);
-        update_approve();
-        return true;
-    }
-    // if
-    else if (approve2 == "0") {
-        $("#approve2_edt").css("background-color", "#ffe6e6");
-        $("#approve2_edt").css("border-style", "solid");
-        return false;
-    }
-    // else if
-}
-// function check_approve
-
-function clear_css_approve1() {
-    $("#approve1").css("background-color", "#ffffff");
-    $("#approve1").css("border-style", "solid");
-}
-// function clear_css_approve1
-
-function clear_css_approve2() {
-    $("#approve2").css("background-color", "#ffffff");
-    $("#approve2").css("border-style", "solid");
-}
-// function clear_css_approve1
-
-function clear_css_approve1_edt() {
-    $("#approve1_edt").css("background-color", "#ffffff");
-    $("#approve1_edt").css("border-style", "solid");
-}
-// function clear_css_approve1
-
-function clear_css_approve2_edt() {
-    $("#approve2_edt").css("background-color", "#ffffff");
-    $("#approve2_edt").css("border-style", "solid");
-}
-// function clear_css_approve1
-
-function save_approve() {
-    var approve1 = document.getElementById("approve1").value;
-    var approve2 = document.getElementById("approve2").value;
-    var evs_emp_id = document.getElementById("evs_emp_id").value;
-    var dma_emp_id = document.getElementById("emp_id").innerHTML;
-
-    console.log(approve1);
-    console.log(approve2);
-    var data_show = "";
-
-    $.ajax({
-        type: "post",
-        dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form/Evs_form/save_approve",
-        data: {
-            "approve1": approve1,
-            "approve2": approve2,
-            "evs_emp_id": evs_emp_id,
-            "dma_emp_id":dma_emp_id
-
-        },
-        success: function(data) {
-            console.log(data);
-            show_approve()
-
-        },
-        // success
-        error: function(data) {
-            console.log("9999 : error");
-        }
-        // error
-    });
-    // ajax
-
-}
-// function show_approve
-
-function update_approve() {
-    var approve1 = document.getElementById("approve1_edt").value;
-    var approve2 = document.getElementById("approve2_edt").value;
-    var evs_emp_id = document.getElementById("evs_emp_id").value;
-    var dma_emp_id = document.getElementById("emp_id").innerHTML;
-
-    console.log(approve1);
-    console.log(approve2);
-    console.log(evs_emp_id);
-    console.log(dma_emp_id);
-    var data_show = "";
-
-    $.ajax({
-        type: "post",
-        dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form/Evs_form/update_approve",
-        data: {
-            "approve1": approve1,
-            "approve2": approve2,
-            "evs_emp_id": evs_emp_id,
-            "dma_emp_id":dma_emp_id
-
-        },
-        success: function(data) {
-            console.log(data);
-            $("#edt_app").modal('hide');
-            show_approve()
-
-        },
-        // success
-        error: function(data) {
-            console.log("9999 : error");
-        }
-        // error
-    });
-    // ajax
-
-}
-// function show_approve
 
 function show_approve() {
 
     var evs_emp_id = document.getElementById("evs_emp_id").value;
+    var Emp_id = document.getElementById("emp_id").innerHTML;
     var data_show = "";
+    $("#emp_id_his").val(Emp_id);
 
     $.ajax({
         type: "post",
@@ -753,24 +334,16 @@ function show_approve() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
-                                    <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
-                                </a>
+                                <form action="<?php echo base_url() ?>ev_form/Evs_form/historyMBO" method="post">
+                                    <input type="text" name="emp_id_his" id="emp_id_his" value="" hidden>
+                                    <input type="submit" class="btn btn-inverse" value="BACK">
+                                </form>
                                 <!-- cancel to back to main  -->
-                                <button class="btn btn-inverse" id="btn_cencel_clear"
-                                    onclick="check_cancel()">CANCEL</button>
-                                <!-- cancel to cancel edit form -->
-                                <button class="btn btn-default" onclick="clearMBO()" id="btn_clear">CLEAR</button>
                             </div>
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-warning" id="btn_edit" onclick="editmbo()">EDIT</button>
-                                <button class="btn btn-success" id="btn_save" onclick="return check_mbo()">SAVE</button>
-                                <button class="btn btn-primary" id="btn_send_insert" data-toggle="modal"
-                                    data-target="#add_app">SEND <i class="fa fa-share-square-o"></i></button>
-                                <button class="btn btn-warning" id="btn_send_edit" data-toggle="modal"
-                                    data-target="#edt_app">SEND <i class="fa fa-share-square-o"></i></button>
+
                             </div>
                             <!-- col-md-6 add_app -->
 

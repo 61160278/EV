@@ -111,8 +111,8 @@ function show_qouta() {
         labels: labels,
         datasets: [{
             label: 'Quota',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgb(54, 162, 235)',
+            borderColor: 'rgb(54, 162, 235)',
             data: dataQuota,
         }]
 
@@ -135,7 +135,10 @@ function show_qouta() {
     var ctx = document.getElementById('myChart').getContext('2d');
 
     var myChart = new Chart(ctx, config);
+    $('#reset').on('click', function() {
+        myChart.destroy();
 
+    });
 
 } //showChart
 </script>
@@ -150,7 +153,7 @@ function show_qouta() {
             </div>
         </div>
         <div class="panel-body" style="">
-            <form>
+           
                 <div class="row">
                     <div class="form-group">
                         <div class="col-md-3">
@@ -226,9 +229,14 @@ function show_qouta() {
                     <div class="col-md-offset-9">
 
                         <buuton class="btn btn-success" type="submit" onclick="show_qouta()">Submit</buuton>
-                        <!-- <buuton class="btn btn-success" type = "reset" ></buuton> -->
-                        </from>
+                        <button class="btn btn-warning" type="reset" id="reset">edit</button>
                     </div>
+
+
+                
+                              
+                             
+
                 </div>
                 <br>
                 <div class="row">

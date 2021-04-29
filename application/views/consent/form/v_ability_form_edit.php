@@ -358,11 +358,7 @@ function table_data() {
 
 $(document).ready(function() {
     key_component_and_expected_data();
-});
 
-
-
-$(document).ready(function() {
     $(document).on('click', '#addCompentency', function() {
         var table; // value for show in table
         index++;

@@ -17,11 +17,12 @@
 
 <script>
 var index = 1; // number of data table ready
-var index_data = 0 // number of data table
+
 var value_pos_id = document.getElementById("value_pos_id").value; // position id
 var value_year_id = document.getElementById("year").value; // year now
 var sum_weight = 0; // sumary of weight
 var arr_weight_check = []; // check weight 
+var arr_save_index_arr_add_pos = [];
 
 /*
  * check_weight_all
@@ -34,23 +35,12 @@ var arr_weight_check = []; // check weight
 function check_weight_all() {
 
 
-
-    //start for loop
-    for (i = 1; i <= index; i++) {
-        arr_weight_check.push($('#weight_' + i).val());
-        sum_weight += Number(arr_weight_check[Number(i - 1)]);
-        Number(sum_weight);
-        console.log(Number(arr_weight_check[Number(i - 1)]));
-    }
-    //end for loop
-
-    console.log(sum_weight);
-    document.getElementById('value_total_weight').innerHTML = sum_weight;
+    sum_weight_all = document.getElementById('value_total_weight').value;
 
     //start if-else
-    if (sum_weight == 100) {
+    if (sum_weight_all == 100) {
         return true;
-    } else if (sum_weight != 100) {
+    } else if (sum_weight_all != 100) {
         var alert = "";
         alert += '<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">';
         alert += '<span class="badge badge-pill badge-danger">Wrong</span>';
@@ -60,8 +50,6 @@ function check_weight_all() {
         alert += '</button>';
         alert += '</div>';
         $('#success_save').html(alert);
-        arr_weight_check = [];
-        sum_weight = 0;
         return false;
     }
     //end if-else
@@ -79,27 +67,39 @@ function total_weight() {
 
     sum_weight = 0;
     //start for loop
-    for (i = 1; i <= index; i++) {
-        arr_weight_check.push($('#weight_' + i).val());
-        sum_weight += parseInt(arr_weight_check[i - 1]);
-        console.log(arr_weight_check[i - 1]);
+    table_arr_for_count = document.getElementsByName("arr_weight").length
+    for (i = 0; i < table_arr_for_count; i++) {
+        arr_weight_check = document.getElementsByName("arr_weight")[i].value;
+        Number(arr_weight_check);
+        sum_weight += Number(arr_weight_check);
+        Number(sum_weight);
+        console.log(index);
     }
     //end for loop
 
     if (sum_weight == 100) {
-        document.getElementById('value_total_weight').innerHTML = sum_weight;
+        document.getElementById('value_total_weight').value = sum_weight;
         document.getElementById('value_total_weight').style.color = "black"
     } else {
-        document.getElementById('value_total_weight').innerHTML = sum_weight;
+        document.getElementById('value_total_weight').value = sum_weight;
         document.getElementById('value_total_weight').style.color = "red"
     }
 
-    arr_weight_check = [];
-    sum_weight = 0;
 
 }
 //total_weight
-$(document).ready(function() {
+
+
+
+/*
+ * identification_data
+ * Display -
+ * @input  -
+ * @output -
+ * @author Chackkarin Pimpaeng
+ * @Create Date 2564-04-29
+ */
+function identification_data() {
     $.ajax({
         type: "post",
         url: "<?php echo base_url(); ?>/Evs_attitude_form/get_identification_weight_sort",
@@ -110,11 +110,25 @@ $(document).ready(function() {
         success: function(data) {
             identification = data;
             console.log(identification);
-
+            data_table();
         }
 
     });
 
+
+}
+
+
+
+/*
+ * total_weight
+ * Display -
+ * @input  -
+ * @output -
+ * @author  Tanadon Tangjaimongkhon 
+ * @Create Date 2563-10-29
+ */
+function data_table() {
     $.ajax({
         type: "post",
         url: "<?php echo base_url(); ?>/Evs_attitude_form/get_category_weight_sort",
@@ -136,13 +150,13 @@ $(document).ready(function() {
 
             //start foreach
             data.forEach((row, i) => {
-
+                arr_save_index_arr_add_pos.push(index - 1);
                 table += '<tr id="row_ctg' + index + '">';
                 table += '<td>';
                 table += '<center>' + index + '</center>';
                 table += '</td>';
                 table += '<td>';
-                table += '<select name="arr_category[]" id="category' + index +
+                table += '<select name="arr_category" id="category' + index +
                     '" class="form-control" onchange="get_category(value,' + index + ')">';
                 table += '<option value = "0"> Please select</option>';
 
@@ -217,10 +231,10 @@ $(document).ready(function() {
                 table += '</td>';
                 table += '<td id="weight_tr_' + index + '">';
                 table += '<input type="number" id="weight_' + index +
-                    '" name="arr_weight[]" value = "' + parseInt(row.sft_weight) +
-                    '" onchange = "total_weight()" min="0" max="100" required>';
+                    '" name="arr_weight" value = "' + parseInt(row.sft_weight) +
+                    '" onchange = "total_weight()" min="0" max="100" class="form-control" placeholder="Ex.50" required>';
                 table += '</td>';
-                table += '<td width="20%">';
+                table += '<td >';
                 table +=
                     '<center><button type="button" class="btn btn-danger float-center btn_remove" id="delete_com' +
                     index + '" ><i class="fa fa-times"></i></button></center>';
@@ -230,7 +244,9 @@ $(document).ready(function() {
                 index++;
                 arr_temp_ctg_id = [];
 
-
+                sum_weight += parseInt(row.sft_weight);
+                temp_weight = 0;
+                console.log(index);
 
             });
             index -= 1;
@@ -240,7 +256,9 @@ $(document).ready(function() {
             table_ready_score += '<font color="black"><b>Total weight</b></font>';
             table_ready_score += '</center>';
             table_ready_score += '</td>';
-            table_ready_score += '<td id="value_total_weight" style="text-align:center">100';
+            table_ready_score += '<td>';
+            table_ready_score +=
+                '<input id="value_total_weight" style="text-align:center" value = "100" disabled>';
             table_ready_score += '</td>';
             table_ready_score += '<td>';
             table_ready_score += '</td>';
@@ -249,25 +267,25 @@ $(document).ready(function() {
 
             $('#t01 tbody').html(table);
             $('#t01 tfoot').html(table_ready_score);
-
+            console.log(arr_save_index_arr_add_pos);
         }
         //success
 
     });
-    //ajax
+    //ajaxs
 
+}
 
+$(document).ready(function() {
+    identification_data();
 
-
-});
-
-
-//$(document).ready(function() {
 $(document).on('click', '#add_category', function() {
     var table; // value of show on table
 
     index++;
     console.log(index);
+    arr_save_index_arr_add_pos.push(index - 1);
+    console.log(arr_save_index_arr_add_pos)
     //start get
     $.get("<?php echo base_url(); ?>/Evs_attitude_form/get_category", function(data) {
         data = JSON.parse(data)
@@ -276,7 +294,7 @@ $(document).on('click', '#add_category', function() {
         table += '<center>' + index + '</center>';
         table += '</td>';
         table += '<td>';
-        table += '<select name="arr_category[]" id="category' + index +
+        table += '<select name="arr_category" id="category' + index +
             '" class="form-control" onchange="get_category(value,' + index + ')">';
         table += '<option value = "0"> Please select</option>';
 
@@ -295,8 +313,8 @@ $(document).on('click', '#add_category', function() {
         table += '</td>';
         table += '<td id="iden_' + index + '"> </td>';
         table += '<td id="weight_tr_' + index + '">';
-        table += '<input type="number" id="weight_' + index +
-            '" name="arr_weight[]" min="0" max="100" onchange = "total_weight()" required>';
+        table += '<input type="number" class="form-control" placeholder="Ex.50" id="weight_' + index +
+            '" name="arr_weight" min="0" max="100" onchange = "total_weight()"  required>';
         table += '</td>';
         table += '<td width="20%">';
         table +=
@@ -312,13 +330,36 @@ $(document).on('click', '#add_category', function() {
 
 $(document).on('click', '.btn_remove', function() {
     var button_id = $(this).attr("id");
-    var res = button_id.substring(10, 11);
+    var res = button_id.substring(10);
+
+    arr_weight_check = document.getElementById('weight_' + res + '').value;
+        Number(arr_weight_check);
+        sum_weight -= Number(arr_weight_check);
+        Number(sum_weight);
+        console.log(arr_weight_check);
+
+        if (sum_weight == 100) {
+            document.getElementById('value_total_weight').value = sum_weight;
+            document.getElementById('value_total_weight').style.color = "black"
+        } else {
+            document.getElementById('value_total_weight').value = sum_weight;
+            document.getElementById('value_total_weight').style.color = "red"
+        }
+
+
+    console.log("button : " + res);
+        for (i = 0; i < arr_save_index_arr_add_pos.length; i++) {
+            chack_arr = parseInt(arr_save_index_arr_add_pos[i])
+            if (parseInt(chack_arr) == (parseInt(res) - 1)) {
+                arr_save_index_arr_add_pos.splice(i, 1);
+            }
+        }
+        console.log(arr_save_index_arr_add_pos);
     $('#row_ctg' + res + '').remove();
-    index_data--;
-    index--;
+    //index--;
 }); // delete category data 
 
-//});
+});
 
 /*
  * get_compentency
@@ -380,22 +421,21 @@ function form_attitude_update() {
     var arr_weight = []; // array weight data
 
     //start for loop
-    for (i = 1; i <= index; i++) {
-        arr_category.push($('#category' + i).val());
-        arr_weight.push($('#weight_' + i).val());
+    for (i = 0; i < arr_save_index_arr_add_pos.length; i++) {
+        arr_category.push($('#category' + (parseInt(arr_save_index_arr_add_pos[i])+1)).val());
+        arr_weight.push($('#weight_' + (parseInt(arr_save_index_arr_add_pos[i])+1)).val());
+        console.log(arr_save_index_arr_add_pos[i]);
     }
     //end for loop
     console.log(arr_category);
     console.log(arr_weight);
-    console.log(index);
-
     $.ajax({
         type: "post",
         url: "<?php echo base_url(); ?>/Evs_attitude_form/form_attitude_update",
         data: {
             "arr_category": arr_category,
             "arr_weight": arr_weight,
-            "index": index,
+            "index": arr_save_index_arr_add_pos.length,
             "pos_id": value_pos_id,
             "value_year_id": value_year_id
 
@@ -474,6 +514,9 @@ function change_status() {
 </script>
 
 <style>
+input[type=number] {
+    text-align: center;
+}
 #t01 th {
 
     background-color: #2c2c2c;
@@ -538,7 +581,7 @@ p#value_weight_show {
                                         <div class="text-left dib">
                                             <div class="stat-text"><span>
                                                     <?php   
-                                                        echo $row->pos_name;
+                                                        echo $row->Position_name;
                                                         // display name of position
                                                     ?>
 
