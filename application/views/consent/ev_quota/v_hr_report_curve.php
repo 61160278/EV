@@ -59,41 +59,123 @@ function get_company() {
         }
     });
 }
-window.onload = function() {
-    // <block:setup:1>
-    const labels = [
-        'S',
-        'A',
-        'B',
-        'B-',
-        'C',
-        'D',
-    ];
-    const data = {
-        labels: labels,
-        datasets: [{
-            label: 'Quota',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [5, 25, 40, 40, 25, 5],
-        }]
-    };
-    // </block:setup>
 
-    // <block:config:0>
-    const config = {
-        type: 'line',
-        data,
-        options: {}
-    };
 
-    // </block:config>
+$(document).ready(function() {
+    check_quota_plan()
+    check_quota_actual()
 
-    var myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-    );
+});
 
+function check_quota_plan() {
+
+    var check = "";
+    var value_quotaPlan = 0;
+    var quota = 0;
+    //console.log(quota);
+    check = document.getElementById("quotaPlanToT").innerHTML;
+    //console.log(check);
+    for (var i = 1; i <= 6; i++) {
+        quota = document.getElementById("quota" + i).innerHTML;
+        value_quotaPlan = parseInt(check) * parseInt(quota) / 100;
+        document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
+        console.log(value_quotaPlan);
+    } //for 
+}
+
+function check_quota_actual() {
+    var check = "";
+    var valueActual = 0;
+    var actual = 0;
+    var quotaActual = 0;
+    var quota = "";
+    var sumQuotaActual = 0;
+    quota = document.getElementById("quotaPlanToT").innerHTML;
+    for (var i = 1; i <= 6; i++) {
+        check = document.getElementById("quotaActual" + i).value;
+        if (check == "") {
+            quotaActual = null;
+        }
+        if (check != "") {
+            valueActual = parseInt(check);
+            console.log(valueActual);
+            quotaActual = (valueActual * 100) / parseInt(quota);
+            sumQuotaActual += quotaActual;
+            console.log(quotaActual + "=" + valueActual + "* 100 /" + parseInt(quota));
+            actual += valueActual;
+
+        }
+        // if 
+        document.getElementById("show_quotaActual" + i).innerHTML = quotaActual;
+        document.getElementById("show_Actual").innerHTML = actual;
+        document.getElementById("show_sumquotaActual").innerHTML = sumQuotaActual;
+        document.getElementById("TOTplan").innerHTML = quota;
+
+    }
+    // for i  
+}
+
+
+
+function show_linebarChart() {
+    var dataQuota = [];
+    var arrQuota = [];
+    var dataActual = [];
+    var arrActual = [];
+    for (var i = 1; i <= 6; i++) {
+        var show_quota = document.getElementById("quota" + i).innerHTML;
+        arrQuota[i] = show_quota;
+        var show_actual = document.getElementById("show_quotaActual" + i).innerHTML;
+        arrActual[i] = show_actual;
+    } //for
+    arrQuota.shift();
+    arrActual.shift();
+    //console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
+    for (var a = 0; a < arrQuota.length; a++) {
+        dataQuota[a] = arrQuota[a] * 1;
+        dataActual[a] = arrActual[a] * 1;
+
+    } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
+
+    console.log(dataQuota);
+    console.log(dataActual);
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    var mixedChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            datasets: [{
+                label: 'Actual',
+                data: dataActual,
+                // this dataset is drawn below
+                order: 2,
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 1
+            }, {
+                label: 'Quota',
+                data: dataQuota,
+                type: 'line',
+
+                // this dataset is drawn on top
+                order: 1,
+                borderColor: 'rgb(54, 162, 235)'
+            }],
+            labels: ['S', 'A', 'B', 'B-', 'C', 'D']
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    $('#reset').on('click', function() {
+        mixedChart.destroy();
+
+    });
 }
 </script>
 <style>
@@ -121,46 +203,17 @@ th {
     font-size: 20px;
 }
 
+td {
+    text-align: center;
+    font-size: 15px;
+}
+
 .tdbold {
     font-weight: bold;
 }
-.tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-}
 
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
+tbody:hover {
+    background-color: #ffffff;
 }
 </style>
 
@@ -241,7 +294,7 @@ th {
                     <div class="col-md-2">
                     </div>
                     <div class="col-md-2">
-                        <button class="btn-success btn">SUBMIT</button>
+                    <button class="btn-success btn" type="submit" onclick="show_linebarChart()">SUBMIT</button>
                     </div>
                 </div>
             </div>
@@ -261,110 +314,98 @@ th {
                             </div>
                         </div>
                         <div class="panel-body" style="">
-                            <table class="table table-hover table-bordered m-n orange">
-                                <thead>
-                                    <tr class="orange">
-                                        <th>Grade</th>
-                                        <th>S</th>
-                                        <th>A</th>
-                                        <th>B</th>
-                                        <th>C</th>
-                                        <th>D</th>
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="orange2">
-                                        <td class="tdbold">Quota</td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                    </tr>
-                                    <tr class="orange2">
-                                        <td class="tdbold">Plan</td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                    </tr>
-                                    <tr class="orange2">
-                                        <td class="tdbold">Actual</td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                    </tr>
-                                    <tr class="orange2">
-                                        <td class="tdbold">Quota Actual</td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                    </tr>
-                                    <tr class="orange2">
-                                        <td class="tdbold">Total in level</td>
-                                        <td colspan="6"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <table style="width:100%" class="table table-hover m-n orange">
+                                    <thead>
+                                        <div class="col-md-1">
+                                            <tr class="orange">
+                                                <th>Grade</th>
+                                                <th>S</th>
+                                                <th>A</th>
+                                                <th>B</th>
+                                                <th>B-</th>
+                                                <th>C</th>
+                                                <th>D</th>
+                                                <th>Total</th>
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                        <div class="col-md-1">
+                                            <tr class="orange2">
+                                                <td><b>Quota</b></td>
+                                                <td id="quota1" value="5">5</td>
+                                                <td id="quota2" value="25">25</td>
+                                                <td id="quota3" value="40">30</td>
+                                                <td id="quota4" value="40">10</td>
+                                                <td id="quota5" value="25">25</td>
+                                                <td id="quota6" value="5">5</td>
+                                                <td>100</td>
+                                            </tr>
+                                            <div class="col-md-1">
+                                                <tr class="orange2">
+                                                    <td><b>Plan</b></td>
+                                                    <td id="show_quotaPlan1"></td>
+                                                    <td id="show_quotaPlan2"></td>
+                                                    <td id="show_quotaPlan3"></td>
+                                                    <td id="show_quotaPlan4"></td>
+                                                    <td id="show_quotaPlan5"></td>
+                                                    <td id="show_quotaPlan6"></td>
+                                                    <td id="quotaPlanToT">8</td>
+                                            </div>
+                                            </tr>
+                                            <div class="col-md-1">
+                                                <tr class="orange2">
+                                                    <td><b>Actual</b></td>
+                                                    <td>
+                                                        <input type="text" class="form-control" id="quotaActual1"
+                                                            onchange="check_quota_actual()">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" id="quotaActual2"
+                                                            onchange="check_quota_actual()">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" id="quotaActual3"
+                                                            onchange="check_quota_actual()">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" id="quotaActual4"
+                                                            onchange="check_quota_actual()">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" id="quotaActual5"
+                                                            onchange="check_quota_actual()">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" id="quotaActual6"
+                                                            onchange="check_quota_actual()">
+                                                    </td>
+                                                    <td id="show_Actual"></td>
+                                                </tr>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <tr class="orange2">
+                                                    <td><b>Quota Actual</b></td>
+                                                    <td id="show_quotaActual1"></td>
+                                                    <td id="show_quotaActual2"></td>
+                                                    <td id="show_quotaActual3"></td>
+                                                    <td id="show_quotaActual4"></td>
+                                                    <td id="show_quotaActual5"></td>
+                                                    <td id="show_quotaActual6"></td>
+                                                    <td id="show_sumquotaActual"></td>
+                                                </tr>
+                                            </div>
+                                            <tr class="orange2">
+                                                <div class="col-md-1">
+                                                    <td colspan="7"><b>Total in level</b></td>
+                                                    <td id="TOTplan"></td>
+                                            </tr>
+                                        </div>
+                                    </tbody>
+                                </table>
                             <br>
+                                <div class="col-md-offset-11">
+                                <button class="btn btn-warning" type="reset" id="reset">edit</button>
+                                </div>
                             <br>
                             <div id="line-example" style="position: relative;">
 							<canvas id="myChart"></canvas>
