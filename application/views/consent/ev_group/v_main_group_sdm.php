@@ -216,8 +216,6 @@ function check_data() {
 //check_data
 
 
-
-
 function check_data_edt(check) {
       var group = document.getElementById("grouptext" + check).value;
       var Emp_id = document.getElementById("Emp_id" + check).value;
@@ -596,11 +594,6 @@ function check_data_edt(check) {
       <!-- modal-dialog -->
 </div>
 <!-- End Modal Edit_add-->
-
-
-
-
-
 
 
 <!-- Modal Delete -->
