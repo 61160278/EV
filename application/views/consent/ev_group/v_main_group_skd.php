@@ -284,7 +284,7 @@ function manage_data(gru_id) {
                                         <td><?php echo $row->gru_name; ?></td>
                                         <td>
                                             <?php if($row->gru_head_dept == NULL){ 
-													echo "ไม่พบข้อมูล";
+													echo "-";
 												} else {
 													echo $row->Empname_eng." ".$row->Empsurname_eng;
 												}
