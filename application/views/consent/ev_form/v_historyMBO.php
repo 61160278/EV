@@ -103,7 +103,6 @@ function get_approve() {
 
 }
 // function get_approve
-
 </script>
 <!-- script -->
 
@@ -236,9 +235,14 @@ function get_approve() {
                                             <td align="center"><?php echo $row->pay_year; ?></td>
                                             <td id="t_app1_<?php echo $index; ?>"></td>
                                             <td id="t_app2_<?php echo $index; ?>"></td>
-                                            <td align="center">-</td>
-                                            <td align="center"> <button class="btn btn-info"><i
-                                                        class="ti ti-info-alt"></button></td>
+                                            <td align="center"></td>
+                                            <td align="center">
+                                                <a href="<?php echo base_url(); ?>ev_form/Evs_form/show_mbo_his/<?php echo $row->emp_employee_id; ?>">
+                                                    <button class="btn btn-info" id="his_mbo">
+                                                        <i class="ti ti-info-alt"></i>
+                                                    </button>
+                                                </a>
+                                            </td>
                                         </tr>
                                         <!-- show history  -->
 
