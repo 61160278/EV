@@ -81,9 +81,8 @@ function Delete_data(gru_id) {
 
 }
 
-function manage_data(gru_id){
-      
-     
+function manage_data(gru_id) {
+
       console.log(gru_id);
       window.location.href = "<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_sdm/" + gru_id;
 }
@@ -216,8 +215,6 @@ function check_data() {
 //check_data
 
 
-
-
 function check_data_edt(check) {
       var group = document.getElementById("grouptext" + check).value;
       var Emp_id = document.getElementById("Emp_id" + check).value;
@@ -246,23 +243,6 @@ function check_data_edt(check) {
       }
       //else
 
-      function check_group_repeatedly() {
-            var group = document.getElementById("grouptext").value;
-
-            $.get("<?php echo base_url(); ?>/ev_group/Evs_group/get_group_skd ", function(data, status) {
-                  console.log(data);
-                  data.forEach((row, index) => {
-                        if (group == row.gru_name) {
-                              add_alert();
-                              return false;
-                        } else {
-                              return true;
-                        }
-                  });
-            });
-
-
-      }
 
 }
 </script>
@@ -361,7 +341,8 @@ function check_data_edt(check) {
                                                                               href="#Edit<?php echo $row->gru_id?>">
                                                                               <i class="ti ti-pencil-alt"></i>
                                                                         </a>
-                                                                        <a class="btn btn-info"  onClick="manage_data(<?php echo $row->gru_id; ?>)">
+                                                                        <a class="btn btn-info"
+                                                                              onClick="manage_data(<?php echo $row->gru_id; ?>)">
                                                                               <i class="ti ti-info-alt"></i>
                                                                         </a>
                                                                   </div>
@@ -424,21 +405,7 @@ function check_data_edt(check) {
 </div>
 <!-- head outside -->
 
-</html>
 
-<head>
-      <style>
-      thead {
-            color: black;
-            font-size: 17px;
-      }
-
-      tbody {
-            color: black;
-            font-size: 14px;
-      }
-      </style>
-</head>
 
 <!-- Modal Add -->
 <div class="modal fade" id="Add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -518,51 +485,7 @@ function check_data_edt(check) {
 <!-- End Modal Add-->
 
 
-<!-- Modal Warning -->
-<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-            <div class="modal-content">
-                  <div class="modal-header" style="background-color:#FF9800;">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                              <font color="White"><b>&times;</b>
-                              </font>
-                        </button>
-                        <h2 class="modal-title"><b>
-                                    <font color="white">Warning</font>
-                              </b></h2>
-                  </div>
-                  <!-- Modal header -->
 
-                  <div class="modal-body">
-                        <div class="form-horizontal">
-                              <div class="form-group" align="center">
-                                    <div class="col-sm-12">
-                                          <label for="focusedinput" class="control-label"
-                                                style="font-family:'Courier New'" align="center">
-                                                <font size="5px">
-                                                      Please fill in the correct information.</font>
-                                          </label>
-
-                                    </div>
-                              </div>
-                        </div>
-                        <!-- form-horizontal -->
-                  </div>
-                  <!-- Modal body -->
-
-                  <div class="modal-footer">
-                        <div class="btn-group pull-right">
-                              <button type="button" class="btn btn-inverse" data-dismiss="modal">Yes</button>
-                        </div>
-
-                  </div>
-                  <!-- Modal footer -->
-            </div>
-            <!-- modal-content -->
-      </div>
-      <!-- modal-dialog -->
-</div>
-<!-- End Modal Warning -->
 
 <?php
 	$num = 1;
@@ -595,6 +518,10 @@ function check_data_edt(check) {
                                           <input type="text" class="form-control" value="<?php echo $row->gru_name; ?>"
                                                 id="grouptext<?php echo $row->gru_id; ?>" name="grouptext"
                                                 placeholder="HR AGM">
+                                          <label class="col-sm-12 control-label"></label>
+                                          <p id="alert_grouptext">
+                                                <font color="red"><b>This data already to used! </b></font>
+                                          </p>
 
                                     </div>
                               </div>
@@ -644,9 +571,7 @@ function check_data_edt(check) {
                         <div class="btn-group pull-left">
                               <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
                         </div>
-
                         <input type="submit" class="btn btn-success" value="SAVE">
-
                   </div>
                   <!-- modal-footer -->
                   </form>
@@ -657,6 +582,7 @@ function check_data_edt(check) {
       <!-- modal-dialog -->
 </div>
 <!-- End Modal Edit_add-->
+
 
 <!-- Modal Delete -->
 <div class="modal fade" id="Delete<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -709,3 +635,49 @@ function check_data_edt(check) {
 <?php 
 $num++;
 } ?>
+
+<!-- Modal Warning -->
+<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+            <div class="modal-content">
+                  <div class="modal-header" style="background-color:#FF9800;">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                              <font color="White"><b>&times;</b>
+                              </font>
+                        </button>
+                        <h2 class="modal-title"><b>
+                                    <font color="white">Warning</font>
+                              </b></h2>
+                  </div>
+                  <!-- Modal header -->
+
+                  <div class="modal-body">
+                        <div class="form-horizontal">
+                              <div class="form-group" align="center">
+                                    <div class="col-sm-12">
+                                          <label for="focusedinput" class="control-label"
+                                                style="font-family:'Courier New'" align="center">
+                                                <font size="5px">
+                                                      Please fill in the correct information.</font>
+                                          </label>
+
+                                    </div>
+                              </div>
+                        </div>
+                        <!-- form-horizontal -->
+                  </div>
+                  <!-- Modal body -->
+
+                  <div class="modal-footer">
+                        <div class="btn-group pull-right">
+                              <button type="button" class="btn btn-inverse" data-dismiss="modal">Yes</button>
+                        </div>
+
+                  </div>
+                  <!-- Modal footer -->
+            </div>
+            <!-- modal-content -->
+      </div>
+      <!-- modal-dialog -->
+</div>
+<!-- End Modal Warning -->
