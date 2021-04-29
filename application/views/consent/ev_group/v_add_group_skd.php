@@ -33,7 +33,7 @@ function manage_group() {
                     '" name="checkbox" type="checkbox">'
                 data_row += '</div>'
                 data_row += '</td>'
-                data_row += '<td id="emp_'+index+'">'
+                data_row += '<td id="emp_' + index + '">'
                 data_row += row.Emp_ID
                 data_row += '</td>'
                 data_row += '<td>'
@@ -77,7 +77,7 @@ function manage_group_right() {
                     '" name="checkbox" type="checkbox">'
                 data_row += '</div>'
                 data_row += '</td>'
-                data_row += '<td id="emp_new'+index+'">'
+                data_row += '<td id="emp_new' + index + '">'
                 data_row += row.Emp_ID
                 data_row += '</td>'
                 data_row += '<td>'
@@ -190,6 +190,10 @@ function change_group_remove() {
             <div class="panel-body">
                 <div class="panel panel-indigo" id="table_contact">
                     <div class="panel-heading">
+                        <div class="col-md-6">
+                            <label class="col-sm-12 control-label">
+                            <label class="col-sm-12 control-label">
+                        </div>
                         <div class="panel pull-right" id="addtable_filter">
                             <select onchange="manage_group()" id="select" name="example_length" class="form-control"
                                 aria-controls="example">
@@ -403,6 +407,7 @@ function change_group_remove() {
     <!-- head panel -->
 </div>
 <!-- head outside -->
+
 </html>
 
 <style>
