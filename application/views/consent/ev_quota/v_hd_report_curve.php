@@ -91,6 +91,14 @@ function check_quota_actual() {
             actual += valueActual;
 
         }
+        if (valueActual > parseInt(quota)) {
+            $("#show_Actual").css("color", "red");
+            add_alert();
+            $("#submit").attr("disabled", true);
+        } else if(valueActual ==parseInt(quota)){
+            $("#submit").attr("disabled", false);
+            $("#show_Actual").css("color", "#000000");
+        }
         // if 
         document.getElementById("show_quotaActual" + i).innerHTML = quotaActual;
         document.getElementById("show_Actual").innerHTML = actual;
@@ -101,6 +109,9 @@ function check_quota_actual() {
     // for i  
 }
 
+function add_alert() {
+    $('#warning').modal('show');
+}
 
 
 function get_data() {
@@ -243,7 +254,7 @@ function show_linebarChart() {
                     <div class="col-md-1">
                     </div>
                     <div class="col-md-2">
-                        <button class="btn-success btn" type="submit" onclick="show_linebarChart()">SUBMIT</button>
+                        <button class="btn-success btn" id = "submit" type="submit" onclick="show_linebarChart()">SUBMIT</button>
 
                     </div>
                 </div>
@@ -363,7 +374,53 @@ function show_linebarChart() {
 
 
                         </div>
+                        <!-- Modal Warning -->
+                        <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header" style="background-color:#FF9800;">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            <font color="White"><b>&times;</b>
+                                            </font>
+                                        </button>
+                                        <h2 class="modal-title"><b>
+                                                <font color="white">Warning</font>
+                                            </b></h2>
+                                    </div>
+                                    <!-- Modal header -->
 
+                                    <div class="modal-body">
+                                        <div class="form-horizontal">
+                                            <div class="form-group" align="center">
+                                                <div class="col-sm-12">
+                                                    <label for="focusedinput" class="control-label"
+                                                        style="font-family:'Courier New'" align="center">
+                                                        <font size="3px">
+                                                            Actual value is more than plan!</font>
+                                                    </label>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- form-horizontal -->
+                                    </div>
+                                    <!-- Modal body -->
+
+                                    <div class="modal-footer">
+                                        <div class="btn-group pull-right">
+                                            <button type="button" class="btn btn-success"
+                                                data-dismiss="modal">Yes</button>
+                                        </div>
+
+                                    </div>
+                                    <!-- Modal footer -->
+                                </div>
+                                <!-- modal-content -->
+                            </div>
+                            <!-- modal-dialog -->
+                        </div>
+                        <!-- End Modal Warning -->
                     </div>
                 </div>
             </div>
