@@ -24,6 +24,8 @@ td {
             <div class="panel-heading">
                 <h1 align='center'>Process Change Report</h1>
             </div>
+            <!-- panel-heading -->
+
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-12">
@@ -35,53 +37,82 @@ td {
                                 <br>
                                 Subject _____________________
                             </div>
+                            <!-- col-md-4 -->
 
                             <div class="col-md-4">
                                 <br>
-                                <Input type="radio" name="sex" value="0">Normal
+                                <Input type="radio" name="manmer" value="0">Normal
                                 &nbsp;
                                 &nbsp;
-                                <Input type="radio" name="sex" value="0">Urgent
+                                <Input type="radio" name="manmer" value="0">Urgent
                                 <br>
                             </div>
+                            <!-- col-md-4 Normal -->
+
                             <div class="col-md-4">Issue Date : ___________________
                                 <br>
                                 Department : ___________________
                             </div>
+                            <!-- col-md-4 Issue Date  -->
                         </div>
+                        <!-- class="row" PCR No. -->
                         <br>
+
                         <div class="row">
                             <div class="col-md-4">
                                 <table width="100%">
                                     <tr>
-                                        <th>PCR Rank</th>
-                                        <th>PCR Type</th>
+                                        <th>
+                                            <center>PCR Rank</center>
+                                        </th>
+                                        <th>
+                                            <center>PCR Type</center>
+                                        </th>
 
                                     </tr>
                                     <tr>
-                                        <td>C2</td>
-                                        <td>Repeat</td>
+                                        <td>
+                                            <center>C2</center>
+                                        </td>
+                                        <td>
+                                            <center>Repeat</center>
+                                        </td>
 
                                     </tr>
 
                                 </table>
 
                             </div>
-                            <!-- col-4  -->
+                            <!-- class="col-md-4" PCR Rank -->
+
                             <div class="col-md-8">
 
                                 <table id="t01" width="100%">
                                     <tr>
                                         <th></th>
-                                        <th>Acknowledge2</th>
-                                        <th>Acknowledge1</th>
-                                        <th>Approved</th>
-                                        <th>Checked2</th>
-                                        <th>Checked1</th>
-                                        <th>Prepared</th>
+                                        <th>
+                                            <center>Acknowledge2</center>
+                                        </th>
+                                        <th>
+                                            <center>Acknowledge1</center>
+                                        </th>
+                                        <th>
+                                            <center>Approved</center>
+                                        </th>
+                                        <th>
+                                            <center>Checked2</center>
+                                        </th>
+                                        <th>
+                                            <center>Checked1</center>
+                                        </th>
+                                        <th>
+                                            <center>Prepared</center>
+                                        </th>
                                     </tr>
                                     <tr>
-                                        <td>Plan</td>
+                                        <td>
+                                            <center>Plan</center>
+                                        </td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -92,7 +123,9 @@ td {
 
                                     </tr>
                                     <tr>
-                                        <td>Resuit</td>
+                                        <td>
+                                            <center>Resuit</center>
+                                        </td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -102,128 +135,446 @@ td {
                                     </tr>
 
                                 </table>
+                                <!-- id="t01" -->
                             </div>
-                            <!-- col 8 -->
+                            <!-- class="col-md-8" Acknowledge2 -->
+
 
                         </div>
-                        <!-- class row col 4 -->
+                        <!-- class="row PCR Rank" -->
+
                         <br>
                         <br>
+
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <table width="100%">
                                     <tr>
-                                        <td>Product name</td>
-                                        <td>G4S Injector</td>
+                                        <td> &nbsp; Product name</td>
+                                        <td> &nbsp; G4S Injector</td>
 
 
 
                                     </tr>
                                     <tr>
-                                        <td>Part name</td>
-                                        <td>G4S Injector Assy</td>
+                                        <td> &nbsp; Part name</td>
+                                        <td> &nbsp; G4S Injector Assy</td>
 
                                     </tr>
 
                                     <tr>
-                                        <td>Part No.</td>
-                                        <td>SM297500-1234</td>
+                                        <td> &nbsp; Part No.</td>
+                                        <td> &nbsp; SM297500-1234</td>
 
                                     </tr>
 
                                 </table>
+                                <!-- Product name -->
 
                             </div>
-                            <!-- col-4  -->
+                            <!-- col-md-6 Product name -->
+
 
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <table width="100%">
                                         <tr>
-                                            <td>Critical Point</td>
-                                            <td>S S F</td>
+                                            <td> &nbsp; Critical Point</td>
+                                            <td> &nbsp; S S F</td>
 
 
 
                                         </tr>
                                         <tr>
-                                            <td>Risk and effect anaiysis</td>
-                                            <td> <Input type="radio" name="sex" value="0">Quality
+                                            <td> &nbsp; Risk and effect anaiysis</td>
+                                            <td> &nbsp; <Input type="radio" name="Quality" value="0"> &nbsp; Quality
                                                 &nbsp;
                                                 &nbsp;
-                                                <Input type="radio" name="sex" value="0">Safety
+                                                <Input type="radio" name="Quality" value="0"> &nbsp; Safety
                                                 &nbsp;
                                                 &nbsp;
-                                                <Input type="radio" name="sex" value="0">Delivery
-                                                </td>
+                                                <Input type="radio" name="Quality" value="0">&nbsp; Delivery
+                                            </td>
 
                                         </tr>
 
                                         <tr>
-                                            <td>Part test flow out</td>
-                                            <td><Input type="radio" name="sex" value="0">Yes
+                                            <td> &nbsp; Part test flow out</td>
+                                            <td> &nbsp; <Input type="radio" name="button" value="0"> &nbsp; Yes
                                                 &nbsp;
                                                 &nbsp;
-                                                <Input type="radio" name="sex" value="0">No
+                                                <Input type="radio" name="button" value="0"> &nbsp; No
                                             </td>
 
                                         </tr>
 
                                     </table>
+                                    <!-- Critical Point -->
 
                                 </div>
-                                <!-- col-4  -->
-                                
+                                <!-- col-md-6 Critical Point -->
+
+
                             </div>
-                            <!-- col-md-12 -->
+                            <!-- class="row" Critical Point -->
                             <br>
                         </div>
+                        <!-- class="row" Product name -->
+
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <table width="100%">
                                     <tr>
-                                        <td>Chage Point</td>
-                                        <td>New line/Modify line</td>
+                                        <td> &nbsp; Chage Point</td>
+                                        <td> &nbsp; New line/Modify line</td>
 
 
 
                                     </tr>
                                     <tr>
-                                        <td>Customer</td>
-                                        <td>Toyota</td>
+                                        <td> &nbsp; Customer</td>
+                                        <td> &nbsp; Toyota</td>
 
                                     </tr>
 
                                 </table>
+                                <!-- Chage Point -->
 
                             </div>
-                            <!-- col-4  -->
+                            <!-- col-md-6 Chage Point -->
+
                             <div class="row">
-                            <div class="col-md-4">
+                                <div class="col-md-6">
+                                    <table width="100%">
+                                        <tr>
+                                            <td> &nbsp; Out put</td>
+                                            <td> &nbsp; Tool cost down</td>
+
+
+
+                                        </tr>
+                                        <tr>
+                                            <td> &nbsp; Line name</td>
+                                            <td> &nbsp; G4S Injector assembly</td>
+
+                                        </tr>
+
+                                    </table>
+                                    <!-- Out put -->
+
+                                </div>
+                                <!-- col-md-6 Out put -->
+
+                            </div>
+                            <!-- Out put     -->
+                        </div>
+                        <!-- class="row" chage Point  -->
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>Existing Process /Proposed Process/Characteristics values affected / Remark</p>
+
+                            </div>
+                            <!-- col-md-12 Existing Process -->
+
+                        </div>
+                        <!-- class="row" Existing Process  -->
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h3>
+                                    <center>Picture before & affter</center>
+                                </h3>
+                                <h3>
+                                    <center>** รูปภาพ ปรึกษาทาง HR </center>
+                                </h3>
+
+                            </div>
+                            <!-- col-md-8 Picture -->
+                        </div>
+                        <!-- class="row" Picture  -->
+                        <div class="row">
+                            <div class="col-md-8">
                                 <table width="100%">
                                     <tr>
-                                        <td>Out put</td>
-                                        <td>Tool cost down</td>
+                                        <td> &nbsp; Implement plan</td>
+                                        <td>
+                                            <center>Fix 1 Year </center>
+                                        </td>
 
 
 
                                     </tr>
                                     <tr>
-                                        <td>Line name</td>
-                                        <td>G4S Injector assembly</td>
+                                        <td> &nbsp; 1) PCR plan submission</td>
+                                        <td> &nbsp; </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td> &nbsp; 2) PCR plan submission</td>
+                                        <td> &nbsp; </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td> &nbsp; 3) PCR plan submission</td>
+                                        <td> &nbsp; </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td> &nbsp; 4) PCR plan submission</td>
+                                        <td> &nbsp; </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td> &nbsp; 5) PCR plan submission</td>
+                                        <td> &nbsp; </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td> &nbsp; 6) PCR plan submission</td>
+                                        <td> &nbsp; </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td> &nbsp; 7) PCR plan submission</td>
+                                        <td> &nbsp; </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td> &nbsp; 8) PCR plan submission</td>
+                                        <td> &nbsp; </td>
 
                                     </tr>
 
                                 </table>
+                                <!-- Implement plan -->
 
                             </div>
-                            <!-- col-4  -->
-                        <!-- row -->
+                            <!-- col-md-8 Implement plan -->
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <table width="100%">
+                                        <tr>
+                                            <td> &nbsp;Data Attachment</td>
+
+
+
+                                        </tr>
+                                        <tr>
+                                            <td> &nbsp; Daily check sheet</td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td> &nbsp; Machine specification</td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td> &nbsp; Control plan ,PCC</td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td> &nbsp; PFMEA</td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td> &nbsp; QA Network</td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td> &nbsp; Minute Process DR meeting</td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td> &nbsp; MSA</td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td> &nbsp; Standardize work</td>
+
+
+                                        </tr>
+
+
+
+                                    </table>
+                                    <!-- Data Attachment -->
+
+                                </div>
+                                <!-- col-md-4 Data Attachment -->
+
+                            </div>
+                            <!-- Data Attachment     -->
+                        </div>
+                        <!-- class="row" Implement plan  -->
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <center> Planning review </center>
+                                        </td>
+                                        <td> &nbsp; <Input type="radio" name="b" value="0"> &nbsp; Yes
+                                            &emsp;
+                                            &emsp;
+                                            &emsp;
+                                            Meeting Date ___/___/___
+                                            &emsp;
+                                            &emsp;
+                                            &emsp;
+                                            <Input type="radio" name="b" value="0">&nbsp; NO
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <center> Result approve </center>
+                                        </td>
+                                        <td> &nbsp; <Input type="radio" name="p" value="0"> &nbsp; Part Examination
+                                            &emsp;
+                                            &emsp;
+                                            <Input type="radio" name="p" value="0"> &nbsp; Process Examination
+                                            &emsp;
+                                            &emsp;
+                                            <Input type="radio" name="p" value="0">&nbsp; QA meeting
+                                            &emsp;
+                                            &emsp;
+                                            <Input type="radio" name="p" value="0">&nbsp; BKD
+                                            &emsp;
+                                            &emsp;
+                                            <br>
+                                            &emsp;
+                                            <Input type="radio" name="p" value="0">&nbsp; Process Explanation
+                                            &emsp;
+                                            &emsp;
+                                            <Input type="radio" name="p" value="0">&nbsp; Total review
+                                            &emsp;
+                                            &emsp;
+                                            <Input type="radio" name="p" value="0">&nbsp; Quality report
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <center> Comment </center>
+                                        </td>
+                                        <td> &nbsp; 1)
+                                            &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 3)
+                                            <br>
+                                            &nbsp; 2)
+                                            &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 4)
+                                        </td>
+                                    </tr>
+                                </table>
+                                <!-- Planning review -->
+
+                            </div>
+                            <!-- col-md-12 Planning review -->
+                            <br>
+                        </div>
+                        <!-- class="row" Planning review -->
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>
+                                    &emsp; To : Quality Assurance Dept.
+                                </p>
+
+                            </div>
+                            <!-- col-md-8 Picture -->
+                            <div class="col-md-6">
+
+                                <table id="t01" width="100%">
+                                    <tr>
+                                        <th></th>
+                                        <th>
+                                            <center>Approved</center>
+                                        </th>
+                                        <th>
+                                            <center>Checked 3</center>
+                                        </th>
+                                        <th>
+                                            <center>Checked 2</center>
+                                        </th>
+                                        <th>
+                                            <center>Checked 1 </center>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <center>Plan</center>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <center>Resuit</center>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+
+                                </table>
+                                <!-- id="t01" -->
+                            </div>
+                            <!-- class="col-md-8" Acknowledge2 -->
+
+                        </div>
+                        <!-- class="row" Picture  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
-                    <!-- panel-body -->
+                    <!-- col-md-12" -->
+
+
+
                 </div>
-                <!-- panel panel-indigo -->
+                <!-- class="row" -->
+
+
+
             </div>
-            <!-- col-md-12 -->
+            <!-- panel-body -->
+
         </div>
-        <!-- class row col 12 -->
+        <!-- panel panel-indigo -->
+
+    </div>
+    <!-- col-md-12 -->
+
+
+</div>
+<!-- class="row" -->
