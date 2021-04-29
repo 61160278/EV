@@ -151,7 +151,8 @@ function show_linebarChart() {
                 // this dataset is drawn below
                 order: 2,
                 borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)'
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 1
             }, {
                 label: 'Quota',
                 data: dataQuota,
@@ -403,7 +404,7 @@ tbody:hover {
                                 </table>
                             <br>
                                 <div class="col-md-offset-11">
-                                <button class="btn btn-danger-alt" type="reset" id="reset">reset</button>
+                                <button class="btn btn-warning" type="reset" id="reset">edit</button>
                                 </div>
                             <br>
                             <div id="line-example" style="position: relative;">

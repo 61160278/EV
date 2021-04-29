@@ -154,7 +154,8 @@ function show_linebarChart() {
                 // this dataset is drawn below
                 order: 2,
                 borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)'
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 1
             }, {
                 label: 'Quota',
                 data: dataQuota,
@@ -162,7 +163,9 @@ function show_linebarChart() {
 
                 // this dataset is drawn on top
                 order: 1,
-                borderColor: 'rgb(54, 162, 235)'
+                borderColor: 'rgb(54, 162, 235)',
+                backgroundColor:'rgb(54, 162, 235)'
+                
             }],
             labels: ['S', 'A', 'B', 'B-', 'C', 'D']
         },
@@ -339,7 +342,7 @@ function show_linebarChart() {
                                 </table>
                                 <br>
                                 <div class="col-md-offset-11">
-                                <button class="btn btn-danger-alt" type="reset" id="reset">reset</button>
+                                <button class="btn btn-warning" type="reset" id="reset">edit</button>
                                 </div>
                                 <br>
 
