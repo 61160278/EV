@@ -8,7 +8,19 @@
 * @Create Date 2564-04-08
 */  
 ?>
+<head>
+    <style>
+    thead {
+        color: black;
+        font-size: 17px;
+    }
 
+    tbody {
+        color: black;
+        font-size: 14px;
+    }
+    </style>
+</head>
 <script>
 function select_company(value) {
       if (value == "0") {
@@ -23,14 +35,19 @@ function select_company(value) {
 
 $(document).ready(function() {
       $("#alert_grouptext").hide();
+  
 
       $("#grouptext").keyup(function() {
             $("#alert_grouptext").hide();
       });
+
 });
 // document ready
 
 
+function clear_css(gru_id){
+      $("#alert_grouptext_edt"+gru_id).hide();
+}
 
 function add_group() {
 
@@ -223,10 +240,9 @@ function check_data_edt(check) {
       console.log(Emp_id)
       console.log(Showname_modol)
 
-
-
       if (group != "" && Emp_id != "") {
             if (Showname_modol != "ไม่มีข้อมูล") {
+                
                   return true;
             }
             // if
@@ -350,11 +366,10 @@ function check_data_edt(check) {
                                                       </tr>
 
 
-
                                                       <?php 
 									$num++;
 									} ?>
-
+                                                      
                                                 </tbody>
                                           </table>
                                           <!-- table -->
@@ -509,7 +524,7 @@ function check_data_edt(check) {
                   <!-- modal header -->
 
                   <div class="modal-body">
-                        <form class="form-horizontal" action="<?php echo base_url(); ?>ev_group/Evs_group/save_edit_sdm"
+                        <form class="form-horizontal"  action="<?php echo base_url(); ?>ev_group/Evs_group/save_edit_sdm"
                               method="post" onsubmit="return check_data_edt('<?php echo $row->gru_id; ?>')">
                               <div class="form-group">
                                     <label for="focusedinput" class="col-sm-3 control-label">Group
@@ -517,9 +532,9 @@ function check_data_edt(check) {
                                     <div class="col-sm-6">
                                           <input type="text" class="form-control" value="<?php echo $row->gru_name; ?>"
                                                 id="grouptext<?php echo $row->gru_id; ?>" name="grouptext"
-                                                placeholder="HR AGM">
+                                                placeholder="HR AGM" onkeyup="clear_css(<?php echo $row->gru_id; ?>)">
                                           <label class="col-sm-12 control-label"></label>
-                                          <p id="alert_grouptext">
+                                          <p id="alert_grouptext_edt<?php echo $row->gru_id; ?>" >
                                                 <font color="red"><b>This data already to used! </b></font>
                                           </p>
 
