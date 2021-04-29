@@ -139,7 +139,7 @@ function validate() {
                             <i class="fa fa-chevron-circle-left text-white"></i>
                         </a>
                         <i class="fa  fa-dashboard text-white"></i>
-                        <font color="white">Manaegment form</font>
+                        <font color="white">Management form</font>
                     </h1>
                 </div>
                 <!-- End panel  -->
