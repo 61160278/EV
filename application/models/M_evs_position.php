@@ -129,15 +129,15 @@ class M_evs_position extends Da_evs_position {
 
 	function get_pos_com_dep(){	
 		$sql = "SELECT company.Company_shortname,position.Position_name,department.Dep_Name,position.Position_ID,department.Dep_id
-				FROM dbmc.department,dbmc.position,dbmc.company
-				WHERE 
-				-- company.Company_shortname ='SDM'AND
-				 NOT position.Position_name = 'No-Data' 
-				AND NOT position.Position_name = 'Orther'
-				AND NOT position.Position_name = 'President'
-				AND NOT position.Position_name = 'Managing Director'
-				AND NOT position.Position_name = 'Vice President'
-				-- GROUP BY position.Position_name
+		FROM dbmc.department,dbmc.position,dbmc.company
+		WHERE NOT position.Position_name = 'No-Data' 
+		AND NOT position.Position_name = 'Orther'
+		AND NOT position.Position_name = 'President'
+		AND NOT position.Position_name = 'Managing Director'
+		AND NOT position.Position_name = 'Vice President'
+		GROUP BY position.Position_name,department.Dep_Name,company.Company_shortname
+        ORDER BY `department`.`Dep_id` ASC
+	
 				";
 		$query = $this->db->query($sql);
 		return $query;
