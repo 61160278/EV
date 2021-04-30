@@ -45,7 +45,7 @@ td{
 					
 							<div class="panel-heading" id="head_">
 					
-							<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota"><button type="submit" class="btn btn-success" id="add"> +  ADD </button></a>
+							<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_ca"><button type="submit" class="btn btn-success" id="add"> +  ADD </button></a>
 								<div class="panel-ctrls">
 									
 									

@@ -360,7 +360,7 @@ function check_data_edt(check) {
                                                                         </a>
                                                                         <a class="btn btn-info"
                                                                               onClick="manage_data(<?php echo $row->gru_id; ?>)">
-                                                                              <i class="ti ti-info-alt"></i>
+                                                                              <i class="ti ti-loop"></i>
                                                                         </a>
                                                                   </div>
                                                             </td>
@@ -407,7 +407,7 @@ function check_data_edt(check) {
                                     Edit
                               </a>
                               <a class="btn btn-info">
-                                    <i class="ti ti-info-alt"></i>
+                                    <i class="ti ti-loop"></i>
                                     &nbsp;
                                     Info
                               </a>
