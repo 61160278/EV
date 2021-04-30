@@ -272,22 +272,22 @@ function change_group_remove() {
                                                       aria-live="polite"></div>
                                           </div>
                                     </div>
+
+
+                                    <div class="DTTT btn-group pull-right mt-sm">
+                                          <button class="btn btn-success" onclick="change_group()">
+                                                <i class="ti ti-plus"></i>
+                                                <span>ADD</span>
+                                          </button>
+                                    </div>
+                                    <!-- add -->
                               </div>
                               <!-- panel-footer -->
 
-                              <div class="DTTT btn-group pull-right mt-sm">
-                                    <button class="btn btn-success" onclick="change_group()">
-                                          <i class="ti ti-plus"></i>
-                                          <span>ADD</span>
-                                    </button>
-                              </div>
-                              <!-- add -->
+
 
                         </div>
                         <!-- table_contact -->
-
-
-
                   </div>
                   <!-- panel-body -->
             </div>
@@ -379,27 +379,33 @@ function change_group_remove() {
                                                       aria-live="polite"></div>
                                           </div>
                                     </div>
+
+
+                                    <div class="DTTT btn-group pull-left mt-sm">
+                                          &emsp;
+                                          <a data-toggle="modal" class="btn btn btn-danger" href="#Resign">
+                                                <i class="ti ti-share-alt"></i>
+                                                &nbsp
+                                                <span>RESIGN</span>
+                                          </a>
+                                    </div>
+                                    <!-- RESIGN -->
+
+                                    <div class="DTTT btn-group pull-right mt-sm">
+                                          <button class="btn btn-danger" onclick="change_group_remove()">
+                                                <i class="ti ti-share-alt"></i>
+                                                &nbsp
+                                                <span>REMOVE</span>
+                                          </button>
+                                    </div>
+                                    <!-- REMOVE -->
+
+
+
+
                               </div>
                               <!-- panel-footer -->
 
-                              <div class="DTTT btn-group pull-left mt-sm">
-                                    &emsp;
-                                    <a data-toggle="modal" class="btn btn btn-danger" href="#Resign">
-                                          <i class="ti ti-share-alt"></i>
-                                          &nbsp
-                                          <span>RESIGN</span>
-                                    </a>
-                              </div>
-                              <!-- RESIGN -->
-
-                              <div class="DTTT btn-group pull-right mt-sm">
-                                    <button class="btn btn-danger" onclick="change_group_remove()">
-                                          <i class="ti ti-share-alt"></i>
-                                          &nbsp
-                                          <span>REMOVE</span>
-                                    </button>
-                              </div>
-                              <!-- REMOVE -->
                         </div>
                         <!-- panel-addtable -->
 
