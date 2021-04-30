@@ -343,7 +343,7 @@ tbody:hover {
                     <div class="panel panel-orange" data-widget='{"draggable": "false"}'>
                         <div class="panel-heading">
                             <h2>
-                                <font size="5px">ตางราง Report </font>
+                                <font size="5px">Report table</font>
                             </h2>
                             <div class="panel-ctrls" data-actions-container=""
                                 >
