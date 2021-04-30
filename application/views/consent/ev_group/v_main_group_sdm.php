@@ -535,9 +535,9 @@ function check_data_edt(check) {
                                                 id="grouptext<?php echo $row->gru_id; ?>" name="grouptext"
                                                 placeholder="HR AGM" onkeyup="clear_css(<?php echo $row->gru_id; ?>)">
                                           <label class="col-sm-12 control-label"></label>
-                                          <p id="alert_grouptext_edt<?php echo $row->gru_id; ?>" >
+                                          <!-- <p id="alert_grouptext_edt<?php echo $row->gru_id; ?>" >
                                                 <font color="red"><b>This data already to used! </b></font>
-                                          </p>
+                                          </p> -->
 
                                     </div>
                               </div>
