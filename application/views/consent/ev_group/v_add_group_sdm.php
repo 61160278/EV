@@ -300,18 +300,19 @@ function change_group_remove() {
                                     <div col-md-6>
                                           <label class="col-sm-12 control-label">
                                                 <label class="col-sm-12 control-label">
-                                                      <label class="col-sm-12 control-label">
-                                    </div>
+                                                     
+                                    </div> <!-- col-md-6 -->
                                     <?php
 									
 						      foreach($grpsdm->result() as $row ) { ?>
 
                                     <h2>
-                                          <font size="6px"><?php echo $row->gru_name; ?> </font>
+                                    <label class="col-sm-12 control-label">
+                                          <font size="6px"><b><?php echo $row->gru_name; ?> </b></font>
                                     </h2>
                                     <input type="text" value="<?php echo $row->gru_id; ?>" hidden id="new_group">
                                     <?php }; ?>
-
+                                    
                                     <div class="panel-ctrls"></div>
                               </div>
                               <!-- panel-heading -->
