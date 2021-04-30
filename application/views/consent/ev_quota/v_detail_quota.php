@@ -339,7 +339,10 @@ $(document).ready(function() {
 
                     </div>
                 </div>
+                
             </div>
+            <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
+        <!-- <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button> -->
         </div>
     </div>
 </div>

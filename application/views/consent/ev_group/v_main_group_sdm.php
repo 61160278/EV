@@ -313,7 +313,7 @@ function check_data_edt(check) {
                                                 cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
                                                 style="width: 100%;">
                                                 <thead>
-                                                      <tr style="background-color:lavender;">
+                                                      <tr style="background-color:lavender; font-family:'Garamond'">
                                                             <th>
                                                                   <center>No.
                                                             </th>
@@ -394,7 +394,7 @@ function check_data_edt(check) {
 
 
 
-                        <h4 class="text">Description</h4>
+                        <h4 class="text" style="font-family:'Times New Roman'">Description</h4>
                         <div>
                               <a class="btn btn-danger">
                                     <i class="ti ti-trash"></i>
@@ -409,7 +409,7 @@ function check_data_edt(check) {
                               <a class="btn btn-info">
                                     <i class="ti ti-loop"></i>
                                     &nbsp;
-                                    Info
+                                    Preview
                               </a>
                         </div>
                   </div>
@@ -535,9 +535,9 @@ function check_data_edt(check) {
                                                 id="grouptext<?php echo $row->gru_id; ?>" name="grouptext"
                                                 placeholder="HR AGM" onkeyup="clear_css(<?php echo $row->gru_id; ?>)">
                                           <label class="col-sm-12 control-label"></label>
-                                          <p id="alert_grouptext_edt<?php echo $row->gru_id; ?>" >
+                                          <!-- <p id="alert_grouptext_edt<?php echo $row->gru_id; ?>" >
                                                 <font color="red"><b>This data already to used! </b></font>
-                                          </p>
+                                          </p> -->
 
                                     </div>
                               </div>

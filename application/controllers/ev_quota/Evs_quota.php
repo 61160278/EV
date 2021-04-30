@@ -204,6 +204,20 @@ class Evs_quota extends MainController_avenxo {
 		$this->output('/consent/ev_quota/v_edit_quota');
 	}
 	// function edit_quota()
+
+	function get_depamant(){
+		
+		$dep_sel = $this->input->post("dep_id");
+		$this->load->model('M_evs_position','mpos');
+		if( $dep_sel == 1 || $dep_sel == 2){
+			$this->mpos->Company_ID = $dep_sel;
+			$data = $this->mpos->get_department_by_id()->result();	
+		}else{
+		$data = $this->mpos->get_department()->result();
+		}
+		echo json_encode($data);
+	}
+
 	
 }
 ?>
