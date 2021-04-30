@@ -142,5 +142,22 @@ class M_evs_position extends Da_evs_position {
 		$query = $this->db->query($sql);
 		return $query;
 	}//get_all WHERE NOT pos_psl_id=6
+
+
+function get_department_by_id(){
+	$sql = "SELECT *
+	FROM dbmc.department
+	WHERE Company_ID = ? ";
+		$query = $this->db->query($sql, array($this->Company_ID));
+	return $query;
+}//get_department_by_id
+function get_department(){
+	$sql = "SELECT *
+	FROM dbmc.department";
+		$query = $this->db->query($sql);
+	return $query;
+}//get_department
+
+
 } 
 ?>

@@ -41,19 +41,31 @@ function get_company() {
 		}
 	});
 }
+
 function get_department() {
-	var dep_sel = document.getElementById("dep_select").value; // get kay by id
+	var dep_sel = document.getElementById("com_select").value; // get kay by id
 	console.log(dep_sel);
 	
 	$.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/ev_quota/v_mange_quota",
+        url: "<?php echo base_url(); ?>ev_quota/Evs_quota/get_depamant",
         data: {
             "dep_id": dep_sel
         },
-        dataType: "JSON",
-        success: function(data) {
+	
+        success: function(data) {	
+			data = JSON.parse(data)
             console.log(data)
+			var	table_data =""
+			table_data += '<option value="0">Department</option>'	
+			data.forEach((row,i) => {
+												
+				table_data += '<option value=" '+ row.Dep_id +'">'+row.Dep_Name+'</option>'
+						 
+			});
+		
+			$('#dep_select').html(table_data);
+								
 		}
 	});
 }
@@ -91,8 +103,8 @@ h4 {
 			<h4><b> Position of Quota	:</b></h4>
 			<legend></legend>
 			<div>	
-				<label class ="col-md-4">
-					<select id = "com_select" name="example_length" class="form-control">
+				<label class ="col-md-3">
+					<select id = "com_select" name="example_length" class="form-control" onclick = "get_department()">
 						<option value="0">Company</option>												
 						<!-- start foreach -->
 						<?php foreach($com_data->result() as $value){ ?>
@@ -103,19 +115,21 @@ h4 {
 						<!-- end foreach -->											
 					</select>
 				</label>
-				<label class ="col-md-4">
+				<label class ="col-md-3">
 					<select name="example_length" class="form-control" id ="dep_select">												
-						<option value="0">Department</option>												
+													
+					</select>
+				</label>
+				<label class ="col-md-3">
+					<select name="example_length" class="form-control" id = "pos_lv_select">									
+						<option value="0">Position Level</option>												
 						<!-- start foreach -->
-						<?php foreach($dep_data->result() as $value){ ?>
-						<option value="<?php echo $value->Dep_id;?>">
-						<?php echo $value->Dep_Name;?>
-						</option>
-						<?php } ?>
+						
+						
 						<!-- end foreach -->											
 					</select>
 				</label>
-				<label class ="col-md-4">
+				<label class ="col-md-3">
 					<select name="example_length" class="form-control" id = "pos_select">									
 						<option value="0">Position</option>												
 						<!-- start foreach -->
