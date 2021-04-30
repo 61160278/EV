@@ -77,6 +77,7 @@ function check_quota_actual() {
     var quota = "";
     var sumQuotaActual = 0;
     quota = document.getElementById("quotaPlanToT").innerHTML;
+    document.getElementById("submit").disabled = false;
     for (var i = 1; i <= 6; i++) {
         check = document.getElementById("quotaActual" + i).value;
         if (check == "") {
@@ -254,7 +255,7 @@ function show_linebarChart() {
                     <div class="col-md-1">
                     </div>
                     <div class="col-md-2">
-                        <button class="btn-success btn" id = "submit" type="submit" onclick="show_linebarChart()">SUBMIT</button>
+                        <button class="btn-success btn" id = "submit" type="submit" onclick="show_linebarChart()" disabled>SUBMIT</button>
 
                     </div>
                 </div>
@@ -318,28 +319,28 @@ function show_linebarChart() {
                                             <tr class="orange2">
                                                 <td><b>Actual</b></td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual1"
-                                                        onchange="check_quota_actual()">
+                                                    <input type="number" class="form-control" id="quotaActual1"
+                                                        onchange="check_quota_actual()" min ="0">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual2"
-                                                        onchange="check_quota_actual()">
+                                                    <input type="number" class="form-control" id="quotaActual2"
+                                                        onchange="check_quota_actual()" min ="0">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual3"
-                                                        onchange="check_quota_actual()">
+                                                    <input type="number" class="form-control" id="quotaActual3"
+                                                        onchange="check_quota_actual()" min ="0"> 
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual4"
-                                                        onchange="check_quota_actual()">
+                                                    <input type="number" class="form-control" id="quotaActual4"
+                                                        onchange="check_quota_actual()" min ="0">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual5"
-                                                        onchange="check_quota_actual()">
+                                                    <input type="number" class="form-control" id="quotaActual5"
+                                                        onchange="check_quota_actual()" min ="0">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual6"
-                                                        onchange="check_quota_actual()">
+                                                    <input type="number" class="form-control" id="quotaActual6"
+                                                        onchange="check_quota_actual()" min ="0">
                                                 </td>
                                                 <td id="show_Actual"></td>
                                             </tr>

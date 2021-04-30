@@ -110,19 +110,18 @@ tbody:hover {
  */
 
 function check_quota_plan() {
-
     var check = "";
     var value_quotaPlan = 0;
-
     var quota = 0;
 
     check = document.getElementById("quotaPlan").value;
-    if (check === "") {
-        $("#submit").attr("disabled", true);
-    }
+    console.log(check);
+    // if (check == "") {
+    //  $("#submit").attr("disabled", true);
+    //value_quotaPlan = null;
+    document.getElementById("submit").disabled = false;
+    //}
     for (var i = 1; i <= 6; i++) {
-
-
         quota = document.getElementById("quota" + i).innerHTML;
         value_quotaPlan = parseInt(check) * quota / 100;
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
@@ -130,7 +129,6 @@ function check_quota_plan() {
 
     } //for
 } //check_quota_plan
-
 
 function show_quotaplan() {
     $("#quotaPlan").attr("disabled", true);
@@ -184,7 +182,7 @@ function show_quotaplan() {
         document.getElementById('myChart'),
         config
 
-    );
+    ); //new Chart
 } //show_quotaplan
 $(document).ready(function() {
     $("#reset").click(function() {
@@ -192,10 +190,25 @@ $(document).ready(function() {
         $("#quotaPlan").attr("disabled", false);
 
 
-    });
+    }); //click
 
 
-});
+}); //ready
+
+// function required() {
+//     var empt = document.forms["form"]["text"].value;
+//     if (empt == "") {
+//         alert("Please input a Value");
+//         return false;
+//     } else {
+//         add_alert();
+//         return true;
+//     }
+// }
+
+// function add_alert() {
+//     $('#warning').modal('show');
+// }
 </script>
 
 <div class="col-md-12">
@@ -238,10 +251,12 @@ $(document).ready(function() {
 
             </div>
             <hr>
+            <!-- <form onsubmit="required()"> -->
             <div class="row">
                 <div class="col-md-2">
                 </div>
                 <div class="col-md-8">
+
                     <table style="width:100%" class="table table-hover m-n orange">
                         <thead>
                             <div class="col-md-1">
@@ -281,21 +296,22 @@ $(document).ready(function() {
                                     <td id="show_quotaPlan6"> </td>
                                     <td>
                                         <input type="text" class="form-control" id="quotaPlan"
-                                            onchange="check_quota_plan()" required>
-
-                                        <!-- <input class="form-control" id="inp_result1" onchange="functionJS()" type="number" min="0" max="100"> -->
+                                            onchange="check_quota_plan()" min="0" max="100" value="">
                                     </td>
                                 </tr>
                             </div>
                         </tbody>
                     </table>
+
                 </div>
             </div>
             <br>
             <div class="col-md-offset-9">
-                <button class="btn-success btn" id="submit" type="submit" onclick="show_quotaplan()">SUBMIT</button>
+                <button class="btn-success btn" id="submit" type="submit" onclick="show_quotaplan()" value=""
+                    disabled>SUBMIT</button>
                 <button class="btn btn-warning" type="reset" id="reset">edit</button>
             </div>
+            <!-- </form> -->
             <br>
             <div class="row">
                 <div class="col-md-2">
@@ -320,10 +336,10 @@ $(document).ready(function() {
                             <canvas id="myChart" width="100"></canvas>
 
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>

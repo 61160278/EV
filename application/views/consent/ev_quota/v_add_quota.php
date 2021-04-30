@@ -47,7 +47,7 @@ function check_quota() {
 
     var check = "";
     var value_quota = 0;
-
+    document.getElementById("submit").disabled = false;
     for (i = 1; i <= 6; i++) {
         check = document.getElementById("quota" + i).value;
 
@@ -243,7 +243,7 @@ function show_qouta() {
             <div class="row">
                 <div class="col-md-offset-9">
 
-                    <buuton class="btn btn-success" type="submit" id="submit" onclick="show_qouta()">Submit</buuton>
+                    <buuton class="btn btn-success" type="submit" id="submit" onclick="show_qouta()" disabled>Submit</buuton>
                     <button class="btn btn-warning" type="reset" id="reset">edit</button>
                 </div>
             </div>
