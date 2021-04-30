@@ -487,12 +487,12 @@ var value_pos_id = document.getElementById("value_pos_id").value; // position id
                             </td>
                             <td valign="center">
                                 <p align="center">
-                                    <!-- <a href="<?php echo base_url(); ?>/Evs_g_and_o_form/form_g_and_o/<?php echo $row->ps_pos_id; ?>/<?php echo $row->ps_pay_id; ?>"> -->
+                                    <a href="<?php echo base_url(); ?>/Evs_mhrd_form/form_mhrd/<?php echo $row->ps_pos_id; ?>/<?php echo $row->ps_pay_id; ?>">
                                     <button id="mhrd" class="btn btn-success" name="pos_id[<?php echo $index; ?>]"
                                         value="<?php echo $row->ps_pos_id; ?>">
                                         <i class="fa fa-file-text-o"></i> Activate
                                     </button> <!-- Perform button manage form evaluation  -->
-                                    <!-- </a> -->
+                                    </a>
                                 </p>
                             </td>
                             <?php        
@@ -761,12 +761,12 @@ var value_pos_id = document.getElementById("value_pos_id").value; // position id
                             </td>
                             <td valign="center">
                                 <p align="center">
-                                    <!-- <a href="<?php echo base_url(); ?>/Evs_g_and_o_form/form_g_and_o/<?php echo $row->ps_pos_id; ?>/<?php echo $row->ps_pay_id; ?>"> -->
+                                    <a href="<?php echo base_url(); ?>/Evs_gcm_form/form_gcm/<?php echo $row->ps_pos_id; ?>/<?php echo $row->ps_pay_id; ?>">
                                     <button id="gcm" class="btn btn-success" name="pos_id[<?php echo $index; ?>]"
                                         value="<?php echo $row->ps_pos_id; ?>">
                                         <i class="fa fa-file-text-o"></i> Activate
                                     </button> <!-- Perform button manage form evaluation  -->
-                                    <!-- </a> -->
+                                    </a>
                                 </p>
                             </td>
                             <?php        

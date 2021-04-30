@@ -22,7 +22,7 @@
     $year_id = $row->pay_id;
 ?>
 <input type="hidden" id="value_pos_id" name="value_pos_id" value="<?php echo $info_pos_id; ?>">
-<input type="button" id="year" name="year" value="<?php echo $year_id; ?>">
+<input type="hidden" id="year" name="year" value="<?php echo $year_id; ?>">
 
 <script>
 // var index_fielld = 0; // index of field
@@ -180,7 +180,7 @@ function confirm_save() {
                             <i class="fa fa-chevron-circle-left text-white"></i>
                         </a>
                         <i class="fa fa-book text-white"></i>
-                        <font color="white">&nbsp;Manage Form : MBO Form</font>
+                        <font color="white">&nbsp;Manage Form : GCM Form</font>
                     </h1>
                 </div>
             </div>

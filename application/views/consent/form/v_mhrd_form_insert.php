@@ -22,134 +22,17 @@
     $year_id = $row->pay_id;
 ?>
 <input type="hidden" id="value_pos_id" name="value_pos_id" value="<?php echo $info_pos_id; ?>">
-<input type="hidden" id="year" name="year" value="<?php echo $year_id; ?>">
+<input type="button" id="year" name="year" value="<?php echo $year_id; ?>">
 
 <script>
 // var index_fielld = 0; // index of field
 var value_pos_id = document.getElementById("value_pos_id").value; //position ID
 var value_year_id = document.getElementById("year").value; // year now ID
-var value_index_fielld = 5;
-$(document).ready(function() {
-    var table = ''; // value for show on table
 
-    //start for loop
-    for (var i = 1; i <= 5; i++) {
-        table += '<tr>';
-        table += '<td height = "50"> <center>' + i + '</center> </td>';
-        table +=
-            '<td height = "50"> <select name="select" id="select" class="form-control" disabled><option value="0">Please select</option></select></td>';
-        table += '<td height = "50"> <input type="text" id="obj_' + i + '" name="obj_' + i +
-            '" placeholder="Please enter objectives" class="form-control" disabled> </td>';
-        table += '<td height = "50"> <input type="text" id="weight_' + i + '" name="weight_' + i +
-            '" placeholder="" class="form-control" disabled> </td>';
-        table += '</tr>';
-        $("#t01 tbody").html(table);
-    }
-    //end for loop
+$(document).ready(function() {
+  
 });
 
-/*
- * set_index
- * Display -
- * @input  index field of MBO form
- * @output index field of MBO form 
- * @author Tanadon Tangjaimongkhon
- * @Update Date 2564-01-17
- */
-function set_index() {
-    var index_fielld = document.getElementById("number_input").value; // index of field
-    console.log(index_fielld);
-    var table = ''; // value for show on table
-
-    //start for loop
-    for (var i = 1; i <= index_fielld; i++) {
-        table += '<tr>';
-        table += '<td height = "50"> <center>' + i + '</center> </td>';
-        table +=
-            '<td height = "50"> <select name="select" id="select" class="form-control" disabled><option value="0">Please select</option></select></td>';
-        table += '<td height = "50"> <input type="text" id="obj_' + i + '" name="obj_' + i +
-            '" placeholder="Please enter objectives" class="form-control" disabled> </td>';
-        table += '<td height = "50"> <input type="text" id="weight_' + i + '" name="weight_' + i +
-            '" placeholder="" class="form-control" disabled> </td>';
-        table += '</tr>';
-    }
-    //end for loop
-    $("#t01 tbody").html(table);
-    value_index_fielld = index_fielld;
-}
-
-/*
- * insert_index
- * Display -
- * @input  index field of MBO form
- * @output input index field of MBO form 
- * @author Piyasak Srijan
- * @Update Date 2563-10-19
- */
-function insert_index() {
-    console.log(value_index_fielld);
-    console.log(value_pos_id);
-
-    $.ajax({
-        type: "post",
-        url: "<?php echo base_url(); ?>/Evs_mbo_form/index_mbo_insert",
-        data: {
-            "index_mbo": value_index_fielld,
-            "pos_id": value_pos_id,
-            "year_id": value_year_id
-        },
-        dataType: "JSON",
-
-        success: function(status) {
-            console.log(status);
-        }
-
-    });
-}
-//insert_index()
-
-/*
- * change_status
- * Display -
- * @input  -
- * @output change status form
- * @author   Tanadon Tangjaimongkhon
- * @Update Date 2563-10-19
- */
-function change_status() {
-    var form_name = "MBO"; // form name
-    $.ajax({
-        type: "post",
-        url: "<?php echo base_url(); ?>/Evs_form/change_status_pe",
-        data: {
-
-            "pos_id": value_pos_id,
-            "form_name": form_name
-
-        },
-        dataType: "JSON",
-        success: function(data, status) {
-            console.log(status);
-
-        }
-    });
-}
-//change_status()
-
-/*
- * confirm_save
- * Display -
- * @input -
- * @output confirm modal
- * @author  Kunanya Singmee
- * @Create Date 2564-02-11
- */
-function confirm_save() {
-    insert_index();
-    change_status();
-    window.location = "<?php echo base_url(); ?>/Evs_form/form_position/" + value_pos_id + "/" + value_year_id;
-}
-// confirm_save 
 </script>
 
 <style>
@@ -180,7 +63,7 @@ function confirm_save() {
                             <i class="fa fa-chevron-circle-left text-white"></i>
                         </a>
                         <i class="fa fa-book text-white"></i>
-                        <font color="white">&nbsp;Manage Form : MBO Form</font>
+                        <font color="white">&nbsp;Manage Form : MHRD Form</font>
                     </h1>
                 </div>
             </div>
