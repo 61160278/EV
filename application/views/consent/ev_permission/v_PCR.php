@@ -20,9 +20,9 @@ td {
 
 <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-indigo">
+        <div class="panel panel-info">
             <div class="panel-heading">
-                <h1 align='center'>Process Change Report</h1>
+                <h1 align='center'><b>Process Change Report</b></h1>
             </div>
             <!-- panel-heading -->
 
@@ -273,7 +273,8 @@ td {
                         <br>
                         <div class="row">
                             <div class="col-md-12">
-                                <p>Existing Process /Proposed Process/Characteristics values affected / Remark</p>
+                                <p><b> Existing Process /Proposed Process/Characteristics values affected / Remark </b>
+                                </p>
 
                             </div>
                             <!-- col-md-12 Existing Process -->
@@ -492,7 +493,7 @@ td {
                                 </p>
 
                             </div>
-                            <!-- col-md-8 Picture -->
+                            <!-- col-md-6 Quality -->
                             <div class="col-md-6">
 
                                 <table id="t01" width="100%">
@@ -531,12 +532,89 @@ td {
                                     </tr>
 
                                 </table>
-                                <!-- id="t01" -->
+                                <!-- id="t01" Approved -->
                             </div>
-                            <!-- class="col-md-8" Acknowledge2 -->
+                            <!-- class="col-md-6" Approved -->
 
                         </div>
-                        <!-- class="row" Picture  -->
+                        <!-- class="row" Quality  -->
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <center> Submit to customer </center>
+                                        </td>
+                                        <td> &nbsp; <Input type="radio" name="u" value="0"> &nbsp; Yes
+                                            &emsp;
+                                            &emsp;
+                                            &emsp;
+                                            Customer name ________________
+                                            &emsp;
+                                            &emsp;
+                                            &emsp;
+                                            <Input type="radio" name="u" value="0">&nbsp; NO
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <center> Customer Audit </center>
+                                        </td>
+                                        <td> &nbsp; <Input type="radio" name="t" value="0"> &nbsp; Yes
+                                            &emsp;
+                                            &emsp;
+                                            &emsp;
+                                            Meeting Date ___/___/___
+                                            &emsp;
+                                            &emsp;
+                                            &emsp;
+                                            <Input type="radio" name="t" value="0">&nbsp; NO
+                                        </td>
+
+                                    </tr>
+                                </table>
+                                <!-- Submit -->
+
+                            </div>
+                            <!-- col-md-12 Submit -->
+                            <br>
+                        </div>
+                        <!-- class="row" Submit -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table width="100%">
+                                    <tr>
+                                        <td>
+                                            <center> Customer Request </center>
+                                        </td>
+                                        <td>
+                                            <center> Request Detail </center>
+                                        </td>
+                                        <td>
+                                            <center> Requester </center>
+                                        </td>
+
+
+
+
+                                    </tr>
+                                    <tr>
+                                        <td> &nbsp; </td>
+                                        <td> &nbsp; </td>
+                                        <td> &nbsp; </td>
+
+                                    </tr>
+
+                                </table>
+                                <!-- Customer -->
+
+                            </div>
+                            <!-- col-md-12 Customer  -->
+
+                        </div>
+                        <!-- class="row" Customer   -->
 
 
 
