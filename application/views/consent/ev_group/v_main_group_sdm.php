@@ -313,7 +313,7 @@ function check_data_edt(check) {
                                                 cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
                                                 style="width: 100%;">
                                                 <thead>
-                                                      <tr style="background-color:lavender;">
+                                                      <tr style="background-color:lavender; font-family:'Garamond'">
                                                             <th>
                                                                   <center>No.
                                                             </th>
@@ -394,7 +394,7 @@ function check_data_edt(check) {
 
 
 
-                        <h4 class="text">Description</h4>
+                        <h4 class="text" style="font-family:'Times New Roman'">Description</h4>
                         <div>
                               <a class="btn btn-danger">
                                     <i class="ti ti-trash"></i>
@@ -409,7 +409,7 @@ function check_data_edt(check) {
                               <a class="btn btn-info">
                                     <i class="ti ti-loop"></i>
                                     &nbsp;
-                                    Info
+                                    Preview
                               </a>
                         </div>
                   </div>
