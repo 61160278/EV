@@ -31,6 +31,10 @@
     background-color: #ffe4b3;
 }
 
+.margin {
+    margin-top: 10px;
+}
+
 th {
     color: black;
     text-align: center;
@@ -43,6 +47,13 @@ td {
 }
 </style>
 <script>
+function select_quota(value) {
+    if (value == "2") {
+        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_pa";
+    } else {
+        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_ca";
+    }
+}
 function check_quota() {
 
     var check = "";
@@ -163,7 +174,14 @@ function show_qouta() {
             <h2>
                 <font size="6px"><b>Add Quota</b></font>
             </h2>
-            <div class="panel-ctrls" data-actions-container="">
+            <div class="col-md-9">
+            </div>
+            <div class="col-md-1">
+                <select class="form-control pull-right margin" aria-controls="example" onChange="select_quota(value)">
+                    <option value="">Select</option>
+                    <option value="1">CA</option>
+                    <option value="2">PA</option>
+                </select>
             </div>
         </div>
         <div class="panel-body" style="">
@@ -245,8 +263,9 @@ function show_qouta() {
         <div class="row">
             <div class="col-md-offset-8">
                 <!-- <div class="col-md-3"> -->
-                    <buuton class="btn btn-success" type="submit" id="submit" onclick="show_qouta()" disabled>Submit</buuton>
-                    <button class="btn btn-warning" type="reset" id="reset">edit</button>
+                <buuton class="btn btn-success" type="submit" id="submit" onclick="show_qouta()" disabled>Submit
+                </buuton>
+                <button class="btn btn-warning" type="reset" id="reset">edit</button>
                 <!-- </div> -->
             </div>
         </div>
