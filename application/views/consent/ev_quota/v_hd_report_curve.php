@@ -50,7 +50,7 @@ tbody:hover {
 $(document).ready(function() {
     check_quota_plan()
     check_quota_actual()
-
+    document.getElementById("submit").disabled = true;
 });
 
 function check_quota_plan() {
@@ -76,6 +76,7 @@ function check_quota_actual() {
     var quotaActual = 0;
     var quota = "";
     var sumQuotaActual = 0;
+    
     quota = document.getElementById("quotaPlanToT").innerHTML;
     document.getElementById("submit").disabled = false;
     for (var i = 1; i <= 6; i++) {
@@ -216,7 +217,7 @@ function show_linebarChart() {
                 <font size="6px"><b>Report Curve</b></font>
             </h2>
             <div class="panel-ctrls" data-actions-container=""
-                data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
+                >
             </div>
         </div>
         <div class="panel-body">
@@ -255,7 +256,7 @@ function show_linebarChart() {
                     <div class="col-md-1">
                     </div>
                     <div class="col-md-2">
-                        <button class="btn-success btn" id = "submit" type="submit" onclick="show_linebarChart()" disabled>SUBMIT</button>
+                        <button class="btn-success btn" id = "submit" type="submit" onclick="show_linebarChart()">SUBMIT</button>
 
                     </div>
                 </div>
@@ -272,7 +273,7 @@ function show_linebarChart() {
                                 <font size="5px"><b>ตางราง Report</b></font>
                             </h2>
                             <div class="panel-ctrls" data-actions-container=""
-                                data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
+                             >
                             </div>
                         </div>
 

@@ -218,7 +218,7 @@ $(document).ready(function() {
                 <font size="5px">Detail Quota </font>
             </h2>
             <div class="panel-ctrls" data-actions-container=""
-                data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
+                >
             </div>
         </div>
         <div class="panel-body" style="">
@@ -323,7 +323,7 @@ $(document).ready(function() {
                                 <font size="5px">Quota</font>
                             </h2>
                             <div class="panel-ctrls" data-actions-container=""
-                                data-action-collapse='{"target": ".panel-body"}'>
+                              >
                             </div>
                         </div>
                         <div class="panel-body">

@@ -61,11 +61,11 @@ function check_quota() {
 
             add_alert();
             $("#submit").attr("disabled", true);
-        } else if(value_quota == 100){
+        } else if (value_quota == 100) {
             $("#submit").attr("disabled", false);
             $("#show_quota").css("color", "#000000");
         }
-        
+
         document.getElementById("show_quota").innerHTML = value_quota;
         //console.log(value_quota);
     }
@@ -163,8 +163,7 @@ function show_qouta() {
             <h2>
                 <font size="6px"><b>Add Quota</b></font>
             </h2>
-            <div class="panel-ctrls" data-actions-container=""
-                data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
+            <div class="panel-ctrls" data-actions-container="">
             </div>
         </div>
         <div class="panel-body" style="">
@@ -235,89 +234,92 @@ function show_qouta() {
                     </table>
 
                 </div>
-
-
-            </div>
-            <br>
-
-            <div class="row">
-                <div class="col-md-offset-9">
-
-                    <buuton class="btn btn-success" type="submit" id="submit" onclick="show_qouta()" disabled>Submit</buuton>
-                    <button class="btn btn-warning" type="reset" id="reset">edit</button>
-                </div>
-            </div>
-            <br>
-            <div class="row">
                 <div class="col-md-2">
                 </div>
-                <div class="col-md-8">
-                    <div class="panel panel-midnightblue" data-widget='{"draggable": "false"}'>
-                        <div class="panel-heading">
-                            <h2>
-                                <font size="5px"><b>Quota</b></font>
-                            </h2>
-                            <div class="panel-ctrls" data-actions-container=""
-                                data-action-collapse='{"target": ".panel-body"}'>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <canvas id="myChart" width="1000" height="450" style="position: relative;"></canvas>
+            </div>
 
+
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-md-offset-9">
+                <!-- <div class="col-md-3"> -->
+                    <buuton class="btn btn-success" type="submit" id="submit" onclick="show_qouta()" disabled>Submit</buuton>
+                    <button class="btn btn-warning" type="reset" id="reset">edit</button>
+                <!-- </div> -->
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <div class="panel panel-midnightblue" data-widget='{"draggable": "false"}'>
+                    <div class="panel-heading">
+                        <h2>
+                            <font size="5px"><b>Quota</b></font>
+                        </h2>
+                        <div class="panel-ctrls" data-actions-container="">
                         </div>
+                    </div>
+                    <div class="panel-body">
+                        <canvas id="myChart" width="1000" height="450" style="position: relative;"></canvas>
+
                     </div>
                 </div>
             </div>
-            <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
-            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button>
         </div>
-        <!-- Modal Warning -->
-        <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" style="background-color:#FF9800;">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            <font color="White"><b>&times;</b>
-                            </font>
-                        </button>
-                        <h2 class="modal-title"><b>
-                                <font color="white">Warning</font>
-                            </b></h2>
-                    </div>
-                    <!-- Modal header -->
-
-                    <div class="modal-body">
-                        <div class="form-horizontal">
-                            <div class="form-group" align="center">
-                                <div class="col-sm-12">
-                                    <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
-                                        align="center">
-                                        <font size="3px">
-                                            Value is more than 100</font>
-                                    </label>
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- form-horizontal -->
-                    </div>
-                    <!-- Modal body -->
-
-                    <div class="modal-footer">
-                        <div class="btn-group pull-right">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
-                        </div>
-
-                    </div>
-                    <!-- Modal footer -->
-                </div>
-                <!-- modal-content -->
-            </div>
-            <!-- modal-dialog -->
-        </div>
-        <!-- End Modal Warning -->
+        <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
+        <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button>
     </div>
+    <!-- Modal Warning -->
+    <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#FF9800;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <font color="White"><b>&times;</b>
+                        </font>
+                    </button>
+                    <h2 class="modal-title"><b>
+                            <font color="white">Warning</font>
+                        </b></h2>
+                </div>
+                <!-- Modal header -->
+
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group" align="center">
+                            <div class="col-sm-12">
+                                <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                                    align="center">
+                                    <font size="3px">
+                                        Value is more than 100</font>
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- form-horizontal -->
+                </div>
+                <!-- Modal body -->
+
+                <div class="modal-footer">
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                    </div>
+
+                </div>
+                <!-- Modal footer -->
+            </div>
+            <!-- modal-content -->
+        </div>
+        <!-- modal-dialog -->
+    </div>
+    <!-- End Modal Warning -->
+</div>
 </div>
 <script>
 
