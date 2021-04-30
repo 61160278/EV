@@ -382,7 +382,7 @@ function change_group_remove() {
                         <div class="DTTT btn-group pull-left mt-sm">
                             &emsp;
                             <a data-toggle="modal" class="btn btn btn-danger" href="#Resign">
-                                <i class="ti ti-share-alt"></i>
+                            <i class="ti ti-trash"></i>
                                 &nbsp
                                 <span>RESIGN</span>
                             </a>
