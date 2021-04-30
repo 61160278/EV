@@ -238,7 +238,7 @@ function change_group_remove() {
                                                 cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
                                                 style="width: 100%;">
                                                 <thead>
-                                                      <tr style="background-color:lavender;">
+                                                      <tr style="background-color:lavender; font-family:'Garamond'">
                                                             <th>
                                                                   <center>Select
                                                             </th>
@@ -329,7 +329,7 @@ function change_group_remove() {
                                                 cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
                                                 style="width: 100%;">
                                                 <thead>
-                                                      <tr style="background-color:lavender;" align="center">
+                                                      <tr style="background-color:lavender; font-family:'Garamond'" align="center">
                                                             <th>
                                                                   <center>Select
                                                             </th>

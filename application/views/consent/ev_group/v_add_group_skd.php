@@ -192,6 +192,7 @@ function change_group_remove() {
                     <div class="panel-heading">
                         <div col-md-6>
                             <label class="col-sm-12 control-label">
+                                <label class="col-sm-12 control-label">
                         </div>
                         <div class="panel pull-right" id="addtable_filter">
                             <select onchange="manage_group()" id="select" name="example_length" class="form-control"
@@ -219,7 +220,7 @@ function change_group_remove() {
                                 cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
                                 style="width: 100%;">
                                 <thead>
-                                    <tr style="background-color:lavender;">
+                                    <tr style="background-color:lavender; font-family:'Garamond'">
                                         <th>
                                             <center>Select
                                         </th>
@@ -277,11 +278,13 @@ function change_group_remove() {
                     <div class="panel-heading">
                         <div col-md-6>
                             <label class="col-sm-12 control-label">
+                                <label class="col-sm-12 control-label">
                         </div>
                         <?php
 							foreach($grpskd->result() as $row ) { ?>
                         <h2>
-                            <font size="6px" ><?php echo $row->gru_name; ?> </font>
+                            <label class="col-sm-12 control-label">
+                                <font size="6px"><?php echo $row->gru_name; ?> </font>
                         </h2>
                         <input type="text" value="<?php echo $row->gru_id; ?>" hidden id="new_group">
                         <?php }; ?>
@@ -301,7 +304,7 @@ function change_group_remove() {
                                 cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
                                 style="width: 100%;">
                                 <thead>
-                                    <tr style="background-color:lavender;" align="center">
+                                    <tr style="background-color:lavender; font-family:'Garamond'" align="center">
                                         <th>
                                             <center>Select
                                         </th>
