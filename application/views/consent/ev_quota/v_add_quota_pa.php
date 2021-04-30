@@ -47,120 +47,119 @@ td {
 }
 </style>
 <script>
-    function check_quota() {
+function check_quota() {
 
-var check = "";
-var value_quota = 0;
-document.getElementById("submit").disabled = false;
-for (i = 1; i <= 6; i++) {
-    check = document.getElementById("quota" + i).value;
+    var check = "";
+    var value_quota = 0;
+    document.getElementById("submit").disabled = false;
+    for (i = 1; i <= 6; i++) {
+        check = document.getElementById("quota" + i).value;
 
-    if (check != "") {
-        value_quota += parseInt(check);
+        if (check != "") {
+            value_quota += parseInt(check);
 
+        }
+        // if 
+        if (value_quota > 100) {
+            $("#show_quota").css("color", "red");
+
+            add_alert();
+            $("#submit").attr("disabled", true);
+        } else if (value_quota == 100) {
+            $("#submit").attr("disabled", false);
+            $("#show_quota").css("color", "#000000");
+        }
+
+        document.getElementById("show_quota").innerHTML = value_quota;
+        //console.log(value_quota);
     }
-    // if 
-    if (value_quota > 100) {
-        $("#show_quota").css("color", "red");
-
-        add_alert();
-        $("#submit").attr("disabled", true);
-    } else if (value_quota == 100) {
-        $("#submit").attr("disabled", false);
-        $("#show_quota").css("color", "#000000");
-    }
-
-    document.getElementById("show_quota").innerHTML = value_quota;
-    //console.log(value_quota);
-}
-// for i
+    // for i
 
 }
 
 function add_alert() {
-$('#warning').modal('show');
+    $('#warning').modal('show');
 }
 
 
 function show_qouta() {
 
-for (var i = 1; i <= 6; i++) {
-    $("#quota" + i).attr("disabled", true);
-}
+    for (var i = 1; i <= 6; i++) {
+        $("#quota" + i).attr("disabled", true);
+    }
 
-var dataQuota = [];
-var arrQuota = [];
-for (var i = 0; i < 6; i++) {
-    dataQuota[i] = 0;
+    var dataQuota = [];
+    var arrQuota = [];
+    for (var i = 0; i < 6; i++) {
+        dataQuota[i] = 0;
 
-} //for
-for (var i = 1; i <= 6; i++) {
-    //  var show_quota = document.getElementById("quota" + i).innerHTML;
-    var show_quota = document.getElementById("quota" + i).value;
-    //  var arrQuota = [5, 25, 40, 25, 5];
-    arrQuota[i] = show_quota;
-} //for
-arrQuota.shift();
-console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
-for (var a = 0; a < arrQuota.length; a++) {
-    dataQuota[a] = arrQuota[a] * 1;
+    } //for
+    for (var i = 1; i <= 6; i++) {
+        //  var show_quota = document.getElementById("quota" + i).innerHTML;
+        var show_quota = document.getElementById("quota" + i).value;
+        //  var arrQuota = [5, 25, 40, 25, 5];
+        arrQuota[i] = show_quota;
+    } //for
+    arrQuota.shift();
+    console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
+    for (var a = 0; a < arrQuota.length; a++) {
+        dataQuota[a] = arrQuota[a] * 1;
 
-} //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
-console.log(dataQuota);
+    } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
+    console.log(dataQuota);
 
-//<block:setup:1>
-const labels = [
-    'S',
-    'A',
-    'B',
-    'B-',
-    'C',
-    'D',
-];
-const data = {
-    labels: labels,
-    datasets: [{
-        label: 'Quota',
-        backgroundColor: 'rgb(54, 162, 235)',
-        borderColor: 'rgb(54, 162, 235)',
-        data: dataQuota,
-    }]
+    //<block:setup:1>
+    const labels = [
+        'S',
+        'A',
+        'B',
+        'B-',
+        'C',
+        'D',
+    ];
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Quota',
+            backgroundColor: 'rgb(54, 162, 235)',
+            borderColor: 'rgb(54, 162, 235)',
+            data: dataQuota,
+        }]
 
-};
-// </block:setup>
-// <block:config:0>
-const config = {
-    type: 'line',
-    data: data,
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
+    };
+    // </block:setup>
+    // <block:config:0>
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
             }
         }
-    }
-};
+    };
 
-// </block:config>
-var ctx = document.getElementById('myChart').getContext('2d');
+    // </block:config>
+    var ctx = document.getElementById('myChart').getContext('2d');
 
-var myChart = new Chart(ctx, config);
-$('#reset').on('click', function() {
-    myChart.destroy();
-
-});
-
-$(document).ready(function() {
-    $("#reset").click(function() {
-        for (var i = 1; i <= 6; i++) {
-            $("#quota" + i).attr("disabled", false);
-        }
+    var myChart = new Chart(ctx, config);
+    $('#reset').on('click', function() {
+        myChart.destroy();
 
     });
-});
+
+    $(document).ready(function() {
+        $("#reset").click(function() {
+            for (var i = 1; i <= 6; i++) {
+                $("#quota" + i).attr("disabled", false);
+            }
+
+        });
+    });
 
 } //showChart
-
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
@@ -171,11 +170,11 @@ $(document).ready(function() {
             <div class="col-md-9">
             </div>
             <div class="col-md-1">
-                <select class="form-control pull-right margin" aria-controls="example" onChange="select_quota(value)">
+                <!-- <select class="form-control pull-right margin" aria-controls="example" onChange="select_quota(value)">
                     <option value="">Select</option>
                     <option value="1">CA</option>
                     <option value="2">PA</option>
-                </select>
+                </select> -->
             </div>
         </div>
         <div class="panel-body" style="">
@@ -283,9 +282,13 @@ $(document).ready(function() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
+        <div class="DTTT btn-group pull-left mt-sm">
+            <a href="<?php echo base_url(); ?>/ev_quota/Evs_quota/index">
         <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
-        <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button>
+       </div>
+                <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button>
+        
     </div>
     <!-- Modal Warning -->
     <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -334,4 +337,3 @@ $(document).ready(function() {
     <!-- End Modal Warning -->
 </div>
 </div>
-
