@@ -220,7 +220,8 @@ function manage_data(gru_id) {
             <h1 style="font-family:'Times New Roman'">
                 <font color="#ffffff" size="7px"><b>Manage Group SKD</b></font>
                 <div class="panel pull-right" id="addtable_filter">
-                    <select name="example_length" class="form-control" aria-controls="example" onChange="manage_skd(value)">
+                    <select name="example_length" class="form-control" aria-controls="example"
+                        onChange="manage_skd(value)">
                         <option value="0">Select Company</option>
                         <option value="1">SDM</option>
                         <option value="2" selected>SKD</option>
@@ -259,7 +260,7 @@ function manage_data(gru_id) {
                                 cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
                                 style="width: 100%;">
                                 <thead>
-                                    <tr style="background-color:lavender;">
+                                    <tr style="background-color:lavender; font-family:'Garamond'">
                                         <th>
                                             <center>No.
                                         </th>
@@ -302,8 +303,8 @@ function manage_data(gru_id) {
                                                 </a>
                                                 <a class="btn btn-info"
                                                     onClick="manage_data(<?php echo $row->gru_id; ?>)">
-                                                    <i class="ti ti-file"></i>
-                                                    </a>
+                                                    <i class="ti ti-loop"></i>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
@@ -329,7 +330,7 @@ function manage_data(gru_id) {
                     <!-- panel-footer -->
                 </div>
                 <!-- panel-addtable -->
-                <h4 class="text">Description</h4>
+                <h4 class="text" style="font-family:'Times New Roman'"><font size="5px">Description</font></h4>
                 <div>
                     <a class="btn btn-danger">
                         <i class="ti ti-trash"></i>
@@ -342,7 +343,7 @@ function manage_data(gru_id) {
                         Edit
                     </a>
                     <a class="btn btn-info">
-                        <i class="ti ti-file"></i>
+                        <i class="ti ti-loop"></i>
                         &nbsp;
                         Preview
                     </a>
@@ -396,12 +397,12 @@ function manage_data(gru_id) {
                     </div>
                     <!-- Group Name -->
 
-                        <label class="col-sm-3 control-label"></label>
-                        <div class="col-sm-6">
-                            <p id="alert_grouptext">
-                                <font color="red"><b> This data already to use! </b></font>
-                            </p>
-                        </div>
+                    <label class="col-sm-3 control-label"></label>
+                    <div class="col-sm-6">
+                        <p id="alert_grouptext">
+                            <font color="red"><b> This data already to use! </b></font>
+                        </p>
+                    </div>
                     <!-- Duplicate groups please check. -->
 
                     <div class="form-group">
@@ -463,9 +464,9 @@ function manage_data(gru_id) {
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     <font color="White"><b>&times;</b></font>
                 </button>
-                <h2 class="modal-title"><b>
-                        <font color="white">Edit SKD Group Data & Head Dept.</font>
-                    </b></h2>
+                <h2 class="modal-title" style="font-family:'Georgia'"><b>
+                    <font color="white">Edit SKD Group Data & Head Dept.</font>
+                </b></h2>
             </div>
             <!-- modal header -->
 
@@ -484,7 +485,7 @@ function manage_data(gru_id) {
                     <div class="form-group">
                         <label class="col-sm-1 control-label"></label>
                         <div class="col-sm-8">
-                            <label style="font-family:'Courier New'"><b>
+                            <label style="font-family:'Monaco'"><b>
                                     <font size="4px" color="Black">Select Head Dept.</font>
                                 </b></label>
                         </div>
@@ -593,7 +594,7 @@ function manage_data(gru_id) {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                            <label for="focusedinput" class="control-label" style="font-family:'Georgia'"
                                 align="center">
                                 <font size="5px">Do you want to Delete Data YES or
                                     NO ?</font>

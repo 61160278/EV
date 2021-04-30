@@ -64,7 +64,7 @@ function get_company() {
 $(document).ready(function() {
     check_quota_plan()
     check_quota_actual()
-
+    document.getElementById("submit").disabled = true;
 });
 
 function check_quota_plan() {
@@ -73,6 +73,7 @@ function check_quota_plan() {
     var value_quotaPlan = 0;
     var quota = 0;
     //console.log(quota);
+    document.getElementById("submit").disabled = false;
     check = document.getElementById("quotaPlanToT").innerHTML;
     //console.log(check);
     for (var i = 1; i <= 6; i++) {
@@ -97,8 +98,11 @@ function check_quota_actual() {
         if (check == "") {
             quotaActual = null;
         }
+       else if(check < 0 ){
+            quotaActual = null;
+        }
         // if 
-        if (check != "") {
+        else {
             valueActual = parseInt(check);
             console.log(valueActual);
             quotaActual = (valueActual * 100) / parseInt(quota);
@@ -107,6 +111,7 @@ function check_quota_actual() {
             actual += valueActual;
 
         }
+        
         if (valueActual > parseInt(quota)) {
             $("#show_Actual").css("color", "red");
             add_alert();
@@ -254,7 +259,7 @@ tbody:hover {
                 <font size="6px"><b>Report Curve</b></font>
             </h2>
             <div class="panel-ctrls" data-actions-container=""
-                data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
+                >
             </div>
         </div>
         <div class="panel-body" style="">
@@ -338,10 +343,10 @@ tbody:hover {
                     <div class="panel panel-orange" data-widget='{"draggable": "false"}'>
                         <div class="panel-heading">
                             <h2>
-                                <font size="5px">ตางราง Report </font>
+                                <font size="5px">Report table</font>
                             </h2>
                             <div class="panel-ctrls" data-actions-container=""
-                                data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
+                                >
                             </div>
                         </div>
                         <div class="panel-body" style="">
@@ -387,28 +392,28 @@ tbody:hover {
                                             <tr class="orange2">
                                                 <td><b>Actual</b></td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual1"
-                                                        onchange="check_quota_actual()" required>
+                                                    <input type="number" class="form-control" id="quotaActual1"
+                                                        onchange="check_quota_actual()"  min ="0" required>
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual2"
-                                                        onchange="check_quota_actual()" required>
+                                                    <input type="number" class="form-control" id="quotaActual2"
+                                                        onchange="check_quota_actual()" min ="0" required>
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual3"
-                                                        onchange="check_quota_actual()" required>
+                                                    <input type="number" class="form-control" id="quotaActual3"
+                                                        onchange="check_quota_actual()" min ="0" required>
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual4"
-                                                        onchange="check_quota_actual()" required>
+                                                    <input type="number" class="form-control" id="quotaActual4"
+                                                        onchange="check_quota_actual()" min ="0" required>
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual5"
-                                                        onchange="check_quota_actual()" required>
+                                                    <input type="number" class="form-control" id="quotaActual5"
+                                                        onchange="check_quota_actual()" min ="0" required>
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual6"
-                                                        onchange="check_quota_actual()" required>
+                                                    <input type="number" class="form-control" id="quotaActual6"
+                                                        onchange="check_quota_actual()" min ="0" required>
                                                 </td>
                                                 <td id="show_Actual"></td>
                                             </tr>

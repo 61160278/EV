@@ -55,19 +55,23 @@ class Evs_quota extends MainController_avenxo {
 	* @author 	Piyasak Srijan
 	* @Create Date 2564-04-05
 	*/
-	function add_quota()
+	function add_quota_ca()
 	{
 		$this->output('/consent/ev_quota/v_add_quota');
 	}
 	// function add_quota()
 	
 	/*
-	* hd_report_curve
+	* add_quota
 	* @input
 	* @output 
 	* @author 	Piyasak Srijan
-	* @Create Date 2564-04-06
+	* @Create Date 2564-04-05
 	*/
+	function add_quota_pa()
+	{
+		$this->output('/consent/ev_quota/v_add_quota_pa');
+	}
 	
 	/*
 	* hd_report_curve
@@ -200,6 +204,20 @@ class Evs_quota extends MainController_avenxo {
 		$this->output('/consent/ev_quota/v_edit_quota');
 	}
 	// function edit_quota()
+
+	function get_depamant(){
+		
+		$dep_sel = $this->input->post("dep_id");
+		$this->load->model('M_evs_position','mpos');
+		if( $dep_sel == 1 || $dep_sel == 2){
+			$this->mpos->Company_ID = $dep_sel;
+			$data = $this->mpos->get_department_by_id()->result();	
+		}else{
+		$data = $this->mpos->get_department()->result();
+		}
+		echo json_encode($data);
+	}
+
 	
 }
 ?>

@@ -50,7 +50,7 @@ tbody:hover {
 $(document).ready(function() {
     check_quota_plan()
     check_quota_actual()
-
+    document.getElementById("submit").disabled = true;
 });
 
 function check_quota_plan() {
@@ -76,7 +76,9 @@ function check_quota_actual() {
     var quotaActual = 0;
     var quota = "";
     var sumQuotaActual = 0;
+    
     quota = document.getElementById("quotaPlanToT").innerHTML;
+    document.getElementById("submit").disabled = false;
     for (var i = 1; i <= 6; i++) {
         check = document.getElementById("quotaActual" + i).value;
         if (check == "") {
@@ -215,7 +217,7 @@ function show_linebarChart() {
                 <font size="6px"><b>Report Curve</b></font>
             </h2>
             <div class="panel-ctrls" data-actions-container=""
-                data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
+                >
             </div>
         </div>
         <div class="panel-body">
@@ -268,10 +270,10 @@ function show_linebarChart() {
                     <div class="panel panel-orange" data-widget='{"draggable": "false"}'>
                         <div class="panel-heading">
                             <h2>
-                                <font size="5px"><b>ตางราง Report</b></font>
+                                <font size="5px"><b>Report table</b></font>
                             </h2>
                             <div class="panel-ctrls" data-actions-container=""
-                                data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
+                             >
                             </div>
                         </div>
 
@@ -318,28 +320,28 @@ function show_linebarChart() {
                                             <tr class="orange2">
                                                 <td><b>Actual</b></td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual1"
-                                                        onchange="check_quota_actual()">
+                                                    <input type="number" class="form-control" id="quotaActual1"
+                                                        onchange="check_quota_actual()" min ="0">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual2"
-                                                        onchange="check_quota_actual()">
+                                                    <input type="number" class="form-control" id="quotaActual2"
+                                                        onchange="check_quota_actual()" min ="0">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual3"
-                                                        onchange="check_quota_actual()">
+                                                    <input type="number" class="form-control" id="quotaActual3"
+                                                        onchange="check_quota_actual()" min ="0"> 
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual4"
-                                                        onchange="check_quota_actual()">
+                                                    <input type="number" class="form-control" id="quotaActual4"
+                                                        onchange="check_quota_actual()" min ="0">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual5"
-                                                        onchange="check_quota_actual()">
+                                                    <input type="number" class="form-control" id="quotaActual5"
+                                                        onchange="check_quota_actual()" min ="0">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual6"
-                                                        onchange="check_quota_actual()">
+                                                    <input type="number" class="form-control" id="quotaActual6"
+                                                        onchange="check_quota_actual()" min ="0">
                                                 </td>
                                                 <td id="show_Actual"></td>
                                             </tr>

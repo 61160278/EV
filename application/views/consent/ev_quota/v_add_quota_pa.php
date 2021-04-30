@@ -47,13 +47,6 @@ td {
 }
 </style>
 <script>
-function select_quota(value) {
-    if (value == "2") {
-        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_pa";
-    } else {
-        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_ca";
-    }
-}
 function check_quota() {
 
     var check = "";
@@ -177,16 +170,16 @@ function show_qouta() {
             <div class="col-md-9">
             </div>
             <div class="col-md-1">
-                <select class="form-control pull-right margin" aria-controls="example" onChange="select_quota(value)">
+                <!-- <select class="form-control pull-right margin" aria-controls="example" onChange="select_quota(value)">
                     <option value="">Select</option>
                     <option value="1">CA</option>
                     <option value="2">PA</option>
-                </select>
+                </select> -->
             </div>
         </div>
         <div class="panel-body" style="">
 
-            <div class="row">
+            <!-- <div class="row">
                 <div class="form-group">
                     <div class="col-md-3">
                     </div>
@@ -206,7 +199,7 @@ function show_qouta() {
                     </div>
 
                 </div>
-            </div>
+            </div> -->
             <br>
             <div class="row">
                 <div class="col-md-2">
@@ -229,22 +222,22 @@ function show_qouta() {
                             <tr class="orange2" id="input">
                                 <td>Quota</td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota1" onchange="check_quota()">
+                                    <input type="number" class="form-control" id="quota1" onchange="check_quota()">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota2" onchange="check_quota()">
+                                    <input type="number" class="form-control" id="quota2" onchange="check_quota()">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota3" onchange="check_quota()">
+                                    <input type="number" class="form-control" id="quota3" onchange="check_quota()">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota4" onchange="check_quota()">
+                                    <input type="number" class="form-control" id="quota4" onchange="check_quota()">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota5" onchange="check_quota()">
+                                    <input type="number" class="form-control" id="quota5" onchange="check_quota()">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota6" onchange="check_quota()">
+                                    <input type="number" class="form-control" id="quota6" onchange="check_quota()">
                                 </td>
                                 <td id="show_quota"></td>
                             </tr>
@@ -289,9 +282,13 @@ function show_qouta() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
+        <div class="DTTT btn-group pull-left mt-sm">
+            <a href="<?php echo base_url(); ?>/ev_quota/Evs_quota/index">
         <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
-        <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button>
+       </div>
+                <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button>
+        
     </div>
     <!-- Modal Warning -->
     <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -340,6 +337,3 @@ function show_qouta() {
     <!-- End Modal Warning -->
 </div>
 </div>
-<script>
-
-</script>
