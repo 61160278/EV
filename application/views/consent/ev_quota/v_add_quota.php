@@ -243,7 +243,7 @@ function show_qouta() {
         <br>
 
         <div class="row">
-            <div class="col-md-offset-9">
+            <div class="col-md-offset-10">
                 <!-- <div class="col-md-3"> -->
                     <buuton class="btn btn-success" type="submit" id="submit" onclick="show_qouta()" disabled>Submit</buuton>
                     <button class="btn btn-warning" type="reset" id="reset">edit</button>
