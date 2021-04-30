@@ -299,7 +299,7 @@ function change_group_remove() {
                               <div class="panel-heading">
                                     <div col-md-6>
                                           <label class="col-sm-12 control-label">
-                                                <label class="col-sm-8 control-label">
+                                                <label class="col-sm-12 control-label">
                                                      
                                     </div> <!-- col-md-6 -->
                                     <?php
