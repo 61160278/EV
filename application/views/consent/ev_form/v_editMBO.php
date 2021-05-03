@@ -40,7 +40,7 @@ $(document).ready(function() {
     $("#btn_edit").show();
     $("#btn_save").attr("disabled", true);
     $("#btn_clear").attr("disabled", true);
-
+    
     $("#btn_cencel_clear").hide();
     $("#btn_cencel_show").show();
     $("#btn_send_insert").show();
@@ -529,6 +529,7 @@ function show_approve() {
                 $("#btn_edit").hide();
 
                 $("#show_approver").html(data_show);
+                $("#btn_clear").hide();
 
             }
             // if
