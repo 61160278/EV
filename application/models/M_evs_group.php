@@ -112,7 +112,7 @@ class M_evs_group extends Da_evs_group {
 	     
 	     $this->db->query($sql, array($this->emp_ghr_id, $this->emp_employee_id ,$this->emp_pay_id));
 	    
-	}      
+	}//update_group
 
 
 

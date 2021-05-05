@@ -31,6 +31,7 @@ function select_company(value) {
             window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
       }
 }
+//function select_company
 
 
 $(document).ready(function() {
@@ -48,6 +49,7 @@ $(document).ready(function() {
 function clear_css(gru_id){
       $("#alert_grouptext_edt"+gru_id).hide();
 }
+//function clear_css
 
 function add_group() {
 
@@ -72,6 +74,7 @@ function add_group() {
       window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_sdm";
 
 }
+//function add_group
 
 
 function Delete_data(gru_id) {
@@ -97,12 +100,14 @@ function Delete_data(gru_id) {
       window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_sdm";
 
 }
+//function Delete_data
 
 function manage_data(gru_id) {
 
       console.log(gru_id);
       window.location.href = "<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_sdm/" + gru_id;
 }
+//function manage_data
 
 
 
@@ -189,6 +194,7 @@ function warning() {
       $('#warning').modal('show');
 
 }
+//function warning
 
 
 function check_data() {
@@ -260,7 +266,8 @@ function check_data_edt(check) {
       //else
 
 
-} 
+}
+//function check_data_edt 
 
 </script>
 
@@ -307,6 +314,7 @@ function check_data_edt(check) {
                                                 <div class="col-sm-6"></div>
                                                 <div class="col-sm-6"></div>
                                           </div>
+                                          <!--div row for manage size of head panel -->
 
                                           <table id="example"
                                                 class="table table-striped table-bordered dataTable no-footer"
@@ -327,8 +335,9 @@ function check_data_edt(check) {
                                                                   <center>Action
                                                             </th>
                                                       </tr>
+                                                      <!-- tr -->
                                                 </thead>
-
+                                                      <!-- thead -->
                                                 <tbody>
                                                       <?php
 									$num = 1;
@@ -354,22 +363,25 @@ function check_data_edt(check) {
                                                                               href="#Delete<?php echo $row->gru_id?>">
                                                                               <i class="ti ti-trash"></i>
                                                                         </a>
+                                                                        <!-- Delete button -->
                                                                         <a data-toggle="modal" class="btn btn-warning"
                                                                               href="#Edit<?php echo $row->gru_id?>">
                                                                               <i class="ti ti-pencil-alt"></i>
                                                                         </a>
+                                                                        <!-- Edit button -->
                                                                         <a class="btn btn-info"
                                                                               onClick="manage_data(<?php echo $row->gru_id; ?>)">
                                                                               <i class="ti ti-loop"></i>
                                                                         </a>
+                                                                        <!-- Manage data employee button -->
                                                                   </div>
                                                             </td>
                                                       </tr>
 
 
                                                       <?php 
-									$num++;
-									} ?>
+									$num++; 
+									} //foreach?>
                                                       
                                                 </tbody>
                                           </table>
@@ -499,9 +511,6 @@ function check_data_edt(check) {
       <!-- modal-dialog -->
 </div>
 <!-- End Modal Add-->
-
-
-
 
 <?php
 	$num = 1;
@@ -650,7 +659,7 @@ function check_data_edt(check) {
 
 <?php 
 $num++;
-} ?>
+} //foreach?>
 
 <!-- Modal Warning -->
 <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
