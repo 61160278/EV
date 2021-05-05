@@ -42,24 +42,13 @@ function manage_group() {
                 data_row += '</td>'
                 data_row += '</tr>'
                 count++
-
-
             })
             // console.log(data_row)
             $("#select_data").html(data_row)
             $("#count_check").val(count)
         } //success
-
-
     });
-
-
-
 }
-
-
-
-
 function manage_group_right() {
     var gru_id = document.getElementById("new_group").value;
     var data_row = " ";
@@ -93,23 +82,13 @@ function manage_group_right() {
                 data_row += '</td>'
                 data_row += '</tr>'
                 count++
-
-
             })
             console.log(data_row)
             $("#table_r").html(data_row)
             $("#count_group").val(count)
         } //success
-
-
     });
-
-
-
 }
-
-
-
 function change_group() {
     var count_check = document.getElementById("count_check").value;
     var new_group = document.getElementById("new_group").value;
@@ -119,10 +98,9 @@ function change_group() {
         if (document.getElementById("check_group" + i).checked) {
             get_emp.push(document.getElementById("emp_" + i).innerHTML)
             console.log(get_emp)
-        }
+        }//if
     } //for
 
-    // $("#select").val(old_group)
     $.ajax({
         type: "post",
         url: "<?php echo base_url(); ?>/ev_group/Evs_group/add_new_group",
@@ -232,7 +210,7 @@ function change_group_remove() {
                             <div class="row">
                                 <div class="col-sm-6"></div>
                                 <div class="col-sm-6"></div>
-                            </div>
+                            </div> <!--div row for manage size of head panel -->
 
                             <table id="add_table" class="table table-striped table-bordered dataTable no-footer"
                                 cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
@@ -252,11 +230,11 @@ function change_group_remove() {
                                             <center>Section Code
                                         </th>
                                     </tr>
-                                </thead>
+                                </thead><!-- thead -->
 
                                 <tbody id="select_data">
 
-                                </tbody>
+                                </tbody> <!-- tbody -->
                                 <input type="text" id="count_check" value="" hidden>
                             </table>
                             <!-- table -->
@@ -397,10 +375,6 @@ function change_group_remove() {
                             </button>
                         </div>
                         <!-- REMOVE -->
-
-
-
-
                     </div>
                     <!-- panel-footer -->
 

@@ -31,6 +31,7 @@ function select_company(value) {
             window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
       }
 }
+//function select_company
 
 
 $(document).ready(function() {
@@ -48,6 +49,7 @@ $(document).ready(function() {
 function clear_css(gru_id){
       $("#alert_grouptext_edt"+gru_id).hide();
 }
+//function clear_css
 
 function add_group() {
 
@@ -72,6 +74,7 @@ function add_group() {
       window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_sdm";
 
 }
+//function add_group
 
 
 function Delete_data(gru_id) {
@@ -97,12 +100,14 @@ function Delete_data(gru_id) {
       window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_sdm";
 
 }
+//function Delete_data
 
 function manage_data(gru_id) {
 
       console.log(gru_id);
       window.location.href = "<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_sdm/" + gru_id;
 }
+//function manage_data
 
 
 
@@ -189,6 +194,7 @@ function warning() {
       $('#warning').modal('show');
 
 }
+//function warning
 
 
 function check_data() {
@@ -260,7 +266,8 @@ function check_data_edt(check) {
       //else
 
 
-} 
+}
+//function check_data_edt 
 
 </script>
 
@@ -499,9 +506,6 @@ function check_data_edt(check) {
       <!-- modal-dialog -->
 </div>
 <!-- End Modal Add-->
-
-
-
 
 <?php
 	$num = 1;
