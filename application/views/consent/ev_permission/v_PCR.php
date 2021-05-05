@@ -475,6 +475,7 @@ td {
                                             <br>
                                             &nbsp; 2)
                                             &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 4)
+                                            <br>
                                         </td>
                                     </tr>
                                 </table>
@@ -570,6 +571,8 @@ td {
                                             &emsp;
                                             &emsp;
                                             &emsp;
+                                            &emsp;
+
                                             <Input type="radio" name="t" value="0">&nbsp; NO
                                         </td>
 
