@@ -52,7 +52,7 @@ function add_group() {
 }
 // function add_group
 
-function Delete_data(gru_id) {
+function delete_data(gru_id) {
     console.log(gru_id);
     $.ajax({
         type: "POST",
@@ -68,7 +68,7 @@ function Delete_data(gru_id) {
     // ajax
     window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
 }
-// function Delete_data
+// function delete_data
 
 function get_idemployee(gru_id) {
     Emp_id = document.getElementById("Emp_id" + gru_id).value;
@@ -88,7 +88,6 @@ function get_idemployee(gru_id) {
             console.log(data)
 
             if (data.length == 0) {
-
                 document.getElementById("nameEmp" + gru_id).value = "ไม่มีข้อมูล";
                 console.log(gru_id)
             } else {
@@ -108,6 +107,7 @@ function get_Emp() {
     Emp_id = document.getElementById("Emp_id_modol").value;
     var empname = "";
     console.log(Emp_id)
+
     $.ajax({
         type: "POST",
         url: "<?php echo base_url(); ?>/ev_group/Evs_group/search_by_employee_id_skd",
@@ -163,12 +163,12 @@ function check_add() {
             add_alert();
             return false;
         }
-        // if-else 
-    } else {
+        // if-else Showname_modol
+    } else { 
         add_alert();
         return false;
     }
-    //else
+    // if-else group
 }
 // check_add form
 
@@ -187,12 +187,12 @@ function check_edit_skd(check) {
             add_alert();
             return false;
         }
-        // if-else 
+        // if-else Showname_modol
     } else {
         add_alert();
         return false;
     }
-    // if-else
+    // if-else group
 
 }
 // check_edit_skd form
@@ -202,15 +202,12 @@ function add_alert() {
 }
 // add_alert
 
-
-
 function manage_data(gru_id) {
     console.log(gru_id);
     window.location.href = "<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_skd/" + gru_id;
 }
 // manage_data
 </script>
-
 
 <!DOCTYPE html>
 <html>
@@ -232,7 +229,6 @@ function manage_data(gru_id) {
         </div>
         <!-- panel-heading -->
 
-
         <div class="col-md-12">
             <div class="panel-body">
                 <div class="panel panel-indigo" id="panel-addtable">
@@ -245,9 +241,9 @@ function manage_data(gru_id) {
                                 <span>ADD</span>
                             </a>
                         </div>
-                        <!-- DTTT -->
+                        <!-- Add -->
                     </div>
-                    <!-- panel-ctrls -->
+                    <!-- panel-heading -->
 
                     <div class="panel-body no-padding">
                         <div id="example_wrapper" class="dataTables_wrapper form-inline no-footer">
@@ -556,21 +552,19 @@ function manage_data(gru_id) {
                                 <font size="3px">
                                     Please fill in the correct information.</font>
                             </label>
-
                         </div>
                     </div>
                 </div>
                 <!-- form-horizontal -->
             </div>
-            <!-- Modal body -->
+            <!-- modal body -->
 
             <div class="modal-footer">
                 <div class="btn-group pull-right">
                     <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
                 </div>
-
             </div>
-            <!-- Modal footer -->
+            <!-- modal footer -->
         </div>
         <!-- modal-content -->
     </div>
@@ -611,7 +605,7 @@ function manage_data(gru_id) {
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
                 </div>
                 <button type="button" class="btn btn-success"
-                    onClick="Delete_data(<?php echo $row->gru_id; ?>)">YES</button>
+                    onClick="delete_data(<?php echo $row->gru_id; ?>)">YES</button>
             </div>
             <!-- Modal footer -->
         </div>
@@ -623,3 +617,4 @@ function manage_data(gru_id) {
 <?php 
 $num++;
 } ?>
+<!-- foreach modal -->

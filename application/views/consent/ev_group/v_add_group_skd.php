@@ -22,7 +22,6 @@ function manage_group() {
         dataType: "JSON",
         success: function(data, status) {
             console.log(status)
-            //console.log(data)
 
             var count = 0;
             data.forEach((row, index) => {
@@ -90,7 +89,7 @@ function manage_group_right() {
                 count++
             })
             console.log(data_row)
-            $("#table_r").html(data_row)
+            $("#table_right").html(data_row)
             $("#count_group").val(count)
         } //success
     });
@@ -184,7 +183,7 @@ function change_group_remove() {
                 </font>
             </h2>
         </div>
-        <!-- panel-body h3 -->
+        <!-- panel-body h2 -->
 
         <div class="col-md-6">
             <div class="panel-body">
@@ -320,7 +319,7 @@ function change_group_remove() {
                                     </tr>
                                 </thead>
 
-                                <tbody id="table_r" align="center">
+                                <tbody id="table_right" align="center">
                                     <?php
 									$num = 0;
 									foreach($group_skd->result() as $index => $row ) { ?>
@@ -339,7 +338,7 @@ function change_group_remove() {
                                     <?php
 									$num++;
 									} ?>
-                                    <!-- for -->
+                                    <!-- foreach -->
                                 </tbody>
                                 <!-- tbody -->
                                 <input type="text" id="count_group" value="<?php echo $num;?>" hidden>
