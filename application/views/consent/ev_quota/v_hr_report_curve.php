@@ -9,6 +9,11 @@
 */  
 ?>
 <script>
+$(document).ready(function() {
+    check_quota_plan()
+    check_quota_actual()
+    document.getElementById("submit").disabled = true;
+});
 function get_data() {
     var pos_sel = document.getElementById("pos_select").value; // get kay by id
     console.log(pos_sel);
@@ -61,12 +66,6 @@ function get_company() {
 }
 
 
-$(document).ready(function() {
-    check_quota_plan()
-    check_quota_actual()
-    document.getElementById("submit").disabled = true;
-});
-
 function check_quota_plan() {
 
     var check = "";
@@ -85,6 +84,7 @@ function check_quota_plan() {
 }
 
 function check_quota_actual() {
+
     var check = "";
     var valueActual = 0;
     var actual = 0;
@@ -109,14 +109,13 @@ function check_quota_actual() {
             sumQuotaActual += quotaActual;
             console.log(quotaActual + "=" + valueActual + "* 100 /" + parseInt(quota));
             actual += valueActual;
-
+            console.log(actual);
         }
-        
-        if (valueActual > parseInt(quota)) {
+        if (actual > parseInt(quota)) {
             $("#show_Actual").css("color", "red");
             add_alert();
             $("#submit").attr("disabled", true);
-        } else if (valueActual == parseInt(quota)) {
+        } else if (actual == parseInt(quota)) {
             $("#submit").attr("disabled", false);
             $("#show_Actual").css("color", "#000000");
         }

@@ -277,11 +277,11 @@ $(document).ready(function() {
                                 <tr class="orange2">
                                     <td><b>Quota</b></td>
                                     <td id="quota1" value="5">5</td>
-                                    <td id="quota2" value="25">20</td>
-                                    <td id="quota3" value="60">20</td>
-                                    <td id="quota4" value="25">20</td>
-                                    <td id="quota5" value="25">20</td>
-                                    <td id="quota6" value="5">10</td>
+                                    <td id="quota2" value="25">15</td>
+                                    <td id="quota3" value="60">30</td>
+                                    <td id="quota4" value="25">30</td>
+                                    <td id="quota5" value="25">15</td>
+                                    <td id="quota6" value="5">5</td>
                                     <td>100</td>
                                 </tr>
                             </div>

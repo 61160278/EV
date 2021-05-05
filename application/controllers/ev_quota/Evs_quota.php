@@ -120,10 +120,16 @@ class Evs_quota extends MainController_avenxo {
 	{
 		$this->load->model('M_evs_department','mdep');
 		$data['dep_data'] = $this->mdep->get_all(); // show value department all
+
+		$this->load->model('M_evs_position_level','mepsl');
+		$data['psl_data'] = $this->mepsl->get_all(); // show value position level all
+
 		$this->load->model('M_evs_position','meps');
 		$data['pos_data'] = $this->meps->get_pos_com_dep(); // show value position all
+
 		$this->load->model('M_evs_company','mcpn');
 		$data['com_data'] = $this->mcpn->get_all(); // show value company all
+
 		
 		$this->output('/consent/ev_quota/v_manage_quota',$data);
 	}
@@ -220,4 +226,18 @@ class Evs_quota extends MainController_avenxo {
 
 	
 }
+	function get_position_level(){
+		$pos_sel = $this->input->post("position_level_id");
+		 $this->load->model('M_evs_position','mpos');
+		// if($pos_sel == 0 ){
+			
+		 	$data = $this->mpos->get_position_all()->result();
+		// }
+		// else{
+		// 	$this->mpos->pos_psl_id = $pos_sel;
+		// 	$data = $this->mpos->get_position_level_by_pls_id()->result(); 		
+		// }	
+			echo json_encode($data);
+	}
+
 ?>

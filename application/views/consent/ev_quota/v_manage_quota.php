@@ -10,18 +10,29 @@
 ?>
 <script>
 function get_position() {
-	var pos_sel = document.getElementById("pos_select").value; // get kay by id
+	var pos_sel = document.getElementById("pos_lv_select").value; // get kay by id
 	console.log(pos_sel);
 	
 	$.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/ev_quota/v_mange_quota",
+		 url: "<?php echo base_url(); ?>ev_quota/Evs_quota/get_position_level",
         data: {
-            "pos_id": pos_sel
+            "position_level_id": pos_sel
         },
-        dataType: "JSON",
-        success: function(data) {
-            console.log(data)
+	
+        success: function(data) {	
+			// data = JSON.parse(data)
+            // console.log(data)
+			// var	table_data =""
+			// table_data += '<option value="0">Position</option>'	
+			// data.forEach((row,i) => {
+												
+			// 	table_data += '<option value=" '+ row.Position_ID +'">'+row.Position_name+'</option>'
+						 
+			// });
+		
+			// $('#pos_select').html(table_data);
+								
 		}
 	});
 }
@@ -31,7 +42,7 @@ function get_company() {
 	
 	$.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/ev_quota/v_mange_quota",
+        url: "<?php echo base_url(); ?>ev_quota/Evs_quota/v_mange_quota",
         data: {
             "cpn_id": cpn_sel
         },
@@ -69,7 +80,22 @@ function get_department() {
 		}
 	});
 }
-
+function get_pos_level() {
+	var psl_id = document.getElementById("pos_lv_select").value; // get kay by id
+	console.log(psl_id);
+	
+	$.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_quota/v_mange_quota",
+        data: {
+            "psl_id": psl_id
+        },
+        dataType: "JSON",
+        success: function(data) {
+            console.log(data)
+		}
+	});
+}
 
 </script>
 <style>
@@ -105,7 +131,7 @@ h4 {
 			<div>	
 				<label class ="col-md-3">
 					<select id = "com_select" name="example_length" class="form-control" onclick = "get_department()">
-						<option value="0">Company</option>												
+						<!-- <option value="0">Company</option>												 -->
 						<!-- start foreach -->
 						<?php foreach($com_data->result() as $value){ ?>
 						<option value="<?php echo $value->Company_ID;?>">
@@ -121,24 +147,20 @@ h4 {
 					</select>
 				</label>
 				<label class ="col-md-3">
-					<select name="example_length" class="form-control" id = "pos_lv_select">									
-						<option value="0">Position Level</option>												
+					<select name="example_length" class="form-control" id = "pos_lv_select" onclick ="get_position()" >									
+						<option value="0">Position Level</option>		
 						<!-- start foreach -->
-						
-						
-						<!-- end foreach -->											
+						<?php foreach($psl_data->result() as $value){ ?>
+						<option value="<?php echo $value->psl_id;?>">
+						<?php echo $value->psl_position_level;?>
+						</option>
+						<?php } ?>
+						<!-- end foreach -->										
 					</select>
 				</label>
 				<label class ="col-md-3">
 					<select name="example_length" class="form-control" id = "pos_select">									
-						<option value="0">Position</option>												
-						<!-- start foreach -->
-						<?php foreach($pos_data->result() as $value){ ?>
-						<option value="<?php echo $value->Position_ID;?>">
-						<?php echo $value->Position_name;?>
-						</option>
-						<?php } ?>
-						<!-- end foreach -->											
+																
 					</select>
 				</label>
 			</div>

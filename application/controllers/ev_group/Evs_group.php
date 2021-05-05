@@ -327,16 +327,5 @@ class Evs_group extends MainController_avenxo {
 		// for
 	}
 	// function add_new_group
-
-
-
-
-
-
-
-
-
-
-
 }
 ?>
