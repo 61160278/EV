@@ -225,19 +225,39 @@ class Evs_quota extends MainController_avenxo {
 	}
 
 	
-}
+
 	function get_position_level(){
 		$pos_sel = $this->input->post("position_level_id");
 		 $this->load->model('M_evs_position','mpos');
-		// if($pos_sel == 0 ){
+		if($pos_sel == 0 ){
 			
 		 	$data = $this->mpos->get_position_all()->result();
-		// }
-		// else{
-		// 	$this->mpos->pos_psl_id = $pos_sel;
-		// 	$data = $this->mpos->get_position_level_by_pls_id()->result(); 		
-		// }	
+		}
+		else{
+			$this->mpos->pos_psl_id = $pos_sel;
+			$data = $this->mpos->get_position_level_by_pls_id()->result(); 		
+		}	
 			echo json_encode($data);
 	}
 
+function get_search_data(){
+
+	$pos_lv_select = $this->input->post("pos_lv_select");
+	$com_select = $this->input->post("com_select");
+	$dep_sel = $this->input->post("dep_sel");
+	$pos_select = $this->input->post("pos_select");
+	$this->load->model('M_evs_position','mpos');
+	$this->mpos->psl_id = $pos_lv_select;
+	$this->mpos->Company_ID = $com_select;
+	$this->mpos->Dep_id = $dep_sel;
+	$this->mpos->Position_ID = $pos_select;
+	$data = $this->mpos->get_pos_com_dep()->result();
+	echo json_encode($data);
+
+
+}
+
+
+
+}// end class
 ?>
