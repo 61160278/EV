@@ -210,7 +210,8 @@ function change_group_remove() {
                             <div class="row">
                                 <div class="col-sm-6"></div>
                                 <div class="col-sm-6"></div>
-                            </div> <!--div row for manage size of head panel -->
+                            </div> 
+                            <!--div row for manage size of head panel -->
 
                             <table id="add_table" class="table table-striped table-bordered dataTable no-footer"
                                 cellspacing="0" width="100%" role="grid" aria-describedby="example_info"

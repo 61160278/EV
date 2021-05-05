@@ -314,6 +314,7 @@ function check_data_edt(check) {
                                                 <div class="col-sm-6"></div>
                                                 <div class="col-sm-6"></div>
                                           </div>
+                                          <!--div row for manage size of head panel -->
 
                                           <table id="example"
                                                 class="table table-striped table-bordered dataTable no-footer"
@@ -334,8 +335,9 @@ function check_data_edt(check) {
                                                                   <center>Action
                                                             </th>
                                                       </tr>
+                                                      <!-- tr -->
                                                 </thead>
-
+                                                      <!-- thead -->
                                                 <tbody>
                                                       <?php
 									$num = 1;
@@ -361,22 +363,25 @@ function check_data_edt(check) {
                                                                               href="#Delete<?php echo $row->gru_id?>">
                                                                               <i class="ti ti-trash"></i>
                                                                         </a>
+                                                                        <!-- Delete button -->
                                                                         <a data-toggle="modal" class="btn btn-warning"
                                                                               href="#Edit<?php echo $row->gru_id?>">
                                                                               <i class="ti ti-pencil-alt"></i>
                                                                         </a>
+                                                                        <!-- Edit button -->
                                                                         <a class="btn btn-info"
                                                                               onClick="manage_data(<?php echo $row->gru_id; ?>)">
                                                                               <i class="ti ti-loop"></i>
                                                                         </a>
+                                                                        <!-- Manage data employee button -->
                                                                   </div>
                                                             </td>
                                                       </tr>
 
 
                                                       <?php 
-									$num++;
-									} ?>
+									$num++; 
+									} //foreach?>
                                                       
                                                 </tbody>
                                           </table>
@@ -654,7 +659,7 @@ function check_data_edt(check) {
 
 <?php 
 $num++;
-} ?>
+} //foreach?>
 
 <!-- Modal Warning -->
 <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
