@@ -230,13 +230,13 @@ class Evs_quota extends MainController_avenxo {
 		$pos_sel = $this->input->post("pos_id");
 		$this->load->model('M_evs_position_level','mpsl');
 
-		if( $pos_sel == 1 ){
+		if( $pos_sel > 0 ){
 			$this->mpsl->position_level_id = $pos_sel;
 			$data = $this->mpsl->get_position_by_id()->result();	
 		}
-		// else{
-		// $data = $this->mpos->get_department()->result();
-		// }
-		echo json_encode($data);
+		else{
+		$data = $this->mpos->get_position()->result();
+		}
+		 echo json_encode($data);
 	}
 ?>

@@ -96,7 +96,7 @@ function get_department() {
 }
 function get_pos_level() {
 	var psl_id = document.getElementById("pos_lv_select").value; // get kay by id
-	console.log(pos_lv_sel);
+	console.log(psl_id);
 	
 	$.ajax({
         type: "post",
@@ -161,7 +161,7 @@ h4 {
 					</select>
 				</label>
 				<label class ="col-md-3">
-					<select name="example_length" class="form-control" id = "pos_lv_select">									
+					<select name="example_length" class="form-control" id = "pos_lv_select" onclick ="get_pos_level()" >									
 						<option value="0">Position Level</option>		
 						<!-- start foreach -->
 						<?php foreach($psl_data->result() as $value){ ?>
