@@ -17,7 +17,7 @@ function get_position() {
         type: "post",
         url: "<?php echo base_url(); ?>ev_quota/Evs_quota/get_position",
         data: {
-            "pos_id": pos_sel
+            "psl_id": pos_sel
         },
 	
         success: function(data) {	
@@ -35,20 +35,6 @@ function get_position() {
 								
 		}
 	});
-	// var pos_sel = document.getElementById("pos_select").value; // get kay by id
-	// console.log(pos_sel);
-	
-	// $.ajax({
-    //     type: "post",
-        // url: "<?php //echo base_url(); ?>/ev_quota/v_mange_quota",
-    //     data: {
-    //         "pos_id": pos_sel
-    //     },
-    //     dataType: "JSON",
-    //     success: function(data) {
-    //         console.log(data)
-	// 	}
-	// });
 }
 function get_company() {
 	var cpn_sel = document.getElementById("com_select").value; // get kay by id
@@ -161,7 +147,7 @@ h4 {
 					</select>
 				</label>
 				<label class ="col-md-3">
-					<select name="example_length" class="form-control" id = "pos_lv_select" onclick ="get_pos_level()" >									
+					<select name="example_length" class="form-control" id = "pos_lv_select" onclick ="get_position()" >									
 						<option value="0">Position Level</option>		
 						<!-- start foreach -->
 						<?php foreach($psl_data->result() as $value){ ?>
