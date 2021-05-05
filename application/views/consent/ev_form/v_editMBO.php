@@ -28,6 +28,9 @@ th {
 #dis_color {
     background-color: #F5F5F5;
 }
+#row_acm{
+    background-color: #F5F5F5;
+}
 </style>
 <!-- END style -->
 
@@ -40,7 +43,7 @@ $(document).ready(function() {
     $("#btn_edit").show();
     $("#btn_save").attr("disabled", true);
     $("#btn_clear").attr("disabled", true);
-    
+
     $("#btn_cencel_clear").hide();
     $("#btn_cencel_show").show();
     $("#btn_send_insert").show();
@@ -895,6 +898,70 @@ function show_approve() {
                             </thead>
                             <!-- thead -->
                             <tbody id="row_acm">
+                                <?php 
+                            $index_col = 1;
+                            $count = 1;
+                            $com = "";
+                            $key = "";
+                            $exp = "";
+                            foreach($acm_info->result() as $index => $row){ ?>
+                                <tr>
+                                    <td><?php echo $count; ?></td>
+                                    <?php if($index == 0){
+                                    $com = $row->cpn_competency_detail_en;
+                                    $key = $row->kcp_key_component_detail_en;
+                                    $exp = $row->ept_expected_detail_en; 
+                                    $weight = $row->sfa_weight;?>
+
+                                    <td><?php echo $com; ?></td>
+                                    <td><?php echo $key; ?></td>
+                                    <td><?php echo $exp; ?></td>
+                                    <td><?php echo $weight; ?></td>
+
+                                    <?php $count++; } 
+                                    // if 
+                                    else { 
+                                    $com = $row->cpn_competency_detail_en;
+                                    $key = $row->kcp_key_component_detail_en;
+                                    $exp = $row->ept_expected_detail_en;
+                                    $weight = $row->sfa_weight;?>
+
+                                    <td><?php echo $com; ?></td>
+                                    <td><?php echo $key; ?></td>
+                                    <td><?php echo $exp; ?></td>
+                                    <td><center><?php echo $weight; ?></center></td>
+
+                                    <?php }?>
+                                    <td>
+                                        <center>
+                                            <div class="col-md-12">
+                                                <form action="">
+                                                    <input type="radio" name="result" value="1" Disabled Unchecked>
+                                                    <label for="1">&nbsp; 1</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="2" Disabled Unchecked>
+                                                    <label for="2">&nbsp; 2</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="3" Disabled Unchecked>
+                                                    <label for="3">&nbsp; 3</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="4" Disabled Unchecked>
+                                                    <label for="4">&nbsp; 4</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="5" Disabled Unchecked>
+                                                    <label for="5">&nbsp; 5</label>
+                                                    &nbsp;&nbsp;
+                                                </form>
+                                            </div>
+                                            <!-- col-12 -->
+                                        </center>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <?php  }; ?>
+                                <!-- foreach  -->
+
+
                             </tbody>
                             <!-- tbody -->
                             <tfoot>
