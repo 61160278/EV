@@ -226,14 +226,17 @@ class Evs_quota extends MainController_avenxo {
 
 	
 }
-	function get_position(){
-		$pos_sel = $this->input->post("psl_id");
-		$this->load->model('M_evs_position','mpos');
-		if($pos_sel == 0 ){
-			$data = $this->mpos->get_position_all()->result();
-		}else{
-			$data = $this->mpos->get_position_by_id()->result(); 		
-		}	
+	function get_position_level(){
+		$pos_sel = $this->input->post("position_level_id");
+		 $this->load->model('M_evs_position','mpos');
+		// if($pos_sel == 0 ){
+			
+		 	$data = $this->mpos->get_position_all()->result();
+		// }
+		// else{
+		// 	$this->mpos->pos_psl_id = $pos_sel;
+		// 	$data = $this->mpos->get_position_level_by_pls_id()->result(); 		
+		// }	
 			echo json_encode($data);
 	}
 

@@ -15,23 +15,23 @@ function get_position() {
 	
 	$.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>ev_quota/Evs_quota/get_position",
+		 url: "<?php echo base_url(); ?>ev_quota/Evs_quota/get_position_level",
         data: {
-            "psl_id": pos_sel
+            "position_level_id": pos_sel
         },
 	
         success: function(data) {	
-			data = JSON.parse(data)
-            console.log(data)
-			var	table_data =""
-			table_data += '<option value="0">Position</option>'	
-			data.forEach((row,i) => {
+			// data = JSON.parse(data)
+            // console.log(data)
+			// var	table_data =""
+			// table_data += '<option value="0">Position</option>'	
+			// data.forEach((row,i) => {
 												
-				table_data += '<option value=" '+ row.Position_ID +'">'+row.Position_name+'</option>'
+			// 	table_data += '<option value=" '+ row.Position_ID +'">'+row.Position_name+'</option>'
 						 
-			});
+			// });
 		
-			$('#pos_select').html(table_data);
+			// $('#pos_select').html(table_data);
 								
 		}
 	});
@@ -42,7 +42,7 @@ function get_company() {
 	
 	$.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/ev_quota/v_mange_quota",
+        url: "<?php echo base_url(); ?>ev_quota/Evs_quota/v_mange_quota",
         data: {
             "cpn_id": cpn_sel
         },

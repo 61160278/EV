@@ -162,13 +162,13 @@ class M_evs_position extends Da_evs_position {
 		return $query;
 	}//get_department
 
-	function get_position_by_id(){
-		$sql = "SELECT *
-		FROM dbmc.position
-		WHERE position_level_id = ? ";
-			$query = $this->db->query($sql, array($this->position_level_id));
-		return $query;
-	}//get_department_by_id
+	// function get_position_by_id(){
+	// 	$sql = "SELECT *
+	// 	FROM dbmc.position
+	// 	WHERE position_level_id = ? ";
+	// 		$query = $this->db->query($sql, array($this->position_level_id));
+	// 	return $query;
+	// }//get_department_by_id
 	function get_position_all(){
 		$sql = "SELECT * 
 					FROM dbmc.position
