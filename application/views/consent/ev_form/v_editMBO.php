@@ -916,7 +916,7 @@ function show_approve() {
                                     <td><?php echo $com; ?></td>
                                     <td><?php echo $key; ?></td>
                                     <td><?php echo $exp; ?></td>
-                                    <td><?php echo $weight; ?></td>
+                                    <td><center><?php echo $weight; ?></center></td>
 
                                     <?php $count++; } 
                                     // if 
