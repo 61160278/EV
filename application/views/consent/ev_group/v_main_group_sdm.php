@@ -8,18 +8,19 @@
 * @Create Date 2564-04-08
 */  
 ?>
-<head>
-    <style>
-    thead {
-        color: black;
-        font-size: 17px;
-    }
 
-    tbody {
-        color: black;
-        font-size: 14px;
-    }
-    </style>
+<head>
+      <style>
+      thead {
+            color: black;
+            font-size: 17px;
+      }
+
+      tbody {
+            color: black;
+            font-size: 14px;
+      }
+      </style>
 </head>
 <script>
 function select_company(value) {
@@ -36,7 +37,7 @@ function select_company(value) {
 
 $(document).ready(function() {
       $("#alert_grouptext").hide();
-  
+
 
       $("#grouptext").keyup(function() {
             $("#alert_grouptext").hide();
@@ -46,8 +47,9 @@ $(document).ready(function() {
 // document ready
 
 
-function clear_css(gru_id){
-      $("#alert_grouptext_edt"+gru_id).hide();
+function clear_css(gru_id) {
+      $("#alert_grouptext_edt" + gru_id).hide();
+      $("#btnedit" + gru_id).attr("disabled", false);
 }
 //function clear_css
 
@@ -76,7 +78,33 @@ function add_group() {
 }
 //function add_group
 
+function edit_group(gru_id) {
 
+      var grouptext = document.getElementById("grouptext" + gru_id).value;
+      var Emp_id = document.getElementById("Emp_id" + gru_id).value;
+      var Showname_modol = document.getElementById("nameEmp" + gru_id).value;
+
+$.ajax({
+      type: "POST",
+      url: "<?php echo base_url(); ?>/ev_group/Evs_group/save_edit_sdm",
+      data: {
+            "grouptext": grouptext,
+            "Emp_id": Emp_id,
+            "gru_id":gru_id
+
+      },
+      dataType: "JSON",
+      error: function(status) {
+            console.log(status)
+      }
+      // success function
+
+});
+
+window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_sdm";
+
+}
+//function add_group
 function Delete_data(gru_id) {
 
       console.log(gru_id);
@@ -242,14 +270,38 @@ function check_data_edt(check) {
       var group = document.getElementById("grouptext" + check).value;
       var Emp_id = document.getElementById("Emp_id" + check).value;
       var Showname_modol = document.getElementById("nameEmp" + check).value;
+      var count = 0;
       console.log(group)
       console.log(Emp_id)
       console.log(Showname_modol)
 
       if (group != "" && Emp_id != "") {
             if (Showname_modol != "ไม่มีข้อมูล") {
-                
-                  return true;
+
+                 
+                  $.get("<?php echo base_url(); ?>/ev_group/Evs_group/get_group_sdm ", function(data, status) {
+                        var obj = JSON.parse(data); //แปลงค่าข้อมูล JSON
+                        obj.forEach((row, index) => { //row =data
+                     
+                              if (group == row.gru_name) {
+                                    count++;
+                                    console.log(count)
+                              }
+                              // if-else
+                        });
+                        // forEach
+                        if (count == 0) {
+                              console.log("true")
+                           
+                              edit_group(check);      
+                              return true;
+                        } else {
+                              $("#btnedit" + check).attr("disabled", true);
+                              return false;
+                        }
+                  });
+                  // $.get
+                 
             }
             // if
             else {
@@ -268,7 +320,6 @@ function check_data_edt(check) {
 
 }
 //function check_data_edt 
-
 </script>
 
 <!DOCTYPE html>
@@ -337,7 +388,7 @@ function check_data_edt(check) {
                                                       </tr>
                                                       <!-- tr -->
                                                 </thead>
-                                                      <!-- thead -->
+                                                <!-- thead -->
                                                 <tbody>
                                                       <?php
 									$num = 1;
@@ -382,7 +433,7 @@ function check_data_edt(check) {
                                                       <?php 
 									$num++; 
 									} //foreach?>
-                                                      
+
                                                 </tbody>
                                           </table>
                                           <!-- table -->
@@ -534,61 +585,60 @@ function check_data_edt(check) {
                   <!-- modal header -->
 
                   <div class="modal-body">
-                        <form class="form-horizontal"  action="<?php echo base_url(); ?>ev_group/Evs_group/save_edit_sdm"
-                              method="post" onsubmit="return check_data_edt('<?php echo $row->gru_id; ?>')">
-                              <div class="form-group">
-                                    <label for="focusedinput" class="col-sm-3 control-label">Group
-                                          Name</label>
-                                    <div class="col-sm-6">
-                                          <input type="text" class="form-control" value="<?php echo $row->gru_name; ?>"
-                                                id="grouptext<?php echo $row->gru_id; ?>" name="grouptext"
-                                                placeholder="HR AGM" onkeyup="clear_css(<?php echo $row->gru_id; ?>)">
-                                          <label class="col-sm-12 control-label"></label>
-                                          <!-- <p id="alert_grouptext_edt<?php echo $row->gru_id; ?>" >
+                  <form class="form-horizontal">
+                        <div class="form-group">
+                              <label for="focusedinput" class="col-sm-3 control-label">Group
+                                    Name</label>
+                              <div class="col-sm-6">
+                                    <input type="text" class="form-control" value="<?php echo $row->gru_name; ?>"
+                                          id="grouptext<?php echo $row->gru_id; ?>" name="grouptext"
+                                          placeholder="HR AGM" onkeyup="clear_css(<?php echo $row->gru_id; ?>)">
+                                    <label class="col-sm-12 control-label"></label>
+                                    <!-- <p id="alert_grouptext_edt<?php echo $row->gru_id; ?>" >
                                                 <font color="red"><b>This data already to used! </b></font>
                                           </p> -->
 
-                                    </div>
                               </div>
-                              <!-- Group Name -->
+                        </div>
+                        <!-- Group Name -->
 
-                              <h2 style="font-family:'Courier New'">
-                                    <b>
-                                          <font size="4px" color="Black">
-                                                Select Head Dept.
-                                          </font>
-                                    </b>
-                              </h2>
+                        <h2 style="font-family:'Courier New'">
+                              <b>
+                                    <font size="4px" color="Black">
+                                          Select Head Dept.
+                                    </font>
+                              </b>
+                        </h2>
 
-                              <div class="form-group">
-                                    <label for="focusedinput" class="col-sm-3 control-label">Emp.
-                                          ID</label>
-                                    <div class="col-sm-6">
-                                          <input type="text" class="form-control"
-                                                value="<?php echo $row->gru_head_dept; ?>" name="Emp_id"
-                                                id="Emp_id<?php echo $row->gru_id; ?>" placeholder="JS000xxx"
-                                                onkeyup="get_idemployee('<?php echo $row->gru_id; ?>')">
-                                          <input type="hidden" class="form-control" value="<?php echo $row->gru_id; ?>"
-                                                name="gru_id" id="gru_id">
-                                    </div>
+                        <div class="form-group">
+                              <label for="focusedinput" class="col-sm-3 control-label">Emp.
+                                    ID</label>
+                              <div class="col-sm-6">
+                                    <input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>"
+                                          name="Emp_id" id="Emp_id<?php echo $row->gru_id; ?>" placeholder="JS000xxx"
+                                          onkeyup="get_idemployee('<?php echo $row->gru_id; ?>')">
+                                    <input type="hidden" class="form-control" value="<?php echo $row->gru_id; ?>"
+                                          name="gru_id" id="gru_id">
                               </div>
-                              <!--Emp. ID -->
+                        </div>
+                        <!--Emp. ID -->
 
-                              <div class="form-group">
-                                    <label for="focusedinput" class="col-sm-3 control-label">Name
-                                          - Surname</label>
-
-
-                                    <div class="col-sm-6">
-                                          <input disabled type="text" class="form-control"
-                                                value="<?php echo $row->Empname_eng , " ", $row->Empsurname_eng; ?>"
-                                                id="nameEmp<?php echo $row->gru_id ?>" placeholder="Name Surname">
-                                    </div>
+                        <div class="form-group">
+                              <label for="focusedinput" class="col-sm-3 control-label">Name
+                                    - Surname</label>
 
 
+                              <div class="col-sm-6">
+                                    <input disabled type="text" class="form-control"
+                                          value="<?php echo $row->Empname_eng , " ", $row->Empsurname_eng; ?>"
+                                          id="nameEmp<?php echo $row->gru_id ?>" placeholder="Name Surname">
                               </div>
-                              <!-- Name Surname -->
 
+
+                        </div>
+                        <!-- Name Surname -->
+                  </form>
+                  <!-- form -->
                   </div>
                   <!-- modal-body -->
 
@@ -596,11 +646,11 @@ function check_data_edt(check) {
                         <div class="btn-group pull-left">
                               <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
                         </div>
-                        <input type="submit" class="btn btn-success" value="SAVE">
+                        <button type="button" class="btn btn-success" id="btnedit<?php echo $row->gru_id; ?>"
+                              onclick="return check_data_edt('<?php echo $row->gru_id; ?>')">SAVE</button>
                   </div>
                   <!-- modal-footer -->
-                  </form>
-                  <!-- form-horizontal -->
+
             </div>
             <!-- modal-content -->
       </div>
