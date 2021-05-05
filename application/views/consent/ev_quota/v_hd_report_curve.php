@@ -97,7 +97,7 @@ function check_quota_actual() {
             $("#show_Actual").css("color", "red");
             add_alert();
             $("#submit").attr("disabled", true);
-        } else if(valueActual ==parseInt(quota)){
+        } else if(valueActual == parseInt(quota)){
             $("#submit").attr("disabled", false);
             $("#show_Actual").css("color", "#000000");
         }
@@ -297,10 +297,10 @@ function show_linebarChart() {
                                         <tr class="orange2">
                                             <td><b>Quota</b></td>
                                             <td id="quota1" value="5">5</td>
-                                            <td id="quota2" value="25">25</td>
+                                            <td id="quota2" value="25">15</td>
                                             <td id="quota3" value="40">30</td>
-                                            <td id="quota4" value="40">10</td>
-                                            <td id="quota5" value="25">25</td>
+                                            <td id="quota4" value="40">30</td>
+                                            <td id="quota5" value="25">15</td>
                                             <td id="quota6" value="5">5</td>
                                             <td>100</td>
                                         </tr>
