@@ -238,10 +238,10 @@ function check_edit_skd(check) {
                 // forEach
                 if (count == 0) {
                     console.log("true")
-
                     edit_group(check);
                     return true;
                 } else {
+                    $("#alert_grouptext" + check).show();
                     $("#btnedit" + check).attr("disabled", true);
                     return false;
                 }
@@ -273,7 +273,8 @@ function manage_data(gru_id) {
 // manage_data
 
 function clear_css(gru_id) {
-    $("#alert_grouptext_edt" + gru_id).hide();
+    $("#alert_grouptext" + gru_id).hide();
+    // $("#alert_grouptext_edt" + gru_id).hide();
     $("#btnedit" + gru_id).attr("disabled", false);
 }
 //function clear_css
@@ -432,7 +433,7 @@ function clear_css(gru_id) {
         <div class="modal-content">
             <div class="modal-header" style="background-color:gray;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b></font>
+                    <font color="Black"><b>&times;</b></font>
                 </button>
                 <h2 class="modal-title"><b>
                         <font color="white">Add SKD Group Data & Head Dept.</font>
@@ -446,17 +447,14 @@ function clear_css(gru_id) {
                         <label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="grouptext" placeholder="HR AGM" name="Emp_id">
+                            <label class="col-sm-12 control-label"></label>
+                            <p id="alert_grouptext">
+                                <font color="red"><b> This data already to use! </b></font>
+                            </p>
                         </div>
+                        
                     </div>
                     <!-- Group Name -->
-
-                    <label class="col-sm-3 control-label"></label>
-                    <div class="col-sm-6">
-                        <p id="alert_grouptext">
-                            <font color="red"><b> This data already to use! </b></font>
-                        </p>
-                    </div>
-                    <!-- Duplicate groups please check. -->
 
                     <div class="form-group">
                         <label class="col-sm-1 control-label"></label>
@@ -515,7 +513,7 @@ function clear_css(gru_id) {
         <div class="modal-content">
             <div class="modal-header" style="background-color:gray;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b></font>
+                    <font color="Black"><b>&times;</b></font>
                 </button>
                 <h2 class="modal-title" style="font-family:'Georgia'"><b>
                         <font color="white">Edit SKD Group Data & Head Dept.</font>
@@ -532,15 +530,21 @@ function clear_css(gru_id) {
                                 id="group_text<?php echo $row->gru_id; ?>" name="group_text" placeholder="HR AGM"
                                 onkeyup="clear_css(<?php echo $row->gru_id; ?>)">
                             <label class="col-sm-12 control-label"></label>
+                            <p id="alert_grouptext<?php echo $row->gru_id; ?>" hidden>
+                                <font color="red"><b> This data already to use! </b></font>
+                            </p>
                         </div>
                     </div>
                     <!-- Group Name -->
 
-                    <h2 style="font-family:'Monaco'">
-                        <b>
-                            <font size="4px" color="Black">Select Head Dept.</font>
-                        </b>
-                    </h2>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label"></label>
+                        <div class="col-sm-8">
+                            <label style="font-family:'Courier New'"><b>
+                                    <font size="4px" color="Black">Select Head Dept.</font>
+                                </b></label>
+                        </div>
+                    </div>
                     <!-- Select Head Dept. -->
 
                     <div class="form-group">
@@ -574,7 +578,7 @@ function clear_css(gru_id) {
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
                 </div>
                 <button type="submit" class="btn btn-success" id="btnedit<?php echo $row->gru_id; ?>"
-                onclick="return check_edit_skd('<?php echo $row->gru_id; ?>')">SAVE</button>
+                    onclick="return check_edit_skd('<?php echo $row->gru_id; ?>')">SAVE</button>
             </div>
             <!-- modal-footer -->
         </div>
@@ -584,59 +588,18 @@ function clear_css(gru_id) {
 </div>
 <!-- End Modal Edit_add-->
 
-<!-- Modal Warning -->
-<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:#FF9800;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b>
-                    </font>
-                </button>
-                <h2 class="modal-title"><b>
-                        <font color="white">Warning</font>
-                    </b></h2>
-            </div>
-            <!-- Modal header -->
-
-            <div class="modal-body">
-                <div class="form-horizontal">
-                    <div class="form-group" align="center">
-                        <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
-                                align="center">
-                                <font size="3px">
-                                    Please fill in the correct information.</font>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <!-- form-horizontal -->
-            </div>
-            <!-- modal body -->
-
-            <div class="modal-footer">
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
-                </div>
-            </div>
-            <!-- modal footer -->
-        </div>
-        <!-- modal-content -->
-    </div>
-    <!-- modal-dialog -->
-</div>
-<!-- End Modal Warning -->
-
 <!-- Modal Delete -->
 <div class="modal fade" id="Delete<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color:gray;">
+            <div class="modal-header" style="background-color:red;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b></font>
+                    <font color="Black"><b>&times;</b></font>
                 </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Delete</font>
+                    </b></h2>
             </div>
             <!-- Modal header -->
 
@@ -674,3 +637,47 @@ function clear_css(gru_id) {
 $num++;
 } ?>
 <!-- foreach modal -->
+
+<!-- Modal Warning -->
+<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#FF9800;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="Black"><b>&times;</b>
+                    </font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Warning</font>
+                    </b></h2>
+            </div>
+            <!-- Modal header -->
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group" align="center">
+                        <div class="col-sm-12">
+                            <label for="focusedinput" class="control-label" style="font-family:'Georgia'"
+                                align="center">
+                                <font size="5px">
+                                    Please fill in the correct information.</font>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!-- form-horizontal -->
+            </div>
+            <!-- modal body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                </div>
+            </div>
+            <!-- modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal Warning -->
