@@ -72,7 +72,13 @@ class Evs_form extends MainController_avenxo {
 			$this->load->model('M_evs_set_form_ability','mesf');
 			$this->mesf->sfa_pos_id = $tep->Position_ID;
 			$this->mesf->sfa_pay_id = $pay_id;
-			$data['acm_info'] = $this->mesf->get_all_by_pos();
+			$data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator();
+
+			$this->load->model('M_evs_expected_behavior','mept');
+			$data['info_expected'] = $this->mept->get_all_by_pos();
+
+			$data['info_pos_id'] = $tep->Position_ID;
+			
 
 			$this->output('/consent/ev_form/v_editMBO',$data);
 		}
@@ -83,6 +89,19 @@ class Evs_form extends MainController_avenxo {
 			$this->memp->Emp_ID = $emp_id;
 			$this->memp->emp_pay_id = $pay_id;
 			$data['emp_info'] = $this->memp->get_by_empid();
+
+			$tep = $data['emp_info']->row();
+			$this->load->model('M_evs_set_form_ability','mesf');
+			$this->mesf->sfa_pos_id = $tep->Position_ID;
+			$this->mesf->sfa_pay_id = $pay_id;
+			$data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator();
+
+			$this->load->model('M_evs_expected_behavior','mept');
+			$data['info_expected'] = $this->mept->get_all_by_pos();
+
+			$data['info_pos_id'] = $tep->Position_ID;
+
+
 			$this->output('/consent/ev_form/v_createMBO',$data);
 		}
 		// else	

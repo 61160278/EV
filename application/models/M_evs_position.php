@@ -128,7 +128,7 @@ class M_evs_position extends Da_evs_position {
 	*/	
 
 	function get_pos_com_dep(){	
-		$sql = "SELECT*
+		$sql = " SELECT *
 		FROM dbmc.employee
 		LEFT JOIN dbmc.position
 		ON employee.Position_ID = position.Position_ID
@@ -140,7 +140,7 @@ class M_evs_position extends Da_evs_position {
 		ON sectioncode.dep_id = department.Dep_id
 		LEFT JOIN dbmc.company
 		ON department.Company_ID = company.Company_ID
-        WHERE company.Company_ID = ? AND department.Dep_id = ? AND position_level.psl_id = ? AND position.Position_ID = ?
+        WHERE (employee.Company_ID = ?) AND department.Dep_id = ? AND position_level.psl_id = ? AND position.Position_ID = ?
 				";
 		$query = $this->db->query($sql, array($this->Company_ID,$this->Dep_id,$this->psl_id,$this->Position_ID));
 		return $query;

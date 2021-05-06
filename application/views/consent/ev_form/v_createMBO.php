@@ -290,55 +290,6 @@ function clear_css_inp(i) {
 }
 // function clear_css_inp
 
-
-function createACM() {
-
-    var data_row = '';
-    var info_row = 5;
-
-    for (i = 0; i < info_row; i++) {
-        data_row += '<tr id="dis_color">'
-        data_row += '<td><center>' + (i + 1) + '</center></td>'
-        data_row += '<td></td>'
-        data_row += '<td></td>'
-        data_row += '<td></td>'
-        data_row += '<td></td>'
-        data_row += '<td>'
-        data_row += '<center>'
-        data_row += '<form action="">'
-        data_row += '<div class="col-md-12">'
-        data_row += '<input type="radio" name="result" value="1" Disabled Unchecked>'
-        data_row += '<label for="1">&nbsp;1</label>'
-        data_row += '&nbsp;&nbsp;'
-        data_row += '<input type="radio" name="result" value="2" Disabled Unchecked>'
-        data_row += '<label for="2">&nbsp;2</label>'
-        data_row += '&nbsp;&nbsp;'
-        data_row += '<input type="radio" name="result" value="3" Disabled Unchecked>'
-        data_row += '<label for="3">&nbsp;3</label>'
-        data_row += '&nbsp;&nbsp;'
-        data_row += '<input type="radio" name="result" value="4" Disabled Unchecked>'
-        data_row += '<label for="4">&nbsp;4</label>'
-        data_row += '&nbsp;&nbsp;'
-        data_row += '<input type="radio" name="result" value="5" Disabled Unchecked>'
-        data_row += '<label for="5">&nbsp;5</label>'
-        data_row += '&nbsp;&nbsp;'
-        data_row += '</div>'
-        data_row += '<!-- col-12 -->'
-        data_row += '</form>'
-        data_row += '</center>'
-        data_row += '</td>'
-        data_row += '<td></td>'
-        data_row += '</tr>'
-
-    }
-    // for
-
-    //console.log(data_row);
-    $("#row_acm").html(data_row);
-
-}
-// function createACM
-
 function createAtt() {
 
     var data_row = '';
@@ -674,8 +625,82 @@ function cancel_form(){
                                 </tr>
                             </thead>
                             <!-- thead -->
-                            <tbody id="row_acm">
+                            <tbody id="dis_color">
+                                <?php  
+                                    $index_acm = 1;
+                                    $temp_keycomponent = "";
+                                    $temp_expected = "";
+                                    $sum_max_rating = 0;
+                                    // start foreach
+                                    foreach($info_ability_form->result() as $row){
+                                ?>
+                                <tr>
+                                    <td id="dis_color">
+                                        <center><?php echo $index_acm++; ?></center>
+                                    </td>
+                                    <td id="dis_color">
+                                        <?php echo $row->cpn_competency_detail_en . "<br><font color='blue'>" . $row->cpn_competency_detail_th ."</font>"; ?>
+                                    </td>
+                                    <!-- show competency  -->
+                                    <td id="dis_color">
+                                        <?php foreach($info_expected->result() as $row_ept){ 
+                                            if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_keycomponent != $row_ept->kcp_key_component_detail_en){
+                                                $temp_keycomponent = $row_ept->kcp_key_component_detail_en;?>
+                                            <?php echo $row_ept->kcp_key_component_detail_en . "<br><font color='blue'>" . $row_ept->kcp_key_component_detail_th ."</font>"; ?>
+                                        <?php }
+                                            // if
+                                            }
+                                            // foreach ?>
+                                    </td>
+                                    <!-- show key component  -->
+                                    <td id="dis_color">
+                                        <?php foreach($info_expected->result() as $row_ept){ 
+                                            if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_expected != $row_ept->ept_expected_detail_en && $row_ept->ept_pos_id == $info_pos_id){
+                                                $temp_expected = $row_ept->ept_expected_detail_en;?>
+                                            <?php echo $row_ept->ept_expected_detail_en . "<br><font color='blue'>" . $row_ept->ept_expected_detail_th ."</font><hr>"; ?>
+                                        <?php }
+                                        // if
+                                        }
+                                        // foreach ?>
+                                    </td>
+                                    <!-- show expected  -->
+                                    <td id="dis_color">
+                                        <center><?php echo $row->sfa_weight; ?></center>
+                                    </td>
+                                    <!-- show weight  -->
+                                    <td id="dis_color" width="5%">
+                                        <center>
+                                            <div class="col-md-12">
+                                                <form action="">
+                                                    <input type="radio" name="result" value="1" Disabled Unchecked>
+                                                    <label for="1">&nbsp; 1</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="2" Disabled Unchecked>
+                                                    <label for="2">&nbsp; 2</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="3" Disabled Unchecked>
+                                                    <label for="3">&nbsp; 3</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="4" Disabled Unchecked>
+                                                    <label for="4">&nbsp; 4</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="5" Disabled Unchecked>
+                                                    <label for="5">&nbsp; 5</label>
+                                                    &nbsp;&nbsp;
+                                                </form>
+                                            </div>
+                                            <!-- col-12 -->
+                                        </center>
+                                    </td>
+                                    <td id="dis_color" width="2%"></td>
+                                </tr>
+
+                                <?php
+                                    }
+                                    // end foreach
+                                ?>
                             </tbody>
+                            <!-- tbody -->
                             <!-- tbody -->
 
                             <tfoot>

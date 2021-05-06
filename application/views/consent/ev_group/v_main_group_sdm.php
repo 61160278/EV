@@ -492,7 +492,7 @@ function check_data_edt(check) {
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     <font color="Black"><b>&times;</b></font>
                 </button>
-                <h2 class="modal-title"><b>
+                <h2 class="modal-title" style="font-family:'Georgia'"><b>
                         <font color="white">Add Group Data & Head Dept.</font>
                     </b></h2>
             </div>
@@ -570,12 +570,12 @@ function check_data_edt(check) {
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color:gray;">
+            <div class="modal-header" style="background-color:#e9ab18;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     <font color="Black"><b>&times;</b>
                     </font>
                 </button>
-                <h2 class="modal-title"><b>
+                <h2 class="modal-title" style="font-family:'Georgia'"><b>
                         <font color="white">Edit Group
                             Data & Head Dept.</font>
                     </b></h2>
@@ -668,7 +668,7 @@ function check_data_edt(check) {
                     <font color="Black"><b>&times;</b>
                     </font>
                 </button>
-                <h2 class="modal-title"><b>
+                <h2 class="modal-title" style="font-family:'Georgia'"><b>
                         <font color="white">Delete</font>
                   </b></h2>
             </div>
@@ -678,7 +678,7 @@ function check_data_edt(check) {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Georgia'"
+                            <label for="focusedinput" class="control-label" 
                                 align="center">
                                 <font size="5px">
                                     Do you want
@@ -722,7 +722,7 @@ $num++;
                     <font color="Black"><b>&times;</b>
                     </font>
                 </button>
-                <h2 class="modal-title"><b>
+                <h2 class="modal-title" style="font-family:'Georgia'"><b>
                         <font color="white">Warning</font>
                     </b></h2>
             </div>
@@ -732,7 +732,7 @@ $num++;
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Georgia'"
+                            <label for="focusedinput" class="control-label" 
                                 align="center">
                                 <font size="5px">
                                     Please fill in the correct information.</font>
