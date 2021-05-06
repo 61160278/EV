@@ -274,7 +274,6 @@ function manage_data(gru_id) {
 
 function clear_css(gru_id) {
     $("#alert_grouptext" + gru_id).hide();
-    // $("#alert_grouptext_edt" + gru_id).hide();
     $("#btnedit" + gru_id).attr("disabled", false);
 }
 //function clear_css
@@ -452,7 +451,7 @@ function clear_css(gru_id) {
                                 <font color="red"><b> This data already to use! </b></font>
                             </p>
                         </div>
-                        
+
                     </div>
                     <!-- Group Name -->
 
@@ -598,8 +597,8 @@ function clear_css(gru_id) {
                     <font color="Black"><b>&times;</b></font>
                 </button>
                 <h2 class="modal-title"><b>
-                        <font color="white">Delete</font>
-                    </b></h2>
+                    <font color="white">Delete</font>
+                </b></h2>
             </div>
             <!-- Modal header -->
 
