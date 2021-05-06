@@ -50,7 +50,6 @@ $(document).ready(function() {
 
 function clear_css(gru_id) {
       $("#alert_text" + gru_id).hide();
-      $("#alert_grouptext_edt" + gru_id).hide();
       $("#btnedit" + gru_id).attr("disabled", false);
 }
 //function clear_css
@@ -596,9 +595,6 @@ function check_data_edt(check) {
                                                 id="grouptext<?php echo $row->gru_id; ?>" name="grouptext"
                                                 placeholder="HR AGM" onkeyup="clear_css(<?php echo $row->gru_id; ?>)">
                                           <label class="col-sm-12 control-label"></label>
-                                           <p id="alert_grouptext_edt<?php echo $row->gru_id; ?>" >
-                                                
-                                          </p> 
                                           <p id="alert_text<?php echo $row->gru_id; ?>" hidden>
                                                 <font color="red"><b>This data already to used! </b></font>
                                           </p>
@@ -606,13 +602,15 @@ function check_data_edt(check) {
                               </div>
                               <!-- Group Name -->
 
-                              <h2 style="font-family:'Courier New'">
-                                    <b>
-                                          <font size="4px" color="Black">
-                                                Select Head Dept.
-                                          </font>
-                                    </b>
-                              </h2>
+                              <div class="form-group">
+                                    <label class="col-sm-1 control-label"></label>
+                                    <div class="col-sm-8">
+                                          <label style="font-family:'Courier New'"><b>
+                                                      <font size="4px" color="Black">Select Head Dept.</font>
+                                                </b></label>
+                                    </div>
+                              </div>
+                              <!-- Select Head Dept. -->
 
                               <div class="form-group">
                                     <label for="focusedinput" class="col-sm-3 control-label">Emp.
