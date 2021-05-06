@@ -28,10 +28,6 @@ th {
 #dis_color {
     background-color: #F5F5F5;
 }
-
-#row_acm {
-    background-color: #F5F5F5;
-}
 </style>
 <!-- END style -->
 
@@ -879,10 +875,10 @@ function show_approve() {
                                     <th rowspan="2">
                                         <center>Expected Behavior</center>
                                     </th>
-                                    <th rowspan="2" width="6%">
+                                    <th rowspan="2" width="5    %">
                                         <center>Weight</center>
                                     </th>
-                                    <th colspan="2">
+                                    <th colspan="2" width="5%">
                                         <center>Evaluation</center>
                                     </th>
 
@@ -898,7 +894,7 @@ function show_approve() {
                                 </tr>
                             </thead>
                             <!-- thead -->
-                            <tbody>
+                            <tbody id="dis_color">
                                 <?php  
                                     $index_acm = 1;
                                     $temp_keycomponent = "";
@@ -908,46 +904,40 @@ function show_approve() {
                                     foreach($info_ability_form->result() as $row){
                                 ?>
                                 <tr>
-                                    <td>
+                                    <td id="dis_color">
                                         <center><?php echo $index_acm++; ?></center>
                                     </td>
-                                    <td>
-                                        <center>
-                                            <?php echo $row->cpn_competency_detail_en . "<br><font color='blue'>" . $row->cpn_competency_detail_en ."</font>"; ?>
-                                        </center>
+                                    <td id="dis_color">
+                                        <?php echo $row->cpn_competency_detail_en . "<br><font color='blue'>" . $row->cpn_competency_detail_th ."</font>"; ?>
                                     </td>
                                     <!-- show competency  -->
-                                    <td>
+                                    <td id="dis_color">
                                         <?php foreach($info_expected->result() as $row_ept){ 
                                             if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_keycomponent != $row_ept->kcp_key_component_detail_en){
                                                 $temp_keycomponent = $row_ept->kcp_key_component_detail_en;?>
-                                        <center>
-                                            <?php echo $row_ept->kcp_key_component_detail_en . "<br><font color='blue'>" . $row_ept->kcp_key_component_detail_en ."</font>"; ?>
-                                        </center>
+                                            <?php echo $row_ept->kcp_key_component_detail_en . "<br><font color='blue'>" . $row_ept->kcp_key_component_detail_th ."</font>"; ?>
                                         <?php }
                                             // if
                                             }
                                             // foreach ?>
                                     </td>
                                     <!-- show key component  -->
-                                    <td>
+                                    <td id="dis_color">
                                         <?php foreach($info_expected->result() as $row_ept){ 
                                             if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_expected != $row_ept->ept_expected_detail_en && $row_ept->ept_pos_id == $info_pos_id){
                                                 $temp_expected = $row_ept->ept_expected_detail_en;?>
-                                        <center>
-                                            <?php echo $row_ept->ept_expected_detail_en . "<br><font color='blue'>" . $row_ept->ept_expected_detail_th ."</font>"; ?>
-                                        </center>
+                                            <?php echo $row_ept->ept_expected_detail_en . "<br><font color='blue'>" . $row_ept->ept_expected_detail_th ."</font><hr>"; ?>
                                         <?php }
                                         // if
                                         }
                                         // foreach ?>
                                     </td>
                                     <!-- show expected  -->
-                                    <td>
+                                    <td id="dis_color">
                                         <center><?php echo $row->sfa_weight; ?></center>
                                     </td>
                                     <!-- show weight  -->
-                                    <td>
+                                    <td id="dis_color" width="5%">
                                         <center>
                                             <div class="col-md-12">
                                                 <form action="">
@@ -971,7 +961,7 @@ function show_approve() {
                                             <!-- col-12 -->
                                         </center>
                                     </td>
-                                    <td></td>
+                                    <td id="dis_color" width="2%"></td>
                                 </tr>
 
                                 <?php
@@ -983,13 +973,13 @@ function show_approve() {
                             <tfoot>
                                 <tr height="5%" id="dis_color">
                                     <td colspan="4">
-                                        <center> Total Weight</center>
+                                        <center><b> Total Weight </b></center>
                                     </td>
                                     <td>
-                                        <center> 100</center>
+                                        <center><b> 100 </b></center>
                                     </td>
                                     <td>
-                                        <center> Total Result</center>
+                                        <center><b> Total Result </b></center>
                                     </td>
                                     <td>&nbsp;</td>
                                 </tr>
