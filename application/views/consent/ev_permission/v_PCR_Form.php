@@ -111,7 +111,7 @@
                                 <!-- ADDITON ITEM -->
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">TITLE</label>
+                                    <label class="col-sm-2 control-label">TILE</label>
                                 </div>
                                 <!-- TITLE -->
                                 
