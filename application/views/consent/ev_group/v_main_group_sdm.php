@@ -313,7 +313,7 @@ function check_data_edt(check) {
                         // forEach
                         if (count == 0) {
                               console.log("true")
-
+                              $("#alert_text" + check).hide();
                               edit_group(check);
                               return true;
                         } else {
