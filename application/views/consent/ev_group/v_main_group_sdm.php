@@ -617,7 +617,7 @@ function check_data_edt(check) {
                                                 placeholder="HR AGM" onkeyup="clear_css(<?php echo $row->gru_id; ?>)">
                                           <label class="col-sm-12 control-label"></label>
                                            <p id="alert_grouptext_edt<?php echo $row->gru_id; ?>" >
-                                                <font color="white"><b>Do you want to change? </b></font>
+                                                
                                           </p> 
                                           <p id="alert_text<?php echo $row->gru_id; ?>" hidden>
                                                 <font color="red"><b>This data already to used! </b></font>
