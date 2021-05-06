@@ -35,13 +35,34 @@ function select_company(value) {
 //function select_company
 
 
+
+
+
+
+$(document).ready(function() {
+    
+      $("#alert_text" + gru_id).hide();
+      
+
+      $("#grouptext").keyup(function() {
+            $("#alert_text" + gru_id).hide();
+      });
+
+});
+// document ready
+
+
+
+
 $(document).ready(function() {
       $("#alert_grouptext").hide();
-
+    
+      
 
       $("#grouptext").keyup(function() {
             $("#alert_grouptext").hide();
       });
+   
 
 });
 // document ready
@@ -296,7 +317,7 @@ function check_data_edt(check) {
                               edit_group(check);
                               return true;
                         } else {
-                              $("#alert_grouptext_edt" + check).show();
+                              $("#alert_text" + check).show();
                               $("#btnedit" + check).attr("disabled", true);
                               return false;
                         }
@@ -596,9 +617,11 @@ function check_data_edt(check) {
                                                 placeholder="HR AGM" onkeyup="clear_css(<?php echo $row->gru_id; ?>)">
                                           <label class="col-sm-12 control-label"></label>
                                            <p id="alert_grouptext_edt<?php echo $row->gru_id; ?>" >
-                                                <font color="red"><b>This data already to used! </b></font>
+                                                <font color="green"><b>Do you want to change? </b></font>
                                           </p> 
-
+                                          <p id="alert_text<?php echo $row->gru_id; ?>" hidden>
+                                                <font color="red"><b>This data already to used! </b></font>
+                                          </p>
                                     </div>
                               </div>
                               <!-- Group Name -->
