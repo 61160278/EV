@@ -274,7 +274,6 @@ function manage_data(gru_id) {
 
 function clear_css(gru_id) {
     $("#alert_grouptext" + gru_id).hide();
-    // $("#alert_grouptext_edt" + gru_id).hide();
     $("#btnedit" + gru_id).attr("disabled", false);
 }
 //function clear_css
@@ -435,7 +434,7 @@ function clear_css(gru_id) {
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     <font color="Black"><b>&times;</b></font>
                 </button>
-                <h2 class="modal-title"><b>
+                <h2 class="modal-title" style="font-family:'Georgia'"><b>
                         <font color="white">Add SKD Group Data & Head Dept.</font>
                     </b></h2>
             </div>
@@ -452,7 +451,7 @@ function clear_css(gru_id) {
                                 <font color="red"><b> This data already to use! </b></font>
                             </p>
                         </div>
-                        
+
                     </div>
                     <!-- Group Name -->
 
@@ -469,7 +468,7 @@ function clear_css(gru_id) {
                     <div class="form-group">
                         <label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="Emp_id_modol" placeholder="000xxx"
+                            <input type="text" class="form-control" id="Emp_id_modol" placeholder="JS000xxx"
                                 onkeyup="get_Emp()">
                         </div>
                     </div>
@@ -511,7 +510,7 @@ function clear_css(gru_id) {
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color:gray;">
+            <div class="modal-header" style="background-color:#e9ab18;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     <font color="Black"><b>&times;</b></font>
                 </button>
@@ -551,7 +550,7 @@ function clear_css(gru_id) {
                         <label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>"
-                                name="Emp_id" id="Emp_id<?php echo $row->gru_id; ?>" placeholder="000xxx"
+                                name="Emp_id" id="Emp_id<?php echo $row->gru_id; ?>" placeholder="JS000xxx"
                                 onkeyup="get_idemployee('<?php echo $row->gru_id; ?>')">
                             <input type="hidden" class="form-control" value="<?php echo $row->gru_id; ?>" name="gru_id"
                                 id="gru_id">
@@ -597,9 +596,9 @@ function clear_css(gru_id) {
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     <font color="Black"><b>&times;</b></font>
                 </button>
-                <h2 class="modal-title"><b>
-                        <font color="white">Delete</font>
-                    </b></h2>
+                <h2 class="modal-title" style="font-family:'Georgia'"><b>
+                    <font color="white">Delete</font>
+                </b></h2>
             </div>
             <!-- Modal header -->
 
@@ -607,7 +606,7 @@ function clear_css(gru_id) {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Georgia'"
+                            <label for="focusedinput" class="control-label"
                                 align="center">
                                 <font size="5px">Do you want to Delete Data YES or
                                     NO ?</font>
@@ -647,7 +646,7 @@ $num++;
                     <font color="Black"><b>&times;</b>
                     </font>
                 </button>
-                <h2 class="modal-title"><b>
+                <h2 class="modal-title" style="font-family:'Georgia'"><b>
                         <font color="white">Warning</font>
                     </b></h2>
             </div>
@@ -657,7 +656,7 @@ $num++;
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Georgia'"
+                            <label for="focusedinput" class="control-label" 
                                 align="center">
                                 <font size="5px">
                                     Please fill in the correct information.</font>
