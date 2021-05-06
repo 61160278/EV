@@ -28,7 +28,8 @@ th {
 #dis_color {
     background-color: #F5F5F5;
 }
-#row_acm{
+
+#row_acm {
     background-color: #F5F5F5;
 }
 </style>
@@ -863,8 +864,8 @@ function show_approve() {
                         <!-- show infomation employee -->
                         <hr>
 
-                        <table class="table table-bordered table-striped m-n" id="mbo">
-                            <thead id="headmbo">
+                        <table class="table table-bordered table-striped m-n" id="acm">
+                            <thead id="headacm">
                                 <tr>
                                     <th rowspan="2">
                                         <center> No.</center>
@@ -897,41 +898,55 @@ function show_approve() {
                                 </tr>
                             </thead>
                             <!-- thead -->
-                            <tbody id="row_acm">
-                                <?php 
-                            $index_col = 1;
-                            $count = 1;
-                            $com = "";
-                            $key = "";
-                            $exp = "";
-                            foreach($acm_info->result() as $index => $row){ ?>
+                            <tbody>
+                                <?php  
+                                    $index_acm = 1;
+                                    $temp_keycomponent = "";
+                                    $temp_expected = "";
+                                    $sum_max_rating = 0;
+                                    // start foreach
+                                    foreach($info_ability_form->result() as $row){
+                                ?>
                                 <tr>
-                                    <td><?php echo $count; ?></td>
-                                    <?php if($index == 0){
-                                    $com = $row->cpn_competency_detail_en;
-                                    $key = $row->kcp_key_component_detail_en;
-                                    $exp = $row->ept_expected_detail_en; 
-                                    $weight = $row->sfa_weight;?>
-
-                                    <td><?php echo $com; ?></td>
-                                    <td><?php echo $key; ?></td>
-                                    <td><?php echo $exp; ?></td>
-                                    <td><center><?php echo $weight; ?></center></td>
-
-                                    <?php $count++; } 
-                                    // if 
-                                    else { 
-                                    $com = $row->cpn_competency_detail_en;
-                                    $key = $row->kcp_key_component_detail_en;
-                                    $exp = $row->ept_expected_detail_en;
-                                    $weight = $row->sfa_weight;?>
-
-                                    <td><?php echo $com; ?></td>
-                                    <td><?php echo $key; ?></td>
-                                    <td><?php echo $exp; ?></td>
-                                    <td><center><?php echo $weight; ?></center></td>
-
-                                    <?php }?>
+                                    <td>
+                                        <center><?php echo $index_acm++; ?></center>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <?php echo $row->cpn_competency_detail_en . "<br><font color='blue'>" . $row->cpn_competency_detail_en ."</font>"; ?>
+                                        </center>
+                                    </td>
+                                    <!-- show competency  -->
+                                    <td>
+                                        <?php foreach($info_expected->result() as $row_ept){ 
+                                            if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_keycomponent != $row_ept->kcp_key_component_detail_en){
+                                                $temp_keycomponent = $row_ept->kcp_key_component_detail_en;?>
+                                        <center>
+                                            <?php echo $row_ept->kcp_key_component_detail_en . "<br><font color='blue'>" . $row_ept->kcp_key_component_detail_en ."</font>"; ?>
+                                        </center>
+                                        <?php }
+                                            // if
+                                            }
+                                            // foreach ?>
+                                    </td>
+                                    <!-- show key component  -->
+                                    <td>
+                                        <?php foreach($info_expected->result() as $row_ept){ 
+                                            if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_expected != $row_ept->ept_expected_detail_en && $row_ept->ept_pos_id == $info_pos_id){
+                                                $temp_expected = $row_ept->ept_expected_detail_en;?>
+                                        <center>
+                                            <?php echo $row_ept->ept_expected_detail_en . "<br><font color='blue'>" . $row_ept->ept_expected_detail_th ."</font>"; ?>
+                                        </center>
+                                        <?php }
+                                        // if
+                                        }
+                                        // foreach ?>
+                                    </td>
+                                    <!-- show expected  -->
+                                    <td>
+                                        <center><?php echo $row->sfa_weight; ?></center>
+                                    </td>
+                                    <!-- show weight  -->
                                     <td>
                                         <center>
                                             <div class="col-md-12">
@@ -958,10 +973,11 @@ function show_approve() {
                                     </td>
                                     <td></td>
                                 </tr>
-                                <?php  }; ?>
-                                <!-- foreach  -->
 
-
+                                <?php
+                                    }
+                                    // end foreach
+                                ?>
                             </tbody>
                             <!-- tbody -->
                             <tfoot>
