@@ -30,9 +30,62 @@ var value_pos_id = document.getElementById("value_pos_id").value; //position ID
 var value_year_id = document.getElementById("year").value; // year now ID
 
 $(document).ready(function() {
-  
-});
 
+    // load_data();
+
+    // function load_data()
+    // {
+    // 	$.ajax({
+    // 		url:"<?php //echo base_url(); ?>/Evs_mhrd_form/fetch",
+    // 		type:"POST",
+    // 		success:function(data){
+    // 			$('#customer_data').html(data);
+    // 		}
+    // 	})
+    // }
+
+    $('#import_form').on('submit', function(form_submit) {
+        form_submit.preventDefault();
+        $.ajax({
+            url: "<?php echo base_url(); ?>/Evs_mhrd_form/import",
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            dataType: "JSON",
+            success: function(data) {
+                $('#file').val('');
+                output = "";
+                output += '<table class="table table-striped table-bordered">'
+                output += '<tr>'
+                output += '<th>Customer Name</th>'
+                output += '	<th>Address</th>'
+                output += '		<th>City</th>'
+                output += '		<th>Postal Code</th>'
+                output += '		<th>Country</th>'
+                output += '	</tr>'
+
+                data.forEach((row, index) => {
+                    output += '<tr>'
+                    output += '<td>' + row.CustomerName + '</td>'
+                    output += '<td>' + row.Address+
+                    '</td>'
+                    output += '<td>' + row.City+
+                    '</td>'
+                    output += '<td>' + row.PostalCode+
+                    '</td>'
+                    output += '<td>' + row.Country+
+                    '</td>'
+                    output += '</tr>'
+
+                });
+                output += '</table>';
+                $('#customer_data').html(output);
+            }
+        });
+    });
+});
 </script>
 
 <style>
@@ -151,63 +204,27 @@ $(document).ready(function() {
                     </div>
                     <!-- End Widgets  -->
                 </div>
-                <!-- Start form set index mbo -->
 
-                <form class="form-horizontal">
-                    <div class="row">
-                        <div class="col-2"></div>
-                        <div class="col-3" align="right">
-                            <label class=" form-control-label">Index of mbo form :</label>
+
+                <div class="row">
+                    <div class="container">
+                        <br>
+                        <form method="post" id="import_form" enctype="multipart/form-data">
+                            <p><label>Select Excel File</label>
+                                <input type="file" name="file" id="file" required accept=".xls, .xlsx" />
+                            </p>
+                            <br />
+                            <input type="submit" name="import" value="Import" class="btn btn-info" />
+                        </form>
+                        <br />
+                        <div class="table-responsive" id="customer_data">
+
                         </div>
-                        <!-- col-3 -->
-                        <div class="col-3">
-                            <input type="number" id="number_input" class="form-control" min="5" max="10"
-                                onchange="set_index()" value="5">
-                        </div>
-                        <!-- col-3  -->
-                        <div class="col-1">
-                            <button type="button" class="btn btn-success float-right" id="save" data-toggle="modal"
-                                data-target="#confirm_save">Save</button>
-                        </div>
-                        <!-- col-3  -->
                     </div>
-                    <!-- row  -->
-                </form>
-                <!-- form  -->
-                <!-- End form set index mbo -->
 
-                <br>
-                <!-- Start table-->
-                <table id="t01" border="1" class="table" width="100%">
-                    <thead>
-                        <tr>
-                            <th width="5%">
-                                <center>
-                                    #
-                                </center>
-                            </th>
-                            <th>
-                                <center>
-                                    SDGs
-                                </center>
-                            </th>
-                            <th>
-                                <center>
-                                    Management by Objective
-                                </center>
-                            </th>
-                            <th width="13%">
-                                <center>
-                                    Weight
-                                </center>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                    <!-- tbody  -->
-                </table>
-                <!-- End table  -->
+                </div>
+
+
                 <div class="row">
                     <div class="col-sm-12" align="right">
                         <a
@@ -226,7 +243,7 @@ $(document).ready(function() {
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        <p> SDGs : Sustainable Development Goals</p><br>
+                        <!-- <p> SDGs : Sustainable Development Goals</p><br> -->
                     </div>
                 </div>
                 <!-- SDGs  -->
@@ -235,7 +252,7 @@ $(document).ready(function() {
 
             </div>
         </div>
-        <!-- End Card -->                                        
+        <!-- End Card -->
         <br>
     </div>
 </div>
