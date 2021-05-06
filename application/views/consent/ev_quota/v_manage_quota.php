@@ -10,9 +10,9 @@
 ?>
 <script>
 $(document).ready(function() {
-	// get_department()
-	
-	
+    // get_department()
+
+
 }); //ready
 function search_data() {
     var pos_lv_select = document.getElementById("pos_lv_select").value;
@@ -20,54 +20,65 @@ function search_data() {
     var dep_select = document.getElementById("dep_select").value;
     var pos_select = document.getElementById("pos_select").value;
 
-	console.log(pos_lv_select)
-	console.log(com_select)
-	console.log(dep_select)
-	console.log(pos_select)
+    console.log(pos_lv_select)
+    console.log(com_select)
+    console.log(dep_select)
+    console.log(pos_select)
     $.ajax({
         type: "post",
         url: "<?php echo base_url(); ?>ev_quota/Evs_quota/get_search_data",
         data: {
             "pos_lv_select": pos_lv_select,
-			"com_select": com_select,
-			"dep_sel": dep_select,
-			"pos_select": pos_select
+            "com_select": com_select,
+            "dep_sel": dep_select,
+            "pos_select": pos_select
         },
-        datatype:"JSON",
+        datatype: "JSON",
         success: function(data) {
 
             data = JSON.parse(data)
-             console.log(data)
-			
+            console.log(data)
+
             var table_data = ""
 
-             table_data += '<tr>'
-             data.forEach((row, i) => {
+            if (data.length == 0) {
+
                 table_data += '<tr>'
-             
-                    table_data += '<td>'
-                    table_data += row.Company_shortname
-                    table_data += '</td>'
-                    table_data += '<td>'
-                    table_data += row.Dep_Name 
-                    table_data += '</td>'
-                    table_data += '<td>'
-                    table_data += row.Position_name
-                    table_data += '</td>'
-                    table_data += '<td>'
-                    table_data += '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/manage_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
-                    table_data += '</td>'
-                    table_data += '</tr>'
-               i++
-                     '</td>'
+                table_data += '<td colspan="5">'
+                table_data += 'There is no data in the system.'
+                table_data += '</td>'
+                table_data += '</tr>'
+                // $("#def_info").hide();
+                // $("#com_info").hide();
 
-             }
-             
-             
-             
-             );
+            } else {
+                data.forEach((row, i) => {
+                        table_data += '<tr>'
 
-             $('#example tbody').html(table_data);
+                        table_data += '<td>'
+                        table_data += row.Company_shortname
+                        table_data += '</td>'
+                        table_data += '<td>'
+                        table_data += row.Dep_Name
+                        table_data += '</td>'
+                        table_data += '<td>'
+                        table_data += row.Position_name
+                        table_data += '</td>'
+                        table_data += '<td>'
+                        table_data +=
+                            '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/manage_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                        table_data += '</td>'
+                        table_data += '</tr>'
+                        i++
+                        '</td>'
+
+                    }
+
+
+
+                );
+            }
+            $('#example tbody').html(table_data);
 
         }
     });
@@ -89,7 +100,7 @@ function get_position() {
             data = JSON.parse(data)
             // console.log(data)
             var table_data = ""
-          
+
             data.forEach((row, i) => {
 
                 table_data += '<option value="' + row.Position_ID + '">' + row.Position_name +
@@ -97,7 +108,7 @@ function get_position() {
 
             });
             $('#pos_select').html(table_data);
-			
+
         }
     });
 }
@@ -118,7 +129,7 @@ function get_department() {
             data = JSON.parse(data)
             // console.log(data)
             var table_data = ""
-          
+
             data.forEach((row, i) => {
 
                 table_data += '<option value="' + row.Dep_id + '">' + row.Dep_Name + '</option>'
@@ -126,13 +137,12 @@ function get_department() {
             });
 
             $('#dep_select').html(table_data);
-			
+
 
         }
     });
 
 }
-
 </script>
 <style>
 h2 {
@@ -173,7 +183,7 @@ h4 {
             <div>
                 <label class="col-md-3">
                     <select id="com_select" name="example_length" class="form-control" onclick="get_department()">
-                     										
+
                         <!-- start foreach -->
                         <?php foreach($com_data->result() as $value){ ?>
                         <option value="<?php echo $value->Company_ID;?>">
@@ -184,13 +194,13 @@ h4 {
                     </select>
                 </label>
                 <label class="col-md-3">
-                    <select name="example_length" class="form-control" id="dep_select" onclick ="search_data()">
+                    <select name="example_length" class="form-control" id="dep_select" onclick="search_data()">
 
                     </select>
                 </label>
                 <label class="col-md-3">
                     <select name="example_length" class="form-control" id="pos_lv_select" onclick="get_position()">
-                       
+
                         <!-- start foreach -->
                         <?php foreach($psl_data->result() as $value){ ?>
                         <option value="<?php echo $value->psl_id;?>">
@@ -201,7 +211,7 @@ h4 {
                     </select>
                 </label>
                 <label class="col-md-3">
-                    <select name="example_length" class="form-control" id="pos_select" onclick ="search_data()">
+                    <select name="example_length" class="form-control" id="pos_select" onclick="search_data()">
 
                     </select>
                 </label>
@@ -231,8 +241,8 @@ h4 {
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody >
-                                       
+                                    <tbody>
+
                                     </tbody>
                                 </table>
                             </div>
