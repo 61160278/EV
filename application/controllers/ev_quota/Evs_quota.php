@@ -248,34 +248,34 @@ function get_search_data(){
 	$com_select = $this->input->post("com_select");
 	$dep_sel = $this->input->post("dep_sel");
 	$pos_select = $this->input->post("pos_select");
-	$this->load->model('M_evs_position','mpos');
+	
+	if($com_select == 0){
 
-	if($com_select == "3"){
-
-		$this->mpos->Company_ID = '1 OR employee.Company_ID = 2';
-
+		$this->load->model('M_evs_position','mpos');
+		$this->mpos->Company_ID = $com_select;
+		$data = $this->mpos->get_pos_com_dep_all()->result();
+		echo json_encode($data);
 	}else{
 
-		$this->mpos->Company_ID = $com_select;
+		$this->load->model('M_evs_position','mpos');	
 
+		if($com_select == "3"){
+
+			$this->mpos->Company_ID = '1 OR employee.Company_ID = 2';
+
+		}else{
+
+			$this->mpos->Company_ID = $com_select;
+
+		}
+	
+		$this->mpos->Dep_id = $dep_sel;
+		$this->mpos->psl_id = $pos_lv_select;
+		$this->mpos->Position_ID = $pos_select;
+		$data = $this->mpos->get_pos_com_dep()->result();
+		echo json_encode($data);
 	}
-
-	$this->mpos->Dep_id = $dep_sel;
-	$this->mpos->psl_id = $pos_lv_select;
-	$this->mpos->Position_ID = $pos_select;
-	$data = $this->mpos->get_pos_com_dep()->result();
-	echo json_encode($data);
-
-
-
-
-
-
 }
-
-
-
-
 
 }// end class
 ?>

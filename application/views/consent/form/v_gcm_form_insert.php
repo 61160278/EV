@@ -1,21 +1,12 @@
 <?php
 /*
-* v_form_mbo_insert
-* Display form MBO management
-* @input  -  
+* v_gcm_form_insert
+* Display form ability management
+* @input  -
 * @output -
-* @author Piyasak Srijan
-* @Create Date 2563-09-01
+* @author Tanadon Tangjaimongkhon
+* @Create Date 2563-09-28
 */ 
-
-/*
-* v_form_mbo_insert
-* Display form MBO management
-* @input  -  
-* @output -
-* @author Piyasak Srijan
-* @Update Date 2563-10-19
-*/
 ?>
 <?php
     $row = $info_pattern_year->row();
@@ -23,104 +14,438 @@
 ?>
 <input type="hidden" id="value_pos_id" name="value_pos_id" value="<?php echo $info_pos_id; ?>">
 <input type="hidden" id="year" name="year" value="<?php echo $year_id; ?>">
-
 <script>
-// var index_fielld = 0; // index of field
-var value_pos_id = document.getElementById("value_pos_id").value; //position ID
+var index = 1; // data number
+var value_pos_id = document.getElementById("value_pos_id").value; // position id from click perform
 var value_year_id = document.getElementById("year").value; // year now ID
-var value_index_fielld = 5;
-$(document).ready(function() {
-    var table = ''; // value for show on table
+var sum_weight = 0; // sum by weight to competency 
+var arr_weight_check = []; // array to check is value by weight
+var arr_save_index_arr_add_pos = [];
 
-    //start for loop
-    for (var i = 1; i <= 5; i++) {
-        table += '<tr>';
-        table += '<td height = "50"> <center>' + i + '</center> </td>';
-        table +=
-            '<td height = "50"> <select name="select" id="select" class="form-control" disabled><option value="0">Please select</option></select></td>';
-        table += '<td height = "50"> <input type="text" id="obj_' + i + '" name="obj_' + i +
-            '" placeholder="Please enter objectives" class="form-control" disabled> </td>';
-        table += '<td height = "50"> <input type="text" id="weight_' + i + '" name="weight_' + i +
-            '" placeholder="" class="form-control" disabled> </td>';
-        table += '</tr>';
-        $("#t01 tbody").html(table);
+/*
+ * check_weight_all
+ * Display -
+ * @input  -
+ * @output -
+ * @author  Tanadon Tangjaimongkhon 
+ * @Create Date 2563-10-29
+ */
+function check_weight_all() {
+   
+    sum_weight_all  = document.getElementById('value_total_weight').value;
+
+    //start if-else
+    if (sum_weight_all == 100) {
+        return true;
+    } else if (sum_weight_all < 100 || sum_weight_all > 100) {
+        var alert = "";
+        alert += '<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">';
+        alert += '<span class="badge badge-pill badge-danger">Wrong</span>';
+        alert += ' Total Weight should be value as 100%';
+        alert += '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+        alert += '<span aria-hidden="true">&times;</span>';
+        alert += '</button>';
+        alert += '</div>';
+        $('#success_save').html(alert);
+        return false;
     }
+    //end if-else
+
+
+}
+/*
+ * total_weight
+ * Display -
+ * @input  -
+ * @output -
+ * @author  Tanadon Tangjaimongkhon 
+ * @Create Date 2563-10-29
+ */
+function total_weight() {
+    sum_weight = 0;
+    //start for loop
+    table_arr_for_count = document.getElementsByName("arr_weight").length
+   for (i = 0; i < table_arr_for_count; i++) {
+        arr_weight_check = document.getElementsByName("arr_weight")[i].value;
+        Number(arr_weight_check);
+        sum_weight += Number(arr_weight_check); 
+        Number(sum_weight);
+        console.log(index);
+   }
     //end for loop
+
+    if (sum_weight == 100) {
+        document.getElementById('value_total_weight').value = sum_weight;
+        document.getElementById('value_total_weight').style.color = "black"
+    } else {
+        document.getElementById('value_total_weight').value = sum_weight;
+        document.getElementById('value_total_weight').style.color = "red"
+    }
+
+   
+    
+
+}
+//total_weight
+
+$(document).ready(function() {
+    var table_ready = ""; // table document ready
+    var table_ready_score = ""; // table document ready_score
+    arr_save_index_arr_add_pos.push(index - 1);
+
+    //start ajax
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/Evs_ability_form/get_compentency",
+        data: {
+            "pos_id": value_pos_id
+        },
+        dataType: "JSON",
+        success: function(data) {
+
+            // start tr
+            table_ready += '<tr id="row_com' + index + '">';
+            table_ready += '<td>';
+            table_ready += '<center>' + index + '</center>';
+            table_ready += '</td>';
+            // index 
+
+            table_ready += '<td>';
+            table_ready += '<select name="arr_compentency[]" id="compentency' + index +
+                '" class="form-control" onchange="get_compentency(value,' + index + ')">';
+            table_ready += '<option value = "0"> Please select</option>';
+            //start foreach
+            data.forEach((row, i) => {
+                
+                //start if
+                if (value_pos_id == row.ept_pos_id) {
+                    table_ready += '<option value="' + row.cpn_id + '">' + row
+                        .cpn_competency_detail_en + " (" + row.cpn_competency_detail_en +
+                        ") " + '</option>';
+                }
+                //end if
+
+            }); //end foreach
+
+            table_ready += '</select>';
+            table_ready += '</td>';
+            // select competency 
+
+            table_ready += '<td id="key_com_' + index + '"> </td>';
+            // show keycom 
+
+            table_ready += '<td id="expected_' + index + '"> </td>';
+            // show expected 
+
+            table_ready += '<td id="weight_tr_' + index + '" >';
+            table_ready += '<input type="number" class="form-control"  id="weight_' + index +
+                '" name="arr_weight" min="0" max="100" required onchange="total_weight()" placeholder="Ex.50">';
+            table_ready += '</td>';
+            // insert weight 
+
+            table_ready += '<td width="20%">';
+            table_ready +=
+                '<center><button type="button" class="btn btn-danger float-center btn_remove" id="delete_com' +
+                index + '" ><i class="fa fa-times"></i></button></center>';
+            table_ready += '</td>';
+            // button delete 
+
+            table_ready += '</tr>';
+            table_ready += '<tr>';
+            table_ready_score += '<td colspan="4">';
+            table_ready_score += '<center>';
+            table_ready_score += '<font color="black"><b>Total weight</b></font>';
+            table_ready_score += '</center>';
+            table_ready_score += '</td>';
+            table_ready_score += '<td >';
+            table_ready_score += '<input id="value_total_weight" style="text-align:center" value = "0" disabled>';
+            table_ready_score += '</td>';
+            table_ready_score += '<td>';
+            table_ready_score += '</td>';
+            table_ready_score += '</tr>';
+            // end tr 
+
+            $('#t01 tbody').html(table_ready);
+            $('#t01 tfoot').html(table_ready_score);
+
+        }
+
+    }); //end ajax
+    console.log(arr_save_index_arr_add_pos);
+    $(document).on('click', '#addCompentency', function() {
+        index++;
+        var table; // value for show in table
+
+        arr_save_index_arr_add_pos.push(index - 1);
+        console.log(arr_save_index_arr_add_pos);
+        //start ajax
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url(); ?>/Evs_ability_form/get_compentency",
+            data: {
+                "pos_id": value_pos_id
+            },
+            success: function(data) {
+                
+                data = JSON.parse(data)
+                // start tr
+                table += '<tr id="row_com' + index + '">';
+                table += '<td>';
+                table += '<center>' + index + '</center>';
+                table += '</td>';
+                // index 
+
+                table += '<td>';
+                table += '<select name="arr_compentency[]" id="compentency' + index +
+                    '" class="form-control" onchange="get_compentency(value,' + index +
+                    ')">';
+                table += '<option value = "0"> Please select</option>';
+                //start foreach
+                data.forEach((row, i) => {
+
+                    //start if
+                    if (value_pos_id == row.ept_pos_id) {
+                        table += '<option value="' + row.cpn_id + '">' + row
+                            .cpn_competency_detail_en + " (" + row
+                            .cpn_competency_detail_en + ") " + '</option>';
+                    }
+                    //end if
+
+                }); //end foreach
+
+                table += '</select>';
+                table += '</td>';
+                // select competency 
+
+                table += '<td id="key_com_' + index + '"> </td>';
+                // show keycom 
+
+                table += '<td id="expected_' + index + '"> </td>';
+                // show expected 
+
+                table += '<td id="weight_tr_' + index + '" >';
+                table += '<input type="number" class="form-control"  id="weight_' + index +
+                    '" name="arr_weight" min="0" max="100" required onchange="total_weight()" placeholder="Ex.50">';
+                table += '</td>';
+                // insert weight 
+
+                table += '<td width="20%">';
+                table +=
+                    '<center><button type="button" class="btn btn-danger float-center btn_remove" id="delete_com' +
+                    index + '" ><i class="fa fa-times"></i></button></center>';
+                table += '</td>';
+                // button delete 
+
+                table += '</tr>';
+                // end tr 
+
+                $('#t01 tbody').append(table);
+            }
+
+        }); //end ajax
+
+    }); // add compentency
+
+    $(document).on('click', '.btn_remove', function() {
+        console.log("-----delete -------");
+        var button_id = $(this).attr("id");
+        var res = button_id.substring(10);
+
+        arr_weight_check = document.getElementById('weight_' + res + '').value;
+        Number(arr_weight_check);
+        sum_weight -= Number(arr_weight_check); 
+        Number(sum_weight);
+        console.log(arr_weight_check);
+
+    if (sum_weight == 100) {
+        document.getElementById('value_total_weight').value = sum_weight;
+        document.getElementById('value_total_weight').style.color = "black"
+    } else {
+        document.getElementById('value_total_weight').value = sum_weight;
+        document.getElementById('value_total_weight').style.color = "red"
+    }
+
+        console.log("button : " + res);
+        for (i = 0; i < arr_save_index_arr_add_pos.length; i++) {
+            chack_arr = parseInt(arr_save_index_arr_add_pos[i])
+            if (parseInt(chack_arr) == parseInt(res) - 1) {
+                arr_save_index_arr_add_pos.splice(i, 1);
+            }
+        }
+        console.log(arr_save_index_arr_add_pos);
+        $('#row_com' + res + '').remove();
+        //index--;
+    }); // delete compentency
+
 });
 
-/*
- * set_index
- * Display -
- * @input  index field of MBO form
- * @output index field of MBO form 
- * @author Tanadon Tangjaimongkhon
- * @Update Date 2564-01-17
- */
-function set_index() {
-    var index_fielld = document.getElementById("number_input").value; // index of field
-    console.log(index_fielld);
-    var table = ''; // value for show on table
-
-    //start for loop
-    for (var i = 1; i <= index_fielld; i++) {
-        table += '<tr>';
-        table += '<td height = "50"> <center>' + i + '</center> </td>';
-        table +=
-            '<td height = "50"> <select name="select" id="select" class="form-control" disabled><option value="0">Please select</option></select></td>';
-        table += '<td height = "50"> <input type="text" id="obj_' + i + '" name="obj_' + i +
-            '" placeholder="Please enter objectives" class="form-control" disabled> </td>';
-        table += '<td height = "50"> <input type="text" id="weight_' + i + '" name="weight_' + i +
-            '" placeholder="" class="form-control" disabled> </td>';
-        table += '</tr>';
-    }
-    //end for loop
-    $("#t01 tbody").html(table);
-    value_index_fielld = index_fielld;
-}
 
 /*
- * insert_index
+ * get_compentency
  * Display -
- * @input  index field of MBO form
- * @output input index field of MBO form 
- * @author Piyasak Srijan
- * @Update Date 2563-10-19
+ * @input competency ID, index of competency
+ * @output key component, expected
+ * @author  Tanadon Tangjaimongkhon 
+ * @Create Date 2563-10-29
  */
-function insert_index() {
-    console.log(value_index_fielld);
-    console.log(value_pos_id);
+function get_compentency(value, index) {
+    var competency_id = value; //competency ID
+    var table_key = '' // value key component for show on table
+    var table_expected = ''; // value expected for show on table
 
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_mbo_form/index_mbo_insert",
+        url: "<?php echo base_url(); ?>/Evs_ability_form/get_key_component",
         data: {
-            "index_mbo": value_index_fielld,
+            "competency_id": competency_id,
+            "pos_id": value_pos_id
+        },
+        dataType: "JSON",
+        success: function(data) {
+
+            //start foreach
+            data.forEach((row, index) => {
+
+                //start if
+                if (index == 0) {
+                    table_key += row.kcp_key_component_detail_en + " (" + row
+                        .kcp_key_component_detail_th + ")";
+                } else {
+                    table_key += '<br>';
+                    table_key += '<hr>';
+                    table_key += row.kcp_key_component_detail_en + " (" + row
+                        .kcp_key_component_detail_th + ")";
+                }
+                //end if-else
+
+            });
+            //end foreach
+
+            $('#key_com_' + index).html(table_key);
+        }
+    });
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/Evs_ability_form/get_expected",
+        data: {
+            "competency_id": competency_id,
+            "pos_id": value_pos_id
+        },
+        dataType: "JSON",
+        success: function(data) {
+
+            //start foreach
+            data.forEach((row, index) => {
+
+                //start if
+                if (index == 0) {
+                    table_expected += row.ept_expected_detail_en + " (" + row
+                        .ept_expected_detail_th + ")";
+                } else {
+                    table_expected += '<hr>';
+                    table_expected += '<br>';
+                    table_expected += row.ept_expected_detail_en + " (" + row
+                        .ept_expected_detail_th + ")";
+                }
+                //end if-else
+
+            });
+            //end foreach
+
+            $('#expected_' + index).html(table_expected);
+        }
+    });
+}
+/*
+ * form_ability_input
+ * Display -
+ * @input competency data, weight of competency
+ * @output insert competency data, weight of competency to database
+ * @author  Tanadon Tangjaimongkhon 
+ * @Create Date 2563-10-29
+ */
+function form_ability_input() {
+    var arr_competency = []; // array of competency
+    var arr_weight = []; // array of weight
+    
+    //start for loop
+    for (i = 0; i < arr_save_index_arr_add_pos.length; i++) {
+        arr_competency.push($('#compentency' + (parseInt(arr_save_index_arr_add_pos[i])+1)).val());
+        arr_weight.push($('#weight_' + (parseInt(arr_save_index_arr_add_pos[i])+1)).val());
+        console.log(arr_save_index_arr_add_pos[i]);
+    }
+    //end for loop
+
+    console.log(arr_competency);
+    console.log(arr_weight);
+
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/Evs_ability_form/form_ability_input",
+        data: {
+            "arr_competency": arr_competency,
+            "arr_weight": arr_weight,
+            "index": arr_save_index_arr_add_pos.length,
             "pos_id": value_pos_id,
             "year_id": value_year_id
         },
         dataType: "JSON",
+        success: function(data) {
 
-        success: function(status) {
-            console.log(status);
         }
-
     });
 }
-//insert_index()
+//form_ability_input()
+
+/*
+ * confirm_save
+ * Display -
+ * @input -
+ * @output confirm modal
+ * @author  Tanadon Tangjaimongkhon 
+ * @Create Date 2564-02-05
+ */
+function confirm_save() {
+    if (check_weight_all() == true) {
+        form_ability_input();
+        change_status();
+        success_save();
+        window.location = "<?php echo base_url(); ?>/Evs_form/form_position/" + value_pos_id + "/" + value_year_id;
+    }
+}
+/*
+ * success_save
+ * Display -
+ * @input -
+ * @output alert after save
+ * @author  Tanadon Tangjaimongkhon 
+ * @Create Date 2564-02-05
+ */
+function success_save() {
+    var alert_success = "";
+    alert_success += '<div class="sufee-alert alert with-close alert-success alert-dismissible fade show">';
+    alert_success += '<span class="badge badge-pill badge-success">Success</span>';
+    alert_success += 'You successfully to manage ACM form.';
+    alert_success += '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+    alert_success += '<span aria-hidden="true">&times;</span>';
+    alert_success += '</button>';
+    alert_success += '</div>';
+    $('#success_save').html(alert_success);
+}
 
 /*
  * change_status
  * Display -
- * @input  -
- * @output change status form
- * @author   Tanadon Tangjaimongkhon
- * @Update Date 2563-10-19
+ * @input -
+ * @output change for status form 
+ * @author  Tanadon Tangjaimongkhon 
+ * @Create Date 2563-10-29
  */
 function change_status() {
-    var form_name = "MBO"; // form name
+    var form_name = "ACM"; //form name
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_form/change_status_pe",
+        url: "<?php echo base_url(); ?>/Evs_form/change_status_ce",
         data: {
 
             "pos_id": value_pos_id,
@@ -135,21 +460,6 @@ function change_status() {
     });
 }
 //change_status()
-
-/*
- * confirm_save
- * Display -
- * @input -
- * @output confirm modal
- * @author  Kunanya Singmee
- * @Create Date 2564-02-11
- */
-function confirm_save() {
-    insert_index();
-    change_status();
-    window.location = "<?php echo base_url(); ?>/Evs_form/form_position/" + value_pos_id + "/" + value_year_id;
-}
-// confirm_save 
 </script>
 
 <style>
@@ -163,31 +473,44 @@ function confirm_save() {
 #panel_th_topManage {
     background-color: #c1432e;
 }
-</style>
 
+input[type=number] {
+    text-align: center;
+}
+
+#confirm_save {
+    position: absolute;
+    float: left;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+</style>
 
 <!-- Start Page Content -->
 <div class="container-fluid">
 
     <div class="col-lg-12">
-        <!-- Start Card -->
+        <!-- Start Card header -->
         <div class="card shadow mb-4">
             <div class="card-header py-3" id="panel_th_topManage">
                 <div class="col-xl-12">
+           
                     <h1 class="m-0 font-weight-bold text-primary">
                         <a
                             href="<?php echo base_url(); ?>/Evs_form/form_position/<?php echo $info_pos_id; ?>/<?php echo $row->pay_id; ?>">
                             <i class="fa fa-chevron-circle-left text-white"></i>
                         </a>
                         <i class="fa fa-book text-white"></i>
-                        <font color="white">&nbsp;Manage Form : GCM Form</font>
+                        <font color="white">&nbsp;Manage Form : ACM Form</font>
                     </h1>
                 </div>
             </div>
+            <!-- End Card header -->
+            
+            <!-- Start Card body -->
             <div class="card-body">
-
                 <div class="row">
-
                     <!-- Start Widgets -->
                     <div class="col-lg-6 col-md-8">
                         <div class="card">
@@ -199,24 +522,16 @@ function confirm_save() {
                                     <div class="stat-content">
                                         <div class="stat">
                                             <?php 
-                                               
+                                                $row = $info_pos->row();
+                                                echo $row->psl_position_level;
                                                 // display level of position
                                             ?>
                                         </div>
                                         <div class="text-left dib">
                                             <div class="stat-text"><span>
                                                     <?php 
-                                                    // start foreach
-                                                    foreach ($info_pos->result() as $row) {
-                                                        //start if
-                                                        if($row->Position_ID == $info_pos_id){
-                                                            $pos_name_form = $row->Position_name;
-                                                        }
-                                                        //end if
-                                                    } 
-                                                    // end foreach
-                                                    
-                                                    echo $pos_name_form;
+                                                   
+                                                    echo $row->Position_name;
                                                     // display name of position
 
                                                     ?>
@@ -240,7 +555,8 @@ function confirm_save() {
                                         <i class="fa fa-clock-o"></i>
                                     </div>
                                     <div class="stat-content">
-                                        <div class="stat">Fiscal year : <?php echo date("Y"); ?> </div>
+                                        <div class="stat">Fiscal year :
+                                            <?php $row = $info_pattern_year->row();  echo $row->pay_year;?> </div>
                                         <div class="text-left dib">
                                             <br>
 
@@ -248,13 +564,7 @@ function confirm_save() {
                                             <div class="stat">Grade pattern :
                                                 <?php 
 
-                                                // start foreach
-                                                foreach ($info_pattern_year->result() as $row) {
-                                                    $year = $row->pay_pattern;
-                                                } 
-                                                // end foreach
-                                                
-                                                echo "Pettern ".$year;
+                                                echo $row->pay_pattern;
                                                 // display Grade pattern
 
                                                 ?>
@@ -268,73 +578,75 @@ function confirm_save() {
                     </div>
                     <!-- End Widgets  -->
                 </div>
-                <!-- Start form set index mbo -->
+                <div class="float-right" id="success_save">
 
-                <form class="form-horizontal">
-                    <div class="row">
-                        <div class="col-2"></div>
-                        <div class="col-3" align="right">
-                            <label class=" form-control-label">Index of mbo form :</label>
-                        </div>
-                        <!-- col-3 -->
-                        <div class="col-3">
-                            <input type="number" id="number_input" class="form-control" min="5" max="10"
-                                onchange="set_index()" value="5">
-                        </div>
-                        <!-- col-3  -->
-                        <div class="col-1">
-                            <button type="button" class="btn btn-success float-right" id="save" data-toggle="modal"
-                                data-target="#confirm_save">Save</button>
-                        </div>
-                        <!-- col-3  -->
-                    </div>
-                    <!-- row  -->
-                </form>
-                <!-- form  -->
-                <!-- End form set index mbo -->
-
-                <br>
-                <!-- Start table-->
-                <table id="t01" border="1" class="table" width="100%">
+                </div>
+                <!-- Start table -->
+                <table id="t01" border="1" class="table table-hover" width="100%">
                     <thead>
                         <tr>
                             <th width="5%">
                                 <center>
-                                    #
+                                    <font color="white">#</font>
                                 </center>
                             </th>
-                            <th>
+                            <th width="15%">
                                 <center>
-                                    SDGs
+                                    <font color="white">Competency</font>
                                 </center>
                             </th>
-                            <th>
+                            <th width="35%">
                                 <center>
-                                    Management by Objective
+                                    <font color="white">Key component</font>
                                 </center>
                             </th>
-                            <th width="13%">
+                            <th width="35%">
                                 <center>
-                                    Weight
+                                    <font color="white">Expected Behavior</font>
+                                </center>
+                            </th>
+                            <th width="35%">
+                                <center>
+                                    <font color="white">Weight</font>
+                                </center>
+                            </th>
+                            <th width="5%">
+                                <center>
+                                    <font color="white">Manage</font>
                                 </center>
                             </th>
                         </tr>
                     </thead>
+
                     <tbody>
+
                     </tbody>
-                    <!-- tbody  -->
+
+
+                    <tfoot>
+
+                    </tfoot>
+
                 </table>
+
                 <!-- End table  -->
+                <div align="right">
+                    <button type="button" class="btn btn-success float-center" id="addCompentency"><i
+                            class="fa fa-plus"></i> Add</button>
+                </div>
+                <br>
+                <!-- End Back to main form by position  -->
                 <div class="row">
                     <div class="col-sm-12" align="right">
                         <a
                             href="<?php echo base_url(); ?>/Evs_form/form_position/<?php echo $info_pos_id; ?>/<?php echo $row->pay_id; ?>">
                             <button type="button" class="btn btn-secondary float-left">Back</button>
                         </a>
-
+                        <button type="button" class="btn btn-success float-right" id="save_data" data-toggle="modal"
+                            data-target="#confirm_save">Save</button>
 
                     </div>
-                    <!-- Back to main form by position  -->
+                    <!-- End Back to main form by position  -->
                 </div>
                 <hr>
                 <!-- Start Description -->
@@ -343,21 +655,49 @@ function confirm_save() {
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        <p> SDGs : Sustainable Development Goals</p><br>
+                        <h5>Status : Status perform manage</h5><br>
                     </div>
                 </div>
-                <!-- SDGs  -->
+
+                <div class="row">
+                    <div class="col-sm-5">
+                        <p>Managed : Perform manage finished</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p>No manage : Perform manage Not finished</p>
+                    </div>
+
+                </div>
+                <!-- Status  -->
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h5>Evaluation Tool :</h5><br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <p>PE : Performance Evaluation </p>
+                        <p>CE : Compentency Evaluation </p>
+                        <p>WA : Work Attendance </p>
+                    </div>
+                </div>
+                <!-- Tools -->
+
+                <hr>
 
                 <!-- End Description -->
 
             </div>
         </div>
-        <!-- End Card -->                                        
+
         <br>
     </div>
+    <!-- end Card body -->
 </div>
-<!-- End Page Content -->
-<!-- Start Moal -->
+<!--End Page Content -->
+<!-- Start modal -->
 <div class="modal fade" id="confirm_save" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
@@ -388,4 +728,4 @@ function confirm_save() {
     </div>
     <!-- modal-dialog modal-md -->
 </div>
-<!-- End Modal -->
+<!-- End modal -->
