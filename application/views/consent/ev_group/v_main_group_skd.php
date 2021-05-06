@@ -238,7 +238,6 @@ function check_edit_skd(check) {
                 // forEach
                 if (count == 0) {
                     console.log("true")
-                    $("#alert_text" + check).hide();
                     edit_group(check);
                     return true;
                 } else {
@@ -275,6 +274,7 @@ function manage_data(gru_id) {
 
 function clear_css(gru_id) {
     $("#alert_grouptext" + gru_id).hide();
+    // $("#alert_grouptext_edt" + gru_id).hide();
     $("#btnedit" + gru_id).attr("disabled", false);
 }
 //function clear_css
@@ -532,14 +532,15 @@ function clear_css(gru_id) {
                             <input type="text" class="form-control" value="<?php echo $row->gru_name; ?>"
                                 id="group_text<?php echo $row->gru_id; ?>" name="group_text" placeholder="HR AGM"
                                 onkeyup="clear_css(<?php echo $row->gru_id; ?>)">
-                            <label class="col-sm-12 control-label"></label>
+                            <!-- <label class="col-sm-12 control-label"></label>
+                            <p id="alert_grouptext_edt<?php echo $row->gru_id; ?>"></p> -->
                         </div>
                     </div>
                     <!-- Group Name -->
 
                     <label class="col-sm-3 control-label"></label>
                     <div class="col-sm-6">
-                        <p id="alert_grouptext<?php echo $row->gru_id; ?>">
+                        <p id="alert_grouptext<?php echo $row->gru_id; ?>" hidden>
                             <font color="red"><b> This data already to use! </b></font>
                         </p>
                     </div>
@@ -586,7 +587,7 @@ function clear_css(gru_id) {
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
                 </div>
                 <button type="submit" class="btn btn-success" id="btnedit<?php echo $row->gru_id; ?>"
-                onclick="return check_edit_skd('<?php echo $row->gru_id; ?>')">SAVE</button>
+                    onclick="return check_edit_skd('<?php echo $row->gru_id; ?>')">SAVE</button>
             </div>
             <!-- modal-footer -->
         </div>
