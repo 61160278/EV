@@ -34,26 +34,6 @@ function select_company(value) {
 }
 //function select_company
 
-
-
-
-
-
-$(document).ready(function() {
-    
-      $("#alert_text" + gru_id).hide();
-      
-
-      $("#grouptext").keyup(function() {
-            $("#alert_text" + gru_id).hide();
-      });
-
-});
-// document ready
-
-
-
-
 $(document).ready(function() {
       $("#alert_grouptext").hide();
     
@@ -314,7 +294,6 @@ function check_data_edt(check) {
                         // forEach
                         if (count == 0) {
                               console.log("true")
-                              $("#alert_text" + check).hide();
                               edit_group(check);
                               return true;
                         } else {
