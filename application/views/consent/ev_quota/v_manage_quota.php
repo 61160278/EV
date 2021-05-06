@@ -48,13 +48,12 @@ function search_data() {
                 table_data += 'There is no data in the system.'
                 table_data += '</td>'
                 table_data += '</tr>'
-                // $("#def_info").hide();
-                // $("#com_info").hide();
+               
 
             } else {
                 data.forEach((row, i) => {
-                        table_data += '<tr>'
 
+                        table_data += '<tr>'
                         table_data += '<td>'
                         table_data += row.Company_shortname
                         table_data += '</td>'
@@ -72,11 +71,7 @@ function search_data() {
                         i++
                         '</td>'
 
-                    }
-
-
-
-                );
+                });
             }
             $('#example tbody').html(table_data);
 
@@ -100,7 +95,7 @@ function get_position() {
             data = JSON.parse(data)
             // console.log(data)
             var table_data = ""
-
+             table_data += '<option value="0">Allposition</option>'
             data.forEach((row, i) => {
 
                 table_data += '<option value="' + row.Position_ID + '">' + row.Position_name +
@@ -183,7 +178,7 @@ h4 {
             <div>
                 <label class="col-md-3">
                     <select id="com_select" name="example_length" class="form-control" onclick="get_department()">
-
+                        <option value="0">Company</option>
                         <!-- start foreach -->
                         <?php foreach($com_data->result() as $value){ ?>
                         <option value="<?php echo $value->Company_ID;?>">
