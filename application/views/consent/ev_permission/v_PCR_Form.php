@@ -107,14 +107,22 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">ANNUAL PLAN<br>DN.PCR-FY20-005</label>
                                     <label class="col-sm-4 control-label">ADDITON ITEM<br>NO</label>
-                                    
                                 </div>
-                                <!-- No. -->
+                                <!-- ADDITON ITEM -->
+
                                 <div class="form-group">
-                                   
+                                    <label class="col-sm-2 control-label">TITLE</label>
+                                </div>
+                                <!-- TITLE -->
+                                
+                                
+                                
+                                <div class="form-group">
+                                <label class="col-sm-2 control-label">CHANGE TYPE<br>New</label>
+                                    <label class="col-sm-4 control-label">RANK</label>
                                     
                                 </div>
-                                <!-- No. -->
+                                <!-- CHANGE TYPE -->
                             </form>
                             <!-- class="form-horizontal row-border" -->
                         </div>
