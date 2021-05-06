@@ -602,13 +602,15 @@ function check_data_edt(check) {
                               </div>
                               <!-- Group Name -->
 
-                              <h2 style="font-family:'Courier New'">
-                                    <b>
-                                          <font size="4px" color="Black">
-                                                Select Head Dept.
-                                          </font>
-                                    </b>
-                              </h2>
+                              <div class="form-group">
+                                    <label class="col-sm-1 control-label"></label>
+                                    <div class="col-sm-8">
+                                          <label style="font-family:'Courier New'"><b>
+                                                      <font size="4px" color="Black">Select Head Dept.</font>
+                                                </b></label>
+                                    </div>
+                              </div>
+                              <!-- Select Head Dept. -->
 
                               <div class="form-group">
                                     <label for="focusedinput" class="col-sm-3 control-label">Emp.
