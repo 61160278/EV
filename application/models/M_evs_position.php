@@ -141,6 +141,7 @@ class M_evs_position extends Da_evs_position {
 		LEFT JOIN dbmc.company
 		ON department.Company_ID = company.Company_ID
         WHERE (employee.Company_ID = ?) AND department.Dep_id = ? AND position_level.psl_id = ? AND position.Position_ID = ?
+		
 				";
 		$query = $this->db->query($sql, array($this->Company_ID,$this->Dep_id,$this->psl_id,$this->Position_ID));
 		return $query;
