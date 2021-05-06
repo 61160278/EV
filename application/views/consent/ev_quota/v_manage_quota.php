@@ -10,7 +10,7 @@
 ?>
 <script>
 $(document).ready(function() {
-	get_department()
+	// get_department()
 	
 	
 }); //ready
@@ -33,7 +33,7 @@ function search_data() {
 			"dep_sel": dep_select,
 			"pos_select": pos_select
         },
-
+        datatype:"JSON",
         success: function(data) {
 
             data = JSON.parse(data)
@@ -41,15 +41,33 @@ function search_data() {
 			
             var table_data = ""
 
-            // table_data += '<option value="0">Position</option>'
-            // data.forEach((row, i) => {
+             table_data += '<tr>'
+             data.forEach((row, i) => {
+                table_data += '<tr>'
+             
+                    table_data += '<td>'
+                    table_data += row.Company_shortname
+                    table_data += '</td>'
+                    table_data += '<td>'
+                    table_data += row.Dep_Name 
+                    table_data += '</td>'
+                    table_data += '<td>'
+                    table_data += row.Position_name
+                    table_data += '</td>'
+                    table_data += '<td>'
+                    table_data += '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/manage_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                    table_data += '</td>'
+                    table_data += '</tr>'
+               i++
+                     '</td>'
 
-            //     table_data += '<option value=" ' + row.Position_ID + '">' + row.Position_name +
-            //         '</option>'
+             }
+             
+             
+             
+             );
 
-            // });
-
-            // $('#pos_select').html(table_data);
+             $('#example tbody').html(table_data);
 
         }
     });
@@ -71,17 +89,15 @@ function get_position() {
             data = JSON.parse(data)
             // console.log(data)
             var table_data = ""
-            table_data += '<option value="0">Position</option>'
+          
             data.forEach((row, i) => {
 
-                table_data += '<option value=" ' + row.Position_ID + '">' + row.Position_name +
+                table_data += '<option value="' + row.Position_ID + '">' + row.Position_name +
                     '</option>'
 
             });
-
             $('#pos_select').html(table_data);
-			search_data();
-
+			
         }
     });
 }
@@ -102,15 +118,15 @@ function get_department() {
             data = JSON.parse(data)
             // console.log(data)
             var table_data = ""
-            table_data += '<option value="0">Department</option>'
+          
             data.forEach((row, i) => {
 
-                table_data += '<option value=" ' + row.Dep_id + '">' + row.Dep_Name + '</option>'
+                table_data += '<option value="' + row.Dep_id + '">' + row.Dep_Name + '</option>'
 
             });
 
             $('#dep_select').html(table_data);
-			get_position();
+			
 
         }
     });
@@ -157,7 +173,7 @@ h4 {
             <div>
                 <label class="col-md-3">
                     <select id="com_select" name="example_length" class="form-control" onclick="get_department()">
-                     											 -->
+                     										
                         <!-- start foreach -->
                         <?php foreach($com_data->result() as $value){ ?>
                         <option value="<?php echo $value->Company_ID;?>">
@@ -215,21 +231,8 @@ h4 {
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <?php	
-									foreach ($pos_data->result() as $row ) { ?>
-                                        <tr class="" role="">
-                                            <td><?php echo $row->Company_shortname; ?></td>
-                                            <td><?php echo $row->Dep_Name; ?></td>
-                                            <td><?php echo $row->Position_name; ?></td>
-                                            <td class="center">
-                                                <a href="<?php echo base_url();?>/ev_quota/Evs_quota/detail_quota">
-                                                    <button type="submit" class="btn btn-info"><i
-                                                            class="ti ti-info-alt"></i></button></a>
-                                            </td>
-                                        </tr>
-                                        <?php 
-									} ?>
+                                    <tbody >
+                                       
                                     </tbody>
                                 </table>
                             </div>

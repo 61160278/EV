@@ -124,9 +124,7 @@ class Evs_quota extends MainController_avenxo {
 		$this->load->model('M_evs_position_level','mepsl');
 		$data['psl_data'] = $this->mepsl->get_all(); // show value position level all
 
-		$this->load->model('M_evs_position','meps');
-		$data['pos_data'] = $this->meps->get_pos_com_dep(); // show value position all
-
+		
 		$this->load->model('M_evs_company','mcpn');
 		$data['com_data'] = $this->mcpn->get_all(); // show value company all
 
@@ -241,21 +239,41 @@ class Evs_quota extends MainController_avenxo {
 	}
 
 function get_search_data(){
+	$pos_lv_select ="";
+	$com_select = "";
+	$dep_sel ="";
+	$pos_select ="";
 
 	$pos_lv_select = $this->input->post("pos_lv_select");
 	$com_select = $this->input->post("com_select");
 	$dep_sel = $this->input->post("dep_sel");
 	$pos_select = $this->input->post("pos_select");
 	$this->load->model('M_evs_position','mpos');
-	$this->mpos->psl_id = $pos_lv_select;
-	$this->mpos->Company_ID = $com_select;
+
+	if($com_select == "3"){
+
+		$this->mpos->Company_ID = '1 OR employee.Company_ID = 2';
+
+	}else{
+
+		$this->mpos->Company_ID = $com_select;
+
+	}
+
 	$this->mpos->Dep_id = $dep_sel;
+	$this->mpos->psl_id = $pos_lv_select;
 	$this->mpos->Position_ID = $pos_select;
 	$data = $this->mpos->get_pos_com_dep()->result();
 	echo json_encode($data);
 
 
+
+
+
+
 }
+
+
 
 
 
