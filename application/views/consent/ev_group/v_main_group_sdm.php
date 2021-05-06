@@ -69,6 +69,7 @@ $(document).ready(function() {
 
 
 function clear_css(gru_id) {
+      $("#alert_text" + gru_id).hide();
       $("#alert_grouptext_edt" + gru_id).hide();
       $("#btnedit" + gru_id).attr("disabled", false);
 }
