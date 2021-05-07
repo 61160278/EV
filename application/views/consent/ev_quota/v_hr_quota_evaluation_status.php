@@ -162,10 +162,12 @@ function get_company() {
 								<table width="100%" class="table table-striped table-bordered dataTable no-footer" id="example" role="grid" aria-describedby="example_info" style="width: 100%;" cellspacing="0">
 									<thead>
 										<tr role="row">
-											<th tabindex="0" class="sorting_asc" aria-controls="example" style="width: 179px;" aria-label="Rendering engine: activate to sort column ascending" aria-sort="ascending" rowspan="1" colspan="1">Rendering engine</th><th tabindex="0" class="sorting" aria-controls="example" style="width: 200px;" aria-label="Browser: activate to sort column ascending" rowspan="1" colspan="1">Browser</th>
-											<th tabindex="0" class="sorting" aria-controls="example" style="width: 235px;" aria-label="Platform(s): activate to sort column ascending" rowspan="1" colspan="1">Platform(s)</th>
-											<th tabindex="0" class="sorting" aria-controls="example" style="width: 151px;" aria-label="Engine version: activate to sort column ascending" rowspan="1" colspan="1">Engine version</th>
-											<th tabindex="0" class="sorting" aria-controls="example" style="width: 107px;" aria-label="CSS grade: activate to sort column ascending" rowspan="1" colspan="1">CSS grade</th>
+											<th >Employee Id</th>
+											<th >Employee Name</th>
+											<th >Section Code</th>
+											<th >Grade</th>
+											<th >Status</th>
+											<th >Action</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -179,8 +181,11 @@ function get_company() {
 					</div>
 				</div>		
 			</div>
-			<!-- Modal -->
-			<div class="modal fade" id="quota" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		</div>
+	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="quota" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header blue1" id = "">
@@ -364,7 +369,4 @@ function get_company() {
 					</div><!-- /.modal-content -->
 				</div><!-- /.modal-dialog -->
 			</div><!-- /.modal -->
-		</div>
-	</div>
-</div>
 
