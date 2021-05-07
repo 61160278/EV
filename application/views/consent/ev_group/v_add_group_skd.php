@@ -374,7 +374,7 @@ function change_group_remove() {
                             <button class="btn btn-danger" onclick="change_group_remove()">
                                 <i class="ti ti-share-alt"></i>
                                 &nbsp
-                                <span>REMOVE</span>
+                                <span>TRANSFER</span>
                             </button>
                         </div>
                         <!-- REMOVE -->
