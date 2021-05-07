@@ -208,7 +208,12 @@ function show_linebarChart() {
         });
     });
 
-}
+}//show_linebarChart
+
+
+
+
+
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
@@ -241,8 +246,8 @@ function show_linebarChart() {
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <select for="pos_select" id="pos_select" class="form-control text">
-                            <option value="select">Select Position</option>
+                        <select for="pos_select" id="pos_select" class="form-control text" >
+                             <option value="select">Select Position</option> -->
                             <option value="0">All Position</option>
                             <!-- start foreach -->
                             <?php foreach($pos_data as $value){ ?>

@@ -160,9 +160,9 @@ class M_evs_position extends Da_evs_position {
 		ON sectioncode.dep_id = department.Dep_id 
 		LEFT JOIN dbmc.company 
 		ON department.Company_ID = company.Company_ID 
-		WHERE  (employee.Company_ID = ?)
+		
 				";
-		$query = $this->db->query($sql, array($this->Company_ID));
+		$query = $this->db->query($sql);
 		return $query;
 	}//get_all WHERE NOT pos_psl_id=6
 
@@ -180,16 +180,11 @@ class M_evs_position extends Da_evs_position {
 		return $query;
 	}//get_department
 
-	// function get_position_by_id(){
-	// 	$sql = "SELECT *
-	// 	FROM dbmc.position
-	// 	WHERE position_level_id = ? ";
-	// 		$query = $this->db->query($sql, array($this->position_level_id));
-	// 	return $query;
-	// }//get_department_by_id
+	
 	function get_position_all(){
 		$sql = "SELECT * 
 					FROM dbmc.position
+				
 				";
 			$query = $this->db->query($sql);
 			return $query;

@@ -203,11 +203,23 @@ class Evs_quota extends MainController_avenxo {
 	* @author 	Piyasak Srijan
 	* @Create Date 2564-04-07
 	*/
-	function edit_quota()
+	function edit_quota_ca()
 	{
 		$this->output('/consent/ev_quota/v_edit_quota');
 	}
 	// function edit_quota()
+
+	/*
+	* edit_quota_pa
+	* @input
+	* @output 
+	* @author 	Piyasak Srijan
+	* @Create Date 2564-04-07
+	*/
+	function edit_quota_pa()
+	{
+		$this->output('/consent/ev_quota/v_edit_quota_pa');
+	}
 
 	function get_depamant(){
 		
@@ -244,22 +256,14 @@ function get_search_data(){
 	$dep_sel ="";
 	$pos_select ="";
 
-	$pos_lv_select = $this->input->post("pos_lv_select");
 	$com_select = $this->input->post("com_select");
 	$dep_sel = $this->input->post("dep_sel");
+	$pos_lv_select = $this->input->post("pos_lv_select");
 	$pos_select = $this->input->post("pos_select");
 	
-	if($com_select == 0){
-
-		$this->load->model('M_evs_position','mpos');
-		$this->mpos->Company_ID = $com_select;
-		$data = $this->mpos->get_pos_com_dep_all()->result();
-		echo json_encode($data);
-	}else{
-
 		$this->load->model('M_evs_position','mpos');	
 
-		if($com_select == "3"){
+		if ($com_select == "3"){
 
 			$this->mpos->Company_ID = '1 OR employee.Company_ID = 2';
 
@@ -268,14 +272,26 @@ function get_search_data(){
 			$this->mpos->Company_ID = $com_select;
 
 		}
-	
 		$this->mpos->Dep_id = $dep_sel;
 		$this->mpos->psl_id = $pos_lv_select;
 		$this->mpos->Position_ID = $pos_select;
 		$data = $this->mpos->get_pos_com_dep()->result();
 		echo json_encode($data);
-	}
-}
+
+}//get_search_data
+
+function all_data(){
+	$this->load->model('M_evs_position','mpos');
+	$data = $this->mpos->get_pos_com_dep_all()->result();
+		echo json_encode($data);
+}//all_data()
+function all_position(){
+	$this->load->model('M_evs_position','mpos');
+	$data['pos_data'] = $this->meps->get_position()->result();
+	$this->output('/consent/ev_quota/v_hr_report_cureve',$data);
+}//all_data()
+
+
 
 }// end class
 ?>
