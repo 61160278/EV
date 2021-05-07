@@ -255,7 +255,7 @@ function get_search_data(){
 		$this->mpos->Company_ID = $com_select;
 		$data = $this->mpos->get_pos_com_dep_all()->result();
 		echo json_encode($data);
-	}else{
+	}else if($com_select > 0){
 
 		$this->load->model('M_evs_position','mpos');	
 
