@@ -152,8 +152,7 @@ function get_position() {
 
         }
     });
-}
-
+}//get_position
 
 function get_department() {
     var dep_sel = document.getElementById("com_select").value; // get kay by id
@@ -183,7 +182,8 @@ function get_department() {
         }
     });
 
-}
+}//get_department()
+
 </script>
 <style>
 h2 {
@@ -239,6 +239,7 @@ h4 {
 
                     </select>
                 </label>
+                
                 <label class="col-md-3">
                     <select name="example_length" class="form-control" id="pos_lv_select" onclick="get_position()">
                    
