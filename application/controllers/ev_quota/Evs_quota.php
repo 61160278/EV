@@ -203,11 +203,23 @@ class Evs_quota extends MainController_avenxo {
 	* @author 	Piyasak Srijan
 	* @Create Date 2564-04-07
 	*/
-	function edit_quota()
+	function edit_quota_ca()
 	{
 		$this->output('/consent/ev_quota/v_edit_quota');
 	}
 	// function edit_quota()
+
+	/*
+	* edit_quota_pa
+	* @input
+	* @output 
+	* @author 	Piyasak Srijan
+	* @Create Date 2564-04-07
+	*/
+	function edit_quota_pa()
+	{
+		$this->output('/consent/ev_quota/v_edit_quota_pa');
+	}
 
 	function get_depamant(){
 		
@@ -273,7 +285,11 @@ function all_data(){
 	$data = $this->mpos->get_pos_com_dep_all()->result();
 		echo json_encode($data);
 }//all_data()
-
+function all_position(){
+	$this->load->model('M_evs_position','mpos');
+	$data['pos_data'] = $this->meps->get_position()->result();
+	$this->output('/consent/ev_quota/v_hr_report_cureve',$data);
+}//all_data()
 
 
 
