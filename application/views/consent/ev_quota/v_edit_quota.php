@@ -49,9 +49,9 @@ td {
 <script>
 function select_quota(value) {
     if (value == "2") {
-        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_pa";
+        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/edit_quota_pa";
     } else {
-        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_ca";
+        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/edit_quota_ca";
     }
 }
 
