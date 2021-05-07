@@ -11,9 +11,55 @@
 <script>
 $(document).ready(function() {
     // get_department()
-
+    show_data()
 
 }); //ready
+
+
+
+function show_data() {
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>ev_quota/Evs_quota/all_data",
+        data: {
+        
+        },
+        datatype: "JSON",
+        success: function(data) {
+
+            data = JSON.parse(data)
+            console.log(data)
+
+            var table_data = ""
+                data.forEach((row, i) => {
+                   
+                    table_data += '<tr>'
+                    table_data += '<td>'
+                    table_data += row.Company_shortname
+                    table_data += '</td>'
+                    table_data += '<td>'
+                    table_data += row.Dep_Name
+                    table_data += '</td>'
+                    table_data += '<td>'
+                    table_data += row.Position_name
+                    table_data += '</td>'
+                    table_data += '<td>'
+                    table_data +=
+                        '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/manage_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                    table_data += '</td>'
+                    table_data += '</tr>'
+                    i++
+                    '</td>'
+
+                });
+            
+            $('#example tbody').html(table_data);
+
+        }
+    });
+
+}//shoe data
+////////////////////////end show//////////////////////////////////
 function search_data() {
     var pos_lv_select = document.getElementById("pos_lv_select").value;
     var com_select = document.getElementById("com_select").value;
@@ -48,28 +94,28 @@ function search_data() {
                 table_data += 'There is no data in the system.'
                 table_data += '</td>'
                 table_data += '</tr>'
-               
+
 
             } else {
                 data.forEach((row, i) => {
-
-                        table_data += '<tr>'
-                        table_data += '<td>'
-                        table_data += row.Company_shortname
-                        table_data += '</td>'
-                        table_data += '<td>'
-                        table_data += row.Dep_Name
-                        table_data += '</td>'
-                        table_data += '<td>'
-                        table_data += row.Position_name
-                        table_data += '</td>'
-                        table_data += '<td>'
-                        table_data +=
-                            '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/manage_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
-                        table_data += '</td>'
-                        table_data += '</tr>'
-                        i++
-                        '</td>'
+                   
+                    table_data += '<tr>'
+                    table_data += '<td>'
+                    table_data += row.Company_shortname
+                    table_data += '</td>'
+                    table_data += '<td>'
+                    table_data += row.Dep_Name
+                    table_data += '</td>'
+                    table_data += '<td>'
+                    table_data += row.Position_name
+                    table_data += '</td>'
+                    table_data += '<td>'
+                    table_data +=
+                        '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/manage_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                    table_data += '</td>'
+                    table_data += '</tr>'
+                    i++
+                    '</td>'
 
                 });
             }
@@ -95,7 +141,7 @@ function get_position() {
             data = JSON.parse(data)
             // console.log(data)
             var table_data = ""
-             table_data += '<option value="0">Allposition</option>'
+          
             data.forEach((row, i) => {
 
                 table_data += '<option value="' + row.Position_ID + '">' + row.Position_name +
@@ -124,7 +170,7 @@ function get_department() {
             data = JSON.parse(data)
             // console.log(data)
             var table_data = ""
-
+           
             data.forEach((row, i) => {
 
                 table_data += '<option value="' + row.Dep_id + '">' + row.Dep_Name + '</option>'
@@ -178,7 +224,7 @@ h4 {
             <div>
                 <label class="col-md-3">
                     <select id="com_select" name="example_length" class="form-control" onclick="get_department()">
-                        <option value="0">Company</option>
+                       
                         <!-- start foreach -->
                         <?php foreach($com_data->result() as $value){ ?>
                         <option value="<?php echo $value->Company_ID;?>">
@@ -195,7 +241,7 @@ h4 {
                 </label>
                 <label class="col-md-3">
                     <select name="example_length" class="form-control" id="pos_lv_select" onclick="get_position()">
-
+                   
                         <!-- start foreach -->
                         <?php foreach($psl_data->result() as $value){ ?>
                         <option value="<?php echo $value->psl_id;?>">
