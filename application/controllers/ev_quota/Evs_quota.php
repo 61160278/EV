@@ -249,13 +249,13 @@ function get_search_data(){
 	$dep_sel = $this->input->post("dep_sel");
 	$pos_select = $this->input->post("pos_select");
 	
-	if($com_select == 0){
+	// if($com_select == 0){
 
-		$this->load->model('M_evs_position','mpos');
-		$this->mpos->Company_ID = $com_select;
-		$data = $this->mpos->get_pos_com_dep_all()->result();
-		echo json_encode($data);
-	}else if($com_select > 0){
+	// 	$this->load->model('M_evs_position','mpos');
+	// 	$this->mpos->Company_ID = $com_select;
+	// 	$data = $this->mpos->get_pos_com_dep_all()->result();
+	// 	echo json_encode($data);
+	// }else if($com_select > 0){
 
 		$this->load->model('M_evs_position','mpos');	
 
@@ -274,8 +274,8 @@ function get_search_data(){
 		$this->mpos->Position_ID = $pos_select;
 		$data = $this->mpos->get_pos_com_dep()->result();
 		echo json_encode($data);
-	}
-}
+	// }
+}//get_search_data
 
 }// end class
 ?>
