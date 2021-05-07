@@ -210,7 +210,65 @@ function show_linebarChart() {
         });
     });
 
-}
+}//show_linebarChart
+
+function get_position() {
+    var pos_sel = document.getElementById("dep_select").value; // get kay by id
+    // console.log(pos_sel);
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>ev_quota/Evs_quota/all_data",
+        data: {
+            // "position_level_id": pos_sel
+        },
+
+        success: function(data) {
+
+            data = JSON.parse(data)
+            // console.log(data)
+            var table_data = ""
+            // table_data += '<option value="0">Select Positiont</option>'
+            data.forEach((row, i) => {
+
+                table_data += '<option value="' + row.Position_ID + '">' + row.Pos_shortName +
+                    '</option>'
+
+            });
+            $('#pos_select').html(table_data);
+
+        }
+    });
+}//get_position
+
+function get_department() {
+    var dep_sel = document.getElementById("com_select").value; // get kay by id
+    // console.log(dep_sel);
+
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>ev_quota/Evs_quota/get_depamant",
+        data: {
+            "dep_id": dep_sel
+        },
+
+        success: function(data) {
+            data = JSON.parse(data)
+            // console.log(data)
+            var table_data = ""
+            table_data += '<option value="0">Select Department</option>'
+            data.forEach((row, i) => {
+
+                table_data += '<option value="' + row.Dep_id + '">' + row.Dep_shortName + '</option>'
+
+            });
+
+            $('#dep_select').html(table_data);
+
+        }
+    });
+
+}//get_department()
+
 </script>
 <style>
 .text {
@@ -257,8 +315,7 @@ tbody:hover {
             <h2>
                 <font size="6px"><b>Report Curve</b></font>
             </h2>
-            <div class="panel-ctrls" data-actions-container=""
-                >
+            <div class="panel-ctrls" data-actions-container="">
             </div>
         </div>
         <div class="panel-body" style="">
@@ -267,7 +324,7 @@ tbody:hover {
                     <div class="col-md-3">
                     </div>
                     <div class="col-md-2">
-                        <select class="form-control text" id="com_select">
+                        <select class="form-control text" id="com_select" onclick="get_department()">
                             <option value="0">Company</option>
                             <!-- start foreach -->
                             <?php foreach($com_data->result() as $value){ ?>
@@ -300,27 +357,27 @@ tbody:hover {
                     <div class="col-md-4">
                     </div>
                     <div class="col-md-2">
-                        <select class="form-control text" id="dep_select">
-                            <option value="0">Select Department</option>
+                   <select class="form-control text" id="dep_select">
+                             <option value="0">Select Department</option> 
                             <!-- start foreach -->
-                            <?php foreach($dep_data->result() as $value){ ?>
-                            <option value="<?php echo $value->Dep_id;?>">
-                                <?php echo $value->Dep_Name;?>
-                            </option>
-                            <?php } ?>
+                            <!-- <?php //foreach($dep_data->result() as $value){ ?> -->
+                            <!-- <option value="<?php //echo $value->Dep_id;?>"> -->
+                                <?php //echo $value->Dep_Name;?>
+                            <!-- </option> -->
+                            <?php//} ?>
                             <!-- end foreach -->
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <select class="form-control text" id="pos_select">
+                        <select class="form-control text" id="pos_select" onclick="get_position()">
                             <option value="select">Select Position</option>
-                            <option value="0">All Position</option>
+                            <!-- <option value="0">All Position</option> -->
                             <!-- start foreach -->
-                            <?php foreach($pos_data as $value){ ?>
-                            <option value="<?php echo $value->Position_ID;?>">
-                                <?php echo $value->Pos_shortName;?>
-                            </option>
-                            <?php } ?>
+                            <?php //foreach($pos_data as $value){ ?>
+                            <!-- <option value="<?php //echo $value->Position_ID;?>"> -->
+                                <?php //echo $value->Pos_shortName;?>
+                            <!-- </option> -->
+                            <?php //} ?>
                             <!-- end foreach -->
 
                         </select>
@@ -332,6 +389,7 @@ tbody:hover {
                             onclick="show_linebarChart()">SUBMIT</button>
                     </div>
                 </div>
+                
             </div>
             <br>
             <legend></legend>
