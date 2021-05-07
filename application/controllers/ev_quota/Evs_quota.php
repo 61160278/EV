@@ -203,11 +203,23 @@ class Evs_quota extends MainController_avenxo {
 	* @author 	Piyasak Srijan
 	* @Create Date 2564-04-07
 	*/
-	function edit_quota()
+	function edit_quota_ca()
 	{
 		$this->output('/consent/ev_quota/v_edit_quota');
 	}
 	// function edit_quota()
+
+	/*
+	* edit_quota_pa
+	* @input
+	* @output 
+	* @author 	Piyasak Srijan
+	* @Create Date 2564-04-07
+	*/
+	function edit_quota_pa()
+	{
+		$this->output('/consent/ev_quota/v_edit_quota_pa');
+	}
 
 	function get_depamant(){
 		
