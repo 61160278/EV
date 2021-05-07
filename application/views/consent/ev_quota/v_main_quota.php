@@ -78,7 +78,7 @@ td{
 								<td class="center">
 									<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/manage_quota">
 									<button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>
-									<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/edit_quota">
+									<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/edit_quota_ca">
 									<button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>
 									<a data-toggle = "modal" href = "#delete"><button type="submit" class="btn btn-danger" ><i class="ti ti-trash"></i></button></a>
 									
@@ -92,7 +92,7 @@ td{
 								<td class="center">
 									<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/manage_quota">
 									<button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>
-								<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/edit_quota">
+								<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/edit_quota_ca">
 									<button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>
 									<a data-toggle = "modal" href = "#delete"><button type="submit" class="btn btn-danger" ><i class="ti ti-trash"></i></button></a>
 									
