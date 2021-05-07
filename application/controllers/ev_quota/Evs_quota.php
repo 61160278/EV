@@ -273,7 +273,11 @@ function all_data(){
 	$data = $this->mpos->get_pos_com_dep_all()->result();
 		echo json_encode($data);
 }//all_data()
-
+function all_position(){
+	$this->load->model('M_evs_position','mpos');
+	$data['pos_data'] = $this->meps->get_position()->result();
+	$this->output('/consent/ev_quota/v_hr_report_cureve',$data);
+}//all_data()
 
 
 

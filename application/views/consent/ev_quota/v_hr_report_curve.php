@@ -212,37 +212,9 @@ function show_linebarChart() {
 
 }//show_linebarChart
 
-function get_position() {
-    var pos_sel = document.getElementById("dep_select").value; // get kay by id
-    // console.log(pos_sel);
-    $.ajax({
-        type: "post",
-        url: "<?php echo base_url(); ?>ev_quota/Evs_quota/all_data",
-        data: {
-            // "position_level_id": pos_sel
-        },
-
-        success: function(data) {
-
-            data = JSON.parse(data)
-            // console.log(data)
-            var table_data = ""
-            // table_data += '<option value="0">Select Positiont</option>'
-            data.forEach((row, i) => {
-
-                table_data += '<option value="' + row.Position_ID + '">' + row.Pos_shortName +
-                    '</option>'
-
-            });
-            $('#pos_select').html(table_data);
-
-        }
-    });
-}//get_position
-
 function get_department() {
     var dep_sel = document.getElementById("com_select").value; // get kay by id
-    // console.log(dep_sel);
+     console.log(dep_sel);
 
     $.ajax({
         type: "post",
@@ -369,15 +341,15 @@ tbody:hover {
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <select class="form-control text" id="pos_select" onclick="get_position()">
+                        <select class="form-control text" id="pos_select" >
                             <option value="select">Select Position</option>
-                            <!-- <option value="0">All Position</option> -->
+                            <option value="0">All Position</option>
                             <!-- start foreach -->
-                            <?php //foreach($pos_data as $value){ ?>
-                            <!-- <option value="<?php //echo $value->Position_ID;?>"> -->
-                                <?php //echo $value->Pos_shortName;?>
-                            <!-- </option> -->
-                            <?php //} ?>
+                            <?php foreach($pos_data as $value){ ?>
+                            <option value="<?php echo $value->Position_ID;?>">
+                                <?php echo $value->Pos_shortName;?>
+                            </option>
+                            <?php } ?>
                             <!-- end foreach -->
 
                         </select>
