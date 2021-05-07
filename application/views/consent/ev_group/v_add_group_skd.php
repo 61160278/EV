@@ -391,17 +391,10 @@ function change_group_remove() {
             <div class="panel-body">
                 <div class="DTTT btn-group pull-left mt-sm">
                     <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">
-                        <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                        <button type="button" class="btn btn-inverse" data-dismiss="modal">BACK</button>
                     </a>
                 </div>
-                <!-- CANCEL -->
-
-                <div class="DTTT btn-group pull-right mt-sm">
-                    <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">
-                        <button type="submit" class="btn btn-success" value="SAVE">SUBMIT</button>
-                    </a>
-                </div>
-                <!-- SUBMIT -->
+                <!-- BACK -->
 
             </div>
             <!-- panel-body -->
