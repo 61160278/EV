@@ -369,7 +369,7 @@ function clear_css(gru_id) {
                                                 </a>
                                                 <a class="btn btn-info"
                                                     onClick="manage_data(<?php echo $row->gru_id; ?>)">
-                                                    <i class="ti ti-loop"></i>
+                                                    <i class="fa fa-refresh"></i>
                                                 </a>
                                             </div>
                                         </td>
@@ -411,9 +411,9 @@ function clear_css(gru_id) {
                         Edit
                     </a>
                     <a class="btn btn-info">
-                        <i class="ti ti-loop"></i>
+                        <i class="fa fa-refresh"></i>
                         &nbsp;
-                        Preview
+                        Transfer
                     </a>
                 </div>
             </div>
@@ -443,7 +443,7 @@ function clear_css(gru_id) {
             <div class="modal-body">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
+                        <label for="focusedinput" class="col-sm-3 control-label **text-left**">Group Name</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="grouptext" placeholder="HR AGM" name="Emp_id">
                             <label class="col-sm-12 control-label"></label>
@@ -608,8 +608,7 @@ function clear_css(gru_id) {
                         <div class="col-sm-12">
                             <label for="focusedinput" class="control-label"
                                 align="center">
-                                <font size="5px">Do you want to Delete Data YES or
-                                    NO ?</font>
+                                <font size="5px">Do you want to Delete Data YES or NO ?</font>
                             </label>
                         </div>
                     </div>

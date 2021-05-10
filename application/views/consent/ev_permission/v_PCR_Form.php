@@ -139,7 +139,7 @@
                                 </div>
                                 <!-- Priority -->
                                 <div class="form-group">
-                                    <label class="col-sm-5 control-label"><b>Details Process Change (File upload plan
+                                    <label class="col-sm-6 control-label"><b>Details Process Change (File upload plan
                                             <font color="red">*Maximum file upload size 9.5 MB</font>)
                                         </b></label>
                                 </div>
@@ -148,14 +148,22 @@
                                     <label class="col-sm-2 control-label"></label>
                                     <div class="col-sm-8">
                                         <div class="fileinput fileinput-new" data-provides="fileinput">
-                                            <span class="btn btn-default btn-file">
-                                                <span class="fileinput-new">Select file</span>
-                                                <span class="fileinput-exists">Change</span>
-                                                <input type="file" name="...">
-                                            </span>
-                                            <span class="fileinput-filename"></span>
-                                            <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
-                                                style="float: none">&times;</a>
+                                            <div class="input-group">
+                                                <div class="form-control uneditable-input" data-trigger="fileinput">
+                                                    <i class="fa fa-file fileinput-exists"></i>&nbsp;<span
+                                                        class="fileinput-filename"></span>
+                                                </div>
+                                                <span class="input-group-btn">
+                                                    <a href="#" class="btn btn-default fileinput-exists"
+                                                        data-dismiss="fileinput">Remove</a>
+                                                    <span class="btn btn-default btn-file">
+                                                        <span class="fileinput-new">Select file</span>
+                                                        <span class="fileinput-exists">Change</span>
+                                                        <input type="file" name="...">
+                                                    </span>
+
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -327,22 +335,22 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+
+                        </div>
+                        <!-- id="PCR Form" -->
                     </div>
-                    <!-- id="PCR Form" -->
+                    <!-- class="tab-content" -->
                 </div>
-                <!-- class="tab-content" -->
+                <!-- class="panel-body" -->
             </div>
-            <!-- class="panel-body" -->
+            <!-- class="panel panel-info" -->
+
         </div>
-        <!-- class="panel panel-info" -->
+        <!-- class="col-xs-12" -->
 
     </div>
-    <!-- class="col-xs-12" -->
-
-</div>
-<!-- class="row" -->
+    <!-- class="row" -->
 
 </div>
 <!-- group1 -->
