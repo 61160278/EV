@@ -53,7 +53,35 @@ function select_quota(value) {
     } else {
         window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_ca";
     }
+}//select_quota
+$(document).ready(function() {
+insert_quota()
 }
+function insert_quota() {
+
+
+    var quotaType = document.getElementById("quotaType").value; // value of year id
+    var groupPosition = document.getElementById("groupPosition").value;
+console.log(quotaType);
+console.log(groupPosition);
+    // $.ajax({
+    //     type: "post",
+    //   //  url: "<?php echo base_url(); ?>/Evs_g_and_o_form/index_g_and_o_insert",
+    //     data: {
+    //         // "index_level": index_field_level,
+    //         // "index_ranges": index_field_range,
+    //         // "pos_id": value_pos_id,
+    //         // "year_id": value_year_id
+    //     },
+    //     dataType: "JSON",
+
+    //     success: function(status) {
+    //         console.log(status);
+    //     }
+
+    // });
+
+}//insert_quota
 
 function check_quota() {
 
@@ -198,17 +226,17 @@ function show_qouta() {
                     <div class="col-md-3">
                     </div>
                     <div class="col-md-3">
-                        <select class="form-control text" id="">
-                            <option value="yearEndBonus">Quota</option>
-                            <option value="yearEndBonus">Year End Bonus</option>
-                            <option value="salaryIncrement">Salary Increment</option>
+                        <select class="form-control text" id="quotaType">
+                            <option value="0">Quota</option>
+                            <option value="1">Year End Bonus</option>
+                            <option value="2">Salary Increment</option>
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <select class="form-control text" id="">
-                            <option value="yearEndBonus">Position Of Quota</option>
-                            <option value="yearEndBonus">Team Associate above</option>
-                            <option value="salaryIncrement">Operational Associate</option>
+                        <select class="form-control text" id="groupPosition">
+                            <option value="0">Position Of Quota</option>
+                            <option value="1">Team Associate above</option>
+                            <option value="2">Operational Associate</option>
                         </select>
                     </div>
 
