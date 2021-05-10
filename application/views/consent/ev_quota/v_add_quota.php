@@ -145,7 +145,10 @@ function show_qouta() {
                 y: {
                     beginAtZero: true,
                     max: 100,
-                    min: 0
+                    min: 0,
+                    ticks: {
+                        stepSize: 20
+                    }
 
                 }
             }
