@@ -191,7 +191,9 @@ function show_linebarChart() {
         options: {
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    max: 100,
+                    min: 0
                 }
             }
         }

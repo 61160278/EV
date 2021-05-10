@@ -143,7 +143,10 @@ function show_qouta() {
         options: {
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    max: 100,
+                    min: 0
+
                 }
             }
         }

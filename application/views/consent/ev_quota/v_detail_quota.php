@@ -172,7 +172,16 @@ function show_quotaplan() {
     const config = {
         type: 'line',
         data,
-        options: {}
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    min: 0
+
+                }
+            }
+        }
     };
 
     // </block:config>
