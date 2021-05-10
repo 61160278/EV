@@ -54,34 +54,52 @@ function select_quota(value) {
         window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_ca";
     }
 }//select_quota
-$(document).ready(function() {
-insert_quota()
-}
-function insert_quota() {
 
+
+function insert_quota() {
 
     var quotaType = document.getElementById("quotaType").value; // value of year id
     var groupPosition = document.getElementById("groupPosition").value;
+
+if(quotaType ==1){
+   
+    quotaType = document.getElementById("quotaType").options[1].text;
+    // groupPosition = document.getElementById("groupPosition").options[1].text;
+    
+}else if(quotaType ==2){
+    quotaType = document.getElementById("quotaType").options[2].text;
+}
+//end if-else quotaType
+if(groupPosition ==1){
+   
+    groupPosition = document.getElementById("groupPosition").options[1].text;
+  
+   
+}else if(groupPosition ==2){
+    groupPosition = document.getElementById("groupPosition").options[2].text;
+}
+//end if-else groupPosition
 console.log(quotaType);
 console.log(groupPosition);
-    // $.ajax({
-    //     type: "post",
-    //   //  url: "<?php echo base_url(); ?>/Evs_g_and_o_form/index_g_and_o_insert",
-    //     data: {
-    //         // "index_level": index_field_level,
-    //         // "index_ranges": index_field_range,
-    //         // "pos_id": value_pos_id,
-    //         // "year_id": value_year_id
-    //     },
-    //     dataType: "JSON",
+    $.ajax({
+        type: "post",
+       // url: "<?php //echo base_url(); ?>/ev_quota/Evs_quota/quota_insert",
+        data: {
 
-    //     success: function(status) {
-    //         console.log(status);
-    //     }
+             "quotaType": quotaType,
+             "groupPosition": groupPosition,
+           
+        },
+        dataType: "JSON",
 
-    // });
+        success: function(status) {
+            console.log(status);
+        }
+
+    });
 
 }//insert_quota
+
 
 function check_quota() {
 
@@ -226,14 +244,14 @@ function show_qouta() {
                     <div class="col-md-3">
                     </div>
                     <div class="col-md-3">
-                        <select class="form-control text" id="quotaType">
+                        <select class="form-control text" id="quotaType" onclick = "insert_quota()">
                             <option value="0">Quota</option>
                             <option value="1">Year End Bonus</option>
                             <option value="2">Salary Increment</option>
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <select class="form-control text" id="groupPosition">
+                        <select class="form-control text" id="groupPosition"  onclick = "insert_quota()">
                             <option value="0">Position Of Quota</option>
                             <option value="1">Team Associate above</option>
                             <option value="2">Operational Associate</option>
