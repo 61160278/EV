@@ -123,7 +123,7 @@ function check_quota_plan() {
     //}
     for (var i = 1; i <= 6; i++) {
         quota = document.getElementById("quota" + i).innerHTML;
-        value_quotaPlan = parseInt(check) * quota / 100;
+        value_quotaPlan = parseFloat(check) * quota / 100;
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
 
 

@@ -59,11 +59,12 @@ function check_quota_plan() {
     var value_quotaPlan = 0;
     var quota = 0;
     //console.log(quota);
+    document.getElementById("submit").disabled = false;
     check = document.getElementById("quotaPlanToT").innerHTML;
     //console.log(check);
     for (var i = 1; i <= 6; i++) {
         quota = document.getElementById("quota" + i).innerHTML;
-        value_quotaPlan = parseInt(check) * parseInt(quota) / 100;
+        value_quotaPlan = parseFloat(check) * parseFloat(quota) / 100;
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
         console.log(value_quotaPlan);
     } //for 
@@ -78,26 +79,28 @@ function check_quota_actual() {
     var sumQuotaActual = 0;
     
     quota = document.getElementById("quotaPlanToT").innerHTML;
-    document.getElementById("submit").disabled = false;
+    // document.getElementById("submit").disabled = false;
     for (var i = 1; i <= 6; i++) {
         check = document.getElementById("quotaActual" + i).value;
         if (check == "") {
             quotaActual = null;
         }
-        if (check != "") {
-            valueActual = parseInt(check);
+        else if(check < 0){
+            quotaActual = null;
+        }else {
+            valueActual = parseFloat(check);
             console.log(valueActual);
-            quotaActual = (valueActual * 100) / parseInt(quota);
+            quotaActual = (valueActual * 100) / parseFloat(quota);
             sumQuotaActual += quotaActual;
-            console.log(quotaActual + "=" + valueActual + "* 100 /" + parseInt(quota));
+            console.log(quotaActual + "=" + valueActual + "* 100 /" + parseFloat(quota));
             actual += valueActual;
 
         }
-        if (valueActual > parseInt(quota)) {
+        if (actual > parseFloat(quota)) {
             $("#show_Actual").css("color", "red");
             add_alert();
             $("#submit").attr("disabled", true);
-        } else if(valueActual == parseInt(quota)){
+        } else if(actual == parseFloat(quota)){
             $("#submit").attr("disabled", false);
             $("#show_Actual").css("color", "#000000");
         }

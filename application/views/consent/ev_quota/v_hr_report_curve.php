@@ -77,7 +77,7 @@ function check_quota_plan() {
     //console.log(check);
     for (var i = 1; i <= 6; i++) {
         quota = document.getElementById("quota" + i).innerHTML;
-        value_quotaPlan = parseInt(check) * parseInt(quota) / 100;
+        value_quotaPlan = parseFloat(check) * parseFloat(quota) / 100;
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
         console.log(value_quotaPlan);
     } //for 
@@ -103,19 +103,19 @@ function check_quota_actual() {
         }
         // if 
         else {
-            valueActual = parseInt(check);
+            valueActual = parseFloat(check);
             console.log(valueActual);
-            quotaActual = (valueActual * 100) / parseInt(quota);
+            quotaActual = (valueActual * 100) / parseFloat(quota);
             sumQuotaActual += quotaActual;
-            console.log(quotaActual + "=" + valueActual + "* 100 /" + parseInt(quota));
+            console.log(quotaActual + "=" + valueActual + "* 100 /" + parseFloat(quota));
             actual += valueActual;
             console.log(actual);
         }
-        if (actual > parseInt(quota)) {
+        if (actual > parseFloat(quota)) {
             $("#show_Actual").css("color", "red");
             add_alert();
             $("#submit").attr("disabled", true);
-        } else if (actual == parseInt(quota)) {
+        } else if (actual == parseFloat(quota)) {
             $("#submit").attr("disabled", false);
             $("#show_Actual").css("color", "#000000");
         }
@@ -398,10 +398,10 @@ tbody:hover {
                                         <tr class="orange2">
                                             <td><b>Quota</b></td>
                                             <td id="quota1" value="5">5</td>
-                                            <td id="quota2" value="25">10</td>
+                                            <td id="quota2" value="25">15</td>
                                             <td id="quota3" value="40">30</td>
                                             <td id="quota4" value="40">30</td>
-                                            <td id="quota5" value="25">10</td>
+                                            <td id="quota5" value="25">15</td>
                                             <td id="quota6" value="5">5</td>
                                             <td>100</td>
                                         </tr>
