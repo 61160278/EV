@@ -49,6 +49,7 @@ function manage_group() {
         } //success
     });
 }
+
 function manage_group_right() {
     var gru_id = document.getElementById("new_group").value;
     var data_row = " ";
@@ -89,6 +90,7 @@ function manage_group_right() {
         } //success
     });
 }
+
 function change_group() {
     var count_check = document.getElementById("count_check").value;
     var new_group = document.getElementById("new_group").value;
@@ -98,7 +100,7 @@ function change_group() {
         if (document.getElementById("check_group" + i).checked) {
             get_emp.push(document.getElementById("emp_" + i).innerHTML)
             console.log(get_emp)
-        }//if
+        } //if
     } //for
 
     $.ajax({
@@ -165,7 +167,6 @@ function change_group_remove() {
 
 <!DOCTYPE html>
 <html>
-<!-- Add group contact-->
 <div class="col-md-12">
     <div class="panel panel-indigo">
         <div class="panel-heading">
@@ -180,7 +181,7 @@ function change_group_remove() {
                 </font>
             </h2>
         </div>
-        <!-- panel-body h3 -->
+        <!-- panel-body h2 -->
 
         <div class="col-md-6">
             <div class="panel-body">
@@ -199,10 +200,9 @@ function change_group_remove() {
                                     <?php echo $row->gru_name;?>
                                 </option>
                                 <?php } ?>
-
-
                             </select>
                         </div>
+                        <div class="panel-ctrls"></div>
                     </div>
 
                     <div class="panel-body no-padding">
@@ -210,7 +210,7 @@ function change_group_remove() {
                             <div class="row">
                                 <div class="col-sm-6"></div>
                                 <div class="col-sm-6"></div>
-                            </div> 
+                            </div>
                             <!--div row for manage size of head panel -->
 
                             <table id="add_table" class="table table-striped table-bordered dataTable no-footer"
@@ -231,11 +231,12 @@ function change_group_remove() {
                                             <center>Section Code
                                         </th>
                                     </tr>
-                                </thead><!-- thead -->
+                                </thead>
+                                <!-- thead -->
 
-                                <tbody id="select_data">
-
-                                </tbody> <!-- tbody -->
+                                <tbody id="select_data" align="center">
+                                </tbody>
+                                <!-- tbody -->
                                 <input type="text" id="count_check" value="" hidden>
                             </table>
                             <!-- table -->
@@ -261,9 +262,6 @@ function change_group_remove() {
                         <!-- add -->
                     </div>
                     <!-- panel-footer -->
-
-
-
                 </div>
                 <!-- table_contact -->
             </div>
@@ -278,12 +276,10 @@ function change_group_remove() {
                         <div col-md-6>
                             <label class="col-sm-12 control-label">
                                 <label class="col-sm-12 control-label">
-
-                        </div> <!-- col-md-6 -->
-                        <?php
-									
+                        </div>
+                        <!-- col-md-6 -->
+                        <?php	
 						      foreach($grpsdm->result() as $row ) { ?>
-
                         <h2>
                             <label class="col-sm-12 control-label">
                                 <font size="6px"><b><?php echo $row->gru_name; ?> </b></font>
@@ -348,7 +344,7 @@ function change_group_remove() {
                             <!-- table -->
                         </div>
                     </div>
-                    <!-- no-padding -->
+                    <!-- panel-body no-padding -->
 
                     <div class="panel-footer">
                         <div class="row">
@@ -356,37 +352,37 @@ function change_group_remove() {
                                 <div class="dataTables_info" id="example_info" role="status" aria-live="polite"></div>
                             </div>
                         </div>
+                    </div>
+                    <!-- panel-footer -->
 
-
+                    <div class="panel-body">
                         <div class="DTTT btn-group pull-left mt-sm">
+                            <button class="btn btn-primary" onclick="change_group_remove()">
+                                <i class="fa fa-refresh"></i>
+                                &nbsp
+                                <span>Transfer</span>
+                            </button>
+                        </div>
+                        <!-- Transform -->
+
+                        <div class="DTTT btn-group pull-right mt-sm">
                             &emsp;
                             <a data-toggle="modal" class="btn btn btn-danger" href="#Resign">
-                            <i class="ti ti-trash"></i>
+                                <i class="ti ti-trash"></i>
                                 &nbsp
                                 <span>RESIGN</span>
                             </a>
                         </div>
                         <!-- RESIGN -->
-
-                        <div class="DTTT btn-group pull-right mt-sm">
-                            <button class="btn btn-danger" onclick="change_group_remove()">
-                                <i class="ti ti-share-alt"></i>
-                                &nbsp
-                                <span>REMOVE</span>
-                            </button>
-                        </div>
-                        <!-- REMOVE -->
                     </div>
-                    <!-- panel-footer -->
-
+                    <!-- panel-body -->
                 </div>
                 <!-- panel-addtable -->
-
             </div>
             <!-- panel-body -->
-
         </div>
         <!-- table right -->
+        
         <div class="col-md-12">
             <div class="panel-body">
                 <div class="DTTT btn-group pull-left mt-sm">
@@ -395,8 +391,10 @@ function change_group_remove() {
                     </a>
                 </div>
                 <!-- BACK -->
-            </div> <!--   panelbody -->
-        </div> <!--   col-md-12 -->
+            </div>
+            <!--   panelbody -->
+        </div>
+        <!--   col-md-12 -->
     </div>
     <!-- head panel -->
 </div>
@@ -434,7 +432,7 @@ tbody {
                         <div class="col-sm-12">
                             <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
                                 align="center">
-                                <font size="5px">==> Coming soon <==</font>
+                                <font size="5px">==> Coming soon <==< /font>
                             </label>
                         </div> <!-- Name - Surname -->
                     </div>
