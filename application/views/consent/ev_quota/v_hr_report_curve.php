@@ -191,12 +191,14 @@ function show_linebarChart() {
         options: {
             scales: {
                 y: {
+                    suggestedMin: 50,
+                suggestedMax: 100,
                     beginAtZero: true,
                     max: 100,
                         min: 0,
                     // stacked: true,
                     ticks: {
-                        
+                        maxTicksLimit: 8,
                         stepSize: 20
                     }
                     // layout: {
