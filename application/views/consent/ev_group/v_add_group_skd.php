@@ -283,7 +283,7 @@ function change_group_remove() {
 							foreach($grpskd->result() as $row ) { ?>
                         <h2>
                             <label class="col-sm-12 control-label">
-                                <font size="6px"><?php echo $row->gru_name; ?> </font>
+                                <font size="6px"><b><?php echo $row->gru_name; ?> </b></font>
                         </h2>
                         <input type="text" value="<?php echo $row->gru_id; ?>" hidden id="new_group">
                         <?php }; ?>
@@ -361,6 +361,15 @@ function change_group_remove() {
 
                     <div class="panel-body">
                         <div class="DTTT btn-group pull-left mt-sm">
+                            <button class="btn btn-primary" onclick="change_group_remove()">
+                                <i class="fa fa-refresh"></i>
+                                &nbsp
+                                <span>Transfer</span>
+                            </button>
+                        </div>
+                        <!-- Transform -->
+
+                        <div class="DTTT btn-group pull-right mt-sm">
                             &emsp;
                             <a data-toggle="modal" class="btn btn btn-danger" href="#Resign">
                                 <i class="ti ti-trash"></i>
@@ -369,15 +378,6 @@ function change_group_remove() {
                             </a>
                         </div>
                         <!-- RESIGN -->
-
-                        <div class="DTTT btn-group pull-right mt-sm">
-                            <button class="btn btn-danger" onclick="change_group_remove()">
-                                <i class="ti ti-share-alt"></i>
-                                &nbsp
-                                <span>TRANSFER</span>
-                            </button>
-                        </div>
-                        <!-- REMOVE -->
                     </div>
                     <!-- panel-body right -->
                 </div>
@@ -395,7 +395,6 @@ function change_group_remove() {
                     </a>
                 </div>
                 <!-- BACK -->
-
             </div>
             <!-- panel-body -->
         </div>

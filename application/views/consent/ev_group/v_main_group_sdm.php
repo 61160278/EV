@@ -421,7 +421,7 @@ function check_data_edt(check) {
                                                 <!-- Edit button -->
                                                 <a class="btn btn-info"
                                                     onClick="manage_data(<?php echo $row->gru_id; ?>)">
-                                                    <i class="ti ti-loop"></i>
+                                                    <i class="fa fa-refresh"></i>
                                                 </a>
                                                 <!-- Manage data employee button -->
                                             </div>
@@ -468,9 +468,9 @@ function check_data_edt(check) {
                         Edit
                     </a>
                     <a class="btn btn-info">
-                        <i class="ti ti-loop"></i>
+                        <i class="fa fa-refresh"></i>
                         &nbsp;
-                        Preview
+                        Transfer
                     </a>
                 </div>
             </div>
