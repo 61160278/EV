@@ -2,7 +2,7 @@
     <center>Form</center>
 </h1>
 
-<div data-widget-group="group1"> -->
+<div data-widget-group="group1">
     <div class="row">
         <div class="col-xs-12">
 
@@ -30,7 +30,7 @@
                                 </div>
                                 <!-- General Data -->
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">No.<br>DN.PCR-FY20-013</label>
+                                    <label class="col-sm-2 control-label">No.<br>DN.PCR-FY20-013 </label>
                                     <label class="col-sm-3 control-label">DATE<br>01-Feb-21</label>
                                     <label class="col-sm-3 control-label">REGISTANT<br>SID J.</label>
                                     <label class="col-sm-3 control-label">DEPARTMENT<br>Production Engineering</label>
@@ -41,7 +41,7 @@
                                         <br>
                                         <br>
                                         Part Test Flow Out
-                                    </label> 
+                                    </label>
                                     <!-- PCR Type -->
 
                                     <label class="col-sm-2 control-label">
@@ -73,7 +73,7 @@
                                         <br>
                                         <br>
                                         Delivery
-                                    </label> 
+                                    </label>
                                     <!-- Quality -->
 
                                     <label class="col-sm-2 control-label">
@@ -114,125 +114,235 @@
                                     <label class="col-sm-2 control-label">TITLE</label>
                                 </div>
                                 <!-- TITLE -->
-                                
-                                
-                                
                                 <div class="form-group">
-                                <label class="col-sm-2 control-label">CHANGE TYPE<br>New</label>
+                                    <label class="col-sm-2 control-label">CHANGE TYPE<br>New</label>
                                     <label class="col-sm-4 control-label">RANK</label>
-                                    
                                 </div>
                                 <!-- CHANGE TYPE -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">CUSTOMER SUBMISSON</label>
+                                    <label class="col-sm-4 control-label">PROCESS DESIGN REVIEW<br>No</label>
+                                </div>
+                                <!-- CUSTOMER SUBMISSON -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">PRODUCT</label>
+                                    <label class="col-sm-4 control-label">PART NAME</label>
+                                </div>
+                                <!-- PRODUCT -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">PART NUMBER<br>123456</label>
+                                    <label class="col-sm-4 control-label">CHANGE POINT<br>No</label>
+                                </div>
+                                <!-- PART NUMBER -->
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"><b>Priority Management Category</b></label>
+                                </div>
+                                <!-- Priority -->
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label"><b>Details Process Change (File upload plan
+                                            <font color="red">*Maximum file upload size 9.5 MB</font>)
+                                        </b></label>
+                                </div>
+                                <!-- Details -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"></label>
+                                    <div class="col-sm-8">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <span class="btn btn-default btn-file">
+                                                <span class="fileinput-new">Select file</span>
+                                                <span class="fileinput-exists">Change</span>
+                                                <input type="file" name="...">
+                                            </span>
+                                            <span class="fileinput-filename"></span>
+                                            <a href="#" class="close fileinput-exists" data-dismiss="fileinput"
+                                                style="float: none">&times;</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Select file -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><b>Implementation Plan</b></label>
+                                </div>
+                                <!-- Implementation -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">1.PCR plan submission</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group date" id="datepicker-pastdisabled">
+                                            <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
+                                            <input type="date" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- PCR plan -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">2.Planning review</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group date" id="datepicker-pastdisabled">
+                                            <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
+                                            <input type="date" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Planning review -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">3.Process preparation</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group date" id="datepicker-pastdisabled">
+                                            <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
+                                            <input type="date" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Process preparation -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">4.Product Process evaluation</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group date" id="datepicker-pastdisabled">
+                                            <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
+                                            <input type="date" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Process preparation -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">5.Revise document standard</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group date" id="datepicker-pastdisabled">
+                                            <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
+                                            <input type="date" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Revise document -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">6. 6 step / Quality report</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group date" id="datepicker-pastdisabled">
+                                            <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
+                                            <input type="date" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 6 step -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">7. PCR result submisson</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group date" id="datepicker-pastdisabled">
+                                            <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
+                                            <input type="date" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- PCR result -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">8. Production Start Date</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group date" id="datepicker-pastdisabled">
+                                            <span class="input-group-addon"><i class="ti ti-calendar"></i></span>
+                                            <input type="date" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Production -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><b>Data attachments</b></label>
+                                </div>
+                                <!-- Implementation -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"></label>
+                                    <div class="col-sm-8">
+                                        <label class="checkbox-inline icheck">
+                                            <input type="checkbox" id="inlinecheckbox1" value="option1"> PFMEA
+                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                        </label>
+
+                                        <label class="checkbox-inline icheck">
+                                            <input type="checkbox" id="inlinecheckbox2" value="option2"> QA Network
+                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                        </label>
+
+                                        <label class="checkbox-inline icheck">
+                                            <input type="checkbox" id="inlinecheckbox3" value="option3"> Control plan
+                                            ,PCC
+                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                        </label>
+                                        <br>
+                                        <label class="checkbox-inline icheck">
+                                            <input type="checkbox" id="inlinecheckbox1" value="option1"> Standarize work
+                                            , WI
+                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                        </label>
+
+                                        <label class="checkbox-inline icheck">
+                                            <input type="checkbox" id="inlinecheckbox2" value="option2"> Machine
+                                            specifcation
+                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                        </label>
+                                        <label class="checkbox-inline icheck">
+                                            <input type="checkbox" id="inlinecheckbox3" value="option3"> Daily check
+                                            sheet
+                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                        </label>
+                                        <br>
+                                        <label class="checkbox-inline icheck">
+                                            <input type="checkbox" id="inlinecheckbox3" value="option3"> Other
+                                        </label>
+                                    </div>
+                                </div>
+                                <!-- checkbox-inline -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><b>Approve of Department</b></label>
+                                </div>
+                                <!-- Approve -->
+                                <label class="col-sm-4 control-label">(CHECKER 1 EMPLOYEE ID.)</label>
+                                <label class="col-sm-4 control-label">NAME-SURNAME</label>
+                                <label class="col-sm-4 control-label">POSITION / DEPARTMENT</label>
+                                <br>
+                                <label class="col-sm-4 control-label">(CHECKER 2 EMPLOYEE ID.)</label>
+                                <label class="col-sm-4 control-label">NAME-SURNAME</label>
+                                <label class="col-sm-4 control-label">POSITION / DEPARTMENT</label>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><b>Approve Acknowledge Department</b></label>
+                                </div>
+                                <!-- Approve -->
+                                <label class="col-sm-4 control-label">EMPLOYEE ID.</label>
+                                <label class="col-sm-4 control-label">NAME-SURNAME</label>
+                                <label class="col-sm-4 control-label">POSITION / DEPARTMENT</label>
                             </form>
                             <!-- class="form-horizontal row-border" -->
+                            <br>
+                            <br>
+
+                            <div class="panel-footer">
+                                <div class="row" align='right'>
+                                    <div class="col-sm-10 col-sm-offset-2">
+                                        <button class="btn-primary btn">SUBMIT FORM</button>
+                                        <button class="btn-default btn">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <!-- id="PCR Form" -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        <div class="tab-pane" id="Flow Popover">
-                            <form action="" class="form-horizontal row-border">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Simple Text Field</label>
-                                    <div class="col-sm-8">
-                                        <a href="#" id="username" data-type="text" data-pk="1"
-                                            data-title="Enter username">superuser</a>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Empty text field, required</label>
-                                    <div class="col-sm-8">
-                                        <a href="#" id="firstname" data-type="text" data-pk="1" data-placement="right"
-                                            data-placeholder="Required" data-title="Enter your firstname"></a>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Select, local array, custom display</label>
-                                    <div class="col-sm-8">
-                                        <a href="#" id="sex" data-type="select" data-pk="1" data-value=""
-                                            data-title="Select sex"></a>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Select, error while loading</label>
-                                    <div class="col-sm-8">
-                                        <a href="#" id="status" data-type="select" data-pk="1" data-value="0"
-                                            data-source="/status" data-title="Select status">Active</a>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Combodate</label>
-                                    <div class="col-sm-8">
-                                        <a href="#" id="dob" data-type="combodate" data-value="1984-05-15"
-                                            data-format="YYYY-MM-DD" data-viewformat="DD/MM/YYYY"
-                                            data-template="D / MMM / YYYY" data-pk="1"
-                                            data-title="Select Date of birth"></a>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Textarea, buttons below. Submit by
-                                        <i>ctrl+enter</i></label>
-                                    <div class="col-sm-8">
-                                        <a href="#" id="comments" data-type="textarea" data-pk="1"
-                                            data-placeholder="Your comments here..." data-title="Enter comments">awesome
-                                            user!</a>
-                                    </div>
-                                </div>
-                            </form>
-                            <!-- class="form-horizontal row-border" -->
-                        </div>
-                        <!-- id="Flow Popover" -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                     </div>
-                    <!-- class="tab-content" -->
+                    <!-- id="PCR Form" -->
                 </div>
-                <!-- class="panel-body" -->
+                <!-- class="tab-content" -->
             </div>
-            <!-- class="panel panel-info" -->
+            <!-- class="panel-body" -->
         </div>
-        <!-- class="col-xs-12" -->
+        <!-- class="panel panel-info" -->
+
     </div>
-    <!-- class="row" -->
+    <!-- class="col-xs-12" -->
+
+</div>
+<!-- class="row" -->
+
 </div>
 <!-- group1 -->
