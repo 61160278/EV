@@ -14,6 +14,7 @@ $(document).ready(function() {
     check_quota_actual()
     document.getElementById("submit").disabled = true;
 });
+
 function get_data() {
     var pos_sel = document.getElementById("pos_select").value; // get kay by id
     console.log(pos_sel);
@@ -77,7 +78,7 @@ function check_quota_plan() {
     //console.log(check);
     for (var i = 1; i <= 6; i++) {
         quota = document.getElementById("quota" + i).innerHTML;
-        value_quotaPlan = parseInt(check) * parseInt(quota) / 100;
+        value_quotaPlan = parseFloat(check) * parseFloat(quota) / 100;
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
         console.log(value_quotaPlan);
     } //for 
@@ -97,25 +98,24 @@ function check_quota_actual() {
 
         if (check == "") {
             quotaActual = null;
-        }
-       else if(check < 0 ){
+        } else if (check < 0) {
             quotaActual = null;
         }
         // if 
         else {
-            valueActual = parseInt(check);
+            valueActual = parseFloat(check);
             console.log(valueActual);
-            quotaActual = (valueActual * 100) / parseInt(quota);
+            quotaActual = (valueActual * 100) / parseFloat(quota);
             sumQuotaActual += quotaActual;
-            console.log(quotaActual + "=" + valueActual + "* 100 /" + parseInt(quota));
+            console.log(quotaActual + "=" + valueActual + "* 100 /" + parseFloat(quota));
             actual += valueActual;
             console.log(actual);
         }
-        if (actual > parseInt(quota)) {
+        if (actual > parseFloat(quota)) {
             $("#show_Actual").css("color", "red");
             add_alert();
             $("#submit").attr("disabled", true);
-        } else if (actual == parseInt(quota)) {
+        } else if (actual == parseFloat(quota)) {
             $("#submit").attr("disabled", false);
             $("#show_Actual").css("color", "#000000");
         }
@@ -191,7 +191,19 @@ function show_linebarChart() {
         options: {
             scales: {
                 y: {
-                    beginAtZero: true
+                    suggestedMin: 50,
+                suggestedMax: 100,
+                    beginAtZero: true,
+                    max: 100,
+                        min: 0,
+                    // stacked: true,
+                    ticks: {
+                        maxTicksLimit: 8,
+                        stepSize: 20
+                    }
+                    // layout: {
+                    //     padding: 20
+                    // }
                 }
             }
         }
@@ -210,11 +222,11 @@ function show_linebarChart() {
         });
     });
 
-}//show_linebarChart
+} //show_linebarChart
 
 function get_department() {
     var dep_sel = document.getElementById("com_select").value; // get kay by id
-     console.log(dep_sel);
+    console.log(dep_sel);
 
     $.ajax({
         type: "post",
@@ -230,7 +242,8 @@ function get_department() {
             table_data += '<option value="0">Select Department</option>'
             data.forEach((row, i) => {
 
-                table_data += '<option value="' + row.Dep_id + '">' + row.Dep_shortName + '</option>'
+                table_data += '<option value="' + row.Dep_id + '">' + row.Dep_shortName +
+                    '</option>'
 
             });
 
@@ -239,8 +252,7 @@ function get_department() {
         }
     });
 
-}//get_department()
-
+} //get_department()
 </script>
 <style>
 .text {
@@ -329,19 +341,19 @@ tbody:hover {
                     <div class="col-md-4">
                     </div>
                     <div class="col-md-2">
-                   <select class="form-control text" id="dep_select">
-                             <option value="0">Select Department</option> 
+                        <select class="form-control text" id="dep_select">
+                            <option value="0">Select Department</option>
                             <!-- start foreach -->
                             <!-- <?php //foreach($dep_data->result() as $value){ ?> -->
                             <!-- <option value="<?php //echo $value->Dep_id;?>"> -->
-                                <?php //echo $value->Dep_Name;?>
+                            <?php //echo $value->Dep_Name;?>
                             <!-- </option> -->
                             <?php//} ?>
                             <!-- end foreach -->
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <select class="form-control text" id="pos_select" >
+                        <select class="form-control text" id="pos_select">
                             <option value="select">Select Position</option>
                             <option value="0">All Position</option>
                             <!-- start foreach -->
@@ -361,7 +373,7 @@ tbody:hover {
                             onclick="show_linebarChart()">SUBMIT</button>
                     </div>
                 </div>
-                
+
             </div>
             <br>
             <legend></legend>
@@ -374,8 +386,7 @@ tbody:hover {
                             <h2>
                                 <font size="5px">Report table</font>
                             </h2>
-                            <div class="panel-ctrls" data-actions-container=""
-                                >
+                            <div class="panel-ctrls" data-actions-container="">
                             </div>
                         </div>
                         <div class="panel-body" style="">
@@ -398,10 +409,10 @@ tbody:hover {
                                         <tr class="orange2">
                                             <td><b>Quota</b></td>
                                             <td id="quota1" value="5">5</td>
-                                            <td id="quota2" value="25">10</td>
+                                            <td id="quota2" value="25">15</td>
                                             <td id="quota3" value="40">30</td>
                                             <td id="quota4" value="40">30</td>
-                                            <td id="quota5" value="25">10</td>
+                                            <td id="quota5" value="25">15</td>
                                             <td id="quota6" value="5">5</td>
                                             <td>100</td>
                                         </tr>
@@ -422,27 +433,27 @@ tbody:hover {
                                                 <td><b>Actual</b></td>
                                                 <td>
                                                     <input type="number" class="form-control" id="quotaActual1"
-                                                        onchange="check_quota_actual()"  min ="0" required>
+                                                        onchange="check_quota_actual()" min="0" required>
                                                 </td>
                                                 <td>
                                                     <input type="number" class="form-control" id="quotaActual2"
-                                                        onchange="check_quota_actual()" min ="0" required>
+                                                        onchange="check_quota_actual()" min="0" required>
                                                 </td>
                                                 <td>
                                                     <input type="number" class="form-control" id="quotaActual3"
-                                                        onchange="check_quota_actual()" min ="0" required>
+                                                        onchange="check_quota_actual()" min="0" required>
                                                 </td>
                                                 <td>
                                                     <input type="number" class="form-control" id="quotaActual4"
-                                                        onchange="check_quota_actual()" min ="0" required>
+                                                        onchange="check_quota_actual()" min="0" required>
                                                 </td>
                                                 <td>
                                                     <input type="number" class="form-control" id="quotaActual5"
-                                                        onchange="check_quota_actual()" min ="0" required>
+                                                        onchange="check_quota_actual()" min="0" required>
                                                 </td>
                                                 <td>
                                                     <input type="number" class="form-control" id="quotaActual6"
-                                                        onchange="check_quota_actual()" min ="0" required>
+                                                        onchange="check_quota_actual()" min="0" required>
                                                 </td>
                                                 <td id="show_Actual"></td>
                                             </tr>
