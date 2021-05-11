@@ -369,15 +369,24 @@ function change_group_remove() {
                         </div>
                         <!-- Transform -->
 
+                        
                         <div class="DTTT btn-group pull-right mt-sm">
                             &emsp;
-                            <a data-toggle="modal" class="btn btn btn-danger" href="#Resign">
+                            <?php
+							$num = 0;
+							foreach($group_skd->result() as $index->$row ) { ?>
+                            <a data-toggle="modal" class="btn btn btn-danger" href="#Delete<?php echo $row->gru_id?>">
                                 <i class="ti ti-trash"></i>
                                 &nbsp
                                 <span>RESIGN</span>
                             </a>
+                            <?php
+						$num++;
+						} ?>
+                        <!-- foreach -->
                         </div>
                         <!-- RESIGN -->
+                        
                     </div>
                     <!-- panel-body right -->
                 </div>
@@ -418,35 +427,47 @@ tbody {
 }
 </style>
 
-<!-- Model RESIGN -->
-<div class="modal fade" id="Resign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- Modal Delete -->
+<div class="modal fade" id="Delete<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color:gray;">
+            <div class="modal-header" style="background-color:red;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b></font>
+                    <font color="Black"><b>&times;</b></font>
                 </button>
-            </div><!-- Modal header -->
-            <div class="modal-body">
+                <h2 class="modal-title" style="font-family:'Georgia'"><b>
+                    <font color="white">Delete</font>
+                </b></h2>
+            </div>
+            <!-- Modal header -->
 
+            <div class="modal-body">
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                            <label for="focusedinput" class="control-label"
                                 align="center">
-                                <font size="5px">Do you want to Resign Data YES or NO ?</font>
+                                <font size="5px">Do you want to Delete Data YES or NO ?</font>
                             </label>
-                        </div> <!-- Name - Surname -->
+                        </div>
                     </div>
-                </div> <!-- form-horizontal -->
+                </div>
+                <!-- form-horizontal -->
             </div>
+            <!-- Modal body -->
+
             <div class="modal-footer">
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
                 </div>
-                <button type="button" class="btn btn-success" data-dismiss="modal">YES</button>
+                <button type="button" class="btn btn-success"
+                    onClick="delete_data(<?php echo $row->gru_id; ?>)">YES</button>
             </div>
-
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div><!-- /.modal-->
+            <!-- Modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal Delete -->
