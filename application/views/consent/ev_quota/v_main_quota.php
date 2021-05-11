@@ -66,7 +66,7 @@ td{
 										<tr role="row">
 											<th>Quota</th>
 											<th>Positon of Quota</th>
-											<th>data</th>
+											<th>date</th>
 											<th>Action</th>
 										</tr>
 									</thead>

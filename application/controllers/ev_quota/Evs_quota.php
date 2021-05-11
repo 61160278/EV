@@ -294,12 +294,14 @@ function all_position(){
 function quota_insert(){
 	$qut_type = $this->input->post("quotaType"); // quota type
 	$qut_pos = $this->input->post("groupPosition"); //group position of quota
+	$qut_date = $this->input->post("savedate"); // date save
 
 		$this->load->model("Da_evs_quota","dqut");
 
 		$this->dqut->qut_id = $qut_id;
 		$this->dqut->qut_type = $qut_type;
 		$this->dqut->qut_pos = $qut_pos;
+		$this->dqut->qut_date = $qut_date;
 		$this->dqut->insert();
 		echo json_encode("Success by insert");
 
