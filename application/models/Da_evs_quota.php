@@ -42,10 +42,9 @@ class Da_evs_quota extends evs_model {
 	* @Create Date 2564-05-10
 	*/
 	function insert() {
-	 	$sql = "INSERT INTO evs_database.evs_quota (evs_quota.qut_id, evs_quota.qut_type, evs_quota.qut_pos)
-	 			VALUES(?, ?, ?)";
+	 	$sql = "INSERT INTO evs_database.evs_quota (evs_quota.qut_id, evs_quota.qut_type, evs_quota.qut_pos, evs_quota.qut_date)VALUES(?, ?, ?, ?)";
 		 
-	 	$this->db->query($sql, array($this->qut_id, $this->qut_type, $this->qut_pos));
+	 	$this->db->query($sql, array($this->qut_id, $this->qut_type, $this->qut_pos, $this->qut_date));
 	
 	 }
 

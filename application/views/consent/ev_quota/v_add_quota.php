@@ -53,52 +53,62 @@ function select_quota(value) {
     } else {
         window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_ca";
     }
-}//select_quota
+} //select_quota
 
 
 function insert_quota() {
 
     var quotaType = document.getElementById("quotaType").value; // value of year id
     var groupPosition = document.getElementById("groupPosition").value;
+     if (groupPosition == 0) {
 
-if(quotaType ==1){
-   
-    quotaType = document.getElementById("quotaType").options[1].text;
-    // groupPosition = document.getElementById("groupPosition").options[1].text;
-    
-}else if(quotaType ==2){
-    quotaType = document.getElementById("quotaType").options[2].text;
+    } else{
+
+        if (quotaType == 1 ) {
+
+quotaType = document.getElementById("quotaType").options[1].text;
+// groupPosition = document.getElementById("groupPosition").options[1].text;
+
+} else if (quotaType == 2) {
+quotaType = document.getElementById("quotaType").options[2].text;
 }
 //end if-else quotaType
-if(groupPosition ==1){
-   
-    groupPosition = document.getElementById("groupPosition").options[1].text;
-  
-   
-}else if(groupPosition ==2){
-    groupPosition = document.getElementById("groupPosition").options[2].text;
+if (groupPosition == 1) {
+
+groupPosition = document.getElementById("groupPosition").options[1].text;
+
+} else if (groupPosition == 2) {
+
+groupPosition = document.getElementById("groupPosition").options[2].text;
 }
-//end if-else groupPosition
-console.log(quotaType);
-console.log(groupPosition);
-    $.ajax({
-        type: "post",
-       // url: "<?php //echo base_url(); ?>/ev_quota/Evs_quota/quota_insert",
-        data: {
 
-             "quotaType": quotaType,
-             "groupPosition": groupPosition,
-           
-        },
-        dataType: "JSON",
+        //end if-else groupPosition
+        var datedata = new Date();
+        var day = datedata.getDate();
+        var month = datedata.getMonth() + 1;
+        var year = datedata.getFullYear();
+        // get date form new date() 
+        var savedate= year + "-" + month + "-" + day;
+       
 
-        success: function(status) {
-            console.log(status);
-        }
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_insert",
+            data: {
 
-    });
+                "quotaType": quotaType,
+                "groupPosition": groupPosition,
+                "savedate": savedate,
+            },
+            dataType: "JSON",
 
-}//insert_quota
+            success: function(status) {
+                console.log(status);
+            }
+
+        });
+    }
+} //insert_quota
 
 
 function check_quota() {
@@ -135,6 +145,11 @@ function add_alert() {
     $('#warning').modal('show');
 }
 
+function confirm_save() {
+    insert_quota();
+    $('#warning_save').modal('show');
+
+}
 
 function show_qouta() {
 
@@ -244,14 +259,14 @@ function show_qouta() {
                     <div class="col-md-3">
                     </div>
                     <div class="col-md-3">
-                        <select class="form-control text" id="quotaType" onclick = "insert_quota()">
+                        <select class="form-control text" id="quotaType" >
                             <option value="0">Quota</option>
                             <option value="1">Year End Bonus</option>
                             <option value="2">Salary Increment</option>
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <select class="form-control text" id="groupPosition"  onclick = "insert_quota()">
+                        <select class="form-control text" id="groupPosition">
                             <option value="0">Position Of Quota</option>
                             <option value="1">Team Associate above</option>
                             <option value="2">Operational Associate</option>
@@ -339,7 +354,8 @@ function show_qouta() {
                 </div>
             </div>
             <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
-            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button>
+            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
+                id="saveData" onclick = "confirm_save()">SAVE</button>
         </div>
     </div>
     <!-- Modal Warning -->
@@ -387,7 +403,55 @@ function show_qouta() {
         <!-- modal-dialog -->
     </div>
     <!-- End Modal Warning -->
+
 </div>
+
+<!-- Modal Warning -->
+<div class="modal fade" id="warning_save" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#FF9800;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b>
+                    </font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Warning</font>
+                    </b></h2>
+            </div>
+            <!-- Modal header -->
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group" align="center">
+                        <div class="col-sm-12">
+                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                                align="center">
+                                <font size="3px">
+                                   save?</font>
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- form-horizontal -->
+            </div>
+            <!-- Modal body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                </div>
+
+            </div>
+            <!-- Modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal Warning -->
+
 </div>
 <script>
 

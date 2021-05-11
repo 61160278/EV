@@ -24,5 +24,20 @@ include_once("Da_evs_quota.php");
 class M_evs_quota extends Da_evs_quota {
 
 
-} 
+	/*
+	* get_all
+	* Get All quota from database
+	* @input  -
+	* @output quota all
+	* @author Lapatrada puttamongkol
+	* @Create Date 2564-05-11
+	*/
+	function get_all(){	
+		$sql = "SELECT * 
+        FROM evs_database.evs_quota";
+		$query = $this->db->query($sql);
+		return $query;
+	}//get_all 
+
+} //end class
 ?>
