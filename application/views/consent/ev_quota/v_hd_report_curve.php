@@ -118,7 +118,6 @@ function add_alert() {
     $('#warning').modal('show');
 }
 
-
 function get_data() {
     var pos_sel = document.getElementById("pos_select").value; // get kay by id
     console.log(pos_sel);

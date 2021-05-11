@@ -37,6 +37,21 @@ td {
 </style>
 <script>
 
+function get_data() {
+    var qut_data = document.getElementById("qut_data").value; // get kay by id
+   // console.log(qut_data);
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_quota/main_quota",
+        data: {
+            "qut_data": qut_data
+        },
+        dataType: "JSON",
+        success: function(data) {
+            console.log(data)
+        }
+    });
+}
 
 </script>
 <div class="col-md-12">
@@ -58,9 +73,6 @@ td {
                             class="btn btn-success" id="add"> + ADD </button></a>
                     <div class="panel-ctrls">
 
-
-
-
                     </div>
                     <!-- col-8 -->
                 </div>
@@ -81,18 +93,18 @@ td {
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody id ="tbody">
-
-							<?php foreach($select->result() as $index => $row ) {  ?>
+                            <tbody id = "qut_data">
+							
+                                <!-- <?php //foreach($qut_data as $value){ ?>
                                 <tr>
-                                    <td><?php echo $row->qut_type;?> </td>
-                                    <td><?php echo $row->qut_pos;?> </td>
-                                    <td><?php echo $row->qut_date;?> </td>
+                                    <td><?php// echo $value->qut_type;?> </td>
+                                    <td><?php //echo $value->qut_pos;?> </td>
+                                    <td><?php //echo $value->qut_date;?> </td>
                                     <td class="center"><a
-                                            href="<?php echo base_url();?>/ev_quota/Evs_quota/manage_quota">
+                                            href="<?php //echo base_url();?>/ev_quota/Evs_quota/manage_quota">
                                             <button type="submit" class="btn btn-info"><i
                                                     class="ti ti-info-alt"></i></button></a>
-                                        <a href="<?php echo base_url();?>/ev_quota/Evs_quota/edit_quota_ca">
+                                        <a href="<?php //echo base_url();?>/ev_quota/Evs_quota/edit_quota_ca">
                                             <button type="submit" class="btn btn-warning"><i
                                                     class="ti ti-pencil-alt "></i></button></a>
                                         <a data-toggle="modal" href="#delete"><button type="submit"
@@ -100,7 +112,7 @@ td {
                                     </td>
 
                                 </tr>
-                                <?php } ?>
+                                <?php //} ?> --> 
 
                                 <!-- <tr class="gradeA odd" role="row">
 								<td class="sorting_1">Year End Bonus </td>

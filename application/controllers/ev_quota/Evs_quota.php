@@ -309,9 +309,9 @@ function quota_insert(){
 function main_quota()
 	{
 		$this->load->model('M_evs_quota','mqut');
-		$data['select'] = $this->mqut->get_all()->result(); // show value position all
-		$this->output('/consent/ev_quota/v_main_quota',$data);
-		echo json_encode($data);
+		$data['qut_data'] = $this->mqut->get_all()->result(); // show value position all
+		//$this->output('/consent/ev_quota/v_main_quota',$data);
+		 echo json_encode($data);
 	}//hd_report_curve
 }// end class
 ?>
