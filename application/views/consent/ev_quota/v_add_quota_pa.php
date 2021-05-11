@@ -53,7 +53,58 @@ function select_quota(value) {
     } else {
         window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_ca";
     }
+}//select_quota
+
+
+function insert_quota() {
+
+    var quotaType = document.getElementById("quotaType").value; // value of year id
+    var groupPosition = document.getElementById("groupPosition").value;
+
+if(quotaType == 1){
+   
+    quotaType = document.getElementById("quotaType").options[1].text;
+    // groupPosition = document.getElementById("groupPosition").options[1].text;    
 }
+else if(quotaType == 2){
+    quotaType = document.getElementById("quotaType").options[2].text;
+}
+else if(quotaType == 2){
+    quotaType = document.getElementById("quotaType").options[3].text;
+}
+//end if-else quotaType
+if(groupPosition == 1){
+   
+    groupPosition = document.getElementById("groupPosition").options[1].text;
+}
+else if(groupPosition == 2){
+    groupPosition = document.getElementById("groupPosition").options[2].text;
+}
+else if(groupPosition == 3){
+    groupPosition = document.getElementById("groupPosition").options[3].text;
+}
+//end if-else groupPosition
+console.log(quotaType);
+console.log(groupPosition);
+    $.ajax({
+        type: "post",
+       // url: "<?php //echo base_url(); ?>/ev_quota/Evs_quota/quota_insert",
+        data: {
+
+             "quotaType": quotaType,
+             "groupPosition": groupPosition,
+           
+        },
+        dataType: "JSON",
+
+        success: function(status) {
+            console.log(status);
+        }
+
+    });
+
+}//insert_quota
+
 
 function check_quota() {
 
@@ -143,7 +194,13 @@ function show_qouta() {
         options: {
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    max: 100,
+                    min: 0,
+                    ticks: {
+                        stepSize: 20
+                    }
+
                 }
             }
         }
@@ -181,7 +238,7 @@ function show_qouta() {
                 <select class="form-control pull-right margin" aria-controls="example" onChange="select_quota(value)">
                     <option value="">Select</option>
                     <option value="1">CA</option>
-                    <option value="2">PA</option>
+                    <option value="2">TA</option>
                 </select>
             </div>
         </div>
@@ -192,17 +249,18 @@ function show_qouta() {
                     <div class="col-md-3">
                     </div>
                     <div class="col-md-3">
-                        <select class="form-control text" id="">
-                            <option value="yearEndBonus">Quota</option>
-                            <option value="yearEndBonus">Year End Bonus</option>
-                            <option value="salaryIncrement">Salary Increment</option>
+                        <select class="form-control text" id="quotaType" onclick = "insert_quota()">
+                            <option value="0">Quota</option>
+                            <option value="1">Year End Bonus</option>
+                            <option value="2">Salary Increment</option>
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <select class="form-control text" id="">
-                            <option value="yearEndBonus">Position Of Quota</option>
-                            <option value="yearEndBonus">Team Associate above</option>
-                            <option value="salaryIncrement">Operational Associate</option>
+                        <select class="form-control text" id="groupPosition"  onclick = "insert_quota()">
+                            <option value="0">Position Of Quota</option>             
+                            <option value="1">Team Associate above</option>
+                            <option value="2">Operational Associate</option>
+                            <option value="3">Staff above</option>
                         </select>
                     </div>
 
