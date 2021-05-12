@@ -59,16 +59,16 @@ function select_quota(value) {
 
 function insert_quota() {
     var check = "";
-    
+
     var sum_quota = 0;
-        var grade = [];
-        var gradeS = 0;
-        var gradeA = 0;
-        var gradeB = 0;
-        var gradeB_N = 0;
-        var gradeC = 0;
-        var gradeD = 0;
-        var gradeTOT = 0;
+    var grade = [];
+    var gradeS = 0;
+    var gradeA = 0;
+    var gradeB = 0;
+    var gradeB_N = 0;
+    var gradeC = 0;
+    var gradeD = 0;
+    var gradeTOT = 0;
     var quotaType = document.getElementById("quotaType").value; // value of year id
     var groupPosition = document.getElementById("groupPosition").value;
     if (groupPosition == 0) {
@@ -107,12 +107,8 @@ function insert_quota() {
 
             if (check != "") {
                 grade[i] = parseInt(check),
-
-
-                    sum_quota += grade[i];
-
+               sum_quota += grade[i];
             } //if
-
         } //for
         grade.shift();
         gradeS = grade[0];
@@ -121,7 +117,14 @@ function insert_quota() {
         gradeB_N = grade[3];
         gradeC = grade[4];
         gradeD = grade[5];
-
+        console.log(gradeS);
+        console.log(gradeA);
+        console.log(gradeB);
+        console.log(gradeB_N);
+        console.log(gradeC);
+        console.log(gradeD);
+        console.log(savedate);
+        console.log(sum_quota);
         $.ajax({
             type: "post",
             url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_insert",
@@ -142,6 +145,7 @@ function insert_quota() {
 
             success: function(status) {
                 console.log(status);
+           
             }
 
         }); //ajax

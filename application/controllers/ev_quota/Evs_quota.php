@@ -294,13 +294,13 @@ function quota_insert(){
 	$qut_type = $this->input->post("quotaType"); // quota type
 	$qut_pos = $this->input->post("groupPosition"); //group position of quota
 	$qut_date = $this->input->post("savedate"); // date save
-	$qut_date = $this->input->post("gradeS"); // date sav
-	$qut_date = $this->input->post("gradeA"); // date sav
-	$qut_date = $this->input->post("gradeB"); // date sav
-	$qut_date = $this->input->post("gradeB_N"); // date sav
-	$qut_date = $this->input->post("gradeC"); // date sav
-	$qut_date = $this->input->post("gradeD"); // date sav
-	$qut_date = $this->input->post("sum_quota"); // date sav
+	$qut_grad_S = $this->input->post("gradeS"); // date sav
+	$qut_grad_A = $this->input->post("gradeA"); // date sav
+	$qut_grad_B = $this->input->post("gradeB"); // date sav
+	$qut_grad_B_N = $this->input->post("gradeB_N"); // date sav
+	$qut_grad_C = $this->input->post("gradeC"); // date sav
+	$qut_grad_D = $this->input->post("gradeD"); // date sav
+	$qut_total = $this->input->post("sum_quota"); // date sav
 		$this->load->model("Da_evs_quota","dqut");
 
 		$this->dqut->qut_id = $qut_id;
