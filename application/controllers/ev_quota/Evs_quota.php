@@ -333,33 +333,30 @@ function quota_insert(){
 // 	}//show_data_main_quota
 
 function quota_plan_insert(){
-	$qut_type = $this->input->post("quotaType"); // quota type
-	$qut_pos = $this->input->post("groupPosition"); //group position of quota
-	$qut_date = $this->input->post("savedate"); 
-	$qut_grad_S = $this->input->post("gradeS");
-	$qut_grad_A = $this->input->post("gradeA"); 
-	$qut_grad_B = $this->input->post("gradeB"); 
-	$qut_grad_B_N = $this->input->post("gradeB_N");
-	$qut_grad_C = $this->input->post("gradeC"); 
-	$qut_grad_D = $this->input->post("gradeD"); 
-	$qut_total = $this->input->post("sum_quota"); 
-		$this->load->model("Da_evs_quota","dqut");
 
-		$this->dqut->qut_id = $qut_id;
-		$this->dqut->qut_type = $qut_type;
-		$this->dqut->qut_pos = $qut_pos;
-		$this->dqut->qut_date = $qut_date;
-		$this->dqut->qut_grad_S = $qut_grad_S;
-		$this->dqut->qut_grad_A = $qut_grad_A;
-		$this->dqut->qut_grad_B = $qut_grad_B;
-		$this->dqut->qut_grad_B_N = $qut_grad_B_N;
-		$this->dqut->qut_grad_C = $qut_grad_C;
-		$this->dqut->qut_grad_D = $qut_grad_D;
-		$this->dqut->qut_total = $qut_total;
+	$qup_grad_S = $this->input->post("qup_gradeS");
+	$qup_grad_A = $this->input->post("qup_gradeA"); 
+	$qup_grad_B = $this->input->post("qup_gradeB"); 
+	$qup_grad_B_N = $this->input->post("qup_gradeB_N");
+	$qup_grad_C = $this->input->post("qup_gradeC"); 
+	$qup_grad_D = $this->input->post("qup_gradeD"); 
+	$qup_total = $this->input->post("sum_quota_plan"); 
+
+		$this->load->model("Da_evs_quota_plan","dqup");
 		
-		$this->dqut->insert();
+		$this->dqup->qup_id = $qup_id;
+		$this->dqup->qup_grad_S = $qup_grad_S;
+		$this->dqup->qup_grad_A = $qup_grad_A;
+		$this->dqup->qup_grad_B = $qup_grad_B;
+		$this->dqup->qup_grad_B_N = $qup_grad_B_N;
+		$this->dqup->qup_grad_C = $qup_grad_C;
+		$this->dqup->qup_grad_D = $qup_grad_D;
+		$this->dqup->qup_total = $qup_total;
+		
+		$this->dqup->insert();
 		echo json_encode("Success by insert");
 
-}//quota_insert
+}//quota_plan_insert
+
 }// end class
 ?>

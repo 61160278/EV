@@ -213,12 +213,12 @@ function insert_quota_plan() {
 
     var sum_quota_plan = 0;
     var grade = [];
-    // var qup_gradeS = 0;
-    // var qup_gradeA = 0;
-    // var qup_gradeB = 0;
-    // var qup_gradeB_N = 0;
-    // var qup_gradeC = 0;
-    // var qup_gradeD = 0;
+    var qup_gradeS = 0;
+    var qup_gradeA = 0;
+    var qup_gradeB = 0;
+    var qup_gradeB_N = 0;
+    var qup_gradeC = 0;
+    var qup_gradeD = 0;
     var qup_gradeTOT = 0;
 
     var check = "";
@@ -237,33 +237,32 @@ function insert_quota_plan() {
     grade.shift();
     console.log(grade);
     console.log(sum_quota_plan);
-    gradeS = grade[0];
-    gradeA = grade[1];
-    gradeB = grade[2];
-    gradeB_N = grade[3];
-    gradeC = grade[4];
-    gradeD = grade[5];
-    console.log(gradeS);
-    console.log(gradeA);
-    console.log(gradeB);
-    console.log(gradeB_N);
-    console.log(gradeC);
-    console.log(gradeD);
-   
+    qup_gradeS = grade[0];
+    qup_gradeA = grade[1];
+    qup_gradeB = grade[2];
+    qup_gradeB_N = grade[3];
+    qup_gradeC = grade[4];
+    qup_gradeD = grade[5];
+
+    console.log(qup_gradeS);
+    console.log(qup_gradeA);
+    console.log(qup_gradeB);
+    console.log(qup_gradeB_N);
+    console.log(qup_gradeC);
+    console.log(qup_gradeD);
+    $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_insert",
+        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_plan_insert",
+       
         data: {
 
-            "quotaType": quotaType,
-            "groupPosition": groupPosition,
-            "savedate": savedate,
-            "gradeS": gradeS,
-            "gradeA": gradeA,
-            "gradeB": gradeB,
-            "gradeB_N": gradeB_N,
-            "gradeC": gradeC,
-            "gradeD": gradeD,
-            "sum_quota": sum_quota
+            "qup_gradeS": qup_gradeS,
+            "qup_gradeA": qup_gradeA,
+            "qup_gradeB": qup_gradeB,
+            "qup_gradeB_N": qup_gradeB_N,
+            "qup_gradeC": qup_gradeC,
+            "qup_gradeD": qup_gradeD,
+            "sum_quota_plan": sum_quota_plan
         },
         dataType: "JSON",
 
