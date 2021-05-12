@@ -13,6 +13,23 @@ td {
 }
 
 #t01 {}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 2.6cm;
+  }
+}
+/* @media all */
+/* { */
+    /* .page-break { display:none; } */
+    /* .page-break-no{ display:none; } */
+/* } */
+/* @media print */
+/* { */
+    /* .page-break { display:block;height:1px; page-break-before:always; } */
+    /* .page-break-no{ display:block;height:1px; page-break-after:avoid; }  */
+/* } */
 </style>
 
 
@@ -25,6 +42,7 @@ td {
                 <h1 align='center'><b>Process Change Report</b></h1>
             </div>
             <!-- panel-heading -->
+     
 
             <div class="panel-body">
                 <div class="row">
@@ -170,17 +188,16 @@ td {
 
                                 </table>
                                 <!-- Product name -->
-
+                                &nbsp;
                             </div>
                             <!-- col-md-6 Product name -->
 
-
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <table width="100%">
                                         <tr>
                                             <td> &nbsp; Critical Point</td>
-                                            <td> &nbsp; S S F</td>
+                                            <td> &nbsp; S  &nbsp;  &nbsp; S   &nbsp;  &nbsp; F</td> 
 
 
 
@@ -228,8 +245,6 @@ td {
                                         <td> &nbsp; Chage Point</td>
                                         <td> &nbsp; New line/Modify line</td>
 
-
-
                                     </tr>
                                     <tr>
                                         <td> &nbsp; Customer</td>
@@ -239,12 +254,12 @@ td {
 
                                 </table>
                                 <!-- Chage Point -->
-
+                                &nbsp;
                             </div>
                             <!-- col-md-6 Chage Point -->
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <table width="100%">
                                         <tr>
                                             <td> &nbsp; Out put</td>
@@ -296,7 +311,7 @@ td {
                         </div>
                         <!-- class="row" Picture  -->
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-7">
                                 <table width="100%">
                                     <tr>
                                         <td> &nbsp; Implement plan</td>
@@ -350,12 +365,12 @@ td {
 
                                 </table>
                                 <!-- Implement plan -->
-
+                                &nbsp;
                             </div>
                             <!-- col-md-8 Implement plan -->
 
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <table width="100%">
                                         <tr>
                                             <td> &nbsp;Data Attachment</td>

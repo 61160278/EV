@@ -164,6 +164,24 @@ function change_group_remove() {
     //ajax
 }
 // change_group_remove
+
+function delete_data(gru_id) {
+    console.log(gru_id);
+    $.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>/ev_group/Evs_group/delete_group_skd",
+        data: {
+            "gru_id": gru_id
+        },
+        dataType: "JSON",
+        success: function(data, status) {
+            console.log(status)
+        }
+    });
+    // ajax
+    window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
+}
+// function delete_data
 </script>
 
 <!DOCTYPE html>
@@ -372,17 +390,11 @@ function change_group_remove() {
                         
                         <div class="DTTT btn-group pull-right mt-sm">
                             &emsp;
-                            <?php
-							$num = 0;
-							foreach($group_skd->result() as $index->$row ) { ?>
-                            <a data-toggle="modal" class="btn btn btn-danger" href="#Delete<?php echo $row->gru_id?>">
+                            <a data-toggle="modal" class="btn btn btn-danger" href="#Delete" >
                                 <i class="ti ti-trash"></i>
                                 &nbsp
                                 <span>RESIGN</span>
                             </a>
-                            <?php
-						$num++;
-						} ?>
                         <!-- foreach -->
                         </div>
                         <!-- RESIGN -->
@@ -428,7 +440,7 @@ tbody {
 </style>
 
 <!-- Modal Delete -->
-<div class="modal fade" id="Delete<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -462,7 +474,7 @@ tbody {
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
                 </div>
                 <button type="button" class="btn btn-success"
-                    onClick="delete_data(<?php echo $row->gru_id; ?>)">YES</button>
+                    onClick="delete_data()">YES</button>
             </div>
             <!-- Modal footer -->
         </div>
