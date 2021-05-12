@@ -166,20 +166,37 @@ function change_group_remove() {
 // change_group_remove
 
 function delete_data(gru_id) {
-    console.log(gru_id);
+    var count_group = document.getElementById("count_group").value;
+    var old_group = document.getElementById("select").value;
+    var get_emp = [];
+    for (i = 0; i < count_group; i++) {
+        if (document.getElementById("old_check_group" + i).checked) {
+            get_emp.push(document.getElementById("emp_new" + i).innerHTML)
+            console.log(get_emp)
+        }
+        // if
+    }
+    // for
+
     $.ajax({
         type: "POST",
-        url: "<?php echo base_url(); ?>/ev_group/Evs_group/delete_group_skd",
+        url: "<?php echo base_url(); ?>/ev_group/Evs_group/add_new_group",
         data: {
-            "gru_id": gru_id
+            "group": old_group,
+            "get_emp": get_emp,
+            "count": count_group
+
         },
         dataType: "JSON",
-        success: function(data, status) {
+        success: function(status) {
             console.log(status)
+            console.log(gru_id)
+            manage_group_right();
         }
+        //error จะไม่มีการส่งค่ากลับมา
     });
-    // ajax
-    window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
+    //ajax
+    //window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_group_company_skd" + gru_id + " ";
 }
 // function delete_data
 </script>

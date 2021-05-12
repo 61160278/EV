@@ -105,19 +105,6 @@ class Evs_group extends MainController_avenxo {
 		$this->output('/consent/ev_group/v_main_group_skd',$data);
 	}
 	// function select_company_skd
-
-	/*
-	* @author  Tippawan Aiemsaad
-	* @Create Date 2564-04-23
-	*/
-	function delect_company_skd()
-	{
-		$this->load->model('M_evs_group','mevg');
-		$this->mevg->gru_company_id = 2;
-		$data['dcom_skd'] = $this->mevg->get_all_com();
-		$this->output('/consent/ev_group/v_add_group_skd',$data);
-	}
-	// function select_company_skd
 	
 	/*
 	* Evs_form
