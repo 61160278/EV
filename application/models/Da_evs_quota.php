@@ -26,7 +26,15 @@ class Da_evs_quota extends evs_model {
 	
 	public $qut_id; //Quota ID	
 	public $qut_type; //Quota type	
-	public $qut_pos; //Position of quota
+	public $qut_date; //Position of quota
+	public $qut_grad_S; //Grade of quota
+	public $qut_grad_A; //Grade of quota
+	public $qut_grad_B; //Grade of quota
+	public $qut_grad_B_N; //Grade of quota
+	public $qut_grad_C; //Grade of quota
+	public $qut_grad_D; //Grade of quota
+	public $qut_total; //Grade of quota
+	
 	
 
 
