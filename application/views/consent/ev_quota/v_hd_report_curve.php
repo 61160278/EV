@@ -244,7 +244,7 @@ function insert_quota_actual() {
     var quotaActual = 0;
     var quota = "";
     var sumQuotaActual = 0;
-
+    var sum_actual = 0;
     quota = document.getElementById("quotaPlanToT").innerHTML;
     // document.getElementById("submit").disabled = false;
     for (var i = 1; i <= 6; i++) {
@@ -255,7 +255,9 @@ function insert_quota_actual() {
             quotaActual = null;
         } else {
             valueActual = parseFloat(check);
+           
             grade[i] = valueActual;
+             sum_actual += grade[i];
             console.log(valueActual);
             quotaActual = (valueActual * 100) / parseFloat(quota);
             // grade[i] =quotaActual;
@@ -275,41 +277,42 @@ function insert_quota_actual() {
     grade.shift();
     console.log(grade);
     // console.log(sum_quota_plan);
-    // qup_gradeS = grade[0];
-    // qup_gradeA = grade[1];
-    // qup_gradeB = grade[2];
-    // qup_gradeB_N = grade[3];
-    // qup_gradeC = grade[4];
-    // qup_gradeD = grade[5];
+    qua_gradeS = grade[0];
+    qua_gradeA = grade[1];
+    qua_gradeB = grade[2];
+    qua_gradeB_N = grade[3];
+    qua_gradeC = grade[4];
+    qua_gradeD = grade[5];
 
-    // console.log(qup_gradeS);
-    // console.log(qup_gradeA);
-    // console.log(qup_gradeB);
-    // console.log(qup_gradeB_N);
-    // console.log(qup_gradeC);
-    // console.log(qup_gradeD);
-    // $.ajax({
-    //     type: "post",
-    //     url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_plan_insert",
+    console.log(qua_gradeS);
+    console.log(qua_gradeA);
+    console.log(qua_gradeB);
+    console.log(qua_gradeB_N);
+    console.log(qua_gradeC);
+    console.log(qua_gradeD);
+    console.log(sum_actual);
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_actual_insert",
 
-    //     data: {
+        data: {
 
-    //         "qup_gradeS": qup_gradeS,
-    //         "qup_gradeA": qup_gradeA,
-    //         "qup_gradeB": qup_gradeB,
-    //         "qup_gradeB_N": qup_gradeB_N,
-    //         "qup_gradeC": qup_gradeC,
-    //         "qup_gradeD": qup_gradeD,
-    //         "sum_quota_plan": sum_quota_plan
-    //     },
-    //     dataType: "JSON",
+            "qua_gradeS": qua_gradeS,
+            "qua_gradeA": qua_gradeA,
+            "qua_gradeB": qua_gradeB,
+            "qua_gradeB_N": qua_gradeB_N,
+            "qua_gradeC": qua_gradeC,
+            "qua_gradeD": qua_gradeD,
+            "sum_actual": sum_actual
+        },
+        dataType: "JSON",
 
-    //     success: function(status) {
-    //         console.log(status);
+        success: function(status) {
+            console.log(status);
 
-    //     }
+        }
 
-    // }); //ajax
+    }); //ajax
 
 
 } //insert_quota

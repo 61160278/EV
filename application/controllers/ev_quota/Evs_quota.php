@@ -358,5 +358,30 @@ function quota_plan_insert(){
 
 }//quota_plan_insert
 
+function quota_actual_insert(){
+
+	$qua_grad_S = $this->input->post("qua_gradeS");
+	$qua_grad_A = $this->input->post("qua_gradeA"); 
+	$qua_grad_B = $this->input->post("qua_gradeB"); 
+	$qua_grad_B_N = $this->input->post("qua_gradeB_N");
+	$qua_grad_C = $this->input->post("qua_gradeC"); 
+	$qua_grad_D = $this->input->post("qua_gradeD"); 
+	$qua_total = $this->input->post("sum_actual"); 
+
+		$this->load->model("Da_evs_quota_actual","dqua");
+		
+		$this->dqua->qua_id = $qua_id;
+		$this->dqua->qua_grad_S = $qua_grad_S;
+		$this->dqua->qua_grad_A = $qua_grad_A;
+		$this->dqua->qua_grad_B = $qua_grad_B;
+		$this->dqua->qua_grad_B_N = $qua_grad_B_N;
+		$this->dqua->qua_grad_C = $qua_grad_C;
+		$this->dqua->qua_grad_D = $qua_grad_D;
+		$this->dqua->qua_total = $qua_total;
+		
+		$this->dqua->insert();
+		echo json_encode("Success by insert");
+}//quota_actual_insert()
+
 }// end class
 ?>
