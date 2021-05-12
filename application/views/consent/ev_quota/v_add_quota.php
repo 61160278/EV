@@ -48,6 +48,7 @@ td {
 </style>
 <script>
 function select_quota(value) {
+
     if (value == "2") {
         window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_pa";
     } else {
@@ -57,30 +58,40 @@ function select_quota(value) {
 
 
 function insert_quota() {
-
+    var check = "";
+    
+    var sum_quota = 0;
+        var grade = [];
+        var gradeS = 0;
+        var gradeA = 0;
+        var gradeB = 0;
+        var gradeB_N = 0;
+        var gradeC = 0;
+        var gradeD = 0;
+        var gradeTOT = 0;
     var quotaType = document.getElementById("quotaType").value; // value of year id
     var groupPosition = document.getElementById("groupPosition").value;
-     if (groupPosition == 0) {
+    if (groupPosition == 0) {
 
-    } else{
+    } else {
 
-        if (quotaType == 1 ) {
+        if (quotaType == 1) {
 
-quotaType = document.getElementById("quotaType").options[1].text;
-// groupPosition = document.getElementById("groupPosition").options[1].text;
+            quotaType = document.getElementById("quotaType").options[1].text;
+            // groupPosition = document.getElementById("groupPosition").options[1].text;
 
-} else if (quotaType == 2) {
-quotaType = document.getElementById("quotaType").options[2].text;
-}
-//end if-else quotaType
-if (groupPosition == 1) {
+        } else if (quotaType == 2) {
+            quotaType = document.getElementById("quotaType").options[2].text;
+        }
+        //end if-else quotaType
+        if (groupPosition == 1) {
 
-groupPosition = document.getElementById("groupPosition").options[1].text;
+            groupPosition = document.getElementById("groupPosition").options[1].text;
 
-} else if (groupPosition == 2) {
+        } else if (groupPosition == 2) {
 
-groupPosition = document.getElementById("groupPosition").options[2].text;
-}
+            groupPosition = document.getElementById("groupPosition").options[2].text;
+        }
 
         //end if-else groupPosition
         var datedata = new Date();
@@ -88,8 +99,28 @@ groupPosition = document.getElementById("groupPosition").options[2].text;
         var month = datedata.getMonth() + 1;
         var year = datedata.getFullYear();
         // get date form new date() 
-        var savedate= year + "-" + month + "-" + day;
-       
+        var savedate = year + "-" + month + "-" + day;
+
+        // document.getElementById("submit").disabled = false;
+        for (i = 1; i <= 6; i++) {
+            check = document.getElementById("quota" + i).value;
+
+            if (check != "") {
+                grade[i] = parseInt(check),
+
+
+                    sum_quota += grade[i];
+
+            } //if
+
+        } //for
+        grade.shift();
+        gradeS = grade[0];
+        gradeA = grade[1];
+        gradeB = grade[2];
+        gradeB_N = grade[3];
+        gradeC = grade[4];
+        gradeD = grade[5];
 
         $.ajax({
             type: "post",
@@ -99,6 +130,13 @@ groupPosition = document.getElementById("groupPosition").options[2].text;
                 "quotaType": quotaType,
                 "groupPosition": groupPosition,
                 "savedate": savedate,
+                "gradeS": gradeS,
+                "gradeA": gradeA,
+                "gradeB": gradeB,
+                "gradeB_N": gradeB_N,
+                "gradeC": gradeC,
+                "gradeD": gradeD,
+                "sum_quota": sum_quota
             },
             dataType: "JSON",
 
@@ -106,10 +144,11 @@ groupPosition = document.getElementById("groupPosition").options[2].text;
                 console.log(status);
             }
 
-        });
-    }
-} //insert_quota
+        }); //ajax
+    } //end else
 
+
+} //insert_quota
 
 function check_quota() {
 
@@ -259,7 +298,7 @@ function show_qouta() {
                     <div class="col-md-3">
                     </div>
                     <div class="col-md-3">
-                        <select class="form-control text" id="quotaType" >
+                        <select class="form-control text" id="quotaType">
                             <option value="0">Quota</option>
                             <option value="1">Year End Bonus</option>
                             <option value="2">Salary Increment</option>
@@ -354,8 +393,8 @@ function show_qouta() {
                 </div>
             </div>
             <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
-            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
-                id="saveData" onclick = "confirm_save()">SAVE</button>
+            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;" id="saveData"
+                onclick="confirm_save()">SAVE</button>
         </div>
     </div>
     <!-- Modal Warning -->
@@ -428,7 +467,7 @@ function show_qouta() {
                             <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
                                 align="center">
                                 <font size="3px">
-                                   save?</font>
+                                    save?</font>
                             </label>
 
                         </div>
