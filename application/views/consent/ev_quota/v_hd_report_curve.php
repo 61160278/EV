@@ -77,17 +77,16 @@ function check_quota_actual() {
     var quotaActual = 0;
     var quota = "";
     var sumQuotaActual = 0;
-    
+
     quota = document.getElementById("quotaPlanToT").innerHTML;
     // document.getElementById("submit").disabled = false;
     for (var i = 1; i <= 6; i++) {
         check = document.getElementById("quotaActual" + i).value;
         if (check == "") {
             quotaActual = null;
-        }
-        else if(check < 0){
+        } else if (check < 0) {
             quotaActual = null;
-        }else {
+        } else {
             valueActual = parseFloat(check);
             console.log(valueActual);
             quotaActual = (valueActual * 100) / parseFloat(quota);
@@ -100,7 +99,7 @@ function check_quota_actual() {
             $("#show_Actual").css("color", "red");
             add_alert();
             $("#submit").attr("disabled", true);
-        } else if(actual == parseFloat(quota)){
+        } else if (actual == parseFloat(quota)) {
             $("#submit").attr("disabled", false);
             $("#show_Actual").css("color", "#000000");
         }
@@ -216,12 +215,107 @@ function show_linebarChart() {
         });
     });
 
-}//show_linebarChart
+} //show_linebarChart
+
+function confirm_save() {
+    insert_quota_actual();
+    $('#warning_save').modal('show');
+}
+
+function insert_quota_actual() {
+    // var check = "";
+
+    // var sum_quota_plan = 0;
+    var grade = [];
+    // var qua_gradeS = 0;
+    // var qua_gradeA = 0;
+    // var qua_gradeB = 0;
+    // var qua_gradeB_N = 0;
+    // var qua_gradeC = 0;
+    // var qua_gradeD = 0;
+    // var qua_gradeTOT = 0;
+
+    // var check = "";
+    // var value_quotaPlan = 0;
+    // var quota = 0;
+    var check = "";
+    var valueActual = 0;
+    var actual = 0;
+    var quotaActual = 0;
+    var quota = "";
+    var sumQuotaActual = 0;
+    var sum_actual = 0;
+    quota = document.getElementById("quotaPlanToT").innerHTML;
+    // document.getElementById("submit").disabled = false;
+    for (var i = 1; i <= 6; i++) {
+        check = document.getElementById("quotaActual" + i).value;
+        if (check == "") {
+            quotaActual = null;
+        } else if (check < 0) {
+            quotaActual = null;
+        } else {
+            valueActual = parseFloat(check);
+           
+            grade[i] = valueActual;
+             sum_actual += grade[i];
+            console.log(valueActual);
+            quotaActual = (valueActual * 100) / parseFloat(quota);
+            // grade[i] =quotaActual;
+            sumQuotaActual += quotaActual;
+            console.log(quotaActual + "=" + valueActual + "* 100 /" + parseFloat(quota));
+            actual += valueActual;
+
+        } // if 
+
+       
+    }
+    // for i  
+    // check = document.getElementById("quotaPlan").value;
+    //console.log(check);
+    //}
+
+    grade.shift();
+    console.log(grade);
+    // console.log(sum_quota_plan);
+    qua_gradeS = grade[0];
+    qua_gradeA = grade[1];
+    qua_gradeB = grade[2];
+    qua_gradeB_N = grade[3];
+    qua_gradeC = grade[4];
+    qua_gradeD = grade[5];
+
+    console.log(qua_gradeS);
+    console.log(qua_gradeA);
+    console.log(qua_gradeB);
+    console.log(qua_gradeB_N);
+    console.log(qua_gradeC);
+    console.log(qua_gradeD);
+    console.log(sum_actual);
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_actual_insert",
+
+        data: {
+
+            "qua_gradeS": qua_gradeS,
+            "qua_gradeA": qua_gradeA,
+            "qua_gradeB": qua_gradeB,
+            "qua_gradeB_N": qua_gradeB_N,
+            "qua_gradeC": qua_gradeC,
+            "qua_gradeD": qua_gradeD,
+            "sum_actual": sum_actual
+        },
+        dataType: "JSON",
+
+        success: function(status) {
+            console.log(status);
+
+        }
+
+    }); //ajax
 
 
-
-
-
+} //insert_quota
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
@@ -229,8 +323,7 @@ function show_linebarChart() {
             <h2>
                 <font size="6px"><b>Report Curve</b></font>
             </h2>
-            <div class="panel-ctrls" data-actions-container=""
-                >
+            <div class="panel-ctrls" data-actions-container="">
             </div>
         </div>
         <div class="panel-body">
@@ -254,8 +347,8 @@ function show_linebarChart() {
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <select for="pos_select" id="pos_select" class="form-control text" >
-                             <option value="select">Select Position</option> -->
+                        <select for="pos_select" id="pos_select" class="form-control text">
+                            <option value="select">Select Position</option> -->
                             <option value="0">All Position</option>
                             <!-- start foreach -->
                             <?php foreach($pos_data as $value){ ?>
@@ -269,7 +362,8 @@ function show_linebarChart() {
                     <div class="col-md-1">
                     </div>
                     <div class="col-md-2">
-                        <button class="btn-success btn" id = "submit" type="submit" onclick="show_linebarChart()">SUBMIT</button>
+                        <button class="btn-success btn" id="submit" type="submit"
+                            onclick="show_linebarChart()">SUBMIT</button>
 
                     </div>
                 </div>
@@ -285,8 +379,7 @@ function show_linebarChart() {
                             <h2>
                                 <font size="5px"><b>Report table</b></font>
                             </h2>
-                            <div class="panel-ctrls" data-actions-container=""
-                             >
+                            <div class="panel-ctrls" data-actions-container="">
                             </div>
                         </div>
 
@@ -334,27 +427,27 @@ function show_linebarChart() {
                                                 <td><b>Actual</b></td>
                                                 <td>
                                                     <input type="number" class="form-control" id="quotaActual1"
-                                                        onchange="check_quota_actual()" min ="0">
+                                                        onchange="check_quota_actual()" min="0">
                                                 </td>
                                                 <td>
                                                     <input type="number" class="form-control" id="quotaActual2"
-                                                        onchange="check_quota_actual()" min ="0">
+                                                        onchange="check_quota_actual()" min="0">
                                                 </td>
                                                 <td>
                                                     <input type="number" class="form-control" id="quotaActual3"
-                                                        onchange="check_quota_actual()" min ="0"> 
+                                                        onchange="check_quota_actual()" min="0">
                                                 </td>
                                                 <td>
                                                     <input type="number" class="form-control" id="quotaActual4"
-                                                        onchange="check_quota_actual()" min ="0">
+                                                        onchange="check_quota_actual()" min="0">
                                                 </td>
                                                 <td>
                                                     <input type="number" class="form-control" id="quotaActual5"
-                                                        onchange="check_quota_actual()" min ="0">
+                                                        onchange="check_quota_actual()" min="0">
                                                 </td>
                                                 <td>
                                                     <input type="number" class="form-control" id="quotaActual6"
-                                                        onchange="check_quota_actual()" min ="0">
+                                                        onchange="check_quota_actual()" min="0">
                                                 </td>
                                                 <td id="show_Actual"></td>
                                             </tr>
@@ -389,6 +482,7 @@ function show_linebarChart() {
 
 
                         </div>
+
                         <!-- Modal Warning -->
                         <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                             aria-hidden="true">
@@ -436,9 +530,62 @@ function show_linebarChart() {
                             <!-- modal-dialog -->
                         </div>
                         <!-- End Modal Warning -->
+
+                        <!-- Modal Warning -->
+                        <div class="modal fade" id="warning_save" tabindex="-1" role="dialog"
+                            aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header" style="background-color:#FF9800;">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            <font color="White"><b>&times;</b>
+                                            </font>
+                                        </button>
+                                        <h2 class="modal-title"><b>
+                                                <font color="white">Warning</font>
+                                            </b></h2>
+                                    </div>
+                                    <!-- Modal header -->
+
+                                    <div class="modal-body">
+                                        <div class="form-horizontal">
+                                            <div class="form-group" align="center">
+                                                <div class="col-sm-12">
+                                                    <label for="focusedinput" class="control-label"
+                                                        style="font-family:'Courier New'" align="center">
+                                                        <font size="3px">
+                                                            save?</font>
+                                                    </label>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- form-horizontal -->
+                                    </div>
+                                    <!-- Modal body -->
+
+                                    <div class="modal-footer">
+                                        <div class="btn-group pull-right">
+                                            <button type="button" class="btn btn-success"
+                                                data-dismiss="modal">Yes</button>
+                                        </div>
+
+                                    </div>
+                                    <!-- Modal footer -->
+                                </div>
+                                <!-- modal-content -->
+                            </div>
+                            <!-- modal-dialog -->
+                        </div>
+                        <!-- End Modal Warning -->
                     </div>
+
                 </div>
             </div>
         </div>
+        <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
+        <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
+            onclick="confirm_save()">SAVE</button>
     </div>
+
 </div>
