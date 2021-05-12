@@ -197,7 +197,7 @@ td {
                                     <table width="100%">
                                         <tr>
                                             <td> &nbsp; Critical Point</td>
-                                            <td> &nbsp; S S F</td>
+                                            <td> &nbsp; S  &nbsp;  &nbsp; S   &nbsp;  &nbsp; F</td> 
 
 
 
