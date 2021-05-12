@@ -1,4 +1,3 @@
-
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once(dirname(__FILE__) . "/../MainController_avenxo.php");
@@ -309,9 +308,12 @@ function quota_insert(){
 function main_quota()
 	{
 		$this->load->model('M_evs_quota','mqut');
-		$data['qut_data'] = $this->mqut->get_all()->result(); // show value position all
-		//$this->output('/consent/ev_quota/v_main_quota',$data);
-		 echo json_encode($data);
+		$data = $this->mqut->get_all()->result();
+		echo json_encode($data);
+		// $this->load->model('M_evs_quota','mqut');
+		// $data['qut_data'] = $this->mqut->get_all()->result(); // show value position all
+		// //$this->output('/consent/ev_quota/v_main_quota',$data);
+		//  echo json_encode($data);
 	}//hd_report_curve
 }// end class
 ?>

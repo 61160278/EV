@@ -126,7 +126,7 @@ function get_data() {
         type: "post",
         url: "<?php echo base_url(); ?>/ev_quota/v_hd_report_curve",
         data: {
-            "pos_psl_id": pos_sel
+            "pos_data": pos_sel
         },
         dataType: "JSON",
         success: function(data) {
