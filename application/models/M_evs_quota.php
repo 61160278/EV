@@ -1,0 +1,43 @@
+<?php
+/*
+* M_evs_quota
+* set quota management 
+* @author 	Piyasak Srijan
+* @Create Date 2564-05-10
+*/ 
+/*
+* M_evs_quota
+* set quota management 
+* @author 	Piyasak Srijan
+* @Update Date 2564-05-10
+*/ 
+?>
+<?php
+include_once("Da_evs_quota.php");
+
+/*
+* M_evs_quota
+* set quota management 
+* @author 	Piyasak Srijan
+* @Create Date 2564-05-10
+*/ 
+class M_evs_quota extends Da_evs_quota {
+
+
+	/*
+	* get_all
+	* Get All quota from database
+	* @input  -
+	* @output quota all
+	* @author Lapatrada puttamongkol
+	* @Create Date 2564-05-11
+	*/
+	function get_all(){	
+		$sql = "SELECT * 
+        FROM evs_database.evs_quota";
+		$query = $this->db->query($sql);
+		return $query;
+	}//get_all 
+
+} //end class
+?>

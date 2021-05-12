@@ -28,14 +28,81 @@ th {
 #dis_color {
     background-color: #F5F5F5;
 }
+
+th {
+    text-align: center;
+}
 </style>
 <!-- END style -->
 
 <script>
+$(document).ready(function() {
+    get_approve()
+});
+// document ready
+
+
 function cancel_form() {
     window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/index";
 }
 // function cancel_form
+
+function get_approve() {
+    var count = document.getElementById("count").value;
+    var app1_emp;
+    var app2_emp;
+    var name_app1 = "";
+    var name_app2 = "";
+    var num_id1 = 0;
+    var num_id2 = 0;
+
+    for (i = 0; i < count; i++) {
+        app1_emp = document.getElementById("app1_" + i).value;
+        app2_emp = document.getElementById("app2_" + i).value;
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "<?php echo base_url(); ?>ev_form/Evs_form/get_approve_his",
+            data: {
+                "app_emp": app1_emp
+            },
+            success: function(data) {
+                console.log(name_app1);
+                data.forEach((row, index) => {
+                    name_app1 = row.Empname_eng + " " + row.Empsurname_eng;
+                });
+                // foreach
+                $("#t_app1_" + num_id1.toString()).text(name_app1);
+                num_id1++;
+            }
+            // success
+        });
+        // ajax
+
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "<?php echo base_url(); ?>ev_form/Evs_form/get_approve_his",
+            data: {
+                "app_emp": app2_emp
+            },
+            success: function(data) {
+                console.log(name_app2);
+                data.forEach((row, index) => {
+                    name_app2 = row.Empname_eng + " " + row.Empsurname_eng;
+                });
+                // foreach
+                $("#t_app2_" + num_id2.toString()).text(name_app2);
+                num_id2++;
+            }
+            // success
+        });
+        // ajax
+    }
+    // for
+
+}
+// function get_approve
 </script>
 <!-- script -->
 
@@ -145,10 +212,10 @@ function cancel_form() {
                             <!-- heading -->
 
                             <div class="panel-body no-padding">
-                                <table id="example" class="table table-striped table-bordered" cellspacing="0"
+                                <table id="his_mbo" class="table table-striped table-bordered" cellspacing="0"
                                     width="100%">
                                     <thead>
-                                        <tr align="center">
+                                        <tr>
                                             <th>NO.</th>
                                             <th>Year’s MBO</th>
                                             <th>Approver 1</th>
@@ -159,7 +226,37 @@ function cancel_form() {
                                     </thead>
                                     <!-- thead  -->
                                     <tbody>
+                                        <?php
+                                        $count = 0;
+                                         foreach($data_his->result() as $index => $row){ ?>
 
+                                        <tr>
+                                            <td align="center"><?php echo $index+1; ?></td>
+                                            <td align="center"><?php echo $row->pay_year; ?></td>
+                                            <td id="t_app1_<?php echo $index; ?>"></td>
+                                            <td id="t_app2_<?php echo $index; ?>"></td>
+                                            <td align="center"></td>
+                                            <td align="center">
+                                                <a href="<?php echo base_url(); ?>ev_form/Evs_form/show_mbo_his/<?php echo $row->emp_employee_id; ?>">
+                                                    <button class="btn btn-info" id="his_mbo">
+                                                        <i class="ti ti-info-alt"></i>
+                                                    </button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <!-- show history  -->
+
+                                        <input type="text" id="app1_<?php echo $index; ?>"
+                                            value="<?php echo $row->dma_approve1;?>" hidden>
+                                        <input type="text" id="app2_<?php echo $index; ?>"
+                                            value="<?php echo $row->dma_approve2;?>" hidden>
+
+                                        <?php 
+                                        $count++;
+                                        }; ?>
+                                        <!-- foreach  -->
+
+                                        <input type="text" id="count" value="<?php echo $count;?>" hidden>
                                     </tbody>
                                     <!-- tbody  -->
                                 </table>

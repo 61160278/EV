@@ -41,8 +41,6 @@ class Evs_group extends MainController_avenxo {
 	// function index
 	
 	/*
-	* Evs_form
-	* Form
 	* @author  Tippawan Aiemsaad
 	* @Create Date 2564-04-07
 	*/
@@ -62,6 +60,10 @@ class Evs_group extends MainController_avenxo {
 	}
 	// function add_group_sdm
 
+	/*
+	* @author  Tippawan Aiemsaad
+	* @Create Date 2564-04-19
+	*/
 	function add_group_skd()
 	{
 		$group = $this->input->post("group");
@@ -77,6 +79,10 @@ class Evs_group extends MainController_avenxo {
 	}
 	// function add_group_skd
 
+	/*
+	* @author  Jirayu Jaravichit
+	* @Create Date 2564-04-19
+	*/
 	function select_company_sdm()
 	{
 		$this->load->model('M_evs_group','mevg');
@@ -87,6 +93,10 @@ class Evs_group extends MainController_avenxo {
 	}
 	// function select_company_sdm
 	
+	/*
+	* @author  Tippawan Aiemsaad
+	* @Create Date 2564-04-23
+	*/
 	function select_company_skd()
 	{
 		$this->load->model('M_evs_group','mevg');
@@ -100,9 +110,8 @@ class Evs_group extends MainController_avenxo {
 	* Evs_form
 	* Form
 	* @author  Jirayu Jaravichit
-	* @Create Date 2564-04-16
+	* @Create Date 2564-04-22
 	*/
-	
 	function delete_group_sdm()
 	{
 
@@ -119,7 +128,7 @@ class Evs_group extends MainController_avenxo {
 	* Evs_form
 	* Form
 	* @author  Tippawan Aiemsaad
-	* @Create Date 2564-04-17
+	* @Create Date 2564-04-22
 	*/
 	function delete_group_skd()
 	{
@@ -134,8 +143,6 @@ class Evs_group extends MainController_avenxo {
 	// function delete_group_skd
 	
 	/*
-	* Evs_form
-	* Form
 	* @author  Tippawan Aiemsaad
 	* @Create Date 2564-04-19
 	*/
@@ -147,10 +154,12 @@ class Evs_group extends MainController_avenxo {
 		$data = $this->mevg->get_name_emp_by_IDemp_sdm();
 		echo json_encode($data);
 	}
-	// function search_by_employee_id    $this->mevg->get_name_emp_by_IDemp_sdm()
+	// function search_by_employee_id
 
-
-
+	/*
+	* @author  Jirayu Jaravichit
+	* @Create Date 2564-04-19
+	*/
 	function search_by_employee_id_skd(){
 		$Emp_id = $this->input->post('Emp_id');
 		$this->load->model('M_evs_group','mevg');
@@ -161,6 +170,10 @@ class Evs_group extends MainController_avenxo {
 	}
 	// function search_by_employee_id_skd
 
+	/*
+	* @author  Jirayu Jaravichit
+	* @Create Date 2564-04-26
+	*/
 	function save_edit_sdm()
 	{
 		$gru_id = $this->input->post('gru_id');
@@ -180,10 +193,8 @@ class Evs_group extends MainController_avenxo {
 
 
 	/*
-	* Evs_form
-	* Form
 	* @author  Tippawan Aiemsaad
-	* @Create Date 2564-04-19
+	* @Create Date 2564-04-26
 	*/
 	function save_edit_skd()
 	{
@@ -202,9 +213,10 @@ class Evs_group extends MainController_avenxo {
 	}
 	// function save_edit_skd
 
-
-
-
+	/*
+	* @author  Jirayu Jaravichit
+	* @Create Date 2564-04-27
+	*/
 	function select_group_company_sdm($gru_id)
 	{
 		$this->load->model('M_evs_group','mgc');
@@ -218,11 +230,12 @@ class Evs_group extends MainController_avenxo {
 		$data['grpsdm'] = $this->mevg->get_by_id();
 		$this->output('/consent/ev_group/v_add_group_sdm',$data);
 	}
-	// function select_company_sdm   
+	// function select_group_company_sdm   
 
-
-	
-	
+	/*
+	* @author  Tippawan Aiemsaad
+	* @Create Date 2564-04-27
+	*/
 	function select_group_company_skd($gru_id)
 	{
 		$this->load->model('M_evs_group','mdk');
@@ -237,12 +250,12 @@ class Evs_group extends MainController_avenxo {
 		$this->output('/consent/ev_group/v_add_group_skd',$data);
 		
 	}
-	// function select_company_skd
+	// function select_group_company_skd
 
-
-
-
-
+	/*
+	* @author  Jirayu Jaravichit
+	* @Create Date 2564-04-26
+	*/
 	function get_group_sdm()
 	{
 		$this->load->model('M_evs_group','mggp');
@@ -250,10 +263,12 @@ class Evs_group extends MainController_avenxo {
 		$data = $this->mggp->get_all_group()->result();
 		echo json_encode($data);
 	}
+	// get_group_sdm
 
-
-
-
+	/*
+	* @author  Tippawan Aiemsaad
+	* @Create Date 2564-04-26
+	*/
 	function get_group_skd()
 	{
 		$this->load->model('M_evs_group','mggp');
@@ -261,7 +276,12 @@ class Evs_group extends MainController_avenxo {
 		$data = $this->mggp->get_all_group()->result();
 		echo json_encode($data);
 	}
-		
+	// get_group_skd
+
+	/*
+	* @author  Jirayu Jaravichit
+	* @Create Date 2564-04-27
+	*/	
 	function query_man(){
 		$gru_id = $this->input->post('gru_id');
 		$this->load->model('M_evs_group','mevg');
@@ -270,7 +290,12 @@ class Evs_group extends MainController_avenxo {
 		echo json_encode($data);
 
 	}
+	// query_man ข้อมูลของพนักงาน
 
+	/*
+	* @author  Jirayu Jaravichit
+	* @Create Date 2564-04-27
+	*/	
 	function query_man_new(){
 		$gru_id = $this->input->post('gru_id');
 		$this->load->model('M_evs_group','mevg');
@@ -279,8 +304,12 @@ class Evs_group extends MainController_avenxo {
 		echo json_encode($data);
 
 	}
+	// query_man_new
 		
-	
+	/*
+	* @author  Jirayu Jaravichit
+	* @Create Date 2564-04-27
+	*/	
 	function add_new_group()
 	{
 		$group = $this->input->post('group');
@@ -298,16 +327,5 @@ class Evs_group extends MainController_avenxo {
 		// for
 	}
 	// function add_new_group
-
-
-
-
-
-
-
-
-
-
-
 }
 ?>

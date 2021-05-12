@@ -110,24 +110,29 @@ tbody:hover {
  */
 
 function check_quota_plan() {
-
     var check = "";
     var value_quotaPlan = 0;
-
     var quota = 0;
 
     check = document.getElementById("quotaPlan").value;
-    for (i = 1; i <= 6; i++) {
+    console.log(check);
+    // if (check == "") {
+    //  $("#submit").attr("disabled", true);
+    //value_quotaPlan = null;
+    document.getElementById("submit").disabled = false;
+    //}
+    for (var i = 1; i <= 6; i++) {
         quota = document.getElementById("quota" + i).innerHTML;
-        value_quotaPlan = parseInt(check) * quota / 100;
-
-
+        value_quotaPlan = parseFloat(check) * quota / 100;
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
+
+
     } //for
-}//check_quota_plan
+} //check_quota_plan
 
+function show_quotaplan() {
+    $("#quotaPlan").attr("disabled", true);
 
-window.onload = function() {
     var dataQuota = [];
     var arrQuota = [];
     for (var i = 1; i <= 6; i++) {
@@ -143,42 +148,79 @@ window.onload = function() {
 
     } //for ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
     console.log(dataQuota);
-//<block:setup:1>
-const labels = [
-  'S',
-  'A',
-  'B',
-  'B-',
-  'C',
-  'D',
-];
-const data = {
-  labels: labels,
-  datasets: [{
-    label: 'Quota',
-    backgroundColor: 'rgb(255, 99, 132)',
-    borderColor: 'rgb(255, 99, 132)',
-    data:dataQuota,
-  }]
+    //<block:setup:1>
+    const labels = [
+        'S',
+        'A',
+        'B',
+        'B-',
+        'C',
+        'D',
+    ];
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Quota',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: dataQuota,
+        }]
 
-};
-// </block:setup>
-// <block:config:0>
-const config = {
-  type: 'line',
-  data,
-  options: {}
-};
+    };
+    // </block:setup>
+    // <block:config:0>
+    const config = {
+        type: 'line',
+        data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    min: 0,
+                    ticks: {
+                        stepSize: 20
+                    }
 
-// </block:config>
+                }
+            }
+        }
+    };
+
+    // </block:config>
 
 
-var myChart = new Chart(
-    document.getElementById('myChart'),
-    config
-    
-  );
-}
+    var myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+
+    ); //new Chart
+} //show_quotaplan
+$(document).ready(function() {
+    $("#reset").click(function() {
+
+        $("#quotaPlan").attr("disabled", false);
+
+
+    }); //click
+
+
+}); //ready
+
+// function required() {
+//     var empt = document.forms["form"]["text"].value;
+//     if (empt == "") {
+//         alert("Please input a Value");
+//         return false;
+//     } else {
+//         add_alert();
+//         return true;
+//     }
+// }
+
+// function add_alert() {
+//     $('#warning').modal('show');
+// }
 </script>
 
 <div class="col-md-12">
@@ -188,7 +230,7 @@ var myChart = new Chart(
                 <font size="5px">Detail Quota </font>
             </h2>
             <div class="panel-ctrls" data-actions-container=""
-                data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
+                >
             </div>
         </div>
         <div class="panel-body" style="">
@@ -221,10 +263,12 @@ var myChart = new Chart(
 
             </div>
             <hr>
+            <!-- <form onsubmit="required()"> -->
             <div class="row">
                 <div class="col-md-2">
                 </div>
                 <div class="col-md-8">
+
                     <table style="width:100%" class="table table-hover m-n orange">
                         <thead>
                             <div class="col-md-1">
@@ -245,11 +289,11 @@ var myChart = new Chart(
                                 <tr class="orange2">
                                     <td><b>Quota</b></td>
                                     <td id="quota1" value="5">5</td>
-                                    <td id="quota2" value="25">20</td>
-                                    <td id="quota3" value="60">20</td>
-                                    <td id="quota4" value="25">20</td>
-                                    <td id="quota5" value="25">20</td>
-                                    <td id="quota6" value="5">10</td>
+                                    <td id="quota2" value="25">15</td>
+                                    <td id="quota3" value="60">30</td>
+                                    <td id="quota4" value="25">30</td>
+                                    <td id="quota5" value="25">15</td>
+                                    <td id="quota6" value="5">5</td>
                                     <td>100</td>
                                 </tr>
                             </div>
@@ -264,16 +308,22 @@ var myChart = new Chart(
                                     <td id="show_quotaPlan6"> </td>
                                     <td>
                                         <input type="text" class="form-control" id="quotaPlan"
-                                            onchange="check_quota_plan()">
-
-                                        <!-- <input class="form-control" id="inp_result1" onchange="functionJS()" type="number" min="0" max="100"> -->
+                                            onchange="check_quota_plan()" min="0" max="100" value="">
                                     </td>
                                 </tr>
                             </div>
                         </tbody>
                     </table>
+
                 </div>
             </div>
+            <br>
+            <div class="col-md-offset-9">
+                <button class="btn-success btn" id="submit" type="submit" onclick="show_quotaplan()" value=""
+                    disabled>SUBMIT</button>
+                <button class="btn btn-warning" type="reset" id="reset">edit</button>
+            </div>
+            <!-- </form> -->
             <br>
             <div class="row">
                 <div class="col-md-2">
@@ -285,7 +335,7 @@ var myChart = new Chart(
                                 <font size="5px">Quota</font>
                             </h2>
                             <div class="panel-ctrls" data-actions-container=""
-                                data-action-collapse='{"target": ".panel-body"}'>
+                              >
                             </div>
                         </div>
                         <div class="panel-body">
@@ -295,13 +345,16 @@ var myChart = new Chart(
                             <!-- <div class="well well-lg tooltips" data-trigger="hover" data-original-title=".well.well-lg">
 
                             </div> -->
-                            <canvas id="myChart" width="100" ></canvas>
+                            <canvas id="myChart" width="100"></canvas>
 
                         </div>
+
                     </div>
                 </div>
+                
             </div>
+            <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
+        <!-- <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button> -->
         </div>
     </div>
-</div>
 </div>

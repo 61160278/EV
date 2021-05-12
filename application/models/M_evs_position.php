@@ -128,17 +128,66 @@ class M_evs_position extends Da_evs_position {
 	*/	
 
 	function get_pos_com_dep(){	
-		$sql = "SELECT company.Company_shortname,position.Position_name,department.Dep_Name,position.Position_ID,department.Dep_id
-				FROM dbmc.department,dbmc.position,dbmc.company
-				WHERE company.Company_shortname ='SDM'
-				AND NOT position.Position_name = 'No-Data' 
-				AND NOT position.Position_name = 'Orther'
-				AND NOT position.Position_name = 'President'
-				AND NOT position.Position_name = 'Managing Director'
-				AND NOT position.Position_name = 'Vice President'
-				GROUP BY position.Position_name";
+		$sql = " SELECT *
+		FROM dbmc.employee
+		LEFT JOIN dbmc.position
+		ON employee.Position_ID = position.Position_ID
+		LEFT JOIN dbmc.position_level
+		ON position.position_level_id = position_level.psl_id
+		LEFT JOIN dbmc.sectioncode
+		ON employee.Sectioncode_ID = sectioncode.Sectioncode
+		LEFT JOIN dbmc.department
+		ON sectioncode.dep_id = department.Dep_id
+		LEFT JOIN dbmc.company
+		ON department.Company_ID = company.Company_ID
+        WHERE (employee.Company_ID = ?) AND department.Dep_id = ? AND position_level.psl_id = ? AND position.Position_ID = ?
+		
+				";
+		$query = $this->db->query($sql, array($this->Company_ID,$this->Dep_id,$this->psl_id,$this->Position_ID));
+		return $query;
+	}//get_all WHERE NOT pos_psl_id=6
+	
+	function get_pos_com_dep_all(){	
+		$sql = " SELECT * 
+		FROM dbmc.employee 
+		LEFT JOIN dbmc.position 
+		ON employee.Position_ID = position.Position_ID 
+		LEFT JOIN dbmc.position_level 
+		ON position.position_level_id = position_level.psl_id 
+		LEFT JOIN dbmc.sectioncode 
+		ON employee.Sectioncode_ID = sectioncode.Sectioncode 
+		LEFT JOIN dbmc.department 
+		ON sectioncode.dep_id = department.Dep_id 
+		LEFT JOIN dbmc.company 
+		ON department.Company_ID = company.Company_ID 
+		
+				";
 		$query = $this->db->query($sql);
 		return $query;
 	}//get_all WHERE NOT pos_psl_id=6
+
+	function get_department_by_id(){
+		$sql = "SELECT *
+		FROM dbmc.department
+		WHERE Company_ID = ? ";
+			$query = $this->db->query($sql, array($this->Company_ID));
+		return $query;
+	}//get_department_by_id
+	function get_department(){
+		$sql = "SELECT *
+		FROM dbmc.department";
+			$query = $this->db->query($sql);
+		return $query;
+	}//get_department
+
+	
+	function get_position_all(){
+		$sql = "SELECT * 
+					FROM dbmc.position
+				
+				";
+			$query = $this->db->query($sql);
+			return $query;
+	}
 } 
 ?>

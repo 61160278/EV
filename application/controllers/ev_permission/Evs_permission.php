@@ -40,6 +40,16 @@ class Evs_permission extends MainController_avenxo {
 		$this->output('/consent/ev_permission/v_main_permission');
 	}
 	// function index()
+
+	function preview()
+	{
+		$this->output('/consent/ev_permission/v_PCR');
+	}
+
+	function PCR_Form()
+	{
+		$this->output('/consent/ev_permission/v_PCR_Form');
+	}
 	
 	function table()
 	{

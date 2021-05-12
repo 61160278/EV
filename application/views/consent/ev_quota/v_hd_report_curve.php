@@ -50,6 +50,7 @@ tbody:hover {
 $(document).ready(function() {
     check_quota_plan()
     check_quota_actual()
+    document.getElementById("submit").disabled = true;
 });
 
 function check_quota_plan() {
@@ -58,11 +59,12 @@ function check_quota_plan() {
     var value_quotaPlan = 0;
     var quota = 0;
     //console.log(quota);
+    document.getElementById("submit").disabled = false;
     check = document.getElementById("quotaPlanToT").innerHTML;
     //console.log(check);
     for (var i = 1; i <= 6; i++) {
         quota = document.getElementById("quota" + i).innerHTML;
-        value_quotaPlan = parseInt(check) * parseInt(quota) / 100;
+        value_quotaPlan = parseFloat(check) * parseFloat(quota) / 100;
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
         console.log(value_quotaPlan);
     } //for 
@@ -70,19 +72,51 @@ function check_quota_plan() {
 
 function check_quota_actual() {
     var check = "";
+    var valueActual = 0;
     var actual = 0;
-
+    var quotaActual = 0;
+    var quota = "";
+    var sumQuotaActual = 0;
+    
+    quota = document.getElementById("quotaPlanToT").innerHTML;
+    // document.getElementById("submit").disabled = false;
     for (var i = 1; i <= 6; i++) {
         check = document.getElementById("quotaActual" + i).value;
-        if (check != "") {
-            actual += parseInt(check);
+        if (check == "") {
+            quotaActual = null;
+        }
+        else if(check < 0){
+            quotaActual = null;
+        }else {
+            valueActual = parseFloat(check);
+            console.log(valueActual);
+            quotaActual = (valueActual * 100) / parseFloat(quota);
+            sumQuotaActual += quotaActual;
+            console.log(quotaActual + "=" + valueActual + "* 100 /" + parseFloat(quota));
+            actual += valueActual;
+
+        }
+        if (actual > parseFloat(quota)) {
+            $("#show_Actual").css("color", "red");
+            add_alert();
+            $("#submit").attr("disabled", true);
+        } else if(actual == parseFloat(quota)){
+            $("#submit").attr("disabled", false);
+            $("#show_Actual").css("color", "#000000");
         }
         // if 
+        document.getElementById("show_quotaActual" + i).innerHTML = quotaActual;
         document.getElementById("show_Actual").innerHTML = actual;
+        document.getElementById("show_sumquotaActual").innerHTML = sumQuotaActual;
+        document.getElementById("TOTplan").innerHTML = quota;
+
     }
-    // for i
+    // for i  
 }
 
+function add_alert() {
+    $('#warning').modal('show');
+}
 
 function get_data() {
     var pos_sel = document.getElementById("pos_select").value; // get kay by id
@@ -100,54 +134,94 @@ function get_data() {
         }
     });
 }
-window.onload = function() {
+
+function show_linebarChart() {
+
+    for (var i = 1; i <= 6; i++) {
+        $("#quotaActual" + i).attr("disabled", true);
+    }
     var dataQuota = [];
     var arrQuota = [];
+    var dataActual = [];
+    var arrActual = [];
     for (var i = 1; i <= 6; i++) {
-        //  var show_quota = document.getElementById("quota" + i).innerHTML;
         var show_quota = document.getElementById("quota" + i).innerHTML;
-        //  var arrQuota = [5, 25, 40, 25, 5];
         arrQuota[i] = show_quota;
+        var show_actual = document.getElementById("show_quotaActual" + i).innerHTML;
+        arrActual[i] = show_actual;
     } //for
     arrQuota.shift();
-    console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
+    arrActual.shift();
+    //console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
     for (var a = 0; a < arrQuota.length; a++) {
         dataQuota[a] = arrQuota[a] * 1;
+        dataActual[a] = arrActual[a] * 1;
 
     } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
+
     console.log(dataQuota);
-   
+    console.log(dataActual);
+
     var ctx = document.getElementById('myChart').getContext('2d');
+
     var mixedChart = new Chart(ctx, {
-   type: 'bar',
-   data: {
-       datasets: [{
-           label: 'Bar Dataset',
-           data: [10, 20, 30, 40],
-           // this dataset is drawn below
-           order: 2,
-           borderColor: 'rgb(255, 99, 132)',
-             backgroundColor: 'rgba(255, 99, 132, 0.2)'
-       }, {
-           label: 'Line Dataset',
-           data: [10, 20, 10, 10],
-           type: 'line',
-          
-           // this dataset is drawn on top
-           order: 1 ,
-           borderColor: 'rgb(54, 162, 235)'
-       }],
-       labels: ['January', 'February', 'March', 'April']
-   },
-   options:{
-        scales: {
-            y: {
-                beginAtZero: true
+        type: 'bar',
+        data: {
+            datasets: [{
+                label: 'Quota Actual',
+                data: dataActual,
+                // this dataset is drawn below
+                order: 2,
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 1
+            }, {
+                label: 'Quota',
+                data: dataQuota,
+                type: 'line',
+
+                // this dataset is drawn on top
+                order: 1,
+                borderColor: 'rgb(54, 162, 235)',
+                backgroundColor: 'rgb(54, 162, 235)'
+
+            }],
+            labels: ['S', 'A', 'B', 'B-', 'C', 'D']
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    min: 0,
+                    ticks: {
+                        stepSize: 20
+                    }
+
+                }
             }
         }
-    }
-});
-}
+    });
+    $('#reset').on('click', function() {
+        mixedChart.destroy();
+
+    });
+
+    $(document).ready(function() {
+        $("#reset").click(function() {
+            for (var i = 1; i <= 6; i++) {
+                $("#quotaActual" + i).attr("disabled", false);
+            }
+
+        });
+    });
+
+}//show_linebarChart
+
+
+
+
+
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
@@ -156,10 +230,11 @@ window.onload = function() {
                 <font size="6px"><b>Report Curve</b></font>
             </h2>
             <div class="panel-ctrls" data-actions-container=""
-                data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
+                >
             </div>
         </div>
         <div class="panel-body">
+
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-3">
@@ -179,8 +254,8 @@ window.onload = function() {
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <select for="pos_select" id="pos_select" class="form-control text">
-                            <option value="select">Select Position</option>
+                        <select for="pos_select" id="pos_select" class="form-control text" >
+                             <option value="select">Select Position</option> -->
                             <option value="0">All Position</option>
                             <!-- start foreach -->
                             <?php foreach($pos_data as $value){ ?>
@@ -194,7 +269,8 @@ window.onload = function() {
                     <div class="col-md-1">
                     </div>
                     <div class="col-md-2">
-                        <button class="btn-success btn">SUBMIT</button>
+                        <button class="btn-success btn" id = "submit" type="submit" onclick="show_linebarChart()">SUBMIT</button>
+
                     </div>
                 </div>
             </div>
@@ -207,12 +283,13 @@ window.onload = function() {
                     <div class="panel panel-orange" data-widget='{"draggable": "false"}'>
                         <div class="panel-heading">
                             <h2>
-                                <font size="5px"><b>ตางราง Report</b></font>
+                                <font size="5px"><b>Report table</b></font>
                             </h2>
                             <div class="panel-ctrls" data-actions-container=""
-                                data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
+                             >
                             </div>
                         </div>
+
                         <div class="panel-body" style="">
                             <table style="width:100%" class="table table-hover m-n orange">
                                 <thead>
@@ -233,10 +310,10 @@ window.onload = function() {
                                         <tr class="orange2">
                                             <td><b>Quota</b></td>
                                             <td id="quota1" value="5">5</td>
-                                            <td id="quota2" value="25">25</td>
-                                            <td id="quota3" value="40">40</td>
-                                            <td id="quota4" value="40">40</td>
-                                            <td id="quota5" value="25">25</td>
+                                            <td id="quota2" value="25">15</td>
+                                            <td id="quota3" value="40">30</td>
+                                            <td id="quota4" value="40">30</td>
+                                            <td id="quota5" value="25">15</td>
                                             <td id="quota6" value="5">5</td>
                                             <td>100</td>
                                         </tr>
@@ -256,28 +333,28 @@ window.onload = function() {
                                             <tr class="orange2">
                                                 <td><b>Actual</b></td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual1"
-                                                        onchange="check_quota_actual()">
+                                                    <input type="number" class="form-control" id="quotaActual1"
+                                                        onchange="check_quota_actual()" min ="0">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual2"
-                                                        onchange="check_quota_actual()">
+                                                    <input type="number" class="form-control" id="quotaActual2"
+                                                        onchange="check_quota_actual()" min ="0">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual3"
-                                                        onchange="check_quota_actual()">
+                                                    <input type="number" class="form-control" id="quotaActual3"
+                                                        onchange="check_quota_actual()" min ="0"> 
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual4"
-                                                        onchange="check_quota_actual()">
+                                                    <input type="number" class="form-control" id="quotaActual4"
+                                                        onchange="check_quota_actual()" min ="0">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual5"
-                                                        onchange="check_quota_actual()">
+                                                    <input type="number" class="form-control" id="quotaActual5"
+                                                        onchange="check_quota_actual()" min ="0">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" id="quotaActual6"
-                                                        onchange="check_quota_actual()">
+                                                    <input type="number" class="form-control" id="quotaActual6"
+                                                        onchange="check_quota_actual()" min ="0">
                                                 </td>
                                                 <td id="show_Actual"></td>
                                             </tr>
@@ -291,24 +368,74 @@ window.onload = function() {
                                                 <td id="show_quotaActual4"></td>
                                                 <td id="show_quotaActual5"></td>
                                                 <td id="show_quotaActual6"></td>
-                                                <td></td>
+                                                <td id="show_sumquotaActual"></td>
                                             </tr>
                                         </div>
                                         <tr class="orange2">
                                             <div class="col-md-1">
-                                                <td><b>Total in level</b></td>
-                                                <td colspan="6"></td>
+                                                <td colspan="7"><b>Total in level</b></td>
+                                                <td id="TOTplan"></td>
                                         </tr>
                                     </div>
                                 </tbody>
                             </table>
                             <br>
+                            <div class="col-md-offset-11">
+                                <button class="btn btn-warning" type="reset" id="reset">edit</button>
+                            </div>
                             <br>
 
-                            <canvas id="myChart" width="100" ></canvas>
+                            <canvas id="myChart" width="100"></canvas>
 
 
                         </div>
+                        <!-- Modal Warning -->
+                        <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header" style="background-color:#FF9800;">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            <font color="White"><b>&times;</b>
+                                            </font>
+                                        </button>
+                                        <h2 class="modal-title"><b>
+                                                <font color="white">Warning</font>
+                                            </b></h2>
+                                    </div>
+                                    <!-- Modal header -->
+
+                                    <div class="modal-body">
+                                        <div class="form-horizontal">
+                                            <div class="form-group" align="center">
+                                                <div class="col-sm-12">
+                                                    <label for="focusedinput" class="control-label"
+                                                        style="font-family:'Courier New'" align="center">
+                                                        <font size="3px">
+                                                            Actual value is more than plan!</font>
+                                                    </label>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- form-horizontal -->
+                                    </div>
+                                    <!-- Modal body -->
+
+                                    <div class="modal-footer">
+                                        <div class="btn-group pull-right">
+                                            <button type="button" class="btn btn-success"
+                                                data-dismiss="modal">Yes</button>
+                                        </div>
+
+                                    </div>
+                                    <!-- Modal footer -->
+                                </div>
+                                <!-- modal-content -->
+                            </div>
+                            <!-- modal-dialog -->
+                        </div>
+                        <!-- End Modal Warning -->
                     </div>
                 </div>
             </div>

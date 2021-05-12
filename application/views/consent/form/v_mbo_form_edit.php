@@ -217,7 +217,7 @@ function confirm_save() {
                                                     foreach ($info_pos->result() as $row) {
                                                         //start if
                                                         if($row->Position_ID == $info_pos_id){
-                                                            $pos_name_form = $row->Position_ID;
+                                                            $pos_name_form = $row->Position_name;
                                                         }
                                                         //end if
                                                     } 

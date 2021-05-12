@@ -374,7 +374,7 @@ textarea {
                                         <div class="text-left dib">
                                             <div class="stat-text"><span>
                                                     <?php
-                                                    echo $row->pos_name;
+                                                    echo $row->Position_name;
                                                     // display name of position
                                                     ?>
 

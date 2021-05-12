@@ -9,6 +9,20 @@
 */  
 ?>
 
+<head>
+    <style>
+    thead {
+        color: black;
+        font-size: 17px;
+    }
+
+    tbody {
+        color: black;
+        font-size: 14px;
+    }
+    </style>
+</head>
+
 <script>
 function manage_skd(value) {
     if (value == "0") {
@@ -52,7 +66,35 @@ function add_group() {
 }
 // function add_group
 
-function Delete_data(gru_id) {
+function edit_group(gru_id) {
+
+    var grouptext = document.getElementById("group_text" + gru_id).value;
+    var Emp_id = document.getElementById("Emp_id" + gru_id).value;
+    var Showname_modol = document.getElementById("nameEmp" + gru_id).value;
+
+    $.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>/ev_group/Evs_group/save_edit_skd",
+        data: {
+            "group_text": grouptext,
+            "Emp_id": Emp_id,
+            "gru_id": gru_id
+
+        },
+        dataType: "JSON",
+        error: function(status) {
+            console.log(status)
+        }
+        // success function
+
+    });
+
+    window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
+
+}
+//function add_group
+
+function delete_data(gru_id) {
     console.log(gru_id);
     $.ajax({
         type: "POST",
@@ -68,7 +110,7 @@ function Delete_data(gru_id) {
     // ajax
     window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
 }
-// function Delete_data
+// function delete_data
 
 function get_idemployee(gru_id) {
     Emp_id = document.getElementById("Emp_id" + gru_id).value;
@@ -88,7 +130,6 @@ function get_idemployee(gru_id) {
             console.log(data)
 
             if (data.length == 0) {
-
                 document.getElementById("nameEmp" + gru_id).value = "ไม่มีข้อมูล";
                 console.log(gru_id)
             } else {
@@ -108,6 +149,7 @@ function get_Emp() {
     Emp_id = document.getElementById("Emp_id_modol").value;
     var empname = "";
     console.log(Emp_id)
+
     $.ajax({
         type: "POST",
         url: "<?php echo base_url(); ?>/ev_group/Evs_group/search_by_employee_id_skd",
@@ -163,12 +205,12 @@ function check_add() {
             add_alert();
             return false;
         }
-        // if-else 
+        // if-else Showname_modol
     } else {
         add_alert();
         return false;
     }
-    //else
+    // if-else group
 }
 // check_add form
 
@@ -176,23 +218,45 @@ function check_edit_skd(check) {
     var group = document.getElementById("group_text" + check).value;
     var Emp_id = document.getElementById("Emp_id" + check).value;
     var Showname_modol = document.getElementById("nameEmp" + check).value;
+    var count = 0;
     console.log(group)
     console.log(Emp_id)
     console.log(Showname_modol)
 
     if (group != "" && Emp_id != "") {
         if (Showname_modol != "ไม่มีข้อมูล") {
-            return true;
+            $.get("<?php echo base_url(); ?>/ev_group/Evs_group/get_group_skd ", function(data, status) {
+                var obj = JSON.parse(data); //แปลงค่าข้อมูล JSON
+                obj.forEach((row, index) => { //row =data
+
+                    if (group == row.gru_name) {
+                        count++;
+                        console.log(count)
+                    }
+                    // if-else
+                });
+                // forEach
+                if (count == 0) {
+                    console.log("true")
+                    edit_group(check);
+                    return true;
+                } else {
+                    $("#alert_grouptext" + check).show();
+                    $("#btnedit" + check).attr("disabled", true);
+                    return false;
+                }
+            });
+            // $.get
         } else {
             add_alert();
             return false;
         }
-        // if-else 
+        // if-else Showname_modol
     } else {
         add_alert();
         return false;
     }
-    // if-else
+    // if-else group
 
 }
 // check_edit_skd form
@@ -200,31 +264,20 @@ function check_edit_skd(check) {
 function add_alert() {
     $('#warning').modal('show');
 }
-
-function check_group_repeatedly() {
-    var group = document.getElementById("grouptext").value;
-
-    $.get("<?php echo base_url(); ?>/ev_group/Evs_group/get_group_skd ", function(data, status) {
-        console.log(data);
-        data.forEach((row, index) => {
-            if (group == row.gru_name) {
-                add_alert();
-                return false;
-            } else {
-                return true;
-            }
-        });
-    });
-}
 // add_alert
-
 
 function manage_data(gru_id) {
     console.log(gru_id);
     window.location.href = "<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_skd/" + gru_id;
 }
-</script>
+// manage_data
 
+function clear_css(gru_id) {
+    $("#alert_grouptext" + gru_id).hide();
+    $("#btnedit" + gru_id).attr("disabled", false);
+}
+//function clear_css
+</script>
 
 <!DOCTYPE html>
 <html>
@@ -234,7 +287,8 @@ function manage_data(gru_id) {
             <h1 style="font-family:'Times New Roman'">
                 <font color="#ffffff" size="7px"><b>Manage Group SKD</b></font>
                 <div class="panel pull-right" id="addtable_filter">
-                    <select name="example_length" class="form-control" aria-controls="example" onChange="manage_skd(value)">
+                    <select name="example_length" class="form-control" aria-controls="example"
+                        onChange="manage_skd(value)">
                         <option value="0">Select Company</option>
                         <option value="1">SDM</option>
                         <option value="2" selected>SKD</option>
@@ -244,7 +298,6 @@ function manage_data(gru_id) {
             </h1>
         </div>
         <!-- panel-heading -->
-
 
         <div class="col-md-12">
             <div class="panel-body">
@@ -258,9 +311,9 @@ function manage_data(gru_id) {
                                 <span>ADD</span>
                             </a>
                         </div>
-                        <!-- DTTT -->
+                        <!-- Add -->
                     </div>
-                    <!-- panel-ctrls -->
+                    <!-- panel-heading -->
 
                     <div class="panel-body no-padding">
                         <div id="example_wrapper" class="dataTables_wrapper form-inline no-footer">
@@ -273,7 +326,7 @@ function manage_data(gru_id) {
                                 cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
                                 style="width: 100%;">
                                 <thead>
-                                    <tr style="background-color:lavender;">
+                                    <tr style="background-color:lavender; font-family:'Garamond'">
                                         <th>
                                             <center>No.
                                         </th>
@@ -298,7 +351,7 @@ function manage_data(gru_id) {
                                         <td><?php echo $row->gru_name; ?></td>
                                         <td>
                                             <?php if($row->gru_head_dept == NULL){ 
-													echo "ไม่พบข้อมูล";
+													echo "-";
 												} else {
 													echo $row->Empname_eng." ".$row->Empsurname_eng;
 												}
@@ -316,8 +369,8 @@ function manage_data(gru_id) {
                                                 </a>
                                                 <a class="btn btn-info"
                                                     onClick="manage_data(<?php echo $row->gru_id; ?>)">
-                                                    <i class="ti ti-file"></i>
-                                                    </a>
+                                                    <i class="fa fa-refresh"></i>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
@@ -343,7 +396,9 @@ function manage_data(gru_id) {
                     <!-- panel-footer -->
                 </div>
                 <!-- panel-addtable -->
-                <h4 class="text">Description</h4>
+                <h4 class="text" style="font-family:'Times New Roman'">
+                    <font size="5px">Description</font>
+                </h4>
                 <div>
                     <a class="btn btn-danger">
                         <i class="ti ti-trash"></i>
@@ -356,9 +411,9 @@ function manage_data(gru_id) {
                         Edit
                     </a>
                     <a class="btn btn-info">
-                        <i class="ti ti-file"></i>
+                        <i class="fa fa-refresh"></i>
                         &nbsp;
-                        Preview
+                        Transfer
                     </a>
                 </div>
             </div>
@@ -370,21 +425,6 @@ function manage_data(gru_id) {
 </div>
 <!-- head outside -->
 
-</html>
-
-<head>
-    <style>
-    thead {
-        color: black;
-        font-size: 17px;
-    }
-
-    tbody {
-        color: black;
-        font-size: 14px;
-    }
-    </style>
-</head>
 
 <!-- Modal Add -->
 <div class="modal fade" id="Add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -392,9 +432,9 @@ function manage_data(gru_id) {
         <div class="modal-content">
             <div class="modal-header" style="background-color:gray;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b></font>
+                    <font color="Black"><b>&times;</b></font>
                 </button>
-                <h2 class="modal-title"><b>
+                <h2 class="modal-title" style="font-family:'Georgia'"><b>
                         <font color="white">Add SKD Group Data & Head Dept.</font>
                     </b></h2>
             </div>
@@ -403,22 +443,17 @@ function manage_data(gru_id) {
             <div class="modal-body">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
+                        <label for="focusedinput" class="col-sm-3 control-label **text-left**">Group Name</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="grouptext" placeholder="HR AGM" name="Emp_id">
-                        </div>
-                    </div>
-                    <!-- Group Name -->
-
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label"></label>
-                        <div class="col-sm-6">
+                            <label class="col-sm-12 control-label"></label>
                             <p id="alert_grouptext">
                                 <font color="red"><b> This data already to use! </b></font>
                             </p>
                         </div>
+
                     </div>
-                    <!-- Duplicate groups please check. -->
+                    <!-- Group Name -->
 
                     <div class="form-group">
                         <label class="col-sm-1 control-label"></label>
@@ -456,7 +491,7 @@ function manage_data(gru_id) {
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
                 </div>
-                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="check_add()">SAVE</button>
+                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="return check_add()">SAVE</button>
             </div>
             <!-- modal-footer -->
         </div>
@@ -475,31 +510,41 @@ function manage_data(gru_id) {
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color:gray;">
+            <div class="modal-header" style="background-color:#e9ab18;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b></font>
+                    <font color="Black"><b>&times;</b></font>
                 </button>
-                <h2 class="modal-title"><b>
+                <h2 class="modal-title" style="font-family:'Georgia'"><b>
                         <font color="white">Edit SKD Group Data & Head Dept.</font>
                     </b></h2>
             </div>
             <!-- modal header -->
 
             <div class="modal-body">
-                <form class="form-horizontal" action="<?php echo base_url(); ?>ev_group/Evs_group/save_edit_skd"
-                    method="post" onsubmit="return check_edit_skd('<?php echo $row->gru_id; ?>')">
+                <form class="form-horizontal">
                     <div class="form-group">
                         <label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" value="<?php echo $row->gru_name; ?>"
-                                id="group_text<?php echo $row->gru_id; ?>" name="group_text" placeholder="HR AGM">
+                                id="group_text<?php echo $row->gru_id; ?>" name="group_text" placeholder="HR AGM"
+                                onkeyup="clear_css(<?php echo $row->gru_id; ?>)">
+                            <label class="col-sm-12 control-label"></label>
+                            <p id="alert_grouptext<?php echo $row->gru_id; ?>" hidden>
+                                <font color="red"><b> This data already to use! </b></font>
+                            </p>
                         </div>
                     </div>
                     <!-- Group Name -->
 
-                    <h2 style="font-family:'Courier New'"><b>
-                            <font size="4px" color="Black">Select Head Dept.</font>
-                        </b></h2>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label"></label>
+                        <div class="col-sm-8">
+                            <label style="font-family:'Courier New'"><b>
+                                    <font size="4px" color="Black">Select Head Dept.</font>
+                                </b></label>
+                        </div>
+                    </div>
+                    <!-- Select Head Dept. -->
 
                     <div class="form-group">
                         <label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
@@ -522,6 +567,8 @@ function manage_data(gru_id) {
                         </div>
                     </div>
                     <!-- Name Surname -->
+                </form>
+                <!-- form -->
             </div>
             <!-- modal-body -->
 
@@ -529,11 +576,10 @@ function manage_data(gru_id) {
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
                 </div>
-                <input type="submit" class="btn btn-success" value="SAVE">
+                <button type="submit" class="btn btn-success" id="btnedit<?php echo $row->gru_id; ?>"
+                    onclick="return check_edit_skd('<?php echo $row->gru_id; ?>')">SAVE</button>
             </div>
             <!-- modal-footer -->
-            </form>
-            <!-- form-horizontal -->
         </div>
         <!-- modal-content -->
     </div>
@@ -541,61 +587,18 @@ function manage_data(gru_id) {
 </div>
 <!-- End Modal Edit_add-->
 
-<!-- Modal Warning -->
-<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:#FF9800;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b>
-                    </font>
-                </button>
-                <h2 class="modal-title"><b>
-                        <font color="white">Warning</font>
-                    </b></h2>
-            </div>
-            <!-- Modal header -->
-
-            <div class="modal-body">
-                <div class="form-horizontal">
-                    <div class="form-group" align="center">
-                        <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
-                                align="center">
-                                <font size="3px">
-                                    Please fill in the correct information.</font>
-                            </label>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- form-horizontal -->
-            </div>
-            <!-- Modal body -->
-
-            <div class="modal-footer">
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
-                </div>
-
-            </div>
-            <!-- Modal footer -->
-        </div>
-        <!-- modal-content -->
-    </div>
-    <!-- modal-dialog -->
-</div>
-<!-- End Modal Warning -->
-
 <!-- Modal Delete -->
 <div class="modal fade" id="Delete<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color:gray;">
+            <div class="modal-header" style="background-color:red;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b></font>
+                    <font color="Black"><b>&times;</b></font>
                 </button>
+                <h2 class="modal-title" style="font-family:'Georgia'"><b>
+                    <font color="white">Delete</font>
+                </b></h2>
             </div>
             <!-- Modal header -->
 
@@ -603,10 +606,9 @@ function manage_data(gru_id) {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                            <label for="focusedinput" class="control-label"
                                 align="center">
-                                <font size="5px">Do you want to Delete Data YES or
-                                    NO ?</font>
+                                <font size="5px">Do you want to Delete Data YES or NO ?</font>
                             </label>
                         </div>
                     </div>
@@ -620,7 +622,7 @@ function manage_data(gru_id) {
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
                 </div>
                 <button type="button" class="btn btn-success"
-                    onClick="Delete_data(<?php echo $row->gru_id; ?>)">YES</button>
+                    onClick="delete_data(<?php echo $row->gru_id; ?>)">YES</button>
             </div>
             <!-- Modal footer -->
         </div>
@@ -632,3 +634,48 @@ function manage_data(gru_id) {
 <?php 
 $num++;
 } ?>
+<!-- foreach modal -->
+
+<!-- Modal Warning -->
+<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#FF9800;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="Black"><b>&times;</b>
+                    </font>
+                </button>
+                <h2 class="modal-title" style="font-family:'Georgia'"><b>
+                        <font color="white">Warning</font>
+                    </b></h2>
+            </div>
+            <!-- Modal header -->
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group" align="center">
+                        <div class="col-sm-12">
+                            <label for="focusedinput" class="control-label" 
+                                align="center">
+                                <font size="5px">
+                                    Please fill in the correct information.</font>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!-- form-horizontal -->
+            </div>
+            <!-- modal body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                </div>
+            </div>
+            <!-- modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal Warning -->

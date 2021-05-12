@@ -22,7 +22,7 @@ function manage_group() {
         dataType: "JSON",
         success: function(data, status) {
             console.log(status)
-            //console.log(data)
+
             var count = 0;
             data.forEach((row, index) => {
                 data_row += '<tr>'
@@ -44,11 +44,12 @@ function manage_group() {
                 data_row += '</tr>'
                 count++
             })
-            // console.log(data_row)
+
             $("#select_data").html(data_row)
             $("#count_check").val(count)
         } //success
     });
+    // ajax
 }
 // manage_group
 
@@ -88,7 +89,7 @@ function manage_group_right() {
                 count++
             })
             console.log(data_row)
-            $("#table_r").html(data_row)
+            $("#table_right").html(data_row)
             $("#count_group").val(count)
         } //success
     });
@@ -108,7 +109,7 @@ function change_group() {
         }
         // if
     }
-    //for
+    // for
 
     $.ajax({
         type: "POST",
@@ -117,7 +118,6 @@ function change_group() {
             "group": new_group,
             "get_emp": get_emp,
             "count": count_check
-
         },
         dataType: "JSON",
         error: function(status) {
@@ -133,7 +133,6 @@ function change_group() {
 
 function change_group_remove() {
     var count_group = document.getElementById("count_group").value;
-    // var new_group = document.getElementById("new_group").value;
     var old_group = document.getElementById("select").value;
     var get_emp = [];
     for (i = 0; i < count_group; i++) {
@@ -143,7 +142,7 @@ function change_group_remove() {
         }
         // if
     }
-    //for
+    // for
 
     $.ajax({
         type: "POST",
@@ -169,31 +168,35 @@ function change_group_remove() {
 
 <!DOCTYPE html>
 <html>
-<!-- Add group contact-->
 <div class="col-md-12">
     <div class="panel panel-indigo">
         <div class="panel-heading">
             <h1 style="font-family:'Times New Roman'">
-                <font color="#ffffff" size="7px"><b> Manage Group SKD & Head Dept. </b></font>
+                <font color="#ffffff" size="7px"><b> Manage Group SKD & Head Dept.</b></font>
             </h1>
         </div>
+        <!-- panel-heading h1 -->
 
         <div class="panel-body">
-            <h3 style="font-family:'Arial'">
-                <font size="5px" font color="black"> &emsp; Please select contact group for add contact to the group.
+            <h2 style="font-family:'Arial'">
+                <font size="4px" font color="black"> &emsp; Please select contact group for add contact to the group.
                 </font>
-            </h3>
+            </h2>
         </div>
+        <!-- panel-body h2 -->
 
         <div class="col-md-6">
             <div class="panel-body">
                 <div class="panel panel-indigo" id="table_contact">
                     <div class="panel-heading">
-
+                        <div col-md-6>
+                            <label class="col-sm-12 control-label">
+                                <label class="col-sm-12 control-label">
+                        </div>
                         <div class="panel pull-right" id="addtable_filter">
                             <select onchange="manage_group()" id="select" name="example_length" class="form-control"
                                 aria-controls="example">
-                                <option disabled selected>Select Group Contact </option>
+                                <option disabled selected> Select Group Contact </option>
                                 <?php foreach($gcp_gkd->result() as $row) {?>
                                 <option value="<?php echo $row->gru_id; ?>">
                                     <?php echo $row->gru_name;?>
@@ -201,10 +204,10 @@ function change_group_remove() {
                                 <?php } ?>
                             </select>
                         </div>
-
+                        <!-- addtable_filter -->
                         <div class="panel-ctrls"></div>
                     </div>
-
+                    <!-- panel-heading -->
                     <div class="panel-body no-padding">
                         <div id="row_addtable" class="dataTables_wrapper form-inline no-footer">
                             <div class="row">
@@ -216,7 +219,7 @@ function change_group_remove() {
                                 cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
                                 style="width: 100%;">
                                 <thead>
-                                    <tr style="background-color:lavender;">
+                                    <tr style="background-color:lavender; font-family:'Garamond'">
                                         <th>
                                             <center>Select
                                         </th>
@@ -234,7 +237,6 @@ function change_group_remove() {
 
                                 <tbody id="select_data" align="center">
                                 </tbody>
-
                                 <input type="text" id="count_check" value="" hidden>
                             </table>
                             <!-- table -->
@@ -251,7 +253,6 @@ function change_group_remove() {
                         </div>
                     </div>
                     <!-- panel-footer -->
-
 
                     <div class="panel-body">
                         <div class="DTTT btn-group pull-right mt-sm">
@@ -274,10 +275,15 @@ function change_group_remove() {
             <div class="panel-body">
                 <div class="panel panel-indigo" id="panel-addtable">
                     <div class="panel-heading">
+                        <div col-md-6>
+                            <label class="col-sm-12 control-label">
+                                <label class="col-sm-12 control-label">
+                        </div>
                         <?php
 							foreach($grpskd->result() as $row ) { ?>
                         <h2>
-                            <font size="5px"><?php echo $row->gru_name; ?> </font>
+                            <label class="col-sm-12 control-label">
+                                <font size="6px"><b><?php echo $row->gru_name; ?> </b></font>
                         </h2>
                         <input type="text" value="<?php echo $row->gru_id; ?>" hidden id="new_group">
                         <?php }; ?>
@@ -297,7 +303,7 @@ function change_group_remove() {
                                 cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
                                 style="width: 100%;">
                                 <thead>
-                                    <tr style="background-color:lavender;" align="center">
+                                    <tr style="background-color:lavender; font-family:'Garamond'" align="center">
                                         <th>
                                             <center>Select
                                         </th>
@@ -313,7 +319,7 @@ function change_group_remove() {
                                     </tr>
                                 </thead>
 
-                                <tbody id="table_r" align="center">
+                                <tbody id="table_right" align="center">
                                     <?php
 									$num = 0;
 									foreach($group_skd->result() as $index => $row ) { ?>
@@ -332,13 +338,16 @@ function change_group_remove() {
                                     <?php
 									$num++;
 									} ?>
+                                    <!-- foreach -->
                                 </tbody>
+                                <!-- tbody -->
                                 <input type="text" id="count_group" value="<?php echo $num;?>" hidden>
                             </table>
                             <!-- table -->
                         </div>
+                        <!-- example_wrapper -->
                     </div>
-                    <!-- no-padding -->
+                    <!-- panel-body no-padding -->
 
                     <div class="panel-footer">
                         <div class="row">
@@ -352,25 +361,34 @@ function change_group_remove() {
 
                     <div class="panel-body">
                         <div class="DTTT btn-group pull-left mt-sm">
+                            <button class="btn btn-primary" onclick="change_group_remove()">
+                                <i class="fa fa-refresh"></i>
+                                &nbsp
+                                <span>Transfer</span>
+                            </button>
+                        </div>
+                        <!-- Transform -->
+
+                        
+                        <div class="DTTT btn-group pull-right mt-sm">
                             &emsp;
-                            <a data-toggle="modal" class="btn btn btn-danger" href="#Resign">
-                                <i class="ti ti-share-alt"></i>
+                            <?php
+							$num = 0;
+							foreach($group_skd->result() as $index->$row ) { ?>
+                            <a data-toggle="modal" class="btn btn btn-danger" href="#Delete<?php echo $row->gru_id?>">
+                                <i class="ti ti-trash"></i>
                                 &nbsp
                                 <span>RESIGN</span>
                             </a>
+                            <?php
+						$num++;
+						} ?>
+                        <!-- foreach -->
                         </div>
                         <!-- RESIGN -->
-
-                        <div class="DTTT btn-group pull-right mt-sm">
-                            <button class="btn btn-danger" onclick="change_group_remove()">
-                                <i class="ti ti-share-alt"></i>
-                                &nbsp
-                                <span>REMOVE</span>
-                            </button>
-                        </div>
-                        <!-- REMOVE -->
+                        
                     </div>
-                    <!-- panel-body -->
+                    <!-- panel-body right -->
                 </div>
                 <!-- panel-addtable -->
             </div>
@@ -382,17 +400,10 @@ function change_group_remove() {
             <div class="panel-body">
                 <div class="DTTT btn-group pull-left mt-sm">
                     <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">
-                        <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                        <button type="button" class="btn btn-inverse" data-dismiss="modal">BACK</button>
                     </a>
                 </div>
-                <!-- CANCEL -->
-
-                <div class="DTTT btn-group pull-right mt-sm">
-                    <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_skd">
-                        <button type="submit" class="btn btn-success" value="SAVE">SUBMIT</button>
-                    </a>
-                </div>
-                <!-- SUBMIT -->
+                <!-- BACK -->
             </div>
             <!-- panel-body -->
         </div>
@@ -416,68 +427,47 @@ tbody {
 }
 </style>
 
-<!-- Model RESIGN -->
-<div class="modal fade" id="Resign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- Modal Delete -->
+<div class="modal fade" id="Delete<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color:gray;">
+            <div class="modal-header" style="background-color:red;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b></font>
+                    <font color="Black"><b>&times;</b></font>
                 </button>
-            </div><!-- Modal header -->
-            <div class="modal-body">
+                <h2 class="modal-title" style="font-family:'Georgia'"><b>
+                    <font color="white">Delete</font>
+                </b></h2>
+            </div>
+            <!-- Modal header -->
 
+            <div class="modal-body">
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                            <label for="focusedinput" class="control-label"
                                 align="center">
-                                <font size="5px">Do you want to Resign Data YES or NO ?</font>
+                                <font size="5px">Do you want to Delete Data YES or NO ?</font>
                             </label>
-                        </div> <!-- Name - Surname -->
+                        </div>
                     </div>
-                </div> <!-- form-horizontal -->
+                </div>
+                <!-- form-horizontal -->
             </div>
+            <!-- Modal body -->
+
             <div class="modal-footer">
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
                 </div>
-                <button type="button" class="btn btn-success" data-dismiss="modal">YES</button>
+                <button type="button" class="btn btn-success"
+                    onClick="delete_data(<?php echo $row->gru_id; ?>)">YES</button>
             </div>
-
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div><!-- /.modal-->
-
-<!-- Model Remove -->
-<div class="modal fade" id="Remove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:gray;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b></font>
-                </button>
-            </div><!-- Modal header -->
-            <div class="modal-body">
-
-                <div class="form-horizontal">
-                    <div class="form-group" align="center">
-                        <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
-                                align="center">
-                                <font size="5px">Do you want to Remove Data YES or NO ?</font>
-                            </label>
-                        </div> <!-- Name - Surname -->
-                    </div>
-                </div> <!-- form-horizontal -->
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group pull-left">
-                    <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
-                </div>
-                <button type="button" class="btn btn-success" data-dismiss="modal">YES</button>
-            </div>
-
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div><!-- /.modal-->
+            <!-- Modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal Delete -->

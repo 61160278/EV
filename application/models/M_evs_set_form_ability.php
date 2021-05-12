@@ -167,5 +167,43 @@ class M_evs_set_form_ability extends Da_evs_set_form_ability {
 		return $query;
 	}
 	//get_all_by_key_by_year
+
+
+
+	/*
+	* delete
+	* Delete Competency Weight from database
+	* @input sfa_id
+	* @output -
+	* @author Jakkarin Pimpaeng
+	* @update Date 2563-12-08
+	*/
+	function delete_competency() {
+	 	$sql = "DELETE FROM evs_database.evs_set_form_ability
+	 			WHERE sfa_pos_id=? AND sfa_pay_id=? ";
+	 	$this->db->query($sql, array($this->sfa_pos_id,$this->sfa_pay_id));
+		
+	 } 
+	//  delete_competency
+
+
+	 function get_all_by_pos() {	
+		$sql = "SELECT * 
+            FROM evs_database.evs_set_form_ability as sfa
+            left join evs_database.evs_competency as com
+			on com.cpn_id = sfa.sfa_cpn_id
+			left join evs_database.evs_key_component as keycom
+			on keycom.kcp_cpn_id = com.cpn_id
+			left join evs_database.evs_expected_behavior as ex
+			on ex.ept_kcp_id = keycom.kcp_id
+			where sfa_pos_id = ? AND sfa_pay_id = ?
+			order by cpn_competency_detail_en ASC";
+		$query = $this->db->query($sql,array($this->sfa_pos_id,$this->sfa_pay_id));
+		return $query;
+	}
+	//get_all_by_indicator
+
+
 } 
+
 ?>

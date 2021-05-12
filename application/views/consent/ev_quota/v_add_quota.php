@@ -31,6 +31,10 @@
     background-color: #ffe4b3;
 }
 
+.margin {
+    margin-top: 10px;
+}
+
 th {
     color: black;
     text-align: center;
@@ -43,11 +47,75 @@ td {
 }
 </style>
 <script>
+function select_quota(value) {
+    if (value == "2") {
+        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_pa";
+    } else {
+        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_ca";
+    }
+} //select_quota
+
+
+function insert_quota() {
+
+    var quotaType = document.getElementById("quotaType").value; // value of year id
+    var groupPosition = document.getElementById("groupPosition").value;
+     if (groupPosition == 0) {
+
+    } else{
+
+        if (quotaType == 1 ) {
+
+quotaType = document.getElementById("quotaType").options[1].text;
+// groupPosition = document.getElementById("groupPosition").options[1].text;
+
+} else if (quotaType == 2) {
+quotaType = document.getElementById("quotaType").options[2].text;
+}
+//end if-else quotaType
+if (groupPosition == 1) {
+
+groupPosition = document.getElementById("groupPosition").options[1].text;
+
+} else if (groupPosition == 2) {
+
+groupPosition = document.getElementById("groupPosition").options[2].text;
+}
+
+        //end if-else groupPosition
+        var datedata = new Date();
+        var day = datedata.getDate();
+        var month = datedata.getMonth() + 1;
+        var year = datedata.getFullYear();
+        // get date form new date() 
+        var savedate= year + "-" + month + "-" + day;
+       
+
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_insert",
+            data: {
+
+                "quotaType": quotaType,
+                "groupPosition": groupPosition,
+                "savedate": savedate,
+            },
+            dataType: "JSON",
+
+            success: function(status) {
+                console.log(status);
+            }
+
+        });
+    }
+} //insert_quota
+
+
 function check_quota() {
 
     var check = "";
     var value_quota = 0;
-
+    document.getElementById("submit").disabled = false;
     for (i = 1; i <= 6; i++) {
         check = document.getElementById("quota" + i).value;
 
@@ -58,104 +126,115 @@ function check_quota() {
         // if 
         if (value_quota > 100) {
             $("#show_quota").css("color", "red");
-        } else {
+
+            add_alert();
+            $("#submit").attr("disabled", true);
+        } else if (value_quota == 100) {
+            $("#submit").attr("disabled", false);
             $("#show_quota").css("color", "#000000");
         }
+
         document.getElementById("show_quota").innerHTML = value_quota;
-
-
         //console.log(value_quota);
     }
     // for i
-    //
-
-    showChart();
-   // destroy();
-
 
 }
 
-// function destroy() {
+function add_alert() {
+    $('#warning').modal('show');
+}
 
-//     var myChart = new Chart(
-//         document.getElementById('myChart'), {
-//             type: 'line',
-//             data: data,
-//             options: {
-//                 scales: {
-//                     y: {
-//                         beginAtZero: true
-//                     }
-//                 }
-//             }
-//         }
+function confirm_save() {
+    insert_quota();
+    $('#warning_save').modal('show');
 
+}
 
-//     );
-    // myChart.destroy();
-    // }
-    function showChart() {
-        var dataQuota = [];
-        var arrQuota = [];
+function show_qouta() {
 
-        for (var i = 1; i <= 6; i++) {
+    for (var i = 1; i <= 6; i++) {
+        $("#quota" + i).attr("disabled", true);
+    }
 
-            arrQuota.push(document.getElementById("quota" + i).value);
-            console.log(987654);
-            console.log(arrQuota);
+    var dataQuota = [];
+    var arrQuota = [];
+    for (var i = 0; i < 6; i++) {
+        dataQuota[i] = 0;
 
+    } //for
+    for (var i = 1; i <= 6; i++) {
+        //  var show_quota = document.getElementById("quota" + i).innerHTML;
+        var show_quota = document.getElementById("quota" + i).value;
+        //  var arrQuota = [5, 25, 40, 25, 5];
+        arrQuota[i] = show_quota;
+    } //for
+    arrQuota.shift();
+    console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
+    for (var a = 0; a < arrQuota.length; a++) {
+        dataQuota[a] = arrQuota[a] * 1;
 
-        } //for
-        // arrQuota.shift();
-        console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
-        for (var a = 0; a < arrQuota.length; a++) {
-            dataQuota[a] = arrQuota[a] * 1;
+    } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
+    console.log(dataQuota);
 
-        } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
+    //<block:setup:1>
+    const labels = [
+        'S',
+        'A',
+        'B',
+        'B-',
+        'C',
+        'D',
+    ];
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Quota',
+            backgroundColor: 'rgb(54, 162, 235)',
+            borderColor: 'rgb(54, 162, 235)',
+            data: dataQuota,
+        }]
 
-        console.log(dataQuota);
-        //<block:setup:1>
-        const labels = [
-            'S',
-            'A',
-            'B',
-            'B-',
-            'C',
-            'D',
-        ];
-        const data = {
-            labels: labels,
-            datasets: [{
-                label: 'Quota',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: dataQuota,
-            }]
-
-        };
-        // </block:setup>
-        // <block:config:0>
-        const config = {
-            type: 'line',
-            data: data,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+    };
+    // </block:setup>
+    // <block:config:0>
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    min: 0,
+                    ticks: {
+                        stepSize: 20
                     }
+
                 }
             }
-        };
-
-        // </block:config>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        if (ctx.myChart) {
-           // myChart = null;
-           myChart.destroy();
-        } else {
-            myChart = new Chart(ctx, config);
         }
-    } //showChart
+    };
+
+    // </block:config>
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    var myChart = new Chart(ctx, config);
+    $('#reset').on('click', function() {
+        myChart.destroy();
+
+    });
+
+    $(document).ready(function() {
+        $("#reset").click(function() {
+            for (var i = 1; i <= 6; i++) {
+                $("#quota" + i).attr("disabled", false);
+            }
+
+        });
+    });
+
+} //showChart
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
@@ -163,29 +242,37 @@ function check_quota() {
             <h2>
                 <font size="6px"><b>Add Quota</b></font>
             </h2>
-            <div class="panel-ctrls" data-actions-container=""
-                data-action-collapse='{"target": ".panel-body, .panel-footer"}'>
+            <div class="col-md-9">
+            </div>
+            <div class="col-md-1">
+                <select class="form-control pull-right margin" aria-controls="example" onChange="select_quota(value)">
+                    <option value="">Select</option>
+                    <option value="1">CA</option>
+                    <option value="2">PA</option>
+                </select>
             </div>
         </div>
         <div class="panel-body" style="">
+
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-3">
                     </div>
                     <div class="col-md-3">
-                        <select class="form-control text" id="">
-                            <option value="yearEndBonus">Quota</option>
-                            <option value="yearEndBonus">Year End Bonus</option>
-                            <option value="salaryIncrement">Salary Increment</option>
+                        <select class="form-control text" id="quotaType" >
+                            <option value="0">Quota</option>
+                            <option value="1">Year End Bonus</option>
+                            <option value="2">Salary Increment</option>
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <select class="form-control text" id="">
-                            <option value="yearEndBonus">Position Of Quota</option>
-                            <option value="yearEndBonus">Team Associate above</option>
-                            <option value="salaryIncrement">Operational Associate</option>
+                        <select class="form-control text" id="groupPosition">
+                            <option value="0">Position Of Quota</option>
+                            <option value="1">Team Associate above</option>
+                            <option value="2">Operational Associate</option>
                         </select>
                     </div>
+
                 </div>
             </div>
             <br>
@@ -207,7 +294,7 @@ function check_quota() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="orange2">
+                            <tr class="orange2" id="input">
                                 <td>Quota</td>
                                 <td>
                                     <input type="text" class="form-control" id="quota1" oninput="check_quota()">
@@ -231,6 +318,19 @@ function check_quota() {
                             </tr>
                         </tbody>
                     </table>
+
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-offset-8">
+                    <!-- <div class="col-md-3"> -->
+                    <buuton class="btn btn-success" type="submit" id="submit" onclick="show_qouta()" disabled>Submit
+                    </buuton>
+                    <button class="btn btn-warning" type="reset" id="reset">edit</button>
+                    <!-- </div> -->
                 </div>
             </div>
             <br>
@@ -243,8 +343,7 @@ function check_quota() {
                             <h2>
                                 <font size="5px"><b>Quota</b></font>
                             </h2>
-                            <div class="panel-ctrls" data-actions-container=""
-                                data-action-collapse='{"target": ".panel-body"}'>
+                            <div class="panel-ctrls" data-actions-container="">
                             </div>
                         </div>
                         <div class="panel-body">
@@ -255,8 +354,105 @@ function check_quota() {
                 </div>
             </div>
             <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
-            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button>
+            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
+                id="saveData" onclick = "confirm_save()">SAVE</button>
         </div>
     </div>
+    <!-- Modal Warning -->
+    <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#FF9800;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <font color="White"><b>&times;</b>
+                        </font>
+                    </button>
+                    <h2 class="modal-title"><b>
+                            <font color="white">Warning</font>
+                        </b></h2>
+                </div>
+                <!-- Modal header -->
+
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group" align="center">
+                            <div class="col-sm-12">
+                                <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                                    align="center">
+                                    <font size="3px">
+                                        Value is more than 100</font>
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- form-horizontal -->
+                </div>
+                <!-- Modal body -->
+
+                <div class="modal-footer">
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                    </div>
+
+                </div>
+                <!-- Modal footer -->
+            </div>
+            <!-- modal-content -->
+        </div>
+        <!-- modal-dialog -->
+    </div>
+    <!-- End Modal Warning -->
+
 </div>
+
+<!-- Modal Warning -->
+<div class="modal fade" id="warning_save" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#FF9800;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b>
+                    </font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Warning</font>
+                    </b></h2>
+            </div>
+            <!-- Modal header -->
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group" align="center">
+                        <div class="col-sm-12">
+                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                                align="center">
+                                <font size="3px">
+                                   save?</font>
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- form-horizontal -->
+            </div>
+            <!-- Modal body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                </div>
+
+            </div>
+            <!-- Modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
 </div>
+<!-- End Modal Warning -->
+
+</div>
+<script>
+
+</script>
