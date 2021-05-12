@@ -82,6 +82,7 @@ function insert_quota() {
 
         } else if (quotaType == 2) {
             quotaType = document.getElementById("quotaType").options[2].text;
+
         }
         //end if-else quotaType
         if (groupPosition == 1) {
@@ -91,7 +92,12 @@ function insert_quota() {
         } else if (groupPosition == 2) {
 
             groupPosition = document.getElementById("groupPosition").options[2].text;
+            
+        } else if (groupPosition == 3) {
+
+            groupPosition = document.getElementById("groupPosition").options[3].text;
         }
+
 
         //end if-else groupPosition
         var datedata = new Date();
@@ -107,7 +113,7 @@ function insert_quota() {
 
             if (check != "") {
                 grade[i] = parseInt(check),
-               sum_quota += grade[i];
+                    sum_quota += grade[i];
             } //if
         } //for
         grade.shift();
@@ -145,7 +151,7 @@ function insert_quota() {
 
             success: function(status) {
                 console.log(status);
-           
+
             }
 
         }); //ajax
@@ -313,6 +319,7 @@ function show_qouta() {
                             <option value="0">Position Of Quota</option>
                             <option value="1">Team Associate above</option>
                             <option value="2">Operational Associate</option>
+                            <option value="3">Staff above</option>
                         </select>
                     </div>
 
