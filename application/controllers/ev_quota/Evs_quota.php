@@ -301,6 +301,7 @@ function quota_insert(){
 		$this->dqut->qut_type = $qut_type;
 		$this->dqut->qut_pos = $qut_pos;
 		$this->dqut->qut_date = $qut_date;
+		
 		$this->dqut->insert();
 		echo json_encode("Success by insert");
 
