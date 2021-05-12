@@ -13,6 +13,23 @@ td {
 }
 
 #t01 {}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 2.6cm;
+  }
+}
+/* @media all */
+/* { */
+    /* .page-break { display:none; } */
+    /* .page-break-no{ display:none; } */
+/* } */
+/* @media print */
+/* { */
+    /* .page-break { display:block;height:1px; page-break-before:always; } */
+    /* .page-break-no{ display:block;height:1px; page-break-after:avoid; }  */
+/* } */
 </style>
 
 
@@ -25,6 +42,7 @@ td {
                 <h1 align='center'><b>Process Change Report</b></h1>
             </div>
             <!-- panel-heading -->
+     
 
             <div class="panel-body">
                 <div class="row">
@@ -170,10 +188,9 @@ td {
 
                                 </table>
                                 <!-- Product name -->
-
+                                &nbsp;
                             </div>
                             <!-- col-md-6 Product name -->
-
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -228,8 +245,6 @@ td {
                                         <td> &nbsp; Chage Point</td>
                                         <td> &nbsp; New line/Modify line</td>
 
-
-
                                     </tr>
                                     <tr>
                                         <td> &nbsp; Customer</td>
@@ -239,7 +254,7 @@ td {
 
                                 </table>
                                 <!-- Chage Point -->
-
+                                &nbsp;
                             </div>
                             <!-- col-md-6 Chage Point -->
 
@@ -350,7 +365,7 @@ td {
 
                                 </table>
                                 <!-- Implement plan -->
-
+                                &nbsp;
                             </div>
                             <!-- col-md-8 Implement plan -->
 
