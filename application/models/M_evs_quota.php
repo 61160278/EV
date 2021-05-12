@@ -39,5 +39,12 @@ class M_evs_quota extends Da_evs_quota {
 		return $query;
 	}//get_all 
 
+	function get_quota_plan(){	
+		$sql = "SELECT * FROM evs_database.evs_quota
+		WHERE qut_type = ? AND qut_pos = ?";
+		$query = $this->db->query($sql,array($this->qut_type,$this->qut_pos));
+		return $query;
+	}//get_all 
+
 } //end class
 ?>

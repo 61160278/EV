@@ -36,9 +36,10 @@ td {
 }
 </style>
 <script>
+
 function get_data() {
-    var qut_data = document.getElementById("qut_data").value; // get kay by id
-    // console.log(qut_data);
+    var qut_data = document.getElementById("qut_table").value; // get kay by id
+    console.log(qut_data);
     $.ajax({
         type: "post",
         url: "<?php echo base_url(); ?>/ev_quota/v_main_quota",
@@ -50,7 +51,7 @@ function get_data() {
             console.log(data)
         }
     });
-}
+}//get_data
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo">
@@ -91,15 +92,15 @@ function get_data() {
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="qut_data" onchange="get_data()">
+                            <tbody id="qut_table" >
 
                                 <?php foreach($qut_data as $value){ ?>
                                 <tr>
                                     <td><?php echo $value->qut_type;?> </td>
                                     <td><?php echo $value->qut_pos;?> </td>
                                     <td><?php echo $value->qut_date;?> </td>
-                                    <td class="center"><a
-                                            href="<?php echo base_url();?>/ev_quota/Evs_quota/manage_quota">
+                                    <td class="center">
+                                        <a href="<?php echo base_url();?>/ev_quota/Evs_quota/manage_quota">
                                             <button type="submit" class="btn btn-info"><i
                                                     class="ti ti-info-alt"></i></button></a>
                                         <a href="<?php echo base_url();?>/ev_quota/Evs_quota/edit_quota_ca">

@@ -108,6 +108,14 @@ tbody:hover {
  * @author   Lapatrada Puttamongkol
  * @Create Date 2564-04-20
  */
+$(document).ready(function() {
+    $("#reset").click(function() {
+
+        $("#quotaPlan").attr("disabled", false);
+
+    }); //click
+
+}); //ready
 
 function check_quota_plan() {
     var check = "";
@@ -186,51 +194,96 @@ function show_quotaplan() {
             }
         }
     };
-
     // </block:config>
-
-
     var myChart = new Chart(
         document.getElementById('myChart'),
         config
 
     ); //new Chart
 } //show_quotaplan
-$(document).ready(function() {
-    $("#reset").click(function() {
 
-        $("#quotaPlan").attr("disabled", false);
+function confirm_save() {
+    insert_quota_plan();
+    $('#warning_save').modal('show');
+
+}
+
+function insert_quota_plan() {
+    var check = "";
+
+    var sum_quota_plan = 0;
+    var grade = [];
+    // var qup_gradeS = 0;
+    // var qup_gradeA = 0;
+    // var qup_gradeB = 0;
+    // var qup_gradeB_N = 0;
+    // var qup_gradeC = 0;
+    // var qup_gradeD = 0;
+    var qup_gradeTOT = 0;
+
+    var check = "";
+    var value_quotaPlan = 0;
+    var quota = 0;
+
+    check = document.getElementById("quotaPlan").value;
+    console.log(check);
+    //}
+    for (var i = 1; i <= 6; i++) {
+        quota = document.getElementById("quota" + i).innerHTML;
+        value_quotaPlan = parseFloat(check) * quota / 100;
+        grade[i] = value_quotaPlan;
+        sum_quota_plan += grade[i];
+    } //for 
+    grade.shift();
+    console.log(grade);
+    console.log(sum_quota_plan);
+    gradeS = grade[0];
+    gradeA = grade[1];
+    gradeB = grade[2];
+    gradeB_N = grade[3];
+    gradeC = grade[4];
+    gradeD = grade[5];
+    console.log(gradeS);
+    console.log(gradeA);
+    console.log(gradeB);
+    console.log(gradeB_N);
+    console.log(gradeC);
+    console.log(gradeD);
+   
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_insert",
+        data: {
+
+            "quotaType": quotaType,
+            "groupPosition": groupPosition,
+            "savedate": savedate,
+            "gradeS": gradeS,
+            "gradeA": gradeA,
+            "gradeB": gradeB,
+            "gradeB_N": gradeB_N,
+            "gradeC": gradeC,
+            "gradeD": gradeD,
+            "sum_quota": sum_quota
+        },
+        dataType: "JSON",
+
+        success: function(status) {
+            console.log(status);
+
+        }
+
+    }); //ajax
 
 
-    }); //click
-
-
-}); //ready
-
-// function required() {
-//     var empt = document.forms["form"]["text"].value;
-//     if (empt == "") {
-//         alert("Please input a Value");
-//         return false;
-//     } else {
-//         add_alert();
-//         return true;
-//     }
-// }
-
-// function add_alert() {
-//     $('#warning').modal('show');
-// }
+} //insert_quota
 </script>
-
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
         <div class="panel-heading">
             <h2>
                 <font size="5px">Detail Quota </font>
             </h2>
-            <div class="panel-ctrls" data-actions-container=""
-                >
+            <div class="panel-ctrls" data-actions-container="">
             </div>
         </div>
         <div class="panel-body" style="">
@@ -285,7 +338,7 @@ $(document).ready(function() {
                             </div>
                         </thead>
                         <tbody>
-                            <div class="col-md-1">
+                            <div class="col-md-1" id="qut_table">
                                 <tr class="orange2">
                                     <td><b>Quota</b></td>
                                     <td id="quota1" value="5">5</td>
@@ -334,8 +387,7 @@ $(document).ready(function() {
                             <h2>
                                 <font size="5px">Quota</font>
                             </h2>
-                            <div class="panel-ctrls" data-actions-container=""
-                              >
+                            <div class="panel-ctrls" data-actions-container="">
                             </div>
                         </div>
                         <div class="panel-body">
@@ -351,10 +403,58 @@ $(document).ready(function() {
 
                     </div>
                 </div>
-                
+
             </div>
             <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
-        <!-- <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button> -->
+            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
+                onclick="confirm_save()">SAVE</button>
         </div>
     </div>
+
+    <!-- Modal Warning -->
+    <div class="modal fade" id="warning_save" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#FF9800;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <font color="White"><b>&times;</b>
+                        </font>
+                    </button>
+                    <h2 class="modal-title"><b>
+                            <font color="white">Warning</font>
+                        </b></h2>
+                </div>
+                <!-- Modal header -->
+
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group" align="center">
+                            <div class="col-sm-12">
+                                <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                                    align="center">
+                                    <font size="3px">
+                                        save?</font>
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- form-horizontal -->
+                </div>
+                <!-- Modal body -->
+
+                <div class="modal-footer">
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                    </div>
+
+                </div>
+                <!-- Modal footer -->
+            </div>
+            <!-- modal-content -->
+        </div>
+        <!-- modal-dialog -->
+    </div>
+    <!-- End Modal Warning -->
 </div>
