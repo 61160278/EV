@@ -1,4 +1,3 @@
-
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once(dirname(__FILE__) . "/../MainController_avenxo.php");
@@ -44,7 +43,9 @@ class Evs_quota extends MainController_avenxo {
 	*/
 	function index()
 	{
-		$this->output('/consent/ev_quota/v_main_quota');
+		$this->load->model('M_evs_quota','mqut');
+ 		$data['qut_data'] = $this->mqut->get_all()->result(); // show value quota all
+		$this->output('/consent/ev_quota/v_main_quota',$data);
 	}
 	// function index()
 	
@@ -295,23 +296,38 @@ function quota_insert(){
 	$qut_type = $this->input->post("quotaType"); // quota type
 	$qut_pos = $this->input->post("groupPosition"); //group position of quota
 	$qut_date = $this->input->post("savedate"); // date save
-
+	$qut_grad_S = $this->input->post("gradeS"); // date sav
+	$qut_grad_A = $this->input->post("gradeA"); // date sav
+	$qut_grad_B = $this->input->post("gradeB"); // date sav
+	$qut_grad_B_N = $this->input->post("gradeB_N"); // date sav
+	$qut_grad_C = $this->input->post("gradeC"); // date sav
+	$qut_grad_D = $this->input->post("gradeD"); // date sav
+	$qut_total = $this->input->post("sum_quota"); // date sav
 		$this->load->model("Da_evs_quota","dqut");
 
 		$this->dqut->qut_id = $qut_id;
 		$this->dqut->qut_type = $qut_type;
 		$this->dqut->qut_pos = $qut_pos;
 		$this->dqut->qut_date = $qut_date;
+		$this->dqut->qut_grad_S = $qut_grad_S;
+		$this->dqut->qut_grad_A = $qut_grad_A;
+		$this->dqut->qut_grad_B = $qut_grad_B;
+		$this->dqut->qut_grad_B_N = $qut_grad_B_N;
+		$this->dqut->qut_grad_C = $qut_grad_C;
+		$this->dqut->qut_grad_D = $qut_grad_D;
+		$this->dqut->qut_total = $qut_total;
+		
 		$this->dqut->insert();
 		echo json_encode("Success by insert");
 
 }//quota_insert
-function main_quota()
-	{
-		$this->load->model('M_evs_quota','mqut');
-		$data['qut_data'] = $this->mqut->get_all()->result(); // show value position all
-		//$this->output('/consent/ev_quota/v_main_quota',$data);
-		 echo json_encode($data);
-	}//hd_report_curve
+// function show_data_main_quota()
+// 	{
+// 		$this->load->model('M_evs_quota','mqut');
+// 		$data['qut_data'] = $this->mqut->get_all()->result(); // show value position all
+// 		$this->output('/consent/ev_quota/v_main_quota',$data);
+// 		//echo json_encode($data);
+	
+// 	}//show_data_main_quota
 }// end class
 ?>
