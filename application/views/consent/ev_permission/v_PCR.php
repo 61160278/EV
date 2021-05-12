@@ -193,7 +193,7 @@ td {
                             <!-- col-md-6 Product name -->
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <table width="100%">
                                         <tr>
                                             <td> &nbsp; Critical Point</td>
@@ -259,7 +259,7 @@ td {
                             <!-- col-md-6 Chage Point -->
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <table width="100%">
                                         <tr>
                                             <td> &nbsp; Out put</td>
@@ -311,7 +311,7 @@ td {
                         </div>
                         <!-- class="row" Picture  -->
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-7">
                                 <table width="100%">
                                     <tr>
                                         <td> &nbsp; Implement plan</td>
@@ -370,7 +370,7 @@ td {
                             <!-- col-md-8 Implement plan -->
 
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <table width="100%">
                                         <tr>
                                             <td> &nbsp;Data Attachment</td>
