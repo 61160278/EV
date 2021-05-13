@@ -59,10 +59,11 @@ td {
 
                             <div class="col-md-4">
                                 <br>
-                                <Input type="radio" name="manmer" value="0">Normal
-                                &nbsp;
-                                &nbsp;
-                                <Input type="radio" name="manmer" value="0">Urgent
+                                <Input type="radio" name="manmer" value="0">&nbsp; Normal
+                                &emsp;
+                                &emsp;
+                                &emsp;
+                                <Input type="radio" name="manmer" value="0">&nbsp; Urgent
                                 <br>
                             </div>
                             <!-- col-md-4 Normal -->
@@ -78,7 +79,7 @@ td {
 
                         <div class="row">
                             <div class="col-md-4">
-                                <table width="100%">
+                                <table width="50%">
                                     <tr>
                                         <th>
                                             <center>PCR Rank</center>
@@ -105,7 +106,7 @@ td {
 
                             <div class="col-md-8">
 
-                                <table id="t01" width="100%">
+                                <table id="t01" width="50%">
                                     <tr>
                                         <th></th>
                                         <th>
@@ -219,7 +220,8 @@ td {
                                             <td> &nbsp; Part test flow out</td>
                                             <td> &nbsp; <Input type="radio" name="button" value="0"> &nbsp; Yes
                                                 &nbsp;
-                                                &nbsp;
+                                                &emsp;
+                                                &emsp;
                                                 <Input type="radio" name="button" value="0"> &nbsp; No
                                             </td>
 
@@ -441,11 +443,15 @@ td {
                                         <td>
                                             <center> Planning review </center>
                                         </td>
-                                        <td> &nbsp; <Input type="radio" name="b" value="0"> &nbsp; Yes
+                                        <td> &emsp; <Input type="radio" name="b" value="0"> &nbsp; Yes
                                             &emsp;
                                             &emsp;
                                             &emsp;
                                             Meeting Date ___/___/___
+                                            &emsp;
+                                            &emsp;
+                                            &emsp;
+                                            &emsp;
                                             &emsp;
                                             &emsp;
                                             &emsp;
@@ -456,26 +462,28 @@ td {
                                         <td>
                                             <center> Result approve </center>
                                         </td>
-                                        <td> &nbsp; <Input type="radio" name="p" value="0"> &nbsp; Part Examination
-                                            &emsp;
-                                            &emsp;
-                                            <Input type="radio" name="p" value="0"> &nbsp; Process Examination
-                                            &emsp;
-                                            &emsp;
+                                        <td> &nbsp;  <Input type="radio" name="p" value="0"> &nbsp; Part Examination
+                                       <Input type="radio" name="p" value="0"> &nbsp; Process Examination
+                                            &ensp;
+                                            
                                             <Input type="radio" name="p" value="0">&nbsp; QA meeting
-                                            &emsp;
-                                            &emsp;
+                                            &ensp;
+                                            
                                             <Input type="radio" name="p" value="0">&nbsp; BKD
-                                            &emsp;
-                                            &emsp;
+                                            
+                                            &ensp;
                                             <br>
                                             &emsp;
                                             <Input type="radio" name="p" value="0">&nbsp; Process Explanation
                                             &emsp;
-                                            &emsp;
+                                            &nbsp;
                                             <Input type="radio" name="p" value="0">&nbsp; Total review
                                             &emsp;
                                             &emsp;
+                                            &emsp;
+                                            &emsp;
+                                            &emsp;
+                                            &nbsp;
                                             <Input type="radio" name="p" value="0">&nbsp; Quality report
                                         </td>
 
@@ -485,11 +493,11 @@ td {
                                         <td>
                                             <center> Comment </center>
                                         </td>
-                                        <td> &nbsp; 1)
-                                            &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 3)
+                                        <td> &emsp; 1)
+                                            &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 3)
                                             <br>
-                                            &nbsp; 2)
-                                            &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 4)
+                                            &emsp; 2)
+                                            &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; 4)
                                             <br>
                                         </td>
                                     </tr>
@@ -587,6 +595,9 @@ td {
                                             &emsp;
                                             &emsp;
                                             &emsp;
+                                            &emsp;
+                                            &emsp;
+                                            &nbsp;
 
                                             <Input type="radio" name="t" value="0">&nbsp; NO
                                         </td>
