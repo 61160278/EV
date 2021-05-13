@@ -253,7 +253,7 @@ function change_group_remove() {
                         </div>
                         </div>
                     <!-- panel-footer -->
-                    
+
                         <div class="panel-body">
                         <div class="DTTT btn-group pull-right mt-sm">
                             <button class="btn btn-success" onclick="change_group()">
@@ -435,7 +435,7 @@ tbody {
                         <div class="col-sm-12">
                             <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
                                 align="center">
-                                <font size="5px">==> Coming soon <==< /font>
+                                <font size="5px">==> Coming soon <==    </font>
                             </label>
                         </div> <!-- Name - Surname -->
                     </div>
