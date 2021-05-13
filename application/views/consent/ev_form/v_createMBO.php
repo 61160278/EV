@@ -62,7 +62,7 @@ function clearMBO() {
 
 function save_dataMBO() {
 
-    var check_emp_id = document.getElementById("emp_id").innerHTML; 
+    var check_emp_id = document.getElementById("emp_id").innerHTML;
     var evs_emp_id = document.getElementById("evs_emp_id").value;
     console.log(check_emp_id);
     console.log(count);
@@ -84,12 +84,12 @@ function save_dataMBO() {
             "dataMBO": dataMBO,
             "resultMBO": resultMBO,
             "Emp_ID": check_emp_id,
-            "evs_emp_id":evs_emp_id,
+            "evs_emp_id": evs_emp_id,
             "count": count
         }
     });
     // ajax
-    
+
     window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id + "";
 
 }
@@ -338,16 +338,15 @@ function createAtt() {
 }
 // function createAtt
 
-function check_cancel(){
+function check_cancel() {
     $("#cancel_mbo").modal('show');
 }
 // function check_cancel
 
-function cancel_form(){
+function cancel_form() {
     window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/index";
 }
 // function cancel_form
-
 </script>
 <!-- script -->
 
@@ -646,7 +645,7 @@ function cancel_form(){
                                         <?php foreach($info_expected->result() as $row_ept){ 
                                             if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_keycomponent != $row_ept->kcp_key_component_detail_en){
                                                 $temp_keycomponent = $row_ept->kcp_key_component_detail_en;?>
-                                            <?php echo $row_ept->kcp_key_component_detail_en . "<br><font color='blue'>" . $row_ept->kcp_key_component_detail_th ."</font>"; ?>
+                                        <?php echo $row_ept->kcp_key_component_detail_en . "<br><font color='blue'>" . $row_ept->kcp_key_component_detail_th ."</font>"; ?>
                                         <?php }
                                             // if
                                             }
@@ -657,7 +656,7 @@ function cancel_form(){
                                         <?php foreach($info_expected->result() as $row_ept){ 
                                             if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_expected != $row_ept->ept_expected_detail_en && $row_ept->ept_pos_id == $info_pos_id){
                                                 $temp_expected = $row_ept->ept_expected_detail_en;?>
-                                            <?php echo $row_ept->ept_expected_detail_en . "<br><font color='blue'>" . $row_ept->ept_expected_detail_th ."</font><hr>"; ?>
+                                        <?php echo $row_ept->ept_expected_detail_en . "<br><font color='blue'>" . $row_ept->ept_expected_detail_th ."</font><hr>"; ?>
                                         <?php }
                                         // if
                                         }
