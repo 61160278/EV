@@ -10,21 +10,21 @@
 ?>
 <script>
 
-function do_this(){
+function do_this1(){
 
-var checkboxes = document.getElementsByName('checkbox');
-var button = document.getElementById('toggle');
+var checkboxes = document.getElementsByName('checkbox1');
+var button = document.getElementById('toggle1');
 
-if(button.value == 'select'){
+if(button.value == 'select1'){
     for (var i in checkboxes){
         checkboxes[i].checked = 'FALSE';
     }
-   
+    button.value = ''
 }else{
     for (var i in checkboxes){
         checkboxes[i].checked = '';
     }
- 
+    button.value = '';
 }
 }
 
@@ -70,7 +70,7 @@ function manage_group() {
                 data_row += '<td>'
                 data_row += '<div align="center" class="checked block">'
                 data_row += '<input id = "check_group' + index +
-                    '" name="checkbox" type="checkbox">'
+                    '" name="checkbox1" type="checkbox">'
                 data_row += '</div>'
                 data_row += '</td>'
                 data_row += '<td id="emp_' + index + '">'
@@ -297,7 +297,7 @@ function delete_data(gru_id) {
                                         <th>
                                             <center>Select
                                             <br>
-                                            <input type="checkbox" id="toggle" value="select" onClick="do_this()" />
+                                            <input type="checkbox" id="toggle1" value="select1" onClick="do_this1()" />
                                         </th>
                                         <th>
                                             <center>Emp.ID
