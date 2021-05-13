@@ -17,6 +17,7 @@ function table_left(source) {
     for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i] != source)
             checkboxes[i].checked = source.checked;
+
     }
 }
 // Check all table left
@@ -25,9 +26,14 @@ function table_right(source) {
     for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i] != source)
             checkboxes[i].checked = source.checked;
+            
+
     }
 }
 // Check all table right
+
+
+
 function manage_group() {
     var gru_id = document.getElementById("select").value;
     var data_row = " ";
