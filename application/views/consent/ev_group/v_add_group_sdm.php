@@ -19,12 +19,12 @@ if(button.value == 'select'){
     for (var i in checkboxes){
         checkboxes[i].checked = 'FALSE';
     }
-    button.value = 'deselect'
+   
 }else{
     for (var i in checkboxes){
         checkboxes[i].checked = '';
     }
-    button.value = 'select';
+ 
 }
 }
 
@@ -111,7 +111,7 @@ function manage_group_right() {
                 data_row += '<td>'
                 data_row += '<div align="center" class="checked block">'
                 data_row += '<input id = "old_check_group' + index +
-                    '" name="checkbox" type="checkbox">'
+                    '" name="checkbox2" type="checkbox">'
                 data_row += '</div>'
                 data_row += '</td>'
                 data_row += '<td id="emp_new' + index + '">'
