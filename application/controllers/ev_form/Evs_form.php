@@ -101,7 +101,6 @@ class Evs_form extends MainController_avenxo {
 
 			$data['info_pos_id'] = $tep->Position_ID;
 
-
 			$this->output('/consent/ev_form/v_createMBO',$data);
 		}
 		// else	
