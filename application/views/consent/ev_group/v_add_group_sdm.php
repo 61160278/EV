@@ -9,6 +9,48 @@
 */  
 ?>
 <script>
+
+function do_this(){
+
+var checkboxes = document.getElementsByName('checkbox');
+var button = document.getElementById('toggle');
+
+if(button.value == 'select'){
+    for (var i in checkboxes){
+        checkboxes[i].checked = 'FALSE';
+    }
+    button.value = 'deselect'
+}else{
+    for (var i in checkboxes){
+        checkboxes[i].checked = '';
+    }
+    button.value = 'select';
+}
+}
+
+
+function do_this2(){
+
+var checkboxes = document.getElementsByName('checkbox2');
+var button = document.getElementById('toggle2');
+
+if(button.value == 'select2'){
+    for (var i in checkboxes){
+        checkboxes[i].checked = 'FALSE';
+    }
+    button.value = 'deselect'
+}else{
+    for (var i in checkboxes){
+        checkboxes[i].checked = '';
+    }
+    button.value = 'select2';
+}
+}
+
+
+
+
+
 function manage_group() {
     var gru_id = document.getElementById("select").value;
     var data_row = " ";
@@ -254,6 +296,8 @@ function delete_data(gru_id) {
                                     <tr style="background-color:lavender; font-family:'Garamond'">
                                         <th>
                                             <center>Select
+                                            <br>
+                                            <input type="checkbox" id="toggle" value="select" onClick="do_this()" />
                                         </th>
                                         <th>
                                             <center>Emp.ID
@@ -342,6 +386,8 @@ function delete_data(gru_id) {
                                     <tr style="background-color:lavender; font-family:'Garamond'" align="center">
                                         <th>
                                             <center>Select
+                                            <br>
+                                            <input type="checkbox" id="toggle2" value="select2" onClick="do_this2()" />
                                         </th>
                                         <th>
                                             <center>Emp.ID
@@ -362,7 +408,7 @@ function delete_data(gru_id) {
                                     <tr class="odd gradeX">
                                         <td>
                                             <div class="checked block">
-                                                <input name="checkbox" type="checkbox"
+                                                <input name="checkbox2" type="checkbox"
                                                     id="old_check_group<?php echo $index; ?>">
                                             </div>
                                         </td>
@@ -436,6 +482,9 @@ function delete_data(gru_id) {
 </div>
 <!-- head outside -->
 
+
+
+</body>
 
 
 </html>
