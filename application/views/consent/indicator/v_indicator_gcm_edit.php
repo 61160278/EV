@@ -1,6 +1,6 @@
 <?php
 /*
- * v_indicator_ability_edit
+ * v_indicator_gcm_edit
  * edit Indicator of Ability
  * @input   -
  * @output  -
@@ -239,7 +239,7 @@ $(document).ready(function() {
 
     });
 
-    $(document).on('click', '.btn_ept_remove', function() {
+    $(document).on('click', '.btn_epg_remove', function() {
         var button_id = $(this).attr("id");
         $('#row_expected_edit_' + button_id + '').remove();
 
@@ -347,7 +347,7 @@ function insert_data_key_component_and_expected_behavior() {
 
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_ability_indicators_form/key_component_and_expected_behavior_to_database_insert",
+        url: "<?php echo base_url(); ?>/Evs_gcm_indicators_form/key_component_and_expected_behavior_to_database_insert",
         data: {
             "save_key_component_en_todatabase": save_key_component_en_todatabase,
             "save_key_component_th_todatabase": save_key_component_th_todatabase,
@@ -459,7 +459,7 @@ function insert_data_key_component_and_expected_behavior() {
     });
     // ajex
     window.location.href =
-        "<?php echo base_url();?>/Evs_ability_indicators_form/indicator_ability_view_edit_data/<?php echo $competency_id; ?>";
+        "<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm_view_edit_data/<?php echo $competency_id; ?>";
 }
 
 
@@ -512,7 +512,7 @@ function update_data_key_component_and_expected_behavior() {
 
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_ability_indicators_form/key_component_and_expected_behavior_to_database_edit",
+        url: "<?php echo base_url(); ?>/Evs_gcm_indicators_form/key_component_and_expected_behavior_to_database_edit",
         data: {
             "save_key_component_en_todatabase": save_key_component_en_todatabase,
             "save_key_component_th_todatabase": save_key_component_th_todatabase,
@@ -624,7 +624,7 @@ function update_data_key_component_and_expected_behavior() {
     // ajex
     //$("#edit_form").hide();
     window.location.href =
-        "<?php echo base_url();?>/Evs_ability_indicators_form/indicator_ability_view_edit_data/<?php echo $competency_id; ?>";
+        "<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm_view_edit_data/<?php echo $competency_id; ?>";
 }
 
 <?php
@@ -646,7 +646,7 @@ function pos_level(id) {
     key_pos_lv = document.getElementById('pos_lv_' + key_pos_lv_check + '').value;
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_ability_indicators_form/get_position_indicator",
+        url: "<?php echo base_url(); ?>/Evs_gcm_indicators_form/get_position_indicator",
         data: {
             "key_pos_lv": key_pos_lv
         },
@@ -712,7 +712,7 @@ function pos_level_add(id) {
     key_pos_lv = document.getElementById('pos_lv_add_' + key_pos_lv_check + '').value;
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_ability_indicators_form/get_position_indicator",
+        url: "<?php echo base_url(); ?>/Evs_gcm_indicators_form/get_position_indicator",
         data: {
             "key_pos_lv": key_pos_lv
         },
@@ -764,7 +764,7 @@ function pos_level_main_edit(id) {
     key_pos_lv = document.getElementById('pos_lv_edit_' + key_pos_lv_check + '').value;
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_ability_indicators_form/get_position_indicator",
+        url: "<?php echo base_url(); ?>/Evs_gcm_indicators_form/get_position_indicator",
         data: {
             "key_pos_lv": key_pos_lv
         },
@@ -892,7 +892,7 @@ function update_data_component(competency_id) {
         .value; //save definition th todatabase
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_ability_indicators_form/competency_to_database_edit",
+        url: "<?php echo base_url(); ?>/Evs_gcm_indicators_form/competency_to_database_edit",
         data: {
             "save_component_en_todatabase": save_component_en_todatabase,
             "save_component_th_todatabase": save_component_th_todatabase,
@@ -926,21 +926,21 @@ function update_data_component(competency_id) {
  */
 ?>
 
-function edit_key_and_expected(kcp_id) {
+function edit_key_and_expected(kcg_id) {
     var index_loop = 1;
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_ability_indicators_form/get_key_component_and_expected_behavior_form_database",
+        url: "<?php echo base_url(); ?>/Evs_gcm_indicators_form/get_key_component_and_expected_behavior_form_database",
         data: {
-            "kcp_id": kcp_id
+            "kcg_id": kcg_id
         },
         dataType: "JSON",
 
         success: function(data) {
             console.log(data)
             table_data = "";
-            chack_kcp_key_component_detail_en = "";
-            chack_ept_expected_detail_en = "";
+            chack_kcg_key_component_detail_en = "";
+            chack_epg_expected_detail_en = "";
 
 
 
@@ -949,8 +949,8 @@ function edit_key_and_expected(kcp_id) {
             table_data += '<h1 class=" form-control-label">Edit Key component</h1>'
             table_data += '<br><br>'
             data.forEach((row_key, index) => {
-                if (chack_kcp_key_component_detail_en != row_key.kcp_key_component_detail_en) {
-                    chack_kcp_key_component_detail_en = row_key.kcp_key_component_detail_en;
+                if (chack_kcg_key_component_detail_en != row_key.kcg_key_component_detail_en) {
+                    chack_kcg_key_component_detail_en = row_key.kcg_key_component_detail_en;
 
 
                     table_data += '<!-- Start add key component -->'
@@ -964,7 +964,7 @@ function edit_key_and_expected(kcp_id) {
                     table_data +=
                         '<textarea type="text" id="text_key_component_en" name="arr_add_key_component_en_edit"'
                     table_data += 'placeholder="Enter Key component" class="form-control">' +
-                        row_key.kcp_key_component_detail_en + '</textarea>'
+                        row_key.kcg_key_component_detail_en + '</textarea>'
 
                     table_data += '</div>'
                     table_data += '<div class="col-3">'
@@ -973,7 +973,7 @@ function edit_key_and_expected(kcp_id) {
                     table_data += '<div class="col-3">'
                     table_data +=
                         '<textarea type="text" id="text_key_component_th" name="arr_add_key_component_th_edit"  placeholder="Enter Key component" class="form-control">' +
-                        row_key.kcp_key_component_detail_th + '</textarea>'
+                        row_key.kcg_key_component_detail_th + '</textarea>'
                     table_data += '</div>'
                     table_data += '</div>'
                     table_data += '</div>'
@@ -982,13 +982,13 @@ function edit_key_and_expected(kcp_id) {
                     table_data += '<hr>'
                     data.forEach((row_expected, index) => {
 
-                        if (row_key.kcp_key_component_detail_en == row_expected
-                            .kcp_key_component_detail_en) {
+                        if (row_key.kcg_key_component_detail_en == row_expected
+                            .kcg_key_component_detail_en) {
 
-                            if (chack_ept_expected_detail_en != row_expected
-                                .ept_expected_detail_en) {
-                                chack_ept_expected_detail_en = row_expected
-                                    .ept_expected_detail_en;
+                            if (chack_epg_expected_detail_en != row_expected
+                                .epg_expected_detail_en) {
+                                chack_epg_expected_detail_en = row_expected
+                                    .epg_expected_detail_en;
                                 table_data += '<!-- Start insert expected  -->'
                                 table_data += '<div class="row">'
                                 table_data += '<div class="col-6">'
@@ -1002,7 +1002,7 @@ function edit_key_and_expected(kcp_id) {
                                 table_data +=
                                     'placeholder="Enter Expected" class="form-control" style="resize: none"'
                                 table_data += 'required>' + row_expected
-                                    .ept_expected_detail_en + '</textarea>'
+                                    .epg_expected_detail_en + '</textarea>'
 
                                 table_data += '</div>'
                                 table_data += '</div>'
@@ -1018,7 +1018,7 @@ function edit_key_and_expected(kcp_id) {
                                 table_data += '<!-- col-4  -->'
                                 table_data +=
                                     '<div class="col-8"><textarea name="arr_add_expected_th_edit" rows="2" placeholder="Enter Expected" class="form-control" style="resize: none" required>' +
-                                    row_expected.ept_expected_detail_th + '</textarea>'
+                                    row_expected.epg_expected_detail_th + '</textarea>'
                                 table_data += '</div>'
                                 table_data += '<!-- col-8  -->'
                                 table_data += '</div>'
@@ -1030,17 +1030,17 @@ function edit_key_and_expected(kcp_id) {
                                 table_data += '<br>'
                                 table_data += '<!-- End input Identification -->'
 
-                                data.forEach((row_expected, index_ept) => {
-                                    if (row_key.kcp_key_component_detail_en ==
-                                        row_expected.kcp_key_component_detail_en) {
-                                        if (chack_ept_expected_detail_en ==
-                                            row_expected.ept_expected_detail_en) {
+                                data.forEach((row_expected, index_epg) => {
+                                    if (row_key.kcg_key_component_detail_en ==
+                                        row_expected.kcg_key_component_detail_en) {
+                                        if (chack_epg_expected_detail_en ==
+                                            row_expected.epg_expected_detail_en) {
                                             Top_Management = "";
                                             Middle_Management = "";
                                             Junior_Management = "";
                                             Staff = "";
                                             Officier = "";
-                                            index_ept++;
+                                            index_epg++;
                                             if (row_expected.position_level_id ==
                                                 "1") {
                                                 Top_Management = "selected";
@@ -1066,7 +1066,7 @@ function edit_key_and_expected(kcp_id) {
                                             table_data +=
                                                 '<input type= "hidden"  name = "id_exp_' +
                                                 index_loop + '" value = "' +
-                                                row_expected.ept_id + '">'
+                                                row_expected.epg_id + '">'
                                             table_data += '<div class="row">'
                                             table_data += '<div class="col-6">'
                                             table_data += '<div class="row">'
@@ -1079,7 +1079,7 @@ function edit_key_and_expected(kcp_id) {
                                             table_data += '<div class="col-8">'
                                             table_data +=
                                                 '<select id="pos_lv_edit_' +
-                                                index_ept +
+                                                index_epg +
                                                 '" class="form-control" onchange="pos_level_main_edit(id)">'
                                             table_data +=
                                                 '<option >Select position level</option>'
@@ -1106,12 +1106,12 @@ function edit_key_and_expected(kcp_id) {
                                             table_data += '<!-- col-6  -->'
                                             table_data +=
                                                 '<input type= "hidden" id = "id_index_edit' +
-                                                index_ept + '" value = "' +
+                                                index_epg + '" value = "' +
                                                 index_loop + '">'
                                             table_data += '<div class="col-6">'
                                             table_data +=
                                                 '<div class = "row" id = "reset_position_' +
-                                                index_ept + '">'
+                                                index_epg + '">'
                                             table_data +=
                                                 '<div class="col-4" align="right">'
                                             table_data +=
@@ -1201,7 +1201,7 @@ function delete_key_component_and_expected(key_component_en_to_database) {
     var delete_key_component_en_to_database = key_component_en_to_database; //delete key component
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_ability_indicators_form/key_component_and_expected_to_database_delete",
+        url: "<?php echo base_url(); ?>/Evs_gcm_indicators_form/key_component_and_expected_to_database_delete",
         data: {
             "delete_key_component_en_to_database": delete_key_component_en_to_database
         },
@@ -1230,7 +1230,7 @@ function clear_data_componet() {
         .value; //delete component en
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_ability_indicators_form/data_componet_to_data_base_delete",
+        url: "<?php echo base_url(); ?>/Evs_gcm_indicators_form/data_componet_to_data_base_delete",
         data: {
             "save_component_en_todatabase": save_component_en_todatabase
         },
@@ -1268,7 +1268,7 @@ function clear_data_componet() {
             <div class="col-xl-12">
 
                 <h1 class="m-0 font-weight-bold text-primary">
-                    <a href="<?php echo base_url(); ?>Evs_ability_indicators_form/indicator_ability" id="back_acm">
+                    <a href="<?php echo base_url(); ?>Evs_gcm_indicators_form/indicator_gcm" id="back_acm">
                         <i class="fa fa-chevron-circle-left text-white"></i>
                     </a>
                     <i class="fa fa-pencil-square text-white"></i>
@@ -1298,7 +1298,7 @@ function clear_data_componet() {
                             <div class="col-4">
                                 <textarea id="disabled_input_Competency_en" name="add_Competency_en"
                                     placeholder="Enter Competency" class="form-control"
-                                    require><?php echo $competency_data->cpn_competency_detail_en; ?></textarea>
+                                    require><?php echo $competency_data->cpg_competency_detail_en; ?></textarea>
                             </div>
                             <!-- col-3  -->
                             <div class="col-2">
@@ -1308,7 +1308,7 @@ function clear_data_componet() {
                             <div class="col-4">
                                 <textarea id="disabled_input_Competency_th" name="add_Competency_th"
                                     placeholder="Enter Competency" class="form-control"
-                                    require><?php echo $competency_data->cpn_competency_detail_th; ?></textarea>
+                                    require><?php echo $competency_data->cpg_competency_detail_th; ?></textarea>
                             </div>
                             <!-- col-3 -->
                         </div>
@@ -1330,7 +1330,7 @@ function clear_data_componet() {
                             <div class="col-4">
                                 <textarea type="text" id="disabled_input_Definition_en" name="add_Definition_en"
                                     placeholder="Enter Definition" class="form-control"
-                                    require><?php echo $competency_data->cpn_definition_detail_en; ?></textarea>
+                                    require><?php echo $competency_data->cpg_definition_detail_en; ?></textarea>
                             </div>
                             <!-- col-4 -->
                             <div class="col-2">
@@ -1340,7 +1340,7 @@ function clear_data_componet() {
                             <div class="col-4">
                                 <textarea type="text" id="disabled_input_Definition_th" name="add_Definition_th"
                                     placeholder="Enter Definition" class="form-control"
-                                    require><?php echo $competency_data->cpn_definition_detail_th; ?></textarea>
+                                    require><?php echo $competency_data->cpg_definition_detail_th; ?></textarea>
                             </div>
                             <!-- col-4 -->
                         </div>
@@ -1356,7 +1356,7 @@ function clear_data_componet() {
                 <div class="row">
                     <div class="col-12" align="right">
                         <input id="save_key_Competency_id" type="hidden"
-                            value="<?php echo $competency_data->cpn_id; ?>">
+                            value="<?php echo $competency_data->cpg_id; ?>">
                         <button id="btn_key_Competency" type="button" class="btn btn-success disabled_component"
                             data-toggle="collapse" data-target="#register_add">
                             Save Competency
@@ -1537,8 +1537,8 @@ $chack_key_component_detail_en = ""; //check key component
 //start foreach
 foreach ($competency_table as $value) {
     //start if
-    if ($chack_key_component_detail_en != $value->kcp_key_component_detail_en) {
-        $chack_key_component_detail_en = $value->kcp_key_component_detail_en;
+    if ($chack_key_component_detail_en != $value->kcg_key_component_detail_en) {
+        $chack_key_component_detail_en = $value->kcg_key_component_detail_en;
         echo '<div id="row_expected_edit_' . $index_table . '"> ';
         echo '<div class="card-body">';
         echo '<div class="row">';
@@ -1546,18 +1546,18 @@ foreach ($competency_table as $value) {
         echo $index_table;
         echo '</div>';
         echo '<div class="col-3">';
-        echo $value->kcp_key_component_detail_en;
+        echo $value->kcg_key_component_detail_en;
         echo "<br>";
-        echo $value->kcp_key_component_detail_th;
+        echo $value->kcg_key_component_detail_th;
         echo '</div>';
         echo '<div class="col-4">';
         //start foreach
         foreach ($competency_table as $chack_expect) {
             //start if
-            if ($value->kcp_key_component_detail_en == $chack_expect->kcp_key_component_detail_en) {
-                echo $chack_expect->ept_expected_detail_en;
+            if ($value->kcg_key_component_detail_en == $chack_expect->kcg_key_component_detail_en) {
+                echo $chack_expect->epg_expected_detail_en;
                 echo "<br>";
-                echo $chack_expect->ept_expected_detail_th;
+                echo $chack_expect->epg_expected_detail_th;
                 echo "<br>";
                 echo "<hr>";} //end if
         } //end foreach
@@ -1566,7 +1566,7 @@ foreach ($competency_table as $value) {
         //start foreach
         foreach ($competency_table as $chack_expect) {
             //start if
-            if ($value->kcp_key_component_detail_en == $chack_expect->kcp_key_component_detail_en) {
+            if ($value->kcg_key_component_detail_en == $chack_expect->kcg_key_component_detail_en) {
                 echo $chack_expect->Position_name;
                 echo "<br>";
                 echo "<hr>";} //end if
@@ -1574,9 +1574,9 @@ foreach ($competency_table as $value) {
 
         echo '</div>
                             <div class="col-1">
-                                <button class="btn btn-warning float-center" value = "' . $value->kcp_id . '"  Onclick="edit_key_and_expected(value)" ><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-warning float-center" value = "' . $value->kcg_id . '"  Onclick="edit_key_and_expected(value)" ><i class="fa fa-pencil"></i></button>
                                 <br><br>
-                                <button type="button" name="remove" id="' . $index_table . '" class="btn btn-danger btn_ept_remove" value = "' . $value->kcp_key_component_detail_en . '" Onclick="delete_key_component_and_expected(value)" ><i class="fa fa-times"></i></button>
+                                <button type="button" name="remove" id="' . $index_table . '" class="btn btn-danger btn_epg_remove" value = "' . $value->kcg_key_component_detail_en . '" Onclick="delete_key_component_and_expected(value)" ><i class="fa fa-times"></i></button>
                             </div>
                         </div>
                         <hr>';
@@ -1597,14 +1597,14 @@ foreach ($competency_table as $value) {
     <div class="row">
         <div class="col-12" align="right">
             <!-- Start Back To Main Position -->
-            <a href="<?php echo base_url(); ?>/Evs_ability_indicators_form/indicator_ability">
+            <a href="<?php echo base_url(); ?>/Evs_gcm_indicators_form/indicator_gcm">
                 <button type="button" class="btn btn-secondary">Back</button>
                 <!-- onclick="clear_data_componet() -->
             </a>
 
             <!-- End Back To Main Position -->
             <!-- Start Save data -->
-            <a href="<?php echo base_url(); ?>/Evs_ability_indicators_form/indicator_ability">
+            <a href="<?php echo base_url(); ?>/Evs_gcm_indicators_form/indicator_gcm">
                 <button type="button" class="btn btn-success">Save</button>
             </a>
             <!-- End Save data -->

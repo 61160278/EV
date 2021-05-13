@@ -596,10 +596,10 @@ input:checked+.slider:before {
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel_del"><i
                         class="fa fa-times">&nbsp;Cancel</i></button>
-                <!-- <a href="<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm"> -->
+                <a href="<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm">
                     <button id="success_btn" class="btn btn-success" onclick="clear_data_componet()"><i
                             class="fa fa-check">&nbsp;Confirm</i></button>
-                            <!-- </a> -->
+                            </a>
             </div>
             <!-- modal-footer -->
             <!-- add button  -->
