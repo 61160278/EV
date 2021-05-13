@@ -97,7 +97,7 @@ class Da_evs_quota extends evs_model {
 	function delete() {
 	 	
 	 	$sql = "DELETE FROM evs_database.evs_quota
-	 			WHERE evs_quota.qut_id=?";
+	 			WHERE evs_quota.qut_id= ?";
 	 	$this->db->query($sql, array($this->qut_id));
 		
 	 }
