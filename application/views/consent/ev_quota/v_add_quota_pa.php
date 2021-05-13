@@ -34,6 +34,10 @@
 .margin {
     margin-top: 10px;
 }
+.panel.panel-indigo .panel-heading {
+  color: #e8eaf6;
+  background-color: #134466;
+}
 
 th {
     color: black;
@@ -92,7 +96,7 @@ function insert_quota() {
         } else if (groupPosition == 2) {
 
             groupPosition = document.getElementById("groupPosition").options[2].text;
-            
+
         } else if (groupPosition == 3) {
 
             groupPosition = document.getElementById("groupPosition").options[3].text;

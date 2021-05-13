@@ -208,6 +208,10 @@ td {
 h4 {
     color: black;
 }
+.panel.panel-indigo .panel-heading {
+  color: #e8eaf6;
+  background-color: #134466;
+}
 </style>
 
 <div class="col-md-12">

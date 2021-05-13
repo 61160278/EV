@@ -1,12 +1,21 @@
 <?php
 /*
 * v_main_quota.php
-* Display v_main_permission
+* Display v_main_quota
 * @input    
 * @output
-* @author   Kunanya Singmee
-* @Create Date 2563-10-1
-*/  
+* @author   Piyasak Srijan
+* @Create Date 2564-04-06
+*/
+
+/*
+* v_main_quota.php
+* Display v_main_quota
+* @input    
+* @output
+* @author   Piyasak Srijan
+* @Create Date 2564-05-13
+*/    
 ?>
 <style>
 h2 {
@@ -27,6 +36,11 @@ td {
 #add {
     margin-bottom: 4px;
 
+}
+
+.panel.panel-indigo .panel-heading {
+    color: #e8eaf6;
+    background-color: #134466;
 }
 
 #modelText {
@@ -69,21 +83,10 @@ function Delete_data(qut_id) {
 
     });
 
-   window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/index";
+    window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/index";
 
 }
 //function Delete_data
-
-
-function manage_data(qut_id) {
-
-console.log(qut_id);
-window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/edit_quota_ca/" + qut_id;
-
-}
-//function manage_data
-
-
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo">
@@ -96,9 +99,9 @@ window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/edit_quota_c
 
         <br>
         <div class="col-md-12 ">
-            <div class="panel panel-indigo">
+            <div class="panel ">
 
-                <div class="panel-heading" id="head_">
+                <div class="panel-heading bgcolor1" id="head_">
 
                     <a href="<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_ca"><button type="submit"
                             class="btn btn-success" id="add"> + ADD </button></a>
@@ -127,7 +130,7 @@ window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/edit_quota_c
                             <tbody id="qut_table">
 
                                 <?php foreach($qut_data as $value){ ?>
-                                <tr id ="idquota">
+                                <tr id="idquota">
                                     <td><?php echo $value->qut_type;?> </td>
                                     <td><?php echo $value->qut_pos;?> </td>
                                     <td><?php echo $value->qut_date;?> </td>
@@ -135,11 +138,12 @@ window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/edit_quota_c
                                         <a href="<?php echo base_url();?>/ev_quota/Evs_quota/manage_quota">
                                             <button type="submit" class="btn btn-info"><i
                                                     class="ti ti-info-alt"></i></button></a>
-                                        <a onClick ="manage_data(<?php echo $value->qut_id;?>)">
+                                        <a onClick ="manage_data( <?php echo $value->qut_id;?>)">
                                             <button type="submit" class="btn btn-warning"><i
                                                     class="ti ti-pencil-alt "></i></button></a>
-                                        <a data-toggle="modal" href="#delete<?php echo $value->qut_id;?>"><button type="submit"
-                                                class="btn btn-danger"><i class="ti ti-trash"></i></button></a>
+                                        <a data-toggle="modal" href="#delete<?php echo $value->qut_id;?>"><button
+                                                type="submit" class="btn btn-danger"><i
+                                                    class="ti ti-trash"></i></button></a>
                                     </td>
 
                                 </tr>
@@ -166,25 +170,32 @@ window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/edit_quota_c
 
 <?php foreach($qut_data as $value){ ?>
 <!-- Modal -->
-<div class="modal fade" id="delete<?php echo $value->qut_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="delete<?php echo $value->qut_id;?>" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color:Gray;">
+            <div class="modal-header" style="background-color:Red;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                     style="color:white;">&times;</button>
+                <h2 class="modal-title">
+                    <b>
+                        <font color="white">Warning</font>
+                    </b>
+                </h2>
             </div>
             <div class="modal-body">
 
-                <p id="modelText"> ต้องการลบใช่ หรือ ไม่ ? </p>
+                <p id="modelText">Do you want to delete ?</p>
 
             </div>
             <div class="modal-footer">
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
                 </div>
-               
-                <button type="button" class="btn btn-success"  onClick="Delete_data(<?php echo $value->qut_id;?>)">YES</button>
-               
+
+                <button type="button" class="btn btn-success"
+                    onClick="Delete_data(<?php echo $value->qut_id;?>)">YES</button>
+
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

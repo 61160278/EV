@@ -5,7 +5,16 @@
 * @input    
 * @output
 * @author   Piyasak Srijan
-* @Create Date 2563-04-06
+* @Create Date 2564-04-06
+*/  
+
+/*
+* v_hr_report_cureve.php
+* Display v_hr_report_cureve
+* @input    
+* @output
+* @author   Piyasak Srijan
+* @Update Date 2564-05-13
 */  
 ?>
 <script>
@@ -290,6 +299,10 @@ td {
 
 tbody:hover {
     background-color: #ffffff;
+}
+.panel.panel-indigo .panel-heading {
+  color: #e8eaf6;
+  background-color: #134466;
 }
 </style>
 
