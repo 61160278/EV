@@ -159,7 +159,8 @@ function show_approve() {
                 <div class="tab-content">
                     <div class="tab-pane active" id="form1">
                         <br>
-                        <?php foreach($emp_info->result() as $row){?>
+                        <?php foreach($emp_info->result() as $row){
+                          $emp_id_back =  $row->emp_id ?>
                         <input type="text" id="pos_id" value="<?php echo $row->Position_ID; ?>" hidden>
                         <input type="text" id="evs_emp_id" value="<?php echo $row->emp_id; ?>" hidden>
                         <div class="row">
@@ -335,7 +336,8 @@ function show_approve() {
                         <div class="row">
                             <div class="col-md-6">
                                 <form action="<?php echo base_url() ?>ev_form/Evs_form/historyMBO" method="post">
-                                    <input type="text" name="emp_id_his" id="emp_id_his" value="" hidden>
+                                    <input type="text" name="emp_id_his" id="emp_id_his"
+                                        value="<?php echo $emp_id_back; ?>" hidden>
                                     <input type="submit" class="btn btn-inverse" value="BACK">
                                 </form>
                                 <!-- cancel to back to main  -->
@@ -564,7 +566,8 @@ function show_approve() {
                         <div class="row">
                             <div class="col-md-12">
                                 <form action="<?php echo base_url() ?>ev_form/Evs_form/historyMBO" method="post">
-                                    <input type="text" name="emp_id_his" id="emp_id_his" value="" hidden>
+                                    <input type="text" name="emp_id_his" id="emp_id_his"
+                                        value="<?php echo $emp_id_back; ?>" hidden>
                                     <input type="submit" class="btn btn-inverse" value="BACK">
                                 </form>
                                 <!-- cancel to back to main  -->
@@ -713,7 +716,8 @@ function show_approve() {
                         <div class="row">
                             <div class="col-md-12">
                                 <form action="<?php echo base_url() ?>ev_form/Evs_form/historyMBO" method="post">
-                                    <input type="text" name="emp_id_his" id="emp_id_his" value="" hidden>
+                                    <input type="text" name="emp_id_his" id="emp_id_his"
+                                        value="<?php echo $emp_id_back; ?>" hidden>
                                     <input type="submit" class="btn btn-inverse" value="BACK">
                                 </form>
                                 <!-- cancel to back to main  -->
