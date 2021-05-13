@@ -10,47 +10,23 @@
 ?>
 <script>
 
-function do_this1(){
 
-var checkboxes = document.getElementsByName('checkbox1');
-var button = document.getElementById('toggle1');
 
-if(button.value == 'select1'){
-    for (var i in checkboxes){
-        checkboxes[i].checked = 'FALSE';
+function table_left(source) {
+    var checkboxes = document.querySelectorAll('input[name="checkbox1"]');
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i] != source)
+            checkboxes[i].checked = source.checked;
     }
-    button.value = ''
-}else{
-    for (var i in checkboxes){
-        checkboxes[i].checked = '';
-    }
-    button.value = '';
-}
 }
 
-
-function do_this2(){
-
-var checkboxes = document.getElementsByName('checkbox2');
-var button = document.getElementById('toggle2');
-
-if(button.value == 'select2'){
-    for (var i in checkboxes){
-        checkboxes[i].checked = 'FALSE';
+function table_right(source) {
+    var checkboxes = document.querySelectorAll('input[name="checkbox2"]');
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i] != source)
+            checkboxes[i].checked = source.checked;
     }
-    button.value = 'deselect'
-}else{
-    for (var i in checkboxes){
-        checkboxes[i].checked = '';
-    }
-    button.value = 'select2';
 }
-}
-
-
-
-
-
 function manage_group() {
     var gru_id = document.getElementById("select").value;
     var data_row = " ";
@@ -297,7 +273,7 @@ function delete_data(gru_id) {
                                         <th>
                                             <center>Select
                                             <br>
-                                            <input type="checkbox" id="toggle1" value="select1" onClick="do_this1()" />
+                                            <input type="checkbox" onclick="table_left(this);">
                                         </th>
                                         <th>
                                             <center>Emp.ID
@@ -387,7 +363,7 @@ function delete_data(gru_id) {
                                         <th>
                                             <center>Select
                                             <br>
-                                            <input type="checkbox" id="toggle2" value="select2" onClick="do_this2()" />
+                                            <input type="checkbox" onclick="table_right(this);">
                                         </th>
                                         <th>
                                             <center>Emp.ID
@@ -481,11 +457,7 @@ function delete_data(gru_id) {
     <!-- head panel -->
 </div>
 <!-- head outside -->
-
-
-
 </body>
-
 
 </html>
 
