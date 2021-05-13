@@ -10,44 +10,27 @@
 ?>
 <script>
 
-function do_this(){
 
-var checkboxes = document.getElementsByName('checkbox');
-var button = document.getElementById('toggle');
 
-if(button.value == 'select'){
-    for (var i in checkboxes){
-        checkboxes[i].checked = 'FALSE';
+function table_left(source) {
+    var checkboxes = document.querySelectorAll('input[name="checkbox1"]');
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i] != source)
+            checkboxes[i].checked = source.checked;
+
     }
-    button.value = 'deselect'
-}else{
-    for (var i in checkboxes){
-        checkboxes[i].checked = '';
+}
+// Check all table left
+function table_right(source) {
+    var checkboxes = document.querySelectorAll('input[name="checkbox2"]');
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i] != source)
+            checkboxes[i].checked = source.checked;
+            
+
     }
-    button.value = 'select';
 }
-}
-
-
-function do_this2(){
-
-var checkboxes = document.getElementsByName('checkbox2');
-var button = document.getElementById('toggle2');
-
-if(button.value == 'select2'){
-    for (var i in checkboxes){
-        checkboxes[i].checked = 'FALSE';
-    }
-    button.value = 'deselect'
-}else{
-    for (var i in checkboxes){
-        checkboxes[i].checked = '';
-    }
-    button.value = 'select2';
-}
-}
-
-
+// Check all table right
 
 
 
@@ -70,7 +53,7 @@ function manage_group() {
                 data_row += '<td>'
                 data_row += '<div align="center" class="checked block">'
                 data_row += '<input id = "check_group' + index +
-                    '" name="checkbox" type="checkbox">'
+                    '" name="checkbox1" type="checkbox">'
                 data_row += '</div>'
                 data_row += '</td>'
                 data_row += '<td id="emp_' + index + '">'
@@ -111,7 +94,7 @@ function manage_group_right() {
                 data_row += '<td>'
                 data_row += '<div align="center" class="checked block">'
                 data_row += '<input id = "old_check_group' + index +
-                    '" name="checkbox" type="checkbox">'
+                    '" name="checkbox2" type="checkbox">'
                 data_row += '</div>'
                 data_row += '</td>'
                 data_row += '<td id="emp_new' + index + '">'
@@ -297,7 +280,7 @@ function delete_data(gru_id) {
                                         <th>
                                             <center>Select
                                             <br>
-                                            <input type="checkbox" id="toggle" value="select" onClick="do_this()" />
+                                            <input type="checkbox" onclick="table_left(this);">
                                         </th>
                                         <th>
                                             <center>Emp.ID
@@ -387,7 +370,7 @@ function delete_data(gru_id) {
                                         <th>
                                             <center>Select
                                             <br>
-                                            <input type="checkbox" id="toggle2" value="select2" onClick="do_this2()" />
+                                            <input type="checkbox" onclick="table_right(this);">
                                         </th>
                                         <th>
                                             <center>Emp.ID
@@ -481,11 +464,7 @@ function delete_data(gru_id) {
     <!-- head panel -->
 </div>
 <!-- head outside -->
-
-
-
 </body>
-
 
 </html>
 

@@ -38,6 +38,7 @@ $(document).ready(function() {
     creatembo();
     createACM();
     createAtt();
+    set_tap()
     $("#btn_save").attr("disabled", true);
 
 });
@@ -347,6 +348,65 @@ function cancel_form() {
     window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/index";
 }
 // function cancel_form
+
+function set_tap() {
+
+    var ps_pos_id = document.getElementById("pos_id").value;
+    var data_tap = "";
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/get_tap_form",
+        data: {
+            "ps_pos_id": ps_pos_id
+        },
+        success: function(data) {
+            console.log(data);
+
+            data.forEach((row, index) => {
+                if (row.ps_form_pe == "MBO") {
+                    data_tap += '<li class="active"><a href="#MBO" data-toggle="tab">';
+                    data_tap += '<font>MBO</font>';
+                    data_tap += '</a></li>';
+                }
+                // if
+                else if (row.ps_form_pe == "G&O") {
+                    data_tap += '<li class="active"><a href="#G_O" data-toggle="tab">';
+                    data_tap += '<font>G&O</font>';
+                    data_tap += '</a></li>';
+                }
+                // else if 
+                // check pe tool
+
+                if (row.ps_form_ce == "ACM") {
+                    data_tap += '<li><a href="#ACM" data-toggle="tab">';
+                    data_tap += '<font>ACM</font>';
+                    data_tap += '</a></li>';
+                }
+                // if
+                else if (row.ps_form_ce == "GCM") {
+                    data_tap += '<li><a href="#GCM" data-toggle="tab">';
+                    data_tap += '<font>GCM</font>';
+                    data_tap += '</a></li>';
+                }
+                // else if 
+                // check ce tool
+            });
+            // foreach
+            $("#show_tap").html(data_tap);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+
+
+}
+// function set_tap
 </script>
 <!-- script -->
 
@@ -356,13 +416,7 @@ function cancel_form() {
             <div class="panel-heading" height="50px">
                 <h2 id="tabmenu"> Form </h2>
                 <div id="tabmenu">
-                    <ul class="nav nav-tabs pull-right tabdrop">
-                        <li class="active"><a href="#form1" data-toggle="tab">
-                                <font>MBO</font>
-                            </a></li>
-                        <li><a href="#form2" data-toggle="tab">
-                                <font>ACM</font>
-                            </a></li>
+                    <ul class="nav nav-tabs pull-right tabdrop" id="show_tap">
                     </ul>
                 </div>
             </div>
@@ -370,7 +424,7 @@ function cancel_form() {
 
             <div class="panel-body">
                 <div class="tab-content">
-                    <div class="tab-pane active" id="form1">
+                    <div class="tab-pane active" id="MBO">
                         <br>
                         <?php foreach($emp_info->result() as $row){?>
                         <input type="text" id="pos_id" value="<?php echo $row->Position_ID; ?>" hidden>
@@ -510,7 +564,7 @@ function cancel_form() {
 
                     <!-- ************************************************************************************ -->
 
-                    <div class="tab-pane" id="form2">
+                    <div class="tab-pane" id="ACM">
                         <br>
                         <?php foreach($emp_info->result() as $row){?>
 

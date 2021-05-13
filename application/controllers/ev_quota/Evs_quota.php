@@ -206,9 +206,12 @@ class Evs_quota extends MainController_avenxo {
 	* @author 	Piyasak Srijan
 	* @Create Date 2564-04-07
 	*/
-	function edit_quota_ca()
+	function edit_quota_ca($qut_id)
 	{
-		$this->output('/consent/ev_quota/v_edit_quota');
+		$this->load->model('M_evs_quota','mqut');
+		$this->mqut->qut_id = $qut_id;
+		$data['qut_data'] = $this->mqut->get_quota_id(); // show value quota to edit
+		$this->output('/consent/ev_quota/v_edit_quota',$data);
 	}
 	// function edit_quota()
 
@@ -236,9 +239,6 @@ class Evs_quota extends MainController_avenxo {
 		}
 		echo json_encode($data);
 	}
-
-	
-
 	function get_position_level(){
 		$pos_sel = $this->input->post("position_level_id");
 		 $this->load->model('M_evs_position','mpos');
@@ -391,7 +391,34 @@ function delete_quota(){
 	$this->dqut->delete();
 	echo json_encode("Success by insert");
 }//delete_quota
+function edit_quota(){
 
+	$qut_grad_S = $this->input->post("gradeS"); // date sav
+	$qut_grad_A = $this->input->post("gradeA"); // date sav
+	$qut_grad_B = $this->input->post("gradeB"); // date sav
+	$qut_grad_B_N = $this->input->post("gradeB_N"); // date sav
+	$qut_grad_C = $this->input->post("gradeC"); // date sav
+	$qut_grad_D = $this->input->post("gradeD"); // date sav
+	$qut_total = $this->input->post("sum_quota"); // date sav
+		$this->load->model("Da_evs_quota","dqut");
+
+		$this->dqut->qut_id = $qut_id;
+		$this->dqut->qut_type = $qut_type;
+		$this->dqut->qut_pos = $qut_pos;
+		$this->dqut->qut_date = $qut_date;
+		$this->dqut->qut_grad_S = $qut_grad_S;
+		$this->dqut->qut_grad_A = $qut_grad_A;
+		$this->dqut->qut_grad_B = $qut_grad_B;
+		$this->dqut->qut_grad_B_N = $qut_grad_B_N;
+		$this->dqut->qut_grad_C = $qut_grad_C;
+		$this->dqut->qut_grad_D = $qut_grad_D;
+		$this->dqut->qut_total = $qut_total;
+		
+		$this->dqut->update();
+	
+
+
+}
 
 }// end class
 ?>
