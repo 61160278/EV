@@ -251,8 +251,10 @@ function change_group_remove() {
                                 <div class="dataTables_info" id="table_add" role="status" aria-live="polite"></div>
                             </div>
                         </div>
-
-
+                        </div>
+                    <!-- panel-footer -->
+                    
+                        <div class="panel-body">
                         <div class="DTTT btn-group pull-right mt-sm">
                             <button class="btn btn-success" onclick="change_group()">
                                 <i class="ti ti-plus"></i>
@@ -260,8 +262,9 @@ function change_group_remove() {
                             </button>
                         </div>
                         <!-- add -->
-                    </div>
-                    <!-- panel-footer -->
+                        </div>
+                        <!-- panel-body -->
+                   
                 </div>
                 <!-- table_contact -->
             </div>
