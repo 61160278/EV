@@ -46,6 +46,7 @@ td {
     font-size: 15px;
 }
 </style>
+
 <script>
 function select_quota(value) {
     if (value == "2") {
@@ -143,7 +144,12 @@ function show_qouta() {
         options: {
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    max: 100,
+                    min: 0,
+                    ticks: {
+                        stepSize: 20
+                    }
                 }
             }
         }
@@ -168,6 +174,95 @@ function show_qouta() {
     });
 
 } //showChart
+
+
+function get_data() {
+    var qut_data = document.getElementById("qut_select").value; // get kay by id
+    console.log(qut_data);
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/v_main_quota",
+        data: {
+            "qut_data": qut_data
+        },
+        dataType: "JSON",
+        success: function(data) {
+            console.log(data)
+        }
+    });
+} //get_data
+
+function insert_quota() {
+    var check = "";
+
+    var sum_quota = 0;
+    var grade = [];
+    var gradeS = 0;
+    var gradeA = 0;
+    var gradeB = 0;
+    var gradeB_N = 0;
+    var gradeC = 0;
+    var gradeD = 0;
+    var gradeTOT = 0;
+    
+        // //end if-else groupPosition
+        // var datedata = new Date();
+        // var day = datedata.getDate();
+        // var month = datedata.getMonth() + 1;
+        // var year = datedata.getFullYear();
+        // // get date form new date() 
+        // var savedate = year + "-" + month + "-" + day;
+
+        // document.getElementById("submit").disabled = false;
+        for (i = 1; i <= 6; i++) {
+            check = document.getElementById("quota" + i).value;
+
+            if (check != "") {
+                grade[i] = parseInt(check),
+                    sum_quota += grade[i];
+            } //if
+        } //for
+        grade.shift();
+        gradeS = grade[0];
+        gradeA = grade[1];
+        gradeB = grade[2];
+        gradeB_N = grade[3];
+        gradeC = grade[4];
+        gradeD = grade[5];
+        console.log(gradeS);
+        console.log(gradeA);
+        console.log(gradeB);
+        console.log(gradeB_N);
+        console.log(gradeC);
+        console.log(gradeD);
+        console.log(savedate);
+        console.log(sum_quota);
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/edit_quota",
+            data: {
+
+              
+                "gradeS": gradeS,
+                "gradeA": gradeA,
+                "gradeB": gradeB,
+                "gradeB_N": gradeB_N,
+                "gradeC": gradeC,
+                "gradeD": gradeD,
+                "sum_quota": sum_quota
+            },
+            dataType: "JSON",
+
+            success: function(status) {
+                console.log(status);
+
+            }
+
+        }); //ajax
+  
+
+
+} //insert_quota
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
@@ -188,22 +283,27 @@ function show_qouta() {
         <div class="panel-body" style="">
 
             <div class="row">
-                <div class="form-group">
+                <div class="form-group" id="qut_select ">
                     <div class="col-md-3">
                     </div>
+
                     <div class="col-md-3">
-                        <select class="form-control text" id="">
-                            <option value="yearEndBonus">Quota</option>
-                            <option value="yearEndBonus">Year End Bonus</option>
-                            <option value="salaryIncrement">Salary Increment</option>
+
+                        <select class="form-control text" id="quotaType">
+                            <?php foreach($qut_data->result() as $value){ ?>
+                            <option><?php echo $value->qut_type;?> </option>
+                            <?php } ?>
                         </select>
+
                     </div>
                     <div class="col-md-3">
-                        <select class="form-control text" id="">
-                            <option value="yearEndBonus">Position Of Quota</option>
-                            <option value="yearEndBonus">Team Associate above</option>
-                            <option value="salaryIncrement">Operational Associate</option>
+
+                        <select class="form-control text" id="groupPosition">
+                            <?php foreach($qut_data->result() as $value){ ?>
+                            <option><?php echo $value->qut_pos;?></option>
+                            <?php } ?>
                         </select>
+
                     </div>
 
                 </div>
@@ -227,28 +327,42 @@ function show_qouta() {
                             </tr>
                         </thead>
                         <tbody>
+                            <?php foreach($qut_data->result() as $value){ ?>
                             <tr class="orange2" id="input">
                                 <td>Quota</td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota1" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota1" onchange="check_quota()"
+                                        value=" <?php echo $value->qut_grad_S;?>">
+
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota2" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota2" onchange="check_quota()"
+                                        value=" <?php echo $value->qut_grad_A;?>">
+
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota3" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota3" onchange="check_quota()"
+                                        value=" <?php echo $value->qut_grad_B;?>">
+
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota4" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota4" onchange="check_quota()"
+                                        value=" <?php echo $value->qut_grad_B_N;?>">
+
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota5" onchange="check_quota()">
-                                </td>
+                                    <input type="text" class="form-control" id="quota5" onchange="check_quota()"
+                                        value=" <?php echo $value->qut_grad_C;?>">
+
                                 <td>
-                                    <input type="text" class="form-control" id="quota6" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota6" onchange="check_quota()"
+                                        value=" <?php echo $value->qut_grad_D;?>">
+
                                 </td>
                                 <td id="show_quota"></td>
+
                             </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
 
