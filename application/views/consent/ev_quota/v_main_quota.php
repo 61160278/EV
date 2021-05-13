@@ -64,7 +64,6 @@ function get_data() {
         }
     });
 } //get_data
-<<<<<<< Updated upstream
 function Delete_data(qut_id) {
 
     console.log(qut_id);
@@ -87,8 +86,14 @@ function Delete_data(qut_id) {
 
 }
 //function Delete_data
-=======
->>>>>>> Stashed changes
+
+function manage_data(qut_id) {
+
+console.log(qut_id);
+window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/edit_quota_ca/" + qut_id;
+}
+//function manage_data
+
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo">
@@ -140,10 +145,10 @@ function Delete_data(qut_id) {
                                         <a href="<?php echo base_url();?>/ev_quota/Evs_quota/manage_quota">
                                             <button type="submit" class="btn btn-info"><i
                                                     class="ti ti-info-alt"></i></button></a>
-                                        <a href="<?php echo base_url();?>/ev_quota/Evs_quota/edit_quota_ca">
+                                        <a onClick ="manage_data( <?php echo $value->qut_id;?>)">
                                             <button type="submit" class="btn btn-warning"><i
                                                     class="ti ti-pencil-alt "></i></button></a>
-                                        <a data-toggle="modal" href="#delete<?php echo $value->qut_id;?>"><button type="submit"
+                                        <a data-toggle="modal" href="#delete<?php echo $value->qut_id;?>" ><button type="submit"
                                                 class="btn btn-danger"><i class="ti ti-trash"></i></button></a>
                                     </td>
 
