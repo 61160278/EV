@@ -206,10 +206,11 @@ class Evs_quota extends MainController_avenxo {
 	* @author 	Piyasak Srijan
 	* @Create Date 2564-04-07
 	*/
-	function edit_quota_ca()
+	function edit_quota_ca($qut_id)
 	{
 		$this->load->model('M_evs_quota','mqut');
-		$data['qut_data'] = $this->mqut->get_all(); // show value quota to edit
+		$this->mqut->qut_id = $qut_id;
+		$data['qut_data'] = $this->mqut->get_quota_id(); // show value quota to edit
 		$this->output('/consent/ev_quota/v_edit_quota',$data);
 	}
 	// function edit_quota()
@@ -287,6 +288,7 @@ function all_data(){
 	$data = $this->mpos->get_pos_com_dep_all()->result();
 		echo json_encode($data);
 }//all_data()
+
 function all_position(){
 	$this->load->model('M_evs_position','mpos');
 	$data['pos_data'] = $this->meps->get_position()->result();
