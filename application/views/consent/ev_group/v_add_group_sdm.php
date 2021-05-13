@@ -366,8 +366,7 @@ function delete_data(gru_id) {
                                                     id="old_check_group<?php echo $index; ?>">
                                             </div>
                                         </td>
-                                        <td id="emp_new<?php echo $index; ?>">
-                                            <?php echo $row->Emp_ID; ?></td>
+                                        <td id="emp_new<?php echo $index; ?>"><?php echo $row->Emp_ID; ?></td>
                                         <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng; ?>
                                         </td>
                                         <td><?php echo $row->Sectioncode_ID; ?></td>
