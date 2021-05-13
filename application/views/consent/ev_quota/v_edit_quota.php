@@ -330,6 +330,7 @@ function insert_quota() {
                             <?php foreach($qut_data->result() as $value){ ?>
                             <tr class="orange2" id="input">
                                 <td>Quota</td>
+                                <!-- <?php //echo $value->qut_id; ?> -->
                                 <td>
                                     <input type="text" class="form-control" id="quota1" onchange="check_quota()"
                                         value=" <?php echo $value->qut_grad_S;?>">
