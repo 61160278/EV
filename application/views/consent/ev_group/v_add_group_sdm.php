@@ -161,8 +161,42 @@ function change_group_remove() {
     //ajax
 }
 // change_group_remove
-</script>
 
+function delete_data(gru_id) {
+    var count_group = document.getElementById("count_group").value;
+    var old_group = document.getElementById("select").value;
+    var get_emp = [];
+    for (i = 0; i < count_group; i++) {
+        if (document.getElementById("old_check_group" + i).checked) {
+            get_emp.push(document.getElementById("emp_new" + i).innerHTML)
+            console.log(get_emp)
+        }
+        // if
+    }
+    // for
+
+    $.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>/ev_group/Evs_group/add_new_group",
+        data: {
+            "group": old_group,
+            "get_emp": get_emp,
+            "count": count_group
+
+        },
+        dataType: "JSON",
+        success: function(status) {
+            console.log(status)
+            console.log(gru_id)
+            manage_group_right();
+        }
+        //error จะไม่มีการส่งค่ากลับมา
+    });
+    //ajax
+    //window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_group_company_skd" + gru_id + " ";
+}
+// function delete_data
+</script>
 
 
 <!DOCTYPE html>
@@ -419,37 +453,47 @@ tbody {
 }
 </style>
 
-<!-- RESIGN -->
-<div class="modal fade" id="Resign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- Modal Delete -->
+<div class="modal fade" id="Resign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color:gray;">
+            <div class="modal-header" style="background-color:red;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b></font>
+                    <font color="Black"><b>&times;</b></font>
                 </button>
-            </div><!-- Modal header -->
-            <div class="modal-body">
+                <h2 class="modal-title" style="font-family:'Georgia'"><b>
+                    <font color="white">Delete</font>
+                </b></h2>
+            </div>
+            <!-- Modal header -->
 
+            <div class="modal-body">
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                            <label for="focusedinput" class="control-label"
                                 align="center">
-                                <font size="5px">==> Coming soon <==    </font>
+                                <font size="5px">Do you want to Delete Data YES or NO ?</font>
                             </label>
-                        </div> <!-- Name - Surname -->
+                        </div>
                     </div>
-                </div> <!-- form-horizontal -->
+                </div>
+                <!-- form-horizontal -->
             </div>
+            <!-- Modal body -->
+
             <div class="modal-footer">
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
                 </div>
-                <button type="button" class="btn btn-success" data-dismiss="modal">YES</button>
+                <button type="button" class="btn btn-success"
+                    onClick="delete_data()">YES</button>
             </div>
-
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
-</div><!-- /.modal-->
-
-<!-- RESIGN -->
+            <!-- Modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal Delete -->
