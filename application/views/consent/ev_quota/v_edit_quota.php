@@ -282,6 +282,24 @@ function show_qouta() {
     });
 
 } //showChart
+
+function get_data() {
+    var qut_data = document.getElementById("qut_table").value; // get kay by id
+    console.log(qut_data);
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/v_main_quota",
+        data: {
+            "qut_data": qut_data
+        },
+        dataType: "JSON",
+        success: function(data) {
+            console.log(data)
+        }
+    });
+} //get_data
+
+
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>

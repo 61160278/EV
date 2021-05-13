@@ -138,7 +138,7 @@ function Delete_data(qut_id) {
                                         <a href="<?php echo base_url();?>/ev_quota/Evs_quota/manage_quota">
                                             <button type="submit" class="btn btn-info"><i
                                                     class="ti ti-info-alt"></i></button></a>
-                                        <a href="<?php echo base_url();?>/ev_quota/Evs_quota/edit_quota_ca">
+                                        <a onClick ="manage_data( <?php echo $value->qut_id;?>)">
                                             <button type="submit" class="btn btn-warning"><i
                                                     class="ti ti-pencil-alt "></i></button></a>
                                         <a data-toggle="modal" href="#delete<?php echo $value->qut_id;?>"><button
