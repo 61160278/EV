@@ -46,6 +46,7 @@ $(document).ready(function() {
     $("#btn_send_insert").show();
     $("#btn_send_edit").hide();
     show_approve()
+    set_tap()
 
 });
 // document ready
@@ -551,6 +552,65 @@ function show_approve() {
 
 }
 // function show_approve
+
+function set_tap() {
+
+    var ps_pos_id = document.getElementById("pos_id").value;
+    var data_tap = "";
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/get_tap_form",
+        data: {
+            "ps_pos_id": ps_pos_id
+        },
+        success: function(data) {
+            console.log(data);
+
+            data.forEach((row, index) => {
+                if (row.ps_form_pe == "MBO") {
+                    data_tap += '<li class="active"><a href="#MBO" data-toggle="tab">';
+                    data_tap += '<font>MBO</font>';
+                    data_tap += '</a></li>';
+                }
+                // if
+                else if(row.ps_form_pe == "G&O"){
+                    data_tap += '<li class="active"><a href="#G_O" data-toggle="tab">';
+                    data_tap += '<font>G&O</font>';
+                    data_tap += '</a></li>';
+                }
+                // else if 
+                // check pe tool
+
+                if (row.ps_form_ce == "ACM") {
+                    data_tap += '<li><a href="#ACM" data-toggle="tab">';
+                    data_tap += '<font>ACM</font>';
+                    data_tap += '</a></li>';
+                }
+                // if
+                else if(row.ps_form_ce == "GCM"){
+                    data_tap += '<li><a href="#GCM" data-toggle="tab">';
+                    data_tap += '<font>GCM</font>';
+                    data_tap += '</a></li>';
+                }
+                // else if 
+                // check ce tool
+            });
+            // foreach
+            $("#show_tap").html(data_tap);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+
+
+}
+// function set_tap
 </script>
 <!-- script -->
 
@@ -560,16 +620,8 @@ function show_approve() {
             <div class="panel-heading" height="50px">
                 <h2 id="tabmenu"> Form </h2>
                 <div id="tabmenu">
-                    <ul class="nav nav-tabs pull-right tabdrop">
-                        <li class="active"><a href="#form1" data-toggle="tab">
-                                <font>MBO</font>
-                            </a></li>
-                        <li><a href="#form2" data-toggle="tab">
-                                <font>ACM</font>
-                            </a></li>
-                        <li><a href="#form3" data-toggle="tab">
-                                <font>Attitude & Behavior</font>
-                            </a></li>
+                    <ul class="nav nav-tabs pull-right tabdrop" id="show_tap">
+
                     </ul>
                 </div>
             </div>
@@ -577,7 +629,7 @@ function show_approve() {
 
             <div class="panel-body">
                 <div class="tab-content">
-                    <div class="tab-pane active" id="form1">
+                    <div class="tab-pane active" id="MBO">
                         <br>
                         <?php foreach($emp_info->result() as $row){?>
                         <input type="text" id="pos_id" value="<?php echo $row->Position_ID; ?>" hidden>
@@ -783,7 +835,7 @@ function show_approve() {
 
                     <!-- ******************************** form 1 ********************************-->
 
-                    <div class="tab-pane" id="form2">
+                    <div class="tab-pane" id="ACM">
                         <br>
                         <?php foreach($emp_info->result() as $row){?>
 
@@ -915,7 +967,7 @@ function show_approve() {
                                         <?php foreach($info_expected->result() as $row_ept){ 
                                             if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_keycomponent != $row_ept->kcp_key_component_detail_en){
                                                 $temp_keycomponent = $row_ept->kcp_key_component_detail_en;?>
-                                            <?php echo $row_ept->kcp_key_component_detail_en . "<br><font color='blue'>" . $row_ept->kcp_key_component_detail_th ."</font>"; ?>
+                                        <?php echo $row_ept->kcp_key_component_detail_en . "<br><font color='blue'>" . $row_ept->kcp_key_component_detail_th ."</font>"; ?>
                                         <?php }
                                             // if
                                             }
@@ -926,7 +978,7 @@ function show_approve() {
                                         <?php foreach($info_expected->result() as $row_ept){ 
                                             if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_expected != $row_ept->ept_expected_detail_en && $row_ept->ept_pos_id == $info_pos_id){
                                                 $temp_expected = $row_ept->ept_expected_detail_en;?>
-                                            <?php echo $row_ept->ept_expected_detail_en . "<br><font color='blue'>" . $row_ept->ept_expected_detail_th ."</font><hr>"; ?>
+                                        <?php echo $row_ept->ept_expected_detail_en . "<br><font color='blue'>" . $row_ept->ept_expected_detail_th ."</font><hr>"; ?>
                                         <?php }
                                         // if
                                         }
@@ -1003,153 +1055,6 @@ function show_approve() {
                     <!-- form 2 -->
                     <!-- ******************************** form 2 ********************************-->
 
-                    <div class="tab-pane" id="form3">
-                        <br>
-                        <?php foreach($emp_info->result() as $row){?>
-
-                        <input type="text" id="pos_id_acm" value="<?php echo $row->Position_ID; ?>" hidden>
-
-                        <div class="row">
-                            <div class="col-md-2">
-                                <label class="control-label"><strong>
-                                        <font size="3px">Employee ID : </font>
-                                    </strong></label>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <p id="emp_id"><?php echo $row->Emp_ID; ?></p>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <label class="control-label"><strong>
-                                        <font size="3px">Name : </font>
-                                    </strong></label>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <p id="emp_name"><?php echo $row->Empname_eng; ?></p>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <label class="control-label"><strong>
-                                        <font size="3px">Surname : </font>
-                                    </strong></label>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <p id="emp_lname"><?php echo $row->Empsurname_eng; ?></p>
-                            </div>
-                            <!-- col-md-2 -->
-                        </div>
-                        <!-- row -->
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <label class="control-label"><strong>
-                                        <font size="3px">Section Code : </font>
-                                    </strong></label>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <p id="emp_sec"><?php echo $row->Sectioncode_ID; ?></p>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <label class="control-label"><strong>
-                                        <font size="3px">Department : </font>
-                                    </strong></label>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <p id="emp_dep"><?php echo $row->Department; ?></p>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <label class="control-label"><strong>
-                                        <font size="3px">Position : </font>
-                                    </strong></label>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <p id="emp_pos"><?php echo $row->Position_name; ?></p>
-                            </div>
-                            <!-- col-md-2 -->
-                        </div>
-                        <!-- row -->
-                        <?php }; ?>
-                        <!-- show infomation employee -->
-                        <hr>
-
-                        <table class="table table-bordered table-striped m-n" id="mbo">
-                            <thead id="headmbo">
-                                <tr>
-                                    <th rowspan="2">
-                                        <center> No.</center>
-                                    </th>
-                                    <th rowspan="2">
-                                        <center>Competency</center>
-                                    </th>
-                                    <th rowspan="2">
-                                        <center>Key component</center>
-                                    </th>
-                                    <th rowspan="2">
-                                        <center>Expected Behavior</center>
-                                    </th>
-                                    <th rowspan="2" width="6%">
-                                        <center>Weight</center>
-                                    </th>
-                                    <th colspan="2">
-                                        <center>Evaluation</center>
-                                    </th>
-
-                                </tr>
-                                <tr>
-                                    <th width="25%">
-                                        <center>Result</center>
-                                    </th>
-                                    <th width="15%">
-                                        <center>Score AxB</center>
-                                    </th>
-
-                                </tr>
-                            </thead>
-                            <!-- thead -->
-                            <tbody id="row_att">
-                            </tbody>
-                            <!-- tbody -->
-                            <tfoot>
-                                <tr height="5%" id="dis_color">
-                                    <td colspan="4">
-                                        <center> Total Weight</center>
-                                    </td>
-                                    <td>
-                                        <center> 100</center>
-                                    </td>
-                                    <td>
-                                        <center> ----Total Result</center>
-                                    </td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                            </tfoot>
-                            <!-- tfoot -->
-                        </table>
-                        <!-- table -->
-
-                        <br>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
-                                    <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
-                                </a>
-                                <!-- cancel to back to main  -->
-                            </div>
-                            <!-- col-md-6 -->
-                        </div>
-                        <!-- row -->
-                    </div>
-                    <!-- form 3 -->
-                    <!-- ******************************** form 3 ********************************-->
 
                 </div>
                 <!-- tab-content -->

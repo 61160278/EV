@@ -73,7 +73,7 @@ function manage_group_right() {
                 data_row += '<td>'
                 data_row += '<div align="center" class="checked block">'
                 data_row += '<input id = "old_check_group' + index +
-                    '" name="checkbox" type="checkbox">'
+                    '" name="checkbox_r" type="checkbox">'
                 data_row += '</div>'
                 data_row += '</td>'
                 data_row += '<td id="emp_new' + index + '">'
@@ -199,6 +199,43 @@ function delete_data(gru_id) {
     //window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_group_company_skd" + gru_id + " ";
 }
 // function delete_data
+
+function select_all(){
+
+var checkboxes = document.getElementsByName('checkbox');
+var button = document.getElementById('toggle');
+
+if(button.value == 'select'){
+    for (var i in checkboxes){
+        checkboxes[i].checked = 'FALSE';
+    }
+    button.value = 'deselect'
+}else{
+    for (var i in checkboxes){
+        checkboxes[i].checked = '';
+    }
+    button.value = 'select';
+}
+}
+
+
+function select_all_right(){
+
+var checkboxes = document.getElementsByName('checkbox_r');
+var button = document.getElementById('toggle_r');
+
+if(button.value == 'select_r'){
+    for (var i in checkboxes){
+        checkboxes[i].checked = 'TRUE';
+    }
+    button.value = 'deselect'
+}else{
+    for (var i in checkboxes){
+        checkboxes[i].checked = '';
+    }
+    button.value = 'select_r';
+}
+}
 </script>
 
 <!DOCTYPE html>
@@ -250,13 +287,15 @@ function delete_data(gru_id) {
                                 <div class="col-sm-6"></div>
                             </div>
 
-                            <table id="add_table" class="table table-striped table-bordered dataTable no-footer"
+                            <table id="table1" class="table table-striped table-bordered dataTable no-footer"
                                 cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
                                 style="width: 100%;">
                                 <thead>
                                     <tr style="background-color:lavender; font-family:'Garamond'">
                                         <th>
                                             <center>Select
+                                            <br>
+                                            <input type="checkbox" id="toggle" value="select" onClick="select_all()">
                                         </th>
                                         <th>
                                             <center>Emp.ID
@@ -341,6 +380,8 @@ function delete_data(gru_id) {
                                     <tr style="background-color:lavender; font-family:'Garamond'" align="center">
                                         <th>
                                             <center>Select
+                                            <br>
+                                            <input type="checkbox" id="toggle_r" value="select_r" onClick="select_all_right()">
                                         </th>
                                         <th>
                                             <center>Emp.ID
@@ -361,7 +402,7 @@ function delete_data(gru_id) {
                                     <tr class="odd gradeX">
                                         <td>
                                             <div class="checked block">
-                                                <input name="checkbox" type="checkbox"
+                                                <input name="checkbox_r" type="checkbox"
                                                     id="old_check_group<?php echo $index; ?>">
                                             </div>
                                         </td>
@@ -404,18 +445,18 @@ function delete_data(gru_id) {
                         </div>
                         <!-- Transform -->
 
-                        
+
                         <div class="DTTT btn-group pull-right mt-sm">
                             &emsp;
-                            <a data-toggle="modal" class="btn btn btn-danger" href="#Delete" >
+                            <a data-toggle="modal" class="btn btn btn-danger" href="#Delete">
                                 <i class="ti ti-trash"></i>
                                 &nbsp
                                 <span>RESIGN</span>
                             </a>
-                        <!-- foreach -->
+                            <!-- foreach -->
                         </div>
                         <!-- RESIGN -->
-                        
+
                     </div>
                     <!-- panel-body right -->
                 </div>
@@ -457,8 +498,7 @@ tbody {
 </style>
 
 <!-- Modal Delete -->
-<div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color:red;">
@@ -466,8 +506,8 @@ tbody {
                     <font color="Black"><b>&times;</b></font>
                 </button>
                 <h2 class="modal-title" style="font-family:'Georgia'"><b>
-                    <font color="white">Delete</font>
-                </b></h2>
+                        <font color="white">Delete</font>
+                    </b></h2>
             </div>
             <!-- Modal header -->
 
@@ -475,8 +515,7 @@ tbody {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label"
-                                align="center">
+                            <label for="focusedinput" class="control-label" align="center">
                                 <font size="5px">Do you want to Delete Data YES or NO ?</font>
                             </label>
                         </div>
@@ -490,8 +529,7 @@ tbody {
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
                 </div>
-                <button type="button" class="btn btn-success"
-                    onClick="delete_data()">YES</button>
+                <button type="button" class="btn btn-success" onclick="delete_data()">YES</button>
             </div>
             <!-- Modal footer -->
         </div>
