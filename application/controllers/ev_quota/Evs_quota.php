@@ -383,5 +383,15 @@ function quota_actual_insert(){
 		echo json_encode("Success by insert");
 }//quota_actual_insert()
 
+function delete_quota(){
+
+	$qut_id = $this->input->post('qut_id');
+	$this->load->model('Da_evs_quota','dqut');
+	$this->dqut->qut_id = $qut_id;
+	$this->dqut->delete();
+	echo json_encode("Success by insert");
+}//delete_quota
+
+
 }// end class
 ?>

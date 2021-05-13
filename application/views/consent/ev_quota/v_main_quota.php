@@ -36,13 +36,12 @@ td {
 }
 </style>
 <script>
-
 function get_data() {
     var qut_data = document.getElementById("qut_table").value; // get kay by id
     console.log(qut_data);
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/ev_quota/v_main_quota",
+        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/v_main_quota",
         data: {
             "qut_data": qut_data
         },
@@ -51,7 +50,29 @@ function get_data() {
             console.log(data)
         }
     });
-}//get_data
+} //get_data
+function Delete_data(qut_id) {
+
+    console.log(qut_id);
+
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/delete_quota",
+        data: {
+            "qut_id": qut_id
+        },
+        dataType: "JSON",
+        success: function(data) {
+            console.log(data)
+
+        }
+
+    });
+
+   window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/index";
+
+}
+//function Delete_data
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo">
@@ -92,10 +113,10 @@ function get_data() {
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="qut_table" >
+                            <tbody id="qut_table">
 
                                 <?php foreach($qut_data as $value){ ?>
-                                <tr>
+                                <tr id ="idquota">
                                     <td><?php echo $value->qut_type;?> </td>
                                     <td><?php echo $value->qut_pos;?> </td>
                                     <td><?php echo $value->qut_date;?> </td>
@@ -106,43 +127,13 @@ function get_data() {
                                         <a href="<?php echo base_url();?>/ev_quota/Evs_quota/edit_quota_ca">
                                             <button type="submit" class="btn btn-warning"><i
                                                     class="ti ti-pencil-alt "></i></button></a>
-                                        <a data-toggle="modal" href="#delete"><button type="submit"
+                                        <a data-toggle="modal" href="#delete<?php echo $value->qut_id;?>"><button type="submit"
                                                 class="btn btn-danger"><i class="ti ti-trash"></i></button></a>
                                     </td>
 
                                 </tr>
-                                <?php } ?>
 
-                                <!-- <tr class="gradeA odd" role="row">
-								<td class="sorting_1">Year End Bonus </td>
-								<td>Team Associates Above</td>
-								<td>2019-05-21</td>
-								<td class="center">
-									<a href= "<?php// echo base_url();?>/ev_quota/Evs_quota/manage_quota">
-									<button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>
-									<a href= "<?php// echo base_url();?>/ev_quota/Evs_quota/edit_quota_ca">
-									<button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>
-									<a data-toggle = "modal" href = "#delete"><button type="submit" class="btn btn-danger" ><i class="ti ti-trash"></i></button></a>
-									
-									
-								</td>
-								
-							</tr><tr class="gradeA even" role="row">
-								<td class="sorting_1">Salary Increment</td>
-								<td>Staff Above</td>
-								<td>2019-05-21</td>
-								<td class="center">
-									<a href= "<?php //echo base_url();?>/ev_quota/Evs_quota/manage_quota">
-									<button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>
-								<a href= "<?php //echo base_url();?>/ev_quota/Evs_quota/edit_quota_ca">
-									<button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>
-									<a data-toggle = "modal" href = "#delete"><button type="submit" class="btn btn-danger" ><i class="ti ti-trash"></i></button></a>
-									
-									
-								</td>
-								
-								
-							</tr> -->
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>
@@ -160,8 +151,11 @@ function get_data() {
     </div><!-- panel-indigo -->
 </div><!-- col-md-12 -->
 
+
+
+<?php foreach($qut_data as $value){ ?>
 <!-- Modal -->
-<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="delete<?php echo $value->qut_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color:Gray;">
@@ -177,9 +171,13 @@ function get_data() {
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
                 </div>
-                <button type="button" class="btn btn-success">YES</button>
-
+               
+                <button type="button" class="btn btn-success"  onClick="Delete_data(<?php echo $value->qut_id;?>)">YES</button>
+               
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<?php 
+
+} //foreach?>
