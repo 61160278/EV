@@ -39,9 +39,10 @@ td {
 }
 
 .panel.panel-indigo .panel-heading {
-  color: #e8eaf6;
-  background-color: #134466;
+    color: #e8eaf6;
+    background-color: #134466;
 }
+
 #modelText {
     text-align: center;
     color: #000000;
@@ -64,7 +65,6 @@ function get_data() {
         }
     });
 } //get_data
-<<<<<<< Updated upstream
 function Delete_data(qut_id) {
 
     console.log(qut_id);
@@ -83,12 +83,10 @@ function Delete_data(qut_id) {
 
     });
 
-   window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/index";
+    window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/index";
 
 }
 //function Delete_data
-=======
->>>>>>> Stashed changes
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo">
@@ -132,7 +130,7 @@ function Delete_data(qut_id) {
                             <tbody id="qut_table">
 
                                 <?php foreach($qut_data as $value){ ?>
-                                <tr id ="idquota">
+                                <tr id="idquota">
                                     <td><?php echo $value->qut_type;?> </td>
                                     <td><?php echo $value->qut_pos;?> </td>
                                     <td><?php echo $value->qut_date;?> </td>
@@ -143,8 +141,9 @@ function Delete_data(qut_id) {
                                         <a href="<?php echo base_url();?>/ev_quota/Evs_quota/edit_quota_ca">
                                             <button type="submit" class="btn btn-warning"><i
                                                     class="ti ti-pencil-alt "></i></button></a>
-                                        <a data-toggle="modal" href="#delete<?php echo $value->qut_id;?>"><button type="submit"
-                                                class="btn btn-danger"><i class="ti ti-trash"></i></button></a>
+                                        <a data-toggle="modal" href="#delete<?php echo $value->qut_id;?>"><button
+                                                type="submit" class="btn btn-danger"><i
+                                                    class="ti ti-trash"></i></button></a>
                                     </td>
 
                                 </tr>
@@ -171,14 +170,17 @@ function Delete_data(qut_id) {
 
 <?php foreach($qut_data as $value){ ?>
 <!-- Modal -->
-<div class="modal fade" id="delete<?php echo $value->qut_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="delete<?php echo $value->qut_id;?>" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color:Red;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                     style="color:white;">&times;</button>
                 <h2 class="modal-title">
-                    <b><font color="white">Warning</font></b>
+                    <b>
+                        <font color="white">Warning</font>
+                    </b>
                 </h2>
             </div>
             <div class="modal-body">
@@ -190,9 +192,10 @@ function Delete_data(qut_id) {
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
                 </div>
-               
-                <button type="button" class="btn btn-success"  onClick="Delete_data(<?php echo $value->qut_id;?>)">YES</button>
-               
+
+                <button type="button" class="btn btn-success"
+                    onClick="Delete_data(<?php echo $value->qut_id;?>)">YES</button>
+
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
