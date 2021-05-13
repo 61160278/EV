@@ -147,9 +147,6 @@ function show_approve() {
                         <li><a href="#form2" data-toggle="tab">
                                 <font>ACM</font>
                             </a></li>
-                        <li><a href="#form3" data-toggle="tab">
-                                <font>Attitude & Behavior</font>
-                            </a></li>
                     </ul>
                 </div>
             </div>
