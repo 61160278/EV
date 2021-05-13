@@ -9,6 +9,24 @@
 */  
 ?>
 <script>
+
+
+
+function table_left(source) {
+    var checkboxes = document.querySelectorAll('input[name="checkbox1"]');
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i] != source)
+            checkboxes[i].checked = source.checked;
+    }
+}
+
+function table_right(source) {
+    var checkboxes = document.querySelectorAll('input[name="checkbox2"]');
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i] != source)
+            checkboxes[i].checked = source.checked;
+    }
+}
 function manage_group() {
     var gru_id = document.getElementById("select").value;
     var data_row = " ";
@@ -28,7 +46,7 @@ function manage_group() {
                 data_row += '<td>'
                 data_row += '<div align="center" class="checked block">'
                 data_row += '<input id = "check_group' + index +
-                    '" name="checkbox" type="checkbox">'
+                    '" name="checkbox1" type="checkbox">'
                 data_row += '</div>'
                 data_row += '</td>'
                 data_row += '<td id="emp_' + index + '">'
@@ -69,7 +87,7 @@ function manage_group_right() {
                 data_row += '<td>'
                 data_row += '<div align="center" class="checked block">'
                 data_row += '<input id = "old_check_group' + index +
-                    '" name="checkbox" type="checkbox">'
+                    '" name="checkbox2" type="checkbox">'
                 data_row += '</div>'
                 data_row += '</td>'
                 data_row += '<td id="emp_new' + index + '">'
@@ -254,6 +272,8 @@ function delete_data(gru_id) {
                                     <tr style="background-color:lavender; font-family:'Garamond'">
                                         <th>
                                             <center>Select
+                                            <br>
+                                            <input type="checkbox" onclick="table_left(this);">
                                         </th>
                                         <th>
                                             <center>Emp.ID
@@ -342,6 +362,8 @@ function delete_data(gru_id) {
                                     <tr style="background-color:lavender; font-family:'Garamond'" align="center">
                                         <th>
                                             <center>Select
+                                            <br>
+                                            <input type="checkbox" onclick="table_right(this);">
                                         </th>
                                         <th>
                                             <center>Emp.ID
@@ -362,7 +384,7 @@ function delete_data(gru_id) {
                                     <tr class="odd gradeX">
                                         <td>
                                             <div class="checked block">
-                                                <input name="checkbox" type="checkbox"
+                                                <input name="checkbox2" type="checkbox"
                                                     id="old_check_group<?php echo $index; ?>">
                                             </div>
                                         </td>
@@ -435,8 +457,7 @@ function delete_data(gru_id) {
     <!-- head panel -->
 </div>
 <!-- head outside -->
-
-
+</body>
 
 </html>
 
