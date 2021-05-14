@@ -34,9 +34,10 @@
 .margin {
     margin-top: 10px;
 }
+
 .panel.panel-indigo .panel-heading {
-  color: #e8eaf6;
-  background-color: #134466;
+    color: #e8eaf6;
+    background-color: #134466;
 }
 
 th {
@@ -61,7 +62,7 @@ function select_quota(value) {
 } //select_quota
 
 
-function insert_quota() {
+function edit_quota() {
     var check = "";
 
     var sum_quota = 0;
@@ -73,37 +74,14 @@ function insert_quota() {
     var gradeC = 0;
     var gradeD = 0;
     var gradeTOT = 0;
-    var quotaType = document.getElementById("quotaType").value; // value of year id
-    var groupPosition = document.getElementById("groupPosition").value;
-    if (groupPosition == 0) {
-
-    } else {
-
-        if (quotaType == 1) {
-
-            quotaType = document.getElementById("quotaType").options[1].text;
-            // groupPosition = document.getElementById("groupPosition").options[1].text;
-
-        } else if (quotaType == 2) {
-            quotaType = document.getElementById("quotaType").options[2].text;
-        }
-        //end if-else quotaType
-        if (groupPosition == 1) {
-
-            groupPosition = document.getElementById("groupPosition").options[1].text;
-
-        } else if (groupPosition == 2) {
-
-            groupPosition = document.getElementById("groupPosition").options[2].text;
-        }
-
+  
         //end if-else groupPosition
-        var datedata = new Date();
-        var day = datedata.getDate();
-        var month = datedata.getMonth() + 1;
-        var year = datedata.getFullYear();
-        // get date form new date() 
-        var savedate = year + "-" + month + "-" + day;
+        // var datedata = new Date();
+        // var day = datedata.getDate();
+        // var month = datedata.getMonth() + 1;
+        // var year = datedata.getFullYear();
+        // // get date form new date() 
+        // var savedate = year + "-" + month + "-" + day;
 
         // document.getElementById("submit").disabled = false;
         for (i = 1; i <= 6; i++) {
@@ -111,7 +89,7 @@ function insert_quota() {
 
             if (check != "") {
                 grade[i] = parseInt(check),
-               sum_quota += grade[i];
+                    sum_quota += grade[i];
             } //if
         } //for
         grade.shift();
@@ -127,16 +105,16 @@ function insert_quota() {
         console.log(gradeB_N);
         console.log(gradeC);
         console.log(gradeD);
-        console.log(savedate);
+        // console.log(savedate);
         console.log(sum_quota);
         $.ajax({
             type: "post",
-            url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_insert",
+            url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/edit_quota",
             data: {
 
-                "quotaType": quotaType,
-                "groupPosition": groupPosition,
-                "savedate": savedate,
+                // "quotaType": quotaType,
+                // "groupPosition": groupPosition,
+                // "savedate": savedate,
                 "gradeS": gradeS,
                 "gradeA": gradeA,
                 "gradeB": gradeB,
@@ -149,11 +127,11 @@ function insert_quota() {
 
             success: function(status) {
                 console.log(status);
-           
+
             }
 
         }); //ajax
-    } //end else
+  
 
 
 } //insert_quota
@@ -193,7 +171,7 @@ function add_alert() {
 }
 
 function confirm_save() {
-    insert_quota();
+    edit_quota();
     $('#warning_save').modal('show');
 
 }
@@ -284,19 +262,19 @@ function show_qouta() {
 } //showChart
 
 function get_data() {
-    var qut_data = document.getElementById("qut_table").value; // get kay by id
+    var qut_data = document.getElementById("qut_data").value; // get kay by id
     console.log(qut_data);
-    $.ajax({
-        type: "post",
-        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/v_main_quota",
-        data: {
-            "qut_data": qut_data
-        },
-        dataType: "JSON",
-        success: function(data) {
-            console.log(data)
-        }
-    });
+    // $.ajax({
+    //     type: "post",
+    //     url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/v_edit_quota",
+    //     data: {
+    //         "qut_data": qut_data
+    //     },
+    //     dataType: "JSON",
+    //     success: function(data) {
+    //         console.log(data)
+    //     }
+    // });
 } //get_data
 
 
@@ -317,24 +295,29 @@ function get_data() {
                 </select>
             </div>
         </div>
-        <div class="panel-body" style="">
+        <div class="panel-body" style="" id = "qut_data">
 
-            <div class="row">
+            <div class="row" >
                 <div class="form-group">
                     <div class="col-md-3">
                     </div>
                     <div class="col-md-3">
                         <select class="form-control text" id="quotaType">
-                            <option value="0">Quota</option>
-                            <option value="1">Year End Bonus</option>
-                            <option value="2">Salary Increment</option>
+                            <?php foreach($edit_qut_data as $value){ ?>
+
+                            <option><?php echo $value->qut_type;?></option>
+
+                            <?php } ?>
+
                         </select>
                     </div>
                     <div class="col-md-3">
                         <select class="form-control text" id="groupPosition">
-                            <option value="0">Position Of Quota</option>
-                            <option value="1">Team Associate above</option>
-                            <option value="2">Operational Associate</option>
+                            <?php foreach($edit_qut_data as $value){ ?>
+
+                            <option><?php echo $value->qut_pos;?></option>
+
+                            <?php } ?>
                         </select>
                     </div>
 
@@ -359,28 +342,32 @@ function get_data() {
                             </tr>
                         </thead>
                         <tbody>
+                        <?php foreach($edit_qut_data as $value){ ?>
                             <tr class="orange2" id="input">
+
                                 <td>Quota</td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota1" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota1" onchange="check_quota()" value ="<?php echo $value->qut_grad_S;?>">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota2" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota2" onchange="check_quota()" value ="<?php echo $value->qut_grad_A;?>">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota3" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota3" onchange="check_quota()" value ="<?php echo $value->qut_grad_B;?>">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota4" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota4" onchange="check_quota()" value ="<?php echo $value->qut_grad_B_N;?>">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota5" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota5" onchange="check_quota()" value ="<?php echo $value->qut_grad_C;?>">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota6" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota6" onchange="check_quota()" value ="<?php echo $value->qut_grad_D;?>">
                                 </td>
-                                <td id="show_quota"></td>
+                                <td id="show_quota" ><?php echo $value->qut_total;?></td>
                             </tr>
+                            <?php } ?>
+
                         </tbody>
                     </table>
 
@@ -418,7 +405,7 @@ function get_data() {
                     </div>
                 </div>
             </div>
-            <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
+            <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal" >CANCEL</button>
             <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;" id="saveData"
                 onclick="confirm_save()">SAVE</button>
         </div>

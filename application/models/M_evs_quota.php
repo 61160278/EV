@@ -38,14 +38,6 @@ class M_evs_quota extends Da_evs_quota {
 		$query = $this->db->query($sql);
 		return $query;
 	}//get_all 
-
-
-
-
-
-
-
-	
 	function get_quota_id(){	
 		$sql = "SELECT *
 				FROM evs_database.evs_quota as evq
