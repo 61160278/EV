@@ -36,8 +36,6 @@ var count = 0;
 
 $(document).ready(function() {
     set_tap()
-    $("#btn_save").attr("disabled", true);
-
 });
 // document ready
 
@@ -121,6 +119,11 @@ function creatembo() {
                 clear = i + 1;
                 data_row += '<tr>'
                 data_row += '<td><center>' + (i + 1) + '</center></td>'
+                data_row += '<td>'
+                data_row += '<select class="form-control" id="sdgs_sel'+ (i + 1) +'">'
+                data_row += '<option value="0">---Select SDGs---</option>'
+                data_row += '</select>'
+                data_row += '</td>'
                 data_row += '<td>'
                 data_row += '<input id="inp_mbo' + (i + 1) +
                     '" class="form-control" type="text" value="" onchange="clear_css_inp(' + clear + ')">'
@@ -288,54 +291,6 @@ function clear_css_inp(i) {
 }
 // function clear_css_inp
 
-function createAtt() {
-
-    var data_row = '';
-    var info_row = 3;
-
-    for (i = 0; i < info_row; i++) {
-        data_row += '<tr id="dis_color">'
-        data_row += '<td><center>' + (i + 1) + '</center></td>'
-        data_row += '<td></td>'
-        data_row += '<td></td>'
-        data_row += '<td></td>'
-        data_row += '<td></td>'
-        data_row += '<td>'
-        data_row += '<center>'
-        data_row += '<form action="">'
-        data_row += '<div class="col-md-12">'
-        data_row += '<input type="radio" name="result" value="1" Disabled Unchecked>'
-        data_row += '<label for="1">&nbsp;1</label>'
-        data_row += '&nbsp;&nbsp;'
-        data_row += '<input type="radio" name="result" value="2" Disabled Unchecked>'
-        data_row += '<label for="2">&nbsp;2</label>'
-        data_row += '&nbsp;&nbsp;'
-        data_row += '<input type="radio" name="result" value="3" Disabled Unchecked>'
-        data_row += '<label for="3">&nbsp;3</label>'
-        data_row += '&nbsp;&nbsp;'
-        data_row += '<input type="radio" name="result" value="4" Disabled Unchecked>'
-        data_row += '<label for="4">&nbsp;4</label>'
-        data_row += '&nbsp;&nbsp;'
-        data_row += '<input type="radio" name="result" value="5" Disabled Unchecked>'
-        data_row += '<label for="5">&nbsp;5</label>'
-        data_row += '&nbsp;&nbsp;'
-        data_row += '</div>'
-        data_row += '<!-- col-12 -->'
-        data_row += '</form>'
-        data_row += '</center>'
-        data_row += '</td>'
-        data_row += '<td></td>'
-        data_row += '</tr>'
-
-    }
-    // for
-
-    //console.log(data_row);
-    $("#row_att").html(data_row);
-
-}
-// function createAtt
-
 function check_cancel() {
     $("#cancel_mbo").modal('show');
 }
@@ -345,6 +300,37 @@ function cancel_form() {
     window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/index";
 }
 // function cancel_form
+
+function createG_O() {
+
+    var check_pos = document.getElementById("pos_id").value;
+    //console.log(check_pos);
+
+    var data_row = '';
+    var info_row = 0;
+    var number = 0;
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/get_G_O_by_pos",
+        data: {
+            "pos": check_pos
+        },
+        success: function(data) {
+            console.log("1111 - G&O");
+            console.log(data);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 - G&O : error");
+        }
+        // error
+    });
+    // ajax
+
+}
+// function createG_O
 
 function set_tap() {
 
@@ -359,7 +345,6 @@ function set_tap() {
             "ps_pos_id": ps_pos_id
         },
         success: function(data) {
-            console.log(data);
 
             data.forEach((row, index) => {
                 if (row.ps_form_pe == "MBO") {
@@ -367,21 +352,20 @@ function set_tap() {
                     data_tap += '<font>MBO</font>';
                     data_tap += '</a></li>';
                     creatembo();
+                    $("#btn_save").attr("disabled", true);
+                    $("#MBO").addClass("active");
+
                     data_tap += '<li><a href="#G_O" data-toggle="tab">';
                     data_tap += '<font>G&O</font>';
                     data_tap += '</a></li>';
+                    createG_O();
                 }
                 // if
                 else if (row.ps_form_pe == "G&O") {
                     data_tap += '<li class="active"><a href="#G_O" data-toggle="tab">';
                     data_tap += '<font>G&O</font>';
                     data_tap += '</a></li>';
-                }
-                // else if
-                else if (row.ps_form_pe == "MHRD") {
-                    data_tap += '<li class="active"><a href="#G_O" data-toggle="tab">';
-                    data_tap += '<font>G&O</font>';
-                    data_tap += '</a></li>';
+                    $("#G_O").addClass("active");
                 }
                 // else if 
                 // check pe tool
@@ -390,7 +374,6 @@ function set_tap() {
                     data_tap += '<li><a href="#ACM" data-toggle="tab">';
                     data_tap += '<font>ACM</font>';
                     data_tap += '</a></li>';
-                    createACM();
                 }
                 // if
                 else if (row.ps_form_ce == "GCM") {
@@ -411,38 +394,10 @@ function set_tap() {
         // error
     });
     // ajax
+
+
 }
 // function set_tap
-
-function createG_O() {
-
-var check_pos = document.getElementById("pos_id").value;
-
-var data_row = '';
-var info_row = 0;
-var number = 0;
-
-$.ajax({
-    type: "post",
-    dataType: "json",
-    url: "<?php echo base_url(); ?>ev_form/Evs_form/get_G_O_by_pos",
-    data: {
-        "pos": check_pos
-    },
-    success: function(data) {
-        console.log("1111");
-    },
-    // success
-    error: function(data) {
-        console.log("9999 : error");
-    }
-    // error
-});
-// ajax
-
-}
-// function creatembo
-
 </script>
 <!-- script -->
 
@@ -460,7 +415,7 @@ $.ajax({
 
             <div class="panel-body">
                 <div class="tab-content">
-                    <div class="tab-pane active" id="MBO">
+                    <div class="tab-pane" id="MBO">
                         <br>
                         <?php foreach($emp_info->result() as $row){?>
                         <input type="text" id="pos_id" value="<?php echo $row->Position_ID; ?>" hidden>
@@ -545,6 +500,9 @@ $.ajax({
                                     <th rowspan="2" width="2%">
                                         <center> No.</center>
                                     </th>
+                                    <th rowspan="2" width="10%">
+                                        <center>SDGs Goals</center>
+                                    </th>
                                     <th rowspan="2" width="45%">
                                         <center>Management by objective</center>
                                     </th>
@@ -559,7 +517,7 @@ $.ajax({
                                     <th width="25%">
                                         <center>Result</center>
                                     </th>
-                                    <th width="20%">
+                                    <th width="8%">
                                         <center>Score AxB</center>
                                     </th>
                                 </tr>
@@ -596,9 +554,151 @@ $.ajax({
                         <!-- row -->
 
                     </div>
-                    <!-- form 1 -->
+                    <!-- form 1-1 -->
 
                     <!-- ************************************************************************************ -->
+
+                    <div class="tab-pane" id="G_O">
+                        <br>
+                        <?php foreach($emp_info->result() as $row){?>
+                        <input type="text" id="pos_id" value="<?php echo $row->Position_ID; ?>" hidden>
+                        <input type="text" id="evs_emp_id" value="<?php echo $row->emp_id; ?>" hidden>
+                        <input type="text" id="row_index" value="" hidden>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Employee ID : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_id"><?php echo $row->Emp_ID; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Name : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_name"><?php echo $row->Empname_eng; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Surname : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_lname"><?php echo $row->Empsurname_eng; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                        </div>
+                        <!-- row -->
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Section Code : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_sec"><?php echo $row->Sectioncode_ID; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Department : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_dep"><?php echo $row->Department; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Position : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_pos"><?php echo $row->Position_name; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                        </div>
+                        <!-- row -->
+                        <?php }; ?>
+                        <!-- show infomation employee -->
+
+                        <hr>
+                        <table class="table table-bordered table-striped m-n" id="G_O_Table">
+                            <thead>
+                                <tr>
+                                    <th width="2%">
+                                        <center>
+                                            #
+                                        </center>
+                                    </th>
+                                    <th>
+                                        <center width="10%">
+                                            Type of G&O
+                                        </center>
+                                    </th>
+                                    <th>
+                                        <center width="10%">
+                                            SDGs Goal
+                                        </center>
+                                    </th>
+                                    <th width="30%">
+                                        <center>
+                                            Evaluation Item/Their Ratings
+                                        </center>
+                                    </th>
+                                    <th width="10%">
+                                        <center>
+                                            Weight (%)
+                                        </center>
+                                    </th>
+                                    <th width="20%" colspan="2">
+                                        <center>
+                                            Possible Outcomes
+                                        </center>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                            <!-- tbody  -->
+
+                        </table>
+                        <!-- End table level -->
+
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button class="btn btn-inverse">BACK</button>
+                                <button class="btn btn-default">CLEAR</button>
+                            </div>
+                            <!-- col-md-6 -->
+
+                            <div class="col-md-6" align="right">
+                                <button class="btn btn-success">SAVE</button>
+                            </div>
+                            <!-- col-md-6 add_app -->
+
+                        </div>
+                        <!-- row -->
+
+                    </div>
+                    <!-- form 1-2 -->
+
+                    <!-- ************************************************************************************ -->
+
 
                     <div class="tab-pane" id="ACM">
                         <br>
@@ -820,7 +920,7 @@ $.ajax({
                         <!-- row -->
 
                     </div>
-                    <!-- form 2 -->
+                    <!-- form 2-1 -->
 
                     <!-- *************************************************-->
 

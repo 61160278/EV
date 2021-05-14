@@ -95,6 +95,12 @@ window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/edit_quota_
 }
 //function manage_data
 
+function sent_data(qut_pos) {
+
+console.log(qut_pos);
+// window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
+}
+//function manage_data
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo">
@@ -143,10 +149,9 @@ window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/edit_quota_
                                     <td><?php echo $value->qut_pos;?> </td>
                                     <td><?php echo $value->qut_date;?> </td>
                                     <td class="center">
-                                        <a href="<?php echo base_url();?>/ev_quota/Evs_quota/manage_quota">
-                                            <button type="submit" class="btn btn-info"><i
+                                        <a onclick ="sent_data(<?php echo $value->qut_pos; ?>)"><button type="submit" class="btn btn-info"><i
                                                     class="ti ti-info-alt"></i></button></a>
-                                        <a onClick ="manage_data( <?php echo $value->qut_id;?>)">
+                                        <a onclick ="manage_data(<?php echo $value->qut_id;?>)">
                                             <button type="submit" class="btn btn-warning"><i
                                                     class="ti ti-pencil-alt "></i></button></a>
                                         <a data-toggle="modal" href="#delete<?php echo $value->qut_id;?>"><button
