@@ -10,7 +10,11 @@
 ?>
 <script>
 
+$(document).ready(function() {
+    manage_group();
 
+});
+// document ready
 
 function table_left(source) {
     var checkboxes = document.querySelectorAll('input[name="checkbox1"]');
@@ -187,7 +191,10 @@ function change_group_remove() {
 }
 // change_group_remove
 
-function delete_data(gru_id) {
+function delete_data() {
+    var gru_id = document.getElementById("new_group").value;
+    console.log(gru_id)
+    
     var count_group = document.getElementById("count_group").value;
     var old_group = document.getElementById("select").value;
     var get_emp = [];
@@ -213,12 +220,12 @@ function delete_data(gru_id) {
         success: function(status) {
             console.log(status)
             console.log(gru_id)
-            manage_group_right();
+            
         }
         //error จะไม่มีการส่งค่ากลับมา
     });
     //ajax
-    //window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_group_company_skd" + gru_id + " ";
+    window.location.href = "<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_sdm/" + gru_id;
 }
 // function delete_data
 </script>
@@ -253,7 +260,7 @@ function delete_data(gru_id) {
                         <div class="panel pull-right" id="addtable_filter">
                             <select id="select" onchange="manage_group()" name="example_length" class="form-control"
                                 aria-controls="example">
-                                <option value="" selected disabled>Select Group Contact </option>
+                                <option value="0" selected >Select Group Contact </option>
                                 <?php foreach($gcp_gcm->result() as $row) {?>
                                 <option value="<?php echo $row->gru_id; ?>">
                                     <?php echo $row->gru_name;?>
@@ -524,3 +531,4 @@ tbody {
     <!-- modal-dialog -->
 </div>
 <!-- End Modal Delete -->
+                                   
