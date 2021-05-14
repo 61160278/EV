@@ -155,6 +155,23 @@
                         </a>
                     </div>
                     <!-- End Menu form GCM -->
+                     <!-- Start Menu form MHRD -->
+                     <div class="col-xl-4 col-md-6 mb-4">
+                        <a href="<?php echo base_url();?>/Evs_mhrd_indicators_form/indicator_mhrd">
+                            <div class="card border5 shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text3 text-uppercase mb-1">Form</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">MHRD
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- End Menu form MHRD -->
                 </div>
                 <!-- Start Back to main menu  -->
                 <div class="row">
