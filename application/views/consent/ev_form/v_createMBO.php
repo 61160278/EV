@@ -296,6 +296,37 @@ function cancel_form() {
 }
 // function cancel_form
 
+function createG_O() {
+
+    var check_pos = document.getElementById("pos_id").value;
+    //console.log(check_pos);
+
+    var data_row = '';
+    var info_row = 0;
+    var number = 0;
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/get_G_O_by_pos",
+        data: {
+            "pos": check_pos
+        },
+        success: function(data) {
+            console.log("1111 - G&O");
+            console.log(data);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 - G&O : error");
+        }
+        // error
+    });
+    // ajax
+
+}
+// function createG_O
+
 function set_tap() {
 
     var ps_pos_id = document.getElementById("pos_id").value;
@@ -309,25 +340,27 @@ function set_tap() {
             "ps_pos_id": ps_pos_id
         },
         success: function(data) {
-            console.log(data);
-
+            
             data.forEach((row, index) => {
                 if (row.ps_form_pe == "MBO") {
                     data_tap += '<li class="active"><a href="#MBO" data-toggle="tab">';
                     data_tap += '<font>MBO</font>';
                     data_tap += '</a></li>';
-                    data_tap += '<li><a href="#G_O" data-toggle="tab">';
-                    data_tap += '<font>G&O</font>';
-                    data_tap += '</a></li>';
                     creatembo();
                     $("#btn_save").attr("disabled", true);
                     $("#MBO").addClass("active");
+
+                    data_tap += '<li><a href="#G_O" data-toggle="tab">';
+                    data_tap += '<font>G&O</font>';
+                    data_tap += '</a></li>';
+                    createG_O();
                 }
                 // if
                 else if (row.ps_form_pe == "G&O") {
                     data_tap += '<li class="active"><a href="#G_O" data-toggle="tab">';
                     data_tap += '<font>G&O</font>';
                     data_tap += '</a></li>';
+                    $("#G_O").addClass("active");
                 }
                 // else if 
                 // check pe tool
