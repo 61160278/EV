@@ -125,7 +125,6 @@ class Evs_quota extends MainController_avenxo {
 		$this->load->model('M_evs_position_level','mepsl');
 		$data['psl_data'] = $this->mepsl->get_all(); // show value position level all
 
-		
 		$this->load->model('M_evs_company','mcpn');
 		$data['com_data'] = $this->mcpn->get_all(); // show value company all
 
@@ -210,7 +209,7 @@ class Evs_quota extends MainController_avenxo {
 	{
 		$this->load->model('M_evs_quota','mqut');
 		$this->mqut->qut_id = $qut_id;
-		$data['qut_data'] = $this->mqut->get_quota_id(); // show value quota to edit
+		$data['edit_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota to edit
 		$this->output('/consent/ev_quota/v_edit_quota',$data);
 	}
 	// function edit_quota()
@@ -391,9 +390,11 @@ function delete_quota(){
 	$this->dqut->qut_id = $qut_id;
 	$this->dqut->delete();
 	echo json_encode("Success by insert");
-}//delete_quota
+ }//delete_quota
 function edit_quota(){
 
+	$qut_id= $this->input->post("qut_id");
+	$qut_date = $this->input->post("savedate");
 	$qut_grad_S = $this->input->post("gradeS"); // date sav
 	$qut_grad_A = $this->input->post("gradeA"); // date sav
 	$qut_grad_B = $this->input->post("gradeB"); // date sav
@@ -403,9 +404,7 @@ function edit_quota(){
 	$qut_total = $this->input->post("sum_quota"); // date sav
 		$this->load->model("Da_evs_quota","dqut");
 
-		$this->dqut->qut_id = $qut_id;
-		$this->dqut->qut_type = $qut_type;
-		$this->dqut->qut_pos = $qut_pos;
+	
 		$this->dqut->qut_date = $qut_date;
 		$this->dqut->qut_grad_S = $qut_grad_S;
 		$this->dqut->qut_grad_A = $qut_grad_A;
@@ -414,12 +413,12 @@ function edit_quota(){
 		$this->dqut->qut_grad_C = $qut_grad_C;
 		$this->dqut->qut_grad_D = $qut_grad_D;
 		$this->dqut->qut_total = $qut_total;
-		
+		$this->dqut->qut_id = $qut_id;
 		$this->dqut->update();
 	
 
 
-}
+}//edit_quota
 
 }// end class
 ?>

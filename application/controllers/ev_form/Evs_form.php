@@ -124,15 +124,30 @@ class Evs_form extends MainController_avenxo {
 	// function get_tap_form
 	
 	function get_mbo_by_pos(){
-		
+
+		$pay_id = 2;
 		$pos = $this->input->post("pos");
 		$this->load->model('M_evs_set_form_mbo','mesf');
+		$this->mesf->sfm_pay_id = $pay_id;
 		$this->mesf->sfm_pos_id = $pos;
-		$data = $this->mesf->get_mbo()->row();
+		$data = $this->mesf->get_all_by_key_by_year()->row();
 		
 		echo json_encode($data);
 	}
 	// function get_mbo_by_pos
+
+	function get_G_O_by_pos(){
+		
+		$pay_id = 2;
+		$pos = $this->input->post("pos");
+		$this->load->model('M_evs_set_form_g_and_o','mesg');
+		$this->mesg->sfg_pay_id = $pay_id;
+		$this->mesg->sfg_pos_id = $pos;
+		$data = $this->mesg->get_all_by_key_by_year()->row();
+		
+		echo json_encode($data);
+	}
+	// function get_G_O_by_pos
 	
 	function save_mbo_by_emp(){
 		

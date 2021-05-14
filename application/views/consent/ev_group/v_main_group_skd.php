@@ -218,10 +218,14 @@ function check_edit_skd(check) {
     var group = document.getElementById("group_text" + check).value;
     var Emp_id = document.getElementById("Emp_id" + check).value;
     var Showname_modol = document.getElementById("nameEmp" + check).value;
+    var groupname = document.getElementById("groupname" + check).innerHTML;
     var count = 0;
+    var temp = " ";
+
     console.log(group)
     console.log(Emp_id)
     console.log(Showname_modol)
+    console.log(groupname)
 
     if (group != "" && Emp_id != "") {
         if (Showname_modol != "ไม่มีข้อมูล") {
@@ -231,12 +235,13 @@ function check_edit_skd(check) {
 
                     if (group == row.gru_name) {
                         count++;
+                        temp = row.gru_name;
                         console.log(count)
                     }
                     // if-else
                 });
                 // forEach
-                if (count == 0) {
+                if (count == 0 || temp == groupname) {
                     console.log("true")
                     edit_group(check);
                     return true;
@@ -348,7 +353,7 @@ function clear_css(gru_id) {
 								foreach($grp_sdm->result() as $row ) { ?>
                                     <tr class="odd gradeX" align='center'>
                                         <td><?php echo $num;?> </td>
-                                        <td><?php echo $row->gru_name; ?></td>
+                                        <td id="groupname<?php echo $row->gru_id?>"><?php echo $row->gru_name; ?></td>
                                         <td>
                                             <?php if($row->gru_head_dept == NULL){ 
 													echo "-";
