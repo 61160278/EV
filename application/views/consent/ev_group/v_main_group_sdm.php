@@ -271,11 +271,13 @@ function check_data_edt(check) {
       var group = document.getElementById("grouptext" + check).value;
       var Emp_id = document.getElementById("Emp_id" + check).value;
       var Showname_modol = document.getElementById("nameEmp" + check).value;
+      var groupname = document.getElementById("groupname" + check).innerHTML;
       var count = 0;
       console.log(group)
       console.log(Emp_id)
       console.log(Showname_modol)
-
+      console.log(groupname)
+    var temp = " ";
       if (group != "" && Emp_id != "") {
             if (Showname_modol != "ไม่มีข้อมูล") {
 
@@ -284,17 +286,16 @@ function check_data_edt(check) {
                         var obj = JSON.parse(data); //แปลงค่าข้อมูล JSON
                         obj.forEach((row, index) => { //row =data
 
-                           
-
-
                               if (group == row.gru_name) {
-                                    count++;
+                                count++;
+                                temp = row.gru_name;
                                     console.log(count)
                               }
                               // if-else
                         });
                         // forEach
-                        if (count == 0) {
+                
+                        if (count == 0 || temp == groupname) {
                               console.log("true")
                               edit_group(check);
                               return true;
@@ -399,7 +400,7 @@ function check_data_edt(check) {
 									foreach($grp_sdm->result() as $row ) { ?>
                                                       <tr class="odd gradeX" align='center'>
                                                             <td> <?php echo $num;?> </td>
-                                                            <td><?php echo $row->gru_name; ?></td>
+                                                            <td id="groupname<?php echo $row->gru_id?>"><?php echo $row->gru_name; ?></td>
                                                             <td id="name<?php echo $num; ?>">
                                                                   <?php
 												if($row->gru_head_dept != NULL){
