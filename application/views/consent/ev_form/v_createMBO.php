@@ -35,9 +35,6 @@ th {
 var count = 0;
 
 $(document).ready(function() {
-    creatembo();
-    createACM();
-    createAtt();
     set_tap()
     $("#btn_save").attr("disabled", true);
 
@@ -369,9 +366,19 @@ function set_tap() {
                     data_tap += '<li class="active"><a href="#MBO" data-toggle="tab">';
                     data_tap += '<font>MBO</font>';
                     data_tap += '</a></li>';
+                    creatembo();
+                    data_tap += '<li><a href="#G_O" data-toggle="tab">';
+                    data_tap += '<font>G&O</font>';
+                    data_tap += '</a></li>';
                 }
                 // if
                 else if (row.ps_form_pe == "G&O") {
+                    data_tap += '<li class="active"><a href="#G_O" data-toggle="tab">';
+                    data_tap += '<font>G&O</font>';
+                    data_tap += '</a></li>';
+                }
+                // else if
+                else if (row.ps_form_pe == "MHRD") {
                     data_tap += '<li class="active"><a href="#G_O" data-toggle="tab">';
                     data_tap += '<font>G&O</font>';
                     data_tap += '</a></li>';
@@ -383,6 +390,7 @@ function set_tap() {
                     data_tap += '<li><a href="#ACM" data-toggle="tab">';
                     data_tap += '<font>ACM</font>';
                     data_tap += '</a></li>';
+                    createACM();
                 }
                 // if
                 else if (row.ps_form_ce == "GCM") {
@@ -403,10 +411,38 @@ function set_tap() {
         // error
     });
     // ajax
-
-
 }
 // function set_tap
+
+function createG_O() {
+
+var check_pos = document.getElementById("pos_id").value;
+
+var data_row = '';
+var info_row = 0;
+var number = 0;
+
+$.ajax({
+    type: "post",
+    dataType: "json",
+    url: "<?php echo base_url(); ?>ev_form/Evs_form/get_G_O_by_pos",
+    data: {
+        "pos": check_pos
+    },
+    success: function(data) {
+        console.log("1111");
+    },
+    // success
+    error: function(data) {
+        console.log("9999 : error");
+    }
+    // error
+});
+// ajax
+
+}
+// function creatembo
+
 </script>
 <!-- script -->
 
