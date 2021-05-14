@@ -277,7 +277,6 @@ if(button.value == 'select_r'){
                             <select onchange="manage_group()" id="select" name="example_length" class="form-control"
                                 aria-controls="example">
                                 <option disabled selected> Select Group Contact </option>
-                                <option value="0" selected> No Group </option>
                                 <?php foreach($gcp_gkd->result() as $row) {?>
                                 <option value="<?php echo $row->gru_id; ?>">
                                     <?php echo $row->gru_name;?>
