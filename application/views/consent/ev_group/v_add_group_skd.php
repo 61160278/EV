@@ -303,7 +303,7 @@ if(button.value == 'select_r'){
                                         <th>
                                             <center>Select
                                             <br>
-                                            <input type="checkbox" id="toggle" value="select" onClick="select_all()">
+                                            <input type="checkbox" id="toggle" value="select" onclick="select_all()">
                                         </th>
                                         <th>
                                             <center>Emp.ID
@@ -389,7 +389,7 @@ if(button.value == 'select_r'){
                                         <th>
                                             <center>Select
                                             <br>
-                                            <input type="checkbox" id="toggle_r" value="select_r" onClick="select_all_right()">
+                                            <input type="checkbox" id="toggle_r" value="select_r" onclick="select_all_right()">
                                         </th>
                                         <th>
                                             <center>Emp.ID
