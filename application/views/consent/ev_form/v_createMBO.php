@@ -120,6 +120,11 @@ function creatembo() {
                 data_row += '<tr>'
                 data_row += '<td><center>' + (i + 1) + '</center></td>'
                 data_row += '<td>'
+                data_row += '<select class="form-control" id="sdgs_sel'+ (i + 1) +'">'
+                data_row += '<option value="0">---Select SDGs---</option>'
+                data_row += '</select>'
+                data_row += '</td>'
+                data_row += '<td>'
                 data_row += '<input id="inp_mbo' + (i + 1) +
                     '" class="form-control" type="text" value="" onchange="clear_css_inp(' + clear + ')">'
                 data_row += '</td>'
@@ -340,7 +345,7 @@ function set_tap() {
             "ps_pos_id": ps_pos_id
         },
         success: function(data) {
-            
+
             data.forEach((row, index) => {
                 if (row.ps_form_pe == "MBO") {
                     data_tap += '<li class="active"><a href="#MBO" data-toggle="tab">';
@@ -495,6 +500,9 @@ function set_tap() {
                                     <th rowspan="2" width="2%">
                                         <center> No.</center>
                                     </th>
+                                    <th rowspan="2" width="10%">
+                                        <center>SDGs Goals</center>
+                                    </th>
                                     <th rowspan="2" width="45%">
                                         <center>Management by objective</center>
                                     </th>
@@ -509,7 +517,7 @@ function set_tap() {
                                     <th width="25%">
                                         <center>Result</center>
                                     </th>
-                                    <th width="20%">
+                                    <th width="8%">
                                         <center>Score AxB</center>
                                     </th>
                                 </tr>
@@ -628,6 +636,48 @@ function set_tap() {
                         <!-- show infomation employee -->
 
                         <hr>
+                        <table class="table table-bordered table-striped m-n" id="G_O_Table">
+                            <thead>
+                                <tr>
+                                    <th width="2%">
+                                        <center>
+                                            #
+                                        </center>
+                                    </th>
+                                    <th>
+                                        <center width="10%">
+                                            Type of G&O
+                                        </center>
+                                    </th>
+                                    <th>
+                                        <center width="10%">
+                                            SDGs Goal
+                                        </center>
+                                    </th>
+                                    <th width="30%">
+                                        <center>
+                                            Evaluation Item/Their Ratings
+                                        </center>
+                                    </th>
+                                    <th width="10%">
+                                        <center>
+                                            Weight (%)
+                                        </center>
+                                    </th>
+                                    <th width="20%" colspan="2">
+                                        <center>
+                                            Possible Outcomes
+                                        </center>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                            <!-- tbody  -->
+
+                        </table>
+                        <!-- End table level -->
+
                         <br>
                         <div class="row">
                             <div class="col-md-6">
