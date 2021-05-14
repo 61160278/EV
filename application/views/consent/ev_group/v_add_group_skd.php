@@ -10,6 +10,12 @@
 ?>
 
 <script>
+$(document).ready(function() {
+    manage_group();
+
+});
+// document ready
+
 function manage_group() {
     var gru_id = document.getElementById("select").value;
     var data_row = " ";
@@ -165,7 +171,10 @@ function change_group_remove() {
 }
 // change_group_remove
 
-function delete_data(gru_id) {
+function delete_data() {
+    var gru_id = document.getElementById("new_group").value;
+    console.log(gru_id)
+
     var count_group = document.getElementById("count_group").value;
     var old_group = document.getElementById("select").value;
     var get_emp = [];
@@ -191,12 +200,11 @@ function delete_data(gru_id) {
         success: function(status) {
             console.log(status)
             console.log(gru_id)
-            manage_group_right();
         }
         //error จะไม่มีการส่งค่ากลับมา
     });
     //ajax
-    //window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_group_company_skd" + gru_id + " ";
+    window.location.href = "<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_skd/" + gru_id;
 }
 // function delete_data
 
@@ -269,6 +277,7 @@ if(button.value == 'select_r'){
                             <select onchange="manage_group()" id="select" name="example_length" class="form-control"
                                 aria-controls="example">
                                 <option disabled selected> Select Group Contact </option>
+                                <option value="0" selected> No Group </option>
                                 <?php foreach($gcp_gkd->result() as $row) {?>
                                 <option value="<?php echo $row->gru_id; ?>">
                                     <?php echo $row->gru_name;?>
@@ -448,7 +457,7 @@ if(button.value == 'select_r'){
 
                         <div class="DTTT btn-group pull-right mt-sm">
                             &emsp;
-                            <a data-toggle="modal" class="btn btn btn-danger" href="#Delete">
+                            <a data-toggle="modal" class="btn btn btn-danger" href="#RESIGN">
                                 <i class="ti ti-trash"></i>
                                 &nbsp
                                 <span>RESIGN</span>
@@ -497,8 +506,8 @@ tbody {
 }
 </style>
 
-<!-- Modal Delete -->
-<div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- Modal RESIGN -->
+<div class="modal fade" id="RESIGN" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color:red;">
@@ -506,7 +515,7 @@ tbody {
                     <font color="Black"><b>&times;</b></font>
                 </button>
                 <h2 class="modal-title" style="font-family:'Georgia'"><b>
-                        <font color="white">Delete</font>
+                        <font color="white">RESIGN</font>
                     </b></h2>
             </div>
             <!-- Modal header -->
@@ -516,7 +525,7 @@ tbody {
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
                             <label for="focusedinput" class="control-label" align="center">
-                                <font size="5px">Do you want to Delete Data YES or NO ?</font>
+                                <font size="5px">Do you want to RESIGN Data YES or NO ?</font>
                             </label>
                         </div>
                     </div>
@@ -529,7 +538,7 @@ tbody {
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
                 </div>
-                <button type="button" class="btn btn-success" onclick="delete_data()">YES</button>
+                <button type="button" class="btn btn-success"onClick="delete_data()">YES</button>
             </div>
             <!-- Modal footer -->
         </div>
