@@ -393,7 +393,9 @@ function delete_quota(){
 	echo json_encode("Success by insert");
  }//delete_quota
 function edit_quota(){
+
 	$qut_id= $this->input->post("qut_id");
+	$qut_date = $this->input->post("savedate");
 	$qut_grad_S = $this->input->post("gradeS"); // date sav
 	$qut_grad_A = $this->input->post("gradeA"); // date sav
 	$qut_grad_B = $this->input->post("gradeB"); // date sav
@@ -403,7 +405,8 @@ function edit_quota(){
 	$qut_total = $this->input->post("sum_quota"); // date sav
 		$this->load->model("Da_evs_quota","dqut");
 
-
+	
+		$this->dqut->qut_date = $qut_date;
 		$this->dqut->qut_grad_S = $qut_grad_S;
 		$this->dqut->qut_grad_A = $qut_grad_A;
 		$this->dqut->qut_grad_B = $qut_grad_B;

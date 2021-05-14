@@ -76,12 +76,12 @@ function edit_quota() {
     var gradeTOT = 0;
   
         //end if-else groupPosition
-        // var datedata = new Date();
-        // var day = datedata.getDate();
-        // var month = datedata.getMonth() + 1;
-        // var year = datedata.getFullYear();
-        // // get date form new date() 
-        // var savedate = year + "-" + month + "-" + day;
+        var datedata = new Date();
+        var day = datedata.getDate();
+        var month = datedata.getMonth() + 1;
+        var year = datedata.getFullYear();
+        // get date form new date() 
+        var savedate = year + "-" + month + "-" + day;
 
         // document.getElementById("submit").disabled = false;
         var qut_id = parseInt(document.getElementById("idDataQuota").value);
@@ -107,7 +107,7 @@ function edit_quota() {
         console.log(gradeB_N);
         console.log(gradeC);
         console.log(gradeD);
-        // console.log(savedate);
+         console.log(savedate);
         console.log(sum_quota);
         $.ajax({
             type: "post",
@@ -116,7 +116,7 @@ function edit_quota() {
 
                 // "quotaType": quotaType,
                 // "groupPosition": groupPosition,
-                // "savedate": savedate,
+                "savedate": savedate,
                 "qut_id":qut_id,
                 "gradeS": gradeS,
                 "gradeA": gradeA,
@@ -125,7 +125,7 @@ function edit_quota() {
                 "gradeC": gradeC,
                 "gradeD": gradeD,
                 "sum_quota": sum_quota
-                
+
             },
             dataType: "JSON",
 
