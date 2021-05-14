@@ -208,43 +208,49 @@ function delete_data() {
 }
 // function delete_data
 
-function select_all(){
+function select_all() {
 
-var checkboxes = document.getElementsByName('checkbox');
-var button = document.getElementById('toggle');
+    var checkboxes = document.getElementsByName('checkbox');
+    var button = document.getElementById('toggle');
 
-if(button.value == 'select'){
-    for (var i in checkboxes){
-        checkboxes[i].checked = 'FALSE';
+    if (button.value == 'select') {
+        for (var i in checkboxes) {
+            checkboxes[i].checked = 'FALSE';
+        }
+        button.value = 'deselect'
+    } else {
+        for (var i in checkboxes) {
+            checkboxes[i].checked = '';
+        }
+        button.value = 'select';
     }
-    button.value = 'deselect'
-}else{
-    for (var i in checkboxes){
-        checkboxes[i].checked = '';
-    }
-    button.value = 'select';
 }
-}
 
 
-function select_all_right(){
+function select_all_right() {
 
-var checkboxes = document.getElementsByName('checkbox_r');
-var button = document.getElementById('toggle_r');
+    var checkboxes = document.getElementsByName('checkbox_r');
+    var button = document.getElementById('toggle_r');
 
-if(button.value == 'select_r'){
-    for (var i in checkboxes){
-        checkboxes[i].checked = 'TRUE';
+    if (button.value == 'select_r') {
+        for (var i in checkboxes) {
+            checkboxes[i].checked = 'TRUE';
+        }
+        button.value = 'deselect'
+    } else {
+        for (var i in checkboxes) {
+            checkboxes[i].checked = '';
+        }
+        button.value = 'select_r';
     }
-    button.value = 'deselect'
-}else{
-    for (var i in checkboxes){
-        checkboxes[i].checked = '';
-    }
-    button.value = 'select_r';
-}
 }
 </script>
+
+<style>
+    th {
+    text-align: center;
+}
+</style>
 
 <!DOCTYPE html>
 <html>
@@ -295,25 +301,18 @@ if(button.value == 'select_r'){
                                 <div class="col-sm-6"></div>
                             </div>
 
-                            <table id="table1" class="table table-striped table-bordered dataTable no-footer"
-                                cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
-                                style="width: 100%;">
+                            <table id="table1" class="table table-striped table-bordered dataTable no-footer">
                                 <thead>
-                                    <tr style="background-color:lavender; font-family:'Garamond'">
+                                    <tr style="background-color:lavender; font-family:'Garamond'" align="middle" ><center>
                                         <th>
                                             <center>Select
-                                            <br>
-                                            <input type="checkbox" id="toggle" value="select" onclick="select_all()">
+                                                <br>
+                                                <input type="checkbox" id="toggle" value="select"
+                                                    onclick="select_all()">
                                         </th>
-                                        <th>
-                                            <center>Emp.ID
-                                        </th>
-                                        <th>
-                                            <center>Name - Surname
-                                        </th>
-                                        <th>
-                                            <center>Section Code
-                                        </th>
+                                        <th valign="center"><center>Emp.ID</th>
+                                        <th><center>Name - Surname</th>
+                                        <th><center>Section Code</th>
                                     </tr>
                                 </thead>
 
@@ -381,15 +380,14 @@ if(button.value == 'select_r'){
                                 <div class="col-sm-6"></div>
                             </div>
 
-                            <table id="example" class="table table-striped table-bordered dataTable no-footer"
-                                cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
-                                style="width: 100%;">
+                            <table id="example" class="table table-striped table-bordered dataTable no-footer">
                                 <thead>
-                                    <tr style="background-color:lavender; font-family:'Garamond'" align="center">
+                                    <tr style="background-color:lavender; font-family:'Garamond'">
                                         <th>
                                             <center>Select
-                                            <br>
-                                            <input type="checkbox" id="toggle_r" value="select_r" onclick="select_all_right()">
+                                                <br>
+                                                <input type="checkbox" id="toggle_r" value="select_r"
+                                                    onclick="select_all_right()">
                                         </th>
                                         <th>
                                             <center>Emp.ID
@@ -537,7 +535,7 @@ tbody {
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
                 </div>
-                <button type="button" class="btn btn-success"onClick="delete_data()">YES</button>
+                <button type="button" class="btn btn-success" onClick="delete_data()">YES</button>
             </div>
             <!-- Modal footer -->
         </div>
