@@ -575,7 +575,7 @@ function set_tap() {
                     data_tap += '</a></li>';
                 }
                 // if
-                else if(row.ps_form_pe == "G&O"){
+                else if (row.ps_form_pe == "G&O") {
                     data_tap += '<li class="active"><a href="#G_O" data-toggle="tab">';
                     data_tap += '<font>G&O</font>';
                     data_tap += '</a></li>';
@@ -589,7 +589,7 @@ function set_tap() {
                     data_tap += '</a></li>';
                 }
                 // if
-                else if(row.ps_form_ce == "GCM"){
+                else if (row.ps_form_ce == "GCM") {
                     data_tap += '<li><a href="#GCM" data-toggle="tab">';
                     data_tap += '<font>GCM</font>';
                     data_tap += '</a></li>';
