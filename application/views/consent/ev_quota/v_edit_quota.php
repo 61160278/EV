@@ -84,6 +84,7 @@ function edit_quota() {
         // var savedate = year + "-" + month + "-" + day;
 
         // document.getElementById("submit").disabled = false;
+        var qut_id = parseInt(document.getElementById("idDataQuota").value);
         for (i = 1; i <= 6; i++) {
             check = document.getElementById("quota" + i).value;
 
@@ -99,6 +100,7 @@ function edit_quota() {
         gradeB_N = grade[3];
         gradeC = grade[4];
         gradeD = grade[5];
+        console.log(qut_id);
         console.log(gradeS);
         console.log(gradeA);
         console.log(gradeB);
@@ -115,6 +117,7 @@ function edit_quota() {
                 // "quotaType": quotaType,
                 // "groupPosition": groupPosition,
                 // "savedate": savedate,
+                "qut_id":qut_id,
                 "gradeS": gradeS,
                 "gradeA": gradeA,
                 "gradeB": gradeB,
@@ -122,6 +125,7 @@ function edit_quota() {
                 "gradeC": gradeC,
                 "gradeD": gradeD,
                 "sum_quota": sum_quota
+                
             },
             dataType: "JSON",
 
@@ -261,21 +265,6 @@ function show_qouta() {
 
 } //showChart
 
-function get_data() {
-    var qut_data = document.getElementById("qut_data").value; // get kay by id
-    console.log(qut_data);
-    // $.ajax({
-    //     type: "post",
-    //     url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/v_edit_quota",
-    //     data: {
-    //         "qut_data": qut_data
-    //     },
-    //     dataType: "JSON",
-    //     success: function(data) {
-    //         console.log(data)
-    //     }
-    // });
-} //get_data
 
 
 </script>
@@ -305,7 +294,7 @@ function get_data() {
                         <select class="form-control text" id="quotaType">
                             <?php foreach($edit_qut_data as $value){ ?>
 
-                            <option><?php echo $value->qut_type;?></option>
+                            <option id ="idDataQuota" value = "<?php echo $value->qut_id;?>"><?php echo $value->qut_type;?></option>
 
                             <?php } ?>
 

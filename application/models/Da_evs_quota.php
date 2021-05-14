@@ -80,13 +80,10 @@ class Da_evs_quota extends evs_model {
 	function update() {
 	 	
 	 	$sql = "UPDATE evs_database.evs_quota 
-		 SET evs_quota.qut_id = ?, evs_quota.qut_date= ?, evs_quota.qut_grad_S= ?, evs_quota.qut_grad_A= ?
-		 , evs_quota.qut_grad_B= ?, evs_quota.qut_grad_B_N= ?, evs_quota.qut_grad_C= ?, evs_quota.qut_grad_D= ?
-		 , qut_total.qut_total= ?
+		 SET evs_quota.qut_grad_S= ?, evs_quota.qut_grad_A= ?, evs_quota.qut_grad_B= ?, evs_quota.qut_grad_B_N= ?, evs_quota.qut_grad_C= ?, 
+		 evs_quota.qut_grad_D= ?, evs_quota.qut_total= ?
 		 WHERE evs_quota.qut_id= ?";
-		
-	 	$this->db->query($sql, array($this->qut_id, $this->qut_date, $this->qut_grad_S, $this->qut_grad_A,
-		  $this->qut_grad_B, $this->qut_grad_B_N,$this->qut_grad_C, $this->qut_grad_D, $this->qut_total));
+	 	$this->db->query($sql, array( $this->qut_grad_S, $this->qut_grad_A, $this->qut_grad_B, $this->qut_grad_B_N,$this->qut_grad_C, $this->qut_grad_D, $this->qut_total,$this->qut_id));
 		  
 	 }
 	/*
