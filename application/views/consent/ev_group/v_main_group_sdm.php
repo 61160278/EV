@@ -284,12 +284,7 @@ function check_data_edt(check) {
                         var obj = JSON.parse(data); //แปลงค่าข้อมูล JSON
                         obj.forEach((row, index) => { //row =data
 
-                              if (row.gruname == row.gruid) {
-
-
-                                    edit_group(check);
-                                    return true;
-                              }
+                           
 
 
                               if (group == row.gru_name) {
