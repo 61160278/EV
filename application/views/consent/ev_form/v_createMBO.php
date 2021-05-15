@@ -81,7 +81,7 @@ function save_dataMBO() {
         url: "<?php echo base_url(); ?>ev_form/Evs_form/save_mbo_by_emp",
         data: {
 
-            "sdgsMBO":sdgsMBO,
+            "sdgsMBO": sdgsMBO,
             "dataMBO": dataMBO,
             "resultMBO": resultMBO,
             "Emp_ID": check_emp_id,
@@ -125,7 +125,8 @@ function creatembo() {
                 data_row += '<tr>'
                 data_row += '<td><center>' + (i + 1) + '</center></td>'
                 data_row += '<td>'
-                data_row += '<select class="form-control" id="sdgs_sel' + (i + 1) + '" onchange="clear_css_sel(' + clear + ')">'
+                data_row += '<select class="form-control" id="sdgs_sel' + (i + 1) +
+                    '" onchange="clear_css_sel(' + clear + ')">'
                 data_row += '<option value="0">---Select SDGs---</option>'
                 data_row += '</select>'
                 data_row += '</td>'
@@ -276,12 +277,12 @@ function check_mbo() {
 
         check_sdg = document.getElementById("sdgs_sel" + i).value
 
-        if(check_sdg == 0){
+        if (check_sdg == 0) {
             $("#sdgs_sel" + i).css("background-color", "#ffe6e6");
             $("#sdgs_sel" + i).css("border-style", "solid");
         }
         // if
-        else{
+        else {
             $("#sdgs_sel" + i).css("background-color", "#ffffff");
             $("#sdgs_sel" + i).css("border-style", "solid");
             num_sdgs++;
@@ -332,16 +333,16 @@ function get_sdgs_mbo(count) {
         var obj = JSON.parse(data);
         var data_sel = "";
         obj.forEach((row, index) => {
-            data_sel += '<option value="'+ row.sdg_id+'">'
+            data_sel += '<option value="' + row.sdg_id + '">'
             data_sel += row.sdg_name_th
             data_sel += '</option>'
         });
         // forEach
 
         console.log(data_sel);
-        
+
         for (i = 0; i < count; i++) {
-            $("#sdgs_sel"+(i+1)).append(data_sel);
+            $("#sdgs_sel" + (i + 1)).append(data_sel);
         }
         // for
 
