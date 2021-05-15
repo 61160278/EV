@@ -100,6 +100,7 @@ function edit_quota() {
     gradeB_N = grade[3];
     gradeC = grade[4];
     gradeD = grade[5];
+
     console.log(qut_id);
     console.log(gradeS);
     console.log(gradeA);
@@ -109,32 +110,32 @@ function edit_quota() {
     console.log(gradeD);
     console.log(savedate);
     console.log(sum_quota);
-    $.ajax({
-        type: "post",
-        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/edit_quota",
-        data: {
+    // $.ajax({
+    //     type: "post",
+    //     url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/v_edit_quota",
+    //     data: {
 
-            // "quotaType": quotaType,
-            // "groupPosition": groupPosition,
-            "savedate": savedate,
-            "qut_id": qut_id,
-            "gradeS": gradeS,
-            "gradeA": gradeA,
-            "gradeB": gradeB,
-            "gradeB_N": gradeB_N,
-            "gradeC": gradeC,
-            "gradeD": gradeD,
-            "sum_quota": sum_quota
+    //         // "quotaType": quotaType,
+    //         // "groupPosition": groupPosition,
+    //         "savedate": savedate,
+    //         "qut_id": qut_id,
+    //         "gradeS": gradeS,
+    //         "gradeA": gradeA,
+    //         "gradeB": gradeB,
+    //         "gradeB_N": gradeB_N,
+    //         "gradeC": gradeC,
+    //         "gradeD": gradeD,
+    //         "sum_quota": sum_quota
 
-        },
-        dataType: "JSON",
+    //     },
+    //     dataType: "JSON",
 
-        success: function(status) {
-            console.log(status);
+    //     success: function(status) {
+    //         console.log(status);
 
-        }
+    //     }
 
-    }); //ajax
+    // }); //ajax
 
 
 
@@ -264,6 +265,9 @@ function show_qouta() {
     });
 
 } //showChart
+$(document).ready(function(){
+$("#idDataQuota").hide();
+});
 </script>
 <style>
 .qut_type {
@@ -294,6 +298,9 @@ function show_qouta() {
 
             <div class="row">
                 <div class="col-md-2">
+                    <?php foreach($edit_qut_data as $value){ ?>
+                    <input id="idDataQuota" value="<?php echo $value->qut_id;?>">
+                    <? } ?>
                 </div>
                 <div class="col-md-8">
                     <table style="width:75%" align="center">
@@ -303,7 +310,7 @@ function show_qouta() {
                             <td>
                                 <h4><b>Quota :</b></h4>
                             </td>
-                            <td class="qut_type" id="idDataQuota" value="<?php echo $value->qut_id;?>">
+                            <td class="qut_type">
                                 <?php echo $value->qut_type;?></td>
                             <td>
                                 <h4><b>Position of Quota :</b></h4>
