@@ -1,6 +1,6 @@
     <?php
     /*
-    * v_indicator_attitude_upddate
+    * v_indicator_mhrd_upddate
     * Add Indicator of Attitude
     * @input  -
     * @output -
@@ -9,27 +9,27 @@
     */
 
     /*
-    * v_ind_attitude_update_data
+    * v_ind_mhrd_update_data
     * Add Indicator of Attitude 
-    * @input  id position and data cattagory  
-    * @output id position and data cattagory to database  
+    * @input  id position and data item  
+    * @output id position and data item to database  
     * @author Kunanya Singmee
     * @Update Date 2563-09-25
     */
 
     /*
-    * v_ind_attitude_update_data
+    * v_ind_mhrd_update_data
     * Add Indicator of Attitude 
-    * @input  id position and data cattagory
-    * @output id position and data cattagory to database  
+    * @input  id position and data item
+    * @output id position and data item to database  
     * @author Pondruthai Loekngam
     * @Update Date 2563-09-28
     */
     /*
-    * v_ind_attitude_update_data
+    * v_ind_mhrd_update_data
     * Add Indicator of Attitude 
-    * @input  id position and data cattagory  
-    * @output id position and data cattagory to database  
+    * @input  id position and data item  
+    * @output id position and data item to database  
     * @author Jakkarin Pimpaeng
     * @Update Date 2563-10-16
     */
@@ -43,15 +43,15 @@ $(document).ready(function() {
         $('#dynamic_field').append(
             '<div id="row' + index_pos + '">' +
             // id=row 
-            '<!-- Start input Identification -->' +
+            '<!-- Start input Description -->' +
             '<div class="row">' +
             '<div class="col-6">' +
             '<div class="row">' +
             '<div class="col-4" align="right">' +
-            '<label for="textarea-input" class=" form-control-label">Identification EN :</label>' +
+            '<label for="textarea-input" class=" form-control-label">Description EN :</label>' +
             '</div>' +
-            '<div class="col-8"><textarea name="arr_add_iden_en[]" id="text-Key" rows="4"' +
-            'placeholder="Enter Identification" class="form-control" style="resize: none"' +
+            '<div class="col-8"><textarea name="arr_add_dep_en[]" id="text-Key" rows="4"' +
+            'placeholder="Enter Description" class="form-control" style="resize: none"' +
             'required></textarea>' +
             '</div>' +
             '</div>' +
@@ -61,11 +61,11 @@ $(document).ready(function() {
             '<div class="col-6">' +
             '<div class="row">' +
             '<div class="col-4" align="right">' +
-            '<label for="textarea-input" class=" form-control-label">Identification TH :</label>' +
+            '<label for="textarea-input" class=" form-control-label">Description TH :</label>' +
             '</div>' +
             '<!-- col-4  -->' +
-            '<div class="col-8"><textarea name="arr_add_iden_th[]" id="text-Key" rows="4"' +
-            'placeholder="Enter Identification" class="form-control" style="resize: none"' +
+            '<div class="col-8"><textarea name="arr_add_dep_th[]" id="text-Key" rows="4"' +
+            'placeholder="Enter Description" class="form-control" style="resize: none"' +
             'required></textarea>' +
             '</div>' +
             '<!-- col-8  -->' +
@@ -76,7 +76,7 @@ $(document).ready(function() {
             '</div>' +
             '<!-- row  -->' +
             '<br>' +
-            '<!-- End input Identification -->' +
+            '<!-- End input Description -->' +
 
             '<!-- Start input position  -->' +
             '<div class="row">' +
@@ -160,7 +160,7 @@ function pos_level(id) {
 
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_attitude_indicators_form/get_position_indicator",
+        url: "<?php echo base_url(); ?>/Evs_mhrd_indicators_form/get_position_indicator",
         data: {
             "key_pos_lv": key_pos_lv
         },
@@ -218,7 +218,7 @@ function add_pos_level(id) {
     console.log(key_pos_lv);
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_attitude_indicators_form/get_position_indicator",
+        url: "<?php echo base_url(); ?>/Evs_mhrd_indicators_form/get_position_indicator",
         data: {
             "key_pos_lv": key_pos_lv
         },
@@ -261,7 +261,7 @@ function add_pos_level(id) {
     background-color: #c1432e;
 }
 
-#add_category {
+#add_item {
     width: 30%;
 }
     </style>
@@ -276,11 +276,11 @@ function add_pos_level(id) {
                     <div class="row">
                         <div class="col-xl-12">
                             <h1 class="m-0 font-weight-bold text-primary">
-                                <a href="<?php echo base_url(); ?>/Evs_attitude_indicators_form/indicator_attitude">
+                                <a href="<?php echo base_url(); ?>/Evs_mhrd_indicators_form/indicator_mhrd">
                                     <i class="fa fa-chevron-circle-left text-white"></i>
                                 </a>
                                 <i class="fa fa-pencil-square text-white"></i>
-                                <font color="white">Edit Items from Attitude&Behavior</font>
+                                <font color="white">Edit Items from MHRD</font>
                             </h1>
                         </div>
                         <!-- style="font-size:40px;color:white" -->
@@ -293,36 +293,36 @@ function add_pos_level(id) {
                 <!-- Start Card body -->
                 <div class="card-body">
                     <!-- Start Form : Attitude -->
-                    <form class="form-horizontal" id="form_indicator_attitude" method="post"
-                        action="<?php echo base_url(); ?>/Evs_attitude_indicators_form/indicator_attitude_update">
-                        <h3 class="m-0 ">Please edit indicator of form Attitude & Behavior</h3><br>
+                    <form class="form-horizontal" id="form_indicator_mhrd" method="post"
+                        action="<?php echo base_url(); ?>/Evs_mhrd_indicators_form/indicator_mhrd_update">
+                        <h3 class="m-0 ">Please edit indicator of form MHRD</h3><br>
 
 
                         <!-- Start table  -->
                         <div class="table" id="dynamic_field">
 
-                            <!-- ------------------------------- Start Category ------------------------------ -->
+                            <!-- ------------------------------- Start item ------------------------------ -->
 
-                            <!-- Start input Category  -->
+                            <!-- Start input item  -->
                             <div class="row">
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4" align="right">
-                                            <label for="textarea-input" class=" form-control-label">Category EN
+                                            <label for="textarea-input" class=" form-control-label">item EN
                                                 :</label>
                                         </div>
                                         <!-- col-4  -->
                                         <div class="col-8">
                                             <?php //Start foreach
-                                     foreach($cattagory_table_id->result() as $row ){
-                                         $ctg_category_detail_en  = $row->ctg_category_detail_en; //save category en
-                                         $ctg_category_detail_th  = $row->ctg_category_detail_th; //save category th
-                                         $cattagory_id  = $row->ctg_id; //save category id
+                                     foreach($item_table_id->result() as $row ){
+                                         $itm_item_detail_en  = $row->itm_item_detail_en; //save item en
+                                         $itm_item_detail_th  = $row->itm_item_detail_th; //save item th
+                                         $item_id  = $row->itm_id; //save item id
                                          }//End foreach
                                          ?>
-                                            <textarea name="up_date_category_en" id="textarea-input" rows="3"
-                                                placeholder="Enter Category" class="form-control" style="resize: none"
-                                                required><?php echo $ctg_category_detail_en ?></textarea>
+                                            <textarea name="up_date_item_en" id="textarea-input" rows="3"
+                                                placeholder="Enter item" class="form-control" style="resize: none"
+                                                required><?php echo $itm_item_detail_en ?></textarea>
                                         </div>
                                         <!-- col-8  -->
                                     </div>
@@ -333,22 +333,22 @@ function add_pos_level(id) {
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4" align="right">
-                                            <label for="textarea-input" class=" form-control-label">Category EN
+                                            <label for="textarea-input" class=" form-control-label">item EN
                                                 :</label>
                                         </div>
                                         <!-- col-4  -->
                                         <div class="col-8">
                                             <?php //Start foreach
-                                     foreach($cattagory_table_id->result() as $row ){
-                                         $ctg_category_detail_en  = $row->ctg_category_detail_en; //save category en
-                                         $ctg_category_detail_th  = $row->ctg_category_detail_th; //save category th
-                                         $cattagory_id  = $row->ctg_id; //save category id
+                                     foreach($item_table_id->result() as $row ){
+                                         $itm_item_detail_en  = $row->itm_item_detail_en; //save item en
+                                         $itm_item_detail_th  = $row->itm_item_detail_th; //save item th
+                                         $item_id  = $row->itm_id; //save item id
                                          }//End foreach
                                          ?>
-                                            <textarea name="up_date_category_th" id="textarea-input" rows="3"
-                                                placeholder="Enter Category" class="form-control" style="resize: none"
-                                                required><?php echo $ctg_category_detail_th ?></textarea>
-                                            <input type="input" name="category_id" value="<?php echo $cattagory_id  ?>"
+                                            <textarea name="up_date_item_th" id="textarea-input" rows="3"
+                                                placeholder="Enter item" class="form-control" style="resize: none"
+                                                required><?php echo $itm_item_detail_th ?></textarea>
+                                            <input type="input" name="item_id" value="<?php echo $item_id  ?>"
                                                 hidden>
                                         </div>
                                         <!-- col-8  -->
@@ -360,32 +360,32 @@ function add_pos_level(id) {
                             <!-- row  -->
 
                             <hr>
-                            <!-- ------------------------------- End Category -------------------------------->
+                            <!-- ------------------------------- End item -------------------------------->
 
-                            <!-- ------------------------------- Start Identification ------------------------------ -->
+                            <!-- ------------------------------- Start Description ------------------------------ -->
 
-                            <!-- Start input Identification -->
+                            <!-- Start input Description -->
                             <?php $index = 1; //index table
-                                  $arry_index = 0; //index for remove identification
+                                  $arry_index = 0; //index for remove description
                               //Start foreach
-                              foreach($cattagory_table->result() as $row ){ ?>
+                              foreach($item_table->result() as $row ){ ?>
                             <!-- for loop  -->
 
                             <div class="col-12" id="row<?php echo $arry_index; ?>">
-                                <input type="input" name="arr_identification_id[]" value="<?php echo $row->idf_id  ?>"
+                                <input type="input" name="arr_description_id[]" value="<?php echo $row->dep_id  ?>"
                                     hidden>
 
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="row">
                                             <div class="col-4" align="right">
-                                                <label for="textarea-input" class=" form-control-label">Identification
+                                                <label for="textarea-input" class=" form-control-label">Description
                                                     EN :</label>
                                             </div>
-                                            <div class="col-8"><textarea name="arr_update_iden_en[]" id="text-Key"
-                                                    rows="2" placeholder="Enter Identification" class="form-control"
+                                            <div class="col-8"><textarea name="arr_update_dep_en[]" id="text-Key"
+                                                    rows="2" placeholder="Enter Description" class="form-control"
                                                     style="resize: none"
-                                                    required><?php echo $row->idf_identification_detail_en; ?></textarea>
+                                                    required><?php echo $row->dep_description_detail_en; ?></textarea>
                                             </div>
                                         </div>
                                         <!-- row -->
@@ -394,14 +394,14 @@ function add_pos_level(id) {
                                     <div class="col-6">
                                         <div class="row">
                                             <div class="col-4" align="right">
-                                                <label for="textarea-input" class=" form-control-label">Identification
+                                                <label for="textarea-input" class=" form-control-label">Description
                                                     TH :</label>
                                             </div>
                                             <!-- col-4  -->
-                                            <div class="col-8"><textarea name="arr_update_iden_th[]" id="text-Key"
-                                                    rows="2" placeholder="Enter Identification" class="form-control"
+                                            <div class="col-8"><textarea name="arr_update_dep_th[]" id="text-Key"
+                                                    rows="2" placeholder="Enter Description" class="form-control"
                                                     style="resize: none"
-                                                    required><?php echo $row->idf_identification_detail_th; ?></textarea>
+                                                    required><?php echo $row->dep_description_detail_th; ?></textarea>
                                             </div>
                                             <!-- col-8  -->
                                         </div>
@@ -411,7 +411,7 @@ function add_pos_level(id) {
                                 </div>
                                 <!-- row  -->
                                 <br><br><br>
-                                <!-- End input Identification -->
+                                <!-- End input Description -->
 
                                 <!-- Start section-1 col-5-12 -->
                                 <div class="row">
@@ -491,7 +491,7 @@ function add_pos_level(id) {
                                                 <select name="arr_update_pos[]" class="form-control">
                                                     <option>Select position</option>
                                                     <?php   //start if foreach
-                                                                        foreach($cattagory_position->result() as $row_chack ){ ?>
+                                                                        foreach($item_position->result() as $row_chack ){ ?>
                                                     <?php       //start if position_level_id
                                                                             if($row_chack->position_level_id == $row->position_level_id){ ?>
                                                     <?php           //start if Position_ID
@@ -549,7 +549,7 @@ function add_pos_level(id) {
 
 
 
-                        <!-- -------------------------------End Identification ------------------------------ -->
+                        <!-- -------------------------------End Description ------------------------------ -->
 
                         <!-- Start button  add more  -->
                         <div class="row">
@@ -567,7 +567,7 @@ function add_pos_level(id) {
                             <div class="col-sm-12" align="right">
                                 <br><br>
                                 <!-- Start Back to main position  -->
-                                <a href="<?php echo base_url(); ?>/Evs_attitude_indicators_form/indicator_attitude">
+                                <a href="<?php echo base_url(); ?>/Evs_mhrd_indicators_form/indicator_mhrd">
                                     <button type="button" class="btn btn-secondary">Back</button>
                                 </a>
                                 <!-- End Back to main position  -->

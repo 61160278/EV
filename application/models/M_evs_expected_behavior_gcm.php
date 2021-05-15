@@ -31,7 +31,7 @@ class M_evs_expected_behavior_gcm extends Da_evs_expected_behavior_gcm {
 
 	/*
 	* get_all
-	* Get all indicator by ability from database
+	* Get all indicator by gcm from database
 	* @input  -
 	* @output expected behavior data
 	* @author Tanadon Tangjaimongkhon
@@ -47,7 +47,7 @@ class M_evs_expected_behavior_gcm extends Da_evs_expected_behavior_gcm {
 
 	/*
 	* get_all_by_pos
-	* Get all indicator by ability from database
+	* Get all indicator by gcm from database
 	* @input  -
 	* @output expected behavior data
 	* @author Tanadon Tangjaimongkhon
@@ -144,14 +144,14 @@ class M_evs_expected_behavior_gcm extends Da_evs_expected_behavior_gcm {
 	}//get_all_expected_by_id
 
 	/*
-	* get_all_indicator_by_ability
+	* get_all_indicator_by_gcm
 	* get data to database
 	* @input -
 	* @output expected behavior data
 	* @author 	Tanadon Tangjaimongkhon
 	* @Create Date 2563-09-01
 	*/	
-	function get_all_indicator_by_ability(){	
+	function get_all_indicator_by_gcm(){	
 		$sql = "SELECT * 
 				from evs_database.evs_expected_behavior_gcm as epg
                 inner join evs_database.evs_key_component_gcm as kcg 
@@ -160,17 +160,17 @@ class M_evs_expected_behavior_gcm extends Da_evs_expected_behavior_gcm {
                 on kcg.kcg_cpg_id = cpg.cpg_id";
 		$query = $this->db->query($sql);
 		return $query;
-	}//get_all_indicator_by_ability
+	}//get_all_indicator_by_gcm
 
 	/*
-	* get_all_indicator_by_ability_weight
+	* get_all_indicator_by_gcm_weight
 	* get data to database
 	* @input position id 
 	* @output expected behavior data
 	* @author 	Tanadon Tangjaimongkhon
 	* @Create Date 2563-09-01
 	*/	
-	function get_all_indicator_by_ability_weight(){	
+	function get_all_indicator_by_gcm_weight(){	
 		$sql = "SELECT * 
 				from evs_database.evs_expected_behavior_gcm as epg
                 inner join evs_database.evs_key_component_gcm as kcg 
@@ -183,7 +183,7 @@ class M_evs_expected_behavior_gcm extends Da_evs_expected_behavior_gcm {
 				order by cpw.cpw_pos_id ASC";
 		$query = $this->db->query($sql ,array($this->cpw_pos_id));
 		return $query;
-	}//get_all_indicator_by_ability_weight
+	}//get_all_indicator_by_gcm_weight
 
 	/*
 	* get_form_by_position_weight
@@ -230,14 +230,14 @@ class M_evs_expected_behavior_gcm extends Da_evs_expected_behavior_gcm {
 	}//get_all_competency_by_id
 	
 	/*
-	* get_all_indicator_by_ability_group_by
+	* get_all_indicator_by_gcm_group_by
 	* get data to database
 	* @input position id and component id
 	* @output expected behavior data
 	* @author 	Tanadon Tangjaimongkhon
 	* @Create Date 2564-02-04
 	*/	
-	function get_all_indicator_by_ability_group_by(){	
+	function get_all_indicator_by_gcm_group_by(){	
 		$sql = "SELECT * 
 				from evs_database.evs_expected_behavior_gcm as epg
                 inner join evs_database.evs_key_component_gcm as kcg 
@@ -249,7 +249,7 @@ class M_evs_expected_behavior_gcm extends Da_evs_expected_behavior_gcm {
 				order by kcg_key_component_detail_en ASC";
 		$query = $this->db->query($sql ,array($this->epg_pos_id,$this->kcg_cpg_id));
 		return $query;
-	}//get_all_indicator_by_ability_group_by
+	}//get_all_indicator_by_gcm_group_by
 
     
 	

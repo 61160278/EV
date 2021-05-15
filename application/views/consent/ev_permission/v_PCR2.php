@@ -112,6 +112,7 @@
         <tr>
             <td align="center" class="headTitle" style="font-size:15px;">Process Change Report<br /></td>
         </tr>
+        <br>
         <tr>
             <td align="left">
                 <table width="500" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -125,13 +126,13 @@
                             <div class="text"></div>
                         </td>
                         <td align="left"></td>
-                        
+
                         <td align="center">
                             <div class="text"></div>
                         </td>
                         <td align="left"></td>
-                        
-                        
+
+
                         <td align="center">
                             <div class="text"></div>
                         </td>
@@ -203,57 +204,30 @@
                 <table width="750" border="0" align="left" cellpadding="0" cellspacing="0"
                     style="border-collapse:collapse;border-top:2px double #000;">
                     <tr>
-                        <th width="50" class="headerTitle01"  align="left"> <center>PCR Rank </center></th>
-                        
-                        <th width="50" class="headerTitle01" align="left"> <center>PCR Type </center></th>
-                        
+                        <th width="50" class="headerTitle01" align="left">
+                            <center>PCR Rank </center>
+                        </th>
+
+                        <th width="50" class="headerTitle01" align="left">
+                            <center>PCR Type </center>
+                        </th>
+
                     </tr>
                     <!-- PCR Rank -->
                     <tr>
                         <td height="20" align="center" class="left_bottom top_right">C2</td>
                         <td height="20" align="center" class="left_bottom">Repeat </td>
-                       </tr>
+                    </tr>
                 </table>
-        
-               
-                
-                
                 <!-- PCR Rank -->
             </td>
             <!-- PCR Rank -->
-        </tr> 
-        <!-- PCR Rank -->
-        
-        
-        <tr>
-            <td align="left">
-                <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-                    <tr>
-                        <td width="50%" align="left">- ใบรับฝากนี้ใช้เป็นหลักฐานการฝากส่ง
-                            โปรดเก็บรักษาไว้จนหมดอายุ<br />
-                            การสอบสวน คือ ระยะเวลา 6 เดือน นับจากวันต่อจากวันที่ฝากส่ง<br /></td>
-                        <td width="50%" align="left">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td align="left">- การติดต่อในเรื่องใดเกี่ยวกับการฝากส่ง ต้องนำใบฝากฉบับนี้<br />
-                            มาแสดงทุกครั้ง มิฉะนั้น ปณท อาจไม่ทำการตรวจสอบหรือสอบสวนให้</td>
-                        <td align="left">
-                            <table width="300" border="0" cellspacing="0" cellpadding="0">
-                                <tr>
-                                    <td width="100" align="right">พนักงานรับฝาก</td>
-                                    <td width="62%"><input name="textfield10" type="text" class="box_data1"
-                                            id="textfield10" style="text-align:center;width:200px;" /></td>
-                                </tr>
-                                <tr>
-                                    <td align="right">Counter Clerk</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </td>
         </tr>
+        <!-- PCR Rank -->
+
+
+
+        
     </table>
 </body>
 

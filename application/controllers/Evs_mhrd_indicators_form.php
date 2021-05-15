@@ -141,13 +141,13 @@ class Evs_mhrd_indicators_form extends MainController {
 	* @author Jakkarin Pimpaeng
 	* @Create Date 2563-09-27
 	*/
-	function indicator_mhrd_view_edit_data($id_catagory){
+	function indicator_mhrd_view_edit_data($id_item){
 		$this->load->model('M_evs_item','mitm');
-		$this->mitm->itm_id = $id_catagory;
-		$data['cattagory_table_id'] = $this->mitm->get_item_table_id(); //show value item by id on table
-		$data['cattagory_table'] = $this->mitm->get_item_table_for_update(); //show value item for update on table
+		$this->mitm->itm_id = $id_item;
+		$data['item_table_id'] = $this->mitm->get_item_table_id(); //show value item by id on table
+		$data['item_table'] = $this->mitm->get_item_table_for_update(); //show value item for update on table
 		$this->load->model('M_evs_position','mpos');
-		$data['cattagory_position'] = $this->mpos->get_all(); //show value item by position all on table
+		$data['item_position'] = $this->mpos->get_all(); //show value item by position all on table
 		$this->output("consent/indicator/v_indicator_mhrd_edit",$data);
 	}
 	// function indicator_mhrd_view_edit_data()
@@ -160,7 +160,7 @@ class Evs_mhrd_indicators_form extends MainController {
 	* @author Jakkarin Pimpaeng
 	* @Create Date 2563-10-18
 	*/
-	function indicator_mhrd_delete($id_catagory){
+	function indicator_mhrd_delete($id_item){
 		$this->load->model('M_evs_set_form_mhrd','msfa');
 		$this->load->model('M_evs_description','mdep');
 		$this->load->model('Da_evs_description','ddep');
@@ -170,7 +170,7 @@ class Evs_mhrd_indicators_form extends MainController {
 	//start foreach
 	foreach ($data_set_form_mhrd->result() as $row) {
 		//start if
-		if($row->sfi_itm_id  == $id_catagory){
+		if($row->sfi_itm_id  == $id_item){
 			$save_dont_delete = 1;
 			header("Location: " . base_url() . "Evs_mhrd_indicators_form/indicator_mhrd");
 		}
@@ -181,7 +181,7 @@ class Evs_mhrd_indicators_form extends MainController {
 		if($save_dont_delete == 0){
 			foreach ($data_description->result() as $row) {
 			//start if
-			if($row->dep_itm_id == $id_catagory){
+			if($row->dep_itm_id == $id_item){
 				$this->ddep->dep_id = $row->dep_id; 
 				$this->ddep->delete(); 		 
 			}
@@ -190,7 +190,7 @@ class Evs_mhrd_indicators_form extends MainController {
 		//end foreach
 		
 		$this->load->model('Da_evs_item','ditm');
-		$this->ditm->itm_id = $id_catagory;
+		$this->ditm->itm_id = $id_item;
 		$this->ditm->delete();
 		
 	 	header("Location: " . base_url() . "Evs_mhrd_indicators_form/indicator_mhrd");
@@ -247,6 +247,8 @@ class Evs_mhrd_indicators_form extends MainController {
 		$itm_item_id = $this->input->post("item_id"); //save item id
 		$update_pos_length_number_arry = count($this->input->post("arr_update_pos[]")); //max loop update position
 
+		print_r($itm_item_detail_en."<br>");
+		print_r($itm_item_detail_th);
 
 		// อัพเดต item_name
 		$this->load->model('Da_evs_item','ditm');
