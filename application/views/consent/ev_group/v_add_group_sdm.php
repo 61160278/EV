@@ -440,7 +440,7 @@ function delete_data() {
                         <div class="DTTT btn-group pull-right mt-sm">
                             &emsp;
                             <a data-toggle="modal" class="btn btn btn-danger" href="#Resign">
-                                <i class="ti ti-trash"></i>
+                                <i class="ti ti-share-alt"></i>
                                 &nbsp
                                 <span>RESIGN</span>
                             </a>
