@@ -196,7 +196,7 @@ function confirm_save() {
 }
 
 function main_quota(){
-    confirm_save();
+  
     window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/index";
 }
 
