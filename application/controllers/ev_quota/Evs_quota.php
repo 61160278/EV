@@ -117,7 +117,7 @@ class Evs_quota extends MainController_avenxo {
 	* @author 	Piyasak Srijan
 	* @Create Date 2564-04-06
 	*/
-	function manage_quota()
+	function manage_quota($qut_id)
 	{
 		$this->load->model('M_evs_department','mdep');
 		$data['dep_data'] = $this->mdep->get_all(); // show value department all
@@ -128,7 +128,10 @@ class Evs_quota extends MainController_avenxo {
 		$this->load->model('M_evs_company','mcpn');
 		$data['com_data'] = $this->mcpn->get_all(); // show value company all
 
-		
+		$this->load->model('M_evs_quota','mqut');
+		$this->mqut->qut_id = $qut_id;
+		$data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota
+
 		$this->output('/consent/ev_quota/v_manage_quota',$data);
 	}
 	// function manage_quota(

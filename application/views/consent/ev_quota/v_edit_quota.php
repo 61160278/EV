@@ -52,14 +52,6 @@ td {
 }
 </style>
 <script>
-function select_quota(value) {
-
-    if (value == "2") {
-        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_pa";
-    } else {
-        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_ca";
-    }
-} //select_quota
 
 
 function edit_quota() {
@@ -179,8 +171,12 @@ function confirm_save() {
     edit_quota();
     $('#warning_save').modal('show');
 
-}
 
+}
+function main_quota(){
+    confirm_save();
+    window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/index";
+}
 function show_qouta() {
 
     for (var i = 1; i <= 6; i++) {
@@ -265,8 +261,8 @@ function show_qouta() {
     });
 
 } //showChart
-$(document).ready(function(){
-$("#idDataQuota").hide();
+$(document).ready(function() {
+    $("#idDataQuota").hide();
 });
 </script>
 <style>
@@ -287,11 +283,7 @@ $("#idDataQuota").hide();
             <div class="col-md-9">
             </div>
             <div class="col-md-1">
-                <select class="form-control pull-right margin" aria-controls="example" onChange="select_quota(value)">
-                    <option value="">Select</option>
-                    <option value="1">CA</option>
-                    <option value="2">PA</option>
-                </select>
+              
             </div>
         </div>
         <div class="panel-body" style="" id="qut_data">
@@ -300,7 +292,7 @@ $("#idDataQuota").hide();
                 <div class="col-md-2">
                     <?php foreach($edit_qut_data as $value){ ?>
                     <input id="idDataQuota" value="<?php echo $value->qut_id;?>">
-                    <? } ?>
+                    <?php } ?>
                 </div>
                 <div class="col-md-8">
                     <table style="width:75%" align="center">
@@ -411,7 +403,9 @@ $("#idDataQuota").hide();
                     </div>
                 </div>
             </div>
+            <a href="<?php echo base_url();?>/ev_quota/Evs_quota/index">
             <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
+            </a>
             <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;" id="saveData"
                 onclick="confirm_save()">SAVE</button>
         </div>
@@ -498,7 +492,9 @@ $("#idDataQuota").hide();
 
             <div class="modal-footer">
                 <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                    
+                        <button type="button" class="btn btn-success" data-dismiss="modal" onclick ="main_quota()">Yes</button>
+                    </a>
                 </div>
 
             </div>

@@ -22,7 +22,7 @@ function show_data() {
         type: "post",
         url: "<?php echo base_url(); ?>ev_quota/Evs_quota/all_data",
         data: {
-        
+
         },
         datatype: "JSON",
         success: function(data) {
@@ -31,34 +31,34 @@ function show_data() {
             console.log(data)
 
             var table_data = ""
-                data.forEach((row, i) => {
-                   
-                    table_data += '<tr>'
-                    table_data += '<td>'
-                    table_data += row.Company_shortname
-                    table_data += '</td>'
-                    table_data += '<td>'
-                    table_data += row.Dep_Name
-                    table_data += '</td>'
-                    table_data += '<td>'
-                    table_data += row.Position_name
-                    table_data += '</td>'
-                    table_data += '<td>'
-                    table_data +=
-                        '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/manage_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
-                    table_data += '</td>'
-                    table_data += '</tr>'
-                    i++
-                    '</td>'
+            data.forEach((row, i) => {
 
-                });
-            
+                table_data += '<tr>'
+                table_data += '<td>'
+                table_data += row.Company_shortname
+                table_data += '</td>'
+                table_data += '<td>'
+                table_data += row.Dep_Name
+                table_data += '</td>'
+                table_data += '<td>'
+                table_data += row.Position_name
+                table_data += '</td>'
+                table_data += '<td>'
+                table_data +=
+                    '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/detail_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                table_data += '</td>'
+                table_data += '</tr>'
+                i++
+                '</td>'
+
+            });
+
             $('#example tbody').html(table_data);
 
         }
     });
 
-}//shoe data
+} //shoe data
 ////////////////////////end show//////////////////////////////////
 function search_data() {
     var pos_lv_select = document.getElementById("pos_lv_select").value;
@@ -98,7 +98,7 @@ function search_data() {
 
             } else {
                 data.forEach((row, i) => {
-                   
+
                     table_data += '<tr>'
                     table_data += '<td>'
                     table_data += row.Company_shortname
@@ -141,7 +141,7 @@ function get_position() {
             data = JSON.parse(data)
             // console.log(data)
             var table_data = ""
-          
+
             data.forEach((row, i) => {
 
                 table_data += '<option value="' + row.Position_ID + '">' + row.Position_name +
@@ -152,7 +152,7 @@ function get_position() {
 
         }
     });
-}//get_position
+} //get_position
 
 function get_department() {
     var dep_sel = document.getElementById("com_select").value; // get kay by id
@@ -169,7 +169,7 @@ function get_department() {
             data = JSON.parse(data)
             // console.log(data)
             var table_data = ""
-           
+
             data.forEach((row, i) => {
 
                 table_data += '<option value="' + row.Dep_id + '">' + row.Dep_Name + '</option>'
@@ -182,8 +182,7 @@ function get_department() {
         }
     });
 
-}//get_department()
-
+} //get_department()
 </script>
 <style>
 h2 {
@@ -208,10 +207,18 @@ td {
 h4 {
     color: black;
 }
+
 .panel.panel-indigo .panel-heading {
-  color: #e8eaf6;
-  background-color: #134466;
+    color: #e8eaf6;
+    background-color: #134466;
 }
+.qut_type {
+    text-align: left;
+}
+.qut {
+    text-align: left;
+}
+
 </style>
 
 <div class="col-md-12">
@@ -222,13 +229,38 @@ h4 {
             </h2>
         </div>
         <div class="panel-body">
-            <h4><b> Quota :</b></h4>
-            <h4><b> Position of Quota :</b></h4>
+        
+            <table>
+                <?php foreach($manage_qut_data as $value){ ?>
+                <tr>
+                    <td class ="qut" width ="175">
+                        <h4><b>Quota </b></h4>
+                    </td>
+                    <td width ="75">
+                        <h4><b> : </b></h4>
+                    </td>
+                    <td class="qut_type" width ="200">
+                        <?php echo $value->qut_type;?></td>
+                </tr>
+                <tr>
+                    <td  class ="qut" >
+                        <h4><b>Position of Quota </b></h4>
+                    </td>
+                    <td>
+                        <h4><b> : </b></h4>
+                    </td>
+                    <td class="qut_type">
+                        <?php echo $value->qut_pos;?></td>
+                </tr>
+
+                <?php } ?>
+
+            </table>
             <legend></legend>
             <div>
                 <label class="col-md-3">
                     <select id="com_select" name="example_length" class="form-control" onclick="get_department()">
-                       
+
                         <!-- start foreach -->
                         <?php foreach($com_data->result() as $value){ ?>
                         <option value="<?php echo $value->Company_ID;?>">
@@ -243,10 +275,10 @@ h4 {
 
                     </select>
                 </label>
-                
+
                 <label class="col-md-3">
                     <select name="example_length" class="form-control" id="pos_lv_select" onclick="get_position()">
-                   
+
                         <!-- start foreach -->
                         <?php foreach($psl_data->result() as $value){ ?>
                         <option value="<?php echo $value->psl_id;?>">

@@ -88,13 +88,18 @@ function Delete_data(qut_id) {
 }
 //function Delete_data
 
-function manage_data(qut_id) {
+function edit_data(qut_id) {
 
 console.log(qut_id);
 window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/edit_quota_ca/" + qut_id;
 }
-//function manage_data
+//function edit_data
 
+function manage_data(qut_id) {
+
+console.log(qut_id);
+window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
+}
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo">
@@ -145,10 +150,12 @@ window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/edit_quota_
                                    
                                     <td class="center">
 
-                                    <a href="<?php echo base_url();?>/ev_quota/Evs_quota/manage_quota">     
+                                    <!-- <a href="<?php //echo base_url();?>/ev_quota/Evs_quota/manage_quota">      -->
+                                   
+                                    <a onclick =" manage_data( <?php echo $value->qut_id;?>)">
                                         <button type="submit" class="btn btn-info"><i
                                                     class="ti ti-info-alt"></i></button></a>
-                                        <a onclick ="manage_data(<?php echo $value->qut_id;?>)">
+                                        <a onclick ="edit_data(<?php echo $value->qut_id;?>)">
                                             <button type="submit" class="btn btn-warning"><i
                                                     class="ti ti-pencil-alt "></i></button></a>
                                         <a data-toggle="modal" href="#delete<?php echo $value->qut_id;?>"><button
