@@ -111,7 +111,7 @@ function search_data() {
                     table_data += '</td>'
                     table_data += '<td>'
                     table_data +=
-                        '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/manage_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                        '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/detail_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
                     table_data += '</td>'
                     table_data += '</tr>'
                     i++
@@ -141,6 +141,8 @@ function get_position() {
             data = JSON.parse(data)
             // console.log(data)
             var table_data = ""
+           
+            table_data += '<option value="0">Position</option>'
 
             data.forEach((row, i) => {
 
@@ -169,7 +171,9 @@ function get_department() {
             data = JSON.parse(data)
             // console.log(data)
             var table_data = ""
+            table_data += '<option value="0">Depamant</option>'
 
+           
             data.forEach((row, i) => {
 
                 table_data += '<option value="' + row.Dep_id + '">' + row.Dep_Name + '</option>'
@@ -212,13 +216,14 @@ h4 {
     color: #e8eaf6;
     background-color: #134466;
 }
+
 .qut_type {
     text-align: left;
 }
+
 .qut {
     text-align: left;
 }
-
 </style>
 
 <div class="col-md-12">
@@ -229,21 +234,21 @@ h4 {
             </h2>
         </div>
         <div class="panel-body">
-        
+
             <table>
                 <?php foreach($manage_qut_data as $value){ ?>
                 <tr>
-                    <td class ="qut" width ="175">
+                    <td class="qut" width="175">
                         <h4><b>Quota </b></h4>
                     </td>
-                    <td width ="75">
+                    <td width="75">
                         <h4><b> : </b></h4>
                     </td>
-                    <td class="qut_type" width ="200">
+                    <td class="qut_type" width="200">
                         <?php echo $value->qut_type;?></td>
                 </tr>
                 <tr>
-                    <td  class ="qut" >
+                    <td class="qut">
                         <h4><b>Position of Quota </b></h4>
                     </td>
                     <td>
@@ -260,9 +265,10 @@ h4 {
             <div>
                 <label class="col-md-3">
                     <select id="com_select" name="example_length" class="form-control" onclick="get_department()">
-
+                        <option value="0">Company</option>
                         <!-- start foreach -->
                         <?php foreach($com_data->result() as $value){ ?>
+
                         <option value="<?php echo $value->Company_ID;?>">
                             <?php echo $value->Company_shortname;?>
                         </option>
@@ -278,7 +284,7 @@ h4 {
 
                 <label class="col-md-3">
                     <select name="example_length" class="form-control" id="pos_lv_select" onclick="get_position()">
-
+                    <option value="0">Position Level</option>
                         <!-- start foreach -->
                         <?php foreach($psl_data->result() as $value){ ?>
                         <option value="<?php echo $value->psl_id;?>">
