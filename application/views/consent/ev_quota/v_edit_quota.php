@@ -110,32 +110,32 @@ function edit_quota() {
     console.log(gradeD);
     console.log(savedate);
     console.log(sum_quota);
-    // $.ajax({
-    //     type: "post",
-    //     url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/v_edit_quota",
-    //     data: {
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/edit_quota",
+        data: {
 
-    //         // "quotaType": quotaType,
-    //         // "groupPosition": groupPosition,
-    //         "savedate": savedate,
-    //         "qut_id": qut_id,
-    //         "gradeS": gradeS,
-    //         "gradeA": gradeA,
-    //         "gradeB": gradeB,
-    //         "gradeB_N": gradeB_N,
-    //         "gradeC": gradeC,
-    //         "gradeD": gradeD,
-    //         "sum_quota": sum_quota
+            // "quotaType": quotaType,
+            // "groupPosition": groupPosition,
+            "savedate": savedate,
+            "qut_id": qut_id,
+            "gradeS": gradeS,
+            "gradeA": gradeA,
+            "gradeB": gradeB,
+            "gradeB_N": gradeB_N,
+            "gradeC": gradeC,
+            "gradeD": gradeD,
+            "sum_quota": sum_quota
 
-    //     },
-    //     dataType: "JSON",
+        },
+        dataType: "JSON",
 
-    //     success: function(status) {
-    //         console.log(status);
+        success: function(status) {
+            console.log(status);
 
-    //     }
+        }
 
-    // }); //ajax
+    }); //ajax
 
 
 
