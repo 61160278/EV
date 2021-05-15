@@ -282,7 +282,7 @@ function select_all_right() {
                         <div class="panel pull-right" id="addtable_filter">
                             <select onchange="manage_group()" id="select" name="example_length" class="form-control"
                                 aria-controls="example">
-                                <option disabled selected> Select Group Contact </option>
+                                <option value="0"selected> Select Group Contact </option>
                                 <?php foreach($gcp_gkd->result() as $row) {?>
                                 <option value="<?php echo $row->gru_id; ?>">
                                     <?php echo $row->gru_name;?>
@@ -455,7 +455,7 @@ function select_all_right() {
                         <div class="DTTT btn-group pull-right mt-sm">
                             &emsp;
                             <a data-toggle="modal" class="btn btn btn-danger" href="#RESIGN">
-                                <i class="ti ti-trash"></i>
+                                <i class="ti ti-share-alt"></i>
                                 &nbsp
                                 <span>RESIGN</span>
                             </a>

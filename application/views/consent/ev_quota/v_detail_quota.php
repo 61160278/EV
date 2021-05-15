@@ -97,6 +97,10 @@ tbody:hover {
     visibility: visible;
     opacity: 1;
 }
+.panel.panel-indigo .panel-heading {
+  color: #e8eaf6;
+  background-color: #134466;
+}
 </style>
 <!-- <script src="path/to/chartjs/dist/chart.js"></script> -->
 <script>
@@ -280,7 +284,7 @@ function insert_quota_plan() {
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
         <div class="panel-heading">
             <h2>
-                <font size="5px">Detail Quota </font>
+                <font size="6px">Detail Quota </font>
             </h2>
             <div class="panel-ctrls" data-actions-container="">
             </div>
@@ -404,7 +408,9 @@ function insert_quota_plan() {
                 </div>
 
             </div>
+              <!-- <a  onclick =" manage_data( <?php echo $value->qut_id;?>)>  -->
             <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
+            <!-- </a> -->
             <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
                 onclick="confirm_save()">SAVE</button>
         </div>

@@ -290,6 +290,9 @@ function set_tap() {
                                     <th rowspan="2" width="2%">
                                         <center> No.</center>
                                     </th>
+                                    <th rowspan="2" width="15%">
+                                        <center>SDGs Goals</center>
+                                    </th>
                                     <th rowspan="2" width="45%">
                                         <center>Management by objective</center>
                                     </th>
@@ -301,10 +304,10 @@ function set_tap() {
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th width="25%">
+                                    <th width="20%">
                                         <center>Result</center>
                                     </th>
-                                    <th width="20%">
+                                    <th width="8%">
                                         <center>Score AxB</center>
                                     </th>
                                 </tr>
@@ -320,6 +323,7 @@ function set_tap() {
                                     <td>
                                         <center><?php echo $index+1; ?></center>
                                     </td>
+                                    <td id="sdgs_sel<?php echo $index+1; ?>"><?php echo $row->sdg_name_th; ?></td>
                                     <td id="inp_mbo<?php echo $index+1; ?>">
                                         <?php echo $row->dtm_mbo; ?>
                                     </td>
@@ -367,7 +371,7 @@ function set_tap() {
                             <!-- tbody -->
                             <tfoot>
                                 <tr>
-                                    <td colspan="2" align="right"><b>Total Weight</b></td>
+                                    <td colspan="3" align="right"><b>Total Weight</b></td>
                                     <td id="show_weight" align="center"><?php echo $sum; ?></td>
                                     <td colspan="2">
                                         <font color="#e60000"></font>

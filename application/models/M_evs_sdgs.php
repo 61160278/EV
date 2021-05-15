@@ -9,7 +9,7 @@
 <?php
 include_once("Da_evs_sdgs.php");
 
-class M_evs_sdgs extends Da_evs_group {
+class M_evs_sdgs extends Da_evs_sdgs {
 
 	/*
 	* get_all

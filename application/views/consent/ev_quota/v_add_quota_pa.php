@@ -84,10 +84,11 @@ function insert_quota() {
             quotaType = document.getElementById("quotaType").options[1].text;
             // groupPosition = document.getElementById("groupPosition").options[1].text;
 
-        } else if (quotaType == 2) {
-            quotaType = document.getElementById("quotaType").options[2].text;
+        } 
+        // else if (quotaType == 2) {
+        //     quotaType = document.getElementById("quotaType").options[2].text;
 
-        }
+        // }
         //end if-else quotaType
         if (groupPosition == 1) {
 
@@ -204,6 +205,13 @@ function confirm_save() {
 
 }
 
+
+function main_quota(){
+  
+    window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/index";
+}
+
+
 function show_qouta() {
 
     for (var i = 1; i <= 6; i++) {
@@ -315,7 +323,7 @@ function show_qouta() {
                         <select class="form-control text" id="quotaType">
                             <option value="0">Quota</option>
                             <option value="1">Year End Bonus</option>
-                            <option value="2">Salary Increment</option>
+                            <!-- <option value="2">Salary Increment</option> -->
                         </select>
                     </div>
                     <div class="col-md-3">
@@ -407,7 +415,9 @@ function show_qouta() {
                     </div>
                 </div>
             </div>
+            <a href="<?php echo base_url();?>/ev_quota/Evs_quota/index">
             <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
+            </a>
             <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;" id="saveData"
                 onclick="confirm_save()">SAVE</button>
         </div>
@@ -482,7 +492,7 @@ function show_qouta() {
                             <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
                                 align="center">
                                 <font size="3px">
-                                    save?</font>
+                                    Do you want to save?</font>
                             </label>
 
                         </div>
@@ -494,7 +504,7 @@ function show_qouta() {
 
             <div class="modal-footer">
                 <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick ="main_quota()">Yes</button>
                 </div>
 
             </div>

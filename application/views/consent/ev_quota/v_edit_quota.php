@@ -52,14 +52,6 @@ td {
 }
 </style>
 <script>
-function select_quota(value) {
-
-    if (value == "2") {
-        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_pa";
-    } else {
-        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_ca";
-    }
-} //select_quota
 
 
 function edit_quota() {
@@ -100,6 +92,7 @@ function edit_quota() {
     gradeB_N = grade[3];
     gradeC = grade[4];
     gradeD = grade[5];
+
     console.log(qut_id);
     console.log(gradeS);
     console.log(gradeA);
@@ -178,8 +171,12 @@ function confirm_save() {
     edit_quota();
     $('#warning_save').modal('show');
 
-}
 
+}
+function main_quota(){
+    confirm_save();
+    window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/index";
+}
 function show_qouta() {
 
     for (var i = 1; i <= 6; i++) {
@@ -264,6 +261,9 @@ function show_qouta() {
     });
 
 } //showChart
+$(document).ready(function() {
+    $("#idDataQuota").hide();
+});
 </script>
 <style>
 .qut_type {
@@ -278,22 +278,21 @@ function show_qouta() {
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
         <div class="panel-heading">
             <h2>
-                <font size="6px"><b>Add Quota</b></font>
+                <font size="6px"><b>Edit Quota</b></font>
             </h2>
             <div class="col-md-9">
             </div>
             <div class="col-md-1">
-                <select class="form-control pull-right margin" aria-controls="example" onChange="select_quota(value)">
-                    <option value="">Select</option>
-                    <option value="1">CA</option>
-                    <option value="2">PA</option>
-                </select>
+              
             </div>
         </div>
         <div class="panel-body" style="" id="qut_data">
 
             <div class="row">
                 <div class="col-md-2">
+                    <?php foreach($edit_qut_data as $value){ ?>
+                    <input id="idDataQuota" value="<?php echo $value->qut_id;?>">
+                    <?php } ?>
                 </div>
                 <div class="col-md-8">
                     <table style="width:75%" align="center">
@@ -303,7 +302,7 @@ function show_qouta() {
                             <td>
                                 <h4><b>Quota :</b></h4>
                             </td>
-                            <td class="qut_type" id="idDataQuota" value="<?php echo $value->qut_id;?>">
+                            <td class="qut_type">
                                 <?php echo $value->qut_type;?></td>
                             <td>
                                 <h4><b>Position of Quota :</b></h4>
@@ -404,7 +403,9 @@ function show_qouta() {
                     </div>
                 </div>
             </div>
+            <a href="<?php echo base_url();?>/ev_quota/Evs_quota/index">
             <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
+            </a>
             <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;" id="saveData"
                 onclick="confirm_save()">SAVE</button>
         </div>
@@ -479,7 +480,7 @@ function show_qouta() {
                             <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
                                 align="center">
                                 <font size="3px">
-                                    save?</font>
+                                   Do you want to save?</font>
                             </label>
 
                         </div>
@@ -491,7 +492,9 @@ function show_qouta() {
 
             <div class="modal-footer">
                 <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                    
+                        <button type="button" class="btn btn-success" data-dismiss="modal" onclick ="main_quota()">Yes</button>
+                    </a>
                 </div>
 
             </div>
