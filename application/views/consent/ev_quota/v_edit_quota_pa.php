@@ -278,7 +278,7 @@ function show_qouta() {
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
         <div class="panel-heading">
             <h2>
-                <font size="6px"><b>Add Quota</b></font>
+                <font size="6px"><b>Edit Quota</b></font>
             </h2>
             <div class="col-md-9">
             </div>
