@@ -48,6 +48,7 @@ function clearMBO() {
         $("#show_weight").css("color", "#000000");
         $("#inp_mbo" + i).val("");
         $("#inp_result" + i).val("");
+        $("#sdgs_sel" + i).val(0);
     }
     // for
 
@@ -63,10 +64,12 @@ function save_dataMBO() {
     console.log(check_emp_id);
     console.log(count);
     var dataMBO = [];
+    var sdgsMBO = []
     var resultMBO = [];
 
     for (var i = 1; i <= count; i++) {
         dataMBO.push(document.getElementById("inp_mbo" + i).value);
+        sdgsMBO.push(document.getElementById("sdgs_sel" + i).value);
         resultMBO.push(document.getElementById("inp_result" + i).value);
 
     }
@@ -77,6 +80,8 @@ function save_dataMBO() {
         dataType: "json",
         url: "<?php echo base_url(); ?>ev_form/Evs_form/save_mbo_by_emp",
         data: {
+
+            "sdgsMBO":sdgsMBO,
             "dataMBO": dataMBO,
             "resultMBO": resultMBO,
             "Emp_ID": check_emp_id,
@@ -120,7 +125,7 @@ function creatembo() {
                 data_row += '<tr>'
                 data_row += '<td><center>' + (i + 1) + '</center></td>'
                 data_row += '<td>'
-                data_row += '<select class="form-control" id="sdgs_sel'+ (i + 1) +'">'
+                data_row += '<select class="form-control" id="sdgs_sel' + (i + 1) + '" onchange="clear_css_sel(' + clear + ')">'
                 data_row += '<option value="0">---Select SDGs---</option>'
                 data_row += '</select>'
                 data_row += '</td>'
@@ -163,6 +168,7 @@ function creatembo() {
             }
             // for
 
+            get_sdgs_mbo(info_row)
             $("#row_index").val(number);
             //console.log("123456::"+number);
             $("#row_mbo").html(data_row);
@@ -248,30 +254,44 @@ function check_weight() {
 function check_mbo() {
 
     var check = "";
+    var check_sdg = "";
     var num = 0;
+    var num_sdgs = 0;
     var number_index = document.getElementById("row_index").value;
 
     for (i = 1; i <= number_index; i++) {
         check = document.getElementById("inp_mbo" + i).value;
-        console.log(check);
 
         if (check == "") {
-            console.log(i + "-");
             $("#inp_mbo" + i).css("background-color", "#ffe6e6");
             $("#inp_mbo" + i).css("border-style", "solid");
         }
         // if
         else {
-            console.log("-" + i);
             $("#inp_mbo" + i).css("background-color", "#ffffff");
             $("#inp_mbo" + i).css("border-style", "solid");
             num++;
         }
         // else
+
+        check_sdg = document.getElementById("sdgs_sel" + i).value
+
+        if(check_sdg == 0){
+            $("#sdgs_sel" + i).css("background-color", "#ffe6e6");
+            $("#sdgs_sel" + i).css("border-style", "solid");
+        }
+        // if
+        else{
+            $("#sdgs_sel" + i).css("background-color", "#ffffff");
+            $("#sdgs_sel" + i).css("border-style", "solid");
+            num_sdgs++;
+        }
+        // 
+
     }
     // for i
 
-    if (num == count) {
+    if (num == count && num_sdgs == count) {
         $("#save_mbo").modal('show');
         return true;
     }
@@ -287,9 +307,14 @@ function check_mbo() {
 function clear_css_inp(i) {
     $("#inp_mbo" + i).css("background-color", "#ffffff");
     $("#inp_mbo" + i).css("border-style", "solid");
-
 }
 // function clear_css_inp
+
+function clear_css_sel(i) {
+    $("#sdgs_sel" + i).css("background-color", "#ffffff");
+    $("#sdgs_sel" + i).css("border-style", "solid");
+}
+// function clear_css_sel
 
 function check_cancel() {
     $("#cancel_mbo").modal('show');
@@ -300,6 +325,30 @@ function cancel_form() {
     window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/index";
 }
 // function cancel_form
+
+function get_sdgs_mbo(count) {
+
+    $.get("<?php echo base_url(); ?>ev_form/Evs_form/get_sdgs", function(data) {
+        var obj = JSON.parse(data);
+        var data_sel = "";
+        obj.forEach((row, index) => {
+            data_sel += '<option value="'+ row.sdg_id+'">'
+            data_sel += row.sdg_name_th
+            data_sel += '</option>'
+        });
+        // forEach
+
+        console.log(data_sel);
+        
+        for (i = 0; i < count; i++) {
+            $("#sdgs_sel"+(i+1)).append(data_sel);
+        }
+        // for
+
+    });
+
+}
+// function get_sdgs
 
 function createG_O() {
 
@@ -318,8 +367,8 @@ function createG_O() {
             "pos": check_pos
         },
         success: function(data) {
-            console.log("1111 - G&O");
-            console.log(data);
+            // console.log("1111 - G&O");
+            // console.log(data);
         },
         // success
         error: function(data) {
@@ -500,7 +549,7 @@ function set_tap() {
                                     <th rowspan="2" width="2%">
                                         <center> No.</center>
                                     </th>
-                                    <th rowspan="2" width="10%">
+                                    <th rowspan="2" width="15%">
                                         <center>SDGs Goals</center>
                                     </th>
                                     <th rowspan="2" width="45%">
@@ -514,7 +563,7 @@ function set_tap() {
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th width="25%">
+                                    <th width="20%">
                                         <center>Result</center>
                                     </th>
                                     <th width="8%">
@@ -528,7 +577,7 @@ function set_tap() {
                             <!-- tbody -->
                             <tfoot>
                                 <tr>
-                                    <td colspan="2" align="right"><b>Total Weight</b></td>
+                                    <td colspan="3" align="right"><b>Total Weight</b></td>
                                     <td id="show_weight" align="center">0</td>
                                     <td colspan="2"></td>
                                 </tr>
