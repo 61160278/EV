@@ -18,6 +18,9 @@ $(document).ready(function() {
 
 
 function show_data() {
+
+    var qut_pos = document.getElementById("qut_pos").innerHTML;
+    console.log(qut_pos);
     $.ajax({
         type: "post",
         url: "<?php echo base_url(); ?>ev_quota/Evs_quota/all_data",
@@ -31,26 +34,99 @@ function show_data() {
             console.log(data)
 
             var table_data = ""
+
             data.forEach((row, i) => {
+                if (qut_pos == 'Operational Associate') {
+                    if (row.Position_Level == 1) {
+                        table_data += '<tr>'
+                        table_data += '<td>'
+                        table_data += row.Company_shortname
+                        table_data += '</td>'
+                        table_data += '<td>'
+                        table_data += row.Dep_Name
+                        table_data += '</td>'
+                        table_data += '<td>'
+                        table_data += row.Position_name
+                        table_data += '</td>'
+                        table_data += '<td>'
+                        table_data +=
+                            '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/detail_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                        table_data += '</td>'
+                        table_data += '</tr>'
+                        i++
+                        '</td>'
+                    } // if 
+                } // if 
 
-                table_data += '<tr>'
-                table_data += '<td>'
-                table_data += row.Company_shortname
-                table_data += '</td>'
-                table_data += '<td>'
-                table_data += row.Dep_Name
-                table_data += '</td>'
-                table_data += '<td>'
-                table_data += row.Position_name
-                table_data += '</td>'
-                table_data += '<td>'
-                table_data +=
-                    '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/detail_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
-                table_data += '</td>'
-                table_data += '</tr>'
-                i++
-                '</td>'
 
+                if (qut_pos == "Team Associate above") {
+
+                    if (row.Position_Level > 1) {
+
+                        table_data += '<tr>'
+                        table_data += '<td>'
+                        table_data += row.Company_shortname
+                        table_data += '</td>'
+                        table_data += '<td>'
+                        table_data += row.Dep_Name
+                        table_data += '</td>'
+                        table_data += '<td>'
+                        table_data += row.Position_name
+                        table_data += '</td>'
+                        table_data += '<td>'
+                        table_data +=
+                            '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/detail_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                        table_data += '</td>'
+                        table_data += '</tr>'
+                        i++
+                        '</td>'
+                    }
+                }
+                else if (qut_pos == "Staff above") {
+
+                    if (row.Position_Level > 2) {
+
+                        table_data += '<tr>'
+                        table_data += '<td>'
+                        table_data += row.Company_shortname
+                        table_data += '</td>'
+                        table_data += '<td>'
+                        table_data += row.Dep_Name
+                        table_data += '</td>'
+                        table_data += '<td>'
+                        table_data += row.Position_name
+                        table_data += '</td>'
+                        table_data += '<td>'
+                        table_data +=
+                            '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/detail_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                        table_data += '</td>'
+                        table_data += '</tr>'
+                        i++
+                        '</td>'
+                    }
+                } else if (qut_pos == "All Position") {
+
+                    if (row.Position_Level > 0) {
+
+                        table_data += '<tr>'
+                        table_data += '<td>'
+                        table_data += row.Company_shortname
+                        table_data += '</td>'
+                        table_data += '<td>'
+                        table_data += row.Dep_Name
+                        table_data += '</td>'
+                        table_data += '<td>'
+                        table_data += row.Position_name
+                        table_data += '</td>'
+                        table_data += '<td>'
+                        table_data +=
+                            '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/detail_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                        table_data += '</td>'
+                        table_data += '</tr>'
+                        i++
+                        '</td>'
+                    }
+                }
             });
 
             $('#example tbody').html(table_data);
@@ -125,6 +201,7 @@ function search_data() {
     });
 
 } //search_data
+
 function get_position() {
     var pos_sel = document.getElementById("pos_lv_select").value; // get kay by id
     // console.log(pos_sel);
@@ -141,7 +218,7 @@ function get_position() {
             data = JSON.parse(data)
             // console.log(data)
             var table_data = ""
-           
+
             table_data += '<option value="0">Position</option>'
 
             data.forEach((row, i) => {
@@ -173,7 +250,7 @@ function get_department() {
             var table_data = ""
             table_data += '<option value="0">Depamant</option>'
 
-           
+
             data.forEach((row, i) => {
 
                 table_data += '<option value="' + row.Dep_id + '">' + row.Dep_Name + '</option>'
@@ -244,8 +321,7 @@ h4 {
                     <td width="75">
                         <h4><b> : </b></h4>
                     </td>
-                    <td class="qut_type" width="200">
-                        <?php echo $value->qut_type;?></td>
+                    <td class="qut_type" width="200"><?php echo $value->qut_type;?></td>
                 </tr>
                 <tr>
                     <td class="qut">
@@ -254,8 +330,7 @@ h4 {
                     <td>
                         <h4><b> : </b></h4>
                     </td>
-                    <td class="qut_type">
-                        <?php echo $value->qut_pos;?></td>
+                    <td class="qut_type" id="qut_pos"><?php echo $value->qut_pos;?></td>
                 </tr>
 
                 <?php } ?>
@@ -284,7 +359,10 @@ h4 {
 
                 <label class="col-md-3">
                     <select name="example_length" class="form-control" id="pos_lv_select" onclick="get_position()">
-                    <option value="0">Position Level</option>
+                        <option value="0">Position Level</option>
+                        <?php foreach($manage_qut_data as $value){ ?>
+                        <?php// if($value->qut_pos == ""){ } ?>
+                        <?php } ?>
                         <!-- start foreach -->
                         <?php foreach($psl_data->result() as $value){ ?>
                         <option value="<?php echo $value->psl_id;?>">

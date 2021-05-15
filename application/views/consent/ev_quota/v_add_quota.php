@@ -34,9 +34,10 @@
 .margin {
     margin-top: 10px;
 }
+
 .panel.panel-indigo .panel-heading {
-  color: #e8eaf6;
-  background-color: #134466;
+    color: #e8eaf6;
+    background-color: #134466;
 }
 
 th {
@@ -84,7 +85,7 @@ function insert_quota() {
             quotaType = document.getElementById("quotaType").options[1].text;
             // groupPosition = document.getElementById("groupPosition").options[1].text;
 
-        } 
+        }
         if (groupPosition == 1) {
 
             groupPosition = document.getElementById("groupPosition").options[1].text;
@@ -92,6 +93,10 @@ function insert_quota() {
         } else if (groupPosition == 2) {
 
             groupPosition = document.getElementById("groupPosition").options[2].text;
+            
+        } else if (groupPosition == 3) {
+
+            groupPosition = document.getElementById("groupPosition").options[3].text;
         }
 
         //end if-else groupPosition
@@ -108,7 +113,7 @@ function insert_quota() {
 
             if (check != "") {
                 grade[i] = parseInt(check),
-               sum_quota += grade[i];
+                    sum_quota += grade[i];
             } //if
         } //for
         grade.shift();
@@ -146,7 +151,7 @@ function insert_quota() {
 
             success: function(status) {
                 console.log(status);
-           
+
             }
 
         }); //ajax
@@ -195,8 +200,8 @@ function confirm_save() {
 
 }
 
-function main_quota(){
-  
+function main_quota() {
+
     window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/index";
 }
 
@@ -317,8 +322,9 @@ function show_qouta() {
                     <div class="col-md-3">
                         <select class="form-control text" id="groupPosition">
                             <option value="0">Position Of Quota</option>
-                            <option value="1">Team Associate above</option>
-                            <option value="2">Operational Associate</option>
+                            <option value="1">All Position</option>
+                            <option value="2">Team Associate above</option>
+                            <option value="3">Operational Associate</option>
                         </select>
                     </div>
 
@@ -403,7 +409,7 @@ function show_qouta() {
                 </div>
             </div>
             <a href="<?php echo base_url();?>/ev_quota/Evs_quota/index">
-            <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
+                <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
             </a>
             <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;" id="saveData"
                 onclick="confirm_save()">SAVE</button>
@@ -491,7 +497,8 @@ function show_qouta() {
 
             <div class="modal-footer">
                 <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick ="main_quota()">Yes</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal"
+                        onclick="main_quota()">Yes</button>
                 </div>
 
             </div>
