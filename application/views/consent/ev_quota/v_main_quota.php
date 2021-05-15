@@ -98,7 +98,7 @@ window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/edit_quota_
 function sent_data(qut_pos) {
 
 console.log(qut_pos);
-// window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
+ window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_pos;
 }
 //function manage_data
 </script>
@@ -148,8 +148,20 @@ console.log(qut_pos);
                                     <td><?php echo $value->qut_type;?> </td>
                                     <td><?php echo $value->qut_pos;?> </td>
                                     <td><?php echo $value->qut_date;?> </td>
+                                   
                                     <td class="center">
-                                        <a onclick ="sent_data(<?php echo $value->qut_pos; ?>)"><button type="submit" class="btn btn-info"><i
+                                     <?php 
+                                    $id_group_pos =0;
+                                    if($value->qut_pos =='Team Associate above'){
+                                        $id_group_pos= 1;
+                                    }else if ($value->qut_pos =='Operational Associate'){
+                                        $id_group_pos= 2;
+                                    }else if ($value->qut_pos =='Staff above'){
+                                        $id_group_pos= 3;
+                                    }
+                                    
+                                    ?>
+                                        <a onclick ="sent_data(<?php echo $id_group_pos;?>)"><button type="submit" class="btn btn-info"><i
                                                     class="ti ti-info-alt"></i></button></a>
                                         <a onclick ="manage_data(<?php echo $value->qut_id;?>)">
                                             <button type="submit" class="btn btn-warning"><i
