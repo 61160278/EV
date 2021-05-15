@@ -408,7 +408,9 @@ function insert_quota_plan() {
                 </div>
 
             </div>
+              <!-- <a  onclick =" manage_data( <?php echo $value->qut_id;?>)>  -->
             <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
+            <!-- </a> -->
             <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
                 onclick="confirm_save()">SAVE</button>
         </div>
