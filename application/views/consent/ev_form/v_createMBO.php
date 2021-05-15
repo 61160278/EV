@@ -291,7 +291,7 @@ function check_mbo() {
     }
     // for i
 
-    if (num == count) {
+    if (num == count && num_sdgs == count) {
         $("#save_mbo").modal('show');
         return true;
     }
@@ -577,7 +577,7 @@ function set_tap() {
                             <!-- tbody -->
                             <tfoot>
                                 <tr>
-                                    <td colspan="2" align="right"><b>Total Weight</b></td>
+                                    <td colspan="3" align="right"><b>Total Weight</b></td>
                                     <td id="show_weight" align="center">0</td>
                                     <td colspan="2"></td>
                                 </tr>

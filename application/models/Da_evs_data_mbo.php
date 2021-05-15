@@ -58,7 +58,7 @@ class Da_evs_data_mbo extends evs_model {
 	function update() {
 	
 	 	$sql = "UPDATE evs_database.evs_data_mbo 
-	 			SET dtm_sdg=? dtm_mbo=?, dtm_weight=?, dtm_emp_id=? , dtm_evs_emp_id=?
+	 			SET dtm_sdg=?, dtm_mbo=?, dtm_weight=?, dtm_emp_id=? , dtm_evs_emp_id=?
 	 			WHERE dtm_id=?";
 		
 		$this->db->query($sql, array($this->dtm_sdg, $this->dtm_mbo, $this->dtm_weight, $this->dtm_emp_id, $this->dtm_evs_emp_id, $this->dtm_id));

@@ -183,6 +183,7 @@ class Evs_form extends MainController_avenxo {
 	function update_mbo_by_emp(){
 		
 		$idMBO = $this->input->post("idMBO");
+		$sdgMBO = $this->input->post("sdgMBO");
 		$dataMBO = $this->input->post("dataMBO");
 		$resultMBO = $this->input->post("resultMBO");
 		$Emp_ID = $this->input->post("Emp_ID");
@@ -193,6 +194,7 @@ class Evs_form extends MainController_avenxo {
 		
 		for($i=0; $i<$count; $i++){
 			$this->dedm->dtm_id = $idMBO[$i];
+			$this->dedm->dtm_sdg = $sdgMBO[$i];
 			$this->dedm->dtm_mbo = $dataMBO[$i];
 			$this->dedm->dtm_weight = $resultMBO[$i];
 			$this->dedm->dtm_emp_id = $Emp_ID;
@@ -291,7 +293,7 @@ class Evs_form extends MainController_avenxo {
 		$this->load->model('M_evs_expected_behavior','mept');
 		$data['info_expected'] = $this->mept->get_all_by_pos();
 
-		$data['info_pos_id'] = $tep->Position_ID;		
+		$data['info_pos_id'] = $tep->Position_ID;	
 		
 		$this->output('/consent/ev_form/v_editMBO',$data);
 
