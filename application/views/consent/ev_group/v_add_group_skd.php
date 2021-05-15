@@ -282,7 +282,7 @@ function select_all_right() {
                         <div class="panel pull-right" id="addtable_filter">
                             <select onchange="manage_group()" id="select" name="example_length" class="form-control"
                                 aria-controls="example">
-                                <option disabled selected> Select Group Contact </option>
+                                <option value="0"selected> Select Group Contact </option>
                                 <?php foreach($gcp_gkd->result() as $row) {?>
                                 <option value="<?php echo $row->gru_id; ?>">
                                     <?php echo $row->gru_name;?>
