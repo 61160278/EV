@@ -74,6 +74,8 @@ class Evs_form extends MainController {
 		$this->load->model('M_evs_set_form_g_and_o','msfg');
 		$this->load->model('M_evs_set_form_mbo','msfm');
 		$this->load->model('M_evs_pattern_and_year','myear');
+		$this->load->model('M_evs_set_form_gcm','msgc');
+		$this->load->model('M_evs_expected_behavior_gcm','mepg');
 
 		$this->midf->idf_pos_id = $pos_id;
 		$data['info_identification'] = $this->midf->get_identification_all_by_pos(); // key component and expected behavior data
@@ -106,6 +108,13 @@ class Evs_form extends MainController {
 		$this->mpf->ps_pos_id = $pos_id;
 		$this->mpf->ps_pay_id = $year_id;
 		$data['info_pos_form'] = $this->mpf->get_all_by_key_by_year(); // position form by year
+
+
+		$data['info_expected_gcm'] = $this->mepg->get_all_by_pos(); // key component and expected behavior data
+
+		$this->msgc->sgc_pos_id = $pos_id;
+		$this->msgc->sgc_pay_id = $year_id;
+		$data['info_gcm_form'] = $this->msgc->get_all_competency_by_indicator(); // ability form
 
 		$this->output("consent/form/v_preview_form",$data);
 	}
