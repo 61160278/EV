@@ -148,9 +148,19 @@ class Evs_form extends MainController_avenxo {
 		echo json_encode($data);
 	}
 	// function get_G_O_by_pos
+
+	function get_sdgs(){
+		
+		$this->load->model('M_evs_sdgs','msdg');
+		$data = $this->msdg->get_all()->result();
+		echo json_encode($data);
+	}
+	// function get_G_O_by_pos
+
 	
 	function save_mbo_by_emp(){
 		
+		$sdgsMBO = $this->input->post("sdgsMBO");
 		$dataMBO = $this->input->post("dataMBO");
 		$resultMBO = $this->input->post("resultMBO");
 		$Emp_ID = $this->input->post("Emp_ID");
@@ -159,6 +169,7 @@ class Evs_form extends MainController_avenxo {
 		$this->load->model('Da_evs_data_mbo','dedm');
 		
 		for($i=0; $i<$count; $i++){
+			$this->dedm->dtm_sdg = $sdgsMBO[$i];
 			$this->dedm->dtm_mbo = $dataMBO[$i];
 			$this->dedm->dtm_weight = $resultMBO[$i];
 			$this->dedm->dtm_emp_id = $Emp_ID;
