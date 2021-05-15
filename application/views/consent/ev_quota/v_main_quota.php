@@ -136,7 +136,7 @@ window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quot
                                 <tr role="row">
                                     <th>Quota</th>
                                     <th>Positon of Quota</th>
-                                    <th>date</th>
+                                    <th>Date</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

@@ -207,7 +207,7 @@ function confirm_save() {
 
 
 function main_quota(){
-    confirm_save();
+  
     window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/index";
 }
 
@@ -492,7 +492,7 @@ function show_qouta() {
                             <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
                                 align="center">
                                 <font size="3px">
-                                    save?</font>
+                                    Do you want to save?</font>
                             </label>
 
                         </div>
