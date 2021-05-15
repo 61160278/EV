@@ -480,7 +480,7 @@ $(document).ready(function() {
                             <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
                                 align="center">
                                 <font size="3px">
-                                    save?</font>
+                                   Do you want to save?</font>
                             </label>
 
                         </div>
