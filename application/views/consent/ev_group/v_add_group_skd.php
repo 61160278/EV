@@ -247,7 +247,7 @@ function select_all_right() {
 </script>
 
 <style>
-    th {
+th {
     text-align: center;
 }
 </style>
@@ -282,7 +282,7 @@ function select_all_right() {
                         <div class="panel pull-right" id="addtable_filter">
                             <select onchange="manage_group()" id="select" name="example_length" class="form-control"
                                 aria-controls="example">
-                                <option value="0"selected> Select Group Contact </option>
+                                <option value="0" selected> Select Group Contact </option>
                                 <?php foreach($gcp_gkd->result() as $row) {?>
                                 <option value="<?php echo $row->gru_id; ?>">
                                     <?php echo $row->gru_name;?>
@@ -303,16 +303,23 @@ function select_all_right() {
 
                             <table id="table1" class="table table-striped table-bordered dataTable no-footer">
                                 <thead>
-                                    <tr style="background-color:lavender; font-family:'Garamond'" align="middle" ><center>
-                                        <th>
-                                            <center>Select
-                                                <br>
-                                                <input type="checkbox" id="toggle" value="select"
-                                                    onclick="select_all()">
-                                        </th>
-                                        <th valign="center"><center>Emp.ID</th>
-                                        <th><center>Name - Surname</th>
-                                        <th><center>Section Code</th>
+                                    <tr style="background-color:lavender; font-family:'Garamond'" align="middle">
+                                        <center>
+                                            <th>
+                                                <center>Select
+                                                    <br>
+                                                    <input type="checkbox" id="toggle" value="select"
+                                                        onclick="select_all()">
+                                            </th>
+                                            <th valign="center">
+                                                <center>Emp.ID
+                                            </th>
+                                            <th>
+                                                <center>Name - Surname
+                                            </th>
+                                            <th>
+                                                <center>Section Code
+                                            </th>
                                     </tr>
                                 </thead>
 
@@ -451,7 +458,6 @@ function select_all_right() {
                         </div>
                         <!-- Transform -->
 
-
                         <div class="DTTT btn-group pull-right mt-sm">
                             &emsp;
                             <a data-toggle="modal" class="btn btn btn-danger" href="#RESIGN">
@@ -488,7 +494,6 @@ function select_all_right() {
     <!-- head panel -->
 </div>
 <!-- head outside -->
-
 </html>
 
 <style>

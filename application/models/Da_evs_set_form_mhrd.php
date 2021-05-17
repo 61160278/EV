@@ -41,10 +41,10 @@ include_once("evs_model.php");
 */
 class Da_evs_set_form_mhrd extends evs_model {		
 	public $sfi_id; // category weight ID
-	public $sfi_weight; // weight of category
+	public $sfi_excel_import; // weight of category
 	public $sfi_pay_id; // year
 	public $sfi_pos_id; // Position ID
-	public $sfi_ctg_id; // category ID
+	public $sfi_itm_id; // category ID
 	
 	function __construct() {
 		parent::__construct();
@@ -53,7 +53,7 @@ class Da_evs_set_form_mhrd extends evs_model {
 	/*
 	* insert
 	* Insert Category Weight into database
-	* @input  sfi_weight, sfi_pos_id, sfi_ctg_id, sfi_pay_id
+	* @input  sfi_excel_import, sfi_pos_id, sfi_itm_id, sfi_pay_id
 	* @output -
 	* @author Jakkarin Pimpaeng
 	* @Create Date 2563-09-28
@@ -61,24 +61,24 @@ class Da_evs_set_form_mhrd extends evs_model {
 	/*
 	* insert
 	* Insert Category Weight into database
-	* @input  sfi_weight, sfi_pos_id, sfi_ctg_id, sfi_pay_id
+	* @input  sfi_excel_import, sfi_pos_id, sfi_itm_id, sfi_pay_id
 	* @output -
 	* @author Jakkarin Pimpaeng
 	* @update Date 2563-12-08
 	*/
 	function insert() {
 	 	 
-	 	$sql = "INSERT INTO evs_database.evs_set_form_mhrd (sfi_weight, sfi_pos_id, sfi_ctg_id, sfi_pay_id)
+	 	$sql = "INSERT INTO evs_database.evs_set_form_mhrd (sfi_excel_import, sfi_pos_id, sfi_itm_id, sfi_pay_id)
 	 			VALUES(?, ?, ?, ?)";
 		 
-	 	$this->db->query($sql, array($this->sfi_weight, $this->sfi_pos_id, $this->sfi_ctg_id, $this->sfi_pay_id));
+	 	$this->db->query($sql, array($this->sfi_excel_import, $this->sfi_pos_id, $this->sfi_itm_id, $this->sfi_pay_id));
 	
 	 }
 
 	/*
 	* update
 	* update Category Weight into database
-	* @input  sfi_weight, sfi_pos_id, sfi_ctg_id, sfi_id, sfi_pay_id
+	* @input  sfi_excel_import, sfi_pos_id, sfi_itm_id, sfi_id, sfi_pay_id
 	* @output -
 	* @author Jakkarin Pimpaeng
 	* @Create Date 2563-09-28
@@ -86,7 +86,7 @@ class Da_evs_set_form_mhrd extends evs_model {
 	/*
 	* update
 	* update Category Weight into database
-	* @input  sfi_weight, sfi_pos_id, sfi_ctg_id, sfi_id, sfi_pay_id
+	* @input  sfi_excel_import, sfi_pos_id, sfi_itm_id, sfi_id, sfi_pay_id
 	* @output -
 	* @author Jakkarin Pimpaeng
 	* @update Date 2563-12-08
@@ -94,10 +94,10 @@ class Da_evs_set_form_mhrd extends evs_model {
 	function update() {
 	 	
 	 	$sql = "UPDATE evs_database.evs_set_form_mhrd 
-	 			SET	sfi_weight=?, sfi_pos_id=?, sfi_ctg_id=?, sfi_pay_id=?
+	 			SET	sfi_excel_import=?, sfi_pos_id=?, sfi_itm_id=?, sfi_pay_id=?
 	 			WHERE sfi_id=?";
 		
-		$this->db->query($sql, array($this->sfi_weight, $this->sfi_pos_id, $this->sfi_ctg_id,$this->sfi_id, $this->sfi_pay_id));
+		$this->db->query($sql, array($this->sfi_excel_import, $this->sfi_pos_id, $this->sfi_itm_id,$this->sfi_id, $this->sfi_pay_id));
 		
 	 }
 
@@ -129,7 +129,7 @@ class Da_evs_set_form_mhrd extends evs_model {
 	* get_by_key
 	* Get Category Weight from database
 	* @input sfi_id
-	* @output sfi_id, sfi_weight, sfi_pay_id, sfi_pos_id, sfi_ctg_id
+	* @output sfi_id, sfi_excel_import, sfi_pay_id, sfi_pos_id, sfi_itm_id
 	* @author Jakkarin Pimpaeng
 	* @Create Date 2563-09-28
 	*/
@@ -137,7 +137,7 @@ class Da_evs_set_form_mhrd extends evs_model {
 	* get_by_key
 	* Get Category Weight from database
 	* @input sfi_id
-	* @output sfi_id, sfi_weight, sfi_pay_id, sfi_pos_id, sfi_ctg_id
+	* @output sfi_id, sfi_excel_import, sfi_pay_id, sfi_pos_id, sfi_itm_id
 	* @author Jakkarin Pimpaeng
 	* @update Date 2563-12-08
 	*/

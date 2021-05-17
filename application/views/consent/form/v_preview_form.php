@@ -309,9 +309,15 @@
                                             aria-selected="true">MBO</a>
                                         <?php   
                                                         }
+                                                     else if($row->ps_form_pe == "MHRD"){
+                                                        $check_tab = 3;  
                                                         //end if form CE
-
-                                                        //start if form PE
+                                                        ?>
+                                        <a class="nav-item nav-link" id="custom-nav-profile-tab" data-toggle="tab"
+                                            href="#custom-nav-mhrd" role="tab" aria-controls="custom-nav-profile"
+                                            aria-selected="true">MHRD</a>
+                                        <?php } //end if form CE        
+                                         //start if form PE
                                                         if($row->ps_form_ce == "ACM"){
                                                     ?>
                                         <a class="nav-item nav-link" id="custom-nav-contact-tab" data-toggle="tab"
@@ -349,6 +355,7 @@
                                                 ?>
                                     </div>
                                 </nav>
+
                                 <div class="tab-content pl-6 pt-4" id="nav-tabContent">
                                     <!-- start form G&O -->
                                     <?php  
@@ -361,8 +368,8 @@
                                         <div class="tab-pane fade" id="custom-nav-g_o" role="tabpanel"
                                             aria-labelledby="custom-nav-home-tab">
                                             <?php
-                                        }
-                                    ?>
+                                           }
+                                            ?>
 
                                             <?php
                                                     $row_g_o = $info_g_and_o_form->row();
@@ -670,107 +677,228 @@
                                                 <!-- End table  -->
                                             </div>
                                             <!-- end form MBO -->
+                                            <?php  
+                                        if($check_tab == 3){ ?>
+                                            <div class="tab-pane fade show active" id="custom-nav-mhrd" role="tabpanel"
+                                                aria-labelledby="custom-nav-home-tab">
+                                                <?php
+                                        }
+                                        else{ ?>
+                                                <div class="tab-pane fade" id="custom-nav-mhrd" role="tabpanel"
+                                                    aria-labelledby="custom-nav-home-tab">
+                                                    <?php
+                                        }
+                                    ?>
+                                                    <table id="table_acm" border="1" class="table table-hover"
+                                                        width="100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th rowspan="3">
+                                                                    <center>
+                                                                        <font color="white">#</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="3">
+                                                                    <center>
+                                                                        <font color="white">Item</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="3">
+                                                                    <center>
+                                                                        <font color="white">description</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="2">
+                                                                    <center>
+                                                                        <font color="white">excel import</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th >
+                                                                    <center>
+                                                                        <font color="white">scort 1
+                                                                        </font>
+                                                                    </center>
+                                                                </th>
+                                                                <th >
+                                                                    <center>
+                                                                        <font color="white">scort 2
+                                                                        </font>
+                                                                    </center>
+                                                                </th>
 
-                                            <!-- start form ACM -->
-                                            <div class="tab-pane fade" id="custom-nav-acm" role="tabpanel"
-                                                aria-labelledby="custom-nav-contact-tab">
-                                                <!-- Start table -->
-                                                <table id="table_acm" border="1" class="table table-hover" width="100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th rowspan="3">
-                                                                <center>
-                                                                    <font color="white">#</font>
-                                                                </center>
-                                                            </th>
-                                                            <th rowspan="3">
-                                                                <center>
-                                                                    <font color="white">Competency</font>
-                                                                </center>
-                                                            </th>
-                                                            <th rowspan="3">
-                                                                <center>
-                                                                    <font color="white">Key component</font>
-                                                                </center>
-                                                            </th>
-                                                            <th rowspan="3">
-                                                                <center>
-                                                                    <font color="white">Expected Behavior</font>
-                                                                </center>
-                                                            </th>
-                                                            <th rowspan="3">
-                                                                <center>
-                                                                    <font color="white">Weight</font>
-                                                                </center>
-                                                            </th>
+                                                            </tr>
 
-                                                            <th colspan="3">
-                                                                <center>
-                                                                    <font color="white">First-half year evaluation
-                                                                    </font>
-                                                                </center>
-                                                            </th>
-                                                            <th colspan="3">
-                                                                <center>
-                                                                    <font color="white">Second-half year evaluation
-                                                                    </font>
-                                                                </center>
-                                                            </th>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php  
+                                                    $index_mhrd = 1;
+                                                    $sum_max_rating = 0;
+                                                    $temp_description = "";
 
-                                                        </tr>
-                                                        <tr>
-                                                            <th>
-                                                                <center>
-                                                                    <font color="white">Result</font>
-                                                                </center>
-                                                            </th>
+                                                    // start foreach
+                                                    foreach($info_mhrd_form->result() as $row){
+                                                    ?>
+                                                            <tr>
+                                                                <td>
+                                                                    <center><?php echo $index_mhrd++; ?></center>
+                                                                </td>
+                                                                <td>
+                                                                    <center>
+                                                                        <?php echo $row->itm_item_detail_en . "<br><font color='blue'>" . $row->itm_item_detail_th ."</font>"; ?>
+                                                                    </center>
+                                                                </td>
 
-                                                            <th rowspan="2">
-                                                                <center>
-                                                                    <font color="white">Score</font>
-                                                                </center>
-                                                            </th>
-                                                            <th rowspan="2">
-                                                                <center>
-                                                                    <font color="white">Max. Rating</font>
-                                                                </center>
-                                                            </th>
-                                                            <th>
-                                                                <center>
-                                                                    <font color="white">Result</font>
-                                                                </center>
-                                                            </th>
+                                                                <td>
+                                                                    <?php foreach($info_description->result() as $row_dep){ 
+                                                                    if($row->sfi_itm_id == $row_dep->dep_itm_id && $temp_description != $row_dep->dep_description_detail_en){
+                                                                        $temp_description = $row_dep->dep_description_detail_en;
+                                                                    ?>
+                                                                    <center>
+                                                                        <?php echo $row_dep->dep_description_detail_en . "<br><font color='blue'>" . $row_dep->dep_description_detail_th ."</font>"; ?>
+                                                                    </center>
+                                                                    <?php }
+                                                                    } ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php 
+                                                                       if($row->sfi_excel_import == 1){
+                                                                        echo '<center><i class="fa fa-check btn-success" style="font-size:30px" ></i></center>';
+                                                                     }
+                                                                    ?>
+                                                                </td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
 
-                                                            <th rowspan="2">
-                                                                <center>
-                                                                    <font color="white">Score</font>
-                                                                </center>
-                                                            </th>
-                                                            <th rowspan="2">
-                                                                <center>
-                                                                    <font color="white">Max. Rating</font>
-                                                                </center>
-                                                            </th>
+                                                            <?php
+                                                    }
+                                                    // end foreach
+                                                    ?>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td colspan="3" ></td>
+                                                       
+                                                                <td >
+                                                                    <center> Score Total </center>
+                                                                </td>
+                                                                <td>
+                                                                </td>
+                                                                <td>
+                                                             
+                                                                </td>
+                                                          
+                                                             
+                                                            </tr>
+                                                       
+                                                        </tfoot>
 
-                                                        </tr>
-                                                        <tr>
-                                                            <th>
-                                                                <center>
-                                                                    <font color="white">[Fill score 1-5]</font>
-                                                                </center>
-                                                            </th>
-                                                            <th>
-                                                                <center>
-                                                                    <font color="white">[Fill score 1-5]</font>
-                                                                </center>
-                                                            </th>
+                                                    </table>
+                                                </div>
 
-                                                        </tr>
+                                                <!-- start form ACM -->
+                                                <div class="tab-pane fade" id="custom-nav-acm" role="tabpanel"
+                                                    aria-labelledby="custom-nav-contact-tab">
+                                                    <!-- Start table -->
+                                                    <table id="table_acm" border="1" class="table table-hover"
+                                                        width="100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th rowspan="3">
+                                                                    <center>
+                                                                        <font color="white">#</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="3">
+                                                                    <center>
+                                                                        <font color="white">Competency</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="3">
+                                                                    <center>
+                                                                        <font color="white">Key component</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="3">
+                                                                    <center>
+                                                                        <font color="white">Expected Behavior</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="3">
+                                                                    <center>
+                                                                        <font color="white">Weight</font>
+                                                                    </center>
+                                                                </th>
+
+                                                                <th colspan="3">
+                                                                    <center>
+                                                                        <font color="white">First-half year
+                                                                            evaluation
+                                                                        </font>
+                                                                    </center>
+                                                                </th>
+                                                                <th colspan="3">
+                                                                    <center>
+                                                                        <font color="white">Second-half year
+                                                                            evaluation
+                                                                        </font>
+                                                                    </center>
+                                                                </th>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <th>
+                                                                    <center>
+                                                                        <font color="white">Result</font>
+                                                                    </center>
+                                                                </th>
+
+                                                                <th rowspan="2">
+                                                                    <center>
+                                                                        <font color="white">Score</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="2">
+                                                                    <center>
+                                                                        <font color="white">Max. Rating</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th>
+                                                                    <center>
+                                                                        <font color="white">Result</font>
+                                                                    </center>
+                                                                </th>
+
+                                                                <th rowspan="2">
+                                                                    <center>
+                                                                        <font color="white">Score</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="2">
+                                                                    <center>
+                                                                        <font color="white">Max. Rating</font>
+                                                                    </center>
+                                                                </th>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <th>
+                                                                    <center>
+                                                                        <font color="white">[Fill score 1-5]</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th>
+                                                                    <center>
+                                                                        <font color="white">[Fill score 1-5]</font>
+                                                                    </center>
+                                                                </th>
+
+                                                            </tr>
 
 
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php  
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php  
                                                     $index_acm = 1;
                                                     $temp_keycomponent = "";
                                                     $temp_expected = "";
@@ -778,183 +906,186 @@
                                                     // start foreach
                                                     foreach($info_ability_form->result() as $row){
                                                     ?>
-                                                        <tr>
-                                                            <td>
-                                                                <center><?php echo $index_acm++; ?></center>
-                                                            </td>
-                                                            <td>
-                                                                <center>
-                                                                    <?php echo $row->cpn_competency_detail_en . "<br><font color='blue'>" . $row->cpn_competency_detail_en ."</font>"; ?>
-                                                                </center>
-                                                            </td>
+                                                            <tr>
+                                                                <td>
+                                                                    <center><?php echo $index_acm++; ?></center>
+                                                                </td>
+                                                                <td>
+                                                                    <center>
+                                                                        <?php echo $row->cpn_competency_detail_en . "<br><font color='blue'>" . $row->cpn_competency_detail_en ."</font>"; ?>
+                                                                    </center>
+                                                                </td>
 
-                                                            <td>
-                                                                <?php foreach($info_expected->result() as $row_ept){ 
+                                                                <td>
+                                                                    <?php foreach($info_expected->result() as $row_ept){ 
                                                                     if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_keycomponent != $row_ept->kcp_key_component_detail_en){
                                                                         $temp_keycomponent = $row_ept->kcp_key_component_detail_en;
                                                                     ?>
-                                                                <center>
-                                                                    <?php echo $row_ept->kcp_key_component_detail_en . "<br><font color='blue'>" . $row_ept->kcp_key_component_detail_en ."</font>"; ?>
-                                                                </center>
-                                                                <?php }
+                                                                    <center>
+                                                                        <?php echo $row_ept->kcp_key_component_detail_en . "<br><font color='blue'>" . $row_ept->kcp_key_component_detail_en ."</font>"; ?>
+                                                                    </center>
+                                                                    <?php }
                                                                     } ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php foreach($info_expected->result() as $row_ept){ 
+                                                                </td>
+                                                                <td>
+                                                                    <?php foreach($info_expected->result() as $row_ept){ 
                                                                     if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_expected != $row_ept->ept_expected_detail_en && $row_ept->ept_pos_id == $info_pos_id){
                                                                         $temp_expected = $row_ept->ept_expected_detail_en;
                                                                     ?>
-                                                                <center>
-                                                                    <?php echo $row_ept->ept_expected_detail_en . "<br><font color='blue'>" . $row_ept->ept_expected_detail_th ."</font>"; ?>
-                                                                </center>
-                                                                <?php }
+                                                                    <center>
+                                                                        <?php echo $row_ept->ept_expected_detail_en . "<br><font color='blue'>" . $row_ept->ept_expected_detail_th ."</font>"; ?>
+                                                                    </center>
+                                                                    <?php }
                                                                     } ?>
-                                                            </td>
-                                                            <td>
-                                                                <center><?php echo $row->sfa_weight; ?></center>
-                                                            </td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td><?php echo ($row->sfa_weight)*5; $sum_max_rating += ($row->sfa_weight)*5;?>
-                                                            </td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td><?php echo ($row->sfa_weight)*5; ?></td>
+                                                                </td>
+                                                                <td>
+                                                                    <center><?php echo $row->sfa_weight; ?></center>
+                                                                </td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><center><?php echo ($row->sfa_weight)*5; $sum_max_rating += ($row->sfa_weight)*5;?></center>
+                                                                </td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><center><?php echo ($row->sfa_weight)*5; ?></td></center>
 
 
-                                                        </tr>
+                                                            </tr>
 
-                                                        <?php
+                                                            <?php
                                                     }
                                                     // end foreach
                                                     ?>
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <td colspan="4" rowspan="2"></td>
-                                                            <td rowspan="2">
-                                                                <center>100</center>
-                                                            </td>
-                                                            <td rowspan="2">
-                                                                <center> Score Total </center>
-                                                            </td>
-                                                            <td></td>
-                                                            <td>
-                                                                <center><?php echo $sum_max_rating;?></center>
-                                                            </td>
-                                                            <td rowspan="2">
-                                                                <center> Score Total </center>
-                                                            </td>
-                                                            <td></td>
-                                                            <td>
-                                                                <center><?php echo $sum_max_rating;?></center>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colspan="2"></td>
-                                                            <td colspan="2"></td>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td colspan="4" rowspan="2"></td>
+                                                                <td rowspan="2">
+                                                                    <center>100</center>
+                                                                </td>
+                                                                <td rowspan="2">
+                                                                    <center> Score Total </center>
+                                                                </td>
+                                                                <td></td>
+                                                                <td>
+                                                                    <center><?php echo $sum_max_rating;?></center>
+                                                                </td>
+                                                                <td rowspan="2">
+                                                                    <center> Score Total </center>
+                                                                </td>
+                                                                <td></td>
+                                                                <td>
+                                                                    <center><?php echo $sum_max_rating;?></center>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2"></td>
+                                                                <td colspan="2"></td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
 
-                                                <!-- End table  -->
-                                            </div>
-                                            <!-- end form ACM -->
+                                                    <!-- End table  -->
+                                                </div>
+                                                <!-- end form ACM -->
 
-                                            <!-- start attitude form -->
-                                            <div class="tab-pane fade" id="custom-nav-attitude" role="tabpanel"
-                                                aria-labelledby="custom-nav-contact-tab">
-                                                <table id="table_acm" border="1" class="table table-hover" width="100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th rowspan="3">
-                                                                <center>
-                                                                    <font color="white">#</font>
-                                                                </center>
-                                                            </th>
-                                                            <th rowspan="3">
-                                                                <center>
-                                                                    <font color="white">Category</font>
-                                                                </center>
-                                                            </th>
-                                                            <th rowspan="3">
-                                                                <center>
-                                                                    <font color="white">Identification</font>
-                                                                </center>
-                                                            </th>
-                                                            <th rowspan="3">
-                                                                <center>
-                                                                    <font color="white">Weight</font>
-                                                                </center>
-                                                            </th>
+                                                <!-- start attitude form -->
+                                                <div class="tab-pane fade" id="custom-nav-attitude" role="tabpanel"
+                                                    aria-labelledby="custom-nav-contact-tab">
+                                                    <table id="table_acm" border="1" class="table table-hover"
+                                                        width="100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th rowspan="3">
+                                                                    <center>
+                                                                        <font color="white">#</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="3">
+                                                                    <center>
+                                                                        <font color="white">Category</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="3">
+                                                                    <center>
+                                                                        <font color="white">Identification</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="3">
+                                                                    <center>
+                                                                        <font color="white">Weight</font>
+                                                                    </center>
+                                                                </th>
 
-                                                            <th colspan="3">
-                                                                <center>
-                                                                    <font color="white">First-half year evaluation
-                                                                    </font>
-                                                                </center>
-                                                            </th>
-                                                            <th colspan="3">
-                                                                <center>
-                                                                    <font color="white">Second-half year evaluation
-                                                                    </font>
-                                                                </center>
-                                                            </th>
+                                                                <th colspan="3">
+                                                                    <center>
+                                                                        <font color="white">First-half year
+                                                                            evaluation
+                                                                        </font>
+                                                                    </center>
+                                                                </th>
+                                                                <th colspan="3">
+                                                                    <center>
+                                                                        <font color="white">Second-half year
+                                                                            evaluation
+                                                                        </font>
+                                                                    </center>
+                                                                </th>
 
-                                                        </tr>
-                                                        <tr>
-                                                            <th>
-                                                                <center>
-                                                                    <font color="white">Result</font>
-                                                                </center>
-                                                            </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>
+                                                                    <center>
+                                                                        <font color="white">Result</font>
+                                                                    </center>
+                                                                </th>
 
-                                                            <th rowspan="2">
-                                                                <center>
-                                                                    <font color="white">Score</font>
-                                                                </center>
-                                                            </th>
-                                                            <th rowspan="2">
-                                                                <center>
-                                                                    <font color="white">Max. Rating</font>
-                                                                </center>
-                                                            </th>
-                                                            <th>
-                                                                <center>
-                                                                    <font color="white">Result</font>
-                                                                </center>
-                                                            </th>
+                                                                <th rowspan="2">
+                                                                    <center>
+                                                                        <font color="white">Score</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="2">
+                                                                    <center>
+                                                                        <font color="white">Max. Rating</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th>
+                                                                    <center>
+                                                                        <font color="white">Result</font>
+                                                                    </center>
+                                                                </th>
 
-                                                            <th rowspan="2">
-                                                                <center>
-                                                                    <font color="white">Score</font>
-                                                                </center>
-                                                            </th>
-                                                            <th rowspan="2">
-                                                                <center>
-                                                                    <font color="white">Max. Rating</font>
-                                                                </center>
-                                                            </th>
+                                                                <th rowspan="2">
+                                                                    <center>
+                                                                        <font color="white">Score</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="2">
+                                                                    <center>
+                                                                        <font color="white">Max. Rating</font>
+                                                                    </center>
+                                                                </th>
 
-                                                        </tr>
-                                                        <tr>
-                                                            <th>
-                                                                <center>
-                                                                    <font color="white">[Fill score 1-5]</font>
-                                                                </center>
-                                                            </th>
-                                                            <th>
-                                                                <center>
-                                                                    <font color="white">[Fill score 1-5]</font>
-                                                                </center>
-                                                            </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>
+                                                                    <center>
+                                                                        <font color="white">[Fill score 1-5]</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th>
+                                                                    <center>
+                                                                        <font color="white">[Fill score 1-5]</font>
+                                                                    </center>
+                                                                </th>
 
-                                                        </tr>
+                                                            </tr>
 
 
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php  
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php  
                                                     $index_attitude = 1;
                                                     $sum_max_rating = 0;
                                                     $temp_identification = "";
@@ -962,182 +1093,187 @@
                                                     // start foreach
                                                     foreach($info_attitude_form->result() as $row){
                                                     ?>
-                                                        <tr>
-                                                            <td>
-                                                                <center><?php echo $index_attitude++; ?></center>
-                                                            </td>
-                                                            <td>
-                                                                <center>
-                                                                    <?php echo $row->ctg_category_detail_en . "<br><font color='blue'>" . $row->ctg_category_detail_th ."</font>"; ?>
-                                                                </center>
-                                                            </td>
+                                                            <tr>
+                                                                <td>
+                                                                    <center><?php echo $index_attitude++; ?>
+                                                                    </center>
+                                                                </td>
+                                                                <td>
+                                                                    <center>
+                                                                        <?php echo $row->ctg_category_detail_en . "<br><font color='blue'>" . $row->ctg_category_detail_th ."</font>"; ?>
+                                                                    </center>
+                                                                </td>
 
-                                                            <td>
-                                                                <?php foreach($info_identification->result() as $row_idf){ 
+                                                                <td>
+                                                                    <?php foreach($info_identification->result() as $row_idf){ 
                                                                     if($row->sft_ctg_id == $row_idf->idf_ctg_id && $temp_identification != $row_idf->idf_identification_detail_en){
                                                                         $temp_identification = $row_idf->idf_identification_detail_en;
                                                                     ?>
-                                                                <center>
-                                                                    <?php echo $row_idf->idf_identification_detail_en . "<br><font color='blue'>" . $row_idf->idf_identification_detail_th ."</font>"; ?>
-                                                                </center>
-                                                                <?php }
+                                                                    <center>
+                                                                        <?php echo $row_idf->idf_identification_detail_en . "<br><font color='blue'>" . $row_idf->idf_identification_detail_th ."</font>"; ?>
+                                                                    </center>
+                                                                    <?php }
                                                                     } ?>
-                                                            </td>
-                                                            <td>
-                                                                <center><?php echo $row->sft_weight; ?></center>
-                                                            </td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td>
-                                                                <center>
-                                                                    <?php echo ($row->sft_weight)*5;  $sum_max_rating += ($row->sft_weight)*5;?>
-                                                                </center>
-                                                            </td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td>
-                                                                <center><?php echo ($row->sft_weight)*5; ?></center>
-                                                            </td>
+                                                                </td>
+                                                                <td>
+                                                                    <center><?php echo $row->sft_weight; ?></center>
+                                                                </td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td>
+                                                                    <center>
+                                                                        <?php echo ($row->sft_weight)*5;  $sum_max_rating += ($row->sft_weight)*5;?>
+                                                                    </center>
+                                                                </td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td>
+                                                                    <center><?php echo ($row->sft_weight)*5; ?>
+                                                                    </center>
+                                                                </td>
 
 
-                                                        </tr>
+                                                            </tr>
 
-                                                        <?php
+                                                            <?php
                                                     }
                                                     // end foreach
                                                     ?>
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <td colspan="3" rowspan="2"></td>
-                                                            <td rowspan="2">
-                                                                <center>100</center>
-                                                            </td>
-                                                            <td rowspan="2">
-                                                                <center> Score Total </center>
-                                                            </td>
-                                                            <td></td>
-                                                            <td>
-                                                                <center><?php echo $sum_max_rating;?></center>
-                                                            </td>
-                                                            <td rowspan="2">
-                                                                <center> Score Total </center>
-                                                            </td>
-                                                            <td></td>
-                                                            <td>
-                                                                <center><?php echo $sum_max_rating;?></center>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colspan="2"></td>
-                                                            <td colspan="2"></td>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
-                                            </div>
-                                            <!-- end attitude form -->
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td colspan="3" rowspan="2"></td>
+                                                                <td rowspan="2">
+                                                                    <center>100</center>
+                                                                </td>
+                                                                <td rowspan="2">
+                                                                    <center> Score Total </center>
+                                                                </td>
+                                                                <td></td>
+                                                                <td>
+                                                                    <center><?php echo $sum_max_rating;?></center>
+                                                                </td>
+                                                                <td rowspan="2">
+                                                                    <center> Score Total </center>
+                                                                </td>
+                                                                <td></td>
+                                                                <td>
+                                                                    <center><?php echo $sum_max_rating;?></center>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2"></td>
+                                                                <td colspan="2"></td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                                <!-- end attitude form -->
 
 
-                                            <!-- end gcm form -->
-                                            <div class="tab-pane fade" id="custom-nav-gcm" role="tabpanel"
-                                                aria-labelledby="custom-nav-contact-tab">
-                                                <!-- Start table -->
-                                                <table id="table_acm" border="1" class="table table-hover" width="100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th rowspan="3">
-                                                                <center>
-                                                                    <font color="white">#</font>
-                                                                </center>
-                                                            </th>
-                                                            <th rowspan="3">
-                                                                <center>
-                                                                    <font color="white">Competency</font>
-                                                                </center>
-                                                            </th>
-                                                            <th rowspan="3">
-                                                                <center>
-                                                                    <font color="white">Key component</font>
-                                                                </center>
-                                                            </th>
-                                                            <th rowspan="3">
-                                                                <center>
-                                                                    <font color="white">Expected Behavior</font>
-                                                                </center>
-                                                            </th>
-                                                            <th rowspan="3">
-                                                                <center>
-                                                                    <font color="white">Weight</font>
-                                                                </center>
-                                                            </th>
+                                                <!-- end gcm form -->
+                                                <div class="tab-pane fade" id="custom-nav-gcm" role="tabpanel"
+                                                    aria-labelledby="custom-nav-contact-tab">
+                                                    <!-- Start table -->
+                                                    <table id="table_acm" border="1" class="table table-hover"
+                                                        width="100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th rowspan="3">
+                                                                    <center>
+                                                                        <font color="white">#</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="3">
+                                                                    <center>
+                                                                        <font color="white">Competency</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="3">
+                                                                    <center>
+                                                                        <font color="white">Key component</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="3">
+                                                                    <center>
+                                                                        <font color="white">Expected Behavior</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="3">
+                                                                    <center>
+                                                                        <font color="white">Weight</font>
+                                                                    </center>
+                                                                </th>
 
-                                                            <th colspan="3">
-                                                                <center>
-                                                                    <font color="white">First-half year evaluation
-                                                                    </font>
-                                                                </center>
-                                                            </th>
-                                                            <th colspan="3">
-                                                                <center>
-                                                                    <font color="white">Second-half year evaluation
-                                                                    </font>
-                                                                </center>
-                                                            </th>
+                                                                <th colspan="3">
+                                                                    <center>
+                                                                        <font color="white">First-half year
+                                                                            evaluation
+                                                                        </font>
+                                                                    </center>
+                                                                </th>
+                                                                <th colspan="3">
+                                                                    <center>
+                                                                        <font color="white">Second-half year
+                                                                            evaluation
+                                                                        </font>
+                                                                    </center>
+                                                                </th>
 
-                                                        </tr>
-                                                        <tr>
-                                                            <th>
-                                                                <center>
-                                                                    <font color="white">Result</font>
-                                                                </center>
-                                                            </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>
+                                                                    <center>
+                                                                        <font color="white">Result</font>
+                                                                    </center>
+                                                                </th>
 
-                                                            <th rowspan="2">
-                                                                <center>
-                                                                    <font color="white">Score</font>
-                                                                </center>
-                                                            </th>
-                                                            <th rowspan="2">
-                                                                <center>
-                                                                    <font color="white">Max. Rating</font>
-                                                                </center>
-                                                            </th>
-                                                            <th>
-                                                                <center>
-                                                                    <font color="white">Result</font>
-                                                                </center>
-                                                            </th>
+                                                                <th rowspan="2">
+                                                                    <center>
+                                                                        <font color="white">Score</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="2">
+                                                                    <center>
+                                                                        <font color="white">Max. Rating</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th>
+                                                                    <center>
+                                                                        <font color="white">Result</font>
+                                                                    </center>
+                                                                </th>
 
-                                                            <th rowspan="2">
-                                                                <center>
-                                                                    <font color="white">Score</font>
-                                                                </center>
-                                                            </th>
-                                                            <th rowspan="2">
-                                                                <center>
-                                                                    <font color="white">Max. Rating</font>
-                                                                </center>
-                                                            </th>
+                                                                <th rowspan="2">
+                                                                    <center>
+                                                                        <font color="white">Score</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="2">
+                                                                    <center>
+                                                                        <font color="white">Max. Rating</font>
+                                                                    </center>
+                                                                </th>
 
-                                                        </tr>
-                                                        <tr>
-                                                            <th>
-                                                                <center>
-                                                                    <font color="white">[Fill score 1-5]</font>
-                                                                </center>
-                                                            </th>
-                                                            <th>
-                                                                <center>
-                                                                    <font color="white">[Fill score 1-5]</font>
-                                                                </center>
-                                                            </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>
+                                                                    <center>
+                                                                        <font color="white">[Fill score 1-5]</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th>
+                                                                    <center>
+                                                                        <font color="white">[Fill score 1-5]</font>
+                                                                    </center>
+                                                                </th>
 
-                                                        </tr>
+                                                            </tr>
 
 
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php  
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php  
                                                     $index_acm = 1;
                                                     $temp_keycomponent = "";
                                                     $temp_expected = "";
@@ -1145,120 +1281,120 @@
                                                     // start foreach
                                                     foreach($info_gcm_form->result() as $row){
                                                     ?>
-                                                        <tr>
-                                                            <td>
-                                                                <center><?php echo $index_acm++; ?></center>
-                                                            </td>
-                                                            <td>
-                                                                <center>
-                                                                    <?php echo $row->cpg_competency_detail_en . "<br><font color='blue'>" . $row->cpg_competency_detail_en ."</font>"; ?>
-                                                                </center>
-                                                            </td>
+                                                            <tr>
+                                                                <td>
+                                                                    <center><?php echo $index_acm++; ?></center>
+                                                                </td>
+                                                                <td>
+                                                                    <center>
+                                                                        <?php echo $row->cpg_competency_detail_en . "<br><font color='blue'>" . $row->cpg_competency_detail_en ."</font>"; ?>
+                                                                    </center>
+                                                                </td>
 
-                                                            <td>
-                                                                <?php foreach($info_expected_gcm->result() as $row_epg){ 
+                                                                <td>
+                                                                    <?php foreach($info_expected_gcm->result() as $row_epg){ 
                                                                     if($row->sgc_cpg_id == $row_epg->kcg_cpg_id && $temp_keycomponent != $row_epg->kcg_key_component_detail_en){
                                                                         $temp_keycomponent = $row_epg->kcg_key_component_detail_en;
                                                                     ?>
-                                                                <center>
-                                                                    <?php echo $row_epg->kcg_key_component_detail_en . "<br><font color='blue'>" . $row_epg->kcg_key_component_detail_en ."</font>"; ?>
-                                                                </center>
-                                                                <?php }
+                                                                    <center>
+                                                                        <?php echo $row_epg->kcg_key_component_detail_en . "<br><font color='blue'>" . $row_epg->kcg_key_component_detail_en ."</font>"; ?>
+                                                                    </center>
+                                                                    <?php }
                                                                     } ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php foreach($info_expected_gcm->result() as $row_epg){ 
+                                                                </td>
+                                                                <td>
+                                                                    <?php foreach($info_expected_gcm->result() as $row_epg){ 
                                                                     if($row->sgc_cpg_id == $row_epg->kcg_cpg_id && $temp_expected != $row_epg->epg_expected_detail_en && $row_epg->epg_pos_id == $info_pos_id){
                                                                         $temp_expected = $row_epg->epg_expected_detail_en;
                                                                     ?>
-                                                                <center>
-                                                                    <?php echo $row_epg->epg_expected_detail_en . "<br><font color='blue'>" . $row_epg->epg_expected_detail_th ."</font>"; ?>
-                                                                </center>
-                                                                <?php }
+                                                                    <center>
+                                                                        <?php echo $row_epg->epg_expected_detail_en . "<br><font color='blue'>" . $row_epg->epg_expected_detail_th ."</font>"; ?>
+                                                                    </center>
+                                                                    <?php }
                                                                     } ?>
-                                                            </td>
-                                                            <td>
-                                                                <center><?php echo $row->sgc_weight; ?></center>
-                                                            </td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td><?php echo ($row->sgc_weight)*5; $sum_max_rating += ($row->sgc_weight)*5;?>
-                                                            </td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td><?php echo ($row->sgc_weight)*5; ?></td>
+                                                                </td>
+                                                                <td>
+                                                                    <center><?php echo $row->sgc_weight; ?></center>
+                                                                </td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><center><?php echo ($row->sgc_weight)*5; $sum_max_rating += ($row->sgc_weight)*5;?></center>
+                                                                </td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><center><?php echo ($row->sgc_weight)*5; ?></center></td>
 
 
-                                                        </tr>
+                                                            </tr>
 
-                                                        <?php
+                                                            <?php
                                                     }
                                                     // end foreach
                                                     ?>
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <td colspan="4" rowspan="2"></td>
-                                                            <td rowspan="2">
-                                                                <center>100</center>
-                                                            </td>
-                                                            <td rowspan="2">
-                                                                <center> Score Total </center>
-                                                            </td>
-                                                            <td></td>
-                                                            <td>
-                                                                <center><?php echo $sum_max_rating;?></center>
-                                                            </td>
-                                                            <td rowspan="2">
-                                                                <center> Score Total </center>
-                                                            </td>
-                                                            <td></td>
-                                                            <td>
-                                                                <center><?php echo $sum_max_rating;?></center>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colspan="2"></td>
-                                                            <td colspan="2"></td>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td colspan="4" rowspan="2"></td>
+                                                                <td rowspan="2">
+                                                                    <center>100</center>
+                                                                </td>
+                                                                <td rowspan="2">
+                                                                    <center> Score Total </center>
+                                                                </td>
+                                                                <td></td>
+                                                                <td>
+                                                                    <center><?php echo $sum_max_rating;?></center>
+                                                                </td>
+                                                                <td rowspan="2">
+                                                                    <center> Score Total </center>
+                                                                </td>
+                                                                <td></td>
+                                                                <td>
+                                                                    <center><?php echo $sum_max_rating;?></center>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2"></td>
+                                                                <td colspan="2"></td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
 
-                                                <!-- End table  -->
+                                                    <!-- End table  -->
+                                                </div>
+                                                <!-- end form ACM -->
+
+
+
+
+
                                             </div>
-                                            <!-- end form ACM -->
-
-
-
-
 
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- /# column -->
+                            <!-- /# column -->
 
 
-                        <br><br>
-                        <!-- End Back to main form by position  -->
-                        <div class="row">
-                            <div class="col-sm-12" align="right">
-                                <a
-                                    href="<?php echo base_url(); ?>/Evs_form/manage_form/<?php $row = $info_pos->row(); echo $row->psl_id; ?>">
-                                    <button type="button" class="btn btn-secondary float-right">Back</button>
-                                </a>
-
-                            </div>
+                            <br><br>
                             <!-- End Back to main form by position  -->
-                        </div>
-                        <hr>
+                            <div class="row">
+                                <div class="col-sm-12" align="right">
+                                    <a
+                                        href="<?php echo base_url(); ?>/Evs_form/manage_form/<?php $row = $info_pos->row(); echo $row->psl_id; ?>">
+                                        <button type="button" class="btn btn-secondary float-right">Back</button>
+                                    </a>
 
+                                </div>
+                                <!-- End Back to main form by position  -->
+                            </div>
+                            <hr>
+
+                        </div>
                     </div>
+                    <!-- End Card -->
+                    <br>
                 </div>
-                <!-- End Card -->
-                <br>
             </div>
-        </div>
-        <!--End Page Content -->
+            <!--End Page Content -->

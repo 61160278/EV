@@ -90,15 +90,15 @@ function Delete_data(qut_id) {
 
 function edit_data(qut_id) {
 
-console.log(qut_id);
-window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/edit_quota_ca/" + qut_id;
+    console.log(qut_id);
+    window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/edit_quota_ca/" + qut_id;
 }
 //function edit_data
 
 function manage_data(qut_id) {
 
-console.log(qut_id);
-window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
+    console.log(qut_id);
+    window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
 }
 </script>
 <div class="col-md-12">
@@ -147,15 +147,15 @@ window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quot
                                     <td><?php echo $value->qut_type;?> </td>
                                     <td><?php echo $value->qut_pos;?> </td>
                                     <td><?php echo $value->qut_date;?> </td>
-                                   
+
                                     <td class="center">
 
-                                    <!-- <a href="<?php //echo base_url();?>/ev_quota/Evs_quota/manage_quota">      -->
-                                   
-                                    <a onclick =" manage_data( <?php echo $value->qut_id;?>)">
-                                        <button type="submit" class="btn btn-info"><i
+                                        <!-- <a href="<?php //echo base_url();?>/ev_quota/Evs_quota/manage_quota">      -->
+
+                                        <a onclick=" manage_data( <?php echo $value->qut_id;?>)">
+                                            <button type="submit" class="btn btn-info"><i
                                                     class="ti ti-info-alt"></i></button></a>
-                                        <a onclick ="edit_data(<?php echo $value->qut_id;?>)">
+                                        <a onclick="edit_data(<?php echo $value->qut_id;?>)">
                                             <button type="submit" class="btn btn-warning"><i
                                                     class="ti ti-pencil-alt "></i></button></a>
                                         <a data-toggle="modal" href="#delete<?php echo $value->qut_id;?>"><button
@@ -176,10 +176,40 @@ window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quot
                 </div>
 
             </div>
-
+            <legend></legend>
+            <h3>Description</h3>
+            <table height="150px">
+                <tr>
+                    <td height="20" width="50px"><button type="submit" class="btn btn-info"><i
+                                class="ti ti-info-alt"></i></button></td>
+                    <td width="50px">
+                        <h4>:</h4>
+                    </td>
+                    <td width="150px">
+                        <h4>Manage quota</h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></td>
+                    <td width="50px">
+                        <h4>:</h4>
+                    </td>
+                    <td>
+                        <h4>Edit quota</h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td><button type="submit" class="btn btn-danger"><i class="ti ti-trash"></i></button></td>
+                    <td width="50px">
+                        <h4>:</h4>
+                    </td>
+                    <td>
+                        <h4>Delete quota</h4>
+                    </td>
+                </tr>
+            </table>
         </div>
         <!--panel-body-->
-
     </div><!-- panel-indigo -->
 </div><!-- col-md-12 -->
 
