@@ -145,9 +145,11 @@ class Evs_quota extends MainController_avenxo {
 	*/
 	function detail_quota($data_sent)
 	{
+
 		$qut_id = substr($data_sent,0,strpos($data_sent,":"));
 		$pos_id = substr($data_sent,strpos($data_sent,":")+1);
-		
+
+	
 		$this->load->model('M_evs_quota','mqut');
 		$this->mqut->qut_id = $qut_id;
 		$data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota

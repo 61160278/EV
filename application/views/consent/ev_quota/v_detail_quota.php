@@ -291,6 +291,7 @@ function insert_quota_plan() {
         </div>
         <div class="panel-body" style="">
 
+
             <div class="row">
             <table>
                 <?php foreach($manage_qut_data as $value){ ?>

@@ -127,13 +127,11 @@ function show_data() {
                         table_data += '<td>'
                         table_data += row.Dep_Name
                         table_data += '</td>'
-                        if (qut_pos == 'Operational Associate') {
-                            if (row.Position_Level == 1) {
+
                                 table_data += '<td>'
                                 table_data += row.Position_name
                                 table_data += '</td>'
-                            }
-                        }
+                     
                         <?php foreach($manage_qut_data as $value){ ?>
                         table_data += '<td>'
                         table_data +=

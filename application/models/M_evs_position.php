@@ -187,5 +187,26 @@ class M_evs_position extends Da_evs_position {
 			$query = $this->db->query($sql);
 			return $query;
 	}
+	// function get_com_dep_pos_detail(){
+	// 	$sql = "SELECT company.Company_name,department.Dep_Name,position.Position_name
+	// 	FROM dbmc.employee 
+	// 	LEFT JOIN dbmc.position 
+	// 	ON employee.Position_ID = position.Position_ID 
+	// 	LEFT JOIN dbmc.position_level 
+	// 	ON position.position_level_id = position_level.psl_id 
+	// 	LEFT JOIN dbmc.sectioncode 
+	// 	ON employee.Sectioncode_ID = sectioncode.Sectioncode 
+	// 	LEFT JOIN dbmc.department 
+	// 	ON sectioncode.dep_id = department.Dep_id 
+	// 	LEFT JOIN dbmc.company 
+	// 	ON department.Company_ID = company.Company_ID
+    //     WHERE position.Position_ID = ?
+    //     GROUP BY position.Position_ID";
+	// 		$query = $this->db->query($sql, array($this->Position_ID));
+	// 	return $query;
+	// }
+
+
+
 } 
 ?>
