@@ -126,18 +126,18 @@ class Evs_mhrd_form extends MainController {
 		$index = $this->input->post('index'); // sum of index
 		$year_id = $this->input->post('value_year_id'); // year now ID
 		$arr_item = []; // array item data
-		$arr_weight = []; // array weight of item
+		$checkbox_ex = []; // array weight of item
 
 		//start for loop
 		for($i=0 ; $i<$index ; $i++){
 			$arr_item[$i] = $this->input->post('arr_item['.$i.']');
-			$arr_weight[$i] = $this->input->post('arr_weight['.$i.']');
+			$checkbox_ex[$i] = $this->input->post('checkbox_ex['.$i.']');
 		}
 		//end for loop
 
 		//start for loop
 		for($i=0 ; $i<$index ; $i++){
-			$this->dsfi->sfi_weight = $arr_weight[$i];
+			$this->dsfi->sfi_excel_import = $checkbox_ex[$i];
 			$this->dsfi->sfi_itm_id = $arr_item[$i];
 			$this->dsfi->sfi_pos_id = $pos_id;
 			$this->dsfi->sfi_pay_id = $year_id;
@@ -220,12 +220,12 @@ class Evs_mhrd_form extends MainController {
 		$lenght_of_data = $this->input->post('index'); // sum of index
 		$year_id = $this->input->post('value_year_id'); // year now ID
 		$arr_item = []; // array item data
-		$arr_weight = []; // array weight of item
+		$checkbox_ex = []; // array weight of item
 		
 		//start for loop
 		for($i=0 ; $i<$lenght_of_data ; $i++){
 			$arr_item[$i] = $this->input->post('arr_item['.$i.']');
-			$arr_weight[$i] = $this->input->post('arr_weight['.$i.']');
+			$checkbox_ex[$i] = $this->input->post('checkbox_ex['.$i.']');
 		}
 		//end for loop
 
@@ -236,7 +236,7 @@ class Evs_mhrd_form extends MainController {
 		for($i=0 ; $i<$lenght_of_data ; $i++){
 
 			//start if
-				$this->dsfi->sfi_weight = $arr_weight[$i];
+				$this->dsfi->sfi_excel_import = $checkbox_ex[$i];
 				$this->dsfi->sfi_pos_id = $pos_id;
 				$this->dsfi->sfi_itm_id = $arr_item[$i];
 				$this->dsfi->sfi_pay_id = $year_id;
@@ -429,8 +429,8 @@ class Evs_mhrd_form extends MainController {
 
 		//start for loop
 		for($j = 0; $j < $update_pos_length_number_arry; $j++){
-			$this->ddep->dep_description_detail_en = $this->input->post('arr_update_iden_en['.$j.']');
-			$this->ddep->dep_description_detail_th = $this->input->post('arr_update_iden_th['.$j.']');
+			$this->ddep->dep_description_detail_en = $this->input->post('arr_update_dep_en['.$j.']');
+			$this->ddep->dep_description_detail_th = $this->input->post('arr_update_dep_th['.$j.']');
 			$this->ddep->dep_pos_id = $this->input->post('arr_update_pos['.$j.']');
 		 	$this->ddep->dep_itm_id = $itm_item_id;
 			$this->ddep->dep_id = $this->input->post('arr_description_id['.$j.']');
@@ -456,8 +456,8 @@ class Evs_mhrd_form extends MainController {
 
 		//start for loop
 		for($j = 0; $j < $add_pos_length_number_arry; $j++){
-			$this->ddep->dep_description_detail_en = $this->input->post('arr_add_iden_en['.$j.']');
-			$this->ddep->dep_description_detail_th = $this->input->post('arr_add_iden_th['.$j.']');
+			$this->ddep->dep_description_detail_en = $this->input->post('arr_add_dep_en['.$j.']');
+			$this->ddep->dep_description_detail_th = $this->input->post('arr_add_dep_th['.$j.']');
 			$this->ddep->dep_pos_id = $this->input->post('arr_add_pos['.$j.']');
 		 	$this->ddep->dep_itm_id = $item_id;
 
@@ -506,16 +506,16 @@ class Evs_mhrd_form extends MainController {
 
 		//start for loop
 		for($j = 0; $j < $index_data; $j++){
-			$this->ddep->dep_description_detail_en = $this->input->post('arr_add_iden_en['.$j.']');
-			$this->ddep->dep_description_detail_th = $this->input->post('arr_add_iden_th['.$j.']');
+			$this->ddep->dep_description_detail_en = $this->input->post('arr_add_dep_en['.$j.']');
+			$this->ddep->dep_description_detail_th = $this->input->post('arr_add_dep_th['.$j.']');
 			$this->ddep->dep_pos_id = $pos_id;
 		 	$this->ddep->dep_itm_id = $item_id;
 	
 		  $this->ddep->insert();
 		}
 		//end for loop
-		print_r($this->input->post('arr_add_iden_en[]'));
-		print_r($this->input->post('arr_add_iden_th[]'));
+		print_r($this->input->post('arr_add_dep_en[]'));
+		print_r($this->input->post('arr_add_dep_th[]'));
 		print_r($pos_id);
 		header("Location: " . base_url() . "Evs_mhrd_form/indicator_mhrd_table/". $pos_id);
 	  

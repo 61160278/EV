@@ -1,7 +1,7 @@
 <?php
 /*
-* v_attitude_form_edit
-* Display form attitude management
+* v_mhrd_form_edit
+* Display form mhrd management
 * @input  -  
 * @output -
 * @author Tanadon Tangjaimongkhon
@@ -24,92 +24,28 @@ var sum_weight = 0; // sumary of weight
 var arr_weight_check = []; // check weight 
 var arr_save_index_arr_add_pos = [];
 
-/*
- * check_weight_all
- * Display alert sumary of weight
- * @input
- * @output sumary of weight
- * @author Tanadon Tangjaimongkhon
- * @Create Date 2563-11-24
- */
-function check_weight_all() {
-
-
-    sum_weight_all = document.getElementById('value_total_weight').value;
-
-    //start if-else
-    if (sum_weight_all == 100) {
-        return true;
-    } else if (sum_weight_all != 100) {
-        var alert = "";
-        alert += '<div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">';
-        alert += '<span class="badge badge-pill badge-danger">Wrong</span>';
-        alert += ' Total Weight should be value as 100%';
-        alert += '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
-        alert += '<span aria-hidden="true">&times;</span>';
-        alert += '</button>';
-        alert += '</div>';
-        $('#success_save').html(alert);
-        return false;
-    }
-    //end if-else
-
-}
-/*
- * total_weight
- * Display -
- * @input  -
- * @output -
- * @author  Tanadon Tangjaimongkhon 
- * @Create Date 2563-10-29
- */
-function total_weight() {
-
-    sum_weight = 0;
-    //start for loop
-    table_arr_for_count = document.getElementsByName("arr_weight").length
-    for (i = 0; i < table_arr_for_count; i++) {
-        arr_weight_check = document.getElementsByName("arr_weight")[i].value;
-        Number(arr_weight_check);
-        sum_weight += Number(arr_weight_check);
-        Number(sum_weight);
-        console.log(index);
-    }
-    //end for loop
-
-    if (sum_weight == 100) {
-        document.getElementById('value_total_weight').value = sum_weight;
-        document.getElementById('value_total_weight').style.color = "black"
-    } else {
-        document.getElementById('value_total_weight').value = sum_weight;
-        document.getElementById('value_total_weight').style.color = "red"
-    }
-
-
-}
-//total_weight
 
 
 
 /*
- * identification_data
+ * description_data
  * Display -
  * @input  -
  * @output -
  * @author Chackkarin Pimpaeng
  * @Create Date 2564-04-29
  */
-function identification_data() {
+function description_data() {
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_attitude_form/get_identification_weight_sort",
+        url: "<?php echo base_url(); ?>/Evs_mhrd_form/get_description_weight_sort",
         data: {
             "pos_id": value_pos_id
         },
         dataType: "JSON",
         success: function(data) {
-            identification = data;
-            console.log(identification);
+            description = data;
+            console.log(description);
             data_table();
         }
 
@@ -131,7 +67,7 @@ function identification_data() {
 function data_table() {
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_attitude_form/get_category_weight_sort",
+        url: "<?php echo base_url(); ?>/Evs_mhrd_form/get_item_weight_sort",
         data: {
             "pos_id": value_pos_id,
             "year_id" : value_year_id
@@ -140,44 +76,44 @@ function data_table() {
         success: function(data) {
             console.log(data);
             var table = '' // value of show on table
-            var table_iden = '' // value identification data of show on table
-            var arr_category_id = [] // array value category ID
-            var arr_iden_id = [] // array value identification ID
-            var temp_category_name_en = ""; //backup category name en
-            var temp_category_name_th = ""; //backup category name th
-            var table_ready_score = ''; // value tfoot table HTML
-            var arr_temp_ctg_id = []
+            var table_iden = '' // value description data of show on table
+            var arr_item_id = [] // array value item ID
+            var arr_iden_id = [] // array value description ID
+            var temp_item_name_en = ""; //backup item name en
+            var temp_item_name_th = ""; //backup item name th
+      
+            var arr_temp_itm_id = []
 
             //start foreach
             data.forEach((row, i) => {
                 arr_save_index_arr_add_pos.push(index - 1);
-                table += '<tr id="row_ctg' + index + '">';
+                table += '<tr id="row_itm' + index + '">';
                 table += '<td>';
                 table += '<center>' + index + '</center>';
                 table += '</td>';
                 table += '<td>';
-                table += '<select name="arr_category" id="category' + index +
-                    '" class="form-control" onchange="get_category(value,' + index + ')">';
+                table += '<select name="arr_item" id="item' + index +
+                    '" class="form-control" onchange="get_item(value,' + index + ')">';
                 table += '<option value = "0"> Please select</option>';
 
                 //start if
-                if (temp_category_name_en != row.ctg_category_detail_en) {
-                    table += '<option value="' + row.ctg_id + '" selected >' + row
-                        .ctg_category_detail_en + " (" + row.ctg_category_detail_th + ") " +
+                if (temp_item_name_en != row.itm_item_detail_en) {
+                    table += '<option value="' + row.itm_id + '" selected >' + row
+                        .itm_item_detail_en + " (" + row.itm_item_detail_th + ") " +
                         '</option>';
-                    temp_category_name_en = row.ctg_category_detail_en;
-                    temp_category_name_th = row.ctg_category_detail_th;
-                    arr_temp_ctg_id.push(row.ctg_id);
+                    temp_item_name_en = row.itm_item_detail_en;
+                    temp_item_name_th = row.itm_item_detail_th;
+                    arr_temp_itm_id.push(row.itm_id);
 
                     //end if
                     //start foreach
                     data.forEach((row, i) => {
 
                         //start if
-                        if (temp_category_name_en != row.ctg_category_detail_en) {
-                            table += '<option value="' + row.ctg_id + '">' + row
-                                .ctg_category_detail_en + " (" + row
-                                .ctg_category_detail_th + ") " + '</option>';
+                        if (temp_item_name_en != row.itm_item_detail_en) {
+                            table += '<option value="' + row.itm_id + '">' + row
+                                .itm_item_detail_en + " (" + row
+                                .itm_item_detail_th + ") " + '</option>';
                         }
                         //end if
 
@@ -187,10 +123,10 @@ function data_table() {
                     data.forEach((row, i) => {
 
                         //start if
-                        if (temp_category_name_en != row.ctg_category_detail_en) {
-                            table += '<option value="' + row.ctg_id + '">' + row
-                                .ctg_category_detail_en + " (" + row
-                                .ctg_category_detail_th + ") " + '</option>';
+                        if (temp_item_name_en != row.itm_item_detail_en) {
+                            table += '<option value="' + row.itm_id + '">' + row
+                                .itm_item_detail_en + " (" + row
+                                .itm_item_detail_th + ") " + '</option>';
                         }
                         //end if
 
@@ -207,18 +143,18 @@ function data_table() {
                 var check_num = 0;
 
                 //start foreach
-                identification.forEach((row_iden, i) => {
-                    if (temp_iden != row_iden.idf_identification_detail_en &&
-                        arr_temp_ctg_id[0] == row_iden.idf_ctg_id) {
-                        temp_iden = row_iden.idf_identification_detail_en;
+                description.forEach((row_iden, i) => {
+                    if (temp_iden != row_iden.dep_description_detail_en &&
+                        arr_temp_itm_id[0] == row_iden.dep_itm_id) {
+                        temp_iden = row_iden.dep_description_detail_en;
                         if (check_num == 0) {
-                            table += row_iden.idf_identification_detail_en + " (" +
-                                row_iden.idf_identification_detail_th + ")";
+                            table += row_iden.dep_description_detail_en + " (" +
+                                row_iden.dep_description_detail_th + ")";
                         }
                         if (check_num > 0) {
                             table += '<hr>';
-                            table += row_iden.idf_identification_detail_en + " (" +
-                                row_iden.idf_identification_detail_th + ")";
+                            table += row_iden.dep_description_detail_en + " (" +
+                                row_iden.dep_description_detail_th + ")";
                         }
                         check_num++;
                     }
@@ -227,12 +163,17 @@ function data_table() {
                 });
                 //end foreach
                 check_num = 0;
+                chackbox = "";
+                console.log(row.sfi_excel_import);
+                if(row.sfi_excel_import == 1){
+                    chackbox = "checked";
+                }else{
+                    chackbox = "";
+                }
 
                 table += '</td>';
-                table += '<td id="weight_tr_' + index + '">';
-                table += '<input type="number" id="weight_' + index +
-                    '" name="arr_weight" value = "' + parseInt(row.sft_weight) +
-                    '" onchange = "total_weight()" min="0" max="100" class="form-control" placeholder="Ex.50" required>';
+                table += '<td >';
+                table += '<input  type="checkbox" name="checkbox_excel_export" class="form-control" '+ chackbox +' required>';
                 table += '</td>';
                 table += '<td >';
                 table +=
@@ -242,32 +183,16 @@ function data_table() {
                 table += '</tr>';
 
                 index++;
-                arr_temp_ctg_id = [];
+                arr_temp_itm_id = [];
 
-                sum_weight += parseInt(row.sft_weight);
-                temp_weight = 0;
-                console.log(index);
-
+         
             });
             index -= 1;
             //end foreach
-            table_ready_score += '<td colspan="3">';
-            table_ready_score += '<center>';
-            table_ready_score += '<font color="black"><b>Total weight</b></font>';
-            table_ready_score += '</center>';
-            table_ready_score += '</td>';
-            table_ready_score += '<td>';
-            table_ready_score +=
-                '<input id="value_total_weight" style="text-align:center" value = "100" disabled>';
-            table_ready_score += '</td>';
-            table_ready_score += '<td>';
-            table_ready_score += '</td>';
-            table_ready_score += '</tr>';
-            // end tr 
+  
 
             $('#t01 tbody').html(table);
-            $('#t01 tfoot').html(table_ready_score);
-            console.log(arr_save_index_arr_add_pos);
+          
         }
         //success
 
@@ -277,9 +202,9 @@ function data_table() {
 }
 
 $(document).ready(function() {
-    identification_data();
+    description_data();
 
-$(document).on('click', '#add_category', function() {
+$(document).on('click', '#add_item', function() {
     var table; // value of show on table
 
     index++;
@@ -287,23 +212,23 @@ $(document).on('click', '#add_category', function() {
     arr_save_index_arr_add_pos.push(index - 1);
     console.log(arr_save_index_arr_add_pos)
     //start get
-    $.get("<?php echo base_url(); ?>/Evs_attitude_form/get_category", function(data) {
+    $.get("<?php echo base_url(); ?>/Evs_mhrd_form/get_item", function(data) {
         data = JSON.parse(data)
-        table += '<tr id="row_ctg' + index + '">';
+        table += '<tr id="row_itm' + index + '">';
         table += '<td>';
         table += '<center>' + index + '</center>';
         table += '</td>';
         table += '<td>';
-        table += '<select name="arr_category" id="category' + index +
-            '" class="form-control" onchange="get_category(value,' + index + ')">';
+        table += '<select name="arr_item" id="item' + index +
+            '" class="form-control" onchange="get_item(value,' + index + ')">';
         table += '<option value = "0"> Please select</option>';
 
         //start foreach
         data.forEach((row, i) => {
             //start if
-            if (value_pos_id == row.idf_pos_id) {
-                table += '<option value="' + row.ctg_id + '">' + row.ctg_category_detail_en +
-                    " (" + row.ctg_category_detail_th + ") " + '</option>';
+            if (value_pos_id == row.dep_pos_id) {
+                table += '<option value="' + row.itm_id + '">' + row.itm_item_detail_en +
+                    " (" + row.itm_item_detail_th + ") " + '</option>';
             }
             //end if
         });
@@ -312,9 +237,8 @@ $(document).on('click', '#add_category', function() {
         table += '</select>';
         table += '</td>';
         table += '<td id="iden_' + index + '"> </td>';
-        table += '<td id="weight_tr_' + index + '">';
-        table += '<input type="number" class="form-control" placeholder="Ex.50" id="weight_' + index +
-            '" name="arr_weight" min="0" max="100" onchange = "total_weight()"  required>';
+        table += '<td >';
+        table += '<input type="checkbox" class="form-control" name="checkbox_excel_export"  required>';
         table += '</td>';
         table += '<td width="20%">';
         table +=
@@ -332,21 +256,6 @@ $(document).on('click', '.btn_remove', function() {
     var button_id = $(this).attr("id");
     var res = button_id.substring(10);
 
-    arr_weight_check = document.getElementById('weight_' + res + '').value;
-        Number(arr_weight_check);
-        sum_weight -= Number(arr_weight_check);
-        Number(sum_weight);
-        console.log(arr_weight_check);
-
-        if (sum_weight == 100) {
-            document.getElementById('value_total_weight').value = sum_weight;
-            document.getElementById('value_total_weight').style.color = "black"
-        } else {
-            document.getElementById('value_total_weight').value = sum_weight;
-            document.getElementById('value_total_weight').style.color = "red"
-        }
-
-
     console.log("button : " + res);
         for (i = 0; i < arr_save_index_arr_add_pos.length; i++) {
             chack_arr = parseInt(arr_save_index_arr_add_pos[i])
@@ -355,46 +264,46 @@ $(document).on('click', '.btn_remove', function() {
             }
         }
         console.log(arr_save_index_arr_add_pos);
-    $('#row_ctg' + res + '').remove();
+    $('#row_itm' + res + '').remove();
     //index--;
-}); // delete category data 
+}); // delete item data 
 
 });
 
 /*
  * get_compentency
- * Display identification on data table
- * @input  category id, number of category data
- * @output identification data
+ * Display description on data table
+ * @input  item id, number of item data
+ * @output description data
  * @author Tanadon Tangjaimongkhon
  * @Create Date 2563-11-24
  */
-function get_category(value, index) {
-    var category_id; // category ID
-    var index_category = index; // index of category
-    category_id = value;
+function get_item(value, index) {
+    var item_id; // item ID
+    var index_item = index; // index of item
+    item_id = value;
 
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_attitude_form/get_category_by_position",
+        url: "<?php echo base_url(); ?>/Evs_mhrd_form/get_item_by_position",
         data: {
-            "category_id": category_id,
+            "item_id": item_id,
             "pos_id": value_pos_id
         },
         dataType: "JSON",
         success: function(data) {
             console.log(data);
-            var table_iden = '' // value identification of show on table
+            var table_iden = '' // value description of show on table
             var num = 0; //check for index data
             //start foreach
             data.forEach((row, i) => {
                 if (num == 0) {
-                    table_iden += row.idf_identification_detail_en + " (" + row
-                        .idf_identification_detail_th + ")";
+                    table_iden += row.dep_description_detail_en + " (" + row
+                        .dep_description_detail_th + ")";
                 } else {
                     table_iden += '<hr>'
-                    table_iden += row.idf_identification_detail_en + " (" + row
-                        .idf_identification_detail_th + ")";
+                    table_iden += row.dep_description_detail_en + " (" + row
+                        .dep_description_detail_th + ")";
                 }
                 num++;
 
@@ -402,39 +311,47 @@ function get_category(value, index) {
             });
             //end foreach
 
-            $('#iden_' + index_category).html(table_iden);
+            $('#iden_' + index_item).html(table_iden);
         }
 
     });
 }
 
 /*
- * form_attitude_update
+ * form_mhrd_update
  * Display -
- * @input  category id, weight
+ * @input  item id, weight
  * @output update data to database
  * @author Tanadon Tangjaimongkhon
  * @Create Date 2563-12-1
  */
-function form_attitude_update() {
-    var arr_category = []; // array category data
-    var arr_weight = []; // array weight data
+function form_mhrd_update() {
+    var arr_item = []; // array item data
+    var checkbox_ex = []; // array weight data
 
     //start for loop
     for (i = 0; i < arr_save_index_arr_add_pos.length; i++) {
-        arr_category.push($('#category' + (parseInt(arr_save_index_arr_add_pos[i])+1)).val());
-        arr_weight.push($('#weight_' + (parseInt(arr_save_index_arr_add_pos[i])+1)).val());
+        arr_item.push($('#item' + (parseInt(arr_save_index_arr_add_pos[i])+1)).val());
         console.log(arr_save_index_arr_add_pos[i]);
     }
     //end for loop
-    console.log(arr_category);
-    console.log(arr_weight);
+
+    $('input[name = checkbox_excel_export]').each(function(index) {
+        if ($(this).prop("checked") == true) {
+            checkbox_ex.push(1);
+        } else {
+            checkbox_ex.push(0);
+        }
+    });
+
+    // console.log(arr_item);
+    // console.log(arr_weight);
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_attitude_form/form_attitude_update",
+        url: "<?php echo base_url(); ?>/Evs_mhrd_form/form_mhrd_update",
         data: {
-            "arr_category": arr_category,
-            "arr_weight": arr_weight,
+            "arr_item": arr_item,
+            "checkbox_ex": checkbox_ex,
             "index": arr_save_index_arr_add_pos.length,
             "pos_id": value_pos_id,
             "value_year_id": value_year_id
@@ -446,7 +363,7 @@ function form_attitude_update() {
 
         }
     });
-} // function form_attitude_update()
+} // function form_mhrd_update()
 /*
  * success_save
  * Display -
@@ -475,28 +392,26 @@ function success_save() {
  * @Create Date 2564-02-05
  */
 function confirm_save() {
-    if (check_weight_all() == true) {
-        form_attitude_update();
+    
+        form_mhrd_update();
         change_status();
         success_save();
         window.location = "<?php echo base_url(); ?>/Evs_form/form_position/" + value_pos_id + "/" + value_year_id;
-
-    }
 }
 /*
  * change_status
  * Display 
  * @input  pos id, form name
- * @output change status set form Attitude & Behavior to database
+ * @output change status set form MHRD to database
  * @author Tanadon Tangjaimongkhon
  * @Create Date 2563-10-29
  */
 function change_status() {
-    var form_name = "Attitude & Behavior"; // form name
+    var form_name = "MHRD"; // form name
     //start ajax
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_form/change_status_ce",
+        url: "<?php echo base_url(); ?>/Evs_form/change_status_pe",
         data: {
 
             "pos_id": value_pos_id,
@@ -544,7 +459,7 @@ p#value_weight_show {
             <div class="card-header py-3" id="panel_th_topManage">
                 <div class="col-xl-12">
                     <a
-                        href="<?php echo base_url(); ?>/Evs_attitude_form/indicator_attitude_table/<?php echo $info_pos_id; ?>">
+                        href="<?php echo base_url(); ?>/Evs_mhrd_form/indicator_mhrd_table/<?php echo $info_pos_id; ?>">
                         <button type="button" class="btn btn-success float-right"><i class="fa fa-plus"> </i>
                             Items</button>
                     </a>
@@ -554,7 +469,7 @@ p#value_weight_show {
                             <i class="fa fa-chevron-circle-left text-white"></i>
                         </a>
                         <i class="fa fa-book text-white"></i>
-                        <font color="white">&nbsp;Manage Form : Attitude Form</font>
+                        <font color="white">&nbsp;Manage Form : MHRD</font>
                     </h1>
                 </div>
             </div>
@@ -651,7 +566,7 @@ p#value_weight_show {
                             </th>
                             <th width="5%">
                                 <center>
-                                    <font color="white">Weight</font>
+                                    <font color="white">excel import</font>
                                 </center>
                             </th>
                             <th width="5%">
@@ -663,12 +578,11 @@ p#value_weight_show {
                     </thead>
                     <tbody>
                     </tbody>
-                    <tfoot>
-                    </tfoot>
+               
 
                 </table>
                 <div align="right">
-                    <button type="button" class="btn btn-success float-center" id="add_category"><i
+                    <button type="button" class="btn btn-success float-center" id="add_item"><i
                             class="fa fa-plus"></i> Add</button>
                 </div>
                 <br>
