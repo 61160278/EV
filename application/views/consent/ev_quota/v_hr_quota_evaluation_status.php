@@ -24,7 +24,7 @@ function get_position() {
             console.log(data)
         }
     });
-}//get_position
+} //get_position
 
 function get_company() {
     var cpn_sel = document.getElementById("com_select").value; // get kay by id
@@ -41,10 +41,10 @@ function get_company() {
             console.log(data)
         }
     });
-}//get_company
+} //get_company
 function get_department() {
     var dep_sel = document.getElementById("com_select").value; // get kay by id
-     console.log(dep_sel);
+    console.log(dep_sel);
 
     $.ajax({
         type: "post",
@@ -60,7 +60,8 @@ function get_department() {
             table_data += '<option value="0">Select Department</option>'
             data.forEach((row, i) => {
 
-                table_data += '<option value="' + row.Dep_id + '">' + row.Dep_shortName + '</option>'
+                table_data += '<option value="' + row.Dep_id + '">' + row.Dep_shortName +
+                    '</option>'
 
             });
 
@@ -69,7 +70,7 @@ function get_department() {
         }
     });
 
-}//get_department()
+} //get_department()
 </script>
 <style>
 .text {
@@ -109,6 +110,11 @@ th {
     color: white;
     font-weight: bold;
     font-size: 30px;
+}
+
+.panel.panel-indigo .panel-heading {
+    color: #e8eaf6;
+    background-color: #134466;
 }
 
 .info-tile.info-tile-alt.tile-success .tile-heading {
@@ -255,11 +261,12 @@ th {
                     <div class="panel-heading">
                         <h2>&nbsp;</h2>
                         <div class="col-md-3">
-                            <select class="text form-control pull-right margin text" id="com_select" onclick="get_department()">
+                            <select class="text form-control pull-right margin text" id="com_select"
+                                onclick="get_department()">
                                 <option value="0">Company</option>
                                 <!-- start foreach -->
                                 <?php foreach($com_data as $value){ ?>
-								
+
                                 <option value="<?php echo $value->Company_ID;?>">
                                     <?php echo $value->Company_shortname;?>
                                 </option>
