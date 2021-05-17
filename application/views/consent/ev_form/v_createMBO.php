@@ -327,6 +327,8 @@ function cancel_form() {
 }
 // function cancel_form
 
+// *************************************** MBO ***************************************
+
 function get_sdgs_mbo(count) {
 
     $.get("<?php echo base_url(); ?>ev_form/Evs_form/get_sdgs", function(data) {
@@ -381,10 +383,10 @@ function createG_O() {
                 data_row += '</center></td>'
                 // index
                 data_row += '<td><center>'
-                data_row += '<input type="radio" id="type_D'+ number +'" value="1">'
+                data_row += '<input type="radio" id="type_D' + number + '" value="1">'
                 data_row += '<label>&nbsp;C</label>'
                 data_row += '<br>'
-                data_row += '<input type="radio" id="type_C'+ number +'" value="2">'
+                data_row += '<input type="radio" id="type_C' + number + '" value="2">'
                 data_row += '<label>&nbsp;D</label>'
                 data_row += '</center></td>'
                 // type of G&O
@@ -396,21 +398,88 @@ function createG_O() {
                 data_row += '</td>'
                 // sdgs 
                 data_row += '<td>'
-                data_row += '<input class="form-control" type="text" id="item'+number+'">'
+                data_row += '<input class="form-control" type="text" id="item' + number + '">'
                 data_row += '</td>'
                 // input
                 data_row += '<td>'
-                data_row += '<input class="form-control" type="text" id="weight'+number+'">'
+                data_row += '<input class="form-control" type="text" id="weight' + number + '">'
                 data_row += '</td>'
                 // Weight 
                 data_row += '<td>'
-                for(j=0; j<5; j++){
-                    data_row += '<input class="form-control" type="text" id="possible'+ number + j +'" placeholder="Level '+(j+1)+'">'
+                for (j = 0; j < 5; j++) {
+                    data_row += '<input class="form-control" type="text" id="possible' + number + j +
+                        '" placeholder="Level ' + (j + 1) + '">'
                     data_row += '<hr>'
                 }
                 // for
                 data_row += '</td>'
+                data_row += '<td id="dis_color">'
+                data_row += '<center>'
+                data_row += '<div class="col-md-12">'
+                data_row += '<form action="">'
+                data_row += '<input type="radio" name="result" value="1"Disabled Unchecked>'
+                data_row += '<label for="1">&nbsp; 1</label>'
+                data_row += '&nbsp;&nbsp;'
+                data_row += '<input type="radio" name="result" value="2" Disabled Unchecked>'
+                data_row += '<label for="2">&nbsp; 2</label>'
+                data_row += '&nbsp;&nbsp;'
+                data_row += '<input type="radio" name="result" value="3" Disabled Unchecked>'
+                data_row += '<label for="3">&nbsp; 3</label>'
+                data_row += '&nbsp;&nbsp;'
+                data_row += '<input type="radio" name="result" value="4" Disabled Unchecked>'
+                data_row += '<label for="4">&nbsp; 4</label>'
+                data_row += '&nbsp;&nbsp;'
+                data_row += '<input type="radio" name="result" value="5" Disabled Unchecked>'
+                data_row += '<label for="5">&nbsp; 5</label>'
+                data_row += '&nbsp;&nbsp;'
+                data_row += '</form>'
+                data_row += '</div>'
+                data_row += '<!-- col-12 -->'
+                data_row += '</center>'
+                data_row += '</td>'
+                data_row += '<td id="dis_color"></td>'
 
+                data_row += '</tr>'
+                number++
+            }
+            // for
+
+            for (i = 0; i < ranges_row; i++) {
+                data_row += '<tr>'
+                data_row += '<td><center>'
+                data_row += number
+                data_row += '</center></td>'
+                // index
+                data_row += '<td><center>'
+                data_row += '<input type="radio" id="type_D' + number + '" value="1">'
+                data_row += '<label>&nbsp;C</label>'
+                data_row += '<br>'
+                data_row += '<input type="radio" id="type_C' + number + '" value="2">'
+                data_row += '<label>&nbsp;D</label>'
+                data_row += '</center></td>'
+                // type of G&O
+                data_row += '<td>'
+                data_row += '<select class="form-control" id="sdgs_sel' + number +
+                    '" onchange="clear_css_sel(' + clear + ')">'
+                data_row += '<option value="0">---Select SDGs---</option>'
+                data_row += '</select>'
+                data_row += '</td>'
+                // sdgs 
+                data_row += '<td>'
+                data_row += '<input class="form-control" type="text" id="item' + number + '">'
+                data_row += '</td>'
+                // input
+                data_row += '<td>'
+                data_row += '<input class="form-control" type="text" id="weight' + number + '">'
+                data_row += '</td>'
+                // Weight 
+                data_row += '<td>'
+                data_row += '<input class="form-control" type="text" id="ranges_c' + number +
+                    '" placeholder="Challenges">'
+                data_row += '<hr>'
+                data_row += '<input class="form-control" type="text" id="ranges_s' + number +
+                    '" placeholder="Standard">'
+                data_row += '</td>'
                 data_row += '<td id="dis_color">'
                 data_row += '<center>'
                 data_row += '<div class="col-md-12">'
@@ -456,6 +525,8 @@ function createG_O() {
 
 }
 // function createG_O
+
+// *************************************** G&O ***************************************
 
 function set_tap() {
 
