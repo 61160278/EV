@@ -46,10 +46,15 @@ function show_data() {
                         table_data += '<td>'
                         table_data += row.Position_name
                         table_data += '</td>'
+                        <?php foreach($manage_qut_data as $value){ ?>
                         table_data += '<td>'
                         table_data +=
-                            '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/detail_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                            '<a onclick ="manage_data(<?php echo $value->qut_id?>,' + i +
+                            ')"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                        table_data += '<input type="text" id="pos_<?php echo $value->qut_id?>' + i +
+                            '" value="' + row.Position_ID + '" hidden>'
                         table_data += '</td>'
+                        <?php } ?>
                         table_data += '</tr>'
                         i++
                         '</td>'
@@ -71,10 +76,15 @@ function show_data() {
                         table_data += '<td>'
                         table_data += row.Position_name
                         table_data += '</td>'
+                        <?php foreach($manage_qut_data as $value){ ?>
                         table_data += '<td>'
                         table_data +=
-                            '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/detail_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                            '<a onclick ="manage_data(<?php echo $value->qut_id?>,' + i +
+                            ')"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                        table_data += '<input type="text" id="pos_<?php echo $value->qut_id?>' + i +
+                            '" value="' + row.Position_ID + '" hidden>'
                         table_data += '</td>'
+                        <?php } ?>
                         table_data += '</tr>'
                         i++
                         '</td>'
@@ -93,10 +103,15 @@ function show_data() {
                         table_data += '<td>'
                         table_data += row.Position_name
                         table_data += '</td>'
+                        <?php foreach($manage_qut_data as $value){ ?>
                         table_data += '<td>'
                         table_data +=
-                            '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/detail_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                            '<a onclick ="manage_data(<?php echo $value->qut_id?>,' + i +
+                            ')"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                        table_data += '<input type="text" id="pos_<?php echo $value->qut_id?>' + i +
+                            '" value="' + row.Position_ID + '" hidden>'
                         table_data += '</td>'
+                        <?php } ?>
                         table_data += '</tr>'
                         i++
                         '</td>'
@@ -119,10 +134,15 @@ function show_data() {
                                 table_data += '</td>'
                             }
                         }
+                        <?php foreach($manage_qut_data as $value){ ?>
                         table_data += '<td>'
                         table_data +=
-                            '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/detail_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                            '<a onclick ="manage_data(<?php echo $value->qut_id?>,' + i +
+                            ')"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                        table_data += '<input type="text" id="pos_<?php echo $value->qut_id?>' + i +
+                            '" value="' + row.Position_ID + '" hidden>'
                         table_data += '</td>'
+                        <?php } ?>
                         table_data += '</tr>'
                         i++
                         '</td>'
@@ -188,11 +208,12 @@ function search_data() {
 
                     table_data += row.Position_name
                     table_data += '</td>'
-
+                    <?php foreach($manage_qut_data as $value){ ?>
                     table_data += '<td>'
                     table_data +=
-                        '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/detail_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                        '<a onclick ="manage_data(<?php echo $value->qut_id;?>)"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
                     table_data += '</td>'
+                    <?php } ?>
                     table_data += '</tr>'
                     i++
                     '</td>'
@@ -255,7 +276,6 @@ function get_position() {
         }
     });
 } //get_position
-
 function get_department() {
     var dep_sel = document.getElementById("com_select").value; // get kay by id
     // console.log(dep_sel);
@@ -287,6 +307,14 @@ function get_department() {
     });
 
 } //get_department()
+
+function manage_data(qut_id, i) {
+
+    var pos_id = document.getElementById("pos_" + qut_id + i).value;
+    console.log(pos_id);
+    var data_sent = qut_id + ":" + pos_id;
+    window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/detail_quota/" + data_sent;
+}
 </script>
 <style>
 h2 {
@@ -384,44 +412,44 @@ h4 {
                     <select name="example_length" class="form-control" id="pos_lv_select" onclick="get_position()">
                         <option value="0">Position Level</option>
                         <?php foreach($manage_qut_data as $value){ ?>
-                            <?php  if ($value->qut_pos == 'Operational Associate') {?>
-                            <!-- start foreach -->
-                            <?php foreach($psl_data->result() as $value){ ?>
-                                <?php if ($value->psl_id == "5") { ?>
-                                    <option value="<?php echo $value->psl_id;?>"><?php echo $value->psl_position_level;?></option>
-                                <?php } //if Position_Level == 1?>
-                            <?php } //foreach qut_data?>
-                            <?php } //if qut_pos == 'Operational Associate'?>
+                        <?php  if ($value->qut_pos == 'Operational Associate') {?>
+                        <!-- start foreach -->
+                        <?php foreach($psl_data->result() as $value){ ?>
+                        <?php if ($value->psl_id == "5") { ?>
+                        <option value="<?php echo $value->psl_id;?>"><?php echo $value->psl_position_level;?></option>
+                        <?php } //if Position_Level == 1?>
+                        <?php } //foreach qut_data?>
+                        <?php } //if qut_pos == 'Operational Associate'?>
                         <?php } //foreach manage_qut_data?>
                         <?php foreach($manage_qut_data as $value){ ?>
-                            <?php  if ($value->qut_pos == 'Team Associate above') {?>
-                            <!-- start foreach -->
-                            <?php foreach($psl_data->result() as $value){ ?>
-                                <?php if ($value->psl_id <= "5") { ?>
-                                    <option value="<?php echo $value->psl_id;?>"><?php echo $value->psl_position_level;?></option>
-                                <?php } //if Position_Level == 1?>
-                            <?php } //foreach qut_data?>
-                            <?php } //if qut_pos == 'Operational Associate'?>
+                        <?php  if ($value->qut_pos == 'Team Associate above') {?>
+                        <!-- start foreach -->
+                        <?php foreach($psl_data->result() as $value){ ?>
+                        <?php if ($value->psl_id <= "5") { ?>
+                        <option value="<?php echo $value->psl_id;?>"><?php echo $value->psl_position_level;?></option>
+                        <?php } //if Position_Level == 1?>
+                        <?php } //foreach qut_data?>
+                        <?php } //if qut_pos == 'Operational Associate'?>
                         <?php } //foreach manage_qut_data?>
                         <?php foreach($manage_qut_data as $value){ ?>
-                            <?php  if ($value->qut_pos == 'Staff above') {?>
-                            <!-- start foreach -->
-                            <?php foreach($psl_data->result() as $value){ ?>
-                                <?php if ($value->psl_id < "5") { ?>
-                                    <option value="<?php echo $value->psl_id;?>"><?php echo $value->psl_position_level;?></option>
-                                <?php } //if Position_Level == 1?>
-                            <?php } //foreach qut_data?>
-                            <?php } //if qut_pos == 'Operational Associate'?>
+                        <?php  if ($value->qut_pos == 'Staff above') {?>
+                        <!-- start foreach -->
+                        <?php foreach($psl_data->result() as $value){ ?>
+                        <?php if ($value->psl_id < "5") { ?>
+                        <option value="<?php echo $value->psl_id;?>"><?php echo $value->psl_position_level;?></option>
+                        <?php } //if Position_Level == 1?>
+                        <?php } //foreach qut_data?>
+                        <?php } //if qut_pos == 'Operational Associate'?>
                         <?php } //foreach manage_qut_data?>
                         <?php foreach($manage_qut_data as $value){ ?>
-                            <?php  if ($value->qut_pos == 'All Position') {?>
-                            <!-- start foreach -->
-                            <?php foreach($psl_data->result() as $value){ ?>
-                                <?php if ($value->psl_id <= "5") { ?>
-                                    <option value="<?php echo $value->psl_id;?>"><?php echo $value->psl_position_level;?></option>
-                                <?php } //if Position_Level == 1?>
-                            <?php } //foreach qut_data?>
-                            <?php } //if qut_pos == 'Operational Associate'?>
+                        <?php  if ($value->qut_pos == 'All Position') {?>
+                        <!-- start foreach -->
+                        <?php foreach($psl_data->result() as $value){ ?>
+                        <?php if ($value->psl_id <= "5") { ?>
+                        <option value="<?php echo $value->psl_id;?>"><?php echo $value->psl_position_level;?></option>
+                        <?php } //if Position_Level == 1?>
+                        <?php } //foreach qut_data?>
+                        <?php } //if qut_pos == 'Operational Associate'?>
                         <?php } //foreach manage_qut_data?>
                         <!-- end foreach -->
                     </select>

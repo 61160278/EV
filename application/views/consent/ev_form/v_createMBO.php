@@ -354,12 +354,11 @@ function get_sdgs_mbo(count) {
 function createG_O() {
 
     var check_pos = document.getElementById("pos_id").value;
-    //console.log(check_pos);
 
     var data_row = '';
     var level_row = 0;
     var ranges_row = 0;
-    var number = 1;
+    var number = 0;
     var clear = 0;
 
     $.ajax({
@@ -371,12 +370,13 @@ function createG_O() {
         },
         success: function(data) {
             console.log("1111 - G&O");
-            console.log(data);
-            console.log(data.sfg_index_level);
+            // console.log(data);
+            // console.log(data.sfg_index_level);
             level_row = parseInt(data.sfg_index_level);
             ranges_row = parseInt(data.sfg_index_ranges);
 
             for (i = 0; i < level_row; i++) {
+                number++
                 data_row += '<tr>'
                 data_row += '<td><center>'
                 data_row += number
@@ -392,13 +392,14 @@ function createG_O() {
                 // type of G&O
                 data_row += '<td>'
                 data_row += '<select class="form-control" id="sdgs_sel' + number +
-                    '" onchange="clear_css_sel(' + clear + ')">'
+                    '" onchange="clear_css_sel_G_O(' + number + ')">'
                 data_row += '<option value="0">---Select SDGs---</option>'
                 data_row += '</select>'
                 data_row += '</td>'
                 // sdgs 
                 data_row += '<td>'
-                data_row += '<input class="form-control" type="text" id="item' + number + '">'
+                data_row += '<input class="form-control" type="text" id="inp_item' + number +
+                    '" onkeyup="clear_css_inp_G_O(' + number + ')">'
                 data_row += '</td>'
                 // input
                 data_row += '<td>'
@@ -440,11 +441,12 @@ function createG_O() {
                 data_row += '<td id="dis_color"></td>'
 
                 data_row += '</tr>'
-                number++
+
             }
             // for
 
             for (i = 0; i < ranges_row; i++) {
+                number++
                 data_row += '<tr>'
                 data_row += '<td><center>'
                 data_row += number
@@ -460,13 +462,14 @@ function createG_O() {
                 // type of G&O
                 data_row += '<td>'
                 data_row += '<select class="form-control" id="sdgs_sel' + number +
-                    '" onchange="clear_css_sel(' + clear + ')">'
+                    '" onchange="clear_css_sel_G_O(' + number + ')">'
                 data_row += '<option value="0">---Select SDGs---</option>'
                 data_row += '</select>'
                 data_row += '</td>'
                 // sdgs 
                 data_row += '<td>'
-                data_row += '<input class="form-control" type="text" id="item' + number + '">'
+                data_row += '<input class="form-control" type="text" id="inp_item' + number +
+                    '" onkeyup="clear_css_inp_G_O(' + number + ')">'
                 data_row += '</td>'
                 // input
                 data_row += '<td>'
@@ -507,9 +510,11 @@ function createG_O() {
                 data_row += '<td id="dis_color"></td>'
 
                 data_row += '</tr>'
-                number++
+
             }
             // for
+
+            $("#row_indexG_O").val(number);
             get_sdgs_mbo(number)
             $("#G_O_Table").html(data_row)
 
@@ -525,6 +530,55 @@ function createG_O() {
 
 }
 // function createG_O
+
+function checkG_O() {
+
+    var num = 0;
+    var number_index = document.getElementById("row_indexG_O").value;
+    console.log(number_index);
+
+    for (i = 1; i <= number_index; i++) {
+        item = document.getElementById("inp_item" + i).value;
+        if (item == "") {
+            $("#inp_item" + i).css("background-color", "#ffe6e6");
+            $("#inp_item" + i).css("border-style", "solid");
+        }
+        // if
+        else {
+            $("#inp_item" + i).css("background-color", "#ffffff");
+            $("#inp_item" + i).css("border-style", "solid");
+            num++;
+        }
+        // else
+
+        sdg = document.getElementById("sdgs_sel" + i).value;
+        if (sdg == 0) {
+            $("#sdgs_sel" + i).css("background-color", "#ffe6e6");
+            $("#sdgs_sel" + i).css("border-style", "solid");
+        }
+        // if 
+        else {
+            $("#sdgs_sel" + i).css("background-color", "#ffffff");
+            $("#sdgs_sel" + i).css("border-style", "solid");
+            num++;
+        }
+        // else 
+    }
+    // for 
+}
+// function checkG_O
+
+function clear_css_inp_G_O(i) {
+    $("#inp_item" + i).css("background-color", "#ffffff");
+    $("#inp_item" + i).css("border-style", "solid");
+}
+// function clear_css_inp_G_O
+
+function clear_css_sel_G_O(i) {
+    $("#sdgs_sel" + i).css("background-color", "#ffffff");
+    $("#sdgs_sel" + i).css("border-style", "solid");
+}
+// function clear_css_inp_G_O
 
 // *************************************** G&O ***************************************
 
@@ -874,6 +928,7 @@ function set_tap() {
                             <tbody id="G_O_Table">
                             </tbody>
                             <!-- tbody  -->
+                            <input type="text" id="row_indexG_O" value="" hidden>
 
                         </table>
                         <!-- End table level -->
@@ -887,7 +942,7 @@ function set_tap() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-success">SAVE</button>
+                                <button class="btn btn-success" onclick="checkG_O()">SAVE</button>
                             </div>
                             <!-- col-md-6 add_app -->
 
