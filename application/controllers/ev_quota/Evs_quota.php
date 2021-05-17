@@ -280,6 +280,7 @@ function get_search_data(){
 		$this->mpos->Dep_id = $dep_sel;
 		$this->mpos->psl_id = $pos_lv_select;
 		$this->mpos->Position_ID = $pos_select;
+		// $this->mpos->Position_Level = $Position_Level;
 		$data = $this->mpos->get_pos_com_dep()->result();
 		echo json_encode($data);
 

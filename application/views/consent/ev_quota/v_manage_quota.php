@@ -15,8 +15,6 @@ $(document).ready(function() {
 
 }); //ready
 
-
-
 function show_data() {
 
     var qut_pos = document.getElementById("qut_pos").innerHTML;
@@ -81,8 +79,7 @@ function show_data() {
                         i++
                         '</td>'
                     }
-                }
-                else if (qut_pos == "Staff above") {
+                } else if (qut_pos == "Staff above") {
 
                     if (row.Position_Level > 2) {
 
@@ -115,9 +112,13 @@ function show_data() {
                         table_data += '<td>'
                         table_data += row.Dep_Name
                         table_data += '</td>'
-                        table_data += '<td>'
-                        table_data += row.Position_name
-                        table_data += '</td>'
+                        if (qut_pos == 'Operational Associate') {
+                            if (row.Position_Level == 1) {
+                                table_data += '<td>'
+                                table_data += row.Position_name
+                                table_data += '</td>'
+                            }
+                        }
                         table_data += '<td>'
                         table_data +=
                             '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/detail_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
@@ -137,6 +138,7 @@ function show_data() {
 } //shoe data
 ////////////////////////end show//////////////////////////////////
 function search_data() {
+
     var pos_lv_select = document.getElementById("pos_lv_select").value;
     var com_select = document.getElementById("com_select").value;
     var dep_select = document.getElementById("dep_select").value;
@@ -183,8 +185,10 @@ function search_data() {
                     table_data += row.Dep_Name
                     table_data += '</td>'
                     table_data += '<td>'
+
                     table_data += row.Position_name
                     table_data += '</td>'
+
                     table_data += '<td>'
                     table_data +=
                         '<a href= "<?php echo base_url();?>/ev_quota/Evs_quota/detail_quota"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
@@ -203,9 +207,10 @@ function search_data() {
 } //search_data
 
 function get_position() {
+    var qut_pos = document.getElementById("qut_pos").innerHTML;
     var pos_sel = document.getElementById("pos_lv_select").value; // get kay by id
     // console.log(pos_sel);
-
+    // console.log(qut_pos);
     $.ajax({
         type: "post",
         url: "<?php echo base_url(); ?>ev_quota/Evs_quota/get_position_level",
@@ -222,9 +227,27 @@ function get_position() {
             table_data += '<option value="0">Position</option>'
 
             data.forEach((row, i) => {
-
-                table_data += '<option value="' + row.Position_ID + '">' + row.Position_name +
-                    '</option>'
+                if (qut_pos == 'Operational Associate') {
+                    if (row.Position_Level == 1) {
+                        table_data += '<option value="' + row.Position_ID + '">' + row
+                            .Position_name + '</option>'
+                    }
+                } else if (qut_pos == 'Team Associate above') {
+                    if (row.Position_Level > 1) {
+                        table_data += '<option value="' + row.Position_ID + '">' + row
+                            .Position_name + '</option>'
+                    }
+                } else if (qut_pos == 'Staff above') {
+                    if (row.Position_Level > 2) {
+                        table_data += '<option value="' + row.Position_ID + '">' + row
+                            .Position_name + '</option>'
+                    }
+                } else if (qut_pos == 'All Position') {
+                    if (row.Position_Level > 0) {
+                        table_data += '<option value="' + row.Position_ID + '">' + row
+                            .Position_name + '</option>'
+                    }
+                }
 
             });
             $('#pos_select').html(table_data);
@@ -361,14 +384,45 @@ h4 {
                     <select name="example_length" class="form-control" id="pos_lv_select" onclick="get_position()">
                         <option value="0">Position Level</option>
                         <?php foreach($manage_qut_data as $value){ ?>
-                        <?php// if($value->qut_pos == ""){ } ?>
-                        <?php } ?>
-                        <!-- start foreach -->
-                        <?php foreach($psl_data->result() as $value){ ?>
-                        <option value="<?php echo $value->psl_id;?>">
-                            <?php echo $value->psl_position_level;?>
-                        </option>
-                        <?php } ?>
+                            <?php  if ($value->qut_pos == 'Operational Associate') {?>
+                            <!-- start foreach -->
+                            <?php foreach($psl_data->result() as $value){ ?>
+                                <?php if ($value->psl_id == "5") { ?>
+                                    <option value="<?php echo $value->psl_id;?>"><?php echo $value->psl_position_level;?></option>
+                                <?php } //if Position_Level == 1?>
+                            <?php } //foreach qut_data?>
+                            <?php } //if qut_pos == 'Operational Associate'?>
+                        <?php } //foreach manage_qut_data?>
+                        <?php foreach($manage_qut_data as $value){ ?>
+                            <?php  if ($value->qut_pos == 'Team Associate above') {?>
+                            <!-- start foreach -->
+                            <?php foreach($psl_data->result() as $value){ ?>
+                                <?php if ($value->psl_id <= "5") { ?>
+                                    <option value="<?php echo $value->psl_id;?>"><?php echo $value->psl_position_level;?></option>
+                                <?php } //if Position_Level == 1?>
+                            <?php } //foreach qut_data?>
+                            <?php } //if qut_pos == 'Operational Associate'?>
+                        <?php } //foreach manage_qut_data?>
+                        <?php foreach($manage_qut_data as $value){ ?>
+                            <?php  if ($value->qut_pos == 'Staff above') {?>
+                            <!-- start foreach -->
+                            <?php foreach($psl_data->result() as $value){ ?>
+                                <?php if ($value->psl_id < "5") { ?>
+                                    <option value="<?php echo $value->psl_id;?>"><?php echo $value->psl_position_level;?></option>
+                                <?php } //if Position_Level == 1?>
+                            <?php } //foreach qut_data?>
+                            <?php } //if qut_pos == 'Operational Associate'?>
+                        <?php } //foreach manage_qut_data?>
+                        <?php foreach($manage_qut_data as $value){ ?>
+                            <?php  if ($value->qut_pos == 'All Position') {?>
+                            <!-- start foreach -->
+                            <?php foreach($psl_data->result() as $value){ ?>
+                                <?php if ($value->psl_id <= "5") { ?>
+                                    <option value="<?php echo $value->psl_id;?>"><?php echo $value->psl_position_level;?></option>
+                                <?php } //if Position_Level == 1?>
+                            <?php } //foreach qut_data?>
+                            <?php } //if qut_pos == 'Operational Associate'?>
+                        <?php } //foreach manage_qut_data?>
                         <!-- end foreach -->
                     </select>
                 </label>
