@@ -143,14 +143,23 @@ class Evs_quota extends MainController_avenxo {
 	* @author 	Piyasak Srijan
 	* @Create Date 2564-04-07
 	*/
-	function detail_quota()
+	function detail_quota($data_sent)
 	{
+
+		$qut_id = substr($data_sent,0,strpos($data_sent,":"));
+		$pos_id = substr($data_sent,strpos($data_sent,":")+1);
+
+	
+		$this->load->model('M_evs_quota','mqut');
+		$this->mqut->qut_id = $qut_id;
+		$data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota
+
 		// $this->load->model('M_evs_quota','mqut');
  		// $data['qut_data'] = $this->mqut->get_quota_plan()->result(); 
-		$this->output('/consent/ev_quota/v_detail_quota');
+		$this->output('/consent/ev_quota/v_detail_quota',$data);
 	}
-	// function detail_quota(
-	
+	// function detail_quota
+
 	/*
 	* hd_quota_evaluation_status
 	* @input
@@ -213,6 +222,7 @@ class Evs_quota extends MainController_avenxo {
 		$this->load->model('M_evs_quota','mqut');
 		$this->mqut->qut_id = $qut_id;
 		$data['edit_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota to edit
+
 		$this->output('/consent/ev_quota/v_edit_quota',$data);
 	}
 	// function edit_quota()
@@ -280,6 +290,7 @@ function get_search_data(){
 		$this->mpos->Dep_id = $dep_sel;
 		$this->mpos->psl_id = $pos_lv_select;
 		$this->mpos->Position_ID = $pos_select;
+		// $this->mpos->Position_Level = $Position_Level;
 		$data = $this->mpos->get_pos_com_dep()->result();
 		echo json_encode($data);
 

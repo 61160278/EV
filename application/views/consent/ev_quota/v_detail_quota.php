@@ -114,9 +114,7 @@ tbody:hover {
  */
 $(document).ready(function() {
     $("#reset").click(function() {
-
         $("#quotaPlan").attr("disabled", false);
-
     }); //click
 
 }); //ready
@@ -279,6 +277,8 @@ function insert_quota_plan() {
 
 
 } //insert_quota
+
+
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
@@ -293,7 +293,61 @@ function insert_quota_plan() {
 
 
             <div class="row">
-                <div class="form-group">
+            <table>
+                <?php foreach($manage_qut_data as $value){ ?>
+                <tr>
+                <td class="qut" width="175">
+                        <h4><b>Company </b></h4>
+                    </td>
+                    <td width="75">
+                        <h4><b> : </b></h4>
+                    </td>
+                    <td class="qut_type" width="200"></td>
+                </tr>
+                <tr>
+                    <td class="qut" width="175">
+                        <h4><b>Quota </b></h4>
+                    </td>
+                    <td width="75">
+                        <h4><b> : </b></h4>
+                    </td>
+                    <td class="qut_type" width="200"><?php echo $value->qut_type;?></td>
+                
+                    <td class="qut">
+                        <h4><b>Position of Quota </b></h4>
+                    </td>
+                    <td>
+                        <h4><b> : </b></h4>
+                    </td>
+                    <td class="qut_type" id="qut_pos"><?php echo $value->qut_pos;?></td>
+                </tr>
+                <tr>
+                <td class="qut" width="175">
+                        <h4><b>Department </b></h4>
+                    </td>
+                    <td width="75">
+                        <h4><b> : </b></h4>
+                    </td>
+                    <td class="qut_type" width="200"></td>
+                
+                    <td class="qut">
+                        <h4><b>position </b></h4>
+                       
+                    </td>
+                    <td>
+                        <h4><b> : </b></h4>
+                    </td>
+                    <td class="qut_type" id="qut_pos"></td>
+                </tr>
+
+                <?php } ?>
+
+            </table>
+
+
+
+
+                <!-- <div class="form-group">
                     <div class="col-md-12">
                         <h4><b>Company :</b></h4>
                     </div>
@@ -315,7 +369,7 @@ function insert_quota_plan() {
                         <h4><b>position :</b></h4>
                     </div>
 
-                </div>
+                </div> -->
 
             </div>
             <hr>
