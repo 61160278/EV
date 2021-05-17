@@ -339,8 +339,6 @@ function get_sdgs_mbo(count) {
         });
         // forEach
 
-        console.log(data_sel);
-
         for (i = 0; i < count; i++) {
             $("#sdgs_sel" + (i + 1)).append(data_sel);
         }
@@ -357,8 +355,10 @@ function createG_O() {
     //console.log(check_pos);
 
     var data_row = '';
-    var info_row = 0;
-    var number = 0;
+    var level_row = 0;
+    var ranges_row = 0;
+    var number = 1;
+    var clear = 0;
 
     $.ajax({
         type: "post",
@@ -368,12 +368,87 @@ function createG_O() {
             "pos": check_pos
         },
         success: function(data) {
-            // console.log("1111 - G&O");
-            // console.log(data);
+            console.log("1111 - G&O");
+            console.log(data);
+            console.log(data.sfg_index_level);
+            level_row = parseInt(data.sfg_index_level);
+            ranges_row = parseInt(data.sfg_index_ranges);
+
+            for (i = 0; i < level_row; i++) {
+                data_row += '<tr>'
+                data_row += '<td><center>'
+                data_row += number
+                data_row += '</center></td>'
+                // index
+                data_row += '<td><center>'
+                data_row += '<input type="radio" id="type_D'+ number +'" value="1">'
+                data_row += '<label>&nbsp;C</label>'
+                data_row += '<br>'
+                data_row += '<input type="radio" id="type_C'+ number +'" value="2">'
+                data_row += '<label>&nbsp;D</label>'
+                data_row += '</center></td>'
+                // type of G&O
+                data_row += '<td>'
+                data_row += '<select class="form-control" id="sdgs_sel' + number +
+                    '" onchange="clear_css_sel(' + clear + ')">'
+                data_row += '<option value="0">---Select SDGs---</option>'
+                data_row += '</select>'
+                data_row += '</td>'
+                // sdgs 
+                data_row += '<td>'
+                data_row += '<input class="form-control" type="text" id="item'+number+'">'
+                data_row += '</td>'
+                // input
+                data_row += '<td>'
+                data_row += '<input class="form-control" type="text" id="weight'+number+'">'
+                data_row += '</td>'
+                // Weight 
+                data_row += '<td>'
+                for(j=0; j<5; j++){
+                    data_row += '<input class="form-control" type="text" id="possible'+ number + j +'" placeholder="Level '+(j+1)+'">'
+                    data_row += '<hr>'
+                }
+                // for
+                data_row += '</td>'
+
+                data_row += '<td id="dis_color">'
+                data_row += '<center>'
+                data_row += '<div class="col-md-12">'
+                data_row += '<form action="">'
+                data_row += '<input type="radio" name="result" value="1"Disabled Unchecked>'
+                data_row += '<label for="1">&nbsp; 1</label>'
+                data_row += '&nbsp;&nbsp;'
+                data_row += '<input type="radio" name="result" value="2" Disabled Unchecked>'
+                data_row += '<label for="2">&nbsp; 2</label>'
+                data_row += '&nbsp;&nbsp;'
+                data_row += '<input type="radio" name="result" value="3" Disabled Unchecked>'
+                data_row += '<label for="3">&nbsp; 3</label>'
+                data_row += '&nbsp;&nbsp;'
+                data_row += '<input type="radio" name="result" value="4" Disabled Unchecked>'
+                data_row += '<label for="4">&nbsp; 4</label>'
+                data_row += '&nbsp;&nbsp;'
+                data_row += '<input type="radio" name="result" value="5" Disabled Unchecked>'
+                data_row += '<label for="5">&nbsp; 5</label>'
+                data_row += '&nbsp;&nbsp;'
+                data_row += '</form>'
+                data_row += '</div>'
+                data_row += '<!-- col-12 -->'
+                data_row += '</center>'
+                data_row += '</td>'
+                data_row += '<td id="dis_color"></td>'
+
+                data_row += '</tr>'
+                number++
+            }
+            // for
+            get_sdgs_mbo(number)
+            $("#G_O_Table").html(data_row)
+
         },
         // success
         error: function(data) {
             console.log("9999 - G&O : error");
+
         }
         // error
     });
@@ -405,10 +480,6 @@ function set_tap() {
                     $("#btn_save").attr("disabled", true);
                     $("#MBO").addClass("active");
 
-                    data_tap += '<li><a href="#G_O" data-toggle="tab">';
-                    data_tap += '<font>G&O</font>';
-                    data_tap += '</a></li>';
-                    createG_O();
                 }
                 // if
                 else if (row.ps_form_pe == "G&O") {
@@ -416,6 +487,8 @@ function set_tap() {
                     data_tap += '<font>G&O</font>';
                     data_tap += '</a></li>';
                     $("#G_O").addClass("active");
+                    createG_O();
+
                 }
                 // else if 
                 // check pe tool
@@ -686,7 +759,7 @@ function set_tap() {
                         <!-- show infomation employee -->
 
                         <hr>
-                        <table class="table table-bordered table-striped m-n" id="G_O_Table">
+                        <table class="table table-bordered table-striped m-n">
                             <thead>
                                 <tr>
                                     <th width="2%">
@@ -695,18 +768,18 @@ function set_tap() {
                                         </center>
                                     </th>
                                     <th>
-                                        <center width="10%">
+                                        <center width="5%">
                                             Type of G&O
                                         </center>
                                     </th>
                                     <th>
-                                        <center width="10%">
+                                        <center width="15%">
                                             SDGs Goal
                                         </center>
                                     </th>
                                     <th width="30%">
                                         <center>
-                                            Evaluation Item/Their Ratings
+                                            Evaluation Item
                                         </center>
                                     </th>
                                     <th width="10%">
@@ -714,14 +787,20 @@ function set_tap() {
                                             Weight (%)
                                         </center>
                                     </th>
-                                    <th width="20%" colspan="2">
+                                    <th width="15%">
                                         <center>
-                                            Possible Outcomes
+                                            Possible Outcomes/Their Ratings
                                         </center>
+                                    </th>
+                                    <th width="20%">
+                                        <center>Result</center>
+                                    </th>
+                                    <th width="3%">
+                                        <center>Score AxB</center>
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="G_O_Table">
                             </tbody>
                             <!-- tbody  -->
 
