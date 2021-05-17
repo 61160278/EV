@@ -196,34 +196,69 @@
             </td>
         </tr>
         <!-- PCR No. -->
+       
+        
         <tr>
-            <td align="left">From</td>
+    <td align="left"><table width="500" border="0" align="center" cellpadding="0" cellspacing="0">
+    <br>
+        <tr>
+          <td>&nbsp;</td>
+          <td align="center"><div class="text"></div></td>
+          <td align="left">PCR Rank</td>
+          <td align="center"><div class="text"></div></td>
+          <td align="left">PCR Type</td>
+          <td align="center"><div class="text"></div></td>
+          <td>&nbsp;</td>
+          <td align="left">Acknowledge2</td>
+          <td align="center"><div class="text"></div></td>
+          <td>&nbsp;</td>
+          <td align="left">Acknowledge1</td>
+          <td align="center"><div class="text"></div></td>
+          <td>&nbsp;</td>
+          <td align="left">Approved</td>
+          <td align="center"><div class="text"></div></td>
+          <td>&nbsp;</td>
+          <td align="left">Checked2</td>
+          <td align="center"><div class="text"></div></td>
+          <td>&nbsp;</td>
+          <td align="left">Checked1</td>
+          <td align="center"><div class="text"></div></td>
+          <td>&nbsp;</td>
+          <td align="left">Prepared</td>
         </tr>
         <tr>
-            <td align="left">
-                <table width="750" border="0" align="left" cellpadding="0" cellspacing="0"
-                    style="border-collapse:collapse;border-top:2px double #000;">
-                    <tr>
-                        <th width="50" class="headerTitle01" align="left">
-                            <center>PCR Rank </center>
-                        </th>
-
-                        <th width="50" class="headerTitle01" align="left">
-                            <center>PCR Type </center>
-                        </th>
-
-                    </tr>
-                    <!-- PCR Rank -->
-                    <tr>
-                        <td height="20" align="center" class="left_bottom top_right">C2</td>
-                        <td height="20" align="center" class="left_bottom">Repeat </td>
-                    </tr>
-                </table>
-                <!-- PCR Rank -->
-            </td>
-            <!-- PCR Rank -->
+          <td></td>
+          <td align="center">&nbsp;</td>
+          <br>
+          <td align="left">C2</td>
+          <td align="center">&nbsp;</td>
+          <td align="left">Repeat</td>
+          <td>&nbsp;</td>
+          <td align="left">Certified</td>
         </tr>
-        <!-- PCR Rank -->
+        <tr>
+          <td>Received</td>
+          <td align="center"><div class="chk_box"></div></td>
+          <td align="left">พัสดุไปรษณีย์</td>
+          <td align="center"><div class="chk_box"></div></td>
+          <td align="left">รับประกัน</td>
+          <td>&nbsp;</td>
+          <td align="left">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td align="center">&nbsp;</td>
+          <td align="left">Parcels</td>
+          <td align="center">&nbsp;</td>
+          <td align="left">Insured</td>
+          <td>&nbsp;</td>
+          <td align="left">&nbsp;</td>
+        </tr>
+      </table></td>
+  </tr>
+
+
+        
 
 
 
