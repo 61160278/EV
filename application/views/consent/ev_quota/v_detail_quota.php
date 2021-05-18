@@ -222,38 +222,38 @@ function confirm_save() {
     console.log(pos_id);
     console.log(qut_id);
 
-   // if (group != "" && Emp_id != "") {
-           // if (Showname_modol != "ไม่มีข้อมูล") {
-                  var count = 0;
-                  $.get("<?php echo base_url(); ?>/ev_quota/Evs_quota/get_id_qut_pos_plan", function(data, status) {
-                        var obj = JSON.parse(data); //แปลงค่าข้อมูล JSON
-                        obj.forEach((row, index) => { //row =data
-                              if (pos_id == row.qup_Position_ID && qut_id == row.qup_qut_id) {
-                                    count++;
-                              }
-                              // if-else
-                        });
-                        // forEach
-                        if (count == 0) {
-                            insert_quota_plan();
-                            $('#warning_save').modal('show');
-                              return true;
-                        } else {
-                              $("#warning").modal('show');
-                              return false;
-                        }
-                  });
-                  // $.get
-           // } else {
-            //      warning();
-                 // return false;
-//}
-           // if-else 
-     // } else {
-     //       warning();
-     //       return false;
+    // if (group != "" && Emp_id != "") {
+    // if (Showname_modol != "ไม่มีข้อมูล") {
+    var count = 0;
+    $.get("<?php echo base_url(); ?>/ev_quota/Evs_quota/get_id_qut_pos_plan", function(data, status) {
+        var obj = JSON.parse(data); //แปลงค่าข้อมูล JSON
+        obj.forEach((row, index) => { //row =data
+            if (pos_id == row.qup_Position_ID && qut_id == row.qup_qut_id) {
+                count++;
+            }
+            // if-else
+        });
+        // forEach
+        if (count == 0) {
+            insert_quota_plan();
+            $('#warning_save').modal('show');
+            return true;
+        } else {
+            $("#warning").modal('show');
+            return false;
+        }
+    });
+    // $.get
+    // } else {
+    //      warning();
+    // return false;
+    //}
+    // if-else 
+    // } else {
+    //       warning();
+    //       return false;
     //  }
-      //else
+    //else
     // insert_quota_plan();
     // $('#warning_save').modal('show');
 
@@ -309,7 +309,7 @@ function insert_quota_plan() {
     console.log(qup_gradeD);
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_plan_insert",
+        // url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_plan_insert",
 
         data: {
 
@@ -351,8 +351,8 @@ function manage_data(qut_id) {
         </div>
         <div class="panel-body" style="">
 
-
             <div class="row">
+                
                 <table style="border:1;">
                     <?php foreach($cdp_data as $value){ ?>
                     <input type="text" id="position_id" value="<?php echo $value->Position_ID?>" hidden>
@@ -499,11 +499,12 @@ function manage_data(qut_id) {
 
                     </div>
                 </div>
-              
+
             </div>
             <?php foreach($manage_qut_data as $value){ ?>
-            <a> 
-            <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal" onclick =" manage_data( <?php echo $value->qut_id;?>)">CANCEL</button>
+            <a>
+                <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal"
+                    onclick=" manage_data( <?php echo $value->qut_id;?>)">CANCEL</button>
             </a>
             <?php }?>
             <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
@@ -584,7 +585,7 @@ function manage_data(qut_id) {
                             <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
                                 align="center">
                                 <font size="3px">
-                                Already in information!</font>
+                                    Already in information!</font>
                             </label>
 
                         </div>
@@ -596,11 +597,11 @@ function manage_data(qut_id) {
 
             <div class="modal-footer">
                 <div class="btn-group pull-right">
-                <?php foreach($manage_qut_data as $value){ ?>
-                        <button type="button" class="btn btn-success" data-dismiss="modal"
-                            onclick="manage_data(<?php echo $value->qut_id;?>)">Yes</button>
-                        <?php } ?>
-                 
+                    <?php foreach($manage_qut_data as $value){ ?>
+                    <button type="button" class="btn btn-success" data-dismiss="modal"
+                        onclick="manage_data(<?php echo $value->qut_id;?>)">Yes</button>
+                    <?php } ?>
+
                 </div>
 
             </div>

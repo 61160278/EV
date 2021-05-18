@@ -150,6 +150,9 @@ class Evs_quota extends MainController_avenxo {
 		$this->mqut->qut_id = $qut_id;
 		$data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota
 
+		$this->load->model('M_evs_quota_plan','mqup');
+		$data['qup_data'] = $this->mqup->get_all(); // show value company all
+
 		$this->output('/consent/ev_quota/v_manage_quota',$data);
 	}
 	// function manage_quota(
@@ -484,6 +487,15 @@ function edit_quota(){
 		$this->dqut->update();
 
 }//edit_quota
+// function get_id_qut_pos_plan()
+// 	{
 
+
+// 		$this->load->model('M_evs_quota_plan','mqup');
+// 		$this->mqup->qup_id = ;
+// 		$data = $this->mqup->get_quota_plan_id()->result();
+// 		echo json_encode($data);
+// 	}
+// 	// get_id_qut_pos_plan
 }// end class
 ?>
