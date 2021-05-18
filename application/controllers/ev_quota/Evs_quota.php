@@ -487,15 +487,17 @@ function edit_quota(){
 		$this->dqut->update();
 
 }//edit_quota
-// function get_id_qut_pos_plan()
-// 	{
-
-
-// 		$this->load->model('M_evs_quota_plan','mqup');
-// 		$this->mqup->qup_id = ;
-// 		$data = $this->mqup->get_quota_plan_id()->result();
-// 		echo json_encode($data);
-// 	}
-// 	// get_id_qut_pos_plan
+function get_id_qut_pos_plan()
+	{
+		$qup_qut_id = $this->input->post("qut_id");
+		$qup_Position_ID = $this->input->post("pos_id");
+		
+		$this->load->model('M_evs_quota_plan','mqup');
+		$this->mqup->qup_qut_id = $qup_qut_id;
+		$this->mqup->qup_Position_ID = $qup_Position_ID;
+		$data = $this->mqup->get_quota_plan_id()->result();
+		echo json_encode($data);
+	}
+	// get_id_qut_pos_plan
 }// end class
 ?>

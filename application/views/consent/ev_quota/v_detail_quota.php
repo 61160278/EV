@@ -222,40 +222,44 @@ function confirm_save() {
     console.log(pos_id);
     console.log(qut_id);
 
-    // if (group != "" && Emp_id != "") {
-    // if (Showname_modol != "ไม่มีข้อมูล") {
+
     var count = 0;
-    $.get("<?php echo base_url(); ?>/ev_quota/Evs_quota/get_id_qut_pos_plan", function(data, status) {
-        var obj = JSON.parse(data); //แปลงค่าข้อมูล JSON
-        obj.forEach((row, index) => { //row =data
-            if (pos_id == row.qup_Position_ID && qut_id == row.qup_qut_id) {
-                count++;
-            }
-            // if-else
-        });
-        // forEach
-        if (count == 0) {
-            insert_quota_plan();
-            $('#warning_save').modal('show');
-            return true;
-        } else {
-            $("#warning").modal('show');
-            return false;
+    $.ajax({
+            type: "post",
+            url: "<?php echo base_url(); ?>ev_quota/Evs_quota/get_id_qut_pos_plan",
+            data: {
+                "pos_id": pos_id,
+                "qut_id": qut_id
+
+            },
+            datatype: "JSON",
+            success: function(data) {
+                data = JSON.parse(data)
+               data.forEach((row, index)  => {
+
+                    if (pos_id == row.qup_Position_ID && qut_id == row.qup_qut_id) {
+                        count++;
+                        console.log(row.qup_qut_id);
+                        console.log(row.qup_Position_ID);
+
+                    }
+                    // if-else
+                   
+                });
+                // forEach
+                if (count == 0) {
+                    insert_quota_plan();
+                    $('#warning_save').modal('show');
+                    return true;
+                } else {
+                    $("#warning").modal('show');
+                    return false;
+                }
+          
+
+
         }
-    });
-    // $.get
-    // } else {
-    //      warning();
-    // return false;
-    //}
-    // if-else 
-    // } else {
-    //       warning();
-    //       return false;
-    //  }
-    //else
-    // insert_quota_plan();
-    // $('#warning_save').modal('show');
+});
 
 }
 
@@ -309,7 +313,7 @@ function insert_quota_plan() {
     console.log(qup_gradeD);
     $.ajax({
         type: "post",
-        // url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_plan_insert",
+        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_plan_insert",
 
         data: {
 
@@ -352,7 +356,7 @@ function manage_data(qut_id) {
         <div class="panel-body" style="">
 
             <div class="row">
-                
+
                 <table style="border:1;">
                     <?php foreach($cdp_data as $value){ ?>
                     <input type="text" id="position_id" value="<?php echo $value->Position_ID?>" hidden>
