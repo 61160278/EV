@@ -508,7 +508,6 @@ function createG_O() {
                 data_row += '</center>'
                 data_row += '</td>'
                 data_row += '<td id="dis_color"></td>'
-
                 data_row += '</tr>'
 
             }
@@ -534,6 +533,7 @@ function createG_O() {
 function checkG_O() {
 
     var num = 0;
+    var index = 0;
     var number_index = document.getElementById("row_indexG_O").value;
     console.log(number_index);
 
@@ -563,6 +563,23 @@ function checkG_O() {
             num++;
         }
         // else 
+
+        for (j = 0; j < 5; j++) {
+            possible = document.getElementById("possible" + i + j).value;
+            if (possible == "") {
+                $("#possible" + i + j).css("background-color", "#ffe6e6");
+                $("#possible" + i + j).css("border-style", "solid");
+            }
+            // if
+            else {
+                $("#possible" + i + j).css("background-color", "#ffffff");
+                $("#possible" + i + j).css("border-style", "solid");
+                num++;
+            }
+            // else
+        }
+        // for
+
     }
     // for 
 }
