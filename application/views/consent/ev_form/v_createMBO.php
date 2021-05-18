@@ -409,7 +409,8 @@ function createG_O() {
                 data_row += '<td>'
                 for (j = 0; j < 5; j++) {
                     data_row += '<input class="form-control" type="text" id="possible' + number + j +
-                        '" placeholder="Level ' + (j + 1) + '">'
+                        '" placeholder="Level ' + (j + 1) + '" onkeyup="clear_css_inp_lev(' + number + ',' +
+                        j + ')">'
                     data_row += '<hr>'
                 }
                 // for
@@ -477,10 +478,10 @@ function createG_O() {
                 // Weight 
                 data_row += '<td>'
                 data_row += '<input class="form-control" type="text" id="ranges_c' + number +
-                    '" placeholder="Challenges">'
+                    '" placeholder="Challenges" onkeyup="clear_css_inp_rangC('+number+')">'
                 data_row += '<hr>'
                 data_row += '<input class="form-control" type="text" id="ranges_s' + number +
-                    '" placeholder="Standard">'
+                    '" placeholder="Standard" onkeyup="clear_css_inp_rangS('+number+')">'
                 data_row += '</td>'
                 data_row += '<td id="dis_color">'
                 data_row += '<center>'
@@ -629,6 +630,24 @@ function clear_css_inp_G_O(i) {
     $("#inp_item" + i).css("border-style", "solid");
 }
 // function clear_css_inp_G_O
+
+function clear_css_inp_lev(num, i) {
+    $("#possible" + num + i).css("background-color", "#ffffff");
+    $("#possible" + num + i).css("border-style", "solid");
+}
+// function clear_css_inp_lev
+
+function clear_css_inp_rangC(i) {
+    $("#ranges_c" + i).css("background-color", "#ffffff");
+    $("#ranges_c" + i).css("border-style", "solid");
+}
+// function clear_css_inp_rangC
+
+function clear_css_inp_rangS(i) {
+    $("#ranges_s" + i).css("background-color", "#ffffff");
+    $("#ranges_s" + i).css("border-style", "solid");
+}
+// function clear_css_inp_rangS
 
 function clear_css_sel_G_O(i) {
     $("#sdgs_sel" + i).css("background-color", "#ffffff");
