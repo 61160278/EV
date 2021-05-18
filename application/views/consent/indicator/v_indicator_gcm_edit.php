@@ -623,8 +623,7 @@ function update_data_key_component_and_expected_behavior() {
     });
     // ajex
     //$("#edit_form").hide();
-    window.location.href =
-        "<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm_view_edit_data/<?php echo $competency_id; ?>";
+    window.location.href = "<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm_view_edit_data/<?php echo $competency_id; ?>";
 }
 
 <?php
