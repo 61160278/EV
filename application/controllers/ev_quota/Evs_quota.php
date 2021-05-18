@@ -404,30 +404,7 @@ function quota_plan_insert(){
 	*/
 	function edit_quota_plan()
 	{
-		$qup_grad_S = $this->input->post("qup_gradeS");
-	$qup_grad_A = $this->input->post("qup_gradeA"); 
-	$qup_grad_B = $this->input->post("qup_gradeB"); 
-	$qup_grad_B_N = $this->input->post("qup_gradeB_N");
-	$qup_grad_C = $this->input->post("qup_gradeC"); 
-	$qup_grad_D = $this->input->post("qup_gradeD"); 
-	$qup_total = $this->input->post("sum_quota_plan"); 
-	$qup_qut_id = $this->input->post("qut_id"); 
-	$qup_Position_ID = $this->input->post("pos_id"); 
-		$this->load->model("Da_evs_quota_plan","dqup");
-		
-		$this->dqup->qup_id = $qup_id;
-		$this->dqup->qup_grad_S = $qup_grad_S;
-		$this->dqup->qup_grad_A = $qup_grad_A;
-		$this->dqup->qup_grad_B = $qup_grad_B;
-		$this->dqup->qup_grad_B_N = $qup_grad_B_N;
-		$this->dqup->qup_grad_C = $qup_grad_C;
-		$this->dqup->qup_grad_D = $qup_grad_D;
-		$this->dqup->qup_total = $qup_total;
-		$this->dqup->qup_qut_id = $qup_qut_id;
-		$this->dqup->qup_Position_ID = $qup_Position_ID;
-
-		$this->dqup->insert();
-		echo json_encode("Success by insert");
+		$this->output('/consent/ev_quota/v_edit_quota_plan');
 	}//edit_quota_plan
 
 
@@ -470,7 +447,6 @@ function delete_quota(){
 	$this->dqut->delete();
 	echo json_encode("Success by insert");
  }//delete_quota
-
 function edit_quota(){
 
 	$qut_id= $this->input->post("qut_id");
@@ -495,12 +471,10 @@ function edit_quota(){
 		$this->dqut->qut_total = $qut_total;
 		$this->dqut->qut_id = $qut_id;
 		$this->dqut->update();
+	
+
+
 }//edit_quota
 
-function get_id_qut_pos_plan(){
-		$this->load->model('M_evs_quota_plan','mqup');
-		$data = $this->mqup->get_id_quota_position_plan()->result();
-		echo json_encode($data);
-	}//get_id_qut_pos_plan
 }// end class
 ?>
