@@ -610,15 +610,19 @@ function saveG_O(){
 
     for (i = 1; i <= number_index; i++) {
         type.push($('input[name="type'+ i +'"]:checked').val());
-        console.log(type);
+        
         sdgs.push(document.getElementById("sdgs_sel" + i).value);
-        console.log(sdgs);
+        
         item.push(document.getElementById("inp_item" + i).value);
-        console.log(item);
+        
         weight.push(document.getElementById("weight" + i).value);
-        console.log(weight);
+        
     }
     // for 
+    console.log(type);
+    console.log(sdgs);
+    console.log(item);
+    console.log(weight);
 
 }
 // function saveG_O
@@ -730,6 +734,7 @@ function checkG_O() {
     }
     // if 
     else{
+        saveG_O()
         console.log("false save");
         return false;
     }
