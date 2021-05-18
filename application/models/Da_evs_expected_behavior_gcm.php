@@ -33,6 +33,7 @@ class Da_evs_expected_behavior_gcm extends evs_model {
 	public $epg_expected_detail_en; //expected behavior detail english	
 	public $epg_expected_detail_th; //expected behavior detail thai	
 	public $epg_year; //Year of evaluate	
+	public $epg_point; 	
 	public $epg_pos_id; //Position Sequence	
 	public $epg_kcg_id; //key compentency Sequence	
 
@@ -58,9 +59,9 @@ class Da_evs_expected_behavior_gcm extends evs_model {
 	*/
 	function insert() {
 	 	 
-	 	$sql = "INSERT INTO evs_database.evs_expected_behavior_gcm (epg_expected_detail_en, epg_expected_detail_th, epg_pos_id, epg_kcg_id)
-	 			VALUES(?, ?, ?, ?)";
-	 	$this->db->query($sql, array($this->epg_expected_detail_en, $this->epg_expected_detail_th, $this->epg_pos_id, $this->epg_kcg_id));
+	 	$sql = "INSERT INTO evs_database.evs_expected_behavior_gcm (epg_expected_detail_en, epg_expected_detail_th, epg_pos_id, epg_kcg_id,epg_point)
+	 			VALUES(?, ?, ?, ?, ?)";
+	 	$this->db->query($sql, array($this->epg_expected_detail_en, $this->epg_expected_detail_th, $this->epg_pos_id, $this->epg_kcg_id,$this->epg_point));
 
 	 }
 
@@ -83,10 +84,10 @@ class Da_evs_expected_behavior_gcm extends evs_model {
 	function update() {
 	 	
 	 	$sql = "UPDATE evs_database.evs_expected_behavior_gcm 
-	 			SET	epg_expected_detail_en=?, epg_expected_detail_th=?, epg_pos_id=?, epg_kcg_id=?
+	 			SET	epg_expected_detail_en=?, epg_expected_detail_th=?, epg_pos_id=?, epg_kcg_id=?,epg_point=?
 	 			WHERE epg_id=?";
 		
-		$this->db->query($sql, array($this->epg_expected_detail_en, $this->epg_expected_detail_th, $this->epg_pos_id, $this->epg_kcg_id, $this->epg_id));
+		$this->db->query($sql, array($this->epg_expected_detail_en, $this->epg_expected_detail_th, $this->epg_pos_id, $this->epg_kcg_id, $this->epg_point, $this->epg_id));
 		
 	 }
 

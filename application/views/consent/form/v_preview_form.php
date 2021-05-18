@@ -1196,6 +1196,11 @@
                                                                 </th>
                                                                 <th rowspan="3">
                                                                     <center>
+                                                                        <font color="white">Target Level</font>
+                                                                    </center>
+                                                                </th>
+                                                                <th rowspan="3">
+                                                                    <center>
                                                                         <font color="white">Expected Behavior</font>
                                                                     </center>
                                                                 </th>
@@ -1277,6 +1282,7 @@
                                                     $index_acm = 1;
                                                     $temp_keycomponent = "";
                                                     $temp_expected = "";
+                                                    $temp_Target  = "";
                                                     $sum_max_rating = 0;
                                                     // start foreach
                                                     foreach($info_gcm_form->result() as $row){
@@ -1298,6 +1304,17 @@
                                                                     ?>
                                                                     <center>
                                                                         <?php echo $row_epg->kcg_key_component_detail_en . "<br><font color='blue'>" . $row_epg->kcg_key_component_detail_en ."</font>"; ?>
+                                                                    </center>
+                                                                    <?php }
+                                                                    } ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php foreach($info_expected_gcm->result() as $row_epg){ 
+                                                                    if($row->sgc_cpg_id == $row_epg->kcg_cpg_id && $temp_Target != $row_epg->epg_point && $row_epg->epg_pos_id == $info_pos_id){
+                                                                        $temp_Target = $row_epg->epg_point;
+                                                                    ?>
+                                                                    <center>
+                                                                        <?php echo $row_epg->epg_point; ?>
                                                                     </center>
                                                                     <?php }
                                                                     } ?>
@@ -1334,7 +1351,7 @@
                                                         </tbody>
                                                         <tfoot>
                                                             <tr>
-                                                                <td colspan="4" rowspan="2"></td>
+                                                                <td colspan="5" rowspan="2"></td>
                                                                 <td rowspan="2">
                                                                     <center>100</center>
                                                                 </td>

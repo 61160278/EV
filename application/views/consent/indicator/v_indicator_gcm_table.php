@@ -82,7 +82,7 @@ function get_data_for_competency_table() {
         success: function(data) {
             console.log(data)
             if (data.length == 0) {
-		
+
                 $table += '<tr>'
                 $table += '<td colspan="5">'
                 $table += 'No infomation indicator, Please add indicator'
@@ -90,7 +90,7 @@ function get_data_for_competency_table() {
                 $table += '</tr>'
                 // $("#def_info").hide();
                 // $("#com_info").hide();
-				
+
             }
             // else
             else {
@@ -163,7 +163,9 @@ function get_data_for_competency_table() {
                     $table += key_en + '<br>' + key_th
                     $table += '</td>'
                     // show key_component
-
+                    $table += '<td>'
+                    $table += row.epg_point
+                    $table += '</td>'
                     $table += '<td>'
                     $table += row.epg_expected_detail_en + '<br>' + row.epg_expected_detail_th
                     $table += '</td>'
@@ -245,7 +247,11 @@ function get_definetion_com() {
             $("#com_info_th").text(com_th);
 
 
-             $('#link').html('<a href="<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm_view_edit_data/'+com_sel+'"><button class="btn btn-warning float-center"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit &nbsp;</button></a><br><br><button class="btn btn-danger float-center" data-toggle="modal" href="#myModal_delete_Competency"><i class="fa fa-times"></i>&nbsp;Delete</button>');
+            $('#link').html(
+                '<a href="<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm_view_edit_data/' +
+                com_sel +
+                '"><button class="btn btn-warning float-center"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit &nbsp;</button></a><br><br><button class="btn btn-danger float-center" data-toggle="modal" href="#myModal_delete_Competency"><i class="fa fa-times"></i>&nbsp;Delete</button>'
+                );
             // $('#link').html(
             //     '<button class="btn btn-warning float-center"><i class="fa fa-pencil">&nbsp;&nbsp;Edit &nbsp;</i></button>'
             // );
@@ -430,7 +436,8 @@ input:checked+.slider:before {
             <div class="card-header py-3" id="panel_th_indicatorManage">
                 <div class="col-xl-12">
                     <a href="<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm_view_insert_data">
-                        <button type="button" class="btn btn-success float-right"><i class="fa fa-plus"></i> Add </button> </a>
+                        <button type="button" class="btn btn-success float-right"><i class="fa fa-plus"></i> Add
+                        </button> </a>
                     <h1 class="m-0 font-weight-bold text-primary">
                         <a href="<?php echo base_url(); ?>/Evs_indicator/main_indicator">
                             <i class="fa fa-chevron-circle-left text-white"></i>
@@ -465,7 +472,7 @@ input:checked+.slider:before {
 
                             <div class="col-3">
                                 <select name="com_select" id="com_select" class="form-control">
-									
+
                                     <?php //Start foreach
 					
                                     foreach($compet_data as $value){ ?>
@@ -526,7 +533,7 @@ input:checked+.slider:before {
                             <div class="col-2">
                                 <div id="link">
                                 </div>
-                           
+
                             </div>
                             <!-- col-2  -->
                         </div>
@@ -552,8 +559,11 @@ input:checked+.slider:before {
                                 <th width="2%">
                                     <center>#</center>
                                 </th>
-                                <th width="20%">
+                                <th width="15%">
                                     <center>Key Component</center>
+                                </th>
+                                <th width="5%">
+                                    <center>Target Level</center>
                                 </th>
                                 <th width="20%">
                                     <center>Expected Behavior</center>
@@ -599,7 +609,7 @@ input:checked+.slider:before {
                 <a href="<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm">
                     <button id="success_btn" class="btn btn-success" onclick="clear_data_componet()"><i
                             class="fa fa-check">&nbsp;Confirm</i></button>
-                            </a>
+                </a>
             </div>
             <!-- modal-footer -->
             <!-- add button  -->
