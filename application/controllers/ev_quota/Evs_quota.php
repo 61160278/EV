@@ -402,9 +402,20 @@ function quota_plan_insert(){
 	* @author 	Piyasak Srijan
 	* @Create Date 2564-04-07
 	*/
-	function edit_quota_plan()
+	function edit_quota_plan($data_sent)
 	{
-		$this->output('/consent/ev_quota/v_edit_quota_plan');
+		$qut_id = substr($data_sent,0,strpos($data_sent,":"));
+		$pos_id = substr($data_sent,strpos($data_sent,":")+1);
+
+		$this->load->model('M_evs_position','mqos');
+		$this->mqos->Position_ID = $pos_id;
+		$data['cdp_data'] = $this->mqos->get_com_dep_pos_detail()->result();
+	
+		$this->load->model('M_evs_quota','mqut');
+		$this->mqut->qut_id = $qut_id;
+		$data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota
+
+		$this->output('/consent/ev_quota/v_edit_quota_plan',$data);
 	}//edit_quota_plan
 
 
@@ -471,8 +482,6 @@ function edit_quota(){
 		$this->dqut->qut_total = $qut_total;
 		$this->dqut->qut_id = $qut_id;
 		$this->dqut->update();
-	
-
 
 }//edit_quota
 
