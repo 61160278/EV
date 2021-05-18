@@ -53,6 +53,9 @@ function show_data() {
                             ')"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
                         table_data += '<input type="text" id="pos_<?php echo $value->qut_id?>' + i +
                             '" value="' + row.Position_ID + '" hidden>'
+                        table_data += '&nbsp;'
+                        table_data +=
+                            '<a href="#" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></a>'
                         table_data += '</td>'
                         <?php } ?>
                         table_data += '</tr>'
@@ -83,6 +86,9 @@ function show_data() {
                             ')"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
                         table_data += '<input type="text" id="pos_<?php echo $value->qut_id?>' + i +
                             '" value="' + row.Position_ID + '" hidden>'
+                        table_data += '&nbsp;'
+                        table_data +=
+                            '<a href="#" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></a>'
                         table_data += '</td>'
                         <?php } ?>
                         table_data += '</tr>'
@@ -110,6 +116,9 @@ function show_data() {
                             ')"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
                         table_data += '<input type="text" id="pos_<?php echo $value->qut_id?>' + i +
                             '" value="' + row.Position_ID + '" hidden>'
+                        table_data += '&nbsp;'
+                        table_data +=
+                            '<a href="#" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></a>'
                         table_data += '</td>'
                         <?php } ?>
                         table_data += '</tr>'
@@ -128,10 +137,10 @@ function show_data() {
                         table_data += row.Dep_Name
                         table_data += '</td>'
 
-                                table_data += '<td>'
-                                table_data += row.Position_name
-                                table_data += '</td>'
-                     
+                        table_data += '<td>'
+                        table_data += row.Position_name
+                        table_data += '</td>'
+
                         <?php foreach($manage_qut_data as $value){ ?>
                         table_data += '<td>'
                         table_data +=
@@ -139,6 +148,9 @@ function show_data() {
                             ')"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
                         table_data += '<input type="text" id="pos_<?php echo $value->qut_id?>' + i +
                             '" value="' + row.Position_ID + '" hidden>'
+                        table_data += '&nbsp;'
+                        table_data +=
+                            '<a href="#" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></a>'
                         table_data += '</td>'
                         <?php } ?>
                         table_data += '</tr>'
@@ -493,9 +505,38 @@ h4 {
                         </div>
                     </div>
                 </div>
-                <div class="DTTT btn-group pull-left mt-sm">
-                    <a href="<?php echo base_url(); ?>/ev_quota/Evs_quota/index">
-                        <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button></a>
+                <div class="row">
+                    <div class="DTTT btn-group pull-left mt-sm">
+                        <a href="<?php echo base_url(); ?>/ev_quota/Evs_quota/index">
+                            <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button></a>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <legend></legend>
+                    <h3>Description</h3>
+                    <table height="150px">
+                        <tr>
+                            <td height="20" width="50px"><button type="submit" class="btn btn-info"><i
+                                        class="ti ti-info-alt"></i></button></td>
+                            <td width="50px">
+                                <h4>:</h4>
+                            </td>
+                            <td width="150px">
+                                <h4>Detail quota</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> <a class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></a>
+                            </td>
+                            <td width="50px">
+                                <h4>:</h4>
+                            </td>
+                            <td>
+                                <h4>HD/HR Report curve</h4>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
             <!--panel-body-->
