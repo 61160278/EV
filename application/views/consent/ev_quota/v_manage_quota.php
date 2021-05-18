@@ -427,7 +427,7 @@ h4 {
                 </label>
                 <label class="col-md-3">
                     <select name="example_length" class="form-control" id="dep_select" onclick="search_data()">
-
+                    <option value="0">Department</option>
                     </select>
                 </label>
 
@@ -479,7 +479,7 @@ h4 {
                 </label>
                 <label class="col-md-3">
                     <select name="example_length" class="form-control" id="pos_select" onclick="search_data()">
-
+                    <option value="0">Position</option>
                     </select>
                 </label>
             </div>

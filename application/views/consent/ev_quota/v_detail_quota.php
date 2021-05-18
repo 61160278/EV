@@ -97,9 +97,10 @@ tbody:hover {
     visibility: visible;
     opacity: 1;
 }
+
 .panel.panel-indigo .panel-heading {
-  color: #e8eaf6;
-  background-color: #134466;
+    color: #e8eaf6;
+    background-color: #134466;
 }
 
 .qut_type {
@@ -213,8 +214,48 @@ function show_quotaplan() {
 } //show_quotaplan
 
 function confirm_save() {
-    insert_quota_plan();
-    $('#warning_save').modal('show');
+    var pos_id = "";
+    var qut_id = "";
+
+    pos_id = document.getElementById("position_id").value;
+    qut_id = document.getElementById("qut_id").value;
+    console.log(pos_id);
+    console.log(qut_id);
+
+   // if (group != "" && Emp_id != "") {
+           // if (Showname_modol != "ไม่มีข้อมูล") {
+                  var count = 0;
+                  $.get("<?php echo base_url(); ?>/ev_quota/Evs_quota/get_id_qut_pos_plan", function(data, status) {
+                        var obj = JSON.parse(data); //แปลงค่าข้อมูล JSON
+                        obj.forEach((row, index) => { //row =data
+                              if (pos_id == row.qup_Position_ID && qut_id == row.qup_qut_id) {
+                                    count++;
+                              }
+                              // if-else
+                        });
+                        // forEach
+                        if (count == 0) {
+                            insert_quota_plan();
+                            $('#warning_save').modal('show');
+                              return true;
+                        } else {
+                              $("#warning").modal('show');
+                              return false;
+                        }
+                  });
+                  // $.get
+           // } else {
+            //      warning();
+                 // return false;
+//}
+           // if-else 
+     // } else {
+     //       warning();
+     //       return false;
+    //  }
+      //else
+    // insert_quota_plan();
+    // $('#warning_save').modal('show');
 
 }
 
@@ -269,7 +310,7 @@ function insert_quota_plan() {
     $.ajax({
         type: "post",
         url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_plan_insert",
-       
+
         data: {
 
             "qup_gradeS": qup_gradeS,
@@ -295,9 +336,9 @@ function insert_quota_plan() {
 } //insert_quota
 
 function manage_data(qut_id) {
-console.log(qut_id);
-window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
-}//manage_data
+    console.log(qut_id);
+    window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
+} //manage_data
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
@@ -312,61 +353,61 @@ window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quot
 
 
             <div class="row">
-            <table style="border:1;"> 
-             <?php foreach($cdp_data as $value){ ?>
-                <input type="text" id="position_id" value="<?php echo $value->Position_ID?>" hidden>
-                <tr> 
-                <td class="qut" width="175">
-                        <h4><b>Company </b></h4>
-                    </td>
-                    <td width="75">
-                        <h4><b> : </b></h4>
-                    </td>
-                    <td class="qut_type" width="300"><?php echo $value->Company_name;?></td>
-                    <?php } ?>
-                </tr>
-                
-                <?php foreach($manage_qut_data as $value){ ?>
+                <table style="border:1;">
+                    <?php foreach($cdp_data as $value){ ?>
+                    <input type="text" id="position_id" value="<?php echo $value->Position_ID?>" hidden>
+                    <tr>
+                        <td class="qut" width="175">
+                            <h4><b>Company </b></h4>
+                        </td>
+                        <td width="75">
+                            <h4><b> : </b></h4>
+                        </td>
+                        <td class="qut_type" width="300"><?php echo $value->Company_name;?></td>
+                        <?php } ?>
+                    </tr>
+
+                    <?php foreach($manage_qut_data as $value){ ?>
                     <input type="text" id="qut_id" value="<?php echo $value->qut_id?>" hidden>
-                <tr>
-                    <td class="qut" width="175">
-                        <h4><b>Quota </b></h4>
-                    </td>
-                    <td width="75">
-                        <h4><b> : </b></h4>
-                    </td>
-                    <td class="qut_type" width="200"><?php echo $value->qut_type;?></td>
-                
-                    <td class="qut">
-                        <h4><b>Position of Quota </b></h4>
-                    </td>
-                    <td width="75">
-                        <h4><b> : </b></h4>
-                    </td>
-                    <td class="qut_type" id="qut_pos"><?php echo $value->qut_pos;?></td>
-                </tr>
-                <?php } ?>
-                <tr>
-                <?php foreach($cdp_data as $value){ ?>
-                <td class="qut" width="175">
-                        <h4><b>Department </b></h4>
-                    </td>
-                    <td width="75">
-                        <h4><b> : </b></h4>
-                    </td>
-                    <td class="qut_type" width="200"><?php echo $value->Dep_Name;?></td>
-                
-                    <td class="qut">
-                        <h4><b>position </b></h4>
-                       
-                    </td>
-                    <td width="75">
-                        <h4><b> : </b></h4>
-                    </td>
-                    <td class="qut_type" id="qut_pos"><?php echo $value->Position_name;?></td>
-                </tr>
-                <?php } ?>
-            </table>
+                    <tr>
+                        <td class="qut" width="175">
+                            <h4><b>Quota </b></h4>
+                        </td>
+                        <td width="75">
+                            <h4><b> : </b></h4>
+                        </td>
+                        <td class="qut_type" width="200"><?php echo $value->qut_type;?></td>
+
+                        <td class="qut">
+                            <h4><b>Position of Quota </b></h4>
+                        </td>
+                        <td width="75">
+                            <h4><b> : </b></h4>
+                        </td>
+                        <td class="qut_type" id="qut_pos"><?php echo $value->qut_pos;?></td>
+                    </tr>
+                    <?php } ?>
+                    <tr>
+                        <?php foreach($cdp_data as $value){ ?>
+                        <td class="qut" width="175">
+                            <h4><b>Department </b></h4>
+                        </td>
+                        <td width="75">
+                            <h4><b> : </b></h4>
+                        </td>
+                        <td class="qut_type" width="200"><?php echo $value->Dep_Name;?></td>
+
+                        <td class="qut">
+                            <h4><b>position </b></h4>
+
+                        </td>
+                        <td width="75">
+                            <h4><b> : </b></h4>
+                        </td>
+                        <td class="qut_type" id="qut_pos"><?php echo $value->Position_name;?></td>
+                    </tr>
+                    <?php } ?>
+                </table>
             </div>
             <hr>
             <!-- <form onsubmit="required()"> -->
@@ -395,7 +436,7 @@ window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quot
                                 <tr class="orange2">
                                     <td><b>Quota</b></td>
                                     <?php foreach($manage_qut_data as $value){ ?>
-                                    <td id="quota1" value="5"><?php echo $value->qut_grad_S;?></td>	
+                                    <td id="quota1" value="5"><?php echo $value->qut_grad_S;?></td>
                                     <td id="quota2" value="25"><?php echo $value->qut_grad_A;?></td>
                                     <td id="quota3" value="60"><?php echo $value->qut_grad_B;?></td>
                                     <td id="quota4" value="25"><?php echo $value->qut_grad_B_N;?></td>
@@ -458,11 +499,13 @@ window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quot
 
                     </div>
                 </div>
-
+              
             </div>
-              <!-- <a  onclick =" manage_data( <?php echo $value->qut_id;?>)>  -->
-            <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
-            <!-- </a> -->
+            <?php foreach($manage_qut_data as $value){ ?>
+            <a> 
+            <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal" onclick =" manage_data( <?php echo $value->qut_id;?>)">CANCEL</button>
+            </a>
+            <?php }?>
             <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
                 onclick="confirm_save()">SAVE</button>
         </div>
@@ -503,9 +546,10 @@ window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quot
 
                 <div class="modal-footer">
                     <div class="btn-group pull-right">
-                    <?php foreach($manage_qut_data as $value){ ?>
-                        <button type="button" class="btn btn-success" data-dismiss="modal"onclick ="manage_data(<?php echo $value->qut_id;?>)">Yes</button>
-                    <?php } ?>
+                        <?php foreach($manage_qut_data as $value){ ?>
+                        <button type="button" class="btn btn-success" data-dismiss="modal"
+                            onclick="manage_data(<?php echo $value->qut_id;?>)">Yes</button>
+                        <?php } ?>
                     </div>
 
                 </div>
@@ -517,3 +561,53 @@ window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quot
     </div>
     <!-- End Modal Warning -->
 </div>
+
+<!-- Modal Warning -->
+<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#FF9800;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b>
+                    </font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Warning</font>
+                    </b></h2>
+            </div>
+            <!-- Modal header -->
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group" align="center">
+                        <div class="col-sm-12">
+                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                                align="center">
+                                <font size="3px">
+                                Already in information!</font>
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- form-horizontal -->
+            </div>
+            <!-- Modal body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-right">
+                <?php foreach($manage_qut_data as $value){ ?>
+                        <button type="button" class="btn btn-success" data-dismiss="modal"
+                            onclick="manage_data(<?php echo $value->qut_id;?>)">Yes</button>
+                        <?php } ?>
+                 
+                </div>
+
+            </div>
+            <!-- Modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal Warning -->

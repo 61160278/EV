@@ -43,5 +43,11 @@ class M_evs_quota_plan extends Da_evs_quota_plan {
 		return $query;
 	}//get_quota_plan_id 
 
+	function get_id_quota_position_plan(){	
+		$sql = "SELECT  evs_quota_plan.qup_qut_id, evs_quota_plan.qup_Position_ID
+		FROM evs_database.evs_quota_plan";
+		$query = $this->db->query($sql);
+		return $query;
+	}//get_id_quota_position_plan 
 } //end class
 ?>

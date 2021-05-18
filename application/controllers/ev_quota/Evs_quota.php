@@ -435,6 +435,7 @@ function delete_quota(){
 	$this->dqut->delete();
 	echo json_encode("Success by insert");
  }//delete_quota
+
 function edit_quota(){
 
 	$qut_id= $this->input->post("qut_id");
@@ -459,10 +460,12 @@ function edit_quota(){
 		$this->dqut->qut_total = $qut_total;
 		$this->dqut->qut_id = $qut_id;
 		$this->dqut->update();
-	
-
-
 }//edit_quota
 
+function get_id_qut_pos_plan(){
+		$this->load->model('M_evs_quota_plan','mqup');
+		$data = $this->mqup->get_id_quota_position_plan()->result();
+		echo json_encode($data);
+	}//get_id_qut_pos_plan
 }// end class
 ?>
