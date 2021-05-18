@@ -25,6 +25,7 @@ var temp_weight;
 var table_ready = ""; // table document ready
 var table_ready_score = ""; // table document ready_score
 var table_key = '' // value key component for show on table
+var table_Target = ''; // value Target for show on table
 var table_expected = ''; // value expected for show on table
 var temp_competency_en = ""; //value competency_en name
 var temp_competency_id = ""; //value competency_th name
@@ -144,7 +145,7 @@ function key_component_and_expected_data() {
 
         }
     });
-    
+
 }
 
 /*
@@ -265,11 +266,42 @@ function table_data() {
                 //end foreach
 
                 check_number = 0;
-                var temp_expected_en = "";
+                var temp_Target = "";
 
 
                 table_ready += '</td>';
                 // show keycom 
+
+                table_ready += '<td id="Target_' + index + '">';
+
+                expected_data.forEach((row, x) => {
+                    //start if
+                    if (temp_Target != row.epg_point &&
+                        arr_check_competency[0] == row.sgc_cpg_id) {
+                            temp_Target = row.epg_point;
+                        // console.log(temp_Target);
+                        if (check_number == 0) {
+                            table_ready += row.epg_point;
+                        }
+                        if (check_number >= 1) {
+                            table_ready += '<hr>';
+                            table_ready += row.epg_point;
+                        }
+                        check_number++;
+
+
+                        //end if-else
+                    }
+                    //end if-else
+
+                });
+                //end foreach
+
+
+                table_ready += '</td>';
+
+                check_number = 0;
+                var temp_expected_en = "";
 
                 table_ready += '<td id="expected_' + index + '">';
 
@@ -331,7 +363,7 @@ function table_data() {
             });
             //end foreach
 
-            table_ready_score += '<td colspan="4">';
+            table_ready_score += '<td colspan="5">';
             table_ready_score += '<center>';
             table_ready_score += '<font color="black"><b>Total weight</b></font>';
             table_ready_score += '</center>';
@@ -407,7 +439,8 @@ $(document).ready(function() {
 
                 table += '<td id="key_com_' + index + '"> </td>';
                 // show keycom 
-
+                table += '<td id="Target_' + index + '"> </td>';
+                // show Target 
                 table += '<td id="expected_' + index + '"> </td>';
                 // show expected 
 
@@ -509,6 +542,37 @@ function get_compentency(value, index) {
             $('#key_com_' + index).html(table_key);
         }
     });
+
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/Evs_gcm_form/get_expected",
+        data: {
+            "competency_id": competency_id,
+            "pos_id": value_pos_id
+        },
+        dataType: "JSON",
+        success: function(data) {
+
+            //start foreach
+            data.forEach((row, index) => {
+
+                //start if
+                if (index == 0) {
+                    table_Target += row.epg_point;
+                } else {
+                    table_Target += '<hr>';
+                    table_Target += '<br>';
+                    table_Target += row.epg_point;
+                }
+                //end if-else
+
+            });
+            //end foreach
+
+            $('#Target_' + index).html(table_Target);
+        }
+    });
+
     $.ajax({
         type: "post",
         url: "<?php echo base_url(); ?>/Evs_gcm_form/get_expected",
@@ -553,8 +617,8 @@ function form_gcm_update() {
     var arr_weight = []; // array of weight
 
     for (i = 0; i < arr_save_index_arr_add_pos.length; i++) {
-        arr_competency.push($('#compentency' + (parseInt(arr_save_index_arr_add_pos[i])+1)).val());
-        arr_weight.push($('#weight_' + (parseInt(arr_save_index_arr_add_pos[i])+1)).val());
+        arr_competency.push($('#compentency' + (parseInt(arr_save_index_arr_add_pos[i]) + 1)).val());
+        arr_weight.push($('#weight_' + (parseInt(arr_save_index_arr_add_pos[i]) + 1)).val());
         console.log(arr_save_index_arr_add_pos[i]);
     }
     //end for loop
@@ -777,10 +841,13 @@ input[type=number] {
                                     <font color="white">Competency</font>
                                 </center>
                             </th>
-                            <th width="35%">
+                            <th width="30%">
                                 <center>
                                     <font color="white">Key component</font>
                                 </center>
+                            </th>
+                            <th width="5%">
+                                <center color="white">Target Level</center>
                             </th>
                             <th width="35%">
                                 <center>
