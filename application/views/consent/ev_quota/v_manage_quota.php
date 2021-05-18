@@ -49,13 +49,18 @@ function show_data() {
                         <?php foreach($manage_qut_data as $value){ ?>
                         table_data += '<td>'
                         table_data +=
-                            '<a onclick ="manage_data(<?php echo $value->qut_id?>,' + i +')"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
+                            '<a onclick ="manage_data(<?php echo $value->qut_id?>,' + i +
+                            ')"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
                         table_data += '<input type="text" id="pos_<?php echo $value->qut_id?>' + i +
                             '" value="' + row.Position_ID + '" hidden>'
                         table_data += '&nbsp;'
                         table_data +=
-                            '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i +')"><button type="submit" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></button></a>'
-                            
+                            '<a href = "<?php echo base_url(); ?>ev_quota/Evs_quota/edit_quota_plan"><button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>'
+                        table_data += '&nbsp;'
+                        table_data +=
+                            '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i +
+                            ')"><button type="submit" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></button></a>'
+
                         table_data += '</td>'
                         <?php } ?>
                         table_data += '</tr>'
@@ -88,7 +93,11 @@ function show_data() {
                             '" value="' + row.Position_ID + '" hidden>'
                         table_data += '&nbsp;'
                         table_data +=
-                            '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i +')" ><button type="submit" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></button></a>'
+                            '<a href = "<?php echo base_url(); ?>ev_quota/Evs_quota/edit_quota_plan"><button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>'
+                        table_data += '&nbsp;'
+                        table_data +=
+                            '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i +
+                            ')" ><button type="submit" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></button></a>'
                         table_data += '</td>'
                         <?php } ?>
                         table_data += '</tr>'
@@ -118,7 +127,11 @@ function show_data() {
                             '" value="' + row.Position_ID + '" hidden>'
                         table_data += '&nbsp;'
                         table_data +=
-                            '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i +')" ><button type="submit" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></button></a>'
+                            '<a href = "<?php echo base_url(); ?>ev_quota/Evs_quota/edit_quota_plan"><button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>'
+                        table_data += '&nbsp;'
+                        table_data +=
+                            '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i +
+                            ')" ><button type="submit" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></button></a>'
                         table_data += '</td>'
                         <?php } ?>
                         table_data += '</tr>'
@@ -150,7 +163,11 @@ function show_data() {
                             '" value="' + row.Position_ID + '" hidden>'
                         table_data += '&nbsp;'
                         table_data +=
-                            '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i +')" ><button type="submit" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></button></a>'
+                            '<a href = "<?php echo base_url(); ?>ev_quota/Evs_quota/edit_quota_plan"><button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>'
+                        table_data += '&nbsp;'
+                        table_data +=
+                            '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i +
+                            ')" ><button type="submit" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></button></a>'
                         table_data += '</td>'
                         <?php } ?>
                         table_data += '</tr>'
@@ -227,7 +244,11 @@ function search_data() {
                         '" value="' + row.Position_ID + '" hidden>'
                     table_data += '&nbsp;'
                     table_data +=
-                        '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i +')" ><button type="submit" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></button></a>'
+                        '<a href = "<?php echo base_url(); ?>ev_quota/Evs_quota/edit_quota_plan"><button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>'
+                    table_data += '&nbsp;'
+                    table_data +=
+                        '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i +
+                        ')" ><button type="submit" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></button></a>'
                     table_data += '</td>'
                     <?php } ?>
                     table_data += '</tr>'
@@ -330,14 +351,14 @@ function manage_data(qut_id, i) {
     console.log(pos_id);
     var data_sent = qut_id + ":" + pos_id;
     window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/detail_quota/" + data_sent;
-}//manage_data
+} //manage_data
 
 function report_data(qut_id, i) {
-var pos_id = document.getElementById("pos_" + qut_id + i).value;
-console.log(pos_id);
- var data_sent = qut_id + ":" + pos_id;
- window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/hr_report_curve/" + data_sent;
-}//report_data
+    var pos_id = document.getElementById("pos_" + qut_id + i).value;
+    console.log(pos_id);
+    var data_sent = qut_id + ":" + pos_id;
+    window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/hr_report_curve/" + data_sent;
+} //report_data
 </script>
 <style>
 h2 {
@@ -537,6 +558,17 @@ h4 {
                             </td>
                             <td width="150px">
                                 <h4>Detail quota</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> <button type="submit" class="btn btn-warning"><i
+                                        class="ti ti-pencil-alt "></i></button>
+                            </td>
+                            <td width="50px">
+                                <h4>:</h4>
+                            </td>
+                            <td>
+                                <h4>Edit quota plan</h4>
                             </td>
                         </tr>
                         <tr>
