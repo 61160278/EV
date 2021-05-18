@@ -416,7 +416,7 @@ class Evs_gcm_indicators_form extends MainController {
 		// //end foreach
 
 
-		$this->load->model('Da_evs_expected_behavior_gcm_gcm','depg');
+		$this->load->model('Da_evs_expected_behavior_gcm','depg');
 
 		for($j = 0; $j < $add_expected_behavior; $j++){
 			$this->depg->epg_expected_detail_en = $this->input->post("arr_save_expected_en_todatabase[".$j."]");
