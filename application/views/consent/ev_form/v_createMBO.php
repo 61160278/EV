@@ -563,6 +563,50 @@ function checkG_O() {
             num++;
         }
         // else 
+
+        for (j = 0; j < 5; j++) {
+            possible = document.getElementById("possible" + i + j).value;
+            if (possible == "") {
+                $("#possible" + i + j).css("background-color", "#ffe6e6");
+                $("#possible" + i + j).css("border-style", "solid");
+            }
+            // if
+            else {
+                $("#possible" + i + j).css("background-color", "#ffffff");
+                $("#possible" + i + j).css("border-style", "solid");
+                num++;
+            }
+            // else
+        }
+        // for 
+
+        ranges_c = document.getElementById("ranges_c" + i).value;
+        if (ranges_c == "") {
+            $("#ranges_c" + i).css("background-color", "#ffe6e6");
+            $("#ranges_c" + i).css("border-style", "solid");
+        }
+        // if
+        else {
+            $("#ranges_c" + i).css("background-color", "#ffffff");
+            $("#ranges_c" + i).css("border-style", "solid");
+            num++;
+        }
+        // else
+
+        ranges_s = document.getElementById("ranges_s" + i).value;
+        if (ranges_s == "") {
+            $("#ranges_s" + i).css("background-color", "#ffe6e6");
+            $("#ranges_s" + i).css("border-style", "solid");
+        }
+        // if
+        else {
+            $("#ranges_s" + i).css("background-color", "#ffffff");
+            $("#ranges_s" + i).css("border-style", "solid");
+            num++;
+        }
+        // else
+
+
     }
     // for 
 }
