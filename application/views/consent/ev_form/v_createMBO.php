@@ -734,7 +734,6 @@ function checkG_O() {
     }
     // if 
     else{
-        saveG_O()
         console.log("false save");
         return false;
     }
