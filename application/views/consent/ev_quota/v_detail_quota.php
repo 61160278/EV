@@ -294,7 +294,10 @@ function insert_quota_plan() {
 
 } //insert_quota
 
-
+function manage_data(qut_id) {
+console.log(qut_id);
+window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
+}//manage_data
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
@@ -500,7 +503,9 @@ function insert_quota_plan() {
 
                 <div class="modal-footer">
                     <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                    <?php foreach($manage_qut_data as $value){ ?>
+                        <button type="button" class="btn btn-success" data-dismiss="modal"onclick ="manage_data(<?php echo $value->qut_id;?>)">Yes</button>
+                    <?php } ?>
                     </div>
 
                 </div>
