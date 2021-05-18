@@ -55,7 +55,8 @@ function show_data() {
                             '" value="' + row.Position_ID + '" hidden>'
                         table_data += '&nbsp;'
                         table_data +=
-                            '<a href = "<?php echo base_url(); ?>ev_quota/Evs_quota/edit_quota_plan"><button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>'
+                            '<a onclick ="edit_qup_data(<?php echo $value->qut_id?>,' + i +
+                            ')"><button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>'
                         table_data += '&nbsp;'
                         table_data +=
                             '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i +
@@ -93,7 +94,8 @@ function show_data() {
                             '" value="' + row.Position_ID + '" hidden>'
                         table_data += '&nbsp;'
                         table_data +=
-                            '<a href = "<?php echo base_url(); ?>ev_quota/Evs_quota/edit_quota_plan"><button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>'
+                            '<a onclick ="edit_qup_data(<?php echo $value->qut_id?>,' + i +
+                            ')"><button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>'
                         table_data += '&nbsp;'
                         table_data +=
                             '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i +
@@ -127,7 +129,8 @@ function show_data() {
                             '" value="' + row.Position_ID + '" hidden>'
                         table_data += '&nbsp;'
                         table_data +=
-                            '<a href = "<?php echo base_url(); ?>ev_quota/Evs_quota/edit_quota_plan"><button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>'
+                            '<a onclick ="edit_qup_data(<?php echo $value->qut_id?>,' + i +
+                            ')"><button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>'
                         table_data += '&nbsp;'
                         table_data +=
                             '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i +
@@ -163,7 +166,8 @@ function show_data() {
                             '" value="' + row.Position_ID + '" hidden>'
                         table_data += '&nbsp;'
                         table_data +=
-                            '<a href = "<?php echo base_url(); ?>ev_quota/Evs_quota/edit_quota_plan"><button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>'
+                            '<a onclick ="edit_qup_data(<?php echo $value->qut_id?>,' + i +
+                            ')"><button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>'
                         table_data += '&nbsp;'
                         table_data +=
                             '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i +
@@ -244,7 +248,8 @@ function search_data() {
                         '" value="' + row.Position_ID + '" hidden>'
                     table_data += '&nbsp;'
                     table_data +=
-                        '<a href = "<?php echo base_url(); ?>ev_quota/Evs_quota/edit_quota_plan"><button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>'
+                        '<a onclick ="edit_qup_data(<?php echo $value->qut_id?>,' + i +
+                            ')"><button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>'
                     table_data += '&nbsp;'
                     table_data +=
                         '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i +
@@ -358,6 +363,12 @@ function report_data(qut_id, i) {
     console.log(pos_id);
     var data_sent = qut_id + ":" + pos_id;
     window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/hr_report_curve/" + data_sent;
+} //report_data
+function edit_qup_data(qut_id, i) {
+    var pos_id = document.getElementById("pos_" + qut_id + i).value;
+    console.log(pos_id);
+    var data_sent = qut_id + ":" + pos_id;
+    window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/edit_quota_plan/" + data_sent;
 } //report_data
 </script>
 <style>
