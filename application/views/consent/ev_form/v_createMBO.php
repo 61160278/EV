@@ -508,7 +508,6 @@ function createG_O() {
                 data_row += '</center>'
                 data_row += '</td>'
                 data_row += '<td id="dis_color"></td>'
-
                 data_row += '</tr>'
 
             }
@@ -534,6 +533,7 @@ function createG_O() {
 function checkG_O() {
 
     var num = 0;
+    var index = 0;
     var number_index = document.getElementById("row_indexG_O").value;
     console.log(number_index);
 
@@ -578,34 +578,7 @@ function checkG_O() {
             }
             // else
         }
-        // for 
-
-        ranges_c = document.getElementById("ranges_c" + i).value;
-        if (ranges_c == "") {
-            $("#ranges_c" + i).css("background-color", "#ffe6e6");
-            $("#ranges_c" + i).css("border-style", "solid");
-        }
-        // if
-        else {
-            $("#ranges_c" + i).css("background-color", "#ffffff");
-            $("#ranges_c" + i).css("border-style", "solid");
-            num++;
-        }
-        // else
-
-        ranges_s = document.getElementById("ranges_s" + i).value;
-        if (ranges_s == "") {
-            $("#ranges_s" + i).css("background-color", "#ffe6e6");
-            $("#ranges_s" + i).css("border-style", "solid");
-        }
-        // if
-        else {
-            $("#ranges_s" + i).css("background-color", "#ffffff");
-            $("#ranges_s" + i).css("border-style", "solid");
-            num++;
-        }
-        // else
-
+        // for
 
     }
     // for 
