@@ -544,6 +544,18 @@ function insert_quota_actual() {
                         </div>
                         <!-- End Modal Warning -->
 
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
+        <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
+            onclick="confirm_save()">SAVE</button>
+    </div>
+
+</div>
+
                         <!-- Modal Warning -->
                         <div class="modal fade" id="warning_save" tabindex="-1" role="dialog"
                             aria-labelledby="myModalLabel" aria-hidden="true">
@@ -591,14 +603,3 @@ function insert_quota_actual() {
                             <!-- modal-dialog -->
                         </div>
                         <!-- End Modal Warning -->
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
-        <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
-            onclick="confirm_save()">SAVE</button>
-    </div>
-
-</div>
