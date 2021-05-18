@@ -60,6 +60,24 @@ $(document).ready(function() {
             '</div>' +
             '<!-- row  -->' +
             '<br>' +
+            '<div class="row">' +
+            '<div class="col-6">' +
+            '<div class="row">' +
+            '<div class="col-4">' +
+            '<label for="textarea-input" class=" form-control-label">Target Level : </label>' +
+            '</div>' +
+            '<!-- col-4  -->' +
+            '<div class="col-8">' +
+            '<select class="form-control" id="arr_add_point" name="arr_add_point">' +
+            '<option value="P1">P1</option>' +
+            '<option value="P2">P2</option>' +
+            '<option value="C/M3">C/M3</option>' +
+            '</select>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '<br>' +
             '<!-- End input Identification -->' +
             '<!-- Start input position  -->' +
             '<div class="row">' +
@@ -308,6 +326,7 @@ function insert_data_key_component_and_expected_behavior() {
     arr_save_expected_th_todatabase = []; //save expected th to database
     arr_save_posittion_to_database = []; //save posittion to database
     arr_save_posittion_other_to_database = [];
+    arr_save_point_to_database = [];
 
     save_key_component_en_todatabase = document.getElementsByName("arr_add_key_component_en")[0]
         .value; //save key component en to database
@@ -325,6 +344,7 @@ function insert_data_key_component_and_expected_behavior() {
         arr_save_expected_en_todatabase[i] = document.getElementsByName("arr_add_expected_en")[i].value;
         arr_save_expected_th_todatabase[i] = document.getElementsByName("arr_add_expected_th")[i].value;
         arr_save_posittion_to_database[i] = document.getElementsByName("arr_add_pos")[i].value;
+        arr_save_point_to_database[i] = document.getElementsByName("arr_add_point")[i].value;
     }
 
 
@@ -355,7 +375,8 @@ function insert_data_key_component_and_expected_behavior() {
             "arr_save_expected_th_todatabase": arr_save_expected_th_todatabase,
             "arr_save_posittion_to_database": arr_save_posittion_to_database,
             "save_component_id_todatabase": save_component_id_todatabase,
-            "arr_save_posittion_other_to_database": arr_save_posittion_other_to_database
+            "arr_save_posittion_other_to_database": arr_save_posittion_other_to_database,
+            "arr_save_point_to_database": arr_save_point_to_database
         },
         dataType: "JSON",
 
@@ -389,11 +410,22 @@ function insert_data_key_component_and_expected_behavior() {
                     table_data += '<div class="col-3">'
                     table_data += '</div>'
                 } //End if
-                table_data += '<div class="col-5">'
+
+                table_data += '<div class="col-1">'
+                for (i = 0; i < table_for_count; i++) {
+                    table_arr_for_count = arr_save_posittion_other_to_database[i].length
+                    table_data += '' + arr_save_point_to_database[i] + '<br>'
+                    for (j = 1; j < table_arr_for_count; j++) {
+                        table_data += '<br>'
+                    }
+                    table_data += '<hr>'
+                }
+                table_data += '</div>'
+                table_data += '<div class="col-3">'
                 table_data += '' + arr_save_expected_en_todatabase[i] + '<br>'
                 table_data += '' + arr_save_expected_th_todatabase[i] + '<hr>'
-
                 table_data += '</div>'
+               
                 table_data += '<div class="col-2">'
                 table_data += '' + arr_save_posittion_to_database[i] + '<hr>'
                 table_arr_for_count = arr_save_posittion_other_to_database[i].length
@@ -458,20 +490,20 @@ function insert_data_key_component_and_expected_behavior() {
         // success
     });
     // ajex
-    window.location.href =
-        "<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm_view_edit_data/<?php echo $competency_id; ?>";
+   window.location.href ="<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm_view_edit_data/<?php echo $competency_id; ?>";
 }
 
 
 
 function update_data_key_component_and_expected_behavior() {
     table_data = ""; // set table
-
+    save_table_insert_data = 0;
     arr_save_expected_en_todatabase = []; //save expected en to database
     arr_save_expected_th_todatabase = []; //save expected th to database
     arr_save_posittion_to_database = []; //save posittion to database
     arr_save_posittion_other_to_database = [];
     arr_save_expected_id = [];
+    arr_save_point_to_database = [];
 
     if (chack_table_id == 0) {
         save_table_insert_data = parseInt(document.getElementById("insert_table").value);
@@ -496,9 +528,10 @@ function update_data_key_component_and_expected_behavior() {
         arr_save_expected_id[i] = [table_arr_for_count];
         arr_save_expected_en_todatabase[i] = document.getElementsByName("arr_add_expected_en_edit")[i].value;
         arr_save_expected_th_todatabase[i] = document.getElementsByName("arr_add_expected_th_edit")[i].value;
-
+        arr_save_point_to_database[i] = document.getElementsByName("arr_add_point_edit")[i].value;
         console.log(arr_save_expected_en_todatabase[i]);
         console.log(arr_save_expected_th_todatabase[i]);
+        console.log(arr_save_point_to_database[i]);
 
         for (j = 0; j < table_arr_for_count; j++) {
             arr_save_expected_id[i][j] = document.getElementsByName("id_exp_" + (i + 1) + "")[j].value;
@@ -520,7 +553,8 @@ function update_data_key_component_and_expected_behavior() {
             "arr_save_expected_th_todatabase": arr_save_expected_th_todatabase,
             "save_component_id_todatabase": save_component_id_todatabase,
             "arr_save_posittion_other_to_database": arr_save_posittion_other_to_database,
-            "arr_save_expected_id": arr_save_expected_id
+            "arr_save_expected_id": arr_save_expected_id,
+            "arr_save_point_to_database": arr_save_point_to_database
         },
         dataType: "JSON",
 
@@ -553,7 +587,19 @@ function update_data_key_component_and_expected_behavior() {
                     table_data += '<div class="col-3">'
                     table_data += '</div>'
                 } //End if
-                table_data += '<div class="col-5">'
+                table_data += '<div class="col-1">'
+               
+                    table_arr_for_count = arr_save_posittion_other_to_database[i].length
+                    table_data += '' + arr_save_point_to_database[i] + '<br>'
+                    for (j = 1; j < table_arr_for_count; j++) {
+                        table_data += '<br>'
+                    }
+                    table_data += '<hr>'
+               
+                table_data += '</div>'
+
+
+                table_data += '<div class="col-3">'
                 table_data += '' + arr_save_expected_en_todatabase[i] + '<br>'
                 table_data += '' + arr_save_expected_th_todatabase[i] + '<hr>'
 
@@ -623,8 +669,7 @@ function update_data_key_component_and_expected_behavior() {
     });
     // ajex
     //$("#edit_form").hide();
-    window.location.href =
-        "<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm_view_edit_data/<?php echo $competency_id; ?>";
+    window.location.href = "<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm_view_edit_data/<?php echo $competency_id; ?>";
 }
 
 <?php
@@ -1028,8 +1073,46 @@ function edit_key_and_expected(kcg_id) {
                                 table_data += '</div>'
                                 table_data += '<!-- row  -->'
                                 table_data += '<br>'
-                                table_data += '<!-- End input Identification -->'
+                                Target_P1 = "";
+                                Target_P2 = "";
+                                Target_C_M3 = "";
+                                if (row_expected.epg_point ==
+                                    "P1") {
+                                    Target_P1 = "selected";
+                                }
+                                if (row_expected.epg_point ==
+                                    "P2") {
+                                    Target_P2 = "selected";
+                                }
+                                if (row_expected.epg_point ==
+                                    "C/M3") {
+                                    Target_C_M3 = "selected";
+                                }
 
+                                table_data += '<div class="row">'
+                                table_data += '<div class="col-6">'
+                                table_data += '<div class="row">'
+                                table_data += '<div class="col-4">'
+                                table_data +=
+                                    '<label for="textarea-input" class=" form-control-label">Target Level : </label>'
+                                table_data += '</div>'
+                                table_data += '<!-- col-4  -->'
+                                table_data += '<div class="col-8">'
+                                table_data +=
+                                    '<select class="form-control" id="arr_add_point_edit" name="arr_add_point_edit">'
+                                table_data += '<option value="P1" ' + Target_P1 +
+                                    '>P1</option>'
+                                table_data += '<option value="P2" ' + Target_P2 +
+                                    '>P2</option>'
+                                table_data += '<option value="C/M3" ' + Target_C_M3 +
+                                    '>C/M3</option>'
+                                table_data += '</select>'
+                                table_data += '</div>'
+                                table_data += '</div>'
+                                table_data += '</div>'
+                                table_data += '</div>'
+                                table_data += '<!-- End input Identification -->'
+                                table_data += '<br>'
                                 data.forEach((row_expected, index_epg) => {
                                     if (row_key.kcg_key_component_detail_en ==
                                         row_expected.kcg_key_component_detail_en) {
@@ -1431,6 +1514,25 @@ function clear_data_componet() {
                         </div>
                         <!-- row  -->
                         <br>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label for="textarea-input" class=" form-control-label">Target Level : </label>
+                                    </div>
+                                    <!-- col-4  -->
+                                    <div class="col-8">
+                                        <select class="form-control" id="arr_add_point" name="arr_add_point">
+                                            <option value="P1">P1</option>
+                                            <option value="P2">P2</option>
+                                            <option value="C/M3">C/M3</option>
+                                        </select>
+                                        <!-- name="arr_add_point"  -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
                         <!-- End input Identification -->
 
                         <!-- Start input position  -->
@@ -1519,7 +1621,10 @@ function clear_data_componet() {
                         <div class="col-3">
                             Keycomponent
                         </div>
-                        <div class="col-4">
+                        <div class="col-1">
+                            Target Level
+                        </div>
+                        <div class="col-3">
                             Expected Behavior
                         </div>
                         <div class="col-3">
@@ -1550,11 +1655,23 @@ foreach ($competency_table as $value) {
         echo "<br>";
         echo $value->kcg_key_component_detail_th;
         echo '</div>';
-        echo '<div class="col-4">';
+
+        echo '<div class="col-1">';
+        foreach ($competency_table as $chack_expect) {
+            //start if
+            if ($value->kcg_key_component_detail_en == $chack_expect->kcg_key_component_detail_en) {
+        echo $chack_expect->epg_point;
+            }
+        }
+        echo '</div>';
+
+        echo '<div class="col-3">';
         //start foreach
         foreach ($competency_table as $chack_expect) {
             //start if
             if ($value->kcg_key_component_detail_en == $chack_expect->kcg_key_component_detail_en) {
+       
+
                 echo $chack_expect->epg_expected_detail_en;
                 echo "<br>";
                 echo $chack_expect->epg_expected_detail_th;

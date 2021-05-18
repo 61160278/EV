@@ -235,6 +235,7 @@ class Evs_gcm_indicators_form extends MainController {
 		$save_key_component_en_todatabase = $this->input->post("save_key_component_en_todatabase"); //save_key_component_en_todatabase
 		$save_key_component_th_todatabase = $this->input->post("save_key_component_th_todatabase"); //save_key_component_th_todatabase
 		$add_expected_behavior = count($this->input->post("arr_save_expected_en_todatabase"));//max loop key component
+		
 	
 		$this->load->model('M_evs_competency_gcm','mcpg');
 		$data = $this->mcpg->get_all();
@@ -276,7 +277,7 @@ class Evs_gcm_indicators_form extends MainController {
 		for($j = 0; $j < $add_expected_behavior; $j++){
 		$this->depg->epg_expected_detail_en = $this->input->post("arr_save_expected_en_todatabase[".$j."]");
 		$this->depg->epg_expected_detail_th = $this->input->post("arr_save_expected_th_todatabase[".$j."]");
-
+		$this->depg->epg_point = $this->input->post("arr_save_point_to_database[".$j."]");
 		
 		//start foreach 
 			foreach ($data_pos->result() as $row) {
@@ -305,6 +306,7 @@ class Evs_gcm_indicators_form extends MainController {
 					
 						$this->depg->epg_expected_detail_en = $this->input->post("arr_save_expected_en_todatabase[".$i."]");
 						$this->depg->epg_expected_detail_th = $this->input->post("arr_save_expected_th_todatabase[".$i."]");
+						$this->depg->epg_point = $this->input->post("arr_save_point_to_database[".$j."]");
 				
 					//start foreach 
 					foreach ($data_pos->result() as $row) {
@@ -416,12 +418,13 @@ class Evs_gcm_indicators_form extends MainController {
 		// //end foreach
 
 
-		$this->load->model('Da_evs_expected_behavior_gcm_gcm','depg');
+		$this->load->model('Da_evs_expected_behavior_gcm','depg');
 
 		for($j = 0; $j < $add_expected_behavior; $j++){
 			$this->depg->epg_expected_detail_en = $this->input->post("arr_save_expected_en_todatabase[".$j."]");
 			$this->depg->epg_expected_detail_th = $this->input->post("arr_save_expected_th_todatabase[".$j."]");
-							
+			$this->depg->epg_point = $this->input->post("arr_save_point_to_database[".$j."]");
+			
 			$add_position_other = count($this->input->post("arr_save_posittion_other_to_database[".$j."]"));//max loop key component
 	
 			for($k = 0; $k < $add_position_other; $k++){
@@ -442,7 +445,7 @@ class Evs_gcm_indicators_form extends MainController {
 		}
 
 		$status = "key_component_and_expected_behavior_to_database_edit";
-		echo json_encode($key_component_and_expected_behavior_to_database_edit);
+		echo json_encode($status);
 	}
 	// function key_component_and_expected_behavior_to_database_edit()
 

@@ -97,14 +97,32 @@ class Evs_quota extends MainController_avenxo {
 	* @author 	Piyasak Srijan
 	* @Update Date 2564-04-20
 	*/
-	function hr_report_curve()
+	function hr_report_curve($data_sent)
 	{
+		 $qut_id = substr($data_sent,0,strpos($data_sent,":"));
+		 $pos_id = substr($data_sent,strpos($data_sent,":")+1);
+
+		$this->load->model('M_evs_position','mqos');
+		$this->mqos->Position_ID = $pos_id;
+		$data['cdp_data'] = $this->mqos->get_com_dep_pos_detail()->result();
+	
+		$this->load->model('M_evs_quota','mqut');
+		$this->mqut->qut_id = $qut_id;
+		$data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota
+
 		$this->load->model('M_evs_department','mdep');
 		$data['dep_data'] = $this->mdep->get_all(); // show value department all
+
 		$this->load->model('M_evs_position','meps');
 		$data['pos_data'] = $this->meps->get_all()->result(); // show value position all
+
 		$this->load->model('M_evs_company','mcpn');
 		$data['com_data'] = $this->mcpn->get_all(); // show value company all
+
+		$this->load->model('M_evs_quota_plan','mqup');
+		$this->mqup->qup_qut_id = $qut_id;
+		$this->mqup->qup_Position_ID = $pos_id;
+		$data['qup_data'] = $this->mqup->get_quota_plan_id()->result(); // show value company all
 		
 		$this->output('/consent/ev_quota/v_hr_report_curve',$data);
 	}
@@ -149,6 +167,9 @@ class Evs_quota extends MainController_avenxo {
 		$qut_id = substr($data_sent,0,strpos($data_sent,":"));
 		$pos_id = substr($data_sent,strpos($data_sent,":")+1);
 
+		$this->load->model('M_evs_position','mqos');
+		$this->mqos->Position_ID = $pos_id;
+		$data['cdp_data'] = $this->mqos->get_com_dep_pos_detail()->result();
 	
 		$this->load->model('M_evs_quota','mqut');
 		$this->mqut->qut_id = $qut_id;
@@ -355,7 +376,8 @@ function quota_plan_insert(){
 	$qup_grad_C = $this->input->post("qup_gradeC"); 
 	$qup_grad_D = $this->input->post("qup_gradeD"); 
 	$qup_total = $this->input->post("sum_quota_plan"); 
-
+	$qup_qut_id = $this->input->post("qut_id"); 
+	$qup_Position_ID = $this->input->post("pos_id"); 
 		$this->load->model("Da_evs_quota_plan","dqup");
 		
 		$this->dqup->qup_id = $qup_id;
@@ -366,11 +388,36 @@ function quota_plan_insert(){
 		$this->dqup->qup_grad_C = $qup_grad_C;
 		$this->dqup->qup_grad_D = $qup_grad_D;
 		$this->dqup->qup_total = $qup_total;
-		
+		$this->dqup->qup_qut_id = $qup_qut_id;
+		$this->dqup->qup_Position_ID = $qup_Position_ID;
+
 		$this->dqup->insert();
 		echo json_encode("Success by insert");
 
 }//quota_plan_insert
+/*
+	* edit_quota_plan
+	* @input
+	* @output 
+	* @author 	Piyasak Srijan
+	* @Create Date 2564-04-07
+	*/
+	function edit_quota_plan($data_sent)
+	{
+		$qut_id = substr($data_sent,0,strpos($data_sent,":"));
+		$pos_id = substr($data_sent,strpos($data_sent,":")+1);
+
+		$this->load->model('M_evs_position','mqos');
+		$this->mqos->Position_ID = $pos_id;
+		$data['cdp_data'] = $this->mqos->get_com_dep_pos_detail()->result();
+	
+		$this->load->model('M_evs_quota','mqut');
+		$this->mqut->qut_id = $qut_id;
+		$data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota
+
+		$this->output('/consent/ev_quota/v_edit_quota_plan',$data);
+	}//edit_quota_plan
+
 
 function quota_actual_insert(){
 
@@ -381,6 +428,9 @@ function quota_actual_insert(){
 	$qua_grad_C = $this->input->post("qua_gradeC"); 
 	$qua_grad_D = $this->input->post("qua_gradeD"); 
 	$qua_total = $this->input->post("sum_actual"); 
+	$qua_qut_id = $this->input->post("qut_id"); 
+	$qua_Position_ID = $this->input->post("pos_id"); 
+	$qua_qup_id = $this->input->post("qup_id"); 
 
 		$this->load->model("Da_evs_quota_actual","dqua");
 		
@@ -392,6 +442,9 @@ function quota_actual_insert(){
 		$this->dqua->qua_grad_C = $qua_grad_C;
 		$this->dqua->qua_grad_D = $qua_grad_D;
 		$this->dqua->qua_total = $qua_total;
+		$this->dqua->qua_qut_id = $qua_qut_id;
+		$this->dqua->qua_Position_ID = $qua_Position_ID;
+		$this->dqua->qua_qup_id = $qua_qup_id;
 		
 		$this->dqua->insert();
 		echo json_encode("Success by insert");
@@ -429,8 +482,6 @@ function edit_quota(){
 		$this->dqut->qut_total = $qut_total;
 		$this->dqut->qut_id = $qut_id;
 		$this->dqut->update();
-	
-
 
 }//edit_quota
 

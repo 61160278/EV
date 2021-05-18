@@ -57,11 +57,12 @@ class Da_evs_quota_plan extends evs_model {
 	*/
 	function insert() {
 	 	$sql = "INSERT INTO evs_database.evs_quota_plan (evs_quota_plan.qup_id, evs_quota_plan.qup_grad_S, evs_quota_plan.qup_grad_A, 
-		 		evs_quota_plan.qup_grad_B, evs_quota_plan.qup_grad_B_N, evs_quota_plan.qup_grad_C, evs_quota_plan.qup_grad_D,evs_quota_plan.qup_total)
-		 		VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+		 		evs_quota_plan.qup_grad_B, evs_quota_plan.qup_grad_B_N, evs_quota_plan.qup_grad_C, evs_quota_plan.qup_grad_D,
+				 evs_quota_plan.qup_total,evs_quota_plan.qup_qut_id,evs_quota_plan.qup_Position_ID)
+		 		VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		 
 	 	$this->db->query($sql, array($this->qup_id, $this->qup_grad_S, $this->qup_grad_A, $this->qup_grad_B, $this->qup_grad_B_N, $this->qup_grad_C,
-		$this->qup_grad_D, $this->qup_total));
+		$this->qup_grad_D, $this->qup_total, $this->qup_qut_id, $this->qup_Position_ID));
 	
 	 }
 
@@ -75,12 +76,12 @@ class Da_evs_quota_plan extends evs_model {
 	*/
 	// function update() {
 	 	
-	//  	$sql = "UPDATE evs_database.evs_quota 
-	//  			SET	evs_quota.qut_id=?, evs_quota.qut_type=? , evs_quota.qut_pos=?
+	//  	$sql = "UPDATE evs_database.evs_quota_plan 
+	//  			SET evs_quota_plan.qup_grad_S= ?,evs_quota_plan.qup_grad_A= ?,evs_quota_plan.qup_grad_B= ?,evs_quota_plan.qup_grad_B_N= ?,
+	// 			 evs_quota_plan.qup_grad_C= ?,evs_quota_plan.qup_grad_D= ?,evs_quota_plan.qup_total= ?,
 	//  			WHERE evs_quota.qut_id=?";
 		
-	//  	$this->db->query($sql, array($this->qut_id, $this->qut_type, $this->qut_pos));
-		
+	//  	$this->db->query($sql, array($this->qup_grad_S, $this->qup_grad_A, $this->qup_grad_B, $this->qup_grad_B_N, $this->qup_grad_C, $this->qup_grad_D, $this->qup_total, $this->qut_id));
 	//  }
 	/*
 	* update

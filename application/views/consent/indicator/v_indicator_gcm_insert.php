@@ -85,6 +85,24 @@ $(document).ready(function() {
             '</div>' +
             '<!-- row  -->' +
             '<br>' +
+            '<div class="row">' +
+            '<div class="col-6">' +
+            '<div class="row">' +
+            '<div class="col-4">' +
+            '<label for="textarea-input" class=" form-control-label">Target Level : </label>' +
+            '</div>' +
+            '<!-- col-4  -->' +
+            '<div class="col-8">' +
+            '<select class="form-control" id="arr_add_point" name="arr_add_point">' +
+            '<option value="P1">P1</option>' +
+            '<option value="P2">P2</option>' +
+            '<option value="C/M3">C/M3</option>' +
+            '</select>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '<br>' +
             '<!-- End input Identification -->' +
             '<!-- Start input position  -->' +
             '<div class="row">' +
@@ -310,6 +328,8 @@ function insert_data_key_component_and_expected_behavior() {
     arr_save_expected_th_todatabase = []; //save expected th to database
     arr_save_posittion_to_database = []; //save posittion to database
     arr_save_posittion_other_to_database = [];
+    arr_save_point_to_database = [];
+
 
     save_key_component_en_todatabase = document.getElementsByName("arr_add_key_component_en")[0]
         .value; //save key component en to database
@@ -327,6 +347,7 @@ function insert_data_key_component_and_expected_behavior() {
         arr_save_expected_en_todatabase[i] = document.getElementsByName("arr_add_expected_en")[i].value;
         arr_save_expected_th_todatabase[i] = document.getElementsByName("arr_add_expected_th")[i].value;
         arr_save_posittion_to_database[i] = document.getElementsByName("arr_add_pos")[i].value;
+        arr_save_point_to_database[i] = document.getElementsByName("arr_add_point")[i].value;
     }
 
 
@@ -357,7 +378,8 @@ function insert_data_key_component_and_expected_behavior() {
             "arr_save_expected_th_todatabase": arr_save_expected_th_todatabase,
             "arr_save_posittion_to_database": arr_save_posittion_to_database,
             "save_component_id_todatabase": save_component_id_todatabase,
-            "arr_save_posittion_other_to_database": arr_save_posittion_other_to_database
+            "arr_save_posittion_other_to_database": arr_save_posittion_other_to_database,
+            "arr_save_point_to_database": arr_save_point_to_database
         },
         dataType: "JSON",
 
@@ -376,7 +398,16 @@ function insert_data_key_component_and_expected_behavior() {
             table_data += '</td>'
             //Start for loop
 
-
+            table_data += '<td>'
+            for (i = 0; i < table_for_count; i++) {
+                table_arr_for_count = arr_save_posittion_other_to_database[i].length
+                table_data += '' + arr_save_point_to_database[i] + '<br>'
+                for (j = 1; j < table_arr_for_count; j++) {
+                    table_data += '<br>'
+                }
+                table_data += '<hr>'
+            }
+            table_data += '</td>'
 
 
             table_data += '<td>'
@@ -871,6 +902,25 @@ function clear_data_componet() {
                         </div>
                         <!-- row  -->
                         <br>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label for="textarea-input" class=" form-control-label">Target Level : </label>
+                                    </div>
+                                    <!-- col-4  -->
+                                    <div class="col-8">
+                                        <select class="form-control" id="arr_add_point" name="arr_add_point">
+                                            <option value="P1">P1</option>
+                                            <option value="P2">P2</option>
+                                            <option value="C/M3">C/M3</option>
+                                        </select>
+                                        <!-- name="arr_add_point"  -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
                         <!-- End input Identification -->
 
                         <!-- Start input position  -->
@@ -955,8 +1005,11 @@ function clear_data_componet() {
                         <th width="2%">
                             <center>#</center>
                         </th>
-                        <th width="20%">
+                        <th width="15%">
                             <center>Key Component</center>
+                        </th>
+                        <th width="5%">
+                            <center>Target Level</center>
                         </th>
                         <th width="20%">
                             <center>Expected Behavior</center>

@@ -214,48 +214,8 @@ function show_quotaplan() {
 } //show_quotaplan
 
 function confirm_save() {
-    var pos_id = "";
-    var qut_id = "";
-
-    pos_id = document.getElementById("position_id").value;
-    qut_id = document.getElementById("qut_id").value;
-    console.log(pos_id);
-    console.log(qut_id);
-
-   // if (group != "" && Emp_id != "") {
-           // if (Showname_modol != "ไม่มีข้อมูล") {
-                  var count = 0;
-                  $.get("<?php echo base_url(); ?>/ev_quota/Evs_quota/get_id_qut_pos_plan", function(data, status) {
-                        var obj = JSON.parse(data); //แปลงค่าข้อมูล JSON
-                        obj.forEach((row, index) => { //row =data
-                              if (pos_id == row.qup_Position_ID && qut_id == row.qup_qut_id) {
-                                    count++;
-                              }
-                              // if-else
-                        });
-                        // forEach
-                        if (count == 0) {
-                            insert_quota_plan();
-                            $('#warning_save').modal('show');
-                              return true;
-                        } else {
-                              $("#warning").modal('show');
-                              return false;
-                        }
-                  });
-                  // $.get
-           // } else {
-            //      warning();
-                 // return false;
-//}
-           // if-else 
-     // } else {
-     //       warning();
-     //       return false;
-    //  }
-      //else
-    // insert_quota_plan();
-    // $('#warning_save').modal('show');
+    insert_quota_plan();
+    $('#warning_save').modal('show');
 
 }
 
@@ -499,13 +459,11 @@ function manage_data(qut_id) {
 
                     </div>
                 </div>
-              
+
             </div>
-            <?php foreach($manage_qut_data as $value){ ?>
-            <a> 
-            <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal" onclick =" manage_data( <?php echo $value->qut_id;?>)">CANCEL</button>
-            </a>
-            <?php }?>
+            <!-- <a  onclick =" manage_data( <?php echo $value->qut_id;?>)>  -->
+            <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
+            <!-- </a> -->
             <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
                 onclick="confirm_save()">SAVE</button>
         </div>
@@ -561,53 +519,3 @@ function manage_data(qut_id) {
     </div>
     <!-- End Modal Warning -->
 </div>
-
-<!-- Modal Warning -->
-<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:#FF9800;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b>
-                    </font>
-                </button>
-                <h2 class="modal-title"><b>
-                        <font color="white">Warning</font>
-                    </b></h2>
-            </div>
-            <!-- Modal header -->
-
-            <div class="modal-body">
-                <div class="form-horizontal">
-                    <div class="form-group" align="center">
-                        <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
-                                align="center">
-                                <font size="3px">
-                                Already in information!</font>
-                            </label>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- form-horizontal -->
-            </div>
-            <!-- Modal body -->
-
-            <div class="modal-footer">
-                <div class="btn-group pull-right">
-                <?php foreach($manage_qut_data as $value){ ?>
-                        <button type="button" class="btn btn-success" data-dismiss="modal"
-                            onclick="manage_data(<?php echo $value->qut_id;?>)">Yes</button>
-                        <?php } ?>
-                 
-                </div>
-
-            </div>
-            <!-- Modal footer -->
-        </div>
-        <!-- modal-content -->
-    </div>
-    <!-- modal-dialog -->
-</div>
-<!-- End Modal Warning -->

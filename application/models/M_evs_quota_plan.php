@@ -33,6 +33,29 @@ class M_evs_quota_plan extends Da_evs_quota_plan {
 		$query = $this->db->query($sql);
 		return $query;
 	}//get_all 
+	function get_quota_plan_id(){	
+		$sql = "SELECT *
+		FROM evs_database.evs_quota_plan
+		LEFT JOIN evs_database.evs_quota
+		ON evs_quota_plan.qup_qut_id = evs_quota.qut_id
+		WHERE evs_quota_plan.qup_qut_id = ? AND evs_quota_plan.qup_Position_ID = ?";
+		$query = $this->db->query($sql, array($this->qup_qut_id,$this->qup_Position_ID));
+		return $query;
+	}//get_quota_plan_id 
 
+	function get_id_quota_position_plan(){	
+		$sql = "SELECT  evs_quota_plan.qup_qut_id, evs_quota_plan.qup_Position_ID
+		FROM evs_database.evs_quota_plan";
+		$query = $this->db->query($sql);
+		return $query;
+	}//get_id_quota_position_plan 
+
+	// function get_quota_plan_id(){	
+	// 	$sql = "SELECT *
+	// 			FROM evs_database.evs_quota_plan 
+	// 			WHERE evs_quota_plan.qup_id  = ?";
+	// 	$query = $this->db->query($sql, array($this->qup_id));
+	// 	return $query;
+	// }// get_quota_id()
 } //end class
 ?>
