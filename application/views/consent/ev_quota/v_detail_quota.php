@@ -101,6 +101,14 @@ tbody:hover {
   color: #e8eaf6;
   background-color: #134466;
 }
+
+.qut_type {
+    text-align: left;
+}
+
+.qut {
+    text-align: left;
+}
 </style>
 <!-- <script src="path/to/chartjs/dist/chart.js"></script> -->
 <script>
@@ -226,9 +234,15 @@ function insert_quota_plan() {
     var check = "";
     var value_quotaPlan = 0;
     var quota = 0;
+    var pos_id = "";
+    var qut_id = "";
 
+    pos_id = document.getElementById("position_id").value;
+    qut_id = document.getElementById("qut_id").value;
     check = document.getElementById("quotaPlan").value;
     console.log(check);
+    console.log(pos_id);
+    console.log(qut_id);
     //}
     for (var i = 1; i <= 6; i++) {
         quota = document.getElementById("quota" + i).innerHTML;
@@ -264,7 +278,9 @@ function insert_quota_plan() {
             "qup_gradeB_N": qup_gradeB_N,
             "qup_gradeC": qup_gradeC,
             "qup_gradeD": qup_gradeD,
-            "sum_quota_plan": sum_quota_plan
+            "sum_quota_plan": sum_quota_plan,
+            "qut_id": qut_id,
+            "pos_id": pos_id
         },
         dataType: "JSON",
 
@@ -293,17 +309,22 @@ function insert_quota_plan() {
 
 
             <div class="row">
-            <table>
-                <?php foreach($manage_qut_data as $value){ ?>
-                <tr>
+            <table style="border:1;"> 
+             <?php foreach($cdp_data as $value){ ?>
+                <input type="text" id="position_id" value="<?php echo $value->Position_ID?>" hidden>
+                <tr> 
                 <td class="qut" width="175">
                         <h4><b>Company </b></h4>
                     </td>
                     <td width="75">
                         <h4><b> : </b></h4>
                     </td>
-                    <td class="qut_type" width="200"></td>
+                    <td class="qut_type" width="300"><?php echo $value->Company_name;?></td>
+                    <?php } ?>
                 </tr>
+                
+                <?php foreach($manage_qut_data as $value){ ?>
+                    <input type="text" id="qut_id" value="<?php echo $value->qut_id?>" hidden>
                 <tr>
                     <td class="qut" width="175">
                         <h4><b>Quota </b></h4>
@@ -316,61 +337,33 @@ function insert_quota_plan() {
                     <td class="qut">
                         <h4><b>Position of Quota </b></h4>
                     </td>
-                    <td>
+                    <td width="75">
                         <h4><b> : </b></h4>
                     </td>
                     <td class="qut_type" id="qut_pos"><?php echo $value->qut_pos;?></td>
                 </tr>
+                <?php } ?>
                 <tr>
+                <?php foreach($cdp_data as $value){ ?>
                 <td class="qut" width="175">
                         <h4><b>Department </b></h4>
                     </td>
                     <td width="75">
                         <h4><b> : </b></h4>
                     </td>
-                    <td class="qut_type" width="200"></td>
+                    <td class="qut_type" width="200"><?php echo $value->Dep_Name;?></td>
                 
                     <td class="qut">
                         <h4><b>position </b></h4>
                        
                     </td>
-                    <td>
+                    <td width="75">
                         <h4><b> : </b></h4>
                     </td>
-                    <td class="qut_type" id="qut_pos"></td>
+                    <td class="qut_type" id="qut_pos"><?php echo $value->Position_name;?></td>
                 </tr>
-
                 <?php } ?>
-
             </table>
-
-
-
-
-                <!-- <div class="form-group">
-                    <div class="col-md-12">
-                        <h4><b>Company :</b></h4>
-                    </div>
-
-
-                    <div class="col-md-6">
-                        <h4><b>Quota :</b></h4>
-                    </div>
-
-                    <div class="col-md-6">
-                        <h4><b>Position of Quota :</b></h4>
-                    </div>
-
-                    <div class="col-md-6">
-                        <h4><b>Department :</b></h4>
-                    </div>
-
-                    <div class="col-md-6">
-                        <h4><b>position :</b></h4>
-                    </div>
-
-                </div> -->
-
             </div>
             <hr>
             <!-- <form onsubmit="required()"> -->
@@ -398,13 +391,15 @@ function insert_quota_plan() {
                             <div class="col-md-1" id="qut_table">
                                 <tr class="orange2">
                                     <td><b>Quota</b></td>
-                                    <td id="quota1" value="5">5</td>
-                                    <td id="quota2" value="25">15</td>
-                                    <td id="quota3" value="60">30</td>
-                                    <td id="quota4" value="25">30</td>
-                                    <td id="quota5" value="25">15</td>
-                                    <td id="quota6" value="5">5</td>
-                                    <td>100</td>
+                                    <?php foreach($manage_qut_data as $value){ ?>
+                                    <td id="quota1" value="5"><?php echo $value->qut_grad_S;?></td>	
+                                    <td id="quota2" value="25"><?php echo $value->qut_grad_A;?></td>
+                                    <td id="quota3" value="60"><?php echo $value->qut_grad_B;?></td>
+                                    <td id="quota4" value="25"><?php echo $value->qut_grad_B_N;?></td>
+                                    <td id="quota5" value="25"><?php echo $value->qut_grad_C;?></td>
+                                    <td id="quota6" value="5"><?php echo $value->qut_grad_D;?></td>
+                                    <td><?php echo $value->qut_total;?></td>
+                                    <?php } ?>
                                 </tr>
                             </div>
                             <div class="col-md-1">
