@@ -383,10 +383,10 @@ function createG_O() {
                 data_row += '</center></td>'
                 // index
                 data_row += '<td><center>'
-                data_row += '<input type="radio" id="type_D' + number + '" value="1">'
+                data_row += '<input type="radio" id="type' + number + '" name="type'+ number+'"  value="1">'
                 data_row += '<label>&nbsp;C</label>'
                 data_row += '<br>'
-                data_row += '<input type="radio" id="type_C' + number + '" value="2">'
+                data_row += '<input type="radio" id="type' + number + '" name="type'+ number +'" value="2">'
                 data_row += '<label>&nbsp;D</label>'
                 data_row += '</center></td>'
                 // type of G&O
@@ -403,7 +403,8 @@ function createG_O() {
                 data_row += '</td>'
                 // input
                 data_row += '<td>'
-                data_row += '<input class="form-control" type="text" id="weight' + number + '">'
+                data_row += '<input class="form-control" type="number" id="weight' + number +
+                    '" onkeyup="check_weightG_O()" min="0" max="100">'
                 data_row += '</td>'
                 // Weight 
                 data_row += '<td>'
@@ -453,10 +454,10 @@ function createG_O() {
                 data_row += '</center></td>'
                 // index
                 data_row += '<td><center>'
-                data_row += '<input type="radio" id="type_D' + number + '" value="1">'
+                data_row += '<input type="radio" id="type' + number + '" name="type'+ number+'"  value="1">'
                 data_row += '<label>&nbsp;C</label>'
                 data_row += '<br>'
-                data_row += '<input type="radio" id="type_C' + number + '" value="2">'
+                data_row += '<input type="radio" id="type' + number + '" name="type'+ number +'" value="2">'
                 data_row += '<label>&nbsp;D</label>'
                 data_row += '</center></td>'
                 // type of G&O
@@ -473,15 +474,16 @@ function createG_O() {
                 data_row += '</td>'
                 // input
                 data_row += '<td>'
-                data_row += '<input class="form-control" type="text" id="weight' + number + '">'
+                data_row += '<input class="form-control" type="number" id="weight' + number +
+                    '"  onkeyup="check_weightG_O()" min="0" max="100">'
                 data_row += '</td>'
                 // Weight 
                 data_row += '<td>'
                 data_row += '<input class="form-control" type="text" id="ranges_c' + number +
-                    '" placeholder="Challenges" onkeyup="clear_css_inp_rangC('+number+')">'
+                    '" placeholder="Challenges" onkeyup="clear_css_inp_rangC(' + number + ')">'
                 data_row += '<hr>'
                 data_row += '<input class="form-control" type="text" id="ranges_s' + number +
-                    '" placeholder="Standard" onkeyup="clear_css_inp_rangS('+number+')">'
+                    '" placeholder="Standard" onkeyup="clear_css_inp_rangS(' + number + ')">'
                 data_row += '</td>'
                 data_row += '<td id="dis_color">'
                 data_row += '<center>'
@@ -517,6 +519,7 @@ function createG_O() {
             $("#row_indexG_O").val(number);
             get_sdgs_mbo(number)
             $("#G_O_Table").html(data_row)
+            $("#btn_saveG_O").attr("disabled", true);
 
         },
         // success
@@ -530,6 +533,95 @@ function createG_O() {
 
 }
 // function createG_O
+
+function check_weightG_O() {
+
+    var check = "";
+    var value_inp = 0;
+    var index_check = 0;
+    var val_check = 0;
+
+    var number_index = document.getElementById("row_indexG_O").value;
+    count = number_index;
+    //console.log(number_index);
+
+    for (i = 1; i <= number_index; i++) {
+        check = document.getElementById("weight" + i).value;
+        //console.log(check);
+
+        if (check != "") {
+            value_inp += parseInt(check);
+            index_check++;
+        }
+        // if
+
+        if (parseInt(check) == 0) {
+            val_check++;
+        }
+        // if
+        //console.log(value_inp);
+    }
+    // for i
+
+    if (value_inp > 100) {
+        $("#show_weightG_O").css("color", "#e60000");
+        $("#show_weightG_O").css("background-color", "#ffe6e6");
+        $("#show_weightG_O").css("border-style", "solid");
+        $("#btn_saveG_O").attr("disabled", true);
+    }
+    // if
+    else if (value_inp < 100) {
+        $("#btn_saveG_O").attr("disabled", true);
+        $("#show_weightG_O").css("background-color", "#ffffff");
+        $("#show_weightG_O").css("border-style", "solid");
+    }
+    // else if
+    else if (index_check != number_index) {
+        $("#btn_saveG_O").attr("disabled", true);
+        $("#show_weightG_O").css("background-color", "#ffffff");
+        $("#show_weightG_O").css("border-style", "solid");
+    }
+    // else if 
+    else if (val_check != 0) {
+        $("#btn_saveG_O").attr("disabled", true);
+        $("#show_weightG_O").css("background-color", "#ffffff");
+        $("#show_weightG_O").css("border-style", "solid");
+    }
+    // else if 
+    else {
+        $("#show_weightG_O").css("color", "#000000");
+        $("#show_weightG_O").css("background-color", "#ffffff");
+        $("#show_weightG_O").css("border-style", "solid");
+        $("#btn_saveG_O").attr("disabled", false);
+
+    }
+    // else 
+    $("#show_weightG_O").text(value_inp);
+}
+// function check_weightG_O
+
+function saveG_O(){
+    var type = [];
+    var sdgs = [];
+    var item = [];
+    var weight = [];
+    var number_index = document.getElementById("row_indexG_O").value;
+    var level_row = document.getElementById("level_row").value;
+
+    for (i = 1; i <= number_index; i++) {
+        type.push($('input[name="type'+ i +'"]:checked').val());
+        console.log(type);
+        sdgs.push(document.getElementById("sdgs_sel" + i).value);
+        console.log(sdgs);
+        item.push(document.getElementById("inp_item" + i).value);
+        console.log(item);
+        weight.push(document.getElementById("weight" + i).value);
+        console.log(weight);
+    }
+    // for 
+
+}
+// function saveG_O
 
 function checkG_O() {
 
@@ -546,16 +638,24 @@ function checkG_O() {
     // console.log(count_ranges);
 
     for (i = 1; i <= number_index; i++) {
+
+        type = $('input[name="type'+ i +'"]:checked').val();
+        if(type == undefined){
+            $("#check_rdio").modal('show');
+            num++;
+        }
+        // if
+
         item = document.getElementById("inp_item" + i).value;
         if (item == "") {
             $("#inp_item" + i).css("background-color", "#ffe6e6");
             $("#inp_item" + i).css("border-style", "solid");
+            num++;
         }
         // if
         else {
             $("#inp_item" + i).css("background-color", "#ffffff");
             $("#inp_item" + i).css("border-style", "solid");
-            num++;
         }
         // else
 
@@ -563,12 +663,12 @@ function checkG_O() {
         if (sdg == 0) {
             $("#sdgs_sel" + i).css("background-color", "#ffe6e6");
             $("#sdgs_sel" + i).css("border-style", "solid");
+            num++;
         }
         // if 
         else {
             $("#sdgs_sel" + i).css("background-color", "#ffffff");
             $("#sdgs_sel" + i).css("border-style", "solid");
-            num++;
         }
         // else 
 
@@ -578,12 +678,13 @@ function checkG_O() {
                 if (possible == "") {
                     $("#possible" + i + j).css("background-color", "#ffe6e6");
                     $("#possible" + i + j).css("border-style", "solid");
+                    num++;
                 }
                 // if
                 else {
                     $("#possible" + i + j).css("background-color", "#ffffff");
                     $("#possible" + i + j).css("border-style", "solid");
-                    num++;
+
                 }
                 // else
             }
@@ -596,12 +697,12 @@ function checkG_O() {
             if (ranges_c == "") {
                 $("#ranges_c" + i).css("background-color", "#ffe6e6");
                 $("#ranges_c" + i).css("border-style", "solid");
+                num++;
             }
             // if
             else {
                 $("#ranges_c" + i).css("background-color", "#ffffff");
                 $("#ranges_c" + i).css("border-style", "solid");
-                num++;
             }
             // else
 
@@ -609,19 +710,30 @@ function checkG_O() {
             if (ranges_s == "") {
                 $("#ranges_s" + i).css("background-color", "#ffe6e6");
                 $("#ranges_s" + i).css("border-style", "solid");
+                num++;
             }
             // if
             else {
                 $("#ranges_s" + i).css("background-color", "#ffffff");
                 $("#ranges_s" + i).css("border-style", "solid");
-                num++;
             }
             // else
-            console.log("if ranges");
         }
         // if
     }
     // for 
+
+    if(num == 0){
+        saveG_O()
+        console.log("true save");
+        return true;
+    }
+    // if 
+    else{
+        console.log("false save");
+        return false;
+    }
+    // else
 }
 // function checkG_O
 
@@ -1006,6 +1118,12 @@ function set_tap() {
                             <input type="text" id="row_indexG_O" value="" hidden>
                             <input type="text" id="level_row" value="" hidden>
 
+                            <tfoot>
+                                <td colspan="4"></td>
+                                <td id="show_weightG_O" align="center">0</td>
+                                <td colspan="3"></td>
+                            </tfoot>
+                            <!-- tfoot -->
                         </table>
                         <!-- End table level -->
 
@@ -1018,7 +1136,7 @@ function set_tap() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-success" onclick="checkG_O()">SAVE</button>
+                                <button class="btn btn-success" onclick="checkG_O()" id="btn_saveG_O">SAVE</button>
                             </div>
                             <!-- col-md-6 add_app -->
 
@@ -1383,3 +1501,39 @@ function set_tap() {
     <!-- modal-dialog -->
 </div>
 <!-- End Modal cancel-->
+
+<!-- Modal check -->
+<div class="modal fade" id="check_rdio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:gray;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b></font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Please select Type of G&O </font>
+                    </b></h2>
+            </div>
+            <!-- modal header -->
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <p>Select C to select the company type.</p>
+                    <p>Select D to select the department type.</p>
+                </div>
+                <!-- Group Name -->
+            </div>
+            <!-- modal-body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- modal-footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal check-->
