@@ -149,6 +149,9 @@ class Evs_quota extends MainController_avenxo {
 		$qut_id = substr($data_sent,0,strpos($data_sent,":"));
 		$pos_id = substr($data_sent,strpos($data_sent,":")+1);
 
+		$this->load->model('M_evs_position','mqos');
+		$this->mqos->Position_ID = $pos_id;
+		$data['cdp_data'] = $this->mqos->get_com_dep_pos_detail()->result();
 	
 		$this->load->model('M_evs_quota','mqut');
 		$this->mqut->qut_id = $qut_id;
@@ -355,7 +358,8 @@ function quota_plan_insert(){
 	$qup_grad_C = $this->input->post("qup_gradeC"); 
 	$qup_grad_D = $this->input->post("qup_gradeD"); 
 	$qup_total = $this->input->post("sum_quota_plan"); 
-
+	$qup_qut_id = $this->input->post("qut_id"); 
+	$qup_Position_ID = $this->input->post("pos_id"); 
 		$this->load->model("Da_evs_quota_plan","dqup");
 		
 		$this->dqup->qup_id = $qup_id;
@@ -366,7 +370,9 @@ function quota_plan_insert(){
 		$this->dqup->qup_grad_C = $qup_grad_C;
 		$this->dqup->qup_grad_D = $qup_grad_D;
 		$this->dqup->qup_total = $qup_total;
-		
+		$this->dqup->qup_qut_id = $qup_qut_id;
+		$this->dqup->qup_Position_ID = $qup_Position_ID;
+
 		$this->dqup->insert();
 		echo json_encode("Success by insert");
 
