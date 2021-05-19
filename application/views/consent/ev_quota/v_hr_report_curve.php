@@ -44,7 +44,7 @@ th {
 
 td {
     text-align: center;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .tdbold {
@@ -245,7 +245,7 @@ function confirm_save() {
 }
 
 function insert_quota_actual() {
- 
+
     var grade = [];
     var check = "";
     var valueActual = 0;
@@ -337,10 +337,9 @@ function insert_quota_actual() {
 } //insert_quota
 
 function manage_data(qut_id) {
-console.log(qut_id);
-window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
-}//manage_data
-
+    console.log(qut_id);
+    window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
+} //manage_data
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
@@ -356,12 +355,12 @@ window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quot
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-1">
-                    <?php foreach($qup_data as $value){ ?>
+                        <?php foreach($qup_data as $value){ ?>
                         <input type="text" id="pup_id" value="<?php echo $value->qup_id?>" hidden>
                         <?php } ?>
-                        </div>
-                    
-                    <table class = "hearData">
+                    </div>
+
+                    <table class="hearData">
                         <?php foreach($cdp_data as $value){ ?>
                         <input type="text" id="position_id" value="<?php echo $value->Position_ID?>" hidden>
                         <tr>
@@ -416,196 +415,193 @@ window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quot
                         </tr>
                         <?php } ?>
                     </table>
+                    
+                    <legend></legend>
 
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="panel panel-orange" data-widget='{"draggable": "false"}'>
+                            <div class="panel-heading">
+                                <h2>
+                                    <font size="5px"><b>Report table</b></font>
+                                </h2>
+                                <div class="panel-ctrls" data-actions-container="">
+                                </div>
+                            </div>
+
+                            <div class="panel-body" style="">
+                                <table style="width:100%" class="table table-hover m-n orange">
+                                    <thead>
+                                        <div class="col-md-1">
+                                            <tr class="orange">
+                                                <th>Grade</th>
+                                                <th>S</th>
+                                                <th>A</th>
+                                                <th>B</th>
+                                                <th>B-</th>
+                                                <th>C</th>
+                                                <th>D</th>
+                                                <th>Total</th>
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                        <div class="col-md-1">
+                                            <tr class="orange2">
+                                                <td><b>Quota</b></td>
+                                                <?php foreach($manage_qut_data as $value){ ?>
+                                                <td id="quota1" value="5"><?php echo $value->qut_grad_S;?></td>
+                                                <td id="quota2" value="25"><?php echo $value->qut_grad_A;?></td>
+                                                <td id="quota3" value="40"><?php echo $value->qut_grad_B;?></td>
+                                                <td id="quota4" value="40"><?php echo $value->qut_grad_B_N;?></td>
+                                                <td id="quota5" value="25"><?php echo $value->qut_grad_C;?></td>
+                                                <td id="quota6" value="5"><?php echo $value->qut_grad_D;?></td>
+                                                <td><?php echo $value->qut_total;?></td>
+                                                <?php } ?>
+                                            </tr>
+
+                                            <div class="col-md-1">
+                                                <tr class="orange2">
+                                                    <td><b>Plan</b></td>
+                                                    <?php foreach($qup_data as $value){ ?>
+                                                    <td id="show_quotaPlan1"><?php echo $value->qup_grad_S;?></td>
+                                                    <td id="show_quotaPlan2"><?php echo $value->qup_grad_A;?></td>
+                                                    <td id="show_quotaPlan3"><?php echo $value->qup_grad_B;?></td>
+                                                    <td id="show_quotaPlan4"><?php echo $value->qup_grad_B_N;?></td>
+                                                    <td id="show_quotaPlan5"><?php echo $value->qup_grad_C;?></td>
+                                                    <td id="show_quotaPlan6"><?php echo $value->qup_grad_D;?></td>
+                                                    <td id="quotaPlanToT"><?php echo $value->qup_total;?></td>
+                                                    <?php } ?>
+                                            </div>
+                                            </tr>
+                                            <div class="col-md-1">
+                                                <tr class="orange2">
+                                                    <td><b>Actual</b></td>
+                                                    <td>
+                                                        <input type="number" class="form-control" id="quotaActual1"
+                                                            onchange="check_quota_actual()" min="0">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="form-control" id="quotaActual2"
+                                                            onchange="check_quota_actual()" min="0">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="form-control" id="quotaActual3"
+                                                            onchange="check_quota_actual()" min="0">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="form-control" id="quotaActual4"
+                                                            onchange="check_quota_actual()" min="0">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="form-control" id="quotaActual5"
+                                                            onchange="check_quota_actual()" min="0">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="form-control" id="quotaActual6"
+                                                            onchange="check_quota_actual()" min="0">
+                                                    </td>
+                                                    <td id="show_Actual"></td>
+                                                </tr>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <tr class="orange2">
+                                                    <td><b>Quota Actual</b></td>
+                                                    <td id="show_quotaActual1"></td>
+                                                    <td id="show_quotaActual2"></td>
+                                                    <td id="show_quotaActual3"></td>
+                                                    <td id="show_quotaActual4"></td>
+                                                    <td id="show_quotaActual5"></td>
+                                                    <td id="show_quotaActual6"></td>
+                                                    <td id="show_sumquotaActual"></td>
+                                                </tr>
+                                            </div>
+                                            <tr class="orange2">
+                                                <div class="col-md-1">
+                                                    <td colspan="7"><b>Total in level</b></td>
+                                                    <td id="TOTplan"></td>
+                                            </tr>
+                                        </div>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <div class="col-md-offset-10">
+                                <button class="btn-success btn" id="submit" type="submit"
+                        onclick="show_linebarChart()">SUBMIT</button>
+                                    <button class="btn btn-warning" type="reset" id="reset">edit</button>
+                                </div>
+                                <br>
+
+                                <canvas id="myChart" width="100"></canvas>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-10">
                 </div>
                 <div class="col-md-2">
-                    <button class="btn-success btn" id="submit" type="submit"
-                        onclick="show_linebarChart()">SUBMIT</button>
+                    
 
                 </div>
             </div>
+            <button type="button" class="btn btn-inverse " data-dismiss="modal">CANCEL</button>
+            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
+                onclick="confirm_save()">SAVE</button>
         </div>
         <br>
-        <legend></legend>
-        <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-8">
-                <div class="panel panel-orange" data-widget='{"draggable": "false"}'>
-                    <div class="panel-heading">
-                        <h2>
-                            <font size="5px"><b>Report table</b></font>
-                        </h2>
-                        <div class="panel-ctrls" data-actions-container="">
-                        </div>
-                    </div>
-
-                    <div class="panel-body" style="">
-                        <table style="width:100%" class="table table-hover m-n orange">
-                            <thead>
-                                <div class="col-md-1">
-                                    <tr class="orange">
-                                        <th>Grade</th>
-                                        <th>S</th>
-                                        <th>A</th>
-                                        <th>B</th>
-                                        <th>B-</th>
-                                        <th>C</th>
-                                        <th>D</th>
-                                        <th>Total</th>
-                                    </tr>
-                            </thead>
-                            <tbody>
-                                <div class="col-md-1">
-                                    <tr class="orange2">
-                                        <td><b>Quota</b></td>
-                                        <?php foreach($manage_qut_data as $value){ ?>
-                                        <td id="quota1" value="5"><?php echo $value->qut_grad_S;?></td>
-                                        <td id="quota2" value="25"><?php echo $value->qut_grad_A;?></td>
-                                        <td id="quota3" value="40"><?php echo $value->qut_grad_B;?></td>
-                                        <td id="quota4" value="40"><?php echo $value->qut_grad_B_N;?></td>
-                                        <td id="quota5" value="25"><?php echo $value->qut_grad_C;?></td>
-                                        <td id="quota6" value="5"><?php echo $value->qut_grad_D;?></td>
-                                        <td><?php echo $value->qut_total;?></td>
-                                         <?php } ?>
-                                    </tr>
-                                   
-                                    <div class="col-md-1">
-                                        <tr class="orange2">
-                                            <td><b>Plan</b></td>
-                                            <?php foreach($qup_data as $value){ ?>
-                                            <td id="show_quotaPlan1"><?php echo $value->qup_grad_S;?></td>
-                                            <td id="show_quotaPlan2"><?php echo $value->qup_grad_A;?></td>
-                                            <td id="show_quotaPlan3"><?php echo $value->qup_grad_B;?></td>
-                                            <td id="show_quotaPlan4"><?php echo $value->qup_grad_B_N;?></td>
-                                            <td id="show_quotaPlan5"><?php echo $value->qup_grad_C;?></td>
-                                            <td id="show_quotaPlan6"><?php echo $value->qup_grad_D;?></td>
-                                            <td id="quotaPlanToT"><?php echo $value->qup_total;?></td>
-                                            <?php } ?>
-                                    </div>
-                                    </tr>
-                                    <div class="col-md-1">
-                                        <tr class="orange2">
-                                            <td><b>Actual</b></td>
-                                            <td>
-                                                <input type="number" class="form-control" id="quotaActual1"
-                                                    onchange="check_quota_actual()" min="0">
-                                            </td>
-                                            <td>
-                                                <input type="number" class="form-control" id="quotaActual2"
-                                                    onchange="check_quota_actual()" min="0">
-                                            </td>
-                                            <td>
-                                                <input type="number" class="form-control" id="quotaActual3"
-                                                    onchange="check_quota_actual()" min="0">
-                                            </td>
-                                            <td>
-                                                <input type="number" class="form-control" id="quotaActual4"
-                                                    onchange="check_quota_actual()" min="0">
-                                            </td>
-                                            <td>
-                                                <input type="number" class="form-control" id="quotaActual5"
-                                                    onchange="check_quota_actual()" min="0">
-                                            </td>
-                                            <td>
-                                                <input type="number" class="form-control" id="quotaActual6"
-                                                    onchange="check_quota_actual()" min="0">
-                                            </td>
-                                            <td id="show_Actual"></td>
-                                        </tr>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <tr class="orange2">
-                                            <td><b>Quota Actual</b></td>
-                                            <td id="show_quotaActual1"></td>
-                                            <td id="show_quotaActual2"></td>
-                                            <td id="show_quotaActual3"></td>
-                                            <td id="show_quotaActual4"></td>
-                                            <td id="show_quotaActual5"></td>
-                                            <td id="show_quotaActual6"></td>
-                                            <td id="show_sumquotaActual"></td>
-                                        </tr>
-                                    </div>
-                                    <tr class="orange2">
-                                        <div class="col-md-1">
-                                            <td colspan="7"><b>Total in level</b></td>
-                                            <td id="TOTplan"></td>
-                                    </tr>
-                                </div>
-                            </tbody>
-                        </table>
-                        <br>
-                        <div class="col-md-offset-11">
-                            <button class="btn btn-warning" type="reset" id="reset">edit</button>
-                        </div>
-                        <br>
-
-                        <canvas id="myChart" width="100"></canvas>
-
-
-                    </div>
-
-                    <!-- Modal Warning -->
-                    <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header" style="background-color:#FF9800;">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                        <font color="White"><b>&times;</b>
-                                        </font>
-                                    </button>
-                                    <h2 class="modal-title"><b>
-                                            <font color="white">Warning</font>
-                                        </b></h2>
-                                </div>
-                                <!-- Modal header -->
-
-                                <div class="modal-body">
-                                    <div class="form-horizontal">
-                                        <div class="form-group" align="center">
-                                            <div class="col-sm-12">
-                                                <label for="focusedinput" class="control-label"
-                                                    style="font-family:'Courier New'" align="center">
-                                                    <font size="3px">
-                                                        Actual value is more than plan!</font>
-                                                </label>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- form-horizontal -->
-                                </div>
-                                <!-- Modal body -->
-
-                                <div class="modal-footer">
-                                    <div class="btn-group pull-right">
-                                        <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
-                                    </div>
-
-                                </div>
-                                <!-- Modal footer -->
-                            </div>
-                            <!-- modal-content -->
-                        </div>
-                        <!-- modal-dialog -->
-                    </div>
-                    <!-- End Modal Warning -->
-
-                </div>
-
-            </div>
-        </div>
-        <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
-        <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
-            onclick="confirm_save()">SAVE</button>
     </div>
 
 </div>
 
+
+<!-- Modal Warning -->
+<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#FF9800;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b>
+                    </font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Warning</font>
+                    </b></h2>
+            </div>
+            <!-- Modal header -->
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group" align="center">
+                        <div class="col-sm-12">
+                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                                align="center">
+                                <font size="3px">
+                                    Actual value is more than plan!</font>
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- form-horizontal -->
+            </div>
+            <!-- Modal body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                </div>
+
+            </div>
+            <!-- Modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
 </div>
+<!-- End Modal Warning -->
+
 
 <!-- Modal Warning -->
 <div class="modal fade" id="warning_save" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -629,7 +625,7 @@ window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quot
                             <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
                                 align="center">
                                 <font size="3px">
-                                    save?</font>
+                                    Do you want to save?</font>
                             </label>
 
                         </div>
@@ -641,8 +637,9 @@ window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quot
 
             <div class="modal-footer">
                 <div class="btn-group pull-right">
-                <?php foreach($manage_qut_data as $value){ ?>
-                        <button type="button" class="btn btn-success" data-dismiss="modal"onclick ="manage_data(<?php echo $value->qut_id;?>)">Yes</button>
+                    <?php foreach($manage_qut_data as $value){ ?>
+                    <button type="button" class="btn btn-success" data-dismiss="modal"
+                        onclick="manage_data(<?php echo $value->qut_id;?>)">Yes</button>
                     <?php } ?>
                 </div>
 

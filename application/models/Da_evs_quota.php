@@ -61,11 +61,11 @@ class Da_evs_quota extends evs_model {
 	function insert() {
 	 	$sql = "INSERT INTO evs_database.evs_quota (evs_quota.qut_id, evs_quota.qut_type, evs_quota.qut_pos, evs_quota.qut_date,
 		 		evs_quota.qut_grad_S, evs_quota.qut_grad_A, evs_quota.qut_grad_B, evs_quota.qut_grad_B_N, evs_quota.qut_grad_C,
-				evs_quota.qut_grad_D,evs_quota.qut_total)
-		 		VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				evs_quota.qut_grad_D,evs_quota.qut_total,evs_quota.qut_pay_id)
+		 		VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		 
 	 	$this->db->query($sql, array($this->qut_id, $this->qut_type, $this->qut_pos, $this->qut_date, $this->qut_grad_S,
-						$this->qut_grad_A, $this->qut_grad_B, $this->qut_grad_B_N, $this->qut_grad_C, $this->qut_grad_D, $this->qut_total));
+						$this->qut_grad_A, $this->qut_grad_B, $this->qut_grad_B_N, $this->qut_grad_C, $this->qut_grad_D, $this->qut_total, $this->qut_pay_id));
 	
 	 }
 

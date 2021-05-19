@@ -64,7 +64,7 @@ function select_quota(value) {
 
 function insert_quota() {
     var check = "";
-
+    // var year_id =[];
     var sum_quota = 0;
     var grade = [];
     var gradeS = 0;
@@ -106,13 +106,19 @@ function insert_quota() {
         var year = datedata.getFullYear();
         // get date form new date() 
         var savedate = year + "-" + month + "-" + day;
-
+       
+        
+        <?php foreach($year_quota_data->result() as $value){ ?>
+        if(year == "<?php echo $value->pay_year;?>"){
+        var year_id = <?php echo $value->pay_id;?>
+        }
+            <?php } ?>
         // document.getElementById("submit").disabled = false;
         for (i = 1; i <= 6; i++) {
             check = document.getElementById("quota" + i).value;
 
             if (check != "") {
-                grade[i] = parseInt(check),
+                grade[i] = parseFloat(check),
                     sum_quota += grade[i];
             } //if
         } //for
@@ -131,6 +137,8 @@ function insert_quota() {
         console.log(gradeD);
         console.log(savedate);
         console.log(sum_quota);
+        console.log(year_id);
+       
         $.ajax({
             type: "post",
             url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_insert",
@@ -145,7 +153,8 @@ function insert_quota() {
                 "gradeB_N": gradeB_N,
                 "gradeC": gradeC,
                 "gradeD": gradeD,
-                "sum_quota": sum_quota
+                "sum_quota": sum_quota,
+                "year_id": year_id
             },
             dataType: "JSON",
 
@@ -169,7 +178,7 @@ function check_quota() {
         check = document.getElementById("quota" + i).value;
 
         if (check != "") {
-            value_quota += parseInt(check);
+            value_quota += parseFloat(check);
 
         }
         // if 
@@ -323,8 +332,8 @@ function show_qouta() {
                         <select class="form-control text" id="groupPosition">
                             <option value="0">Position Of Quota</option>
                             <option value="1">All Position</option>
-                            <option value="2">Team Associate above</option>
-                            <option value="3">Operational Associate</option>
+                            <option value="2">Operational Associate above</option>
+                            <option value="3">Staff above</option>
                         </select>
                     </div>
 
@@ -352,22 +361,22 @@ function show_qouta() {
                             <tr class="orange2" id="input">
                                 <td>Quota</td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota1" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota1" oninput="check_quota()">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota2" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota2" oninput="check_quota()">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota3" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota3" oninput="check_quota()">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota4" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota4" oninput="check_quota()">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota5" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota5" oninput="check_quota()">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota6" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota6" oninput="check_quota()">
                                 </td>
                                 <td id="show_quota"></td>
                             </tr>

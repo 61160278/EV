@@ -74,15 +74,15 @@ class Da_evs_quota_plan extends evs_model {
 	* @author Piyasak Srijan
 	* @Create Date 2564-05-10
 	*/
-	// function update() {
+	function update() {
 	 	
-	//  	$sql = "UPDATE evs_database.evs_quota_plan 
-	//  			SET evs_quota_plan.qup_grad_S= ?,evs_quota_plan.qup_grad_A= ?,evs_quota_plan.qup_grad_B= ?,evs_quota_plan.qup_grad_B_N= ?,
-	// 			 evs_quota_plan.qup_grad_C= ?,evs_quota_plan.qup_grad_D= ?,evs_quota_plan.qup_total= ?,
-	//  			WHERE evs_quota.qut_id=?";
+	 	$sql = "UPDATE evs_database.evs_quota_plan 
+	 			SET evs_quota_plan.qup_grad_S= ?,evs_quota_plan.qup_grad_A= ?,evs_quota_plan.qup_grad_B= ?,evs_quota_plan.qup_grad_B_N= ?,
+				 evs_quota_plan.qup_grad_C= ?,evs_quota_plan.qup_grad_D= ?,evs_quota_plan.qup_total= ?
+	 			WHERE evs_quota_plan.qup_id=?";
 		
-	//  	$this->db->query($sql, array($this->qup_grad_S, $this->qup_grad_A, $this->qup_grad_B, $this->qup_grad_B_N, $this->qup_grad_C, $this->qup_grad_D, $this->qup_total, $this->qut_id));
-	//  }
+	 	$this->db->query($sql, array($this->qup_grad_S, $this->qup_grad_A, $this->qup_grad_B, $this->qup_grad_B_N, $this->qup_grad_C, $this->qup_grad_D, $this->qup_total, $this->qup_id));
+	 }
 	/*
 	* update
 	* update Quota into database
