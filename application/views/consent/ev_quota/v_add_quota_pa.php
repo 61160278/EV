@@ -111,7 +111,11 @@ function insert_quota() {
         var year = datedata.getFullYear();
         // get date form new date() 
         var savedate = year + "-" + month + "-" + day;
-
+        <?php foreach($year_quota_data->result() as $value){ ?>
+        if(year == "<?php echo $value->pay_year;?>"){
+        var year_id = <?php echo $value->pay_id;?>
+        }
+            <?php } ?>
         // document.getElementById("submit").disabled = false;
         for (i = 1; i <= 6; i++) {
             check = document.getElementById("quota" + i).value;
@@ -150,7 +154,8 @@ function insert_quota() {
                 "gradeB_N": gradeB_N,
                 "gradeC": gradeC,
                 "gradeD": gradeD,
-                "sum_quota": sum_quota
+                "sum_quota": sum_quota,
+                "year_id": year_id
             },
             dataType: "JSON",
 

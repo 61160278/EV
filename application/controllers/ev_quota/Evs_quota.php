@@ -58,7 +58,11 @@ class Evs_quota extends MainController_avenxo {
 	*/
 	function add_quota_ca()
 	{
-		$this->output('/consent/ev_quota/v_add_quota');
+		
+		$this->load->model('M_evs_pattern_and_year','mpay');
+		$data['year_quota_data'] = $this->mpay->get_by_year(); 
+
+		$this->output('/consent/ev_quota/v_add_quota',$data);
 	}
 	// function add_quota()
 	
@@ -71,7 +75,9 @@ class Evs_quota extends MainController_avenxo {
 	*/
 	function add_quota_pa()
 	{
-		$this->output('/consent/ev_quota/v_add_quota_pa');
+		$this->load->model('M_evs_pattern_and_year','mpay');
+		$data['year_quota_data'] = $this->mpay->get_by_year(); 
+		$this->output('/consent/ev_quota/v_add_quota_pa',$data);
 	}
 	
 	/*
@@ -346,6 +352,8 @@ function quota_insert(){
 	$qut_grad_C = $this->input->post("gradeC"); // date sav
 	$qut_grad_D = $this->input->post("gradeD"); // date sav
 	$qut_total = $this->input->post("sum_quota"); // date sav
+	$qut_pay_id= $this->input->post("year_id");
+
 		$this->load->model("Da_evs_quota","dqut");
 
 		$this->dqut->qut_id = $qut_id;
@@ -359,6 +367,7 @@ function quota_insert(){
 		$this->dqut->qut_grad_C = $qut_grad_C;
 		$this->dqut->qut_grad_D = $qut_grad_D;
 		$this->dqut->qut_total = $qut_total;
+		$this->dqut->qut_pay_id = $qut_pay_id;
 		
 		$this->dqut->insert();
 		echo json_encode("Success by insert");

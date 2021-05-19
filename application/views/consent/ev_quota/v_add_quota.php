@@ -64,7 +64,7 @@ function select_quota(value) {
 
 function insert_quota() {
     var check = "";
-
+    // var year_id =[];
     var sum_quota = 0;
     var grade = [];
     var gradeS = 0;
@@ -106,7 +106,13 @@ function insert_quota() {
         var year = datedata.getFullYear();
         // get date form new date() 
         var savedate = year + "-" + month + "-" + day;
-
+       
+        
+        <?php foreach($year_quota_data->result() as $value){ ?>
+        if(year == "<?php echo $value->pay_year;?>"){
+        var year_id = <?php echo $value->pay_id;?>
+        }
+            <?php } ?>
         // document.getElementById("submit").disabled = false;
         for (i = 1; i <= 6; i++) {
             check = document.getElementById("quota" + i).value;
@@ -131,6 +137,8 @@ function insert_quota() {
         console.log(gradeD);
         console.log(savedate);
         console.log(sum_quota);
+        console.log(year_id);
+       
         $.ajax({
             type: "post",
             url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_insert",
@@ -145,7 +153,8 @@ function insert_quota() {
                 "gradeB_N": gradeB_N,
                 "gradeC": gradeC,
                 "gradeD": gradeD,
-                "sum_quota": sum_quota
+                "sum_quota": sum_quota,
+                "year_id": year_id
             },
             dataType: "JSON",
 
