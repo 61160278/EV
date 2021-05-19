@@ -383,10 +383,12 @@ function createG_O() {
                 data_row += '</center></td>'
                 // index
                 data_row += '<td><center>'
-                data_row += '<input type="radio" id="type' + number + '" name="type'+ number+'"  value="1">'
+                data_row += '<input type="radio" id="type' + number + '" name="type' + number +
+                    '"  value="1">'
                 data_row += '<label>&nbsp;C</label>'
                 data_row += '<br>'
-                data_row += '<input type="radio" id="type' + number + '" name="type'+ number +'" value="2">'
+                data_row += '<input type="radio" id="type' + number + '" name="type' + number +
+                    '" value="2">'
                 data_row += '<label>&nbsp;D</label>'
                 data_row += '</center></td>'
                 // type of G&O
@@ -454,10 +456,12 @@ function createG_O() {
                 data_row += '</center></td>'
                 // index
                 data_row += '<td><center>'
-                data_row += '<input type="radio" id="type' + number + '" name="type'+ number+'"  value="1">'
+                data_row += '<input type="radio" id="type' + number + '" name="type' + number +
+                    '"  value="1">'
                 data_row += '<label>&nbsp;C</label>'
                 data_row += '<br>'
-                data_row += '<input type="radio" id="type' + number + '" name="type'+ number +'" value="2">'
+                data_row += '<input type="radio" id="type' + number + '" name="type' + number +
+                    '" value="2">'
                 data_row += '<label>&nbsp;D</label>'
                 data_row += '</center></td>'
                 // type of G&O
@@ -600,7 +604,7 @@ function check_weightG_O() {
 }
 // function check_weightG_O
 
-function saveG_O(){
+function saveG_O() {
     var type = [];
     var sdgs = [];
     var item = [];
@@ -609,14 +613,14 @@ function saveG_O(){
     var level_row = document.getElementById("level_row").value;
 
     for (i = 1; i <= number_index; i++) {
-        type.push($('input[name="type'+ i +'"]:checked').val());
-        
+        type.push($('input[name="type' + i + '"]:checked').val());
+
         sdgs.push(document.getElementById("sdgs_sel" + i).value);
-        
+
         item.push(document.getElementById("inp_item" + i).value);
-        
+
         weight.push(document.getElementById("weight" + i).value);
-        
+
     }
     // for 
     console.log(type);
@@ -643,8 +647,8 @@ function checkG_O() {
 
     for (i = 1; i <= number_index; i++) {
 
-        type = $('input[name="type'+ i +'"]:checked').val();
-        if(type == undefined){
+        type = $('input[name="type' + i + '"]:checked').val();
+        if (type == undefined) {
             $("#check_rdio").modal('show');
             num++;
         }
@@ -727,13 +731,13 @@ function checkG_O() {
     }
     // for 
 
-    if(num == 0){
+    if (num == 0) {
         saveG_O()
         console.log("true save");
         return true;
     }
     // if 
-    else{
+    else {
         console.log("false save");
         return false;
     }
