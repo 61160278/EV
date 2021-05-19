@@ -352,22 +352,22 @@ function show_qouta() {
                             <tr class="orange2" id="input">
                                 <td>Quota</td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota1" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota1" oninput="check_quota()">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota2" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota2" oninput="check_quota()">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota3" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota3" oninput="check_quota()">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota4" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota4" oninput="check_quota()">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota5" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota5" oninput="check_quota()">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota6" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota6" oninput="check_quota()">
                                 </td>
                                 <td id="show_quota"></td>
                             </tr>
