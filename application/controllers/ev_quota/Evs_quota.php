@@ -179,6 +179,15 @@ class Evs_quota extends MainController_avenxo {
 		$qut_id = substr($data_sent,0,strpos($data_sent,":"));
 		$pos_id = substr($data_sent,strpos($data_sent,":")+1);
 
+		$this->load->model('M_evs_quota_plan','mqup');
+		$this->mqup->qup_qut_id = $qut_id;
+		$this->mqup->qup_Position_ID = $pos_id;
+		$data['qup_data'] = $this->mqup->get_id_quota_position_plan()->result();
+		$check = sizeof($data['qup_data']);
+
+		if($check == 0){
+
+
 		$this->load->model('M_evs_position','mqos');
 		$this->mqos->Position_ID = $pos_id;
 		$data['cdp_data'] = $this->mqos->get_com_dep_pos_detail()->result();
@@ -190,6 +199,21 @@ class Evs_quota extends MainController_avenxo {
 		// $this->load->model('M_evs_quota','mqut');
  		// $data['qut_data'] = $this->mqut->get_quota_plan()->result(); 
 		$this->output('/consent/ev_quota/v_detail_quota',$data);
+	}else{
+
+	$this->load->model('M_evs_position','mqos');
+	$this->mqos->Position_ID = $pos_id;
+	$data['cdp_data'] = $this->mqos->get_com_dep_pos_detail()->result();
+
+	$this->load->model('M_evs_quota','mqut');
+	$this->mqut->qut_id = $qut_id;
+	$data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota
+
+	// $this->load->model('M_evs_quota','mqut');
+	// $data['qut_data'] = $this->mqut->get_quota_plan()->result(); 
+	$this->output('/consent/ev_quota/v_show_detail_quota',$data);
+
+}
 	}
 	// function detail_quota
 

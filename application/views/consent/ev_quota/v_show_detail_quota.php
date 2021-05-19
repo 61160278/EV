@@ -131,7 +131,7 @@ function check_quota_plan() {
     var value_quotaPlan = 0;
     var quota = 0;
 
-    check = document.getElementById("quotaPlan").value;
+    check = document.getElementById("quotaPlan").innerHTML;
     console.log(check);
     // if (check == "") {
     //  $("#submit").attr("disabled", true);
@@ -148,7 +148,7 @@ function check_quota_plan() {
 } //check_quota_plan
 
 function show_quotaplan() {
-  //  $("#quotaPlan").attr("disabled", true);
+    $("#quotaPlan").attr("disabled", true);
 
     var dataQuota = [];
     var arrQuota = [];
@@ -282,7 +282,7 @@ function insert_quota_plan() {
 
     pos_id = document.getElementById("position_id").value;
     qut_id = document.getElementById("qut_id").value;
-    check = document.getElementById("quotaPlan").value;
+    check = document.getElementById("quotaPlan").innerHTML;
     console.log(check);
     console.log(pos_id);
     console.log(qut_id);
@@ -448,16 +448,15 @@ function manage_data(qut_id) {
                             <div class="col-md-1">
                                 <tr class="orange2">
                                     <td><b>Plan</b></td>
-                                    <td id="show_quotaPlan1"></td>
-                                    <td id="show_quotaPlan2"></td>
-                                    <td id="show_quotaPlan3"></td>
-                                    <td id="show_quotaPlan4"></td>
-                                    <td id="show_quotaPlan5"></td>
-                                    <td id="show_quotaPlan6"> </td>
-                                    <td>
-                                        <input type="text" class="form-control" id="quotaPlan"
-                                            onchange="check_quota_plan()" min="0" max="100" value="">
-                                    </td>
+                                    <?php foreach($qup_data as $value){ ?>
+                                    <td id="show_quotaPlan1"><?php echo $value->qup_grad_S;?></td>
+                                    <td id="show_quotaPlan2"><?php echo $value->qup_grad_A;?></td>
+                                    <td id="show_quotaPlan3"><?php echo $value->qup_grad_B;?></td>
+                                    <td id="show_quotaPlan4"><?php echo $value->qup_grad_B_N;?></td>
+                                    <td id="show_quotaPlan5"><?php echo $value->qup_grad_C;?></td>
+                                    <td id="show_quotaPlan6"><?php echo $value->qup_grad_D;?></td>
+                                    <td id="quotaPlan" onchange="check_quota_plan()"><?php echo $value->qup_total;?></td>
+                                    <?php } ?>
                                 </tr>
                             </div>
                         </tbody>
@@ -466,11 +465,7 @@ function manage_data(qut_id) {
                 </div>
             </div>
             <br>
-            <div class="col-md-offset-9">
-                <button class="btn-success btn" id="submit" type="submit" onclick="show_quotaplan()" value=""
-                    disabled>SUBMIT</button>
-                <button class="btn btn-warning" type="reset" id="reset">edit</button>
-            </div>
+          
             <!-- </form> -->
             <br>
             <div class="row">
@@ -506,8 +501,7 @@ function manage_data(qut_id) {
                     onclick=" manage_data( <?php echo $value->qut_id;?>)">CANCEL</button>
             </a>
             <?php }?>
-            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
-                onclick="confirm_save()">SAVE</button>
+            
         </div>
     </div>
 
