@@ -149,7 +149,7 @@ function check_quota() {
         check = document.getElementById("quota" + i).value;
 
         if (check != "") {
-            value_quota += parseInt(check);
+            value_quota += parseFloat(check);
 
         }
         // if 
