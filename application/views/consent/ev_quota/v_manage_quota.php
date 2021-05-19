@@ -35,7 +35,7 @@ function show_data() {
 
             data.forEach((row, i) => {
                 if (qut_pos == 'Operational Associate above') {
-                    if (row.Position_Level == 1) {
+                    if (row.Position_Level >= 1 && row.Position_Level <= 2) {
                         table_data += '<tr>'
                         table_data += '<td>'
                         table_data += row.Company_shortname
@@ -254,13 +254,8 @@ function get_position() {
             table_data += '<option value="0">Position</option>'
 
             data.forEach((row, i) => {
-                if (qut_pos == 'Operational Associate') {
-                    if (row.Position_Level == 1) {
-                        table_data += '<option value="' + row.Position_ID + '">' + row
-                            .Position_name + '</option>'
-                    }
-                } else if (qut_pos == 'Team Associate above') {
-                    if (row.Position_Level > 1) {
+                if (qut_pos == 'Operational Associate above') {
+                    if (row.Position_Level >= 1 && row.Position_Level <= 2) {
                         table_data += '<option value="' + row.Position_ID + '">' + row
                             .Position_name + '</option>'
                     }
@@ -439,25 +434,16 @@ h4 {
                     <select name="example_length" class="form-control" id="pos_lv_select" onclick="get_position()">
                         <option value="0">Position Level</option>
                         <?php foreach($manage_qut_data as $value){ ?>
-                        <?php  if ($value->qut_pos == 'Operational Associate') {?>
+                        <?php  if ($value->qut_pos == 'Operational Associate above') {?>
                         <!-- start foreach -->
                         <?php foreach($psl_data->result() as $value){ ?>
-                        <?php if ($value->psl_id == "5") { ?>
+                        <?php if ($value->psl_id == "5" ) { ?>
                         <option value="<?php echo $value->psl_id;?>"><?php echo $value->psl_position_level;?></option>
                         <?php } //if Position_Level == 1?>
                         <?php } //foreach qut_data?>
                         <?php } //if qut_pos == 'Operational Associate'?>
                         <?php } //foreach manage_qut_data?>
-                        <?php foreach($manage_qut_data as $value){ ?>
-                        <?php  if ($value->qut_pos == 'Team Associate above') {?>
-                        <!-- start foreach -->
-                        <?php foreach($psl_data->result() as $value){ ?>
-                        <?php if ($value->psl_id <= "5") { ?>
-                        <option value="<?php echo $value->psl_id;?>"><?php echo $value->psl_position_level;?></option>
-                        <?php } //if Position_Level == 1?>
-                        <?php } //foreach qut_data?>
-                        <?php } //if qut_pos == 'Operational Associate'?>
-                        <?php } //foreach manage_qut_data?>
+                        
                         <?php foreach($manage_qut_data as $value){ ?>
                         <?php  if ($value->qut_pos == 'Staff above') {?>
                         <!-- start foreach -->
