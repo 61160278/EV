@@ -254,7 +254,7 @@ function edit_quota_plan() {
     } //for 
     grade.shift();
     console.log(grade);
-    
+
     qup_gradeS = grade[0];
     qup_gradeA = grade[1];
     qup_gradeB = grade[2];
@@ -272,7 +272,7 @@ function edit_quota_plan() {
     // console.log(qup_id);
     $.ajax({
         type: "post",
-         url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_plan_edit",
+        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_plan_edit",
 
         data: {
 
@@ -312,9 +312,9 @@ function manage_data(qut_id) {
             </div>
         </div>
         <div class="panel-body" style="">
-        <?php foreach($qup_data as $value){ ?>
-        <input type="text" id="qup_id" value="<?php echo $value->qup_id?>" hidden>
-        <?php } ?>
+            <?php foreach($qup_data as $value){ ?>
+            <input type="text" id="qup_id" value="<?php echo $value->qup_id?>" hidden>
+            <?php } ?>
             <div class="row">
                 <table style="border:1;">
                     <?php foreach($cdp_data as $value){ ?>
@@ -421,7 +421,8 @@ function manage_data(qut_id) {
                                     <td id="show_quotaPlan6"><?php echo $value->qup_grad_D;?></td>
                                     <td>
                                         <input type="text" class="form-control" id="quotaPlan"
-                                            onchange="check_quota_plan()" min="0" max="100" value="<?php echo $value->qup_total;?>">
+                                            onchange="check_quota_plan()" min="0" max="100"
+                                            value="<?php echo $value->qup_total;?>">
                                     </td>
                                     <?php } ?>
                                 </tr>
