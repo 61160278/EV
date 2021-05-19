@@ -34,7 +34,7 @@ function show_data() {
             var table_data = ""
 
             data.forEach((row, i) => {
-                if (qut_pos == 'Operational Associate') {
+                if (qut_pos == 'Operational Associate above') {
                     if (row.Position_Level == 1) {
                         table_data += '<tr>'
                         table_data += '<td>'
@@ -70,44 +70,6 @@ function show_data() {
                         i++
                         '</td>'
                     } // if 
-                } // if 
-
-
-                if (qut_pos == "Team Associate above") {
-
-                    if (row.Position_Level > 1) {
-
-                        table_data += '<tr>'
-                        table_data += '<td>'
-                        table_data += row.Company_shortname
-                        table_data += '</td>'
-                        table_data += '<td>'
-                        table_data += row.Dep_Name
-                        table_data += '</td>'
-                        table_data += '<td>'
-                        table_data += row.Position_name
-                        table_data += '</td>'
-                        <?php foreach($manage_qut_data as $value){ ?>
-                        table_data += '<td>'
-                        table_data +=
-                            '<a onclick ="manage_data(<?php echo $value->qut_id?>,' + i +
-                            ')"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
-                        table_data += '<input type="text" id="pos_<?php echo $value->qut_id?>' + i +
-                            '" value="' + row.Position_ID + '" hidden>'
-                        table_data += '&nbsp;'
-                        table_data +=
-                            '<a onclick ="edit_qup_data(<?php echo $value->qut_id?>,' + i +
-                            ')"><button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>'
-                        table_data += '&nbsp;'
-                        table_data +=
-                            '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i +
-                            ')" ><button type="submit" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></button></a>'
-                        table_data += '</td>'
-                        <?php } ?>
-                        table_data += '</tr>'
-                        i++
-                        '</td>'
-                    }
                 } else if (qut_pos == "Staff above") {
 
                     if (row.Position_Level > 2) {

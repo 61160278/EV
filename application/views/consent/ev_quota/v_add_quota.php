@@ -323,8 +323,8 @@ function show_qouta() {
                         <select class="form-control text" id="groupPosition">
                             <option value="0">Position Of Quota</option>
                             <option value="1">All Position</option>
-                            <option value="2">Team Associate above</option>
-                            <option value="3">Operational Associate</option>
+                            <option value="2">Operational Associate above</option>
+                            <option value="3">Staff above</option>
                         </select>
                     </div>
 
