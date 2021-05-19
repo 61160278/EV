@@ -48,7 +48,7 @@ th {
 
 td {
     text-align: center;
-    font-size: 15px;
+    font-size: 16px;
 }
 </style>
 <script>

@@ -46,13 +46,15 @@ th {
 }
 
 table,
-th,
-td {
-    border: 2px solid #ffffff;
-    border-collapse: collapse;
+th {
     text-align: center;
     color: black;
     font-size: 20px;
+}
+td {
+    text-align: center;
+    color: black;
+    font-size: 16px;
 }
 
 tbody:hover {
@@ -306,7 +308,7 @@ function manage_data(qut_id) {
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
         <div class="panel-heading">
             <h2>
-                <font size="6px">Detail Quota </font>
+                <font size="6px">Edit quota plan</font>
             </h2>
             <div class="panel-ctrls" data-actions-container="">
             </div>
@@ -315,7 +317,6 @@ function manage_data(qut_id) {
             <?php foreach($qup_data as $value){ ?>
             <input type="text" id="qup_id" value="<?php echo $value->qup_id?>" hidden>
             <?php } ?>
-            <div class="row">
                 <table style="border:1;">
                     <?php foreach($cdp_data as $value){ ?>
                     <input type="text" id="position_id" value="<?php echo $value->Position_ID?>" hidden>
@@ -361,7 +362,7 @@ function manage_data(qut_id) {
                         <td class="qut_type" width="200"><?php echo $value->Dep_Name;?></td>
 
                         <td class="qut">
-                            <h4><b>position </b></h4>
+                            <h4><b>position</b></h4>
 
                         </td>
                         <td width="75">
@@ -371,7 +372,6 @@ function manage_data(qut_id) {
                     </tr>
                     <?php } ?>
                 </table>
-            </div>
             <hr>
             <!-- <form onsubmit="required()"> -->
             <div class="row">

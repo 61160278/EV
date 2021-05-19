@@ -43,16 +43,14 @@ h4 {
 
 th {
     text-align: center;
-}
-
-table,
-th,
-td {
-    border: 2px solid #ffffff;
-    border-collapse: collapse;
-    text-align: center;
     color: black;
     font-size: 20px;
+}
+
+.font1 {
+    text-align: center;
+    color: black;
+    font-size: 16px;
 }
 
 tbody:hover {
@@ -225,41 +223,41 @@ function confirm_save() {
 
     var count = 0;
     $.ajax({
-            type: "post",
-            url: "<?php echo base_url(); ?>ev_quota/Evs_quota/get_id_qut_pos_plan",
-            data: {
-                "pos_id": pos_id,
-                "qut_id": qut_id
+        type: "post",
+        url: "<?php echo base_url(); ?>ev_quota/Evs_quota/get_id_qut_pos_plan",
+        data: {
+            "pos_id": pos_id,
+            "qut_id": qut_id
 
-            },
-            datatype: "JSON",
-            success: function(data) {
-                data = JSON.parse(data)
-               data.forEach((row, index)  => {
+        },
+        datatype: "JSON",
+        success: function(data) {
+            data = JSON.parse(data)
+            data.forEach((row, index) => {
 
-                    if (pos_id == row.qup_Position_ID && qut_id == row.qup_qut_id) {
-                        count++;
-                        console.log(row.qup_qut_id);
-                        console.log(row.qup_Position_ID);
+                if (pos_id == row.qup_Position_ID && qut_id == row.qup_qut_id) {
+                    count++;
+                    console.log(row.qup_qut_id);
+                    console.log(row.qup_Position_ID);
 
-                    }
-                    // if-else
-                   
-                });
-                // forEach
-                if (count == 0) {
-                    insert_quota_plan();
-                    $('#warning_save').modal('show');
-                    return true;
-                } else {
-                    $("#warning").modal('show');
-                    return false;
                 }
-          
+                // if-else
+
+            });
+            // forEach
+            if (count == 0) {
+                insert_quota_plan();
+                $('#warning_save').modal('show');
+                return true;
+            } else {
+                $("#warning").modal('show');
+                return false;
+            }
+
 
 
         }
-});
+    });
 
 }
 
@@ -355,64 +353,61 @@ function manage_data(qut_id) {
         </div>
         <div class="panel-body" style="">
 
-            <div class="row">
+            <table style="border:1;">
+                <?php foreach($cdp_data as $value){ ?>
+                <input type="text" id="position_id" value="<?php echo $value->Position_ID?>" hidden>
+                <tr>
+                    <td class="qut" width="175">
+                        <h4><b>Company </b></h4>
+                    </td>
+                    <td width="75">
+                        <h4><b> : </b></h4>
+                    </td>
+                    <td class="qut_type font1" width="300"><?php echo $value->Company_name;?></td>
+                    <?php } ?>
+                </tr>
 
-                <table style="border:1;">
+                <?php foreach($manage_qut_data as $value){ ?>
+                <input type="text" id="qut_id" value="<?php echo $value->qut_id?>" hidden>
+                <tr>
+                    <td class="qut font1" width="175">
+                        <h4><b>Quota </b></h4>
+                    </td>
+                    <td width="75">
+                        <h4><b> : </b></h4>
+                    </td>
+                    <td class="qut_type font1" width="200"><?php echo $value->qut_type;?></td>
+
+                    <td class="qut font1">
+                        <h4><b>Position of Quota </b></h4>
+                    </td>
+                    <td width="75">
+                        <h4><b> : </b></h4>
+                    </td>
+                    <td class="qut_type font1" id="qut_pos"><?php echo $value->qut_pos;?></td>
+                </tr>
+                <?php } ?>
+                <tr>
                     <?php foreach($cdp_data as $value){ ?>
-                    <input type="text" id="position_id" value="<?php echo $value->Position_ID?>" hidden>
-                    <tr>
-                        <td class="qut" width="175">
-                            <h4><b>Company </b></h4>
-                        </td>
-                        <td width="75">
-                            <h4><b> : </b></h4>
-                        </td>
-                        <td class="qut_type" width="300"><?php echo $value->Company_name;?></td>
-                        <?php } ?>
-                    </tr>
+                    <td class="qut font1" width="175">
+                        <h4><b>Department </b></h4>
+                    </td>
+                    <td width="75">
+                        <h4><b> : </b></h4>
+                    </td>
+                    <td class="qut_type font1" width="200"><?php echo $value->Dep_Name;?></td>
 
-                    <?php foreach($manage_qut_data as $value){ ?>
-                    <input type="text" id="qut_id" value="<?php echo $value->qut_id?>" hidden>
-                    <tr>
-                        <td class="qut" width="175">
-                            <h4><b>Quota </b></h4>
-                        </td>
-                        <td width="75">
-                            <h4><b> : </b></h4>
-                        </td>
-                        <td class="qut_type" width="200"><?php echo $value->qut_type;?></td>
+                    <td class="qut">
+                        <h4><b>position </b></h4>
 
-                        <td class="qut">
-                            <h4><b>Position of Quota </b></h4>
-                        </td>
-                        <td width="75">
-                            <h4><b> : </b></h4>
-                        </td>
-                        <td class="qut_type" id="qut_pos"><?php echo $value->qut_pos;?></td>
-                    </tr>
-                    <?php } ?>
-                    <tr>
-                        <?php foreach($cdp_data as $value){ ?>
-                        <td class="qut" width="175">
-                            <h4><b>Department </b></h4>
-                        </td>
-                        <td width="75">
-                            <h4><b> : </b></h4>
-                        </td>
-                        <td class="qut_type" width="200"><?php echo $value->Dep_Name;?></td>
-
-                        <td class="qut">
-                            <h4><b>position </b></h4>
-
-                        </td>
-                        <td width="75">
-                            <h4><b> : </b></h4>
-                        </td>
-                        <td class="qut_type" id="qut_pos"><?php echo $value->Position_name;?></td>
-                    </tr>
-                    <?php } ?>
-                </table>
-            </div>
+                    </td>
+                    <td width="75">
+                        <h4><b> : </b></h4>
+                    </td>
+                    <td class="qut_type font1" id="qut_pos"><?php echo $value->Position_name;?></td>
+                </tr>
+                <?php } ?>
+            </table>
             <hr>
             <!-- <form onsubmit="required()"> -->
             <div class="row">
@@ -421,9 +416,9 @@ function manage_data(qut_id) {
                 <div class="col-md-8">
 
                     <table style="width:100%" class="table table-hover m-n orange">
-                        <thead>
+                        <thead class = "font1">
                             <div class="col-md-1">
-                                <tr class="orange">
+                                <tr class="orange ">
                                     <th>Grade</th>
                                     <th style="width: 15%;" id="grad1">S</th>
                                     <th style="width: 15%;" id="grad2">A</th>

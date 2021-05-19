@@ -352,8 +352,9 @@ th {
 }
 
 td {
+    color: black;
     text-align: center;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 h4 {
