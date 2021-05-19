@@ -333,7 +333,7 @@ function edit_qup_data(qut_id, i) {
     var pos_id = document.getElementById("pos_" + qut_id + i).value;
     console.log(pos_id);
     var data_sent = qut_id + ":" + pos_id;
-       window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/edit_quota_plan/" + data_sent;
+    window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/edit_quota_plan/" + data_sent;
 } //report_data
 </script>
 <style>
@@ -384,9 +384,9 @@ h4 {
         <div class="panel-body">
 
             <?php foreach($qup_data->result() as $value){ ?>
-            <input type="text" id="qup_id" value="<?php echo $value->qup_id;?>" hidden> 
+            <input type="text" id="qup_id" value="<?php echo $value->qup_id;?>" hidden>
             <input type="text" id="qup_qut_id" value="<?php echo $value->qup_qut_id;?>" hidden>
-            <input type="text" id="qup_Position_ID" value="<?php echo $value->qup_Position_ID;?>" hidden> 
+            <input type="text" id="qup_Position_ID" value="<?php echo $value->qup_Position_ID;?>" hidden>
             <?php } ?>
 
             <table>
@@ -508,7 +508,7 @@ h4 {
                                             <th>Company</th>
                                             <th>Department</th>
                                             <th>position</th>
-                                            <th>Action</th>
+                                            <th colspan = "2">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
