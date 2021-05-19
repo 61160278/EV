@@ -612,21 +612,36 @@ function saveG_O() {
     var number_index = document.getElementById("row_indexG_O").value;
     var level_row = document.getElementById("level_row").value;
 
+    var check_emp_id = document.getElementById("emp_id").innerHTML;
+    var evs_emp_id = document.getElementById("evs_emp_id").value;
+
     for (i = 1; i <= number_index; i++) {
         type.push($('input[name="type' + i + '"]:checked').val());
-
         sdgs.push(document.getElementById("sdgs_sel" + i).value);
-
         item.push(document.getElementById("inp_item" + i).value);
-
         weight.push(document.getElementById("weight" + i).value);
-
     }
-    // for 
-    console.log(type);
-    console.log(sdgs);
-    console.log(item);
-    console.log(weight);
+    // for
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/save_G_O_by_emp",
+        data: {
+            "check_emp_id": check_emp_id,
+            "evs_emp_id": evs_emp_id,
+            "type": type,
+            "sdgs": sdgs,
+            "item": item,
+            "weight": weight,
+            "number_index": number_index
+        },
+        success: function(data) {
+            console.log(data);
+        }
+        // success
+    });
+    // ajax
 
 }
 // function saveG_O
@@ -640,13 +655,12 @@ function checkG_O() {
     var level_row = document.getElementById("level_row").value;
 
     count_ranges = parseInt(level_row) + 1;
-
     // console.log(number_index);
     // console.log(level_row);
     // console.log(count_ranges);
 
     for (i = 1; i <= number_index; i++) {
-
+        test.push(i);
         type = $('input[name="type' + i + '"]:checked').val();
         if (type == undefined) {
             $("#check_rdio").modal('show');
@@ -729,8 +743,7 @@ function checkG_O() {
         }
         // if
     }
-    // for 
-
+    // for
     if (num == 0) {
         saveG_O()
         console.log("true save");
