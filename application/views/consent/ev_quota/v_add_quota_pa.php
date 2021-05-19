@@ -121,7 +121,7 @@ function insert_quota() {
             check = document.getElementById("quota" + i).value;
 
             if (check != "") {
-                grade[i] = parseInt(check),
+                grade[i] = parseFloat(check),
                     sum_quota += grade[i];
             } //if
         } //for

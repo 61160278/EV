@@ -84,12 +84,12 @@ function edit_quota() {
     var savedate = year + "-" + month + "-" + day;
 
     // document.getElementById("submit").disabled = false;
-    var qut_id = parseInt(document.getElementById("idDataQuota").value);
+    var qut_id = parseFloat(document.getElementById("idDataQuota").value);
     for (i = 1; i <= 6; i++) {
         check = document.getElementById("quota" + i).value;
 
         if (check != "") {
-            grade[i] = parseInt(check),
+            grade[i] = parseFloat(check),
                 sum_quota += grade[i];
         } //if
     } //for
