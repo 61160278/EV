@@ -151,7 +151,10 @@ class Evs_quota extends MainController_avenxo {
 		$data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota
 
 		$this->load->model('M_evs_quota_plan','mqup');
+		// $this->mqup->qut_id = $qut_id;
+		// $data['qup_data'] = $this->mqup->get_id_quota_position_plan(); // show value company all
 		$data['qup_data'] = $this->mqup->get_all(); // show value company all
+
 
 		$this->output('/consent/ev_quota/v_manage_quota',$data);
 	}
@@ -418,6 +421,11 @@ function quota_plan_insert(){
 		$this->mqut->qut_id = $qut_id;
 		$data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota
 
+		$this->load->model('M_evs_quota_plan','mqup');
+		$this->mqup->qup_qut_id = $qut_id;
+		$this->mqup->qup_Position_ID = $pos_id;
+		$data['qup_data'] = $this->mqup->get_id_quota_position_plan()->result(); // show value quota in manage quota
+
 		$this->output('/consent/ev_quota/v_edit_quota_plan',$data);
 	}//edit_quota_plan
 
@@ -499,5 +507,40 @@ function get_id_qut_pos_plan()
 		echo json_encode($data);
 	}
 	// get_id_qut_pos_plan
+
+function quota_plan_edit(){
+
+		$qup_grad_S = $this->input->post("qup_gradeS");
+		$qup_grad_A = $this->input->post("qup_gradeA"); 
+		$qup_grad_B = $this->input->post("qup_gradeB"); 
+		$qup_grad_B_N = $this->input->post("qup_gradeB_N");
+		$qup_grad_C = $this->input->post("qup_gradeC"); 
+		$qup_grad_D = $this->input->post("qup_gradeD"); 
+		$qup_total = $this->input->post("sum_quota_plan"); 
+		$qup_id = $this->input->post("qup_id"); 
+		
+
+			$this->load->model("Da_evs_quota_plan","dqup");
+			
+			$this->dqup->qup_id = $qup_id;
+			$this->dqup->qup_grad_S = $qup_grad_S;
+			$this->dqup->qup_grad_A = $qup_grad_A;
+			$this->dqup->qup_grad_B = $qup_grad_B;
+			$this->dqup->qup_grad_B_N = $qup_grad_B_N;
+			$this->dqup->qup_grad_C = $qup_grad_C;
+			$this->dqup->qup_grad_D = $qup_grad_D;
+			$this->dqup->qup_total = $qup_total;
+			
+	
+			$this->dqup->update();
+		
+	
+	}//quota_plan_insert
+
+
+
+
+
+
 }// end class
 ?>

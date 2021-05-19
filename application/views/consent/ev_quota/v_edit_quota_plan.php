@@ -214,12 +214,12 @@ function show_quotaplan() {
 } //show_quotaplan
 
 function confirm_save() {
-    insert_quota_plan();
+    edit_quota_plan();
     $('#warning_save').modal('show');
 
 }
 
-function insert_quota_plan() {
+function edit_quota_plan() {
     var check = "";
 
     var sum_quota_plan = 0;
@@ -237,7 +237,8 @@ function insert_quota_plan() {
     var quota = 0;
     var pos_id = "";
     var qut_id = "";
-
+    var qup_id = "";
+    qup_id = document.getElementById("qup_id").value;
     pos_id = document.getElementById("position_id").value;
     qut_id = document.getElementById("qut_id").value;
     check = document.getElementById("quotaPlan").value;
@@ -253,7 +254,7 @@ function insert_quota_plan() {
     } //for 
     grade.shift();
     console.log(grade);
-    console.log(sum_quota_plan);
+    
     qup_gradeS = grade[0];
     qup_gradeA = grade[1];
     qup_gradeB = grade[2];
@@ -267,9 +268,11 @@ function insert_quota_plan() {
     console.log(qup_gradeB_N);
     console.log(qup_gradeC);
     console.log(qup_gradeD);
+    console.log(sum_quota_plan);
+    // console.log(qup_id);
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_plan_insert",
+         url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_plan_edit",
 
         data: {
 
@@ -280,8 +283,7 @@ function insert_quota_plan() {
             "qup_gradeC": qup_gradeC,
             "qup_gradeD": qup_gradeD,
             "sum_quota_plan": sum_quota_plan,
-            "qut_id": qut_id,
-            "pos_id": pos_id
+            "qup_id": qup_id
         },
         dataType: "JSON",
 
@@ -310,8 +312,9 @@ function manage_data(qut_id) {
             </div>
         </div>
         <div class="panel-body" style="">
-
-
+        <?php foreach($qup_data as $value){ ?>
+        <input type="text" id="qup_id" value="<?php echo $value->qup_id?>" hidden>
+        <?php } ?>
             <div class="row">
                 <table style="border:1;">
                     <?php foreach($cdp_data as $value){ ?>
@@ -409,16 +412,18 @@ function manage_data(qut_id) {
                             <div class="col-md-1">
                                 <tr class="orange2">
                                     <td><b>Plan</b></td>
-                                    <td id="show_quotaPlan1"></td>
-                                    <td id="show_quotaPlan2"></td>
-                                    <td id="show_quotaPlan3"></td>
-                                    <td id="show_quotaPlan4"></td>
-                                    <td id="show_quotaPlan5"></td>
-                                    <td id="show_quotaPlan6"> </td>
+                                    <?php foreach($qup_data as $value){ ?>
+                                    <td id="show_quotaPlan1"><?php echo $value->qup_grad_S;?></td>
+                                    <td id="show_quotaPlan2"><?php echo $value->qup_grad_A;?></td>
+                                    <td id="show_quotaPlan3"><?php echo $value->qup_grad_B;?></td>
+                                    <td id="show_quotaPlan4"><?php echo $value->qup_grad_B_N;?></td>
+                                    <td id="show_quotaPlan5"><?php echo $value->qup_grad_C;?></td>
+                                    <td id="show_quotaPlan6"><?php echo $value->qup_grad_D;?></td>
                                     <td>
                                         <input type="text" class="form-control" id="quotaPlan"
-                                            onchange="check_quota_plan()" min="0" max="100" value="">
+                                            onchange="check_quota_plan()" min="0" max="100" value="<?php echo $value->qup_total;?>">
                                     </td>
+                                    <?php } ?>
                                 </tr>
                             </div>
                         </tbody>
