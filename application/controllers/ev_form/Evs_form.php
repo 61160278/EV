@@ -116,10 +116,7 @@ class Evs_form extends MainController_avenxo {
 		$this->mpf->ps_pay_id = $pay_id;
 		$data = $this->mpf->get_all_by_key_by_year()->result();
 
-		echo json_encode($data);
-
-
-		
+		echo json_encode($data);		
 	}
 	// function get_tap_form
 	
@@ -148,6 +145,36 @@ class Evs_form extends MainController_avenxo {
 		echo json_encode($data);
 	}
 	// function get_G_O_by_pos
+
+	function save_G_O_by_emp(){
+
+		$Emp_ID = $this->input->post("check_emp_id");
+		$evs_emp_id = $this->input->post("evs_emp_id");
+		$type = $this->input->post("type");
+		$sdgs = $this->input->post("sdgs");
+		$item = $this->input->post("item");
+		$weight = $this->input->post("weight");
+		$number_index = $this->input->post("number_index");
+
+		$this->load->model('Da_evs_data_g_and_o','ddgo');
+
+		for($i=0; $i<$number_index; $i++){
+			$this->ddgo->dgo_type = $type[$i];
+			$this->ddgo->dgo_sdgs = $sdgs[$i];
+			$this->ddgo->dgo_item = $item[$i];
+			$this->ddgo->dgo_weight = $weight[$i];
+			$this->ddgo->dgo_emp_id = $Emp_ID;
+			$this->ddgo->dgo_evs_emp_id = $evs_emp_id;
+			$this->ddgo->insert();
+		}
+		// for
+
+		$this->load->model('M_evs_data_g_and_o','mdgo');
+		$this->mdgo->dgo_evs_emp_id = $evs_emp_id;
+		$data = $this->mdgo->get_to_insert()->result();
+		echo json_encode($data);
+	}
+	// function save_G_O_by_emp
 
 	function get_sdgs(){
 		
