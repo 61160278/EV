@@ -67,7 +67,6 @@ function add_group() {
 // function add_group
 
 function edit_group(gru_id) {
-
     var grouptext = document.getElementById("group_text" + gru_id).value;
     var Emp_id = document.getElementById("Emp_id" + gru_id).value;
     var Showname_modol = document.getElementById("nameEmp" + gru_id).value;
@@ -85,14 +84,12 @@ function edit_group(gru_id) {
         error: function(status) {
             console.log(status)
         }
-        // success function
-
+        // error function
     });
-
+    // ajax
     window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
-
 }
-//function add_group
+//function edit_group
 
 function delete_data(gru_id) {
     console.log(gru_id);
@@ -106,6 +103,7 @@ function delete_data(gru_id) {
         success: function(data, status) {
             console.log(status)
         }
+        // success function
     });
     // ajax
     window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_skd";
@@ -140,6 +138,7 @@ function get_idemployee(gru_id) {
             }
             // if-else
         }
+        // success function
     });
     // ajax
 }
@@ -205,7 +204,7 @@ function check_add() {
             add_alert();
             return false;
         }
-        // if-else Showname_modol
+        // if-else เช็คดูมีรหัสพนัสงานตรงกับ SKD 
     } else {
         add_alert();
         return false;
@@ -218,10 +217,14 @@ function check_edit_skd(check) {
     var group = document.getElementById("group_text" + check).value;
     var Emp_id = document.getElementById("Emp_id" + check).value;
     var Showname_modol = document.getElementById("nameEmp" + check).value;
+    var groupname = document.getElementById("groupname" + check).innerHTML;
     var count = 0;
+    var temp = " ";
+
     console.log(group)
     console.log(Emp_id)
     console.log(Showname_modol)
+    console.log(groupname)
 
     if (group != "" && Emp_id != "") {
         if (Showname_modol != "ไม่มีข้อมูล") {
@@ -231,12 +234,13 @@ function check_edit_skd(check) {
 
                     if (group == row.gru_name) {
                         count++;
+                        temp = row.gru_name;
                         console.log(count)
                     }
                     // if-else
                 });
                 // forEach
-                if (count == 0) {
+                if (count == 0 || temp == groupname) {
                     console.log("true")
                     edit_group(check);
                     return true;
@@ -348,14 +352,14 @@ function clear_css(gru_id) {
 								foreach($grp_sdm->result() as $row ) { ?>
                                     <tr class="odd gradeX" align='center'>
                                         <td><?php echo $num;?> </td>
-                                        <td><?php echo $row->gru_name; ?></td>
+                                        <td id="groupname<?php echo $row->gru_id?>"><?php echo $row->gru_name; ?></td>
                                         <td>
                                             <?php if($row->gru_head_dept == NULL){ 
 													echo "-";
 												} else {
 													echo $row->Empname_eng." ".$row->Empsurname_eng;
 												}
-												?>
+											?>
                                         </td>
                                         <td>
                                             <div class="demo-btns">
@@ -375,7 +379,7 @@ function clear_css(gru_id) {
                                         </td>
                                     </tr>
                                     <?php 
-									$num++;
+								$num++;
 								} ?>
                                 </tbody>
                                 <!-- tbody -->
@@ -424,7 +428,6 @@ function clear_css(gru_id) {
     <!-- head panel -->
 </div>
 <!-- head outside -->
-
 
 <!-- Modal Add -->
 <div class="modal fade" id="Add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

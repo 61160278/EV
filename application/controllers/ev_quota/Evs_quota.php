@@ -1,4 +1,3 @@
-
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once(dirname(__FILE__) . "/../MainController_avenxo.php");
@@ -44,7 +43,9 @@ class Evs_quota extends MainController_avenxo {
 	*/
 	function index()
 	{
-		$this->output('/consent/ev_quota/v_main_quota');
+		$this->load->model('M_evs_quota','mqut');
+ 		$data['qut_data'] = $this->mqut->get_all()->result(); // show value quota all
+		$this->output('/consent/ev_quota/v_main_quota',$data);
 	}
 	// function index()
 	
@@ -96,14 +97,32 @@ class Evs_quota extends MainController_avenxo {
 	* @author 	Piyasak Srijan
 	* @Update Date 2564-04-20
 	*/
-	function hr_report_curve()
+	function hr_report_curve($data_sent)
 	{
+		 $qut_id = substr($data_sent,0,strpos($data_sent,":"));
+		 $pos_id = substr($data_sent,strpos($data_sent,":")+1);
+
+		$this->load->model('M_evs_position','mqos');
+		$this->mqos->Position_ID = $pos_id;
+		$data['cdp_data'] = $this->mqos->get_com_dep_pos_detail()->result();
+	
+		$this->load->model('M_evs_quota','mqut');
+		$this->mqut->qut_id = $qut_id;
+		$data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota
+
 		$this->load->model('M_evs_department','mdep');
 		$data['dep_data'] = $this->mdep->get_all(); // show value department all
+
 		$this->load->model('M_evs_position','meps');
 		$data['pos_data'] = $this->meps->get_all()->result(); // show value position all
+
 		$this->load->model('M_evs_company','mcpn');
 		$data['com_data'] = $this->mcpn->get_all(); // show value company all
+
+		$this->load->model('M_evs_quota_plan','mqup');
+		$this->mqup->qup_qut_id = $qut_id;
+		$this->mqup->qup_Position_ID = $pos_id;
+		$data['qup_data'] = $this->mqup->get_quota_plan_id()->result(); // show value company all
 		
 		$this->output('/consent/ev_quota/v_hr_report_curve',$data);
 	}
@@ -116,7 +135,7 @@ class Evs_quota extends MainController_avenxo {
 	* @author 	Piyasak Srijan
 	* @Create Date 2564-04-06
 	*/
-	function manage_quota()
+	function manage_quota($qut_id)
 	{
 		$this->load->model('M_evs_department','mdep');
 		$data['dep_data'] = $this->mdep->get_all(); // show value department all
@@ -124,11 +143,16 @@ class Evs_quota extends MainController_avenxo {
 		$this->load->model('M_evs_position_level','mepsl');
 		$data['psl_data'] = $this->mepsl->get_all(); // show value position level all
 
-		
 		$this->load->model('M_evs_company','mcpn');
 		$data['com_data'] = $this->mcpn->get_all(); // show value company all
 
-		
+		$this->load->model('M_evs_quota','mqut');
+		$this->mqut->qut_id = $qut_id;
+		$data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota
+
+		$this->load->model('M_evs_quota_plan','mqup');
+		$data['qup_data'] = $this->mqup->get_all(); // show value company all
+
 		$this->output('/consent/ev_quota/v_manage_quota',$data);
 	}
 	// function manage_quota(
@@ -140,12 +164,26 @@ class Evs_quota extends MainController_avenxo {
 	* @author 	Piyasak Srijan
 	* @Create Date 2564-04-07
 	*/
-	function detail_quota()
+	function detail_quota($data_sent)
 	{
-		$this->output('/consent/ev_quota/v_detail_quota');
-	}
-	// function detail_quota(
+
+		$qut_id = substr($data_sent,0,strpos($data_sent,":"));
+		$pos_id = substr($data_sent,strpos($data_sent,":")+1);
+
+		$this->load->model('M_evs_position','mqos');
+		$this->mqos->Position_ID = $pos_id;
+		$data['cdp_data'] = $this->mqos->get_com_dep_pos_detail()->result();
 	
+		$this->load->model('M_evs_quota','mqut');
+		$this->mqut->qut_id = $qut_id;
+		$data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota
+
+		// $this->load->model('M_evs_quota','mqut');
+ 		// $data['qut_data'] = $this->mqut->get_quota_plan()->result(); 
+		$this->output('/consent/ev_quota/v_detail_quota',$data);
+	}
+	// function detail_quota
+
 	/*
 	* hd_quota_evaluation_status
 	* @input
@@ -203,9 +241,13 @@ class Evs_quota extends MainController_avenxo {
 	* @author 	Piyasak Srijan
 	* @Create Date 2564-04-07
 	*/
-	function edit_quota_ca()
+	function edit_quota_ca($qut_id)
 	{
-		$this->output('/consent/ev_quota/v_edit_quota');
+		$this->load->model('M_evs_quota','mqut');
+		$this->mqut->qut_id = $qut_id;
+		$data['edit_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota to edit
+
+		$this->output('/consent/ev_quota/v_edit_quota',$data);
 	}
 	// function edit_quota()
 
@@ -233,9 +275,6 @@ class Evs_quota extends MainController_avenxo {
 		}
 		echo json_encode($data);
 	}
-
-	
-
 	function get_position_level(){
 		$pos_sel = $this->input->post("position_level_id");
 		 $this->load->model('M_evs_position','mpos');
@@ -275,6 +314,7 @@ function get_search_data(){
 		$this->mpos->Dep_id = $dep_sel;
 		$this->mpos->psl_id = $pos_lv_select;
 		$this->mpos->Position_ID = $pos_select;
+		// $this->mpos->Position_Level = $Position_Level;
 		$data = $this->mpos->get_pos_com_dep()->result();
 		echo json_encode($data);
 
@@ -285,6 +325,7 @@ function all_data(){
 	$data = $this->mpos->get_pos_com_dep_all()->result();
 		echo json_encode($data);
 }//all_data()
+
 function all_position(){
 	$this->load->model('M_evs_position','mpos');
 	$data['pos_data'] = $this->meps->get_position()->result();
@@ -295,23 +336,168 @@ function quota_insert(){
 	$qut_type = $this->input->post("quotaType"); // quota type
 	$qut_pos = $this->input->post("groupPosition"); //group position of quota
 	$qut_date = $this->input->post("savedate"); // date save
-
+	$qut_grad_S = $this->input->post("gradeS"); // date sav
+	$qut_grad_A = $this->input->post("gradeA"); // date sav
+	$qut_grad_B = $this->input->post("gradeB"); // date sav
+	$qut_grad_B_N = $this->input->post("gradeB_N"); // date sav
+	$qut_grad_C = $this->input->post("gradeC"); // date sav
+	$qut_grad_D = $this->input->post("gradeD"); // date sav
+	$qut_total = $this->input->post("sum_quota"); // date sav
 		$this->load->model("Da_evs_quota","dqut");
 
 		$this->dqut->qut_id = $qut_id;
 		$this->dqut->qut_type = $qut_type;
 		$this->dqut->qut_pos = $qut_pos;
 		$this->dqut->qut_date = $qut_date;
+		$this->dqut->qut_grad_S = $qut_grad_S;
+		$this->dqut->qut_grad_A = $qut_grad_A;
+		$this->dqut->qut_grad_B = $qut_grad_B;
+		$this->dqut->qut_grad_B_N = $qut_grad_B_N;
+		$this->dqut->qut_grad_C = $qut_grad_C;
+		$this->dqut->qut_grad_D = $qut_grad_D;
+		$this->dqut->qut_total = $qut_total;
+		
 		$this->dqut->insert();
 		echo json_encode("Success by insert");
 
 }//quota_insert
-function main_quota()
+// function show_data_main_quota()
+// 	{
+// 		$this->load->model('M_evs_quota','mqut');
+// 		$data['qut_data'] = $this->mqut->get_all()->result(); // show value position all
+// 		$this->output('/consent/ev_quota/v_main_quota',$data);
+// 		//echo json_encode($data);
+	
+// 	}//show_data_main_quota
+
+function quota_plan_insert(){
+
+	$qup_grad_S = $this->input->post("qup_gradeS");
+	$qup_grad_A = $this->input->post("qup_gradeA"); 
+	$qup_grad_B = $this->input->post("qup_gradeB"); 
+	$qup_grad_B_N = $this->input->post("qup_gradeB_N");
+	$qup_grad_C = $this->input->post("qup_gradeC"); 
+	$qup_grad_D = $this->input->post("qup_gradeD"); 
+	$qup_total = $this->input->post("sum_quota_plan"); 
+	$qup_qut_id = $this->input->post("qut_id"); 
+	$qup_Position_ID = $this->input->post("pos_id"); 
+		$this->load->model("Da_evs_quota_plan","dqup");
+		
+		$this->dqup->qup_id = $qup_id;
+		$this->dqup->qup_grad_S = $qup_grad_S;
+		$this->dqup->qup_grad_A = $qup_grad_A;
+		$this->dqup->qup_grad_B = $qup_grad_B;
+		$this->dqup->qup_grad_B_N = $qup_grad_B_N;
+		$this->dqup->qup_grad_C = $qup_grad_C;
+		$this->dqup->qup_grad_D = $qup_grad_D;
+		$this->dqup->qup_total = $qup_total;
+		$this->dqup->qup_qut_id = $qup_qut_id;
+		$this->dqup->qup_Position_ID = $qup_Position_ID;
+
+		$this->dqup->insert();
+		echo json_encode("Success by insert");
+
+}//quota_plan_insert
+/*
+	* edit_quota_plan
+	* @input
+	* @output 
+	* @author 	Piyasak Srijan
+	* @Create Date 2564-04-07
+	*/
+	function edit_quota_plan($data_sent)
 	{
+		$qut_id = substr($data_sent,0,strpos($data_sent,":"));
+		$pos_id = substr($data_sent,strpos($data_sent,":")+1);
+
+		$this->load->model('M_evs_position','mqos');
+		$this->mqos->Position_ID = $pos_id;
+		$data['cdp_data'] = $this->mqos->get_com_dep_pos_detail()->result();
+	
 		$this->load->model('M_evs_quota','mqut');
-		$data['qut_data'] = $this->mqut->get_all()->result(); // show value position all
-		//$this->output('/consent/ev_quota/v_main_quota',$data);
-		 echo json_encode($data);
-	}//hd_report_curve
+		$this->mqut->qut_id = $qut_id;
+		$data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota
+
+		$this->output('/consent/ev_quota/v_edit_quota_plan',$data);
+	}//edit_quota_plan
+
+
+function quota_actual_insert(){
+
+	$qua_grad_S = $this->input->post("qua_gradeS");
+	$qua_grad_A = $this->input->post("qua_gradeA"); 
+	$qua_grad_B = $this->input->post("qua_gradeB"); 
+	$qua_grad_B_N = $this->input->post("qua_gradeB_N");
+	$qua_grad_C = $this->input->post("qua_gradeC"); 
+	$qua_grad_D = $this->input->post("qua_gradeD"); 
+	$qua_total = $this->input->post("sum_actual"); 
+	$qua_qut_id = $this->input->post("qut_id"); 
+	$qua_Position_ID = $this->input->post("pos_id"); 
+	$qua_qup_id = $this->input->post("qup_id"); 
+
+		$this->load->model("Da_evs_quota_actual","dqua");
+		
+		$this->dqua->qua_id = $qua_id;
+		$this->dqua->qua_grad_S = $qua_grad_S;
+		$this->dqua->qua_grad_A = $qua_grad_A;
+		$this->dqua->qua_grad_B = $qua_grad_B;
+		$this->dqua->qua_grad_B_N = $qua_grad_B_N;
+		$this->dqua->qua_grad_C = $qua_grad_C;
+		$this->dqua->qua_grad_D = $qua_grad_D;
+		$this->dqua->qua_total = $qua_total;
+		$this->dqua->qua_qut_id = $qua_qut_id;
+		$this->dqua->qua_Position_ID = $qua_Position_ID;
+		$this->dqua->qua_qup_id = $qua_qup_id;
+		
+		$this->dqua->insert();
+		echo json_encode("Success by insert");
+}//quota_actual_insert()
+
+function delete_quota(){
+
+	$qut_id = $this->input->post('qut_id');
+	$this->load->model('Da_evs_quota','dqut');
+	$this->dqut->qut_id = $qut_id;
+	$this->dqut->delete();
+	echo json_encode("Success by insert");
+ }//delete_quota
+function edit_quota(){
+
+	$qut_id= $this->input->post("qut_id");
+	$qut_date = $this->input->post("savedate");
+	$qut_grad_S = $this->input->post("gradeS"); // date sav
+	$qut_grad_A = $this->input->post("gradeA"); // date sav
+	$qut_grad_B = $this->input->post("gradeB"); // date sav
+	$qut_grad_B_N = $this->input->post("gradeB_N"); // date sav
+	$qut_grad_C = $this->input->post("gradeC"); // date sav
+	$qut_grad_D = $this->input->post("gradeD"); // date sav
+	$qut_total = $this->input->post("sum_quota"); // date sav
+		$this->load->model("Da_evs_quota","dqut");
+
+	
+		$this->dqut->qut_date = $qut_date;
+		$this->dqut->qut_grad_S = $qut_grad_S;
+		$this->dqut->qut_grad_A = $qut_grad_A;
+		$this->dqut->qut_grad_B = $qut_grad_B;
+		$this->dqut->qut_grad_B_N = $qut_grad_B_N;
+		$this->dqut->qut_grad_C = $qut_grad_C;
+		$this->dqut->qut_grad_D = $qut_grad_D;
+		$this->dqut->qut_total = $qut_total;
+		$this->dqut->qut_id = $qut_id;
+		$this->dqut->update();
+
+}//edit_quota
+function get_id_qut_pos_plan()
+	{
+		$qup_qut_id = $this->input->post("qut_id");
+		$qup_Position_ID = $this->input->post("pos_id");
+		
+		$this->load->model('M_evs_quota_plan','mqup');
+		$this->mqup->qup_qut_id = $qup_qut_id;
+		$this->mqup->qup_Position_ID = $qup_Position_ID;
+		$data = $this->mqup->get_quota_plan_id()->result();
+		echo json_encode($data);
+	}
+	// get_id_qut_pos_plan
 }// end class
 ?>

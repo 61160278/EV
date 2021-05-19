@@ -10,6 +10,12 @@
 ?>
 
 <script>
+$(document).ready(function() {
+    manage_group();
+
+});
+// document ready
+
 function manage_group() {
     var gru_id = document.getElementById("select").value;
     var data_row = " ";
@@ -73,7 +79,7 @@ function manage_group_right() {
                 data_row += '<td>'
                 data_row += '<div align="center" class="checked block">'
                 data_row += '<input id = "old_check_group' + index +
-                    '" name="checkbox" type="checkbox">'
+                    '" name="checkbox_r" type="checkbox">'
                 data_row += '</div>'
                 data_row += '</td>'
                 data_row += '<td id="emp_new' + index + '">'
@@ -164,7 +170,87 @@ function change_group_remove() {
     //ajax
 }
 // change_group_remove
+
+function delete_data() {
+    var gru_id = document.getElementById("new_group").value;
+    console.log(gru_id)
+
+    var count_group = document.getElementById("count_group").value;
+    var old_group = document.getElementById("select").value;
+    var get_emp = [];
+    for (i = 0; i < count_group; i++) {
+        if (document.getElementById("old_check_group" + i).checked) {
+            get_emp.push(document.getElementById("emp_new" + i).innerHTML)
+            console.log(get_emp)
+        }
+        // if
+    }
+    // for
+
+    $.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>/ev_group/Evs_group/add_new_group",
+        data: {
+            "group": old_group,
+            "get_emp": get_emp,
+            "count": count_group
+
+        },
+        dataType: "JSON",
+        success: function(status) {
+            console.log(status)
+            console.log(gru_id)
+        }
+        //error จะไม่มีการส่งค่ากลับมา
+    });
+    //ajax
+    window.location.href = "<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_skd/" + gru_id;
+}
+// function delete_data
+
+function select_all() {
+
+    var checkboxes = document.getElementsByName('checkbox');
+    var button = document.getElementById('toggle');
+
+    if (button.value == 'select') {
+        for (var i in checkboxes) {
+            checkboxes[i].checked = 'FALSE';
+        }
+        button.value = 'deselect'
+    } else {
+        for (var i in checkboxes) {
+            checkboxes[i].checked = '';
+        }
+        button.value = 'select';
+    }
+}
+
+
+function select_all_right() {
+
+    var checkboxes = document.getElementsByName('checkbox_r');
+    var button = document.getElementById('toggle_r');
+
+    if (button.value == 'select_r') {
+        for (var i in checkboxes) {
+            checkboxes[i].checked = 'TRUE';
+        }
+        button.value = 'deselect'
+    } else {
+        for (var i in checkboxes) {
+            checkboxes[i].checked = '';
+        }
+        button.value = 'select_r';
+    }
+}
 </script>
+
+<style>
+th {
+    text-align: center;
+}
+</style>
 
 <!DOCTYPE html>
 <html>
@@ -196,7 +282,7 @@ function change_group_remove() {
                         <div class="panel pull-right" id="addtable_filter">
                             <select onchange="manage_group()" id="select" name="example_length" class="form-control"
                                 aria-controls="example">
-                                <option disabled selected> Select Group Contact </option>
+                                <option value="0" selected> Select Group Contact </option>
                                 <?php foreach($gcp_gkd->result() as $row) {?>
                                 <option value="<?php echo $row->gru_id; ?>">
                                     <?php echo $row->gru_name;?>
@@ -215,23 +301,25 @@ function change_group_remove() {
                                 <div class="col-sm-6"></div>
                             </div>
 
-                            <table id="add_table" class="table table-striped table-bordered dataTable no-footer"
-                                cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
-                                style="width: 100%;">
+                            <table id="table1" class="table table-striped table-bordered dataTable no-footer">
                                 <thead>
-                                    <tr style="background-color:lavender; font-family:'Garamond'">
-                                        <th>
-                                            <center>Select
-                                        </th>
-                                        <th>
-                                            <center>Emp.ID
-                                        </th>
-                                        <th>
-                                            <center>Name - Surname
-                                        </th>
-                                        <th>
-                                            <center>Section Code
-                                        </th>
+                                    <tr style="background-color:lavender; font-family:'Garamond'" align="middle">
+                                        <center>
+                                            <th>
+                                                <center>Select
+                                                    <br>
+                                                    <input type="checkbox" id="toggle" value="select"
+                                                        onclick="select_all()">
+                                            </th>
+                                            <th valign="center">
+                                                <center>Emp.ID
+                                            </th>
+                                            <th>
+                                                <center>Name - Surname
+                                            </th>
+                                            <th>
+                                                <center>Section Code
+                                            </th>
                                     </tr>
                                 </thead>
 
@@ -299,13 +387,14 @@ function change_group_remove() {
                                 <div class="col-sm-6"></div>
                             </div>
 
-                            <table id="example" class="table table-striped table-bordered dataTable no-footer"
-                                cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
-                                style="width: 100%;">
+                            <table id="example" class="table table-striped table-bordered dataTable no-footer">
                                 <thead>
-                                    <tr style="background-color:lavender; font-family:'Garamond'" align="center">
+                                    <tr style="background-color:lavender; font-family:'Garamond'">
                                         <th>
                                             <center>Select
+                                                <br>
+                                                <input type="checkbox" id="toggle_r" value="select_r"
+                                                    onclick="select_all_right()">
                                         </th>
                                         <th>
                                             <center>Emp.ID
@@ -326,7 +415,7 @@ function change_group_remove() {
                                     <tr class="odd gradeX">
                                         <td>
                                             <div class="checked block">
-                                                <input name="checkbox" type="checkbox"
+                                                <input name="checkbox_r" type="checkbox"
                                                     id="old_check_group<?php echo $index; ?>">
                                             </div>
                                         </td>
@@ -369,24 +458,17 @@ function change_group_remove() {
                         </div>
                         <!-- Transform -->
 
-                        
                         <div class="DTTT btn-group pull-right mt-sm">
                             &emsp;
-                            <?php
-							$num = 0;
-							foreach($group_skd->result() as $index->$row ) { ?>
-                            <a data-toggle="modal" class="btn btn btn-danger" href="#Delete<?php echo $row->gru_id?>">
-                                <i class="ti ti-trash"></i>
+                            <a data-toggle="modal" class="btn btn btn-danger" href="#RESIGN">
+                                <i class="ti ti-share-alt"></i>
                                 &nbsp
                                 <span>RESIGN</span>
                             </a>
-                            <?php
-						$num++;
-						} ?>
-                        <!-- foreach -->
+                            <!-- foreach -->
                         </div>
                         <!-- RESIGN -->
-                        
+
                     </div>
                     <!-- panel-body right -->
                 </div>
@@ -412,7 +494,6 @@ function change_group_remove() {
     <!-- head panel -->
 </div>
 <!-- head outside -->
-
 </html>
 
 <style>
@@ -427,9 +508,8 @@ tbody {
 }
 </style>
 
-<!-- Modal Delete -->
-<div class="modal fade" id="Delete<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
+<!-- Modal RESIGN -->
+<div class="modal fade" id="RESIGN" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color:red;">
@@ -437,8 +517,8 @@ tbody {
                     <font color="Black"><b>&times;</b></font>
                 </button>
                 <h2 class="modal-title" style="font-family:'Georgia'"><b>
-                    <font color="white">Delete</font>
-                </b></h2>
+                        <font color="white">RESIGN</font>
+                    </b></h2>
             </div>
             <!-- Modal header -->
 
@@ -446,9 +526,8 @@ tbody {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label"
-                                align="center">
-                                <font size="5px">Do you want to Delete Data YES or NO ?</font>
+                            <label for="focusedinput" class="control-label" align="center">
+                                <font size="5px">Do you want to RESIGN Data YES or NO ?</font>
                             </label>
                         </div>
                     </div>
@@ -461,8 +540,7 @@ tbody {
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
                 </div>
-                <button type="button" class="btn btn-success"
-                    onClick="delete_data(<?php echo $row->gru_id; ?>)">YES</button>
+                <button type="button" class="btn btn-success" onClick="delete_data()">YES</button>
             </div>
             <!-- Modal footer -->
         </div>

@@ -1,7 +1,7 @@
 <?php
 /*
 * v_gcm_form_insert
-* Display form ability management
+* Display form gcm management
 * @input  -
 * @output -
 * @author Tanadon Tangjaimongkhon
@@ -31,8 +31,8 @@ var arr_save_index_arr_add_pos = [];
  * @Create Date 2563-10-29
  */
 function check_weight_all() {
-   
-    sum_weight_all  = document.getElementById('value_total_weight').value;
+
+    sum_weight_all = document.getElementById('value_total_weight').value;
 
     //start if-else
     if (sum_weight_all == 100) {
@@ -65,13 +65,13 @@ function total_weight() {
     sum_weight = 0;
     //start for loop
     table_arr_for_count = document.getElementsByName("arr_weight").length
-   for (i = 0; i < table_arr_for_count; i++) {
+    for (i = 0; i < table_arr_for_count; i++) {
         arr_weight_check = document.getElementsByName("arr_weight")[i].value;
         Number(arr_weight_check);
-        sum_weight += Number(arr_weight_check); 
+        sum_weight += Number(arr_weight_check);
         Number(sum_weight);
         console.log(index);
-   }
+    }
     //end for loop
 
     if (sum_weight == 100) {
@@ -82,8 +82,8 @@ function total_weight() {
         document.getElementById('value_total_weight').style.color = "red"
     }
 
-   
-    
+
+
 
 }
 //total_weight
@@ -96,7 +96,7 @@ $(document).ready(function() {
     //start ajax
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_ability_form/get_compentency",
+        url: "<?php echo base_url(); ?>/Evs_gcm_form/get_compentency",
         data: {
             "pos_id": value_pos_id
         },
@@ -116,11 +116,11 @@ $(document).ready(function() {
             table_ready += '<option value = "0"> Please select</option>';
             //start foreach
             data.forEach((row, i) => {
-                
+
                 //start if
-                if (value_pos_id == row.ept_pos_id) {
-                    table_ready += '<option value="' + row.cpn_id + '">' + row
-                        .cpn_competency_detail_en + " (" + row.cpn_competency_detail_en +
+                if (value_pos_id == row.epg_pos_id) {
+                    table_ready += '<option value="' + row.cpg_id + '">' + row
+                        .cpg_competency_detail_en + " (" + row.cpg_competency_detail_en +
                         ") " + '</option>';
                 }
                 //end if
@@ -133,6 +133,8 @@ $(document).ready(function() {
 
             table_ready += '<td id="key_com_' + index + '"> </td>';
             // show keycom 
+            table_ready += '<td id="Target_' + index + '"> </td>';
+            // show Target 
 
             table_ready += '<td id="expected_' + index + '"> </td>';
             // show expected 
@@ -152,13 +154,14 @@ $(document).ready(function() {
 
             table_ready += '</tr>';
             table_ready += '<tr>';
-            table_ready_score += '<td colspan="4">';
+            table_ready_score += '<td colspan="5">';
             table_ready_score += '<center>';
             table_ready_score += '<font color="black"><b>Total weight</b></font>';
             table_ready_score += '</center>';
             table_ready_score += '</td>';
             table_ready_score += '<td >';
-            table_ready_score += '<input id="value_total_weight" style="text-align:center" value = "0" disabled>';
+            table_ready_score +=
+                '<input id="value_total_weight" style="text-align:center" value = "0" disabled>';
             table_ready_score += '</td>';
             table_ready_score += '<td>';
             table_ready_score += '</td>';
@@ -181,12 +184,12 @@ $(document).ready(function() {
         //start ajax
         $.ajax({
             type: "post",
-            url: "<?php echo base_url(); ?>/Evs_ability_form/get_compentency",
+            url: "<?php echo base_url(); ?>/Evs_gcm_form/get_compentency",
             data: {
                 "pos_id": value_pos_id
             },
             success: function(data) {
-                
+
                 data = JSON.parse(data)
                 // start tr
                 table += '<tr id="row_com' + index + '">';
@@ -204,10 +207,10 @@ $(document).ready(function() {
                 data.forEach((row, i) => {
 
                     //start if
-                    if (value_pos_id == row.ept_pos_id) {
-                        table += '<option value="' + row.cpn_id + '">' + row
-                            .cpn_competency_detail_en + " (" + row
-                            .cpn_competency_detail_en + ") " + '</option>';
+                    if (value_pos_id == row.epg_pos_id) {
+                        table += '<option value="' + row.cpg_id + '">' + row
+                            .cpg_competency_detail_en + " (" + row
+                            .cpg_competency_detail_en + ") " + '</option>';
                     }
                     //end if
 
@@ -219,7 +222,8 @@ $(document).ready(function() {
 
                 table += '<td id="key_com_' + index + '"> </td>';
                 // show keycom 
-
+                table += '<td id="Target_' + index + '"> </td>';
+                // show Target 
                 table += '<td id="expected_' + index + '"> </td>';
                 // show expected 
 
@@ -253,17 +257,17 @@ $(document).ready(function() {
 
         arr_weight_check = document.getElementById('weight_' + res + '').value;
         Number(arr_weight_check);
-        sum_weight -= Number(arr_weight_check); 
+        sum_weight -= Number(arr_weight_check);
         Number(sum_weight);
         console.log(arr_weight_check);
 
-    if (sum_weight == 100) {
-        document.getElementById('value_total_weight').value = sum_weight;
-        document.getElementById('value_total_weight').style.color = "black"
-    } else {
-        document.getElementById('value_total_weight').value = sum_weight;
-        document.getElementById('value_total_weight').style.color = "red"
-    }
+        if (sum_weight == 100) {
+            document.getElementById('value_total_weight').value = sum_weight;
+            document.getElementById('value_total_weight').style.color = "black"
+        } else {
+            document.getElementById('value_total_weight').value = sum_weight;
+            document.getElementById('value_total_weight').style.color = "red"
+        }
 
         console.log("button : " + res);
         for (i = 0; i < arr_save_index_arr_add_pos.length; i++) {
@@ -292,10 +296,11 @@ function get_compentency(value, index) {
     var competency_id = value; //competency ID
     var table_key = '' // value key component for show on table
     var table_expected = ''; // value expected for show on table
-
+    var table_Target = ''; // value Target for show on table
+    console.log(index);
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_ability_form/get_key_component",
+        url: "<?php echo base_url(); ?>/Evs_gcm_form/get_key_component",
         data: {
             "competency_id": competency_id,
             "pos_id": value_pos_id
@@ -308,13 +313,13 @@ function get_compentency(value, index) {
 
                 //start if
                 if (index == 0) {
-                    table_key += row.kcp_key_component_detail_en + " (" + row
-                        .kcp_key_component_detail_th + ")";
+                    table_key += row.kcg_key_component_detail_en + " (" + row
+                        .kcg_key_component_detail_th + ")";
                 } else {
                     table_key += '<br>';
                     table_key += '<hr>';
-                    table_key += row.kcp_key_component_detail_en + " (" + row
-                        .kcp_key_component_detail_th + ")";
+                    table_key += row.kcg_key_component_detail_en + " (" + row
+                        .kcg_key_component_detail_th + ")";
                 }
                 //end if-else
 
@@ -324,9 +329,10 @@ function get_compentency(value, index) {
             $('#key_com_' + index).html(table_key);
         }
     });
+
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_ability_form/get_expected",
+        url: "<?php echo base_url(); ?>/Evs_gcm_form/get_expected",
         data: {
             "competency_id": competency_id,
             "pos_id": value_pos_id
@@ -339,13 +345,42 @@ function get_compentency(value, index) {
 
                 //start if
                 if (index == 0) {
-                    table_expected += row.ept_expected_detail_en + " (" + row
-                        .ept_expected_detail_th + ")";
+                    table_Target += row.epg_point;
+                } else {
+                    table_Target += '<hr>';
+                    table_Target += '<br>';
+                    table_Target += row.epg_point;
+                }
+                //end if-else
+
+            });
+            //end foreach
+
+            $('#Target_' + index).html(table_Target);
+        }
+    });
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/Evs_gcm_form/get_expected",
+        data: {
+            "competency_id": competency_id,
+            "pos_id": value_pos_id
+        },
+        dataType: "JSON",
+        success: function(data) {
+
+            //start foreach
+            data.forEach((row, index) => {
+
+                //start if
+                if (index == 0) {
+                    table_expected += row.epg_expected_detail_en + " (" + row
+                        .epg_expected_detail_th + ")";
                 } else {
                     table_expected += '<hr>';
                     table_expected += '<br>';
-                    table_expected += row.ept_expected_detail_en + " (" + row
-                        .ept_expected_detail_th + ")";
+                    table_expected += row.epg_expected_detail_en + " (" + row
+                        .epg_expected_detail_th + ")";
                 }
                 //end if-else
 
@@ -357,21 +392,21 @@ function get_compentency(value, index) {
     });
 }
 /*
- * form_ability_input
+ * form_gcm_input
  * Display -
  * @input competency data, weight of competency
  * @output insert competency data, weight of competency to database
  * @author  Tanadon Tangjaimongkhon 
  * @Create Date 2563-10-29
  */
-function form_ability_input() {
+function form_gcm_input() {
     var arr_competency = []; // array of competency
     var arr_weight = []; // array of weight
-    
+
     //start for loop
     for (i = 0; i < arr_save_index_arr_add_pos.length; i++) {
-        arr_competency.push($('#compentency' + (parseInt(arr_save_index_arr_add_pos[i])+1)).val());
-        arr_weight.push($('#weight_' + (parseInt(arr_save_index_arr_add_pos[i])+1)).val());
+        arr_competency.push($('#compentency' + (parseInt(arr_save_index_arr_add_pos[i]) + 1)).val());
+        arr_weight.push($('#weight_' + (parseInt(arr_save_index_arr_add_pos[i]) + 1)).val());
         console.log(arr_save_index_arr_add_pos[i]);
     }
     //end for loop
@@ -381,7 +416,7 @@ function form_ability_input() {
 
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/Evs_ability_form/form_ability_input",
+        url: "<?php echo base_url(); ?>/Evs_gcm_form/form_gcm_input",
         data: {
             "arr_competency": arr_competency,
             "arr_weight": arr_weight,
@@ -395,7 +430,7 @@ function form_ability_input() {
         }
     });
 }
-//form_ability_input()
+//form_gcm_input()
 
 /*
  * confirm_save
@@ -407,7 +442,7 @@ function form_ability_input() {
  */
 function confirm_save() {
     if (check_weight_all() == true) {
-        form_ability_input();
+        form_gcm_input();
         change_status();
         success_save();
         window.location = "<?php echo base_url(); ?>/Evs_form/form_position/" + value_pos_id + "/" + value_year_id;
@@ -495,19 +530,19 @@ input[type=number] {
         <div class="card shadow mb-4">
             <div class="card-header py-3" id="panel_th_topManage">
                 <div class="col-xl-12">
-           
+
                     <h1 class="m-0 font-weight-bold text-primary">
                         <a
                             href="<?php echo base_url(); ?>/Evs_form/form_position/<?php echo $info_pos_id; ?>/<?php echo $row->pay_id; ?>">
                             <i class="fa fa-chevron-circle-left text-white"></i>
                         </a>
                         <i class="fa fa-book text-white"></i>
-                        <font color="white">&nbsp;Manage Form : ACM Form</font>
+                        <font color="white">&nbsp;Manage Form : GCM Form</font>
                     </h1>
                 </div>
             </div>
             <!-- End Card header -->
-            
+
             <!-- Start Card body -->
             <div class="card-body">
                 <div class="row">
@@ -595,10 +630,13 @@ input[type=number] {
                                     <font color="white">Competency</font>
                                 </center>
                             </th>
-                            <th width="35%">
+                            <th width="30%">
                                 <center>
                                     <font color="white">Key component</font>
                                 </center>
+                            </th>
+                            <th width="5%">
+                                <center color="white">Target Level</center>
                             </th>
                             <th width="35%">
                                 <center>

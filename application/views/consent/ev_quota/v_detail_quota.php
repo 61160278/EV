@@ -97,6 +97,19 @@ tbody:hover {
     visibility: visible;
     opacity: 1;
 }
+
+.panel.panel-indigo .panel-heading {
+    color: #e8eaf6;
+    background-color: #134466;
+}
+
+.qut_type {
+    text-align: left;
+}
+
+.qut {
+    text-align: left;
+}
 </style>
 <!-- <script src="path/to/chartjs/dist/chart.js"></script> -->
 <script>
@@ -108,6 +121,12 @@ tbody:hover {
  * @author   Lapatrada Puttamongkol
  * @Create Date 2564-04-20
  */
+$(document).ready(function() {
+    $("#reset").click(function() {
+        $("#quotaPlan").attr("disabled", false);
+    }); //click
+
+}); //ready
 
 function check_quota_plan() {
     var check = "";
@@ -186,81 +205,213 @@ function show_quotaplan() {
             }
         }
     };
-
     // </block:config>
-
-
     var myChart = new Chart(
         document.getElementById('myChart'),
         config
 
     ); //new Chart
 } //show_quotaplan
-$(document).ready(function() {
-    $("#reset").click(function() {
 
-        $("#quotaPlan").attr("disabled", false);
+function confirm_save() {
+    var pos_id = "";
+    var qut_id = "";
+
+    pos_id = document.getElementById("position_id").value;
+    qut_id = document.getElementById("qut_id").value;
+    console.log(pos_id);
+    console.log(qut_id);
 
 
-    }); //click
+    var count = 0;
+    $.ajax({
+            type: "post",
+            url: "<?php echo base_url(); ?>ev_quota/Evs_quota/get_id_qut_pos_plan",
+            data: {
+                "pos_id": pos_id,
+                "qut_id": qut_id
+
+            },
+            datatype: "JSON",
+            success: function(data) {
+                data = JSON.parse(data)
+               data.forEach((row, index)  => {
+
+                    if (pos_id == row.qup_Position_ID && qut_id == row.qup_qut_id) {
+                        count++;
+                        console.log(row.qup_qut_id);
+                        console.log(row.qup_Position_ID);
+
+                    }
+                    // if-else
+                   
+                });
+                // forEach
+                if (count == 0) {
+                    insert_quota_plan();
+                    $('#warning_save').modal('show');
+                    return true;
+                } else {
+                    $("#warning").modal('show');
+                    return false;
+                }
+          
 
 
-}); //ready
+        }
+});
 
-// function required() {
-//     var empt = document.forms["form"]["text"].value;
-//     if (empt == "") {
-//         alert("Please input a Value");
-//         return false;
-//     } else {
-//         add_alert();
-//         return true;
-//     }
-// }
+}
 
-// function add_alert() {
-//     $('#warning').modal('show');
-// }
+function insert_quota_plan() {
+    var check = "";
+
+    var sum_quota_plan = 0;
+    var grade = [];
+    var qup_gradeS = 0;
+    var qup_gradeA = 0;
+    var qup_gradeB = 0;
+    var qup_gradeB_N = 0;
+    var qup_gradeC = 0;
+    var qup_gradeD = 0;
+    var qup_gradeTOT = 0;
+
+    var check = "";
+    var value_quotaPlan = 0;
+    var quota = 0;
+    var pos_id = "";
+    var qut_id = "";
+
+    pos_id = document.getElementById("position_id").value;
+    qut_id = document.getElementById("qut_id").value;
+    check = document.getElementById("quotaPlan").value;
+    console.log(check);
+    console.log(pos_id);
+    console.log(qut_id);
+    //}
+    for (var i = 1; i <= 6; i++) {
+        quota = document.getElementById("quota" + i).innerHTML;
+        value_quotaPlan = parseFloat(check) * quota / 100;
+        grade[i] = value_quotaPlan;
+        sum_quota_plan += grade[i];
+    } //for 
+    grade.shift();
+    console.log(grade);
+    console.log(sum_quota_plan);
+    qup_gradeS = grade[0];
+    qup_gradeA = grade[1];
+    qup_gradeB = grade[2];
+    qup_gradeB_N = grade[3];
+    qup_gradeC = grade[4];
+    qup_gradeD = grade[5];
+
+    console.log(qup_gradeS);
+    console.log(qup_gradeA);
+    console.log(qup_gradeB);
+    console.log(qup_gradeB_N);
+    console.log(qup_gradeC);
+    console.log(qup_gradeD);
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_plan_insert",
+
+        data: {
+
+            "qup_gradeS": qup_gradeS,
+            "qup_gradeA": qup_gradeA,
+            "qup_gradeB": qup_gradeB,
+            "qup_gradeB_N": qup_gradeB_N,
+            "qup_gradeC": qup_gradeC,
+            "qup_gradeD": qup_gradeD,
+            "sum_quota_plan": sum_quota_plan,
+            "qut_id": qut_id,
+            "pos_id": pos_id
+        },
+        dataType: "JSON",
+
+        success: function(status) {
+            console.log(status);
+
+        }
+
+    }); //ajax
+
+
+} //insert_quota
+
+function manage_data(qut_id) {
+    console.log(qut_id);
+    window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
+} //manage_data
 </script>
-
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
         <div class="panel-heading">
             <h2>
-                <font size="5px">Detail Quota </font>
+                <font size="6px">Detail Quota </font>
             </h2>
-            <div class="panel-ctrls" data-actions-container=""
-                >
+            <div class="panel-ctrls" data-actions-container="">
             </div>
         </div>
         <div class="panel-body" style="">
 
-
             <div class="row">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <h4><b>Company :</b></h4>
-                    </div>
 
+                <table style="border:1;">
+                    <?php foreach($cdp_data as $value){ ?>
+                    <input type="text" id="position_id" value="<?php echo $value->Position_ID?>" hidden>
+                    <tr>
+                        <td class="qut" width="175">
+                            <h4><b>Company </b></h4>
+                        </td>
+                        <td width="75">
+                            <h4><b> : </b></h4>
+                        </td>
+                        <td class="qut_type" width="300"><?php echo $value->Company_name;?></td>
+                        <?php } ?>
+                    </tr>
 
-                    <div class="col-md-6">
-                        <h4><b>Quota :</b></h4>
-                    </div>
+                    <?php foreach($manage_qut_data as $value){ ?>
+                    <input type="text" id="qut_id" value="<?php echo $value->qut_id?>" hidden>
+                    <tr>
+                        <td class="qut" width="175">
+                            <h4><b>Quota </b></h4>
+                        </td>
+                        <td width="75">
+                            <h4><b> : </b></h4>
+                        </td>
+                        <td class="qut_type" width="200"><?php echo $value->qut_type;?></td>
 
-                    <div class="col-md-6">
-                        <h4><b>Position of Quota :</b></h4>
-                    </div>
+                        <td class="qut">
+                            <h4><b>Position of Quota </b></h4>
+                        </td>
+                        <td width="75">
+                            <h4><b> : </b></h4>
+                        </td>
+                        <td class="qut_type" id="qut_pos"><?php echo $value->qut_pos;?></td>
+                    </tr>
+                    <?php } ?>
+                    <tr>
+                        <?php foreach($cdp_data as $value){ ?>
+                        <td class="qut" width="175">
+                            <h4><b>Department </b></h4>
+                        </td>
+                        <td width="75">
+                            <h4><b> : </b></h4>
+                        </td>
+                        <td class="qut_type" width="200"><?php echo $value->Dep_Name;?></td>
 
-                    <div class="col-md-6">
-                        <h4><b>Department :</b></h4>
-                    </div>
+                        <td class="qut">
+                            <h4><b>position </b></h4>
 
-                    <div class="col-md-6">
-                        <h4><b>position :</b></h4>
-                    </div>
-
-                </div>
-
+                        </td>
+                        <td width="75">
+                            <h4><b> : </b></h4>
+                        </td>
+                        <td class="qut_type" id="qut_pos"><?php echo $value->Position_name;?></td>
+                    </tr>
+                    <?php } ?>
+                </table>
             </div>
             <hr>
             <!-- <form onsubmit="required()"> -->
@@ -285,16 +436,18 @@ $(document).ready(function() {
                             </div>
                         </thead>
                         <tbody>
-                            <div class="col-md-1">
+                            <div class="col-md-1" id="qut_table">
                                 <tr class="orange2">
                                     <td><b>Quota</b></td>
-                                    <td id="quota1" value="5">5</td>
-                                    <td id="quota2" value="25">15</td>
-                                    <td id="quota3" value="60">30</td>
-                                    <td id="quota4" value="25">30</td>
-                                    <td id="quota5" value="25">15</td>
-                                    <td id="quota6" value="5">5</td>
-                                    <td>100</td>
+                                    <?php foreach($manage_qut_data as $value){ ?>
+                                    <td id="quota1" value="5"><?php echo $value->qut_grad_S;?></td>
+                                    <td id="quota2" value="25"><?php echo $value->qut_grad_A;?></td>
+                                    <td id="quota3" value="60"><?php echo $value->qut_grad_B;?></td>
+                                    <td id="quota4" value="25"><?php echo $value->qut_grad_B_N;?></td>
+                                    <td id="quota5" value="25"><?php echo $value->qut_grad_C;?></td>
+                                    <td id="quota6" value="5"><?php echo $value->qut_grad_D;?></td>
+                                    <td><?php echo $value->qut_total;?></td>
+                                    <?php } ?>
                                 </tr>
                             </div>
                             <div class="col-md-1">
@@ -334,8 +487,7 @@ $(document).ready(function() {
                             <h2>
                                 <font size="5px">Quota</font>
                             </h2>
-                            <div class="panel-ctrls" data-actions-container=""
-                              >
+                            <div class="panel-ctrls" data-actions-container="">
                             </div>
                         </div>
                         <div class="panel-body">
@@ -351,10 +503,116 @@ $(document).ready(function() {
 
                     </div>
                 </div>
-                
+
             </div>
-            <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
-        <!-- <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button> -->
+            <?php foreach($manage_qut_data as $value){ ?>
+            <a>
+                <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal"
+                    onclick=" manage_data( <?php echo $value->qut_id;?>)">CANCEL</button>
+            </a>
+            <?php }?>
+            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
+                onclick="confirm_save()">SAVE</button>
         </div>
     </div>
+
+    <!-- Modal Warning -->
+    <div class="modal fade" id="warning_save" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#FF9800;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <font color="White"><b>&times;</b>
+                        </font>
+                    </button>
+                    <h2 class="modal-title"><b>
+                            <font color="white">Warning</font>
+                        </b></h2>
+                </div>
+                <!-- Modal header -->
+
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group" align="center">
+                            <div class="col-sm-12">
+                                <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                                    align="center">
+                                    <font size="3px">
+                                        save?</font>
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- form-horizontal -->
+                </div>
+                <!-- Modal body -->
+
+                <div class="modal-footer">
+                    <div class="btn-group pull-right">
+                        <?php foreach($manage_qut_data as $value){ ?>
+                        <button type="button" class="btn btn-success" data-dismiss="modal"
+                            onclick="manage_data(<?php echo $value->qut_id;?>)">Yes</button>
+                        <?php } ?>
+                    </div>
+
+                </div>
+                <!-- Modal footer -->
+            </div>
+            <!-- modal-content -->
+        </div>
+        <!-- modal-dialog -->
+    </div>
+    <!-- End Modal Warning -->
 </div>
+
+<!-- Modal Warning -->
+<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#FF9800;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b>
+                    </font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Warning</font>
+                    </b></h2>
+            </div>
+            <!-- Modal header -->
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group" align="center">
+                        <div class="col-sm-12">
+                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                                align="center">
+                                <font size="3px">
+                                    Already in information!</font>
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- form-horizontal -->
+            </div>
+            <!-- Modal body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-right">
+                    <?php foreach($manage_qut_data as $value){ ?>
+                    <button type="button" class="btn btn-success" data-dismiss="modal"
+                        onclick="manage_data(<?php echo $value->qut_id;?>)">Yes</button>
+                    <?php } ?>
+
+                </div>
+
+            </div>
+            <!-- Modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal Warning -->

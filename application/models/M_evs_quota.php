@@ -38,6 +38,51 @@ class M_evs_quota extends Da_evs_quota {
 		$query = $this->db->query($sql);
 		return $query;
 	}//get_all 
+	function get_quota_id(){	
+		$sql = "SELECT *
+				FROM evs_database.evs_quota as evq
+				WHERE evq.qut_id = ? ";
+		$query = $this->db->query($sql, array($this->qut_id));
+		return $query;
+	
+	}//get_by_id
+
+	function get_quota_plan(){	
+		$sql = "SELECT * FROM evs_database.evs_quota
+		WHERE qut_type = ? AND qut_pos = ?";
+		$query = $this->db->query($sql,array($this->qut_type,$this->qut_pos));
+		return $query;
+	}//get_quota_plan
+
+	// function get_group_position_oa()
+	// {
+	// 	$sql = "SELECT *
+	// 	FROM bdmc.position
+	// 	WHERE position.Pos_shortName LIKE 'OA%' OR position.Pos_shortName = 'DR' AND NOT position.position_level_id = 6
+	// 	GROUP BY position.Position_name";
+	// 	$query = $this->db->query($sql);
+	// 	return $query;
+	// }//get_group_position_oa
+
+	// function get_group_position_ta()
+	// {
+	// 	$sql = "SELECT *
+	// 	FROM bdmc.position
+	// 	WHERE NOT position.position_level_id = 6 AND NOT position.Pos_shortName LIKE 'OA%' AND NOT position.Pos_shortName = 'DR'
+	// 	GROUP BY position.Position_name";
+	// 	$query = $this->db->query($sql);
+	// 	return $query;
+	// }//get_group_position_oa
+	
+	// function get_group_position_staff()
+	// {
+	// 	$sql = "SELECT *
+	// 	FROM bdmc.position
+	// 	WHERE NOT position.position_level_id = 6 AND NOT position.position_level_id = 5
+	// 	GROUP BY position.Position_name";
+	// 	$query = $this->db->query($sql);
+	// 	return $query;
+	// }//get_group_position_oa
 
 } //end class
 ?>

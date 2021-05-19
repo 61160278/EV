@@ -34,6 +34,10 @@
 .margin {
     margin-top: 10px;
 }
+.panel.panel-indigo .panel-heading {
+  color: #e8eaf6;
+  background-color: #134466;
+}
 
 th {
     color: black;
@@ -48,63 +52,118 @@ td {
 </style>
 <script>
 function select_quota(value) {
+
     if (value == "2") {
         window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_pa";
     } else {
         window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_ca";
     }
-}//select_quota
+} //select_quota
 
 
 function insert_quota() {
+    var check = "";
 
+    var sum_quota = 0;
+    var grade = [];
+    var gradeS = 0;
+    var gradeA = 0;
+    var gradeB = 0;
+    var gradeB_N = 0;
+    var gradeC = 0;
+    var gradeD = 0;
+    var gradeTOT = 0;
     var quotaType = document.getElementById("quotaType").value; // value of year id
     var groupPosition = document.getElementById("groupPosition").value;
+    if (groupPosition == 0) {
 
-if(quotaType == 1){
-   
-    quotaType = document.getElementById("quotaType").options[1].text;
-    // groupPosition = document.getElementById("groupPosition").options[1].text;    
-}
-else if(quotaType == 2){
-    quotaType = document.getElementById("quotaType").options[2].text;
-}
-else if(quotaType == 2){
-    quotaType = document.getElementById("quotaType").options[3].text;
-}
-//end if-else quotaType
-if(groupPosition == 1){
-   
-    groupPosition = document.getElementById("groupPosition").options[1].text;
-}
-else if(groupPosition == 2){
-    groupPosition = document.getElementById("groupPosition").options[2].text;
-}
-else if(groupPosition == 3){
-    groupPosition = document.getElementById("groupPosition").options[3].text;
-}
-//end if-else groupPosition
-console.log(quotaType);
-console.log(groupPosition);
-    $.ajax({
-        type: "post",
-       // url: "<?php //echo base_url(); ?>/ev_quota/Evs_quota/quota_insert",
-        data: {
+    } else {
 
-             "quotaType": quotaType,
-             "groupPosition": groupPosition,
-           
-        },
-        dataType: "JSON",
+        if (quotaType == 1) {
 
-        success: function(status) {
-            console.log(status);
+            quotaType = document.getElementById("quotaType").options[1].text;
+            // groupPosition = document.getElementById("groupPosition").options[1].text;
+
+        } 
+        // else if (quotaType == 2) {
+        //     quotaType = document.getElementById("quotaType").options[2].text;
+
+        // }
+        //end if-else quotaType
+        if (groupPosition == 1) {
+
+            groupPosition = document.getElementById("groupPosition").options[1].text;
+
+        } else if (groupPosition == 2) {
+
+            groupPosition = document.getElementById("groupPosition").options[2].text;
+
+        } else if (groupPosition == 3) {
+
+            groupPosition = document.getElementById("groupPosition").options[3].text;
         }
 
-    });
 
-}//insert_quota
+        //end if-else groupPosition
+        var datedata = new Date();
+        var day = datedata.getDate();
+        var month = datedata.getMonth() + 1;
+        var year = datedata.getFullYear();
+        // get date form new date() 
+        var savedate = year + "-" + month + "-" + day;
 
+        // document.getElementById("submit").disabled = false;
+        for (i = 1; i <= 6; i++) {
+            check = document.getElementById("quota" + i).value;
+
+            if (check != "") {
+                grade[i] = parseInt(check),
+                    sum_quota += grade[i];
+            } //if
+        } //for
+        grade.shift();
+        gradeS = grade[0];
+        gradeA = grade[1];
+        gradeB = grade[2];
+        gradeB_N = grade[3];
+        gradeC = grade[4];
+        gradeD = grade[5];
+        console.log(gradeS);
+        console.log(gradeA);
+        console.log(gradeB);
+        console.log(gradeB_N);
+        console.log(gradeC);
+        console.log(gradeD);
+        console.log(savedate);
+        console.log(sum_quota);
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_insert",
+            data: {
+
+                "quotaType": quotaType,
+                "groupPosition": groupPosition,
+                "savedate": savedate,
+                "gradeS": gradeS,
+                "gradeA": gradeA,
+                "gradeB": gradeB,
+                "gradeB_N": gradeB_N,
+                "gradeC": gradeC,
+                "gradeD": gradeD,
+                "sum_quota": sum_quota
+            },
+            dataType: "JSON",
+
+            success: function(status) {
+                console.log(status);
+
+            }
+
+        }); //ajax
+    } //end else
+
+
+} //insert_quota
 
 function check_quota() {
 
@@ -138,6 +197,18 @@ function check_quota() {
 
 function add_alert() {
     $('#warning').modal('show');
+}
+
+function confirm_save() {
+    insert_quota();
+    $('#warning_save').modal('show');
+
+}
+
+
+function main_quota(){
+  
+    window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/index";
 }
 
 
@@ -238,7 +309,7 @@ function show_qouta() {
                 <select class="form-control pull-right margin" aria-controls="example" onChange="select_quota(value)">
                     <option value="">Select</option>
                     <option value="1">CA</option>
-                    <option value="2">TA</option>
+                    <option value="2">PA</option>
                 </select>
             </div>
         </div>
@@ -249,15 +320,15 @@ function show_qouta() {
                     <div class="col-md-3">
                     </div>
                     <div class="col-md-3">
-                        <select class="form-control text" id="quotaType" onclick = "insert_quota()">
+                        <select class="form-control text" id="quotaType">
                             <option value="0">Quota</option>
                             <option value="1">Year End Bonus</option>
-                            <option value="2">Salary Increment</option>
+                            <!-- <option value="2">Salary Increment</option> -->
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <select class="form-control text" id="groupPosition"  onclick = "insert_quota()">
-                            <option value="0">Position Of Quota</option>             
+                        <select class="form-control text" id="groupPosition">
+                            <option value="0">Position Of Quota</option>
                             <option value="1">Team Associate above</option>
                             <option value="2">Operational Associate</option>
                             <option value="3">Staff above</option>
@@ -344,8 +415,11 @@ function show_qouta() {
                     </div>
                 </div>
             </div>
+            <a href="<?php echo base_url();?>/ev_quota/Evs_quota/index">
             <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
-            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button>
+            </a>
+            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;" id="saveData"
+                onclick="confirm_save()">SAVE</button>
         </div>
     </div>
     <!-- Modal Warning -->
@@ -393,7 +467,55 @@ function show_qouta() {
         <!-- modal-dialog -->
     </div>
     <!-- End Modal Warning -->
+
 </div>
+
+<!-- Modal Warning -->
+<div class="modal fade" id="warning_save" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#FF9800;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b>
+                    </font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Warning</font>
+                    </b></h2>
+            </div>
+            <!-- Modal header -->
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group" align="center">
+                        <div class="col-sm-12">
+                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                                align="center">
+                                <font size="3px">
+                                    Do you want to save?</font>
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- form-horizontal -->
+            </div>
+            <!-- Modal body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick ="main_quota()">Yes</button>
+                </div>
+
+            </div>
+            <!-- Modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal Warning -->
+
 </div>
 <script>
 

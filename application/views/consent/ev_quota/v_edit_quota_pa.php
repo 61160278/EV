@@ -1,15 +1,15 @@
 <?php
 /*
-* v_add_quota.php
-* Display v_add_quota
+* v_edit_quota.php
+* Display v_edit_quota
 * @input    
 * @output
 * @author   Piyasak Srijan
 * @Create Date 2564-04-5
 */
 /*
-* v_add_quota.php
-* Display v_add_quota
+* v_edit_quota.php
+* Display v_edit_quota
 * @input    
 * @output
 * @author   Piyasak Srijan
@@ -35,6 +35,11 @@
     margin-top: 10px;
 }
 
+.panel.panel-indigo .panel-heading {
+    color: #e8eaf6;
+    background-color: #134466;
+}
+
 th {
     color: black;
     text-align: center;
@@ -48,12 +53,92 @@ td {
 </style>
 <script>
 function select_quota(value) {
+
     if (value == "2") {
-        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/edit_quota_pa";
+        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_pa";
     } else {
-        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/edit_quota_ca";
+        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_ca";
     }
-}
+} //select_quota
+
+
+function edit_quota() {
+    var check = "";
+
+    var sum_quota = 0;
+    var grade = [];
+    var gradeS = 0;
+    var gradeA = 0;
+    var gradeB = 0;
+    var gradeB_N = 0;
+    var gradeC = 0;
+    var gradeD = 0;
+    var gradeTOT = 0;
+
+    //end if-else groupPosition
+    var datedata = new Date();
+    var day = datedata.getDate();
+    var month = datedata.getMonth() + 1;
+    var year = datedata.getFullYear();
+    // get date form new date() 
+    var savedate = year + "-" + month + "-" + day;
+
+    // document.getElementById("submit").disabled = false;
+    var qut_id = parseInt(document.getElementById("idDataQuota").value);
+    for (i = 1; i <= 6; i++) {
+        check = document.getElementById("quota" + i).value;
+
+        if (check != "") {
+            grade[i] = parseInt(check),
+                sum_quota += grade[i];
+        } //if
+    } //for
+    grade.shift();
+    gradeS = grade[0];
+    gradeA = grade[1];
+    gradeB = grade[2];
+    gradeB_N = grade[3];
+    gradeC = grade[4];
+    gradeD = grade[5];
+    console.log(qut_id);
+    console.log(gradeS);
+    console.log(gradeA);
+    console.log(gradeB);
+    console.log(gradeB_N);
+    console.log(gradeC);
+    console.log(gradeD);
+    console.log(savedate);
+    console.log(sum_quota);
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/edit_quota",
+        data: {
+
+            // "quotaType": quotaType,
+            // "groupPosition": groupPosition,
+            "savedate": savedate,
+            "qut_id": qut_id,
+            "gradeS": gradeS,
+            "gradeA": gradeA,
+            "gradeB": gradeB,
+            "gradeB_N": gradeB_N,
+            "gradeC": gradeC,
+            "gradeD": gradeD,
+            "sum_quota": sum_quota
+
+        },
+        dataType: "JSON",
+
+        success: function(status) {
+            console.log(status);
+
+        }
+
+    }); //ajax
+
+
+
+} //insert_quota
 
 function check_quota() {
 
@@ -89,6 +174,11 @@ function add_alert() {
     $('#warning').modal('show');
 }
 
+function confirm_save() {
+    edit_quota();
+    $('#warning_save').modal('show');
+
+}
 
 function show_qouta() {
 
@@ -143,7 +233,13 @@ function show_qouta() {
         options: {
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    max: 100,
+                    min: 0,
+                    ticks: {
+                        stepSize: 20
+                    }
+
                 }
             }
         }
@@ -169,11 +265,20 @@ function show_qouta() {
 
 } //showChart
 </script>
+<style>
+.qut_type {
+    text-align: left;
+}
+
+.qut_pos {
+    text-align: left;
+}
+</style>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
         <div class="panel-heading">
             <h2>
-                <font size="6px"><b>Add Quota</b></font>
+                <font size="6px"><b>Edit Quota</b></font>
             </h2>
             <div class="col-md-9">
             </div>
@@ -185,27 +290,30 @@ function show_qouta() {
                 </select>
             </div>
         </div>
-        <div class="panel-body" style="">
+        <div class="panel-body" style="" id="qut_data">
 
             <div class="row">
-                <div class="form-group">
-                    <div class="col-md-3">
-                    </div>
-                    <div class="col-md-3">
-                        <select class="form-control text" id="">
-                            <option value="yearEndBonus">Quota</option>
-                            <option value="yearEndBonus">Year End Bonus</option>
-                            <option value="salaryIncrement">Salary Increment</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <select class="form-control text" id="">
-                            <option value="yearEndBonus">Position Of Quota</option>
-                            <option value="yearEndBonus">Team Associate above</option>
-                            <option value="salaryIncrement">Operational Associate</option>
-                        </select>
-                    </div>
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                    <table style="width:75%" align="center">
 
+                        <?php foreach($edit_qut_data as $value){ ?>
+                        <tr>
+                            <td>
+                                <h4><b>Quota :</b></h4>
+                            </td>
+                            <td class="qut_type" id="idDataQuota" value="<?php echo $value->qut_id;?>">
+                                <?php echo $value->qut_type;?></td>
+                            <td>
+                                <h4><b>Position of Quota :</b></h4>
+                            </td>
+                            <td class="qut_pos"><?php echo $value->qut_pos;?></td>
+
+                        </tr>
+                        <?php } ?>
+
+                    </table>
                 </div>
             </div>
             <br>
@@ -227,28 +335,38 @@ function show_qouta() {
                             </tr>
                         </thead>
                         <tbody>
+                            <?php foreach($edit_qut_data as $value){ ?>
                             <tr class="orange2" id="input">
+
                                 <td>Quota</td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota1" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota1" onchange="check_quota()"
+                                        value="<?php echo $value->qut_grad_S;?>">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota2" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota2" onchange="check_quota()"
+                                        value="<?php echo $value->qut_grad_A;?>">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota3" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota3" onchange="check_quota()"
+                                        value="<?php echo $value->qut_grad_B;?>">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota4" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota4" onchange="check_quota()"
+                                        value="<?php echo $value->qut_grad_B_N;?>">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota5" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota5" onchange="check_quota()"
+                                        value="<?php echo $value->qut_grad_C;?>">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="quota6" onchange="check_quota()">
+                                    <input type="text" class="form-control" id="quota6" onchange="check_quota()"
+                                        value="<?php echo $value->qut_grad_D;?>">
                                 </td>
-                                <td id="show_quota"></td>
+                                <td id="show_quota"><?php echo $value->qut_total;?></td>
                             </tr>
+                            <?php } ?>
+
                         </tbody>
                     </table>
 
@@ -287,7 +405,8 @@ function show_qouta() {
                 </div>
             </div>
             <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
-            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;">SAVE</button>
+            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;" id="saveData"
+                onclick="confirm_save()">SAVE</button>
         </div>
     </div>
     <!-- Modal Warning -->
@@ -335,7 +454,55 @@ function show_qouta() {
         <!-- modal-dialog -->
     </div>
     <!-- End Modal Warning -->
+
 </div>
+
+<!-- Modal Warning -->
+<div class="modal fade" id="warning_save" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#FF9800;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b>
+                    </font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Warning</font>
+                    </b></h2>
+            </div>
+            <!-- Modal header -->
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group" align="center">
+                        <div class="col-sm-12">
+                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                                align="center">
+                                <font size="3px">
+                                    save?</font>
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- form-horizontal -->
+            </div>
+            <!-- Modal body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                </div>
+
+            </div>
+            <!-- Modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal Warning -->
+
 </div>
 <script>
 
