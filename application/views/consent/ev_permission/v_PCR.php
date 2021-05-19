@@ -14,6 +14,9 @@ td {
 
 #t01 {}
 
+.header{
+    display : block;
+}
 @media print {
   @page {
     size: A4;

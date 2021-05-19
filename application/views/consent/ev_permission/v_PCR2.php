@@ -42,53 +42,81 @@ td {
 </style>
 
 <h1 align='center'><b>Process Change Report</b></h1>
-<div id="container">
-    <div id="containerLeft">
-        <div id="col1">PCR No. ___________________
-            <br> <br>
-            Annual plan No. _____________
-            <br> <br>
-            Subject _____________________
+<div class="row">
+    <div id="container">
+        <div id="containerLeft">
+            <div id="col1">PCR No. ___________________
+                <br> <br>
+                Annual plan No. _____________
+                <br> <br>
+                Subject _____________________
+            </div>
+            <div id="col2">
+                &nbsp; &nbsp; &emsp; &emsp;
+                <br> <br>
+                <Input type="radio" name="manmer" value="0">&nbsp; Normal
+                &nbsp; &nbsp;
+                <Input type="radio" name="manmer" value="0">&nbsp; Urgent
+            </div>
         </div>
-        <div id="col2">
-            &nbsp; &nbsp; &emsp; &emsp;
+        <!-- containerLeft -->
+        <div id="containerRight">Issue Date : ____________
             <br> <br>
-            <Input type="radio" name="manmer" value="0">&nbsp; Normal
-            &nbsp; &nbsp;
-            <Input type="radio" name="manmer" value="0">&nbsp; Urgent
+            Department : ___________
         </div>
+        <!-- Issue Date : ___________ -->
     </div>
-    <!-- containerLeft -->
-    <div id="containerRight">Issue Date : ____________
-        <br> <br>
-        Department : ___________
-    </div>
-    <!-- Issue Date : ___________ -->
-</div>
-<!-- container -->
-<div id="container">
-    <table>
-        <div id="containerRight">
+    <!-- container -->
+    <div id="container">
+        <table>
+            <div id="containerRight">
+                <div id="col1">
+                    <tr>
+                        <th>PCR Rank</th>
+                        <th>PCR Type</th>
+
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>C2</center>
+                            </th>
+                        <td>
+                            <center>Repeat</center>
+                            </th>
+                    </tr>
+                </div>
+            </div>
+            <div id="containerRight">
             <div id="col1">
                 <tr>
-                    <th>PCR Rank</th>
-                    <th>PCR Type</th>
-                </tr>
-                <tr>
-                    <td>
-                        <center>C2</center>
-                        </th>
-                    <td>
-                        <center>Repeat</center>
-                        </th>
+                    <th></th>
+                    <th>
+                        <center>Acknowledge2</center>
+                    </th>
+                    <th>
+                        <center>Acknowledge1</center>
+                    </th>
+                    <th>
+                        <center>Approved</center>
+                    </th>
+                    <th>
+                        <center>Checked2</center>
+                    </th>
+                    <th>
+                        <center>Checked1</center>
+                    </th>
+                    <th>
+                        <center>Prepared</center>
+                    </th>
+
+
                 </tr>
             </div>
         </div>
-        
+        </table>
+    </div>
+    <!-- container -->
 
-
-
-
-    </table>
 </div>
-<!-- container -->
+<!-- class="row" -->
