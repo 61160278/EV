@@ -413,10 +413,10 @@ class Evs_form extends MainController_avenxo {
 		$data['emp_info'] = $this->memp->get_by_empid();
 		$tep = $data['emp_info']->row();
 
-		$this->load->model('M_evs_data_mbo','medm');
-		$this->medm->dtm_emp_id = $emp_id_edit;
-		$this->medm->dtm_evs_emp_id = $tep->emp_id;
-		$data['mbo_emp'] = $this->medm->get_by_empID()->result();
+		$this->load->model('M_evs_data_g_and_o','mdgo');
+		$this->mdgo->dgo_emp_id = $emp_id_edit;
+		$this->mdgo->dgo_evs_emp_id = $tep->emp_id;
+		$data['g_o_emp'] = $this->mdgo->get_by_empID()->result();
 
 		$this->load->model('M_evs_set_form_ability','mesf');
 		$this->mesf->sfa_pos_id = $tep->Position_ID;
@@ -425,9 +425,13 @@ class Evs_form extends MainController_avenxo {
 
 		$this->load->model('M_evs_expected_behavior','mept');
 		$data['info_expected'] = $this->mept->get_all_by_pos();
+		$data['info_pos_id'] = $tep->Position_ID;
 
-		$data['info_pos_id'] = $tep->Position_ID;	
-		
+		$this->load->model('M_evs_set_form_g_and_o','mesg');
+		$this->mesg->sfg_pay_id = $pay_id;
+		$this->mesg->sfg_pos_id = $tep->Position_ID;
+		$data['row_index'] = $this->mesg->get_all_by_key_by_year()->row();
+
 		$this->output('/consent/ev_form/v_editMBO',$data);
 
 	}

@@ -1019,62 +1019,90 @@ function set_tap() {
                                 </tr>
                             </thead>
                             <tbody id="G_O_Table">
-                                <?php $num_index = 0;
+                                <?php $num_index = 1;
                                 $temp = "";
                                 $row_level = 0;
                                 $row_ranges = 0;
+                                $count = 0;
+                                $span = 0;
 
-                            foreach($g_o_emp as $index => $row){
-                                if($index == 0){
-                                    $temp = $row->dgo_item;
-                                    $row_level++;
+                                $col = [];
+                                $row_level = $row_index->sfg_index_level;
+                                $row_ranges = $row_index->sfg_index_ranges;
+
+                                for($i = 1; $i <= $row_level; $i++){
+                                    array_push($col,5);
                                 }
-                                // if 
-                                else if($row->dgo_item == $temp){
-                                    $row_level++;
+                                // for push row_level
+   
+                                for($i = 1; $i <= $row_ranges; $i++){
+                                    array_push($col,2);
                                 }
-                                // else if
-                                else if($row->dgo_item != $temp){
-                                    $row_ranges++;
-                                }
-                                // else if 
+                                // for push row_ranges
 
-                            }
-                            // foreach 
-
-                            $row_level = $row_level / 5;
-                            $row_ranges = $row_ranges / 2;
-
-                            echo $row_level;
-                            echo "<br>";
-                            echo $row_ranges;
-
-                            foreach($g_o_emp as $row){ 
-                            $num_index++;
-                            ?>
+                            foreach($g_o_emp as $index => $row){ ?>
                                 <tr>
-                                    <td><?php echo $num_index; ?></td>
-
+                                    <?php if($index == 0){ ?>
+                                    <td rowspan="<?php echo $col[$span] ?>"><?php echo $num_index; ?></td>
+                                    <!-- show index  -->
                                     <?php 
-                                    if($row->dgo_type == "1"){ ?>
-                                    <td>Company</td>
+                                        if($row->dgo_type == "1"){ ?>
+                                    <td rowspan="<?php echo $col[$span] ?>">Company</td>
                                     <?php }
                                     // if 
                                     else{ ?>
-                                    <td>Department</td>
+                                    <td rowspan="<?php echo $col[$span] ?>">Department</td>
                                     <?php }?>
                                     <!-- show type  -->
 
-                                    <td><?php echo $row->sdg_name_th; ?></td>
+                                    <td rowspan="<?php echo $col[$span] ?>"><?php echo $row->sdg_name_th; ?></td>
                                     <!-- show sdgs  -->
 
-                                    <td><?php echo $row->dgo_item; ?></td>
-                                    <td align="center"><?php echo $row->dgo_weight; ?></td>
+                                    <td rowspan="<?php echo $col[$span] ?>"><?php echo $row->dgo_item; ?></td>
+                                    <td align="center" rowspan="<?php echo $col[$span] ?>">
+                                        <?php echo $row->dgo_weight; ?></td>
                                     <!-- show item asd weight  -->
 
-                                    <td><?php echo $row->dgol_level; ?></td>
+                                    <?php 
+                                $span++;
+                                $temp = $row->dgo_item;
+                                $num_index++;
+                                }
+                                // if
+                                else if($temp != $row->dgo_item){ ?>
+                                    <td rowspan="<?php echo $col[$span] ?>"><?php echo $num_index; ?></td>
+                                    <!-- show index  -->
+                                    <?php 
+                                        if($row->dgo_type == "1"){ ?>
+                                    <td rowspan="<?php echo $col[$span] ?>">Company</td>
+                                    <?php }
+                                    // if 
+                                    else{ ?>
+                                    <td rowspan="<?php echo $col[$span] ?>">Department</td>
+                                    <?php }?>
+                                    <!-- show type  -->
 
+                                    <td rowspan="<?php echo $col[$span] ?>"><?php echo $row->sdg_name_th; ?></td>
+                                    <!-- show sdgs  -->
+
+                                    <td rowspan="<?php echo $col[$span] ?>"><?php echo $row->dgo_item; ?></td>
+                                    <td align="center" rowspan="<?php echo $col[$span] ?>"><?php echo $row->dgo_weight; ?></td>
+                                    <!-- show item asd weight  -->
+
+                                    <?php 
+                                $span++;
+                                $num_index++;
+                                $temp = $row->dgo_item;    
+                                }
+                                // else if 
+                                else if($temp == $row->dgo_item){ ?>
+                                    <?php }
+                                // else if
+                                ?>
+                                    <td><?php echo $row->dgol_level; ?></td>
+                                    <!-- show level  -->
                                 </tr>
+                                <!-- end tr  -->
                                 <?}
                             // foreach
                             ?>

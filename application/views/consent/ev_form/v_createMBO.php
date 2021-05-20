@@ -645,7 +645,7 @@ function saveG_O() {
             // foreach 
 
             saveG_O_level(dgo_data);
-            //window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id + "";
+            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id + "";
 
         }
         // success
@@ -662,7 +662,7 @@ function saveG_O_level(dgo_data) {
     var count_ranges = 0;
     var number_index = document.getElementById("row_indexG_O").value;
     var level_row = document.getElementById("level_row").value;
-    count_ranges = parseInt(level_row + 1);
+    count_ranges = parseInt(level_row) + 1;
 
     for (j = 1; j <= level_row; j++) {
         for (k = 0; k < 5; k++) {
@@ -674,34 +674,29 @@ function saveG_O_level(dgo_data) {
     }
     // for
 
-    for (i = count_ranges; i >= number_index; i++) {
-        console.log(i);
-        // ranges.push(document.getElementById("ranges_c" + i).value);
-        // ranges.push(document.getElementById("ranges_s" + i).value);
-        // console.log("ranges");
-        // console.log(ranges);
-        // console.log("end ranges");
-        // data_level.push(ranges);
-        // ranges = [];
-        
+    for (i = count_ranges; i <= number_index; i++) {
+        ranges.push(document.getElementById("ranges_c" + i).value);
+        ranges.push(document.getElementById("ranges_s" + i).value);
+        data_level.push(ranges);
+        ranges = [];
     }
-    // for 
+    // for
 
     console.log(dgo_data);
     console.log(data_level);
 
-    // $.ajax({
-    //     type: "post",
-    //     dataType: "json",
-    //     url: "<?php echo base_url(); ?>ev_form/Evs_form/save_G_O_level_by_emp",
-    //     data: {
-    //         "dgo_data": dgo_data,
-    //         "data_level": data_level
-    //     },
-    //     success: function(data) {}
-    //     // success
-    // });
-    // // ajax
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/save_G_O_level_by_emp",
+        data: {
+            "dgo_data": dgo_data,
+            "data_level": data_level
+        },
+        success: function(data) {}
+        // success
+    });
+    // ajax
 }
 // function saveG_O_level
 
