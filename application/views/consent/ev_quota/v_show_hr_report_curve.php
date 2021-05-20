@@ -529,6 +529,9 @@ function manage_data(qut_id) {
             <?php foreach($manage_qut_data as $value){ ?>
             <button type="button" class="btn btn-inverse " data-dismiss="modal" onclick=" manage_data( <?php echo $value->qut_id;?>)">CANCEL</button>
             <?php } ?>
+            <button type="button" class="btn btn-warning pull-right" style="background-color:#0000CD;"
+                onclick="">EDIT</button>
+           
         </div>
         <br>
     </div>

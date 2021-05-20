@@ -127,7 +127,7 @@ $(document).ready(function() {
     $("#reset").click(function() {
         $("#quotaPlan").attr("disabled", false);
     }); //click
-
+    show_quotaplan()
 }); //ready
 
 function check_quota_plan() {
@@ -140,7 +140,7 @@ function check_quota_plan() {
     // if (check == "") {
     //  $("#submit").attr("disabled", true);
     //value_quotaPlan = null;
-    document.getElementById("submit").disabled = false;
+   
     //}
     for (var i = 1; i <= 6; i++) {
         quota = document.getElementById("quota" + i).innerHTML;
@@ -433,11 +433,7 @@ function manage_data(qut_id) {
                 </div>
             </div>
             <br>
-            <div class="col-md-offset-9">
-                <button class="btn-success btn" id="submit" type="submit" onclick="show_quotaplan()" value=""
-                    disabled>SUBMIT</button>
-                <button class="btn btn-warning" type="reset" id="reset">edit</button>
-            </div>
+            
             <!-- </form> -->
             <br>
             <div class="row">
@@ -467,9 +463,11 @@ function manage_data(qut_id) {
                 </div>
 
             </div>
-            <!-- <a  onclick =" manage_data( <?php echo $value->qut_id;?>)>  -->
+            <?php foreach($manage_qut_data as $value){ ?>
+            <a onclick =" manage_data(<?php echo $value->qut_id;?>)"> 
             <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
-            <!-- </a> -->
+            </a>
+            <?php } ?>
             <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
                 onclick="confirm_save()">SAVE</button>
         </div>
