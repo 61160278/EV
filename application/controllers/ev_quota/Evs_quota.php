@@ -105,8 +105,18 @@ class Evs_quota extends MainController_avenxo {
 	*/
 	function hr_report_curve($data_sent)
 	{
+
 		 $qut_id = substr($data_sent,0,strpos($data_sent,":"));
 		 $pos_id = substr($data_sent,strpos($data_sent,":")+1);
+
+		 $this->load->model('M_evs_quota_actual','mqua');
+		 $this->mqua->qua_qut_id = $qut_id;
+		 $this->mqua->qua_Position_ID = $pos_id;
+		 $data['qua_data'] = $this->mqua->get_id_quota_position_actual()->result();
+		 $check = sizeof($data['qua_data']);
+
+		if($check == 0){
+		
 
 		$this->load->model('M_evs_position','mqos');
 		$this->mqos->Position_ID = $pos_id;
@@ -131,6 +141,34 @@ class Evs_quota extends MainController_avenxo {
 		$data['qup_data'] = $this->mqup->get_quota_plan_id()->result(); // show value company all
 		
 		$this->output('/consent/ev_quota/v_hr_report_curve',$data);
+		}else{
+		
+   
+		   $this->load->model('M_evs_position','mqos');
+		   $this->mqos->Position_ID = $pos_id;
+		   $data['cdp_data'] = $this->mqos->get_com_dep_pos_detail()->result();
+	   
+		   $this->load->model('M_evs_quota','mqut');
+		   $this->mqut->qut_id = $qut_id;
+		   $data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota
+   
+		   $this->load->model('M_evs_department','mdep');
+		   $data['dep_data'] = $this->mdep->get_all(); // show value department all
+   
+		   $this->load->model('M_evs_position','meps');
+		   $data['pos_data'] = $this->meps->get_all()->result(); // show value position all
+   
+		   $this->load->model('M_evs_company','mcpn');
+		   $data['com_data'] = $this->mcpn->get_all(); // show value company all
+   
+		   $this->load->model('M_evs_quota_plan','mqup');
+		   $this->mqup->qup_qut_id = $qut_id;
+		   $this->mqup->qup_Position_ID = $pos_id;
+		   $data['qup_data'] = $this->mqup->get_quota_plan_id()->result(); // show value company all
+		   
+		   $this->output('/consent/ev_quota/v_show_hr_report_curve',$data);
+
+		}
 	}
 	// function hr_report_curve()
 	

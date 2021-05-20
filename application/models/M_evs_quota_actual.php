@@ -34,5 +34,13 @@ class M_evs_quota_actual extends Da_evs_quota_actual {
 		return $query;
 	}//get_all 
 
+	function get_id_quota_position_actual(){	
+		$sql = "SELECT *
+		FROM evs_database.evs_quota_actual
+		WHERE evs_quota_actual.qua_qut_id = ? AND evs_quota_actual.qua_Position_ID = ?";
+		$query = $this->db->query($sql,array($this->qua_qut_id,$this->qua_Position_ID));
+		return $query;
+	}//get_id_quota_position_plan 
+
 } //end class
 ?>
