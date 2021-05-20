@@ -117,7 +117,6 @@ class Evs_quota extends MainController_avenxo {
 
 		if($check == 0){
 		
-
 		$this->load->model('M_evs_position','mqos');
 		$this->mqos->Position_ID = $pos_id;
 		$data['cdp_data'] = $this->mqos->get_com_dep_pos_detail()->result();
@@ -166,6 +165,11 @@ class Evs_quota extends MainController_avenxo {
 		   $this->mqup->qup_Position_ID = $pos_id;
 		   $data['qup_data'] = $this->mqup->get_quota_plan_id()->result(); // show value company all
 		   
+		   $this->load->model('M_evs_quota_actual','mqua');
+		   $this->mqua->qua_qut_id = $qut_id;
+		   $this->mqua->qua_Position_ID = $pos_id;
+		   $data['qua_data'] = $this->mqua->get_id_quota_position_actual()->result();
+
 		   $this->output('/consent/ev_quota/v_show_hr_report_curve',$data);
 
 		}

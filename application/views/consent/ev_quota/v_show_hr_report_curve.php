@@ -341,10 +341,14 @@ function manage_data(qut_id) {
     console.log(qut_id);
     window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
 } //manage_data
-// function edit_data(qut_id) {
-//     console.log(qut_id);
-//     window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota//" + qut_id;
+
+// function edit_data(qut_id,Position_ID) {
+//     console.log(edit_qut);
+//     console.log(Position_ID);
+//     edit
+//     //window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/hr_report_curve/" + qut_id;
 // } //manage_data
+
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
@@ -531,11 +535,13 @@ function manage_data(qut_id) {
                 </div>
             </div>
             <?php foreach($manage_qut_data as $value){ ?>
-            <button type="button" class="btn btn-inverse " data-dismiss="modal" onclick=" manage_data( <?php echo $value->qut_id;?>)">CANCEL</button>
+            <button type="button" class="btn btn-inverse " data-dismiss="modal" onclick=" manage_data(<?php echo $value->qut_id;?>)">CANCEL</button>
             <?php } ?>
-            <button type="button" class="btn btn-warning pull-right" style="background-color:#0000CD;"
-                onclick="">EDIT</button>
-           
+
+            <?php foreach($qua_data as $value){ ?> 
+                <input type="text" id="edit_pos" value="<?php echo $value->qua_Position_ID;?>" hidden>
+            <button type="button" class="btn btn-warning pull-right" style="background-color:#0000CD;" onclick="">EDIT</button>
+            <?php } ?>
         </div>
         <br>
     </div>

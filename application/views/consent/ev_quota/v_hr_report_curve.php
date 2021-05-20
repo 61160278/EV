@@ -87,7 +87,7 @@ function check_quota_plan() {
     //console.log(check);
     for (var i = 1; i <= 6; i++) {
         quota = document.getElementById("quota" + i).innerHTML;
-        value_quotaPlan = (parseFloat(check).toFixed(2)) * (parseFloat(quota).toFixed(2)) / 100;
+        value_quotaPlan = (parseFloat(check)) * (parseFloat(quota)) / 100;
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
         console.log(value_quotaPlan);
     } //for 
@@ -127,9 +127,9 @@ function check_quota_actual() {
             $("#show_Actual").css("color", "#000000");
         }
         // if 
-        document.getElementById("show_quotaActual" + i).innerHTML = quotaActual.toFixed(2);
+        document.getElementById("show_quotaActual" + i).innerHTML = quotaActual;
         document.getElementById("show_Actual").innerHTML = actual;
-        document.getElementById("show_sumquotaActual").innerHTML = sumQuotaActual.toFixed(2);
+        document.getElementById("show_sumquotaActual").innerHTML = sumQuotaActual;
         document.getElementById("TOTplan").innerHTML = quota;
 
     }
@@ -215,12 +215,12 @@ function show_quotaplan() {
     };
     // </block:config>
     var myChart = new Chart(document.getElementById('myChart'), config); //new Chart
-    $('#submit').on('click', function() {
+  $('#submit').on('click', function() {
         myChart.destroy();
         show_linebarChart()
     });
 } //show_quotaplan
-
+  
 function show_linebarChart() {
 
     for (var i = 1; i <= 6; i++) {
@@ -338,15 +338,15 @@ function insert_quota_actual() {
         } else if (check < 0) {
             quotaActual = null;
         } else {
-            valueActual = parseFloat(check).toFixed(2);
+            valueActual = parseFloat(check);
 
             grade[i] = valueActual;
             sum_actual += grade[i];
             console.log(valueActual);
-            quotaActual = (valueActual * 100) / (parseFloat(quota).toFixed(2));
+            quotaActual = (valueActual * 100) / parseFloat(quota);
             // grade[i] =quotaActual;
             sumQuotaActual += quotaActual;
-            console.log(quotaActual + "=" + valueActual + "* 100 /" + (parseFloat(quota).toFixed(2)));
+            console.log(quotaActual + "=" + valueActual + "* 100 /" + parseFloat(quota));
             actual += valueActual;
 
         } // if 
@@ -611,7 +611,10 @@ function manage_data(qut_id) {
 
                 </div>
             </div>
-            <button type="button" class="btn btn-inverse " data-dismiss="modal">CANCEL</button>
+              <?php foreach($manage_qut_data as $value){ ?>
+                <button type="button" class="btn btn-inverse " data-dismiss="modal"  onclick="manage_data(<?php echo $value->qut_id;?>)">CANCEL</button>
+                    <?php } ?>
+           
             <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
                 onclick="confirm_save()">SAVE</button>
         </div>

@@ -136,7 +136,7 @@ function check_quota_plan() {
     // if (check == "") {
     //  $("#submit").attr("disabled", true);
     //value_quotaPlan = null;
-   
+
     //}
     for (var i = 1; i <= 6; i++) {
         quota = document.getElementById("quota" + i).innerHTML;
@@ -148,7 +148,7 @@ function check_quota_plan() {
 } //check_quota_plan
 
 function show_quotaplan() {
-  //  $("#quotaPlan").attr("disabled", true);
+    //  $("#quotaPlan").attr("disabled", true);
 
     var dataQuota = [];
     var arrQuota = [];
@@ -287,53 +287,56 @@ function insert_quota_plan() {
     console.log(pos_id);
     console.log(qut_id);
     //}
-    for (var i = 1; i <= 6; i++) {
-        quota = document.getElementById("quota" + i).innerHTML;
-        value_quotaPlan = parseFloat(check) * quota / 100;
-        grade[i] = value_quotaPlan;
-        sum_quota_plan += grade[i];
-    } //for 
-    grade.shift();
-    console.log(grade);
-    console.log(sum_quota_plan);
-    qup_gradeS = grade[0];
-    qup_gradeA = grade[1];
-    qup_gradeB = grade[2];
-    qup_gradeB_N = grade[3];
-    qup_gradeC = grade[4];
-    qup_gradeD = grade[5];
+    if (check == " ") {
+        check = null;
+    } else {
+        for (var i = 1; i <= 6; i++) {
+            quota = document.getElementById("quota" + i).innerHTML;
+            value_quotaPlan = parseFloat(check) * quota / 100;
+            grade[i] = value_quotaPlan;
+            sum_quota_plan += grade[i];
+        } //for 
+        grade.shift();
+        console.log(grade);
+        console.log(sum_quota_plan);
+        qup_gradeS = grade[0];
+        qup_gradeA = grade[1];
+        qup_gradeB = grade[2];
+        qup_gradeB_N = grade[3];
+        qup_gradeC = grade[4];
+        qup_gradeD = grade[5];
 
-    console.log(qup_gradeS);
-    console.log(qup_gradeA);
-    console.log(qup_gradeB);
-    console.log(qup_gradeB_N);
-    console.log(qup_gradeC);
-    console.log(qup_gradeD);
-    $.ajax({
-        type: "post",
-        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_plan_insert",
+        console.log(qup_gradeS);
+        console.log(qup_gradeA);
+        console.log(qup_gradeB);
+        console.log(qup_gradeB_N);
+        console.log(qup_gradeC);
+        console.log(qup_gradeD);
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_plan_insert",
 
-        data: {
+            data: {
 
-            "qup_gradeS": qup_gradeS,
-            "qup_gradeA": qup_gradeA,
-            "qup_gradeB": qup_gradeB,
-            "qup_gradeB_N": qup_gradeB_N,
-            "qup_gradeC": qup_gradeC,
-            "qup_gradeD": qup_gradeD,
-            "sum_quota_plan": sum_quota_plan,
-            "qut_id": qut_id,
-            "pos_id": pos_id
-        },
-        dataType: "JSON",
+                "qup_gradeS": qup_gradeS,
+                "qup_gradeA": qup_gradeA,
+                "qup_gradeB": qup_gradeB,
+                "qup_gradeB_N": qup_gradeB_N,
+                "qup_gradeC": qup_gradeC,
+                "qup_gradeD": qup_gradeD,
+                "sum_quota_plan": sum_quota_plan,
+                "qut_id": qut_id,
+                "pos_id": pos_id
+            },
+            dataType: "JSON",
 
-        success: function(status) {
-            console.log(status);
+            success: function(status) {
+                console.log(status);
 
-        }
+            }
 
-    }); //ajax
-
+        }); //ajax
+    }
 
 } //insert_quota
 
@@ -416,7 +419,7 @@ function manage_data(qut_id) {
                 <div class="col-md-8">
 
                     <table style="width:100%" class="table table-hover m-n orange">
-                        <thead class = "font1">
+                        <thead class="font1">
                             <div class="col-md-1">
                                 <tr class="orange ">
                                     <th>Grade</th>
@@ -466,7 +469,7 @@ function manage_data(qut_id) {
                 </div>
             </div>
             <br>
-           
+
             <!-- </form> -->
             <br>
             <div class="row">
@@ -530,7 +533,7 @@ function manage_data(qut_id) {
                                 <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
                                     align="center">
                                     <font size="3px">
-                                    Do you want to save?</font>
+                                        Do you want to save?</font>
                                 </label>
 
                             </div>
