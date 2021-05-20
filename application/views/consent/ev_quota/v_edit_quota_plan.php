@@ -152,7 +152,7 @@ function check_quota_plan() {
 } //check_quota_plan
 
 function show_quotaplan() {
-    $("#quotaPlan").attr("disabled", true);
+   // $("#quotaPlan").attr("disabled", true);
 
     var dataQuota = [];
     var arrQuota = [];

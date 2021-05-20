@@ -341,6 +341,10 @@ function manage_data(qut_id) {
     console.log(qut_id);
     window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
 } //manage_data
+// function edit_data(qut_id) {
+//     console.log(qut_id);
+//     window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota//" + qut_id;
+// } //manage_data
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
