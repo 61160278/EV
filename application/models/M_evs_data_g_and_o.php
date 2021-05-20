@@ -40,6 +40,8 @@ class M_evs_data_g_and_o extends Da_evs_data_g_and_o {
 		FROM evs_database.evs_data_g_and_o
 		INNER JOIN evs_database.evs_data_g_and_o_level
 		ON dgol_dgo_id = dgo_id 
+		INNER JOIN evs_database.evs_sdgs
+		ON sdg_id = dgo_sdgs
 		WHERE dgo_emp_id = ? AND dgo_evs_emp_id = ?" ;
 		$query = $this->db->query($sql,array($this->dgo_emp_id, $this->dgo_evs_emp_id) );
 		return $query;

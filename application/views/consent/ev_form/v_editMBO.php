@@ -45,7 +45,7 @@ $(document).ready(function() {
     $("#btn_cencel_show").show();
     $("#btn_send_insert").show();
     $("#btn_send_edit").hide();
-    show_approve()
+
     set_tap()
 
 });
@@ -78,8 +78,9 @@ function editmbo() {
                 data_row += '<td><center>' + (index + 1) + '</center>'
                 data_row += '<input type="text" id="inp_id' + (index + 1) + '" value="' + row
                     .dtm_id + '" hidden></td>'
-                    data_row += '<td>'
-                data_row += '<select class="form-control" id="sdgs_sel' + (index + 1) + '" onchange="clear_css_sel(' + clear + ')">'
+                data_row += '<td>'
+                data_row += '<select class="form-control" id="sdgs_sel' + (index + 1) +
+                    '" onchange="clear_css_sel(' + clear + ')">'
                 data_row += '<option value="0">---Select SDGs---</option>'
                 data_row += '</select>'
                 data_row += '</td>'
@@ -173,7 +174,7 @@ function update_dataMBO() {
         url: "<?php echo base_url(); ?>ev_form/Evs_form/update_mbo_by_emp",
         data: {
             "idMBO": idMBO,
-            "sdgMBO":sdgMBO,
+            "sdgMBO": sdgMBO,
             "dataMBO": dataMBO,
             "resultMBO": resultMBO,
             "Emp_ID": check_emp_id,
@@ -620,20 +621,25 @@ function set_tap() {
             "ps_pos_id": ps_pos_id
         },
         success: function(data) {
-            console.log(data);
 
             data.forEach((row, index) => {
                 if (row.ps_form_pe == "MBO") {
                     data_tap += '<li class="active"><a href="#MBO" data-toggle="tab">';
                     data_tap += '<font>MBO</font>';
                     data_tap += '</a></li>';
+                    creatembo();
+                    show_approve()
+                    $("#btn_save").attr("disabled", true);
                     $("#MBO").addClass("active");
+
                 }
                 // if
                 else if (row.ps_form_pe == "G&O") {
                     data_tap += '<li class="active"><a href="#G_O" data-toggle="tab">';
                     data_tap += '<font>G&O</font>';
                     data_tap += '</a></li>';
+                    $("#G_O").addClass("active");
+
                 }
                 // else if 
                 // check pe tool
@@ -892,6 +898,218 @@ function set_tap() {
                     <!-- form 1 -->
 
                     <!-- ******************************** form 1 ********************************-->
+
+                    <div class="tab-pane" id="G_O">
+                        <br>
+                        <?php foreach($emp_info->result() as $row){?>
+                        <input type="text" id="pos_id" value="<?php echo $row->Position_ID; ?>" hidden>
+                        <input type="text" id="evs_emp_id" value="<?php echo $row->emp_id; ?>" hidden>
+                        <input type="text" id="row_index" value="" hidden>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Employee ID : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_id"><?php echo $row->Emp_ID; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Name : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_name"><?php echo $row->Empname_eng; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Surname : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_lname"><?php echo $row->Empsurname_eng; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                        </div>
+                        <!-- row -->
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Section Code : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_sec"><?php echo $row->Sectioncode_ID; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Department : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_dep"><?php echo $row->Department; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Position : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_pos"><?php echo $row->Position_name; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                        </div>
+                        <!-- row -->
+                        <?php }; ?>
+                        <!-- show infomation employee -->
+
+                        <hr>
+                        <table class="table table-bordered table-striped m-n">
+                            <thead>
+                                <tr>
+                                    <th width="2%">
+                                        <center>
+                                            #
+                                        </center>
+                                    </th>
+                                    <th>
+                                        <center width="5%">
+                                            Type of G&O
+                                        </center>
+                                    </th>
+                                    <th>
+                                        <center width="15%">
+                                            SDGs Goal
+                                        </center>
+                                    </th>
+                                    <th width="30%">
+                                        <center>
+                                            Evaluation Item
+                                        </center>
+                                    </th>
+                                    <th width="10%">
+                                        <center>
+                                            Weight (%)
+                                        </center>
+                                    </th>
+                                    <th width="15%">
+                                        <center>
+                                            Possible Outcomes/Their Ratings
+                                        </center>
+                                    </th>
+                                    <th width="20%">
+                                        <center>Result</center>
+                                    </th>
+                                    <th width="3%">
+                                        <center>Score AxB</center>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="G_O_Table">
+                                <?php $num_index = 0;
+                                $temp = "";
+                                $row_level = 0;
+                                $row_ranges = 0;
+
+                            foreach($g_o_emp as $index => $row){
+                                if($index == 0){
+                                    $temp = $row->dgo_item;
+                                    $row_level++;
+                                }
+                                // if 
+                                else if($row->dgo_item == $temp){
+                                    $row_level++;
+                                }
+                                // else if
+                                else if($row->dgo_item != $temp){
+                                    $row_ranges++;
+                                }
+                                // else if 
+
+                            }
+                            // foreach 
+
+                            $row_level = $row_level / 5;
+                            $row_ranges = $row_ranges / 2;
+
+                            echo $row_level;
+                            echo "<br>";
+                            echo $row_ranges;
+
+                            foreach($g_o_emp as $row){ 
+                            $num_index++;
+                            ?>
+                                <tr>
+                                    <td><?php echo $num_index; ?></td>
+
+                                    <?php 
+                                    if($row->dgo_type == "1"){ ?>
+                                    <td>Company</td>
+                                    <?php }
+                                    // if 
+                                    else{ ?>
+                                    <td>Department</td>
+                                    <?php }?>
+                                    <!-- show type  -->
+
+                                    <td><?php echo $row->sdg_name_th; ?></td>
+                                    <!-- show sdgs  -->
+
+                                    <td><?php echo $row->dgo_item; ?></td>
+                                    <td align="center"><?php echo $row->dgo_weight; ?></td>
+                                    <!-- show item asd weight  -->
+
+                                    <td><?php echo $row->dgol_level; ?></td>
+
+                                </tr>
+                                <?}
+                            // foreach
+                            ?>
+                            </tbody>
+                            <!-- tbody  -->
+
+                            <tfoot>
+                                <td colspan="4"></td>
+                                <td id="show_weightG_O" align="center">100</td>
+                                <td colspan="3"></td>
+                            </tfoot>
+                            <!-- tfoot -->
+                        </table>
+                        <!-- End table level -->
+
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button class="btn btn-inverse">BACK</button>
+                                <button class="btn btn-default">CLEAR</button>
+                            </div>
+                            <!-- col-md-6 -->
+
+                            <div class="col-md-6" align="right">
+                                <button class="btn btn-success">SAVE</button>
+                            </div>
+                            <!-- col-md-6 add_app -->
+
+                        </div>
+                        <!-- row -->
+
+                    </div>
+                    <!-- form 1-2 -->
+
+                    <!-- ************************************************************************************ -->
 
                     <div class="tab-pane" id="ACM">
                         <br>
