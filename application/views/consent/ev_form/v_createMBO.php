@@ -647,6 +647,7 @@ function saveG_O() {
     });
     // ajax
 
+    var level_tmp = [];
     var level = [];
     var ranges = [];
     var count_ranges = 0;
@@ -655,9 +656,10 @@ function saveG_O() {
     for (j = 1; j <= number_index; j++) {
         if (j <= level_row) {
             for (k = 0; k < 5; k++) {
-                level.push(document.getElementById("possible" + j + k).value);
+                level_tmp.push(document.getElementById("possible" + j + k).value);
             }
             // for
+            level.push(level_tmp);
         }
         // if
 

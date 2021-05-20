@@ -51,7 +51,7 @@ class Da_evs_data_g_and_o extends evs_model {
 
 	function update() {
 	
-	 	$sql = "UPDATE evs_database.evs_data_mbo 
+	 	$sql = "UPDATE evs_database.evs_data_g_and_o 
 	 			SET dgo_type=?, dgo_sdg=?, dgo_item=?, dgo_weight=?, dgo_emp_id=? , dgo_evs_emp_id=?
 	 			WHERE dgo_id=?";
 		
@@ -70,7 +70,7 @@ class Da_evs_data_g_and_o extends evs_model {
 
 	function delete() {
 	 	
-	 	$sql = "DELETE FROM evs_database.evs_data_mbo 
+	 	$sql = "DELETE FROM evs_database.evs_data_g_and_o 
 		WHERE  dgo_id = ? ";
 	 	$this->db->query($sql, array($this->dgo_id));
 	 }
@@ -85,7 +85,7 @@ class Da_evs_data_g_and_o extends evs_model {
 	*/
 	function get_by_key() {	
 		$sql = "SELECT * 
-				FROM evs_database.evs_data_mbo
+				FROM evs_database.evs_data_g_and_o
 				WHERE dgo_id=?";
 		$query = $this->db->query($sql, array($this->dgo_id));
 		return $query;
