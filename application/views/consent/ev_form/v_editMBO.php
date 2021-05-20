@@ -1062,7 +1062,6 @@ function set_tap() {
                                     <td align="center" rowspan="<?php echo $col[$span] ?>">
                                         <?php echo $row->dgo_weight; ?></td>
                                     <!-- show item asd weight  -->
-
                                     <?php 
                                 $span++;
                                 $temp = $row->dgo_item;
@@ -1086,9 +1085,9 @@ function set_tap() {
                                     <!-- show sdgs  -->
 
                                     <td rowspan="<?php echo $col[$span] ?>"><?php echo $row->dgo_item; ?></td>
-                                    <td align="center" rowspan="<?php echo $col[$span] ?>"><?php echo $row->dgo_weight; ?></td>
+                                    <td align="center" rowspan="<?php echo $col[$span] ?>">
+                                        <?php echo $row->dgo_weight; ?></td>
                                     <!-- show item asd weight  -->
-
                                     <?php 
                                 $span++;
                                 $num_index++;
@@ -1101,6 +1100,8 @@ function set_tap() {
                                 ?>
                                     <td><?php echo $row->dgol_level; ?></td>
                                     <!-- show level  -->
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 <!-- end tr  -->
                                 <?}

@@ -129,6 +129,12 @@ class Evs_form extends MainController_avenxo {
 				$this->load->model('M_evs_expected_behavior','mept');
 				$data['info_expected'] = $this->mept->get_all_by_pos();
 				$data['info_pos_id'] = $tep->Position_ID;
+				
+				$this->load->model('M_evs_set_form_g_and_o','mesg');
+				$this->mesg->sfg_pay_id = $pay_id;
+				$this->mesg->sfg_pos_id = $tep->Position_ID;
+				$data['row_index'] = $this->mesg->get_all_by_key_by_year()->row();
+
 				$this->output('/consent/ev_form/v_editMBO',$data);
 			}
 			// if
