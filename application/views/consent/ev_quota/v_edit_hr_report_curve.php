@@ -127,7 +127,7 @@ function check_quota_actual() {
             $("#show_Actual").css("color", "#000000");
         }
         // if 
-        document.getElementById("show_quotaActual" + i).innerHTML = quotaActual;
+        document.getElementById("show_quotaActual" + i).innerHTML = quotaActual.toFixed(2);
         document.getElementById("show_Actual").innerHTML = actual;
         document.getElementById("show_sumquotaActual").innerHTML = sumQuotaActual;
         document.getElementById("TOTplan").innerHTML = quota;
@@ -305,11 +305,11 @@ function show_linebarChart() {
 } //show_linebarChart
 
 function confirm_save() {
-    insert_quota_actual();
+    edit_quota_actual();
     $('#warning_save').modal('show');
 }
 
-function insert_quota_actual() {
+function edit_quota_actual() {
 
     var grade = [];
     var check = "";
@@ -323,9 +323,8 @@ function insert_quota_actual() {
     var qut_id = "";
     var qua_id = "";
 
-    // pos_id = document.getElementById("position_id").value;
-    // qut_id = document.getElementById("qut_id").value;
-     qua_id = document.getElementById("pup_id").value;
+  
+     qua_id = parseInt(document.getElementById("pup_id").value);
     quota = document.getElementById("quotaPlanToT").innerHTML;
 
     console.log(qua_id);
@@ -342,11 +341,11 @@ function insert_quota_actual() {
 
             grade[i] = valueActual;
             sum_actual += grade[i];
-            console.log(valueActual);
+            // console.log(valueActual);
             quotaActual = (valueActual * 100) / parseFloat(quota);
             // grade[i] =quotaActual;
             sumQuotaActual += quotaActual;
-            console.log(quotaActual + "=" + valueActual + "* 100 /" + parseFloat(quota));
+            // console.log(quotaActual + "=" + valueActual + "* 100 /" + parseFloat(quota));
             actual += valueActual;
 
         } // if 
@@ -359,7 +358,7 @@ function insert_quota_actual() {
     //}
 
     grade.shift();
-    console.log(grade);
+    // console.log(grade);
     // console.log(sum_quota_plan);
     qua_gradeS = grade[0];
     qua_gradeA = grade[1];
@@ -375,10 +374,11 @@ function insert_quota_actual() {
     console.log(qua_gradeC);
     console.log(qua_gradeD);
     console.log(sum_actual);
+
   
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_actual_edit",
+        url: "<?php echo base_url(); ?>ev_quota/Evs_quota/quota_actual_edit",
 
         data: {
 

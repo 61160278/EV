@@ -548,7 +548,7 @@ function quota_actual_edit(){
 
 		$this->load->model("Da_evs_quota_actual","dqua");
 		
-		$this->dqua->qua_id = $qua_id;
+	
 		$this->dqua->qua_grad_S = $qua_grad_S;
 		$this->dqua->qua_grad_A = $qua_grad_A;
 		$this->dqua->qua_grad_B = $qua_grad_B;
@@ -556,9 +556,10 @@ function quota_actual_edit(){
 		$this->dqua->qua_grad_C = $qua_grad_C;
 		$this->dqua->qua_grad_D = $qua_grad_D;
 		$this->dqua->qua_total = $qua_total;
-		
+		$this->dqua->qua_id = $qua_id;
+
 		$this->dqua->update();
-		
+		echo json_encode("Success by edit");
 }//quota_actual_insert()
 
 function delete_quota(){
