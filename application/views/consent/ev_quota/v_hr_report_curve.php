@@ -127,7 +127,8 @@ function check_quota_actual() {
             $("#show_Actual").css("color", "#000000");
         }
         // if 
-        document.getElementById("show_quotaActual" + i).innerHTML = quotaActual;
+        var qua = quotaActual.toFixed(2);
+        document.getElementById("show_quotaActual" + i).innerHTML = qua;
         document.getElementById("show_Actual").innerHTML = actual;
         document.getElementById("show_sumquotaActual").innerHTML = sumQuotaActual;
         document.getElementById("TOTplan").innerHTML = quota;

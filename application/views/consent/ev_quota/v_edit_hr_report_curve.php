@@ -324,7 +324,7 @@ function edit_quota_actual() {
     var qua_id = "";
 
   
-     qua_id = parseInt(document.getElementById("pup_id").value);
+     qua_id = parseInt(document.getElementById("pua_id").value);
     quota = document.getElementById("quotaPlanToT").innerHTML;
 
     console.log(qua_id);
@@ -420,7 +420,7 @@ function manage_data(qut_id) {
                 <div class="form-group">
                     <div class="col-md-1">
                         <?php foreach($qua_data as $value){ ?>
-                        <input type="text" id="pup_id" value="<?php echo $value->qua_id?>" hidden>
+                        <input type="text" id="pua_id" value="<?php echo $value->qua_id?>" hidden>
                         <?php } ?>
                     </div>
 
