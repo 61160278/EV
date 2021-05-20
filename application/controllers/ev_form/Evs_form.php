@@ -176,6 +176,26 @@ class Evs_form extends MainController_avenxo {
 	}
 	// function save_G_O_by_emp
 
+	function save_G_O_level_by_emp(){
+		$dgo_id = $this->input->post("dgo_id");
+		$data_level = $this->input->post("data_level");
+		$number_index = $this->input->post("number_index");
+		
+		$this->load->model('Da_evs_data_g_and_o_level','ddgol');
+
+		for($i = 0; $i <$number_index; $i++){
+			for($j=0; $j < sizeof($data_level); $j++){
+				$this->ddgol->dgol_dgo_id = $dgo_id[$i];
+				$this->ddgol->dgol_level = $data_level[$i];
+				$this->ddgol->insert();
+			}
+			// for j
+		}
+		// for i
+		
+	}
+	// function save_G_O_level_by_emp
+
 	function get_sdgs(){
 		
 		$this->load->model('M_evs_sdgs','msdg');
