@@ -648,7 +648,7 @@ function saveG_O() {
     // ajax
 
     var level_tmp = [];
-    var level = [];
+    var data_level = [];
     var ranges = [];
     var count_ranges = 0;
     count_ranges = parseInt(level_row) + 1;
@@ -659,22 +659,36 @@ function saveG_O() {
                 level_tmp.push(document.getElementById("possible" + j + k).value);
             }
             // for
-            level.push(level_tmp);
+            data_level.push(level_tmp);
         }
         // if
 
         if (j >= count_ranges) {
             ranges.push(document.getElementById("ranges_c" + j).value);
             ranges.push(document.getElementById("ranges_s" + j).value);
+            data_level.push(ranges);
         }
         // if
     }
     // for
 
     console.log(dgo_id);
-    console.log(level);
-    console.log(ranges);
+    console.log(data_level);
 
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/save_G_O_level_by_emp",
+        data: {
+            "dgo_id":dgo_id,
+            "data_level": data_level,
+            "number_index":number_index
+        },
+        success: function(data) {
+        }
+        // success
+    });
+    // ajax
 
 }
 // function saveG_O

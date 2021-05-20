@@ -36,7 +36,6 @@ class Da_evs_data_g_and_o_level extends evs_model {
 	 
 	 	$sql = "INSERT INTO evs_database.evs_data_g_and_o_level (dgol_id, dgol_level, dgol_dgo_id)
 	 	VALUES(?,?,?)";
-		 
 	 	$this->db->query($sql, array($this->dgol_id, $this->dgol_level, $this->dgol_dgo_id));
 	 }
 	 
@@ -55,7 +54,7 @@ class Da_evs_data_g_and_o_level extends evs_model {
 	 			SET dgol_level=?, dgol_dgo_id=?
 	 			WHERE dgol_id=?";
 		
-		$this->db->query($sql, array($this->dgol_level, $this->dgol_dgo_id, , $this->dgol_id));
+		$this->db->query($sql, array($this->dgol_level, $this->dgol_dgo_id,$this->dgol_id));
 		 
 	 }
 
