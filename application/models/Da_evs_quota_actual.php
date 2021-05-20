@@ -59,15 +59,17 @@ class Da_evs_quota_actual extends evs_model {
 	* @author Piyasak Srijan
 	* @Create Date 2564-05-10
 	*/
-	// function update() {
+	function update() {
 	 	
-	//  	$sql = "UPDATE evs_database.evs_quota 
-	//  			SET	evs_quota.qut_id=?, evs_quota.qut_type=? , evs_quota.qut_pos=?
-	//  			WHERE evs_quota.qut_id=?";
+	 	$sql = "UPDATE evs_database.evs_quota_actual 
+		 SET evs_quota_actual.qua_grad_S= ?,evs_quota_actual.qua_grad_A= ?,evs_quota_actual.qua_grad_B= ?,evs_quota_actual.qua_grad_B_N= ?,
+		 evs_quota_actual.qua_grad_C= ?,evs_quota_actual.qua_grad_D= ?,evs_quota_actual.qua_total= ?
+		 WHERE evs_quota_actual.qua_id=?";
 		
-	//  	$this->db->query($sql, array($this->qut_id, $this->qut_type, $this->qut_pos));
+	 	$this->db->query($sql, array($this->qua_grad_S, $this->qua_grad_A, $this->qua_grad_B, $this->qua_grad_B_N, $this->qua_grad_C,
+		 $this->qua_grad_D, $this->qua_total,$this->qua_id));
 		
-	//  }
+	 }
 	/*
 	* update
 	* update Quota into database

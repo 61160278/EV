@@ -63,6 +63,7 @@ tbody:hover {
 $(document).ready(function() {
     check_quota_plan()
     check_quota_actual()
+    show_quotaplan()
     document.getElementById("submit").disabled = true;
 });
 
@@ -230,6 +231,70 @@ function show_linebarChart() {
 
 } //show_linebarChart
 
+function show_quotaplan() {
+    $("#quotaPlan").attr("disabled", true);
+
+    var dataQuota = [];
+    var arrQuota = [];
+    for (var i = 1; i <= 6; i++) {
+        //  var show_quota = document.getElementById("quota" + i).innerHTML;
+        var show_quota = document.getElementById("quota" + i).innerHTML;
+        //  var arrQuota = [5, 25, 40, 25, 5];
+        arrQuota[i] = show_quota;
+    } //for
+    arrQuota.shift();
+    console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
+    for (var a = 0; a < arrQuota.length; a++) {
+        dataQuota[a] = arrQuota[a] * 1;
+
+    } //for ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
+    console.log(dataQuota);
+    //<block:setup:1>
+    const labels = [
+        'S',
+        'A',
+        'B',
+        'B-',
+        'C',
+        'D',
+    ];
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Quota',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: dataQuota,
+        }]
+
+    };
+    // </block:setup>
+    // <block:config:0>
+    const config = {
+        type: 'line',
+        data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    min: 0,
+                    ticks: {
+                        stepSize: 20
+                    }
+
+                }
+            }
+        }
+    };
+    // </block:config>
+    var myChart = new Chart(document.getElementById('myChart'), config); //new Chart
+  $('#submit').on('click', function() {
+        myChart.destroy();
+        show_linebarChart()
+    });
+} //show_quotaplan
+
 function confirm_save() {
     insert_quota_actual();
     $('#warning_save').modal('show');
@@ -343,38 +408,67 @@ function insert_quota_actual() {
 
             <div class="row">
                 <div class="form-group">
-                    <div class="col-md-3">
+                    <div class="col-md-1">
                     </div>
-                    <div class="col-md-2">
+                    <table class="hearData">
+                        <tr>
+                            <td class="qut" width="175">
+                                <h4><b>Quota</b></h4>
+                            </td>
+                            <td width="75">
+                                <h4><b> : </b></h4>
+                            </td>
+                            <td class="qut_type" width="300"></td>
+                       
+                       
+                            <td class="qut" width="175">
+                                <h4><b>Position of Quota</b></h4>
+                            </td>
+                            <td width="75">
+                                <h4><b> : </b></h4>
+                            </td>
+                            <td class="qut_type" width="200"></td>
+
+                            <td class="qut">
+                                <h4><b>Position</b></h4>
+                            </td>
+                            <td width="75">
+                                <h4><b> : </b></h4>
+                            </td>
+                            <td class="qut_type" id="qut_pos"></td>
+                        </tr>
+                       
+                    </table>
+                    <!-- <div class="col-md-2">
                         <select class="form-control text" id="">
                             <option value="yearEndBonus">Quota</option>
                             <option value="yearEndBonus">Year End Bonus</option>
                             <option value="salaryIncrement">Salary Increment</option>
                         </select>
-                    </div>
-                    <div class="col-md-2">
+                    </div> -->
+                    <!-- <div class="col-md-2">
                         <select class="form-control text" id="">
                             <option value="yearEndBonus">Quota of position</option>
                             <option value="yearEndBonus">Team Associate above</option>
                             <option value="salaryIncrement">Operational Associate</option>
                         </select>
-                    </div>
-                    <div class="col-md-2">
+                    </div> -->
+                    <!-- <div class="col-md-2">
                         <select for="pos_select" id="pos_select" class="form-control text">
                             <option value="select">Select Position</option> -->
-                            <option value="0">All Position</option>
+                            <!-- <option value="0">All Position</option> -->
                             <!-- start foreach -->
                             <?php foreach($pos_data as $value){ ?>
-                            <option value="<?php echo $value->Position_ID;?>">
-                                <?php echo $value->Pos_shortName;?>
-                            </option>
+                            <!-- <option value="<?php //echo $value->Position_ID;?>"> -->
+                                <?php //echo $value->Pos_shortName;?>
+                            <!-- </option> -->
                             <?php } ?>
                             <!-- end foreach -->
-                        </select>
+                        <!-- </select> -->
+                    <!-- </div> --> 
+                    <div class="col-md-11">
                     </div>
                     <div class="col-md-1">
-                    </div>
-                    <div class="col-md-2">
                         <button class="btn-success btn" id="submit" type="submit"
                             onclick="show_linebarChart()">SUBMIT</button>
 
@@ -579,7 +673,7 @@ function insert_quota_actual() {
                                                     <label for="focusedinput" class="control-label"
                                                         style="font-family:'Courier New'" align="center">
                                                         <font size="3px">
-                                                            save?</font>
+                                                        Do you want to save?</font>
                                                     </label>
 
                                                 </div>

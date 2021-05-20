@@ -609,6 +609,8 @@ function saveG_O() {
     var sdgs = [];
     var item = [];
     var weight = [];
+    var dgo_id = [];
+
     var number_index = document.getElementById("row_indexG_O").value;
     var level_row = document.getElementById("level_row").value;
 
@@ -637,7 +639,52 @@ function saveG_O() {
             "number_index": number_index
         },
         success: function(data) {
-            console.log(data);
+            data.forEach((row, index) => {
+                dgo_id.push(row.dgo_id);
+            });
+        }
+        // success
+    });
+    // ajax
+
+    var level_tmp = [];
+    var data_level = [];
+    var ranges = [];
+    var count_ranges = 0;
+    count_ranges = parseInt(level_row) + 1;
+
+    for (j = 1; j <= number_index; j++) {
+        if (j <= level_row) {
+            for (k = 0; k < 5; k++) {
+                level_tmp.push(document.getElementById("possible" + j + k).value);
+            }
+            // for
+            data_level.push(level_tmp);
+        }
+        // if
+
+        if (j >= count_ranges) {
+            ranges.push(document.getElementById("ranges_c" + j).value);
+            ranges.push(document.getElementById("ranges_s" + j).value);
+            data_level.push(ranges);
+        }
+        // if
+    }
+    // for
+
+    console.log(dgo_id);
+    console.log(data_level);
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/save_G_O_level_by_emp",
+        data: {
+            "dgo_id":dgo_id,
+            "data_level": data_level,
+            "number_index":number_index
+        },
+        success: function(data) {
         }
         // success
     });
@@ -660,7 +707,6 @@ function checkG_O() {
     // console.log(count_ranges);
 
     for (i = 1; i <= number_index; i++) {
-        test.push(i);
         type = $('input[name="type' + i + '"]:checked').val();
         if (type == undefined) {
             $("#check_rdio").modal('show');

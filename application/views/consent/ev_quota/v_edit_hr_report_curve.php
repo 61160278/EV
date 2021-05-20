@@ -127,8 +127,7 @@ function check_quota_actual() {
             $("#show_Actual").css("color", "#000000");
         }
         // if 
-        var qua = quotaActual.toFixed(2);
-        document.getElementById("show_quotaActual" + i).innerHTML = qua;
+        document.getElementById("show_quotaActual" + i).innerHTML = quotaActual.toFixed(2);
         document.getElementById("show_Actual").innerHTML = actual;
         document.getElementById("show_sumquotaActual").innerHTML = sumQuotaActual;
         document.getElementById("TOTplan").innerHTML = quota;
@@ -216,12 +215,12 @@ function show_quotaplan() {
     };
     // </block:config>
     var myChart = new Chart(document.getElementById('myChart'), config); //new Chart
-    $('#submit').on('click', function() {
+  $('#submit').on('click', function() {
         myChart.destroy();
         show_linebarChart()
     });
 } //show_quotaplan
-
+  
 function show_linebarChart() {
 
     for (var i = 1; i <= 6; i++) {
@@ -306,11 +305,11 @@ function show_linebarChart() {
 } //show_linebarChart
 
 function confirm_save() {
-    insert_quota_actual();
+    edit_quota_actual();
     $('#warning_save').modal('show');
 }
 
-function insert_quota_actual() {
+function edit_quota_actual() {
 
     var grade = [];
     var check = "";
@@ -322,28 +321,14 @@ function insert_quota_actual() {
     var sum_actual = 0;
     var pos_id = "";
     var qut_id = "";
-    var qup_id = "";
+    var qua_id = "";
 
-    pos_id = document.getElementById("position_id").value;
-    qut_id = document.getElementById("qut_id").value;
-    qup_id = document.getElementById("pup_id").value;
+  
+     qua_id = parseInt(document.getElementById("pua_id").value);
     quota = document.getElementById("quotaPlanToT").innerHTML;
 
-    console.log(pos_id);
-    console.log(qut_id);
-    var datedata = new Date();
-    var day = datedata.getDate();
-    var month = datedata.getMonth() + 1;
-    var year = datedata.getFullYear();
-    // get date form new date() 
-    var savedate = year + "-" + month + "-" + day;
-
-
-    <?php foreach($year_quota_data->result() as $value){ ?>
-    if (year == "<?php echo $value->pay_year;?>") {
-        var year_id = <?php echo $value->pay_id;?>
-    }
-    <?php } ?>
+    console.log(qua_id);
+    // console.log(qut_id);
     // document.getElementById("submit").disabled = false;
     for (var i = 1; i <= 6; i++) {
         check = document.getElementById("quotaActual" + i).value;
@@ -356,11 +341,11 @@ function insert_quota_actual() {
 
             grade[i] = valueActual;
             sum_actual += grade[i];
-            console.log(valueActual);
+            // console.log(valueActual);
             quotaActual = (valueActual * 100) / parseFloat(quota);
             // grade[i] =quotaActual;
             sumQuotaActual += quotaActual;
-            console.log(quotaActual + "=" + valueActual + "* 100 /" + parseFloat(quota));
+            // console.log(quotaActual + "=" + valueActual + "* 100 /" + parseFloat(quota));
             actual += valueActual;
 
         } // if 
@@ -373,7 +358,7 @@ function insert_quota_actual() {
     //}
 
     grade.shift();
-    console.log(grade);
+    // console.log(grade);
     // console.log(sum_quota_plan);
     qua_gradeS = grade[0];
     qua_gradeA = grade[1];
@@ -389,9 +374,11 @@ function insert_quota_actual() {
     console.log(qua_gradeC);
     console.log(qua_gradeD);
     console.log(sum_actual);
+
+  
     $.ajax({
         type: "post",
-        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_actual_insert",
+        url: "<?php echo base_url(); ?>ev_quota/Evs_quota/quota_actual_edit",
 
         data: {
 
@@ -402,11 +389,7 @@ function insert_quota_actual() {
             "qua_gradeC": qua_gradeC,
             "qua_gradeD": qua_gradeD,
             "sum_actual": sum_actual,
-            "qut_id": qut_id,
-            "pos_id": pos_id,
-            "qup_id": qup_id,
-          //  "year_id": year_id
-
+            "qua_id": qua_id
         },
         dataType: "JSON",
 
@@ -436,8 +419,8 @@ function manage_data(qut_id) {
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-1">
-                        <?php foreach($qup_data as $value){ ?>
-                        <input type="text" id="pup_id" value="<?php echo $value->qup_id?>" hidden>
+                        <?php foreach($qua_data as $value){ ?>
+                        <input type="text" id="pua_id" value="<?php echo $value->qua_id?>" hidden>
                         <?php } ?>
                     </div>
 
@@ -560,36 +543,39 @@ function manage_data(qut_id) {
                                             <div class="col-md-1">
                                                 <tr class="orange2">
                                                     <td><b>Actual</b></td>
+                                                    <?php foreach($qua_data as $value){ ?>
                                                     <td>
                                                         <input type="number" class="form-control" id="quotaActual1"
-                                                            onchange="check_quota_actual()" min="0">
+                                                            onchange="check_quota_actual()" min="0" value ="<?php echo $value->qua_grad_S;?>">
                                                     </td>
                                                     <td>
                                                         <input type="number" class="form-control" id="quotaActual2"
-                                                            onchange="check_quota_actual()" min="0">
+                                                            onchange="check_quota_actual()" min="0" value ="<?php echo $value->qua_grad_A;?>">
                                                     </td>
                                                     <td>
                                                         <input type="number" class="form-control" id="quotaActual3"
-                                                            onchange="check_quota_actual()" min="0">
+                                                            onchange="check_quota_actual()" min="0" value ="<?php echo $value->qua_grad_B;?>">
                                                     </td>
                                                     <td>
                                                         <input type="number" class="form-control" id="quotaActual4"
-                                                            onchange="check_quota_actual()" min="0">
+                                                            onchange="check_quota_actual()" min="0" value ="<?php echo $value->qua_grad_B_N;?>">
                                                     </td>
                                                     <td>
                                                         <input type="number" class="form-control" id="quotaActual5"
-                                                            onchange="check_quota_actual()" min="0">
+                                                            onchange="check_quota_actual()" min="0" value ="<?php echo $value->qua_grad_C;?>">
                                                     </td>
                                                     <td>
                                                         <input type="number" class="form-control" id="quotaActual6"
-                                                            onchange="check_quota_actual()" min="0">
+                                                            onchange="check_quota_actual()" min="0" value ="<?php echo $value->qua_grad_D;?>">
                                                     </td>
-                                                    <td id="show_Actual"></td>
+                                                    <td id="show_Actual"<?php echo $value->qua_total;?></td>
+                                                    <?php } ?>
                                                 </tr>
                                             </div>
                                             <div class="col-md-1">
                                                 <tr class="orange2">
                                                     <td><b>Quota Actual</b></td>
+                                                    
                                                     <td id="show_quotaActual1"></td>
                                                     <td id="show_quotaActual2"></td>
                                                     <td id="show_quotaActual3"></td>
@@ -627,11 +613,10 @@ function manage_data(qut_id) {
 
                 </div>
             </div>
-            <?php foreach($manage_qut_data as $value){ ?>
-            <button type="button" class="btn btn-inverse " data-dismiss="modal"
-                onclick="manage_data(<?php echo $value->qut_id;?>)">CANCEL</button>
-            <?php } ?>
-
+              <?php foreach($manage_qut_data as $value){ ?>
+                <button type="button" class="btn btn-inverse " data-dismiss="modal"  onclick="manage_data(<?php echo $value->qut_id;?>)">CANCEL</button>
+                    <?php } ?>
+           
             <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
                 onclick="confirm_save()">SAVE</button>
         </div>
