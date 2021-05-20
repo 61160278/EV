@@ -290,6 +290,19 @@ function insert_quota_plan() {
     if (check == " ") {
         check = null;
     } else {
+        var datedata = new Date();
+        var day = datedata.getDate();
+        var month = datedata.getMonth() + 1;
+        var year = datedata.getFullYear();
+        // get date form new date() 
+        var savedate = year + "-" + month + "-" + day;
+       
+        
+        <?php foreach($year_quota_data->result() as $value){ ?>
+        if(year == "<?php echo $value->pay_year;?>"){
+        var year_id = <?php echo $value->pay_id;?>
+        }
+            <?php } ?>
         for (var i = 1; i <= 6; i++) {
             quota = document.getElementById("quota" + i).innerHTML;
             value_quotaPlan = parseFloat(check) * quota / 100;
@@ -326,7 +339,8 @@ function insert_quota_plan() {
                 "qup_gradeD": qup_gradeD,
                 "sum_quota_plan": sum_quota_plan,
                 "qut_id": qut_id,
-                "pos_id": pos_id
+                "pos_id": pos_id,
+                "year_id": year_id
             },
             dataType: "JSON",
 

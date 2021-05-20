@@ -216,12 +216,12 @@ function show_quotaplan() {
     };
     // </block:config>
     var myChart = new Chart(document.getElementById('myChart'), config); //new Chart
-  $('#submit').on('click', function() {
+    $('#submit').on('click', function() {
         myChart.destroy();
         show_linebarChart()
     });
 } //show_quotaplan
-  
+
 function show_linebarChart() {
 
     for (var i = 1; i <= 6; i++) {
@@ -331,6 +331,19 @@ function insert_quota_actual() {
 
     console.log(pos_id);
     console.log(qut_id);
+    var datedata = new Date();
+    var day = datedata.getDate();
+    var month = datedata.getMonth() + 1;
+    var year = datedata.getFullYear();
+    // get date form new date() 
+    var savedate = year + "-" + month + "-" + day;
+
+
+    <?php foreach($year_quota_data->result() as $value){ ?>
+    if (year == "<?php echo $value->pay_year;?>") {
+        var year_id = <?php echo $value->pay_id;?>
+    }
+    <?php } ?>
     // document.getElementById("submit").disabled = false;
     for (var i = 1; i <= 6; i++) {
         check = document.getElementById("quotaActual" + i).value;
@@ -391,7 +404,9 @@ function insert_quota_actual() {
             "sum_actual": sum_actual,
             "qut_id": qut_id,
             "pos_id": pos_id,
-            "qup_id": qup_id
+            "qup_id": qup_id,
+          //  "year_id": year_id
+
         },
         dataType: "JSON",
 
@@ -612,10 +627,11 @@ function manage_data(qut_id) {
 
                 </div>
             </div>
-              <?php foreach($manage_qut_data as $value){ ?>
-                <button type="button" class="btn btn-inverse " data-dismiss="modal"  onclick="manage_data(<?php echo $value->qut_id;?>)">CANCEL</button>
-                    <?php } ?>
-           
+            <?php foreach($manage_qut_data as $value){ ?>
+            <button type="button" class="btn btn-inverse " data-dismiss="modal"
+                onclick="manage_data(<?php echo $value->qut_id;?>)">CANCEL</button>
+            <?php } ?>
+
             <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
                 onclick="confirm_save()">SAVE</button>
         </div>
