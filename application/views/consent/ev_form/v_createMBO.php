@@ -609,7 +609,7 @@ function saveG_O() {
     var sdgs = [];
     var item = [];
     var weight = [];
-    var dgo_id = [];
+    var dgo_data = [];
 
     var number_index = document.getElementById("row_indexG_O").value;
     var level_row = document.getElementById("level_row").value;
@@ -640,51 +640,13 @@ function saveG_O() {
         },
         success: function(data) {
             data.forEach((row, index) => {
-                dgo_id.push(row.dgo_id);
+                dgo_data.push(row.dgo_id);
             });
-        }
-        // success
-    });
-    // ajax
+            // foreach 
 
-    var level_tmp = [];
-    var data_level = [];
-    var ranges = [];
-    var count_ranges = 0;
-    count_ranges = parseInt(level_row) + 1;
+            saveG_O_level(dgo_data);
+            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id + "";
 
-    for (j = 1; j <= number_index; j++) {
-        if (j <= level_row) {
-            for (k = 0; k < 5; k++) {
-                level_tmp.push(document.getElementById("possible" + j + k).value);
-            }
-            // for
-            data_level.push(level_tmp);
-        }
-        // if
-
-        if (j >= count_ranges) {
-            ranges.push(document.getElementById("ranges_c" + j).value);
-            ranges.push(document.getElementById("ranges_s" + j).value);
-            data_level.push(ranges);
-        }
-        // if
-    }
-    // for
-
-    console.log(dgo_id);
-    console.log(data_level);
-
-    $.ajax({
-        type: "post",
-        dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form/Evs_form/save_G_O_level_by_emp",
-        data: {
-            "dgo_id":dgo_id,
-            "data_level": data_level,
-            "number_index":number_index
-        },
-        success: function(data) {
         }
         // success
     });
@@ -692,6 +654,51 @@ function saveG_O() {
 
 }
 // function saveG_O
+
+function saveG_O_level(dgo_data) {
+    var level_tmp = [];
+    var data_level = [];
+    var ranges = [];
+    var count_ranges = 0;
+    var number_index = document.getElementById("row_indexG_O").value;
+    var level_row = document.getElementById("level_row").value;
+    count_ranges = parseInt(level_row) + 1;
+
+    for (j = 1; j <= level_row; j++) {
+        for (k = 0; k < 5; k++) {
+            level_tmp.push(document.getElementById("possible" + j + k).value);
+        }
+        // for
+        data_level.push(level_tmp);
+        level_tmp = [];
+    }
+    // for
+
+    for (i = count_ranges; i <= number_index; i++) {
+        ranges.push(document.getElementById("ranges_c" + i).value);
+        ranges.push(document.getElementById("ranges_s" + i).value);
+        data_level.push(ranges);
+        ranges = [];
+    }
+    // for
+
+    console.log(dgo_data);
+    console.log(data_level);
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/save_G_O_level_by_emp",
+        data: {
+            "dgo_data": dgo_data,
+            "data_level": data_level
+        },
+        success: function(data) {}
+        // success
+    });
+    // ajax
+}
+// function saveG_O_level
 
 function checkG_O() {
 

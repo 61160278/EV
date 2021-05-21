@@ -40,6 +40,7 @@
 	<li><a href="<?php echo base_url() ?>ev_quota/Evs_quota/index"><i class="fa fa-bar-chart-o"></i><span>Manage quota</span></span></a></li>
 	<li><a href="<?php echo base_url()?>Evs_Controller/index"><i class="fa fa-book"></i><span>Manage form</span></span></a></li>
 	<li><a href="<?php echo base_url() ?>ev_form/Evs_form/index"><i class="fa fa-book"></i><span>Manage form-2</span></span></a></li>
+    <li><a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/index"><i class="fa fa-book"></i><span>Manage form-3</span></span></a></li>
 	</ul>
 </nav>
     </div>
