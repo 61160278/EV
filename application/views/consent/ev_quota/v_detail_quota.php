@@ -124,13 +124,16 @@ tbody:hover {
  * @author   Lapatrada Puttamongkol
  * @Create Date 2564-04-20
  */
+// $(document).ready(function() {
+//     $("#reset").click(function() {
+//         $("#quotaPlan").attr("disabled", false);
+//     }); //click
+//     show_quotaplan()
+// }); //ready
 $(document).ready(function() {
-    $("#reset").click(function() {
-        $("#quotaPlan").attr("disabled", false);
-    }); //click
-    show_quotaplan()
-}); //ready
+    $("#saveData").attr("disabled", true);
 
+});
 function check_quota_plan() {
     var check = "";
     var value_quotaPlan = 0;
@@ -138,11 +141,11 @@ function check_quota_plan() {
 
     check = document.getElementById("quotaPlan").value;
     console.log(check);
-    // if (check == "") {
-    //  $("#submit").attr("disabled", true);
-    //value_quotaPlan = null;
+    if (check != "") {
+     $("#saveData").attr("disabled", false);
+    value_quotaPlan = null;
 
-    //}
+    }
     for (var i = 1; i <= 6; i++) {
         quota = document.getElementById("quota" + i).innerHTML;
         value_quotaPlan = parseFloat(check) * quota / 100;
@@ -524,7 +527,7 @@ function manage_data(qut_id) {
                     onclick=" manage_data( <?php echo $value->qut_id;?>)">CANCEL</button>
             </a>
             <?php }?>
-            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
+            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;" id="saveData"
                 onclick="confirm_save()">SAVE</button>
         </div>
     </div>
