@@ -44,11 +44,11 @@ class Da_evs_quota_actual extends evs_model {
 
 	function insert() {
 	 	$sql = "INSERT INTO evs_database.evs_quota_actual (evs_quota_actual.qua_id, evs_quota_actual.qua_grad_S, evs_quota_actual.qua_grad_A, 
-		 		evs_quota_actual.qua_grad_B, evs_quota_actual.qua_grad_B_N, evs_quota_actual.qua_grad_C, evs_quota_actual.qua_grad_D, evs_quota_actual.qua_total,evs_quota_actual.qua_qut_id,evs_quota_actual.qua_Position_ID,evs_quota_actual.qua_qup_id)
-		 		VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		 		evs_quota_actual.qua_grad_B, evs_quota_actual.qua_grad_B_N, evs_quota_actual.qua_grad_C, evs_quota_actual.qua_grad_D, evs_quota_actual.qua_total,evs_quota_actual.qua_pay_id,evs_quota_actual.qua_qut_id,evs_quota_actual.qua_Position_ID,evs_quota_actual.qua_qup_id)
+		 		VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		 
-	 	$this->db->query($sql, array($this->qua_id, $this->qua_grad_S, $this->qua_grad_A, $this->qua_grad_B, $this->qua_grad_B_N, $this->qua_grad_C,
-		$this->qua_grad_D, $this->qua_total, $this->qua_qut_id, $this->qua_Position_ID, $this->qua_qup_id));
+	 	$this->db->query($sql, array($this->qua_id,$this->qua_grad_S,$this->qua_grad_A, $this->qua_grad_B,$this->qua_grad_B_N,$this->qua_grad_C,
+		$this->qua_grad_D, $this->qua_total,$this->qua_pay_id, $this->qua_qut_id,$this->qua_Position_ID, $this->qua_qup_id));
 	 }
 
 	/*

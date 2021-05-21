@@ -69,7 +69,8 @@ tbody:hover {
 }
 </style>
 <script>
-$(document).ready(function() {
+$(document).ready(function() { 
+   
     check_quota_plan()
     check_quota_actual()
     show_quotaplan()
@@ -127,8 +128,8 @@ function check_quota_actual() {
             $("#show_Actual").css("color", "#000000");
         }
         // if 
-        var qua = quotaActual.toFixed(2);
-        document.getElementById("show_quotaActual" + i).innerHTML = qua;
+       
+        document.getElementById("show_quotaActual" + i).innerHTML = quotaActual;
         document.getElementById("show_Actual").innerHTML = actual;
         document.getElementById("show_sumquotaActual").innerHTML = sumQuotaActual;
         document.getElementById("TOTplan").innerHTML = quota;
@@ -218,7 +219,7 @@ function show_quotaplan() {
     var myChart = new Chart(document.getElementById('myChart'), config); //new Chart
     $('#submit').on('click', function() {
         myChart.destroy();
-        show_linebarChart()
+        show_linebarChart();
     });
 } //show_quotaplan
 
@@ -389,6 +390,8 @@ function insert_quota_actual() {
     console.log(qua_gradeC);
     console.log(qua_gradeD);
     console.log(sum_actual);
+    console.log(year_id);
+
     $.ajax({
         type: "post",
         url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_actual_insert",
@@ -405,7 +408,7 @@ function insert_quota_actual() {
             "qut_id": qut_id,
             "pos_id": pos_id,
             "qup_id": qup_id,
-          //  "year_id": year_id
+            "year_id": year_id
 
         },
         dataType: "JSON",
@@ -419,7 +422,7 @@ function insert_quota_actual() {
 
 function manage_data(qut_id) {
     console.log(qut_id);
-    window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
+    // window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
 } //manage_data
 </script>
 <div class="col-md-12">
