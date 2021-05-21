@@ -93,7 +93,7 @@ function insert_quota() {
         } else if (groupPosition == 2) {
 
             groupPosition = document.getElementById("groupPosition").options[2].text;
-            
+
         } else if (groupPosition == 3) {
 
             groupPosition = document.getElementById("groupPosition").options[3].text;
@@ -106,13 +106,13 @@ function insert_quota() {
         var year = datedata.getFullYear();
         // get date form new date() 
         var savedate = year + "-" + month + "-" + day;
-       
-        
+
+
         <?php foreach($year_quota_data->result() as $value){ ?>
-        if(year == "<?php echo $value->pay_year;?>"){
-        var year_id = <?php echo $value->pay_id;?>
+        if (year == "<?php echo $value->pay_year;?>") {
+            var year_id = <?php echo $value->pay_id;?>
         }
-            <?php } ?>
+        <?php } ?>
         // document.getElementById("submit").disabled = false;
         for (i = 1; i <= 6; i++) {
             check = document.getElementById("quota" + i).value;
@@ -138,7 +138,7 @@ function insert_quota() {
         console.log(savedate);
         console.log(sum_quota);
         console.log(year_id);
-       
+
         $.ajax({
             type: "post",
             url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_insert",
@@ -204,8 +204,73 @@ function add_alert() {
 }
 
 function confirm_save() {
-    insert_quota();
-    $('#warning_save').modal('show');
+    // insert_quota();
+    // $('#warning_save').modal('show');
+
+    var quotaType = document.getElementById("quotaType").value; // value of year id
+    var groupPosition = document.getElementById("groupPosition").value;
+    if (groupPosition == 0) {
+
+    } else {
+
+        if (quotaType == 1) {
+
+            quotaType = document.getElementById("quotaType").options[1].text;
+            // groupPosition = document.getElementById("groupPosition").options[1].text;
+
+        }
+        if (groupPosition == 1) {
+
+            groupPosition = document.getElementById("groupPosition").options[1].text;
+
+        } else if (groupPosition == 2) {
+
+            groupPosition = document.getElementById("groupPosition").options[2].text;
+
+        } else if (groupPosition == 3) {
+
+            groupPosition = document.getElementById("groupPosition").options[3].text;
+        }
+    }
+    console.log(groupPosition);
+    console.log(quotaType);
+    var count = 0;
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>ev_quota/Evs_quota/get_id_qut_pos",
+        data: {
+            "quotaType": quotaType,
+            "groupPosition": groupPosition
+
+        },
+        datatype: "JSON",
+        success: function(data) {
+            data = JSON.parse(data)
+            data.forEach((row, index) => {
+
+                if (groupPosition == row.qut_pos && quotaType == row.qut_type) {
+                    count++;
+                    console.log(row.qut_pos);
+                    console.log(row.qut_type);
+
+                }
+                // if-else
+
+            });
+            // forEach
+            if (count == 0) {
+                insert_quota();
+                $('#warning_save').modal('show');
+                return true;
+            } else {
+                $("#warning_data").modal('show');
+                return false;
+            }
+
+        }
+
+
+    });
 
 }
 
@@ -520,6 +585,53 @@ function show_qouta() {
 <!-- End Modal Warning -->
 
 </div>
-<script>
 
-</script>
+<!-- Modal Warning -->
+<div class="modal fade" id="warning_data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#FF9800;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b>
+                    </font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Warning</font>
+                    </b></h2>
+            </div>
+            <!-- Modal header -->
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group" align="center">
+                        <div class="col-sm-12">
+                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                                align="center">
+                                <font size="3px">
+                                    Already in information!</font>
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- form-horizontal -->
+            </div>
+            <!-- Modal body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-right">
+                  
+                    <button type="button" class="btn btn-success" data-dismiss="modal"
+                        onclick="main_quota()">Yes</button>
+                  
+
+                </div>
+
+            </div>
+            <!-- Modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal Warning -->

@@ -610,7 +610,21 @@ function edit_quota(){
 		$this->dqut->update();
 
 }//edit_quota
-function get_id_qut_pos_plan()
+function get_id_qut_pos()
+	{
+		$qut_type = $this->input->post("quotaType");
+		$qut_pos = $this->input->post("groupPosition");
+		
+		$this->load->model('M_evs_quota','mqut');
+		$this->mqut->qut_type = $qut_type;
+		$this->mqut->qut_pos = $qut_pos;
+		
+		$data = $this->mqut->get_qut_pos_id()->result();
+		echo json_encode($data);
+	}
+	// get_id_qut_pos
+
+	function get_id_qut_pos_plan()
 	{
 		$qup_qut_id = $this->input->post("qut_id");
 		$qup_Position_ID = $this->input->post("pos_id");
@@ -621,7 +635,9 @@ function get_id_qut_pos_plan()
 		$data = $this->mqup->get_quota_plan_id()->result();
 		echo json_encode($data);
 	}
-	// get_id_qut_pos_plan
+	// 	function get_id_qut_pos()
+
+
 
 function quota_plan_edit(){
 
