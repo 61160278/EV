@@ -174,6 +174,7 @@ function check_quota() {
     var check = "";
     var value_quota = 0;
     document.getElementById("submit").disabled = false;
+    
     for (i = 1; i <= 6; i++) {
         check = document.getElementById("quota" + i).value;
 
@@ -187,9 +188,11 @@ function check_quota() {
 
             add_alert();
             $("#submit").attr("disabled", true);
+            // $("#saveData").attr("disabled", true);
         } else if (value_quota == 100) {
             $("#submit").attr("disabled", false);
             $("#show_quota").css("color", "#000000");
+            // $("#saveData").attr("disabled", false);
         }
 
         document.getElementById("show_quota").innerHTML = value_quota;
