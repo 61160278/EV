@@ -370,13 +370,13 @@ function show_qouta() {
             <h2>
                 <font size="6px"><b>Add Quota</b></font>
             </h2>
-            <div class="col-md-9">
+            <div class="col-md-8">
             </div>
-            <div class="col-md-1">
+            <div class="col-md-2">
                 <select class="form-control pull-right margin" aria-controls="example" onChange="select_quota(value)">
                     <option value="">Select</option>
-                    <option value="1">CA</option>
-                    <option value="2">PA</option>
+                    <option value="1">Saraly Increment</option>
+                    <option value="2">Year End Bonus</option>
                 </select>
             </div>
         </div>
