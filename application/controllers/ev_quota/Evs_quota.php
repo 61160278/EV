@@ -138,6 +138,10 @@ class Evs_quota extends MainController_avenxo {
 		$this->mqup->qup_qut_id = $qut_id;
 		$this->mqup->qup_Position_ID = $pos_id;
 		$data['qup_data'] = $this->mqup->get_quota_plan_id()->result(); // show value company all
+
+		$this->load->model('M_evs_pattern_and_year','mpay');
+		$data['year_quota_data'] = $this->mpay->get_by_year(); 
+
 		
 		$this->output('/consent/ev_quota/v_hr_report_curve',$data);
 		}else{
@@ -518,13 +522,11 @@ function quota_actual_insert(){
 	$qua_grad_C = $this->input->post("qua_gradeC"); 
 	$qua_grad_D = $this->input->post("qua_gradeD"); 
 	$qua_total = $this->input->post("sum_actual"); 
+	$qua_pay_id = $this->input->post("year_id"); 
 	$qua_qut_id = $this->input->post("qut_id"); 
 	$qua_Position_ID = $this->input->post("pos_id"); 
 	$qua_qup_id = $this->input->post("qup_id"); 
-//	$ = $this->input->post("year_id"); 
-
-
-
+	
 		$this->load->model("Da_evs_quota_actual","dqua");
 		
 		$this->dqua->qua_id = $qua_id;
@@ -535,6 +537,7 @@ function quota_actual_insert(){
 		$this->dqua->qua_grad_C = $qua_grad_C;
 		$this->dqua->qua_grad_D = $qua_grad_D;
 		$this->dqua->qua_total = $qua_total;
+		$this->dqua->qua_pay_id = $qua_pay_id;
 		$this->dqua->qua_qut_id = $qua_qut_id;
 		$this->dqua->qua_Position_ID = $qua_Position_ID;
 		$this->dqua->qua_qup_id = $qua_qup_id;
@@ -604,7 +607,21 @@ function edit_quota(){
 		$this->dqut->update();
 
 }//edit_quota
-function get_id_qut_pos_plan()
+function get_id_qut_pos()
+	{
+		$qut_type = $this->input->post("quotaType");
+		$qut_pos = $this->input->post("groupPosition");
+		
+		$this->load->model('M_evs_quota','mqut');
+		$this->mqut->qut_type = $qut_type;
+		$this->mqut->qut_pos = $qut_pos;
+		
+		$data = $this->mqut->get_qut_pos_id()->result();
+		echo json_encode($data);
+	}
+	// get_id_qut_pos
+
+	function get_id_qut_pos_plan()
 	{
 		$qup_qut_id = $this->input->post("qut_id");
 		$qup_Position_ID = $this->input->post("pos_id");
@@ -615,7 +632,9 @@ function get_id_qut_pos_plan()
 		$data = $this->mqup->get_quota_plan_id()->result();
 		echo json_encode($data);
 	}
-	// get_id_qut_pos_plan
+	// 	function get_id_qut_pos()
+
+
 
 function quota_plan_edit(){
 

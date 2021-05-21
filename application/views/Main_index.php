@@ -94,7 +94,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text4 text-uppercase mb-1">Menu</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage Form  </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage Form by Amin </div>
                                     </div>
 									<!-- col-2 -->
                                 </div>
@@ -182,7 +182,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text4 text-uppercase mb-1">Menu</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage form-2  </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage form by user  </div>
                                     </div>
 									<!-- col-2 -->
                                 </div>
@@ -196,8 +196,34 @@
                 </div>
                 <!-- End Menu Manage form-2  -->
 
+            <!-- Start Menu Manage form-3 -->
+            <div class="col-xl-4 col-md-6 mb-4">
+                    <a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/index">
+                        <div class="card border4 shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text4 text-uppercase mb-1">Menu</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage form by Department head  </div>
+                                    </div>
+									<!-- col-2 -->
+                                </div>
+								<!-- row -->
+                            </div>
+							<!-- card body -->
+                        </div>
+						<!-- card -->
+                    </a>
+					<!-- a href -->
+                </div>
+                <!-- End Menu Manage form-3  -->
+
+
+
             </div>
             <!-- End content  -->
+
+
 			
 
 

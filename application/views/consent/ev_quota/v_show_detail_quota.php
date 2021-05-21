@@ -46,6 +46,11 @@ th {
     color: black;
     font-size: 20px;
 }
+td {
+    text-align: center;
+    color: black;
+    font-size: 16px;
+}
 
 .font1 {
     text-align: center;

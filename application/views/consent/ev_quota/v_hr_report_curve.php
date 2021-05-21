@@ -44,6 +44,7 @@ th {
 
 td {
     text-align: center;
+    color: black;
     font-size: 16px;
 }
 
@@ -69,11 +70,13 @@ tbody:hover {
 }
 </style>
 <script>
-$(document).ready(function() {
+$(document).ready(function() { 
+   
     check_quota_plan()
     check_quota_actual()
     show_quotaplan()
     document.getElementById("submit").disabled = true;
+     $("#saveData").attr("disabled", true);
 });
 
 function check_quota_plan() {
@@ -122,13 +125,15 @@ function check_quota_actual() {
             $("#show_Actual").css("color", "red");
             add_alert();
             $("#submit").attr("disabled", true);
+            $("#saveData").attr("disabled", true);
         } else if (actual == parseFloat(quota)) {
             $("#submit").attr("disabled", false);
             $("#show_Actual").css("color", "#000000");
+            $("#saveData").attr("disabled", false);
         }
         // if 
-        var qua = quotaActual.toFixed(2);
-        document.getElementById("show_quotaActual" + i).innerHTML = qua;
+       
+        document.getElementById("show_quotaActual" + i).innerHTML = quotaActual;
         document.getElementById("show_Actual").innerHTML = actual;
         document.getElementById("show_sumquotaActual").innerHTML = sumQuotaActual;
         document.getElementById("TOTplan").innerHTML = quota;
@@ -218,7 +223,7 @@ function show_quotaplan() {
     var myChart = new Chart(document.getElementById('myChart'), config); //new Chart
     $('#submit').on('click', function() {
         myChart.destroy();
-        show_linebarChart()
+        show_linebarChart();
     });
 } //show_quotaplan
 
@@ -389,6 +394,8 @@ function insert_quota_actual() {
     console.log(qua_gradeC);
     console.log(qua_gradeD);
     console.log(sum_actual);
+    console.log(year_id);
+
     $.ajax({
         type: "post",
         url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_actual_insert",
@@ -405,7 +412,7 @@ function insert_quota_actual() {
             "qut_id": qut_id,
             "pos_id": pos_id,
             "qup_id": qup_id,
-          //  "year_id": year_id
+            "year_id": year_id
 
         },
         dataType: "JSON",
@@ -632,7 +639,7 @@ function manage_data(qut_id) {
                 onclick="manage_data(<?php echo $value->qut_id;?>)">CANCEL</button>
             <?php } ?>
 
-            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
+            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;" id="saveData"
                 onclick="confirm_save()">SAVE</button>
         </div>
         <br>

@@ -45,7 +45,7 @@ $(document).ready(function() {
     $("#btn_cencel_show").show();
     $("#btn_send_insert").show();
     $("#btn_send_edit").hide();
-
+    show_approve()
     set_tap()
 
 });
@@ -64,7 +64,7 @@ function editmbo() {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form/Evs_form/get_mbo_to_edit",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form_AP/get_mbo_to_edit",
         data: {
             "dtm_emp_id": dtm_emp_id
         },
@@ -78,9 +78,8 @@ function editmbo() {
                 data_row += '<td><center>' + (index + 1) + '</center>'
                 data_row += '<input type="text" id="inp_id' + (index + 1) + '" value="' + row
                     .dtm_id + '" hidden></td>'
-                data_row += '<td>'
-                data_row += '<select class="form-control" id="sdgs_sel' + (index + 1) +
-                    '" onchange="clear_css_sel(' + clear + ')">'
+                    data_row += '<td>'
+                data_row += '<select class="form-control" id="sdgs_sel' + (index + 1) + '" onchange="clear_css_sel(' + clear + ')">'
                 data_row += '<option value="0">---Select SDGs---</option>'
                 data_row += '</select>'
                 data_row += '</td>'
@@ -171,10 +170,10 @@ function update_dataMBO() {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form/Evs_form/update_mbo_by_emp",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form_AP/update_mbo_by_emp",
         data: {
             "idMBO": idMBO,
-            "sdgMBO": sdgMBO,
+            "sdgMBO":sdgMBO,
             "dataMBO": dataMBO,
             "resultMBO": resultMBO,
             "Emp_ID": check_emp_id,
@@ -184,7 +183,7 @@ function update_dataMBO() {
     });
     // ajax
 
-    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id + "";
+    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form_AP/edit_mbo/" + check_emp_id + "";
 
 }
 // function update_dataMBO
@@ -348,13 +347,13 @@ function check_cancel() {
 
 function cancel_form() {
     var check_emp_id = document.getElementById("emp_id").innerHTML;
-    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id + "";
+    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form_AP/edit_mbo/" + check_emp_id + "";
 }
 // function cancel_form
 
 function get_sdgs_mbo(count, sdg) {
 
-    $.get("<?php echo base_url(); ?>ev_form/Evs_form/get_sdgs", function(data) {
+    $.get("<?php echo base_url(); ?>ev_form/Evs_form_AP/get_sdgs", function(data) {
         var obj = JSON.parse(data);
         var data_sel = "";
         obj.forEach((row, index) => {
@@ -453,7 +452,7 @@ function save_approve() {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form/Evs_form/save_approve",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form_AP/save_approve",
         data: {
             "approve1": approve1,
             "approve2": approve2,
@@ -492,7 +491,7 @@ function update_approve() {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form/Evs_form/update_approve",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form_AP/update_approve",
         data: {
             "approve1": approve1,
             "approve2": approve2,
@@ -525,7 +524,7 @@ function show_approve() {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form/Evs_form/get_approve",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form_AP/get_approve",
         data: {
             "evs_emp_id": evs_emp_id
 
@@ -608,192 +607,6 @@ function show_approve() {
 }
 // function show_approve
 
-//********************************************** mbo ******************************* */
-
-function editG_O() {
-
-    var dgo_emp_id = document.getElementById("emp_id").innerHTML;
-    var row_level = document.getElementById("row_level").value;
-    var row_ranges = document.getElementById("row_ranges").value;
-
-    var number = 1;
-    var count_span = 0;
-    var data_row = "";
-    var sdg = [];
-    var col = [];
-
-    for (i = 1; i <= row_level; i++) {
-        col.push(5);
-    }
-    // for push row_level
-
-    for (i = 1; i <= row_ranges; i++) {
-        col.push(2);
-    }
-    // for push row_ranges
-
-    $.ajax({
-        type: "post",
-        dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form/Evs_form/get_g_o_edit",
-        data: {
-            "dgo_emp_id": dgo_emp_id
-        },
-        success: function(data) {
-            console.log("1111 - G&O");
-            console.log(data);
-
-            data.forEach((row, index) => {
-                data_row += '<tr>'
-                if (index == 0) {
-                    data_row += '<td rowspan="' + col[count_span] + '"><center>'
-                    data_row += number
-                    data_row += '</center></td>'
-                    // show index
-
-                    data_row += '<td rowspan="' + col[count_span] + '"><center>'
-                    if (row.dgo_type == 1) {
-                        data_row += '<input type="radio" id="type' + number + '" name="type' +
-                            number +
-                            '"  value="1" checked>'
-                        data_row += '<label>&nbsp;C</label>'
-                        data_row += '<br>'
-                        data_row += '<input type="radio" id="type' + number + '" name="type' +
-                            number +
-                            '" value="2">'
-                        data_row += '<label>&nbsp;D</label>'
-                    }
-                    // if
-                    else {
-                        data_row += '<input type="radio" id="type' + number + '" name="type' +
-                            number +
-                            '"  value="1">'
-                        data_row += '<label>&nbsp;C</label>'
-                        data_row += '<br>'
-                        data_row += '<input type="radio" id="type' + number + '" name="type' +
-                            number +
-                            '" value="2" checked>'
-                        data_row += '<label>&nbsp;D</label>'
-                    }
-                    // else 
-                    data_row += '</center></td>'
-                    // type of G&O
-
-                    sdg.push(row.dgo_sdgs);
-                    data_row += '<td rowspan="' + col[count_span] + '">'
-                    data_row += '<select class="form-control" id="sdgs_sel' + number +
-                        '" onchange="clear_css_sel_G_O(' + number + ')">'
-                    data_row += '<option value="0">---Select SDGs---</option>'
-                    data_row += '</select>'
-                    data_row += '</td>'
-                    // sdgs 
-
-                    data_row += '<td rowspan="' + col[count_span] + '">'
-                    data_row += '<input class="form-control" type="text" id="inp_item' + number +
-                        '" value="' + row.dgo_item + '">'
-                    data_row += '</td>'
-                    // show item 
-
-                    data_row += '<td rowspan="' + col[count_span] + '">'
-                    data_row += '<input class="form-control" type="number" id="weight' + number +
-                        '" min="0" max="100" value="' + row.dgo_weight + '">'
-                    data_row += '</td>'
-                    // show Weight 
-
-                    temp = row.dgo_item;
-                    number++;
-                    count_span++;
-                    // update value
-                }
-                // if
-                else if (temp != row.dgo_item) {
-                    data_row += '<td rowspan="' + col[count_span] + '"><center>'
-                    data_row += number
-                    data_row += '</center></td>'
-                    // show index 
-
-                    data_row += '<td rowspan="' + col[count_span] + '"><center>'
-                    if (row.dgo_type == 1) {
-                        data_row += '<input type="radio" id="type' + number + '" name="type' +
-                            number +
-                            '"  value="1" checked>'
-                        data_row += '<label>&nbsp;C</label>'
-                        data_row += '<br>'
-                        data_row += '<input type="radio" id="type' + number + '" name="type' +
-                            number +
-                            '" value="2">'
-                        data_row += '<label>&nbsp;D</label>'
-                    }
-                    // if
-                    else {
-                        data_row += '<input type="radio" id="type' + number + '" name="type' +
-                            number +
-                            '"  value="1">'
-                        data_row += '<label>&nbsp;C</label>'
-                        data_row += '<br>'
-                        data_row += '<input type="radio" id="type' + number + '" name="type' +
-                            number +
-                            '" value="2" checked>'
-                        data_row += '<label>&nbsp;D</label>'
-                    }
-                    // else 
-                    data_row += '</center></td>'
-                    // type of G&O
-
-                    sdg.push(row.dgo_sdgs);
-                    data_row += '<td rowspan="' + col[count_span] + '">'
-                    data_row += '<select class="form-control" id="sdgs_sel' + number +
-                        '" onchange="clear_css_sel_G_O(' + number + ')">'
-                    data_row += '<option value="0">---Select SDGs---</option>'
-                    data_row += '</select>'
-                    data_row += '</td>'
-                    // sdgs 
-
-                    data_row += '<td rowspan="' + col[count_span] + '">'
-                    data_row += '<input class="form-control" type="text" id="inp_item' + number +
-                        '" value="' + row.dgo_item + '">'
-                    data_row += '</td>'
-                    // show item 
-
-                    data_row += '<td rowspan="' + col[count_span] + '">'
-                    data_row += '<input class="form-control" type="number" id="weight' + number +
-                        '" min="0" max="100" value="' + row.dgo_weight + '">'
-                    data_row += '</td>'
-                    // show Weight 
-
-                    temp = row.dgo_item;
-                    number++;
-                    count_span++;
-                    // update value
-                }
-                // else if
-
-                data_row += '<td>'
-                data_row += '<input class="form-control" type="text" value="' + row.dgol_level +
-                    '">'
-                data_row += '</td>'
-                data_row += '<td>'
-                data_row += '</td>'
-                data_row += '<td>'
-
-                data_row += '</tr>'
-            });
-            // foreach 
-            $("#G_O_Table").html(data_row)
-            get_sdgs_mbo((number - 1), sdg);
-        },
-        // success
-        error: function(data) {
-            console.log("9999 - G&O : error");
-
-        }
-        // error
-    });
-    // ajax
-
-}
-// function editG_O
-
 function set_tap() {
 
     var ps_pos_id = document.getElementById("pos_id").value;
@@ -802,30 +615,25 @@ function set_tap() {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form/Evs_form/get_tap_form",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form_AP/get_tap_form",
         data: {
             "ps_pos_id": ps_pos_id
         },
         success: function(data) {
+            console.log(data);
 
             data.forEach((row, index) => {
                 if (row.ps_form_pe == "MBO") {
                     data_tap += '<li class="active"><a href="#MBO" data-toggle="tab">';
                     data_tap += '<font>MBO</font>';
                     data_tap += '</a></li>';
-                    show_approve()
-                    $("#btn_save").attr("disabled", true);
                     $("#MBO").addClass("active");
-
                 }
                 // if
                 else if (row.ps_form_pe == "G&O") {
                     data_tap += '<li class="active"><a href="#G_O" data-toggle="tab">';
                     data_tap += '<font>G&O</font>';
                     data_tap += '</a></li>';
-                    $("#btn_saveG_O").hide();
-                    $("#G_O").addClass("active");
-
                 }
                 // else if 
                 // check pe tool
@@ -1056,7 +864,7 @@ function set_tap() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
+                                <a href="<?php echo base_url() ?>ev_form/Evs_form_AP/index">
                                     <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
                                 </a>
                                 <!-- cancel to back to main  -->
@@ -1084,256 +892,6 @@ function set_tap() {
                     <!-- form 1 -->
 
                     <!-- ******************************** form 1 ********************************-->
-
-                    <div class="tab-pane" id="G_O">
-                        <br>
-                        <?php foreach($emp_info->result() as $row){?>
-                        <input type="text" id="pos_id" value="<?php echo $row->Position_ID; ?>" hidden>
-                        <input type="text" id="evs_emp_id" value="<?php echo $row->emp_id; ?>" hidden>
-                        <input type="text" id="row_index" value="" hidden>
-
-                        <div class="row">
-                            <div class="col-md-2">
-                                <label class="control-label"><strong>
-                                        <font size="3px">Employee ID : </font>
-                                    </strong></label>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <p id="emp_id"><?php echo $row->Emp_ID; ?></p>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <label class="control-label"><strong>
-                                        <font size="3px">Name : </font>
-                                    </strong></label>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <p id="emp_name"><?php echo $row->Empname_eng; ?></p>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <label class="control-label"><strong>
-                                        <font size="3px">Surname : </font>
-                                    </strong></label>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <p id="emp_lname"><?php echo $row->Empsurname_eng; ?></p>
-                            </div>
-                            <!-- col-md-2 -->
-                        </div>
-                        <!-- row -->
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <label class="control-label"><strong>
-                                        <font size="3px">Section Code : </font>
-                                    </strong></label>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <p id="emp_sec"><?php echo $row->Sectioncode_ID; ?></p>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <label class="control-label"><strong>
-                                        <font size="3px">Department : </font>
-                                    </strong></label>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <p id="emp_dep"><?php echo $row->Department; ?></p>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <label class="control-label"><strong>
-                                        <font size="3px">Position : </font>
-                                    </strong></label>
-                            </div>
-                            <!-- col-md-2 -->
-                            <div class="col-md-2">
-                                <p id="emp_pos"><?php echo $row->Position_name; ?></p>
-                            </div>
-                            <!-- col-md-2 -->
-                        </div>
-                        <!-- row -->
-                        <?php }; ?>
-                        <!-- show infomation employee -->
-
-                        <hr>
-                        <table class="table table-bordered table-striped m-n">
-                            <thead>
-                                <tr>
-                                    <th width="2%">
-                                        <center>
-                                            #
-                                        </center>
-                                    </th>
-                                    <th>
-                                        <center width="5%">
-                                            Type of G&O
-                                        </center>
-                                    </th>
-                                    <th>
-                                        <center width="15%">
-                                            SDGs Goal
-                                        </center>
-                                    </th>
-                                    <th width="30%">
-                                        <center>
-                                            Evaluation Item
-                                        </center>
-                                    </th>
-                                    <th width="10%">
-                                        <center>
-                                            Weight (%)
-                                        </center>
-                                    </th>
-                                    <th width="15%">
-                                        <center>
-                                            Possible Outcomes/Their Ratings
-                                        </center>
-                                    </th>
-                                    <th width="20%">
-                                        <center>Result</center>
-                                    </th>
-                                    <th width="3%">
-                                        <center>Score AxB</center>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody id="G_O_Table">
-                                <?php $num_index = 1;
-                                $temp = "";
-                                $row_level = 0;
-                                $row_ranges = 0;
-                                $count = 0;
-                                $span = 0;
-                                // print_r($g_o_emp);
-
-                                $col = [];
-                                $row_level = $row_index->sfg_index_level;
-                                $row_ranges = $row_index->sfg_index_ranges;
-
-                                for($i = 1; $i <= $row_level; $i++){
-                                    array_push($col,5);
-                                }
-                                // for push row_level
-   
-                                for($i = 1; $i <= $row_ranges; $i++){
-                                    array_push($col,2);
-                                }
-                                // for push row_ranges
-
-                            foreach($g_o_emp as $index => $row){ ?>
-                                <tr>
-                                    <?php if($index == 0){ ?>
-                                    <td rowspan="<?php echo $col[$span] ?>"><?php echo $num_index; ?></td>
-                                    <!-- show index  -->
-                                    <input type="text" id="row_level" value="<?php echo $row_level; ?>" hidden>
-                                    <input type="text" id="row_ranges" value="<?php echo $row_ranges; ?>" hidden>
-                                    <?php 
-                                        if($row->dgo_type == "1"){ ?>
-                                    <td rowspan="<?php echo $col[$span] ?>">Company</td>
-                                    <?php }
-                                    // if 
-                                    else{ ?>
-                                    <td rowspan="<?php echo $col[$span] ?>">Department</td>
-                                    <?php }?>
-                                    <!-- show type  -->
-
-                                    <td rowspan="<?php echo $col[$span] ?>"><?php echo $row->sdg_name_th; ?></td>
-                                    <!-- show sdgs  -->
-
-                                    <td rowspan="<?php echo $col[$span] ?>"><?php echo $row->dgo_item; ?></td>
-                                    <td align="center" rowspan="<?php echo $col[$span] ?>">
-                                        <?php echo $row->dgo_weight; ?></td>
-                                    <!-- show item asd weight  -->
-                                    <?php 
-                                $span++;
-                                $temp = $row->dgo_item;
-                                $num_index++;
-                                }
-                                // if
-                                else if($temp != $row->dgo_item){ ?>
-                                    <td rowspan="<?php echo $col[$span] ?>"><?php echo $num_index; ?></td>
-                                    <!-- show index  -->
-                                    <?php 
-                                        if($row->dgo_type == "1"){ ?>
-                                    <td rowspan="<?php echo $col[$span] ?>">Company</td>
-                                    <?php }
-                                    // if 
-                                    else{ ?>
-                                    <td rowspan="<?php echo $col[$span] ?>">Department</td>
-                                    <?php }?>
-                                    <!-- show type  -->
-
-                                    <td rowspan="<?php echo $col[$span] ?>"><?php echo $row->sdg_name_th; ?></td>
-                                    <!-- show sdgs  -->
-
-                                    <td rowspan="<?php echo $col[$span] ?>"><?php echo $row->dgo_item; ?></td>
-                                    <td align="center" rowspan="<?php echo $col[$span] ?>">
-                                        <?php echo $row->dgo_weight; ?></td>
-                                    <!-- show item asd weight  -->
-                                    <?php 
-                                $span++;
-                                $num_index++;
-                                $temp = $row->dgo_item;    
-                                }
-                                // else if 
-                                else if($temp == $row->dgo_item){ ?>
-                                    <?php }
-                                // else if
-                                ?>
-                                    <td><?php echo $row->dgol_level; ?></td>
-                                    <!-- show level  -->
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <!-- end tr  -->
-                                <?}
-                            // foreach
-                            ?>
-                            </tbody>
-                            <!-- tbody  -->
-
-                            <tfoot>
-                                <td colspan="4"></td>
-                                <td id="show_weightG_O" align="center">100</td>
-                                <td colspan="3"></td>
-                            </tfoot>
-                            <!-- tfoot -->
-                        </table>
-                        <!-- End table level -->
-
-                        <br>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
-                                    <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
-                                </a>
-                                <!-- cancel to back to main  -->
-                                <button class="btn btn-default">CLEAR</button>
-                            </div>
-                            <!-- col-md-6 -->
-
-                            <div class="col-md-6" align="right">
-                                <button class="btn btn-warning" id="btn_editG_O" onclick="editG_O()">EDIT</button>
-                                <button class="btn btn-success" id="btn_saveG_O">SAVE</button>
-                                <button class="btn btn-primary" id="btn_send_insertG_O" data-toggle="modal"
-                                    data-target="#add_app">SEND <i class="fa fa-share-square-o"></i></button>
-                            </div>
-                            <!-- col-md-6 add_app -->
-
-                        </div>
-                        <!-- row -->
-
-                    </div>
-                    <!-- form 1-2 -->
-
-                    <!-- ************************************************************************************ -->
 
                     <div class="tab-pane" id="ACM">
                         <br>
@@ -1543,7 +1101,7 @@ function set_tap() {
                         <hr>
                         <div class="row">
                             <div class="col-md-12">
-                                <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
+                                <a href="<?php echo base_url() ?>ev_form/Evs_form_AP/index">
                                     <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
                                 </a>
                                 <!-- cancel to back to main  -->
