@@ -409,7 +409,7 @@ function manage_data(qut_id) {
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
         <div class="panel-heading">
             <h2>
-                <font size="6px"><b>Report Curve</b></font>
+                <font size="6px"><b>Edit Report Curve</b></font>
             </h2>
             <div class="panel-ctrls" data-actions-container="">
             </div>
