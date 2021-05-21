@@ -617,8 +617,20 @@ function editG_O() {
     var row_ranges = document.getElementById("row_ranges").value;
 
     var number = 1;
+    var count_span = 0;
     var data_row = "";
     var sdg = [];
+    var col = [];
+
+    for (i = 1; i <= row_level; i++) {
+        col.push(5);
+    }
+    // for push row_level
+
+    for (i = 1; i <= row_ranges; i++) {
+        col.push(2);
+    }
+    // for push row_ranges
 
     $.ajax({
         type: "post",
@@ -634,13 +646,12 @@ function editG_O() {
             data.forEach((row, index) => {
                 data_row += '<tr>'
                 if (index == 0) {
-                    data_row += '<td><center>'
+                    data_row += '<td rowspan="' + col[count_span] + '"><center>'
                     data_row += number
                     data_row += '</center></td>'
                     // show index
-                    
-                    
-                    data_row += '<td><center>'
+
+                    data_row += '<td rowspan="' + col[count_span] + '"><center>'
                     if (row.dgo_type == 1) {
                         data_row += '<input type="radio" id="type' + number + '" name="type' +
                             number +
@@ -667,8 +678,9 @@ function editG_O() {
                     // else 
                     data_row += '</center></td>'
                     // type of G&O
+
                     sdg.push(row.dgo_sdgs);
-                    data_row += '<td>'
+                    data_row += '<td rowspan="' + col[count_span] + '">'
                     data_row += '<select class="form-control" id="sdgs_sel' + number +
                         '" onchange="clear_css_sel_G_O(' + number + ')">'
                     data_row += '<option value="0">---Select SDGs---</option>'
@@ -676,13 +688,13 @@ function editG_O() {
                     data_row += '</td>'
                     // sdgs 
 
-                    data_row += '<td>'
+                    data_row += '<td rowspan="' + col[count_span] + '">'
                     data_row += '<input class="form-control" type="text" id="inp_item' + number +
                         '" value="' + row.dgo_item + '">'
                     data_row += '</td>'
                     // show item 
 
-                    data_row += '<td>'
+                    data_row += '<td rowspan="' + col[count_span] + '">'
                     data_row += '<input class="form-control" type="number" id="weight' + number +
                         '" min="0" max="100" value="' + row.dgo_weight + '">'
                     data_row += '</td>'
@@ -690,16 +702,17 @@ function editG_O() {
 
                     temp = row.dgo_item;
                     number++;
+                    count_span++;
                     // update value
                 }
                 // if
                 else if (temp != row.dgo_item) {
-                    data_row += '<td><center>'
+                    data_row += '<td rowspan="' + col[count_span] + '"><center>'
                     data_row += number
                     data_row += '</center></td>'
                     // show index 
 
-                    data_row += '<td><center>'
+                    data_row += '<td rowspan="' + col[count_span] + '"><center>'
                     if (row.dgo_type == 1) {
                         data_row += '<input type="radio" id="type' + number + '" name="type' +
                             number +
@@ -728,7 +741,7 @@ function editG_O() {
                     // type of G&O
 
                     sdg.push(row.dgo_sdgs);
-                    data_row += '<td>'
+                    data_row += '<td rowspan="' + col[count_span] + '">'
                     data_row += '<select class="form-control" id="sdgs_sel' + number +
                         '" onchange="clear_css_sel_G_O(' + number + ')">'
                     data_row += '<option value="0">---Select SDGs---</option>'
@@ -736,13 +749,13 @@ function editG_O() {
                     data_row += '</td>'
                     // sdgs 
 
-                    data_row += '<td>'
+                    data_row += '<td rowspan="' + col[count_span] + '">'
                     data_row += '<input class="form-control" type="text" id="inp_item' + number +
                         '" value="' + row.dgo_item + '">'
                     data_row += '</td>'
                     // show item 
 
-                    data_row += '<td>'
+                    data_row += '<td rowspan="' + col[count_span] + '">'
                     data_row += '<input class="form-control" type="number" id="weight' + number +
                         '" min="0" max="100" value="' + row.dgo_weight + '">'
                     data_row += '</td>'
@@ -750,14 +763,24 @@ function editG_O() {
 
                     temp = row.dgo_item;
                     number++;
+                    count_span++;
                     // update value
                 }
                 // else if
+
+                data_row += '<td>'
+                data_row += '<input class="form-control" type="text" value="' + row.dgol_level +
+                    '">'
+                data_row += '</td>'
+                data_row += '<td>'
+                data_row += '</td>'
+                data_row += '<td>'
+
                 data_row += '</tr>'
             });
             // foreach 
             $("#G_O_Table").html(data_row)
-            get_sdgs_mbo((number-1), sdg);
+            get_sdgs_mbo((number - 1), sdg);
         },
         // success
         error: function(data) {
@@ -1189,6 +1212,7 @@ function set_tap() {
                                 $row_ranges = 0;
                                 $count = 0;
                                 $span = 0;
+                                // print_r($g_o_emp);
 
                                 $col = [];
                                 $row_level = $row_index->sfg_index_level;
@@ -1288,7 +1312,10 @@ function set_tap() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <button class="btn btn-inverse">BACK</button>
+                                <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
+                                    <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
+                                </a>
+                                <!-- cancel to back to main  -->
                                 <button class="btn btn-default">CLEAR</button>
                             </div>
                             <!-- col-md-6 -->

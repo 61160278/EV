@@ -645,7 +645,7 @@ function saveG_O() {
             // foreach 
 
             saveG_O_level(dgo_data);
-            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id + "";
+            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_g_o/" + check_emp_id + "";
 
         }
         // success
