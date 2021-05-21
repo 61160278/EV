@@ -402,8 +402,16 @@ class Evs_form extends MainController_avenxo {
 	function get_mbo_to_edit(){
 
 		$dtm_emp_id = $this->input->post("dtm_emp_id");
+		$pay_id = 2;
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $dtm_emp_id;
+		$this->memp->emp_pay_id = $pay_id;
+		$data['emp_info'] = $this->memp->get_by_empid();
+		$tep = $data['emp_info']->row();
+
 		$this->load->model('M_evs_data_mbo','medm');
 		$this->medm->dtm_emp_id = $dtm_emp_id;
+		$this->medm->dtm_evs_emp_id = $tep->emp_id;
 		$data = $this->medm->get_by_empID()->result();
 
 		echo json_encode($data);
