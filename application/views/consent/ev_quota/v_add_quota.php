@@ -174,6 +174,7 @@ function check_quota() {
     var check = "";
     var value_quota = 0;
     document.getElementById("submit").disabled = false;
+    
     for (i = 1; i <= 6; i++) {
         check = document.getElementById("quota" + i).value;
 
@@ -187,9 +188,11 @@ function check_quota() {
 
             add_alert();
             $("#submit").attr("disabled", true);
+            // $("#saveData").attr("disabled", true);
         } else if (value_quota == 100) {
             $("#submit").attr("disabled", false);
             $("#show_quota").css("color", "#000000");
+            // $("#saveData").attr("disabled", false);
         }
 
         document.getElementById("show_quota").innerHTML = value_quota;
@@ -370,13 +373,13 @@ function show_qouta() {
             <h2>
                 <font size="6px"><b>Add Quota</b></font>
             </h2>
-            <div class="col-md-8">
+            <div class="col-md-9">
             </div>
-            <div class="col-md-2">
+            <div class="col-md-1">
                 <select class="form-control pull-right margin" aria-controls="example" onChange="select_quota(value)">
                     <option value="">Select</option>
-                    <option value="1">Saraly Increment</option>
-                    <option value="2">Year End Bonus</option>
+                    <option value="1">CA</option>
+                    <option value="2">PA</option>
                 </select>
             </div>
         </div>
