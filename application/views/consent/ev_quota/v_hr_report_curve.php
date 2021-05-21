@@ -78,7 +78,9 @@ $(document).ready(function() {
     document.getElementById("submit").disabled = true;
      $("#saveData").attr("disabled", true);
 });
-
+$(document).ready(function() {
+    $("#saveData").attr("disabled", true);
+});
 function check_quota_plan() {
 
     var check = "";
@@ -300,13 +302,15 @@ function show_linebarChart() {
     });
 
     $(document).ready(function() {
-        $("#reset").click(function() {
-            for (var i = 1; i <= 6; i++) {
+        $("#reset").click(function() { 
+             for (var i = 1; i <= 6; i++) {
                 $("#quotaActual" + i).attr("disabled", false);
             }
-
+           
         });
-    });
+    //      $("#submit").attr("disabled", true);
+    //         check_quota_actual()
+    // });
 
 } //show_linebarChart
 

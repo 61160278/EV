@@ -124,12 +124,12 @@ tbody:hover {
  * @author   Lapatrada Puttamongkol
  * @Create Date 2564-04-20
  */
-// $(document).ready(function() {
-//     $("#reset").click(function() {
-//         $("#quotaPlan").attr("disabled", false);
-//     }); //click
-//     show_quotaplan()
-// }); //ready
+$(document).ready(function() {
+    $("#reset").click(function() {
+        $("#quotaPlan").attr("disabled", false);
+    }); //click
+    show_quotaplan()
+}); //ready
 $(document).ready(function() {
     $("#saveData").attr("disabled", true);
 
