@@ -61,6 +61,9 @@ function select_quota(value) {
     }
 } //select_quota
 
+$(document).ready(function() {
+    $("#saveData").attr("disabled", true);
+});
 
 function insert_quota() {
     var check = "";
@@ -185,13 +188,14 @@ function check_quota() {
         }
         // if 
         if (value_quota > 100) {
+            $("#saveData").attr("disabled", true);
             $("#show_quota").css("color", "red");
-
             add_alert();
             $("#submit").attr("disabled", true);
         } else if (value_quota == 100) {
             $("#submit").attr("disabled", false);
             $("#show_quota").css("color", "#000000");
+            $("#saveData").attr("disabled", false);
         }
 
         document.getElementById("show_quota").innerHTML = value_quota;
@@ -209,7 +213,7 @@ function confirm_save() {
     // insert_quota();
     // $('#warning_save').modal('show');
 
-    
+
     var quotaType = document.getElementById("quotaType").value; // value of year id
     var groupPosition = document.getElementById("groupPosition").value;
     if (groupPosition == 0) {

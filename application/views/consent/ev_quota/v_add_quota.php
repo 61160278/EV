@@ -60,7 +60,10 @@ function select_quota(value) {
         window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_ca";
     }
 } //select_quota
+$(document).ready(function() {
+    $("#saveData").attr("disabled", true);
 
+});
 
 function insert_quota() {
     var check = "";
@@ -174,7 +177,7 @@ function check_quota() {
     var check = "";
     var value_quota = 0;
     document.getElementById("submit").disabled = false;
-    
+
     for (i = 1; i <= 6; i++) {
         check = document.getElementById("quota" + i).value;
 
@@ -184,15 +187,15 @@ function check_quota() {
         }
         // if 
         if (value_quota > 100) {
+            $("#saveData").attr("disabled", true);
             $("#show_quota").css("color", "red");
-
             add_alert();
             $("#submit").attr("disabled", true);
-            // $("#saveData").attr("disabled", true);
+
         } else if (value_quota == 100) {
             $("#submit").attr("disabled", false);
             $("#show_quota").css("color", "#000000");
-            // $("#saveData").attr("disabled", false);
+            $("#saveData").attr("disabled", false);
         }
 
         document.getElementById("show_quota").innerHTML = value_quota;
@@ -623,10 +626,10 @@ function show_qouta() {
 
             <div class="modal-footer">
                 <div class="btn-group pull-right">
-                  
+
                     <button type="button" class="btn btn-success" data-dismiss="modal"
                         onclick="main_quota()">Yes</button>
-                  
+
 
                 </div>
 
