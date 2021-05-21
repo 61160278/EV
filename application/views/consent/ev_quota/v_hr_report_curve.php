@@ -76,6 +76,7 @@ $(document).ready(function() {
     check_quota_actual()
     show_quotaplan()
     document.getElementById("submit").disabled = true;
+     $("#saveData").attr("disabled", true);
 });
 
 function check_quota_plan() {
@@ -124,9 +125,11 @@ function check_quota_actual() {
             $("#show_Actual").css("color", "red");
             add_alert();
             $("#submit").attr("disabled", true);
+            $("#saveData").attr("disabled", true);
         } else if (actual == parseFloat(quota)) {
             $("#submit").attr("disabled", false);
             $("#show_Actual").css("color", "#000000");
+            $("#saveData").attr("disabled", false);
         }
         // if 
        
@@ -636,7 +639,7 @@ function manage_data(qut_id) {
                 onclick="manage_data(<?php echo $value->qut_id;?>)">CANCEL</button>
             <?php } ?>
 
-            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
+            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;" id="saveData"
                 onclick="confirm_save()">SAVE</button>
         </div>
         <br>
