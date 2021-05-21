@@ -35,6 +35,7 @@ th {
 var count = 0;
 
 $(document).ready(function() {
+
    
 });
 // document ready
@@ -44,24 +45,18 @@ $(document).ready(function() {
 </script>
 <!-- script -->
 
+
+
 <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
+        <div class="panel panel-indigo" >
             <div class="panel-heading" height="50px">
                 <h2 id="tabmenu"> Form </h2>
-                <div id="tabmenu">
-                    <ul class="nav nav-tabs pull-right tabdrop" id="show_tap">
-                    </ul>
-                </div>
             </div>
             <!-- heading -->
 
             <div class="panel-body">
-                <div class="tab-content">
-
-                    <!-- ************************************************************************************ -->
-
-
+            
                     <div class="tab-pane" id="ACM">
                         <br>
                         <?php foreach($emp_info->result() as $row){?>
@@ -135,7 +130,7 @@ $(document).ready(function() {
                             <!-- col-md-2 -->
                         </div>
                         <!-- row -->
-                        <?php }; ?>
+                        <?php } ?>
                         <!-- show infomation employee -->
                         <hr>
 
@@ -286,7 +281,7 @@ $(document).ready(function() {
 
                     <!-- *************************************************-->
 
-                </div>
+                
                 <!-- tab-content -->
             </div>
             <!-- body -->

@@ -94,7 +94,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text4 text-uppercase mb-1">Menu</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage Form  </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage Form by Amin </div>
                                     </div>
 									<!-- col-2 -->
                                 </div>
@@ -182,7 +182,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text4 text-uppercase mb-1">Menu</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage form-2  </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage form by user  </div>
                                     </div>
 									<!-- col-2 -->
                                 </div>
@@ -204,7 +204,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text4 text-uppercase mb-1">Menu</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage form-3  </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage form by Department head  </div>
                                     </div>
 									<!-- col-2 -->
                                 </div>
