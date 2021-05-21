@@ -608,6 +608,169 @@ function show_approve() {
 }
 // function show_approve
 
+//********************************************** mbo ******************************* */
+
+function editG_O() {
+
+    var dgo_emp_id = document.getElementById("emp_id").innerHTML;
+    var row_level = document.getElementById("row_level").value;
+    var row_ranges = document.getElementById("row_ranges").value;
+
+    var number = 1;
+    var data_row = "";
+    var sdg = [];
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/get_g_o_edit",
+        data: {
+            "dgo_emp_id": dgo_emp_id
+        },
+        success: function(data) {
+            console.log("1111 - G&O");
+            console.log(data);
+
+            data.forEach((row, index) => {
+                data_row += '<tr>'
+                if (index == 0) {
+                    data_row += '<td><center>'
+                    data_row += number
+                    data_row += '</center></td>'
+                    // show index
+                    
+                    
+                    data_row += '<td><center>'
+                    if (row.dgo_type == 1) {
+                        data_row += '<input type="radio" id="type' + number + '" name="type' +
+                            number +
+                            '"  value="1" checked>'
+                        data_row += '<label>&nbsp;C</label>'
+                        data_row += '<br>'
+                        data_row += '<input type="radio" id="type' + number + '" name="type' +
+                            number +
+                            '" value="2">'
+                        data_row += '<label>&nbsp;D</label>'
+                    }
+                    // if
+                    else {
+                        data_row += '<input type="radio" id="type' + number + '" name="type' +
+                            number +
+                            '"  value="1">'
+                        data_row += '<label>&nbsp;C</label>'
+                        data_row += '<br>'
+                        data_row += '<input type="radio" id="type' + number + '" name="type' +
+                            number +
+                            '" value="2" checked>'
+                        data_row += '<label>&nbsp;D</label>'
+                    }
+                    // else 
+                    data_row += '</center></td>'
+                    // type of G&O
+                    sdg.push(row.dgo_sdgs);
+                    data_row += '<td>'
+                    data_row += '<select class="form-control" id="sdgs_sel' + number +
+                        '" onchange="clear_css_sel_G_O(' + number + ')">'
+                    data_row += '<option value="0">---Select SDGs---</option>'
+                    data_row += '</select>'
+                    data_row += '</td>'
+                    // sdgs 
+
+                    data_row += '<td>'
+                    data_row += '<input class="form-control" type="text" id="inp_item' + number +
+                        '" value="' + row.dgo_item + '">'
+                    data_row += '</td>'
+                    // show item 
+
+                    data_row += '<td>'
+                    data_row += '<input class="form-control" type="number" id="weight' + number +
+                        '" min="0" max="100" value="' + row.dgo_weight + '">'
+                    data_row += '</td>'
+                    // show Weight 
+
+                    temp = row.dgo_item;
+                    number++;
+                    // update value
+                }
+                // if
+                else if (temp != row.dgo_item) {
+                    data_row += '<td><center>'
+                    data_row += number
+                    data_row += '</center></td>'
+                    // show index 
+
+                    data_row += '<td><center>'
+                    if (row.dgo_type == 1) {
+                        data_row += '<input type="radio" id="type' + number + '" name="type' +
+                            number +
+                            '"  value="1" checked>'
+                        data_row += '<label>&nbsp;C</label>'
+                        data_row += '<br>'
+                        data_row += '<input type="radio" id="type' + number + '" name="type' +
+                            number +
+                            '" value="2">'
+                        data_row += '<label>&nbsp;D</label>'
+                    }
+                    // if
+                    else {
+                        data_row += '<input type="radio" id="type' + number + '" name="type' +
+                            number +
+                            '"  value="1">'
+                        data_row += '<label>&nbsp;C</label>'
+                        data_row += '<br>'
+                        data_row += '<input type="radio" id="type' + number + '" name="type' +
+                            number +
+                            '" value="2" checked>'
+                        data_row += '<label>&nbsp;D</label>'
+                    }
+                    // else 
+                    data_row += '</center></td>'
+                    // type of G&O
+
+                    sdg.push(row.dgo_sdgs);
+                    data_row += '<td>'
+                    data_row += '<select class="form-control" id="sdgs_sel' + number +
+                        '" onchange="clear_css_sel_G_O(' + number + ')">'
+                    data_row += '<option value="0">---Select SDGs---</option>'
+                    data_row += '</select>'
+                    data_row += '</td>'
+                    // sdgs 
+
+                    data_row += '<td>'
+                    data_row += '<input class="form-control" type="text" id="inp_item' + number +
+                        '" value="' + row.dgo_item + '">'
+                    data_row += '</td>'
+                    // show item 
+
+                    data_row += '<td>'
+                    data_row += '<input class="form-control" type="number" id="weight' + number +
+                        '" min="0" max="100" value="' + row.dgo_weight + '">'
+                    data_row += '</td>'
+                    // show Weight 
+
+                    temp = row.dgo_item;
+                    number++;
+                    // update value
+                }
+                // else if
+                data_row += '</tr>'
+            });
+            // foreach 
+            $("#G_O_Table").html(data_row)
+            get_sdgs_mbo((number-1), sdg);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 - G&O : error");
+
+        }
+        // error
+    });
+    // ajax
+
+}
+// function editG_O
+
 function set_tap() {
 
     var ps_pos_id = document.getElementById("pos_id").value;
@@ -638,6 +801,7 @@ function set_tap() {
                     data_tap += '<li class="active"><a href="#G_O" data-toggle="tab">';
                     data_tap += '<font>G&O</font>';
                     data_tap += '</a></li>';
+                    $("#btn_saveG_O").hide();
                     $("#G_O").addClass("active");
 
                 }
@@ -1045,6 +1209,8 @@ function set_tap() {
                                     <?php if($index == 0){ ?>
                                     <td rowspan="<?php echo $col[$span] ?>"><?php echo $num_index; ?></td>
                                     <!-- show index  -->
+                                    <input type="text" id="row_level" value="<?php echo $row_level; ?>" hidden>
+                                    <input type="text" id="row_ranges" value="<?php echo $row_ranges; ?>" hidden>
                                     <?php 
                                         if($row->dgo_type == "1"){ ?>
                                     <td rowspan="<?php echo $col[$span] ?>">Company</td>
@@ -1128,7 +1294,10 @@ function set_tap() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-success">SAVE</button>
+                                <button class="btn btn-warning" id="btn_editG_O" onclick="editG_O()">EDIT</button>
+                                <button class="btn btn-success" id="btn_saveG_O">SAVE</button>
+                                <button class="btn btn-primary" id="btn_send_insertG_O" data-toggle="modal"
+                                    data-target="#add_app">SEND <i class="fa fa-share-square-o"></i></button>
                             </div>
                             <!-- col-md-6 add_app -->
 
