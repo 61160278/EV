@@ -44,6 +44,7 @@ th {
 
 td {
     text-align: center;
+    color: black;
     font-size: 16px;
 }
 
@@ -422,7 +423,7 @@ function insert_quota_actual() {
 
 function manage_data(qut_id) {
     console.log(qut_id);
-    // window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
+    window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
 } //manage_data
 </script>
 <div class="col-md-12">
