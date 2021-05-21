@@ -11,7 +11,11 @@ td {
 
     text-align: left;
 }
+#th_empty {
 
+border-top: 1px solid white;
+border-bottom: 1px solid white;
+}
 #t01 {}
 
 .header{
