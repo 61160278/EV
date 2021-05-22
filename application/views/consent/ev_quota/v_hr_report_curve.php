@@ -129,14 +129,7 @@ function check_quota_actual() {
             add_alert();
             $("#submit").attr("disabled", true);
             $("#saveData").attr("disabled", true);
-        }
-        //else if (actual  < parseFloat(quota)) {
-        //     $("#show_Actual").css("color", "red");
-        //     add_alert();
-        //     $("#submit").attr("disabled", true);
-        //     $("#saveData").attr("disabled", true);
-        // } 
-        else if (actual == parseFloat(quota)) {
+        }else if (actual == parseFloat(quota)) {
             $("#submit").attr("disabled", false);
             $("#show_Actual").css("color", "#000000");
             $("#saveData").attr("disabled", false);

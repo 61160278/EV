@@ -129,12 +129,10 @@ $(document).ready(function() {
     $("#reset").click(function() {
         $("#quotaPlan").attr("disabled", false);
     }); //click
-    show_quotaplan()
+    show_quotaplan() 
+     $("#saveData").attr("disabled", true);
 }); //ready
-$(document).ready(function() {
-    $("#saveData").attr("disabled", true);
 
-});
 
 function check_quota_plan() {
     var check = "";
@@ -144,7 +142,7 @@ function check_quota_plan() {
     check = document.getElementById("quotaPlan").value;
     console.log(check);
     if (check == "") {
-        //     // $("#saveData").attr("disabled", false);
+        //     // 
             for (var i = 1; i <= 6; i++) {
                
                  console.log("123456 : "+check);
@@ -152,7 +150,7 @@ function check_quota_plan() {
              document.getElementById("show_quotaPlan" + i).innerHTML = check;
             } //for
     } else {
-
+$("#saveData").attr("disabled", false);
         for (var i = 1; i <= 6; i++) {
 
             quota = document.getElementById("quota" + i).innerHTML;
