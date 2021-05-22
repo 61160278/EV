@@ -70,17 +70,18 @@ tbody:hover {
 }
 </style>
 <script>
-$(document).ready(function() { 
-   
+$(document).ready(function() {
+
     check_quota_plan()
     check_quota_actual()
     show_quotaplan()
     document.getElementById("submit").disabled = true;
-     $("#saveData").attr("disabled", true);
+    $("#saveData").attr("disabled", true);
 });
 $(document).ready(function() {
     $("#saveData").attr("disabled", true);
 });
+
 function check_quota_plan() {
 
     var check = "";
@@ -128,13 +129,20 @@ function check_quota_actual() {
             add_alert();
             $("#submit").attr("disabled", true);
             $("#saveData").attr("disabled", true);
-        } else if (actual == parseFloat(quota)) {
+        }
+        //else if (actual  < parseFloat(quota)) {
+        //     $("#show_Actual").css("color", "red");
+        //     add_alert();
+        //     $("#submit").attr("disabled", true);
+        //     $("#saveData").attr("disabled", true);
+        // } 
+        else if (actual == parseFloat(quota)) {
             $("#submit").attr("disabled", false);
             $("#show_Actual").css("color", "#000000");
             $("#saveData").attr("disabled", false);
         }
         // if 
-       
+
         document.getElementById("show_quotaActual" + i).innerHTML = quotaActual;
         document.getElementById("show_Actual").innerHTML = actual;
         document.getElementById("show_sumquotaActual").innerHTML = sumQuotaActual;
@@ -302,15 +310,16 @@ function show_linebarChart() {
     });
 
     $(document).ready(function() {
-        $("#reset").click(function() { 
-             for (var i = 1; i <= 6; i++) {
+        $("#reset").click(function() {
+
+            for (var i = 1; i <= 6; i++) {
                 $("#quotaActual" + i).attr("disabled", false);
             }
-           
+            $("#submit").attr("disabled", true);
         });
-    //      $("#submit").attr("disabled", true);
-    //         check_quota_actual()
-    // });
+
+
+    });
 
 } //show_linebarChart
 
@@ -430,7 +439,7 @@ function insert_quota_actual() {
 
 function manage_data(qut_id) {
     console.log(qut_id);
-    window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
+    window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/manage_quota/" + qut_id;
 } //manage_data
 </script>
 <div class="col-md-12">
@@ -622,7 +631,8 @@ function manage_data(qut_id) {
                                 <div class="col-md-offset-10">
                                     <button class="btn-success btn" id="submit" type="submit"
                                         onclick="show_linebarChart()">SUBMIT</button>
-                                    <button class="btn btn-warning" type="reset" id="reset">edit</button>
+                                    <button class="btn btn-warning" type="reset" id="reset"
+                                        onclick="check_quota_actual()">edit</button>
                                 </div>
                                 <br>
 

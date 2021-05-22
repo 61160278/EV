@@ -298,7 +298,7 @@ function show_linebarChart() {
             for (var i = 1; i <= 6; i++) {
                 $("#quotaActual" + i).attr("disabled", false);
             }
-
+            $("#submit").attr("disabled", true);
         });
     });
 

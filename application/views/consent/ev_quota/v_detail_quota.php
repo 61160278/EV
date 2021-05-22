@@ -46,6 +46,7 @@ th {
     color: black;
     font-size: 20px;
 }
+
 td {
     text-align: center;
     color: black;
@@ -134,6 +135,7 @@ $(document).ready(function() {
     $("#saveData").attr("disabled", true);
 
 });
+
 function check_quota_plan() {
     var check = "";
     var value_quotaPlan = 0;
@@ -141,18 +143,25 @@ function check_quota_plan() {
 
     check = document.getElementById("quotaPlan").value;
     console.log(check);
-    if (check != "") {
-     $("#saveData").attr("disabled", false);
-    value_quotaPlan = null;
+    if (check == null) {
+        //     // $("#saveData").attr("disabled", false);
+            for (var i = 1; i <= 6; i++) {
+               
+        //         console.log("123456 : "+value_quotaPlan);
 
+             document.getElementById("show_quotaPlan" + i).innerHTML = check;
+            } //for
+    } else {
+
+        for (var i = 1; i <= 6; i++) {
+
+            quota = document.getElementById("quota" + i).innerHTML;
+            value_quotaPlan = parseFloat(check) * quota / 100;
+            document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
+
+
+        } //for
     }
-    for (var i = 1; i <= 6; i++) {
-        quota = document.getElementById("quota" + i).innerHTML;
-        value_quotaPlan = parseFloat(check) * quota / 100;
-        document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
-
-
-    } //for
 } //check_quota_plan
 
 function show_quotaplan() {
@@ -304,13 +313,13 @@ function insert_quota_plan() {
         var year = datedata.getFullYear();
         // get date form new date() 
         var savedate = year + "-" + month + "-" + day;
-       
-        
+
+
         <?php foreach($year_quota_data->result() as $value){ ?>
-        if(year == "<?php echo $value->pay_year;?>"){
-        var year_id = <?php echo $value->pay_id;?>
+        if (year == "<?php echo $value->pay_year;?>") {
+            var year_id = <?php echo $value->pay_id;?>
         }
-            <?php } ?>
+        <?php } ?>
         for (var i = 1; i <= 6; i++) {
             quota = document.getElementById("quota" + i).innerHTML;
             value_quotaPlan = parseFloat(check) * quota / 100;
