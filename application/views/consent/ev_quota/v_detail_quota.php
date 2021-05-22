@@ -143,11 +143,11 @@ function check_quota_plan() {
 
     check = document.getElementById("quotaPlan").value;
     console.log(check);
-    if (check == null) {
+    if (check == "") {
         //     // $("#saveData").attr("disabled", false);
             for (var i = 1; i <= 6; i++) {
                
-        //         console.log("123456 : "+value_quotaPlan);
+                 console.log("123456 : "+check);
 
              document.getElementById("show_quotaPlan" + i).innerHTML = check;
             } //for
