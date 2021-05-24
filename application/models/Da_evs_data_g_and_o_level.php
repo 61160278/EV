@@ -51,10 +51,10 @@ class Da_evs_data_g_and_o_level extends evs_model {
 	function update() {
 	
 	 	$sql = "UPDATE evs_database.evs_data_g_and_o_level 
-	 			SET dgol_level=?, dgol_dgo_id=?
+	 			SET dgol_level=?
 	 			WHERE dgol_id=?";
 		
-		$this->db->query($sql, array($this->dgol_level, $this->dgol_dgo_id,$this->dgol_id));
+		$this->db->query($sql, array($this->dgol_level,$this->dgol_id));
 		 
 	 }
 

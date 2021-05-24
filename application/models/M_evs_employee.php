@@ -191,7 +191,21 @@ class M_evs_employee extends Da_evs_employee {
 			}//get_all_emp 
 		
 
-		
+		/*
+	* get_by_evs_emp_id
+	* 
+	* @input dta_id
+	* @output dta_id, dta_data_acm_name
+	* @author jakkarin pimpaeng
+	* @update Date 2563-10-26
+	*/
+	function get_by_evs_emp_id() {	
+		$sql = "SELECT * 
+				FROM evs_database.evs_employee
+				WHERE emp_employee_id=? AND emp_pay_id = ?";
+		$query = $this->db->query($sql, array($this->emp_employee_id,$this->emp_pay_id));
+		return $query;
+	}
 
 	
 }

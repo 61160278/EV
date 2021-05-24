@@ -479,7 +479,7 @@ function createG_O() {
                 // input
                 data_row += '<td>'
                 data_row += '<input class="form-control" type="number" id="weight' + number +
-                    '"  onkeyup="check_weightG_O()" min="0" max="100">'
+                    '"  onchange="check_weightG_O()" min="0" max="100">'
                 data_row += '</td>'
                 // Weight 
                 data_row += '<td>'
@@ -798,7 +798,7 @@ function checkG_O() {
     }
     // for
     if (num == 0) {
-        saveG_O()
+        $("#save_g_o").modal('show');
         console.log("true save");
         return true;
     }
@@ -1611,3 +1611,42 @@ function set_tap() {
     <!-- modal-dialog -->
 </div>
 <!-- End Modal check-->
+
+<!-- Modal save -->
+<div class="modal fade" id="save_g_o" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:gray;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b></font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Do you want to Save Data YES or NO ?</font>
+                    </b></h2>
+            </div>
+            <!-- modal header -->
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="focusedinput" class="col-sm-12 control-label" align="center">Please verify the accuracy
+                        of the information.</label>
+                </div>
+                <!-- Group Name -->
+            </div>
+            <!-- modal-body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-left">
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                </div>
+                <!--<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_sdm">-->
+                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="saveG_O()">SAVE</button>
+                <!--</a>-->
+            </div>
+            <!-- modal-footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal save-->

@@ -144,19 +144,23 @@ function set_tap() {
             "ps_pos_id": ps_pos_id
         },
         success: function(data) {
-            console.log(data);
 
             data.forEach((row, index) => {
                 if (row.ps_form_pe == "MBO") {
                     data_tap += '<li class="active"><a href="#MBO" data-toggle="tab">';
                     data_tap += '<font>MBO</font>';
                     data_tap += '</a></li>';
+                    show_approve()
+                    $("#MBO").addClass("active");
+
                 }
                 // if
                 else if (row.ps_form_pe == "G&O") {
                     data_tap += '<li class="active"><a href="#G_O" data-toggle="tab">';
                     data_tap += '<font>G&O</font>';
                     data_tap += '</a></li>';
+                    $("#G_O").addClass("active");
+
                 }
                 // else if 
                 // check pe tool

@@ -128,6 +128,7 @@ $(document).ready(function() {
         $("#quotaPlan").attr("disabled", false);
     }); //click
     show_quotaplan()
+    $("#saveData").attr("disabled", true);
 }); //ready
 
 function check_quota_plan() {
@@ -137,18 +138,27 @@ function check_quota_plan() {
 
     check = document.getElementById("quotaPlan").value;
     console.log(check);
-    // if (check == "") {
-    //  $("#submit").attr("disabled", true);
-    //value_quotaPlan = null;
+    if (check == "") {
+    
+            for (var i = 1; i <= 6; i++) {
+               
+                 console.log("123456 : "+check);
+
+             document.getElementById("show_quotaPlan" + i).innerHTML = check;
+            } //for
+    } else {
+        $("#saveData").attr("disabled", false);
+        for (var i = 1; i <= 6; i++) {
+
+            quota = document.getElementById("quota" + i).innerHTML;
+            value_quotaPlan = parseFloat(check) * quota / 100;
+            document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
+
+
+        } //for
+    }
    
-    //}
-    for (var i = 1; i <= 6; i++) {
-        quota = document.getElementById("quota" + i).innerHTML;
-        value_quotaPlan = parseFloat(check) * quota / 100;
-        document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
-
-
-    } //for
+ 
 } //check_quota_plan
 
 function show_quotaplan() {
@@ -468,7 +478,7 @@ function manage_data(qut_id) {
             <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
             </a>
             <?php } ?>
-            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
+            <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;" id="saveData"
                 onclick="confirm_save()">SAVE</button>
         </div>
     </div>
