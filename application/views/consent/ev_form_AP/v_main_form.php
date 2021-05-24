@@ -117,7 +117,7 @@ function validate_his() {
                     <div class="col-md-2" align="center">
                     </div>
                     <div class="col-md-2" align="center">
-                        <a data-toggle="modal" href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/historyGCM">
+                        <a data-toggle="modal" href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/createGCM">
                             <div class="info-tile ">
                                 <div class="tile-icon"><i class="ti ti-files"></i></div>
                                 <div class="tile-body"><span>GCM</span></div>
