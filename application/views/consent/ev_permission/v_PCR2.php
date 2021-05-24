@@ -14,12 +14,7 @@ td {
 
 #t01 {}
 
-@media print {
-    @page {
-        size: A4;
-        margin: 0.5cm;
-    }
-}
+
 
 #th_empty {
 
@@ -66,10 +61,10 @@ td {
 }
 
 @media print {
-  @page {
-    size: A4;
-    margin: 0.1cm;
-  }
+    @page {
+        size: A4;
+        margin: 0.1cm;
+    }
 }
 
 
@@ -89,46 +84,45 @@ td {
 
 
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-info">
-            <div class="panel-heading">
+<!-- <div class="row"> -->
+     <!-- <div class="col-md-12">  -->
+         <!-- <div class="panel panel-info">  -->
+             <div class="panel-heading">
                 <h1 align='center'><b>Process Change Report</b></h1>
-            </div>
+             </div>
             <!-- panel-heading -->
-
-
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-12">
                         <!-- <div class="row"> -->
-                            <table width="100%">
-                                <tr>
-                                    <td id="td_PCR">
-                                        PCR No. ___________________
-                                        <br>
-                                        Annual plan No. _____________
-                                        <br>
-                                        Subject _____________________
-                                    </td>
-                        <!-- </div> -->
-                        <br>
-                        <td id="td_PCR">
-                            <Input type="radio" name="manmer" value="0">&nbsp; Normal
-                            &emsp;
-                            &emsp;
-                            &emsp;
-                            <Input type="radio" name="manmer" value="0">&nbsp; Urgent
-                        </td>
-                        <br>
-                        <td id="td_PCR">
-                            Issue Date : ___________________
-                            <br>
-                            Department : ___________________
-                        </td>
-                        </tr>
+                        <table width="100%">
+                            <tr>
+                                <td id="td_PCR">
+                                    PCR No. ___________________
+                                    <br>
+                                    Annual plan No. _____________
+                                    <br>
+                                    Subject _____________________
+                                </td>
+                                <!-- </div> -->
+                                <br>
+                                <td id="td_PCR">
+                                    <Input type="radio" name="manmer" value="0">&nbsp; Normal
+                                    &emsp;
+                                    &emsp;
+                                    &emsp;
+                                    <Input type="radio" name="manmer" value="0">&nbsp; Urgent
+                                </td>
+                                <br>
+                                <td id="td_PCR">
+                                    Issue Date : ___________________
+                                    <br>
+                                    Department : ___________________
+                                </td>
+                            </tr>
                         </table>
                     </div>
+                    <!-- col-md-12 -->
                     <!-- class="row" PCR No. -->
                     <div class="row">
                         <div class="col-md-12">
@@ -431,7 +425,7 @@ td {
                             <!-- Implement plan -->
                             &nbsp;
                         </div>
-                        <!-- col-md-8 Implement plan -->
+                        <!-- col-md-12 Implement plan -->
 
                     </div>
                     <!-- class="row" Implement plan  -->
@@ -575,10 +569,10 @@ td {
                             </table>
 
                         </div>
-                        <!-- class="col-md-12" PCR Rank -->
+                        <!-- class="col-md-12"  Quality Assurance -->
 
                     </div>
-                    <!-- class="row PCR Rank" -->
+                    <!-- class=" Quality Assurance" -->
                     <br>
                     <div class="row">
                         <div class="col-md-12">
@@ -653,30 +647,29 @@ td {
                             <!-- Customer -->
 
                         </div>
-                        <!-- col-md-12 Customer  -->
+                        <!-- col-md-12 Customer Request -->
 
                     </div>
                     <!-- class="row" Customer   -->
 
+
+
+
                 </div>
-                <!-- col-md-12" -->
+                <!-- class="row" Customer Request -->
 
 
 
             </div>
-            <!-- class="row" -->
-
-
+            <!-- panel-body -->
 
         </div>
-        <!-- panel-body -->
+        <!-- panel panel-indigo -->
+
 
     </div>
-    <!-- panel panel-indigo -->
-
-</div>
-<!-- col-md-12 -->
+    <!-- col-md-12 -->
 
 
-</div>
+<!-- </div> -->
 <!-- class="row" -->
