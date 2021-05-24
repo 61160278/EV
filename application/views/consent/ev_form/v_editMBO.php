@@ -1091,6 +1091,26 @@ function clear_css_sel_G_O(i) {
 }
 // function clear_css_inp_G_O
 
+function clear_form(){
+    var row_count = document.getElementById("row_count").value;
+    var row_count_level = document.getElementById("row_count_level").value;
+
+    for (i = 1; i <= row_count; i++) {
+        $('input[name="type' + i + '"]').prop( "checked", false );
+        $("#sdgs_sel" + i).val(0);
+        $("#inp_item" + i).val("");
+        $("#weight" + i).val("");
+
+    }
+    // for
+    for (i = 1; i <= row_count_level; i++) {
+            $("#level" + i).val("");
+    }
+    // for
+    check_weightG_O()
+}
+// function clear_form
+
 function set_tap() {
 
     var ps_pos_id = document.getElementById("pos_id").value;
@@ -1618,7 +1638,7 @@ function set_tap() {
                                 <button class="btn btn-inverse" id="btn_cencel_clearG_O"
                                     onclick="check_cancelG_O()">CANCEL</button>
                                 <!-- cancel to cancel edit form -->
-                                <button class="btn btn-default" id="btn_clearG_O">CLEAR</button>
+                                <button class="btn btn-default" id="btn_clearG_O" onclick="clear_form()">CLEAR</button>
                             </div>
                             <!-- col-md-6 -->
 
