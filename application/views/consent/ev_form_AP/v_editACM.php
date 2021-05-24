@@ -35,7 +35,7 @@ th {
 var count = 0;
 
 $(document).ready(function() {
-show_weight()
+    show_weight()
 
 });
 // document ready
@@ -45,18 +45,19 @@ function show_weight() {
     var sum = 0;
     var index = document.getElementById("table_index_radio").value;
     for (i = 0; i < index; i++) {
-        
-        $("[name = rd_name_"+i+"]").each(function(index) {
+
+        $("[name = rd_name_" + i + "]").each(function(index) {
             if ($(this).prop("checked") == true) {
-                arr_weight.push(document.getElementsByName("rd_name_"+i+"")[index].value);
+                arr_weight.push(document.getElementsByName("rd_name_" + i + "")[index].value);
             } //if
         });
     }
     for (i = 0; i < index; i++) {
-        document.getElementById("weight_"+i+"").innerHTML=arr_weight[i]*document.getElementsByName("weing_a_"+i+"")[0].value;    
-        sum += arr_weight[i]*document.getElementsByName("weing_a_"+i+"")[0].value;
+        document.getElementById("weight_" + i + "").innerHTML = arr_weight[i] * document.getElementsByName("weing_a_" +
+            i + "")[0].value;
+        sum += arr_weight[i] * document.getElementsByName("weing_a_" + i + "")[0].value;
     }
-    document.getElementById("weight_all").innerHTML=sum;
+    document.getElementById("weight_all").innerHTML = sum;
 }
 
 function save_ACM() {
@@ -68,9 +69,9 @@ function save_ACM() {
 
     for (i = 0; i < index; i++) {
         arr_sfa_id.push(document.getElementsByName("sfa_id")[i].value);
-        $("[name = rd_name_"+i+"]").each(function(index) {
+        $("[name = rd_name_" + i + "]").each(function(index) {
             if ($(this).prop("checked") == true) {
-                arr_radio.push(document.getElementsByName("rd_name_"+i+"")[index].value);
+                arr_radio.push(document.getElementsByName("rd_name_" + i + "")[index].value);
             } //if
         });
     }
@@ -79,27 +80,27 @@ function save_ACM() {
     console.log("arr_sfa_id : " + arr_sfa_id);
     console.log("arr_radio : " + arr_radio);
 
-    // $.ajax({
-    //     type: "post",
-    //     dataType: "json",
-    //     url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/save_data_acm",
-    //     data: {
-    //         "Emp_ID": Emp_ID,
-    //         "arr_sfa_id": arr_sfa_id,
-    //         "arr_radio": arr_radio
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_acm",
+        data: {
+            "Emp_ID": Emp_ID,
+            "arr_sfa_id": arr_sfa_id,
+            "arr_radio": arr_radio
 
-    //     },
-    //     success: function(data) {
-    //         console.log(data);
-    //     },
-    //     // success
-    //     error: function(data) {
-    //         console.log("9999 : error");
-    //     }
-    //     // error
-    // });
-    // // ajax
-
+        },
+        success: function(data) {
+            console.log(data);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+    window.location = "<?php echo base_url(); ?>/ev_form_AP/Evs_form_AP/index";
 }
 </script>
 <!-- script -->
@@ -272,38 +273,75 @@ function save_ACM() {
                                 <!-- show expected  -->
                                 <td id="dis_color">
                                     <center><?php echo $row->sfa_weight; ?></center>
-                                    <input type="number" name="weing_a_<?php echo $table_index_radio ?>" value = "<?php echo $row->sfa_weight; ?>" hidden>
+                                    <input type="number" name="weing_a_<?php echo $table_index_radio ?>"
+                                        value="<?php echo $row->sfa_weight; ?>" hidden>
                                 </td>
 
                                 <!-- show weight  -->
                                 <td id="dis_color" width="5%">
                                     <center>
+                                        <?php  
+                                   $checked_weight_1 ="";
+                                   $checked_weight_2 ="";
+                                   $checked_weight_3 ="";
+                                   $checked_weight_4 ="";
+                                   $checked_weight_5 ="";
+              
+
+                                    foreach($data_acm->result() as $row_data_acm){
+                                            if($row->sfa_id == $row_data_acm->dta_sfa_id){
+                                                if($row_data_acm->dta_weight == 1){
+                                                    $checked_weight_1 =  "checked";
+                                                }
+                                                else if($row_data_acm->dta_weight == 2){
+                                                    $checked_weight_2 =  "checked";
+                                                }
+                                                else if($row_data_acm->dta_weight == 3){
+                                                    $checked_weight_3 =  "checked";
+                                                }
+                                                else if($row_data_acm->dta_weight == 4){
+                                                    $checked_weight_4 =  "checked";
+                                                }
+                                                else {
+                                                    $checked_weight_5 =  "checked";
+                                                }
+                                            }
+                                        }
+                                ?>
                                         <div class="col-md-12">
                                             <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
-                                                id="rd_<?php echo $table_index_radio ?>" value="1" onclick="show_weight()" >
+                                                id="rd_<?php echo $table_index_radio ?>" value="1"
+                                                onclick="show_weight()" <?php echo $checked_weight_1 ?>>
                                             <label for="1">&nbsp; 1</label>
                                             &nbsp;&nbsp;
                                             <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
-                                                id="rd_<?php echo $table_index_radio ?>" value="2" onclick="show_weight()">
+                                                id="rd_<?php echo $table_index_radio ?>" value="2"
+                                                onclick="show_weight()" <?php echo $checked_weight_2 ?>>
                                             <label for="2">&nbsp; 2</label>
                                             &nbsp;&nbsp;
                                             <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
-                                                id="rd_<?php echo $table_index_radio ?>" value="3" onclick="show_weight()" >
+                                                id="rd_<?php echo $table_index_radio ?>" value="3"
+                                                onclick="show_weight()" <?php echo $checked_weight_3 ?>>
                                             <label for="3">&nbsp; 3</label>
                                             &nbsp;&nbsp;
                                             <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
-                                                id="rd_<?php echo $table_index_radio ?>" value="4" onclick="show_weight()">
+                                                id="rd_<?php echo $table_index_radio ?> " value="4"
+                                                onclick="show_weight()" <?php echo $checked_weight_4 ?>>
                                             <label for="4">&nbsp; 4</label>
                                             &nbsp;&nbsp;
                                             <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
-                                                id="rd_<?php echo $table_index_radio ?>" value="5" onclick="show_weight()">
+                                                id="rd_<?php echo $table_index_radio ?>" value="5"
+                                                onclick="show_weight()" <?php echo $checked_weight_5 ?>>
                                             <label for="5">&nbsp; 5</label>
                                             &nbsp;&nbsp;
                                         </div>
                                         <!-- col-12 -->
+
                                     </center>
                                 </td>
-                                <td id="dis_color" width="2%"><p id="weight_<?php echo $table_index_radio ?>" ></p></td>
+                                <td id="dis_color" width="2%">
+                                    <p id="weight_<?php echo $table_index_radio ?>"></p>
+                                </td>
                                 <?php $table_index_radio++;  ?>
                             </tr>
 
@@ -327,7 +365,9 @@ function save_ACM() {
                                 <td>
                                     <center> Total Result</center>
                                 </td>
-                                <td><p id="weight_all" ></td>
+                                <td>
+                                    <p id="weight_all">
+                                </td>
                             </tr>
                         </tfoot>
                         <!-- tfoot -->
@@ -339,7 +379,10 @@ function save_ACM() {
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
-                            <button class="btn btn-inverse"><i class="fa fa-mail-reply"></i> Back</button>
+                            <a href="<?php echo base_url(); ?>/ev_form_AP/Evs_form_AP/index">
+                                <button type="button" class="btn btn-inverse"><i
+                                        class="fa fa-mail-reply"></i>Back</button>
+                            </a>
                         </div>
                         <!-- col-md-6 -->
                         <div class="col-md-6" align="right">

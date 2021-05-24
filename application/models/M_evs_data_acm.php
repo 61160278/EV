@@ -55,13 +55,30 @@ class M_evs_data_acm extends Da_evs_data_acm {
 	*/
 	function get_by_empID(){	
 		$sql = "SELECT *
-				FROM evs_database.evs_data_acm
-				WHERE dta_evs_emp_id = ?";
+		FROM evs_database.evs_data_acm
+		WHERE dta_evs_emp_id = ?
+		ORDER BY `evs_data_acm`.`dta_sfa_id` ASC";
 		$query = $this->db->query($sql, array($this->dta_evs_emp_id));
 		return $query;
 	
 	}//get_all_com
-
+	/*
+	* update
+	* Update Category into database
+	* @input dta_id, dta_data_acm_name
+	* @output -
+	* @author jakkarin pimpaeng
+	* @update Date 2563-10-26
+	*/
+	function update() {
+	
+		$sql = "UPDATE evs_database.evs_data_acm 
+				SET	 dta_weight=?
+				WHERE dta_evs_emp_id=? AND dta_sfa_id=? ";
+	   
+	   $this->db->query($sql, array( $this->dta_weight, $this->dta_evs_emp_id, $this->dta_sfa_id));
+		
+	}
 
 } 
 ?>
