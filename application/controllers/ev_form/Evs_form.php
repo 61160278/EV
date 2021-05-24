@@ -472,6 +472,50 @@ class Evs_form extends MainController_avenxo {
 	}
 	// function get_g_o_edit
 
+	function update_G_O(){
+		$row_count = $this->input->post("row_count");
+		$dgo_id = $this->input->post("dgo_id");
+		$type = $this->input->post("type");
+		$sdgs = $this->input->post("sdgs");
+		$item = $this->input->post("item");
+		$weight = $this->input->post("weight");
+		$check_emp_id = $this->input->post("check_emp_id");
+		$evs_emp_id = $this->input->post("evs_emp_id");
+		
+		$this->load->model('Da_evs_data_g_and_o','ddgo');
+
+		for ($i = 1; $i <= $row_count; $i++) {
+			$this->ddgo->dgo_type = $type[$i];
+			$this->ddgo->dgo_sdgs = $sdgs[$i];
+			$this->ddgo->dgo_item = $item[$i];
+			$this->ddgo->dgo_weight = $weight[$i];
+			$this->ddgo->dgo_emp_id = $check_emp_id;
+			$this->ddgo->dgo_evs_emp_id = $evs_emp_id;
+			$this->ddgo->dgo_id = $dgo_id[$i];
+			$this->ddgo->update();
+		}
+		// for 
+
+	}
+	// function update_G_O
+
+	function update_G_O_level(){
+		$row_count_level = $this->input->post("row_count_level");
+		$dgol_id = $this->input->post("dgol_id");
+		$level = $this->input->post("level");
+
+		$this->load->model('Da_evs_data_g_and_o_level','ddgol');
+
+		for ($i = 1; $i <= $row_count_level; $i++) {
+			$this->ddgol->dgol_level = $level[$i];
+			$this->ddgol->dgol_id = $dgol_id[$i];
+			$this->ddgol->update();
+		}
+		// for
+
+	}
+	// function update_G_O_level
+
 	function historyMBO()
 	{
 		$emp_id = $this->input->post("emp_id_his");

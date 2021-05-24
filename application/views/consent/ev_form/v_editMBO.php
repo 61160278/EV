@@ -183,11 +183,16 @@ function update_dataMBO() {
             "Emp_ID": check_emp_id,
             "evs_emp_id": evs_emp_id,
             "count": count
+        },
+        error: function(data) {
+            console.log("9999 : error");
+            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id +
+            "";
         }
+        // error
+
     });
     // ajax
-
-    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id + "";
 
 }
 // function update_dataMBO
@@ -648,17 +653,19 @@ function editG_O() {
             console.log(data);
 
             data.forEach((row, index) => {
+                count++;
+
                 data_row += '<tr>'
                 if (index == 0) {
                     data_row += '<td rowspan="' + col[count_span] + '"><center>'
                     data_row += number
+                    data_row += '<input type="text" id="dgo_id' + number +
+                        '" value="' + row.dgo_id + '" hidden>'
                     data_row += '</center></td>'
                     // show index
 
                     data_row += '<td rowspan="' + col[count_span] + '"><center>'
                     if (row.dgo_type == 1) {
-                        data_row += '<input class="form-control" type="text" id="dgo_id' + number +
-                        '" value="' + row.dgo_id + '">'
                         data_row += '<input type="radio" id="type' + number + '" name="type' +
                             number +
                             '"  value="1" checked>'
@@ -671,8 +678,6 @@ function editG_O() {
                     }
                     // if
                     else {
-                        data_row += '<input class="form-control" type="text" id="dgo_id' + number +
-                        '" value="' + row.dgo_id + '">'
                         data_row += '<input type="radio" id="type' + number + '" name="type' +
                             number +
                             '"  value="1">'
@@ -717,13 +722,13 @@ function editG_O() {
                 else if (temp != row.dgo_item) {
                     data_row += '<td rowspan="' + col[count_span] + '"><center>'
                     data_row += number
+                    data_row += '<input type="text" id="dgo_id' + number +
+                        '" value="' + row.dgo_id + '" hidden>'
                     data_row += '</center></td>'
                     // show index 
 
                     data_row += '<td rowspan="' + col[count_span] + '"><center>'
                     if (row.dgo_type == 1) {
-                        data_row += '<input class="form-control" type="text" id="dgo_id' + number +
-                        '" value="' + row.dgo_id + '">'
                         data_row += '<input type="radio" id="type' + number + '" name="type' +
                             number +
                             '"  value="1" checked>'
@@ -736,8 +741,6 @@ function editG_O() {
                     }
                     // if
                     else {
-                        data_row += '<input class="form-control" type="text" id="dgo_id' + number +
-                        '" value="' + row.dgo_id + '">'
                         data_row += '<input type="radio" id="type' + number + '" name="type' +
                             number +
                             '"  value="1">'
@@ -769,7 +772,8 @@ function editG_O() {
 
                     data_row += '<td rowspan="' + col[count_span] + '">'
                     data_row += '<input class="form-control" type="number" id="weight' + number +
-                        '" min="0" max="100" value="' + row.dgo_weight + '" onchange="check_weightG_O()">'
+                        '" min="0" max="100" value="' + row.dgo_weight +
+                        '" onchange="check_weightG_O()">'
                     data_row += '</td>'
                     // show Weight 
 
@@ -781,7 +785,11 @@ function editG_O() {
                 // else if
 
                 data_row += '<td>'
-                data_row += '<input class="form-control" type="text" value="' + row.dgol_level +
+                data_row += '<input id="level_id' + count +
+                    '" type="text" value="' + row.dgol_id +
+                    '" hidden>'
+                data_row += '<input class="form-control" id="level' + count +
+                    '" type="text" value="' + row.dgol_level +
                     '">'
                 data_row += '</td>'
                 data_row += '<td>'
@@ -789,7 +797,7 @@ function editG_O() {
                 data_row += '<td>'
 
                 data_row += '</tr>'
-                count++;
+
             });
             // foreach 
             $("#row_count_level").val(count);
@@ -818,6 +826,7 @@ function editG_O() {
 
 function updata_data_G_O() {
 
+    var dgo_id = [];
     var type = [];
     var sdgs = [];
     var item = [];
@@ -830,22 +839,150 @@ function updata_data_G_O() {
     var evs_emp_id = document.getElementById("evs_emp_id").value;
 
     for (i = 1; i <= row_count; i++) {
+        dgo_id.push(document.getElementById("dgo_id" + i).value);
         type.push($('input[name="type' + i + '"]:checked').val());
         sdgs.push(document.getElementById("sdgs_sel" + i).value);
         item.push(document.getElementById("inp_item" + i).value);
         weight.push(document.getElementById("weight" + i).value);
     }
     // for
-    console.log("-****--****- Update DATA -****--****-");
-    console.log(type);
-    console.log(sdgs);
-    console.log(item);
-    console.log(weight);
-    console.log(check_emp_id);
-    console.log(evs_emp_id);
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/update_G_O",
+        data: {
+            "dgo_id": dgo_id,
+            "type": type,
+            "sdgs": sdgs,
+            "item": item,
+            "weight": weight,
+            "row_count": row_count,
+            "check_emp_id": check_emp_id,
+            "evs_emp_id": evs_emp_id
+
+        },
+        error: function(data) {
+            //console.log("9999 : error");
+            updata_data_G_O_level();
+        }
+        // error
+    });
+    // ajax
 
 }
 // function updata_data_G_O
+
+function updata_data_G_O_level() {
+    var level = [];
+    var dgol_id = [];
+    var row_count_level = document.getElementById("row_count_level").value;
+    var check_emp_id = document.getElementById("emp_id").innerHTML;
+
+    for (i = 1; i <= row_count_level; i++) {
+        dgol_id.push(document.getElementById("level_id" + i).value);
+        level.push(document.getElementById("level" + i).value);
+    }
+    // for
+    console.log(dgol_id);
+    console.log(level);
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/update_G_O_level",
+        data: {
+            "dgol_id": dgol_id,
+            "level": level,
+            "row_count_level": row_count_level
+
+        },
+        error: function(data) {
+            console.log("9999 : error");
+            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_g_o/" + check_emp_id +
+                "";
+        }
+        // error
+    });
+    // ajax
+
+
+}
+// function updata_data_G_O_level
+
+function checkG_O() {
+
+    var num = 0;
+    var index = 0;
+
+    var row_count = document.getElementById("row_count").value;
+    var row_count_level = document.getElementById("row_count_level").value;
+
+
+    for (i = 1; i <= row_count; i++) {
+        type = $('input[name="type' + i + '"]:checked').val();
+        if (type == undefined) {
+            $("#check_rdio").modal('show');
+            num++;
+        }
+        // if
+
+        item = document.getElementById("inp_item" + i).value;
+        if (item == "") {
+            $("#inp_item" + i).css("background-color", "#ffe6e6");
+            $("#inp_item" + i).css("border-style", "solid");
+            num++;
+        }
+        // if
+        else {
+            $("#inp_item" + i).css("background-color", "#ffffff");
+            $("#inp_item" + i).css("border-style", "solid");
+        }
+        // else
+
+        sdg = document.getElementById("sdgs_sel" + i).value;
+        if (sdg == 0) {
+            $("#sdgs_sel" + i).css("background-color", "#ffe6e6");
+            $("#sdgs_sel" + i).css("border-style", "solid");
+            num++;
+        }
+        // if 
+        else {
+            $("#sdgs_sel" + i).css("background-color", "#ffffff");
+            $("#sdgs_sel" + i).css("border-style", "solid");
+        }
+        // else 
+    }
+    // for
+
+    for (i = 1; i <= row_count_level; i++) {
+        level = document.getElementById("level" + i).value;
+        if (level == "") {
+            $("#level" + i).css("background-color", "#ffe6e6");
+            $("#level" + i).css("border-style", "solid");
+            num++;
+        }
+        // if 
+        else {
+            $("#level" + i).css("background-color", "#ffffff");
+            $("#level" + i).css("border-style", "solid");
+        }
+        // else 
+    }
+    // for
+    if (num == 0) {
+        updata_data_G_O()
+        console.log("true save");
+        return true;
+    }
+    // if 
+    else {
+        console.log("false save");
+        return false;
+    }
+    // else
+}
+// function checkG_O
 
 function check_weightG_O() {
 
@@ -1461,8 +1598,8 @@ function set_tap() {
 
                             <tfoot>
                                 <td colspan="4">
-                                    <input type="text" id="row_count" value="0">
-                                    <input type="text" id="row_count_level" value="0">
+                                    <input type="text" id="row_count" value="0" hidden>
+                                    <input type="text" id="row_count_level" value="0" hidden>
                                 </td>
                                 <td id="show_weightG_O" align="center">100</td>
                                 <td colspan="3"></td>
@@ -1487,8 +1624,7 @@ function set_tap() {
 
                             <div class="col-md-6" align="right">
                                 <button class="btn btn-warning" id="btn_editG_O" onclick="editG_O()">EDIT</button>
-                                <button class="btn btn-success" id="btn_saveG_O"
-                                    onclick="updata_data_G_O()">SAVE</button>
+                                <button class="btn btn-success" id="btn_saveG_O" onclick="checkG_O()">SAVE</button>
                                 <button class="btn btn-primary" id="btn_send_insertG_O" data-toggle="modal"
                                     data-target="#add_app">SEND <i class="fa fa-share-square-o"></i></button>
                             </div>
@@ -2009,3 +2145,39 @@ function set_tap() {
     <!-- modal-dialog -->
 </div>
 <!-- End Modal cancel G_O-->
+
+<!-- Modal check -->
+<div class="modal fade" id="check_rdio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:gray;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b></font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Please select Type of G&O </font>
+                    </b></h2>
+            </div>
+            <!-- modal header -->
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <p>Select C to select the company type.</p>
+                    <p>Select D to select the department type.</p>
+                </div>
+                <!-- Group Name -->
+            </div>
+            <!-- modal-body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- modal-footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal check-->
