@@ -187,7 +187,7 @@ function update_dataMBO() {
         error: function(data) {
             console.log("9999 : error");
             window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id +
-            "";
+                "";
         }
         // error
 
@@ -677,7 +677,7 @@ function editG_O() {
                         data_row += '<label>&nbsp;D</label>'
                     }
                     // if
-                    else {
+                    else if (row.dgo_type == 2) {
                         data_row += '<input type="radio" id="type' + number + '" name="type' +
                             number +
                             '"  value="1">'
@@ -740,7 +740,7 @@ function editG_O() {
                         data_row += '<label>&nbsp;D</label>'
                     }
                     // if
-                    else {
+                    else if (row.dgo_type == 2) {
                         data_row += '<input type="radio" id="type' + number + '" name="type' +
                             number +
                             '"  value="1">'
@@ -824,7 +824,7 @@ function editG_O() {
 }
 // function editG_O
 
-function updata_data_G_O() {
+function update_data_G_O() {
 
     var dgo_id = [];
     var type = [];
@@ -847,6 +847,9 @@ function updata_data_G_O() {
     }
     // for
 
+    console.log(dgo_id);
+    console.log(type);
+
     $.ajax({
         type: "post",
         dataType: "json",
@@ -864,7 +867,7 @@ function updata_data_G_O() {
         },
         error: function(data) {
             //console.log("9999 : error");
-            updata_data_G_O_level();
+            update_data_G_O_level();
         }
         // error
     });
@@ -873,7 +876,7 @@ function updata_data_G_O() {
 }
 // function updata_data_G_O
 
-function updata_data_G_O_level() {
+function update_data_G_O_level() {
     var level = [];
     var dgol_id = [];
     var row_count_level = document.getElementById("row_count_level").value;
@@ -971,7 +974,7 @@ function checkG_O() {
     }
     // for
     if (num == 0) {
-        updata_data_G_O()
+        $("#save_g_o").modal('show');
         console.log("true save");
         return true;
     }
@@ -983,6 +986,8 @@ function checkG_O() {
     // else
 }
 // function checkG_O
+
+
 
 function check_weightG_O() {
 
@@ -1091,12 +1096,12 @@ function clear_css_sel_G_O(i) {
 }
 // function clear_css_inp_G_O
 
-function clear_form(){
+function clear_form() {
     var row_count = document.getElementById("row_count").value;
     var row_count_level = document.getElementById("row_count_level").value;
 
     for (i = 1; i <= row_count; i++) {
-        $('input[name="type' + i + '"]').prop( "checked", false );
+        $('input[name="type' + i + '"]').prop("checked", false);
         $("#sdgs_sel" + i).val(0);
         $("#inp_item" + i).val("");
         $("#weight" + i).val("");
@@ -1104,7 +1109,7 @@ function clear_form(){
     }
     // for
     for (i = 1; i <= row_count_level; i++) {
-            $("#level" + i).val("");
+        $("#level" + i).val("");
     }
     // for
     check_weightG_O()
@@ -2201,3 +2206,42 @@ function set_tap() {
     <!-- modal-dialog -->
 </div>
 <!-- End Modal check-->
+
+<!-- Modal save -->
+<div class="modal fade" id="save_g_o" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:gray;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b></font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Do you want to Save Data YES or NO ?</font>
+                    </b></h2>
+            </div>
+            <!-- modal header -->
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="focusedinput" class="col-sm-12 control-label" align="center">Please verify the accuracy
+                        of the information.</label>
+                </div>
+                <!-- Group Name -->
+            </div>
+            <!-- modal-body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-left">
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                </div>
+                <!--<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_sdm">-->
+                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="update_data_G_O()">SAVE</button>
+                <!--</a>-->
+            </div>
+            <!-- modal-footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal save-->
