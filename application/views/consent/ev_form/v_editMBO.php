@@ -42,9 +42,12 @@ $(document).ready(function() {
     $("#btn_clear").attr("disabled", true);
 
     $("#btn_cencel_clear").hide();
+    $("#btn_cencel_clearG_O").hide();
     $("#btn_cencel_show").show();
     $("#btn_send_insert").show();
     $("#btn_send_edit").hide();
+    $("#btn_clearG_O").hide();
+
 
     set_tap()
 
@@ -621,6 +624,7 @@ function editG_O() {
     var data_row = "";
     var sdg = [];
     var col = [];
+    var count = 0;
 
     for (i = 1; i <= row_level; i++) {
         col.push(5);
@@ -653,6 +657,8 @@ function editG_O() {
 
                     data_row += '<td rowspan="' + col[count_span] + '"><center>'
                     if (row.dgo_type == 1) {
+                        data_row += '<input class="form-control" type="text" id="dgo_id' + number +
+                        '" value="' + row.dgo_id + '">'
                         data_row += '<input type="radio" id="type' + number + '" name="type' +
                             number +
                             '"  value="1" checked>'
@@ -665,6 +671,8 @@ function editG_O() {
                     }
                     // if
                     else {
+                        data_row += '<input class="form-control" type="text" id="dgo_id' + number +
+                        '" value="' + row.dgo_id + '">'
                         data_row += '<input type="radio" id="type' + number + '" name="type' +
                             number +
                             '"  value="1">'
@@ -714,6 +722,8 @@ function editG_O() {
 
                     data_row += '<td rowspan="' + col[count_span] + '"><center>'
                     if (row.dgo_type == 1) {
+                        data_row += '<input class="form-control" type="text" id="dgo_id' + number +
+                        '" value="' + row.dgo_id + '">'
                         data_row += '<input type="radio" id="type' + number + '" name="type' +
                             number +
                             '"  value="1" checked>'
@@ -726,6 +736,8 @@ function editG_O() {
                     }
                     // if
                     else {
+                        data_row += '<input class="form-control" type="text" id="dgo_id' + number +
+                        '" value="' + row.dgo_id + '">'
                         data_row += '<input type="radio" id="type' + number + '" name="type' +
                             number +
                             '"  value="1">'
@@ -757,7 +769,7 @@ function editG_O() {
 
                     data_row += '<td rowspan="' + col[count_span] + '">'
                     data_row += '<input class="form-control" type="number" id="weight' + number +
-                        '" min="0" max="100" value="' + row.dgo_weight + '">'
+                        '" min="0" max="100" value="' + row.dgo_weight + '" onchange="check_weightG_O()">'
                     data_row += '</td>'
                     // show Weight 
 
@@ -777,10 +789,20 @@ function editG_O() {
                 data_row += '<td>'
 
                 data_row += '</tr>'
+                count++;
             });
             // foreach 
+            $("#row_count_level").val(count);
+            $("#row_count").val((number - 1));
             $("#G_O_Table").html(data_row)
             get_sdgs_mbo((number - 1), sdg);
+            $("#btn_editG_O").hide();
+            $("#btn_saveG_O").show();
+            $("#btn_clearG_O").show();
+            $("#btn_cencel_clearG_O").show();
+            $("#btn_cencel_backG_O").hide();
+            $("#btn_send_insertG_O").attr("disabled", true);
+
         },
         // success
         error: function(data) {
@@ -793,6 +815,144 @@ function editG_O() {
 
 }
 // function editG_O
+
+function updata_data_G_O() {
+
+    var type = [];
+    var sdgs = [];
+    var item = [];
+    var weight = [];
+    var dgo_data = [];
+
+    var row_count = document.getElementById("row_count").value;
+
+    var check_emp_id = document.getElementById("emp_id").innerHTML;
+    var evs_emp_id = document.getElementById("evs_emp_id").value;
+
+    for (i = 1; i <= row_count; i++) {
+        type.push($('input[name="type' + i + '"]:checked').val());
+        sdgs.push(document.getElementById("sdgs_sel" + i).value);
+        item.push(document.getElementById("inp_item" + i).value);
+        weight.push(document.getElementById("weight" + i).value);
+    }
+    // for
+    console.log("-****--****- Update DATA -****--****-");
+    console.log(type);
+    console.log(sdgs);
+    console.log(item);
+    console.log(weight);
+    console.log(check_emp_id);
+    console.log(evs_emp_id);
+
+}
+// function updata_data_G_O
+
+function check_weightG_O() {
+
+    var check = "";
+    var value_inp = 0;
+    var index_check = 0;
+    var val_check = 0;
+
+    var number_index = document.getElementById("row_count").value;
+    count = number_index;
+    console.log(number_index);
+
+    for (i = 1; i <= number_index; i++) {
+        check = document.getElementById("weight" + i).value;
+        //console.log(check);
+
+        if (check != "") {
+            value_inp += parseInt(check);
+            index_check++;
+        }
+        // if
+
+        if (parseInt(check) == 0) {
+            val_check++;
+        }
+        // if
+        //console.log(value_inp);
+    }
+    // for i
+
+    if (value_inp > 100) {
+        $("#show_weightG_O").css("color", "#e60000");
+        $("#show_weightG_O").css("background-color", "#ffe6e6");
+        $("#show_weightG_O").css("border-style", "solid");
+        $("#btn_saveG_O").attr("disabled", true);
+    }
+    // if
+    else if (value_inp < 100) {
+        $("#btn_saveG_O").attr("disabled", true);
+        $("#show_weightG_O").css("background-color", "#ffffff");
+        $("#show_weightG_O").css("border-style", "solid");
+    }
+    // else if
+    else if (index_check != number_index) {
+        $("#btn_saveG_O").attr("disabled", true);
+        $("#show_weightG_O").css("background-color", "#ffffff");
+        $("#show_weightG_O").css("border-style", "solid");
+    }
+    // else if 
+    else if (val_check != 0) {
+        $("#btn_saveG_O").attr("disabled", true);
+        $("#show_weightG_O").css("background-color", "#ffffff");
+        $("#show_weightG_O").css("border-style", "solid");
+    }
+    // else if 
+    else {
+        $("#show_weightG_O").css("color", "#000000");
+        $("#show_weightG_O").css("background-color", "#ffffff");
+        $("#show_weightG_O").css("border-style", "solid");
+        $("#btn_saveG_O").attr("disabled", false);
+
+    }
+    // else 
+    $("#show_weightG_O").text(value_inp);
+}
+// function check_weightG_O
+
+function check_cancelG_O() {
+    $("#cancel_g_o").modal('show');
+}
+// function check_cancelG_O
+
+function cancel_formG_O() {
+    var check_emp_id = document.getElementById("emp_id").innerHTML;
+    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_g_o/" + check_emp_id + "";
+}
+// function cancel_formG_O
+
+function clear_css_inp_G_O(i) {
+    $("#inp_item" + i).css("background-color", "#ffffff");
+    $("#inp_item" + i).css("border-style", "solid");
+}
+// function clear_css_inp_G_O
+
+function clear_css_inp_lev(num, i) {
+    $("#possible" + num + i).css("background-color", "#ffffff");
+    $("#possible" + num + i).css("border-style", "solid");
+}
+// function clear_css_inp_lev
+
+function clear_css_inp_rangC(i) {
+    $("#ranges_c" + i).css("background-color", "#ffffff");
+    $("#ranges_c" + i).css("border-style", "solid");
+}
+// function clear_css_inp_rangC
+
+function clear_css_inp_rangS(i) {
+    $("#ranges_s" + i).css("background-color", "#ffffff");
+    $("#ranges_s" + i).css("border-style", "solid");
+}
+// function clear_css_inp_rangS
+
+function clear_css_sel_G_O(i) {
+    $("#sdgs_sel" + i).css("background-color", "#ffffff");
+    $("#sdgs_sel" + i).css("border-style", "solid");
+}
+// function clear_css_inp_G_O
 
 function set_tap() {
 
@@ -1300,7 +1460,10 @@ function set_tap() {
                             <!-- tbody  -->
 
                             <tfoot>
-                                <td colspan="4"></td>
+                                <td colspan="4">
+                                    <input type="text" id="row_count" value="0">
+                                    <input type="text" id="row_count_level" value="0">
+                                </td>
                                 <td id="show_weightG_O" align="center">100</td>
                                 <td colspan="3"></td>
                             </tfoot>
@@ -1312,16 +1475,20 @@ function set_tap() {
                         <div class="row">
                             <div class="col-md-6">
                                 <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
-                                    <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
+                                    <button class="btn btn-inverse" id="btn_cencel_backG_O">BACK</button>
                                 </a>
                                 <!-- cancel to back to main  -->
-                                <button class="btn btn-default">CLEAR</button>
+                                <button class="btn btn-inverse" id="btn_cencel_clearG_O"
+                                    onclick="check_cancelG_O()">CANCEL</button>
+                                <!-- cancel to cancel edit form -->
+                                <button class="btn btn-default" id="btn_clearG_O">CLEAR</button>
                             </div>
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
                                 <button class="btn btn-warning" id="btn_editG_O" onclick="editG_O()">EDIT</button>
-                                <button class="btn btn-success" id="btn_saveG_O">SAVE</button>
+                                <button class="btn btn-success" id="btn_saveG_O"
+                                    onclick="updata_data_G_O()">SAVE</button>
                                 <button class="btn btn-primary" id="btn_send_insertG_O" data-toggle="modal"
                                     data-target="#add_app">SEND <i class="fa fa-share-square-o"></i></button>
                             </div>
@@ -1805,3 +1972,40 @@ function set_tap() {
     <!-- modal-dialog -->
 </div>
 <!-- End Modal cancel-->
+
+<!-- Modal cancel -->
+<div class="modal fade" id="cancel_g_o" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:gray;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b></font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Do you want to back to menu YES or NO ?</font>
+                    </b></h2>
+            </div>
+            <!-- modal header -->
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="focusedinput" class="col-sm-12 control-label" align="center">Please verify the accuracy
+                        of the information.</label>
+                </div>
+                <!-- Group Name -->
+            </div>
+            <!-- modal-body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-left">
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                </div>
+                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="cancel_formG_O()">Yes</button>
+            </div>
+            <!-- modal-footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal cancel G_O-->
