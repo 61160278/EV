@@ -47,6 +47,25 @@ class M_evs_position_from extends Da_evs_position_from {
 		return $query;
 	}//get_all_by_pos
 
+		/*
+	* get_form_by_pos
+	* Get person from database
+	* @input  -
+	* @output person  data
+	* @author Kunanya Singmee
+	* @Create Date 2564-5-25
+	*/
+    function get_form_by_pos(){
+		$sql = "SELECT * 
+				FROM evs_database.evs_position_from AS evs_form
+				INNER JOIN evs_database.evs_pattern_and_year AS evs_pay
+				ON evs_pay.pay_id = evs_form.ps_pay_id
+				WHERE ps_pos_id = ?
+				ORDER BY ps_pos_id";
+		$query = $this->evs->query($sql, array($this->ps_pos_id));
+		return $query;
+	}//get_all_by_pos
+
 
 	 /*
     * get_all

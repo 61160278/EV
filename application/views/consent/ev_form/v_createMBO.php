@@ -136,7 +136,7 @@ function creatembo() {
                 data_row += '</td>'
                 data_row += '<td>'
                 data_row += '<input id="inp_result' + (i + 1) + '" class="form-control" type="number"'
-                data_row += 'min="0" max="100" onkeyup="check_weight()" >'
+                data_row += 'min="0" max="100" onchange="check_weight()" >'
                 data_row += '</td>'
                 data_row += '<td id="dis_color">'
                 data_row += '<center>'
@@ -406,7 +406,7 @@ function createG_O() {
                 // input
                 data_row += '<td>'
                 data_row += '<input class="form-control" type="number" id="weight' + number +
-                    '" onkeyup="check_weightG_O()" min="0" max="100">'
+                    '" onchange="check_weightG_O()" min="0" max="100">'
                 data_row += '</td>'
                 // Weight 
                 data_row += '<td>'

@@ -1135,9 +1135,9 @@ function set_tap() {
                     data_tap += '<li class="active"><a href="#MBO" data-toggle="tab">';
                     data_tap += '<font>MBO</font>';
                     data_tap += '</a></li>';
-                    show_approve()
                     $("#btn_save").attr("disabled", true);
                     $("#MBO").addClass("active");
+                    show_approve()
 
                 }
                 // if
