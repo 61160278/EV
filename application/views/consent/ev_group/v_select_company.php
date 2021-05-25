@@ -17,40 +17,46 @@ function select_company(value) {
     }
 }
 </script>
+<style>
+.margin {
+    margin-top: 10px;
+}
 
+.panel.panel-indigo .panel-heading {
+    color: #e8eaf6;
+    background-color: #134466;
+}
+</style>
 <!DOCTYPE html>
 <html>
 <div class="col-md-12">
     <div class="panel panel-indigo">
-        <div class="panel-heading">
-            <h1 style="font-family:'Times New Roman'">
-                <font color="#ffffff" size="7px"><b>Manage Group</b></font>
-                <div class="panel pull-right" id="addtable_filter">
-                    <select name="example_length" class="form-control" aria-controls="example"
-                        onChange="select_company(value)">
-                        <option value="">Select Company</option>
-                        <option value="1">SDM</option>
-                        <option value="2">SKD</option>
-                    </select>
-                </div>
-                <!-- select company -->
-            </h1>
+        <div class="panel-heading ">
+            <h2><font color="#ffffff" size="6px"><b>Manage Group</b></font></h2>
+            <div class="pull-right margin">
+                <select class="form-control " aria-controls="example" onChange="select_company(value)">
+                    <option value="">Select Company</option>
+                    <option value="1">SDM</option>
+                    <option value="2">SKD</option>
+                </select>
+            </div>
+            <!-- select company -->
         </div>
         <!-- panel-heading -->
 
         <div class="col-md-12">
             <div class="panel-body">
                 <div class="col-md-12" align="right">
-                    <img src="<?php echo base_url();?>/pic/main_select_company.jpg">
+                    <img height ="500px" src="<?php echo base_url();?>/pic/main_select_company.jpg">
                 </div>
                 <!-- col-12  -->
             </div>
             <!-- panel-body -->
         </div>
-        <!-- col-md-12 -->
+        <!-- col-md-12 --> -->
     </div>
     <!-- panel panel-indigo -->
 </div>
-<!-- col-md-12 -->
+    <!-- col-md-12 -->
 
 </html>

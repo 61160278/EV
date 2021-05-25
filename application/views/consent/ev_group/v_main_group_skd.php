@@ -288,8 +288,8 @@ function clear_css(gru_id) {
 <div class="col-md-12">
     <div class="panel panel-indigo">
         <div class="panel-heading">
-            <h1 style="font-family:'Times New Roman'">
-                <font color="#ffffff" size="7px"><b>Manage Group SKD</b></font>
+            <h2>
+                <font color="#ffffff" size="6px"><b>Manage Group SKD</b></font></h2>
                 <div class="panel pull-right" id="addtable_filter">
                     <select name="example_length" class="form-control" aria-controls="example"
                         onChange="manage_skd(value)">
