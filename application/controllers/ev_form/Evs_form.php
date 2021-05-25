@@ -484,7 +484,7 @@ class Evs_form extends MainController_avenxo {
 		
 		$this->load->model('Da_evs_data_g_and_o','ddgo');
 
-		for ($i = 1; $i <= $row_count; $i++) {
+		for ($i = 0; $i < $row_count; $i++) {
 			$this->ddgo->dgo_type = $type[$i];
 			$this->ddgo->dgo_sdgs = $sdgs[$i];
 			$this->ddgo->dgo_item = $item[$i];
@@ -524,10 +524,17 @@ class Evs_form extends MainController_avenxo {
 		$this->memp->Emp_ID = $emp_id;
 		$this->memp->emp_pay_id = $pay_id;
 		$data['emp_info'] = $this->memp->get_by_empid();
+
+		$temp = $data['emp_info']->row();
+
+		$this->load->model('M_evs_position_from','mpf');
+		$this->mpf->ps_pos_id = $temp->Position_ID;
+		$this->mpf->ps_pay_id = $pay_id;
+		$data['tap'] = $this->mpf->get_all_by_key_by_year()->result();
 		
 		$this->load->model('M_evs_employee','memp');
 		$this->memp->dma_dtm_emp_id = $emp_id;
-		$data['data_his'] = $this->memp->get_his_by_id();
+		$data['data_his'] = $this->memp->get_his_by_id()->result();
 
 		$this->output('/consent/ev_form/v_historyMBO',$data);
 	}

@@ -37,7 +37,7 @@ th {
 
 <script>
 $(document).ready(function() {
-    get_approve()
+    // get_approve()
 });
 // document ready
 
@@ -227,8 +227,9 @@ function get_approve() {
                                     <!-- thead  -->
                                     <tbody>
                                         <?php
+                                        print_r($data_his);
                                         $count = 0;
-                                         foreach($data_his->result() as $index => $row){ ?>
+                                         foreach($data_his as $index => $row){ ?>
 
                                         <tr>
                                             <td align="center"><?php echo $index+1; ?></td>
