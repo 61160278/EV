@@ -210,10 +210,10 @@ function set_tap() {
 
             <div class="panel-body">
                 <div class="tab-content">
-                    <div class="tab-pane active" id="MBO">
+                    <div class="tab-pane" id="MBO">
                         <br>
                         <?php foreach($emp_info->result() as $row){
-                          $emp_id_back =  $row->emp_id ?>
+                          $emp_id_back =  $row->Emp_ID; ?>
                         <input type="text" id="pos_id" value="<?php echo $row->Position_ID; ?>" hidden>
                         <input type="text" id="evs_emp_id" value="<?php echo $row->emp_id; ?>" hidden>
                         <div class="row">
@@ -643,24 +643,14 @@ function set_tap() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
-                                    <button class="btn btn-inverse" id="btn_cencel_backG_O">BACK</button>
-                                </a>
+                                <form action="<?php echo base_url() ?>ev_form/Evs_form/historyMBO" method="post">
+                                    <input type="text" name="emp_id_his" id="emp_id_his"
+                                        value="<?php echo $emp_id_back; ?>" hidden>
+                                    <input type="submit" class="btn btn-inverse" value="BACK">
+                                </form>
                                 <!-- cancel to back to main  -->
-                                <button class="btn btn-inverse" id="btn_cencel_clearG_O"
-                                    onclick="check_cancelG_O()">CANCEL</button>
-                                <!-- cancel to cancel edit form -->
-                                <button class="btn btn-default" id="btn_clearG_O" onclick="clear_form()">CLEAR</button>
                             </div>
                             <!-- col-md-6 -->
-
-                            <div class="col-md-6" align="right">
-                                <button class="btn btn-warning" id="btn_editG_O" onclick="editG_O()">EDIT</button>
-                                <button class="btn btn-success" id="btn_saveG_O" onclick="checkG_O()">SAVE</button>
-                                <button class="btn btn-primary" id="btn_send_insertG_O" data-toggle="modal"
-                                    data-target="#add_app">SEND <i class="fa fa-share-square-o"></i></button>
-                            </div>
-                            <!-- col-md-6 add_app -->
 
                         </div>
                         <!-- row -->

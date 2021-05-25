@@ -527,11 +527,10 @@ class Evs_form extends MainController_avenxo {
 
 		$temp = $data['emp_info']->row();
 
-		$this->load->model('M_evs_position_from','mpf');
-		$this->mpf->ps_pos_id = $temp->Position_ID;
-		$this->mpf->ps_pay_id = $pay_id;
-		$data['tap'] = $this->mpf->get_all_by_key_by_year()->result();
-		
+		$this->load->model('M_evs_position_from','mepf');
+		$this->mepf->ps_pos_id = $temp->Position_ID;
+		$data['get_form'] = $this->mepf->get_form_by_pos()->result();
+
 		$this->load->model('M_evs_employee','memp');
 		$this->memp->dma_dtm_emp_id = $emp_id;
 		$data['data_his'] = $this->memp->get_his_by_id()->result();
@@ -553,12 +552,13 @@ class Evs_form extends MainController_avenxo {
 	}
 	// function get_approve_his
 
-	function show_mbo_his($emp_id){
+	function show_his($data_sent){
 
-		$pay_id = 2;
-		$this->load->model('M_evs_data_mbo','medm');
-		$this->medm->dtm_emp_id = $emp_id;
-		$data['mbo_emp'] = $this->medm->get_by_empID()->result();
+		$emp_id = substr($data_sent,0,strpos($data_sent,":"));
+		$pay_id = substr($data_sent,strpos($data_sent,":")+1);
+		echo $emp_id;
+		echo "<br>";
+		echo $pay_id;
 
 		$this->load->model('M_evs_employee','memp');
 		$this->memp->Emp_ID = $emp_id;
@@ -566,19 +566,75 @@ class Evs_form extends MainController_avenxo {
 		$data['emp_info'] = $this->memp->get_by_empid();
 
 		$tep = $data['emp_info']->row();
-		$this->load->model('M_evs_set_form_ability','mesf');
-		$this->mesf->sfa_pos_id = $tep->Position_ID;
-		$this->mesf->sfa_pay_id = $pay_id;
-		$data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator();
 
-		$this->load->model('M_evs_expected_behavior','mept');
-		$data['info_expected'] = $this->mept->get_all_by_pos();
+		$this->load->model('M_evs_position_from','mpf');
+		$this->mpf->ps_pos_id = $tep->Position_ID;
+		$this->mpf->ps_pay_id = $pay_id;
+		$data['form'] = $this->mpf->get_all_by_key_by_year()->row();	
+		
+		if($data['form']->ps_form_pe == "MBO"){
+			$this->load->model('M_evs_data_mbo','medm');
+			$this->medm->dtm_emp_id = $emp_id;
+			$this->medm->dtm_evs_emp_id = $tep->emp_id;
+			$data['check'] = $this->medm->get_by_empID()->result();
+			$check = sizeof($data['check']);
+			
+			if($check != 0){
+				$this->load->model('M_evs_data_mbo','medm');
+				$this->medm->dtm_emp_id = $emp_id;
+				$this->medm->dtm_evs_emp_id = $tep->emp_id;
+				$data['mbo_emp'] = $this->medm->get_by_empID()->result();
 
-		$data['info_pos_id'] = $tep->Position_ID;
+				$this->load->model('M_evs_set_form_ability','mesf');
+				$this->mesf->sfa_pos_id = $tep->Position_ID;
+				$this->mesf->sfa_pay_id = $pay_id;
+				$data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator();
 
-		$this->output('/consent/ev_form/v_hisMBO',$data);
+				$this->load->model('M_evs_expected_behavior','mept');
+				$data['info_expected'] = $this->mept->get_all_by_pos();
+				$data['info_pos_id'] = $tep->Position_ID;
+				$this->output('/consent/ev_form/v_hisMBO',$data);
+			}
+			// if
+		}
+		// if mbo 
+		
+		else if($data['form']->ps_form_pe == "G&O"){
+			$this->load->model('M_evs_data_g_and_o','mdgo');
+			$this->mdgo->dgo_emp_id = $emp_id;
+			$this->mdgo->dgo_evs_emp_id = $tep->emp_id;
+			$data['check'] = $this->mdgo->get_by_empID()->result();
 
+			$check = sizeof($data['check']);
 
+			if($check != 0){
+
+				$this->load->model('M_evs_data_g_and_o','mdgo');
+				$this->mdgo->dgo_emp_id = $emp_id;
+				$this->mdgo->dgo_evs_emp_id = $tep->emp_id;
+				$data['g_o_emp'] = $this->mdgo->get_by_empID()->result();
+
+				$this->load->model('M_evs_set_form_ability','mesf');
+				$this->mesf->sfa_pos_id = $tep->Position_ID;
+				$this->mesf->sfa_pay_id = $pay_id;
+				$data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator();
+
+				$this->load->model('M_evs_expected_behavior','mept');
+				$data['info_expected'] = $this->mept->get_all_by_pos();
+				$data['info_pos_id'] = $tep->Position_ID;
+				
+				$this->load->model('M_evs_set_form_g_and_o','mesg');
+				$this->mesg->sfg_pay_id = $pay_id;
+				$this->mesg->sfg_pos_id = $tep->Position_ID;
+				$data['row_index'] = $this->mesg->get_all_by_key_by_year()->row();
+
+				$this->output('/consent/ev_form/v_hisMBO',$data);
+			}
+			// if
+		}
+		// else if G&O
+
+		
 	}
 	// function show_mbo_his
 }
