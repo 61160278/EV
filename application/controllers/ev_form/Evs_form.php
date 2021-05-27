@@ -520,6 +520,71 @@ class Evs_form extends MainController_avenxo {
 	}
 	// function update_G_O_level
 
+	function save_approveG_O(){
+
+		$approve1 = $this->input->post("approve1");
+		$approve2 = $this->input->post("approve2");
+		$emp_employee_id = $this->input->post("evs_emp_id");
+		$Emp_ID = $this->input->post("dma_emp_id");
+
+		$this->load->model('Da_evs_data_g_and_o_approve','deda');
+		$this->deda->dga_approve1 = $approve1;
+		$this->deda->dga_approve2 = $approve2;
+		$this->deda->dga_dtm_emp_id = $Emp_ID;
+		$this->deda->dga_emp_id = $emp_employee_id;
+		$this->deda->insert();
+
+		$this->load->model('M_evs_data_g_and_o_approve','meda');
+		$this->meda->dga_emp_id = $emp_employee_id;
+		$data['data_app'] = $this->meda->get_by_id()->row();
+
+		echo json_encode($data);
+	}
+	// function save_approveG_O
+
+	function update_approveG_O(){
+
+		$approve1 = $this->input->post("approve1");
+		$approve2 = $this->input->post("approve2");
+		$emp_employee_id = $this->input->post("evs_emp_id");
+		$Emp_id = $this->input->post("dma_emp_id");
+
+		$this->load->model('Da_evs_data_g_and_o_approve','deda');
+		$this->deda->dga_approve1 = $approve1;
+		$this->deda->dga_approve2 = $approve2;
+		$this->deda->dga_dtm_emp_id = $Emp_id;
+		$this->deda->dga_emp_id = $emp_employee_id;
+		$this->deda->update();
+
+		$this->load->model('M_evs_data_g_and_o_approve','meda');
+		$this->meda->dga_emp_id = $emp_employee_id;
+		$data['data_app'] = $this->meda->get_by_id()->row();
+
+		echo json_encode($data);
+	}
+	// function update_approveG_O
+
+	function get_approveG_O(){
+
+		$evs_emp_id = $this->input->post("evs_emp_id");
+
+		$this->load->model('M_evs_data_g_and_o_approve','meda');
+		$this->meda->dga_emp_id = $evs_emp_id;
+		$data['data_app'] = $this->meda->get_by_id()->row();
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $data['data_app']->dga_approve1;
+		$data['app1'] = $this->memp->get_by_appid()->result();
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $data['data_app']->dga_approve2;
+		$data['app2'] = $this->memp->get_by_appid()->result();
+
+		echo json_encode($data);
+
+	}
+	// function get_approve
+
 	function historyMBO()
 	{
 		$emp_id = $this->input->post("emp_id_his");
