@@ -36,7 +36,6 @@ var count = 0;
 
 $(document).ready(function() {
     set_tap()
-    show_approve()
 });
 // document ready
 
@@ -100,25 +99,10 @@ function show_approve() {
                 data_show += '</div>'
                 data_show += '<!-- row  -->'
                 data_show += '<hr>'
-                $("#approve1_edt").val(id_app1);
-                $("#approve2_edt").val(id_app2);
-                console.log(id_app1 + "....." + id_app2);
-                $("#btn_send_insert").hide();
-                $("#btn_send_edit").show();
-
-                $("#add_app").modal('hide');
-                $("#btn_edit").hide();
-
                 $("#show_approver").html(data_show);
 
             }
             // if
-            else {
-                $("#btn_send_insert").show();
-                $("#btn_send_edit").hide();
-
-            }
-            // else
 
         },
         // success
@@ -131,6 +115,83 @@ function show_approve() {
 
 }
 // function show_approve
+
+function show_approveG_O() {
+
+    var evs_emp_id = document.getElementById("evs_emp_id").value;
+    var data_show = "";
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/get_approveG_O",
+        data: {
+            "evs_emp_id": evs_emp_id
+
+        },
+        success: function(data) {
+            // console.log(data);
+            var app1 = "";
+            var app2 = "";
+            var id_app1 = "";
+            var id_app2 = "";
+
+            if (data['app2'].length != 0) {
+                data['app1'].forEach((row, index) => {
+                    app1 = row.Empname_eng + " " + row.Empsurname_eng;
+                    id_app1 = row.Emp_ID;
+                });
+                // foreach app 1
+                data['app2'].forEach((row, index) => {
+                    app2 = row.Empname_eng + " " + row.Empsurname_eng;
+                    id_app2 = row.Emp_ID;
+                });
+                // foreach app 1
+
+                data_show = '<div class="row">'
+                data_show += '<div class="col-md-2">'
+                data_show += ' <label class="control-label"><strong>'
+                data_show += '<font size="3px">Approver 1 : </font>'
+                data_show += '</strong></label>'
+                data_show += '</div>'
+                data_show += '<!-- col-2  -->'
+                data_show += '<div class="col-md-4">'
+                data_show += '<p id="app1">' + app1 + '</p>'
+                data_show += '</div>'
+                data_show += '<!-- col-4  -->'
+                data_show += '<!-- -------------------- -->'
+                data_show += '<div class="col-md-2">'
+                data_show += '<label class="control-label"><strong>'
+                data_show += '<font size="3px">Approver 2 : </font>'
+                data_show += '</strong></label>'
+                data_show += '</div>'
+                data_show += '<!-- col-2  -->'
+                data_show += '<div class="col-md-4">'
+                data_show += '<p id="app">' + app2 + '</p>'
+                data_show += '</div>'
+                data_show += '<!-- col-4  -->'
+                data_show += '<!-- -------------------- -->'
+                data_show += '</div>'
+                data_show += '<!-- row  -->'
+                data_show += '<hr>'
+                $("#show_approverG_O").html(data_show);
+
+
+            }
+            // if
+
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+
+}
+// function show_approveG_O
+
 function set_tap() {
 
     var ps_pos_id = document.getElementById("pos_id").value;
@@ -150,7 +211,7 @@ function set_tap() {
                     data_tap += '<li class="active"><a href="#MBO" data-toggle="tab">';
                     data_tap += '<font>MBO</font>';
                     data_tap += '</a></li>';
-                    show_approve()
+                    show_approve();
                     $("#MBO").addClass("active");
 
                 }
@@ -159,6 +220,7 @@ function set_tap() {
                     data_tap += '<li class="active"><a href="#G_O" data-toggle="tab">';
                     data_tap += '<font>G&O</font>';
                     data_tap += '</a></li>';
+                    show_approveG_O();
                     $("#G_O").addClass("active");
 
                 }
@@ -526,20 +588,22 @@ function set_tap() {
                                         </center>
                                     </th>
                                     <th width="20%">
-                                        <center>Result</center>
+                                        <center>Self Review</center>
                                     </th>
                                     <th width="3%">
-                                        <center>Score AxB</center>
+                                        <center>Evaluator Review</center>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody id="G_O_Table">
                                 <?php $num_index = 1;
                                 $temp = "";
+                                $temps = "";
                                 $row_level = 0;
                                 $row_ranges = 0;
                                 $count = 0;
                                 $span = 0;
+                                $spans = 0;
                                 // print_r($g_o_emp);
 
                                 $col = [];
@@ -618,7 +682,20 @@ function set_tap() {
                                 ?>
                                     <td><?php echo $row->dgol_level; ?></td>
                                     <!-- show level  -->
-                                    <td></td>
+                                    <?php if($index == 0){ ?>
+                                    <td rowspan="<?php echo $col[$spans] ?>"><?php echo $row->dgo_self_review; ?></td>
+                                    <?php 
+                                $spans++;
+                                $temps = $row->dgo_item;
+                                } 
+                                // if 
+                                else if($temps != $row->dgo_item){ ?>
+                                    <td rowspan="<?php echo $col[$spans] ?>"><?php echo $row->dgo_self_review; ?></td>
+                                    <?php
+                                $spans++;
+                                $temps = $row->dgo_item;
+                                } 
+                                // else if?>
                                     <td></td>
                                 </tr>
                                 <!-- end tr  -->
@@ -641,6 +718,10 @@ function set_tap() {
                         <!-- End table level -->
 
                         <br>
+                        <div id="show_approverG_O">
+                        </div>
+                        <!-- show_approver G_O-->
+
                         <div class="row">
                             <div class="col-md-6">
                                 <form action="<?php echo base_url() ?>ev_form/Evs_form/historyMBO" method="post">

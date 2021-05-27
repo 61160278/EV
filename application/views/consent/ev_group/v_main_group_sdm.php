@@ -367,8 +367,7 @@ function check_data_edt(check) {
                         <div class="DTTT btn-group mt-sm">
                             &emsp;
                             <a data-toggle="modal" class="btn btn btn-success" href="#Add">
-                                <i class="ti ti-plus"></i>
-                                <span>ADD</span>
+                            <i class = "fa fa-plus""></i>  &nbsp; ADD
                             </a>
                         </div>
                         <!-- add page 1 -->
@@ -466,7 +465,7 @@ function check_data_edt(check) {
                     <!-- panel-footer -->
                 </div>
                 <!-- panel-addtable -->
-                <lengend>
+                <legend>
                     </legend>
                     <h3>Description</h3>
                     <table height="150px">

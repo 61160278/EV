@@ -446,7 +446,7 @@ function clear_css_approve2_edt() {
     $("#approve2_edt").css("background-color", "#ffffff");
     $("#approve2_edt").css("border-style", "solid");
 }
-// function clear_css_approve1
+// function clear_css_approve2
 
 function save_approve() {
     var approve1 = document.getElementById("approve1").value;
@@ -483,7 +483,7 @@ function save_approve() {
     // ajax
 
 }
-// function show_approve
+// function save_approve
 
 function update_approve() {
     var approve1 = document.getElementById("approve1_edt").value;
@@ -523,7 +523,7 @@ function update_approve() {
     // ajax
 
 }
-// function show_approve
+// function update_approve
 
 function show_approve() {
 
@@ -625,7 +625,9 @@ function editG_O() {
     var row_ranges = document.getElementById("row_ranges").value;
 
     var number = 1;
+    var numbers = 1;
     var count_span = 0;
+    var count_spans = 0;
     var data_row = "";
     var sdg = [];
     var col = [];
@@ -792,10 +794,31 @@ function editG_O() {
                     '" type="text" value="' + row.dgol_level +
                     '">'
                 data_row += '</td>'
-                data_row += '<td>'
-                data_row += '</td>'
-                data_row += '<td>'
 
+                if (index == 0) {
+                    data_row += '<td rowspan="' + col[count_spans] + '">'
+                    data_row += '<input class="form-control" type="text" id="inp_self' + numbers +
+                        '" value="' + row.dgo_self_review +
+                        '" onkeyup="clear_css_inp_self(' + numbers + ')">'
+                    data_row += '</td>'
+                    // show self review
+                    count_spans++;
+                    numbers++;
+                    temps = row.dgo_item;
+                }
+                // if
+                else if (temps != row.dgo_item) {
+                    data_row += '<td rowspan="' + col[count_span] + '">'
+                    data_row += '<input class="form-control" type="text" id="inp_self' + numbers +
+                        '" value="' + row.dgo_self_review +
+                        '" onkeyup="clear_css_inp_self(' + numbers + ')">'
+                    data_row += '</td>'
+                    // show self review
+                    count_spans++;
+                    numbers++;
+                    temps = row.dgo_item;
+                }
+                // else if
                 data_row += '</tr>'
 
             });
@@ -832,6 +855,7 @@ function update_data_G_O() {
     var item = [];
     var weight = [];
     var dgo_data = [];
+    var self = [];
 
     var row_count = document.getElementById("row_count").value;
 
@@ -844,6 +868,7 @@ function update_data_G_O() {
         sdgs.push(document.getElementById("sdgs_sel" + i).value);
         item.push(document.getElementById("inp_item" + i).value);
         weight.push(document.getElementById("weight" + i).value);
+        self.push(document.getElementById("inp_self" + i).value);
     }
     // for
 
@@ -860,6 +885,7 @@ function update_data_G_O() {
             "sdgs": sdgs,
             "item": item,
             "weight": weight,
+            "self": self,
             "row_count": row_count,
             "check_emp_id": check_emp_id,
             "evs_emp_id": evs_emp_id
@@ -955,6 +981,19 @@ function checkG_O() {
             $("#sdgs_sel" + i).css("border-style", "solid");
         }
         // else 
+
+        self = document.getElementById("inp_self" + i).value;
+        if (item == "") {
+            $("#inp_self" + i).css("background-color", "#ffe6e6");
+            $("#inp_self" + i).css("border-style", "solid");
+            num++;
+        }
+        // if
+        else {
+            $("#inp_self" + i).css("background-color", "#ffffff");
+            $("#inp_self" + i).css("border-style", "solid");
+        }
+        // else
     }
     // for
 
@@ -986,8 +1025,6 @@ function checkG_O() {
     // else
 }
 // function checkG_O
-
-
 
 function check_weightG_O() {
 
@@ -1096,6 +1133,12 @@ function clear_css_sel_G_O(i) {
 }
 // function clear_css_inp_G_O
 
+function clear_css_inp_self(i) {
+    $("#inp_self" + i).css("background-color", "#ffffff");
+    $("#inp_self" + i).css("border-style", "solid");
+}
+// function clear_css_inp_G_O
+
 function clear_form() {
     var row_count = document.getElementById("row_count").value;
     var row_count_level = document.getElementById("row_count_level").value;
@@ -1115,6 +1158,227 @@ function clear_form() {
     check_weightG_O()
 }
 // function clear_form
+
+function show_approveG_O() {
+
+    var evs_emp_id = document.getElementById("evs_emp_id").value;
+    var data_show = "";
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/get_approveG_O",
+        data: {
+            "evs_emp_id": evs_emp_id
+
+        },
+        success: function(data) {
+            // console.log(data);
+            var app1 = "";
+            var app2 = "";
+            var id_app1 = "";
+            var id_app2 = "";
+
+            if (data['app2'].length != 0) {
+                data['app1'].forEach((row, index) => {
+                    app1 = row.Empname_eng + " " + row.Empsurname_eng;
+                    id_app1 = row.Emp_ID;
+                });
+                // foreach app 1
+                data['app2'].forEach((row, index) => {
+                    app2 = row.Empname_eng + " " + row.Empsurname_eng;
+                    id_app2 = row.Emp_ID;
+                });
+                // foreach app 1
+
+                data_show = '<div class="row">'
+                data_show += '<div class="col-md-2">'
+                data_show += ' <label class="control-label"><strong>'
+                data_show += '<font size="3px">Approver 1 : </font>'
+                data_show += '</strong></label>'
+                data_show += '</div>'
+                data_show += '<!-- col-2  -->'
+                data_show += '<div class="col-md-4">'
+                data_show += '<p id="app1">' + app1 + '</p>'
+                data_show += '</div>'
+                data_show += '<!-- col-4  -->'
+                data_show += '<!-- -------------------- -->'
+                data_show += '<div class="col-md-2">'
+                data_show += '<label class="control-label"><strong>'
+                data_show += '<font size="3px">Approver 2 : </font>'
+                data_show += '</strong></label>'
+                data_show += '</div>'
+                data_show += '<!-- col-2  -->'
+                data_show += '<div class="col-md-4">'
+                data_show += '<p id="app">' + app2 + '</p>'
+                data_show += '</div>'
+                data_show += '<!-- col-4  -->'
+                data_show += '<!-- -------------------- -->'
+                data_show += '</div>'
+                data_show += '<!-- row  -->'
+                data_show += '<hr>'
+                $("#approve1_edtG_O").val(id_app1);
+                $("#approve2_edtG_O").val(id_app2);
+                console.log(id_app1 + "....." + id_app2);
+                $("#btn_send_insertG_O").hide();
+                $("#btn_send_editG_O").show();
+
+                $("#add_appG_O").modal('hide');
+                $("#btn_editG_O").hide();
+
+                $("#show_approverG_O").html(data_show);
+                $("#btn_clearG_O").hide();
+
+            }
+            // if
+            else {
+                $("#btn_send_insertG_O").show();
+                $("#btn_send_editG_O").hide();
+
+            }
+            // else
+
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+            $("#btn_send_insertG_O").show();
+            $("#btn_send_editG_O").hide();
+        }
+        // error
+    });
+    // ajax
+
+}
+// function show_approveG_O
+
+function check_approveG_O() {
+    var approve1 = document.getElementById("approve1G_O").value;
+    var approve2 = document.getElementById("approve2G_O").value;
+
+    if (approve2 != "0") {
+        console.log(1);
+        save_approveG_O()
+        return true;
+    }
+    // if
+    else if (approve2 == "0") {
+        $("#approve2G_O").css("background-color", "#ffe6e6");
+        $("#approve2G_O").css("border-style", "solid");
+        return false;
+    }
+    // else if
+}
+// function check_approve
+
+function save_approveG_O() {
+    var approve1 = document.getElementById("approve1G_O").value;
+    var approve2 = document.getElementById("approve2G_O").value;
+    var evs_emp_id = document.getElementById("evs_emp_id").value;
+    var dma_emp_id = document.getElementById("emp_id").innerHTML;
+
+    console.log(approve1);
+    console.log(approve2);
+    var data_show = "";
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/save_approveG_O",
+        data: {
+            "approve1": approve1,
+            "approve2": approve2,
+            "evs_emp_id": evs_emp_id,
+            "dma_emp_id": dma_emp_id
+
+        },
+        success: function(data) {
+            console.log(data);
+            show_approveG_O();
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+
+}
+// function show_approveG_O
+
+function update_approveG_O() {
+    var approve1 = document.getElementById("approve1_edtG_O").value;
+    var approve2 = document.getElementById("approve2_edtG_O").value;
+    var evs_emp_id = document.getElementById("evs_emp_id").value;
+    var dma_emp_id = document.getElementById("emp_id").innerHTML;
+
+    console.log(approve1);
+    console.log(approve2);
+    console.log(evs_emp_id);
+    console.log(dma_emp_id);
+    var data_show = "";
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form/Evs_form/update_approveG_O",
+        data: {
+            "approve1": approve1,
+            "approve2": approve2,
+            "evs_emp_id": evs_emp_id,
+            "dma_emp_id": dma_emp_id
+
+        },
+        success: function(data) {
+            console.log(data);
+            $("#edt_appG_O").modal('hide');
+            show_approveG_O()
+
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+
+}
+// function update_approveG_O
+
+function check_approve_edtG_O() {
+    var approve1 = document.getElementById("approve1_edtG_O").value;
+    var approve2 = document.getElementById("approve2_edtG_O").value;
+
+    if (approve2 != "0") {
+        console.log(1);
+        update_approveG_O();
+        return true;
+    }
+    // if
+    else if (approve2 == "0") {
+        $("#approve2_edtG_O").css("background-color", "#ffe6e6");
+        $("#approve2_edtG_O").css("border-style", "solid");
+        return false;
+    }
+    // else if
+}
+// function check_approve check_approve_edtG_O
+
+function clear_css_approve2G_O() {
+    $("#approve2G_O").css("background-color", "#ffffff");
+    $("#approve2G_O").css("border-style", "solid");
+}
+// function clear_css_approve2G_O
+
+function clear_css_approve2_edtG_O() {
+    $("#approve2_edtG_O").css("background-color", "#ffffff");
+    $("#approve2_edtG_O").css("border-style", "solid");
+}
+// function clear_css_approve2_edtG_O
+
+// *************************************** G&O *************************************************
 
 function set_tap() {
 
@@ -1147,6 +1411,7 @@ function set_tap() {
                     data_tap += '</a></li>';
                     $("#btn_saveG_O").hide();
                     $("#G_O").addClass("active");
+                    show_approveG_O();
 
                 }
                 // else if 
@@ -1519,10 +1784,10 @@ function set_tap() {
                                         </center>
                                     </th>
                                     <th width="20%">
-                                        <center>Result</center>
+                                        <center>Self Review</center>
                                     </th>
                                     <th width="3%">
-                                        <center>Score AxB</center>
+                                        <center>Evaluator Review</center>
                                     </th>
                                 </tr>
                             </thead>
@@ -1533,6 +1798,8 @@ function set_tap() {
                                 $row_ranges = 0;
                                 $count = 0;
                                 $span = 0;
+                                $spans = 0;
+                                $temps = "";
                                 // print_r($g_o_emp);
 
                                 $col = [];
@@ -1604,15 +1871,24 @@ function set_tap() {
                                 $num_index++;
                                 $temp = $row->dgo_item;    
                                 }
-                                // else if 
-                                else if($temp == $row->dgo_item){ ?>
-                                    <?php }
-                                // else if
-                                ?>
+                                // else if ?>
                                     <td><?php echo $row->dgol_level; ?></td>
                                     <!-- show level  -->
-                                    <td></td>
-                                    <td></td>
+                                    <?php if($index == 0){ ?>
+                                    <td rowspan="<?php echo $col[$spans] ?>"><?php echo $row->dgo_self_review; ?></td>
+                                    <?php 
+                                $spans++;
+                                $temps = $row->dgo_item;
+                                } 
+                                // if 
+                                else if($temps != $row->dgo_item){ ?>
+                                    <td rowspan="<?php echo $col[$spans] ?>"><?php echo $row->dgo_self_review; ?></td>
+                                    <?php
+                                $spans++;
+                                $temps = $row->dgo_item;
+                                } 
+                                // else if?>
+
                                 </tr>
                                 <!-- end tr  -->
                                 <?}
@@ -1634,6 +1910,10 @@ function set_tap() {
                         <!-- End table level -->
 
                         <br>
+                        <div id="show_approverG_O">
+                        </div>
+                        <!-- show_approver G_O-->
+
                         <div class="row">
                             <div class="col-md-6">
                                 <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
@@ -1651,7 +1931,9 @@ function set_tap() {
                                 <button class="btn btn-warning" id="btn_editG_O" onclick="editG_O()">EDIT</button>
                                 <button class="btn btn-success" id="btn_saveG_O" onclick="checkG_O()">SAVE</button>
                                 <button class="btn btn-primary" id="btn_send_insertG_O" data-toggle="modal"
-                                    data-target="#add_app">SEND <i class="fa fa-share-square-o"></i></button>
+                                    data-target="#add_appG_O">SEND <i class="fa fa-share-square-o"></i></button>
+                                <button class="btn btn-warning" id="btn_send_editG_O" data-toggle="modal"
+                                    data-target="#edt_appG_O">SEND <i class="fa fa-share-square-o"></i></button>
                             </div>
                             <!-- col-md-6 add_app -->
 
@@ -2058,7 +2340,7 @@ function set_tap() {
 </div>
 <!-- Modal edt approver-->
 
-<!-- Modal save -->
+<!-- Modal save g_o -->
 <div class="modal fade" id="save_mbo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -2097,7 +2379,7 @@ function set_tap() {
 </div>
 <!-- End Modal save-->
 
-<!-- Modal cancel -->
+<!-- Modal cancel  -->
 <div class="modal fade" id="cancel_mbo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -2134,7 +2416,7 @@ function set_tap() {
 </div>
 <!-- End Modal cancel-->
 
-<!-- Modal cancel -->
+<!-- Modal cancel g-o -->
 <div class="modal fade" id="cancel_g_o" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -2207,7 +2489,7 @@ function set_tap() {
 </div>
 <!-- End Modal check-->
 
-<!-- Modal save -->
+<!-- Modal save g_o -->
 <div class="modal fade" id="save_g_o" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -2244,4 +2526,165 @@ function set_tap() {
     </div>
     <!-- modal-dialog -->
 </div>
-<!-- End Modal save-->
+<!-- End Modal save g_o-->
+
+<!-- Modal approver g-o -->
+<div class="modal fade" id="add_appG_O" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" id="color_head">
+                <button type="button" class="close" data-dismiss="modal">
+                    <font color="white">&times;</font>
+                </button>
+                <h4 class="modal-title">
+                    <font color="white"><b> Please Select Approver </b></font>
+                </h4>
+            </div>
+            <!-- Modal header-->
+
+            <br>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6" align="center">
+                        <label class="control-label"><strong>Approver 1 : </strong></label>
+                    </div>
+                    <!-- col-6 -->
+
+                    <div class="col-md-6" align="center">
+                        <label class="control-label"><strong>Approver 2 : </strong></label>
+                    </div>
+                    <!-- col-6 -->
+                </div>
+                <!--  row -->
+
+                <div class="row">
+                    <div class="col-md-6" align="center">
+                        <select class="form-control" id="approve1G_O">
+                            <option value="0">----- Please Select-----</option>
+                            <option value="00029">Alaska</option>
+                            <option value="00030">Hawaii</option>
+                            <option value="00032">Kunanya</option>
+                        </select>
+                    </div>
+                    <!-- col-6 -->
+
+                    <div class="col-md-6" align="center">
+                        <select class="form-control" id="approve2G_O" onchange="clear_css_approve2G_O()">
+                            <option value="0">----- Please Select-----</option>
+                            <option value="00029">Alaska</option>
+                            <option value="00030">Hawaii</option>
+                            <option value="00032">Kunanya</option>
+                        </select>
+                    </div>
+                    <!-- col-6 -->
+                </div>
+                <!--  row -->
+
+            </div>
+            <!-- Modal body-->
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-6" align="left">
+                        <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                    </div>
+                    <!-- col-6 -->
+
+                    <div class="col-md-6" align="rigth">
+                        <button type="button" class="btn btn-success" onclick="return check_approveG_O()">SAVE</button>
+                    </div>
+                    <!-- col-6 -->
+
+                </div>
+                <!-- row -->
+            </div>
+            <!-- Modal footer-->
+        </div>
+        <!-- Modal content-->
+    </div>
+    <!-- Modal dialog-->
+</div>
+<!-- Modal approver g-o-->
+
+<!-- Modal edt approver G_O -->
+<div class="modal fade" id="edt_appG_O" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" id="color_head">
+                <button type="button" class="close" data-dismiss="modal">
+                    <font color="white">&times;</font>
+                </button>
+                <h4 class="modal-title">
+                    <font color="white"><b> Please Select Approver </b></font>
+                </h4>
+            </div>
+            <!-- Modal header-->
+
+            <br>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6" align="center">
+                        <label class="control-label"><strong>Approver 1 : </strong></label>
+                    </div>
+                    <!-- col-6 -->
+
+                    <div class="col-md-6" align="center">
+                        <label class="control-label"><strong>Approver 2 : </strong></label>
+                    </div>
+                    <!-- col-6 -->
+                </div>
+                <!--  row -->
+
+                <div class="row">
+                    <div class="col-md-6" align="center">
+                        <select class="form-control" id="approve1_edtG_O">
+                            <option value="0">----- Please Select-----</option>
+                            <option value="00029">Alaska</option>
+                            <option value="00030">Hawaii</option>
+                            <option value="00032">Kunanya</option>
+                        </select>
+                    </div>
+                    <!-- col-6 -->
+
+                    <div class="col-md-6" align="center">
+                        <select class="form-control" id="approve2_edtG_O" onchange="clear_css_approve2_edtG_O()">
+                            <option value="0">----- Please Select-----</option>
+                            <option value="00029">Alaska</option>
+                            <option value="00030">Hawaii</option>
+                            <option value="00032">Kunanya</option>
+                        </select>
+                    </div>
+                    <!-- col-6 -->
+                </div>
+                <!--  row -->
+
+            </div>
+            <!-- Modal body-->
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-6" align="left">
+                        <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                    </div>
+                    <!-- col-6 -->
+
+                    <div class="col-md-6" align="rigth">
+                        <button type="button" class="btn btn-success"
+                            onclick="return check_approve_edtG_O()">SAVE</button>
+                    </div>
+                    <!-- col-6 -->
+
+                </div>
+                <!-- row -->
+            </div>
+            <!-- Modal footer-->
+        </div>
+        <!-- Modal content-->
+    </div>
+    <!-- Modal dialog-->
+</div>
+<!-- Modal edt approverG_O-->

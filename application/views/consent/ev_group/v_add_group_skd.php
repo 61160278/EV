@@ -247,8 +247,24 @@ function select_all_right() {
 </script>
 
 <style>
-th {
+.panel.panel-indigo .panel-heading {
+    color: #e8eaf6;
+    background-color: #134466;
+}
+
+.margin {
+        margin-top: 10px;
+    }
+
+thead {
+    color: black;
     text-align: center;
+    font-size: 20px;
+}
+
+tbody {
+    text-align: center;
+    font-size: 15px;
 }
 </style>
 
@@ -257,15 +273,15 @@ th {
 <div class="col-md-12">
     <div class="panel panel-indigo">
         <div class="panel-heading">
-            <h1 style="font-family:'Times New Roman'">
-                <font color="#ffffff" size="7px"><b> Manage Group SKD & Head Dept.</b></font>
-            </h1>
+            <h2 >
+                <font color="#ffffff" size="6px"><b> Manage Group SKD & Head Dept.</b></font>
+            </h2>
         </div>
         <!-- panel-heading h1 -->
 
         <div class="panel-body">
-            <h2 style="font-family:'Arial'">
-                <font size="4px" font color="black"> &emsp; Please select contact group for add contact to the group.
+            <h2>
+                <font size="5px" font color="black"> &emsp; <b>Please select contact group for add contact to the group.</b>
                 </font>
             </h2>
         </div>
@@ -303,7 +319,7 @@ th {
 
                             <table id="table1" class="table table-striped table-bordered dataTable no-footer">
                                 <thead>
-                                    <tr style="background-color:lavender; font-family:'Garamond'" align="middle">
+                                    <tr>
                                         <center>
                                             <th>
                                                 <center>Select
@@ -345,8 +361,7 @@ th {
                     <div class="panel-body">
                         <div class="DTTT btn-group pull-right mt-sm">
                             <button class="btn btn-success" onclick="change_group()">
-                                <i class="ti ti-plus"></i>
-                                <span>ADD</span>
+                            <i class = "fa fa-plus""></i>  &nbsp; ADD
                             </button>
                         </div>
                         <!-- add -->
@@ -389,7 +404,7 @@ th {
 
                             <table id="example" class="table table-striped table-bordered dataTable no-footer">
                                 <thead>
-                                    <tr style="background-color:lavender; font-family:'Garamond'">
+                                    <tr >
                                         <th>
                                             <center>Select
                                                 <br>
@@ -495,18 +510,6 @@ th {
 </div>
 <!-- head outside -->
 </html>
-
-<style>
-thead {
-    color: black;
-    font-size: 14px;
-}
-
-tbody {
-    color: black;
-    font-size: 12px;
-}
-</style>
 
 <!-- Modal RESIGN -->
 <div class="modal fade" id="RESIGN" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

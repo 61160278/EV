@@ -52,20 +52,30 @@ function emp_insert(){
 	window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/"+pay_id+""
 
 }  //function emp_insert
-
-
-
-
-
-
 </script>
+<style>
+th {
+    color: black;
+    text-align: center;
+    font-size: 20px;
+}
 
+td {
+    text-align: center;
+    font-size: 15px;
+}
+
+.panel.panel-default .panel-heading {
+    color: #e8eaf6;
+    background-color: #134466;
+}
+</style>
 <div data-widget-group="group1">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h2>List of Permission for Create MBO</h2>
+					<h2 style="color:white;"><font size ="6px">List of Permission for Create MBO</font></h2>
 					<input id="date" type="hidden" value="<?php echo $_POST["Date"]?>">
 					<div class="panel-ctrls"></div>
 				</div>

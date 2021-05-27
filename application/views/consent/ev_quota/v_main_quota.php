@@ -117,7 +117,7 @@ function manage_data(qut_id) {
                 <div class="panel-heading bgcolor1" id="head_">
 
                     <a href="<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_ca"><button type="submit"
-                            class="btn btn-success" id="add"> + ADD </button></a>
+                            class="btn btn-success" id="add"> <i class = "fa fa-plus""></i>  &nbsp;ADD </button></a>
                     <div class="panel-ctrls">
 
                     </div>
