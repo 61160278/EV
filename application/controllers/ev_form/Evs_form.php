@@ -208,6 +208,7 @@ class Evs_form extends MainController_avenxo {
 		$sdgs = $this->input->post("sdgs");
 		$item = $this->input->post("item");
 		$weight = $this->input->post("weight");
+		$self = $this->input->post("self");
 		$number_index = $this->input->post("number_index");
 
 		$this->load->model('Da_evs_data_g_and_o','ddgo');
@@ -217,6 +218,7 @@ class Evs_form extends MainController_avenxo {
 			$this->ddgo->dgo_sdgs = $sdgs[$i];
 			$this->ddgo->dgo_item = $item[$i];
 			$this->ddgo->dgo_weight = $weight[$i];
+			$this->ddgo->dgo_self_review = $self[$i];
 			$this->ddgo->dgo_emp_id = $Emp_ID;
 			$this->ddgo->dgo_evs_emp_id = $evs_emp_id;
 			$this->ddgo->insert();
@@ -479,6 +481,7 @@ class Evs_form extends MainController_avenxo {
 		$sdgs = $this->input->post("sdgs");
 		$item = $this->input->post("item");
 		$weight = $this->input->post("weight");
+		$self = $this->input->post("self");
 		$check_emp_id = $this->input->post("check_emp_id");
 		$evs_emp_id = $this->input->post("evs_emp_id");
 		
@@ -489,6 +492,7 @@ class Evs_form extends MainController_avenxo {
 			$this->ddgo->dgo_sdgs = $sdgs[$i];
 			$this->ddgo->dgo_item = $item[$i];
 			$this->ddgo->dgo_weight = $weight[$i];
+			$this->ddgo->dgo_self_review = $self[$i];
 			$this->ddgo->dgo_emp_id = $check_emp_id;
 			$this->ddgo->dgo_evs_emp_id = $evs_emp_id;
 			$this->ddgo->dgo_id = $dgo_id[$i];

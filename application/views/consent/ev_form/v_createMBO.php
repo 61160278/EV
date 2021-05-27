@@ -418,29 +418,9 @@ function createG_O() {
                 }
                 // for
                 data_row += '</td>'
-                data_row += '<td id="dis_color">'
-                data_row += '<center>'
-                data_row += '<div class="col-md-12">'
-                data_row += '<form action="">'
-                data_row += '<input type="radio" name="result" value="1"Disabled Unchecked>'
-                data_row += '<label for="1">&nbsp; 1</label>'
-                data_row += '&nbsp;&nbsp;'
-                data_row += '<input type="radio" name="result" value="2" Disabled Unchecked>'
-                data_row += '<label for="2">&nbsp; 2</label>'
-                data_row += '&nbsp;&nbsp;'
-                data_row += '<input type="radio" name="result" value="3" Disabled Unchecked>'
-                data_row += '<label for="3">&nbsp; 3</label>'
-                data_row += '&nbsp;&nbsp;'
-                data_row += '<input type="radio" name="result" value="4" Disabled Unchecked>'
-                data_row += '<label for="4">&nbsp; 4</label>'
-                data_row += '&nbsp;&nbsp;'
-                data_row += '<input type="radio" name="result" value="5" Disabled Unchecked>'
-                data_row += '<label for="5">&nbsp; 5</label>'
-                data_row += '&nbsp;&nbsp;'
-                data_row += '</form>'
-                data_row += '</div>'
-                data_row += '<!-- col-12 -->'
-                data_row += '</center>'
+                data_row += '<td>'
+                data_row += '<input class="form-control" type="text" id="inp_self' + number +
+                    '" onkeyup="clear_css_inp_self(' + number + ')">'
                 data_row += '</td>'
                 data_row += '<td id="dis_color"></td>'
                 data_row += '</tr>'
@@ -489,29 +469,9 @@ function createG_O() {
                 data_row += '<input class="form-control" type="text" id="ranges_s' + number +
                     '" placeholder="Standard" onkeyup="clear_css_inp_rangS(' + number + ')">'
                 data_row += '</td>'
-                data_row += '<td id="dis_color">'
-                data_row += '<center>'
-                data_row += '<div class="col-md-12">'
-                data_row += '<form action="">'
-                data_row += '<input type="radio" name="result" value="1"Disabled Unchecked>'
-                data_row += '<label for="1">&nbsp; 1</label>'
-                data_row += '&nbsp;&nbsp;'
-                data_row += '<input type="radio" name="result" value="2" Disabled Unchecked>'
-                data_row += '<label for="2">&nbsp; 2</label>'
-                data_row += '&nbsp;&nbsp;'
-                data_row += '<input type="radio" name="result" value="3" Disabled Unchecked>'
-                data_row += '<label for="3">&nbsp; 3</label>'
-                data_row += '&nbsp;&nbsp;'
-                data_row += '<input type="radio" name="result" value="4" Disabled Unchecked>'
-                data_row += '<label for="4">&nbsp; 4</label>'
-                data_row += '&nbsp;&nbsp;'
-                data_row += '<input type="radio" name="result" value="5" Disabled Unchecked>'
-                data_row += '<label for="5">&nbsp; 5</label>'
-                data_row += '&nbsp;&nbsp;'
-                data_row += '</form>'
-                data_row += '</div>'
-                data_row += '<!-- col-12 -->'
-                data_row += '</center>'
+                data_row += '<td>'
+                data_row += '<input class="form-control" type="text" id="inp_self' + number +
+                    '" onkeyup="clear_css_inp_self(' + number + ')">'
                 data_row += '</td>'
                 data_row += '<td id="dis_color"></td>'
                 data_row += '</tr>'
@@ -610,6 +570,7 @@ function saveG_O() {
     var item = [];
     var weight = [];
     var dgo_data = [];
+    var self = [];
 
     var number_index = document.getElementById("row_indexG_O").value;
     var level_row = document.getElementById("level_row").value;
@@ -622,6 +583,7 @@ function saveG_O() {
         sdgs.push(document.getElementById("sdgs_sel" + i).value);
         item.push(document.getElementById("inp_item" + i).value);
         weight.push(document.getElementById("weight" + i).value);
+        self.push(document.getElementById("inp_self" + i).value);
     }
     // for
 
@@ -635,6 +597,7 @@ function saveG_O() {
             "type": type,
             "sdgs": sdgs,
             "item": item,
+            "self":self,
             "weight": weight,
             "number_index": number_index
         },
@@ -645,7 +608,8 @@ function saveG_O() {
             // foreach 
 
             saveG_O_level(dgo_data);
-            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_g_o/" + check_emp_id + "";
+            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_g_o/" + check_emp_id +
+            "";
 
         }
         // success
@@ -745,6 +709,19 @@ function checkG_O() {
             $("#sdgs_sel" + i).css("background-color", "#ffffff");
             $("#sdgs_sel" + i).css("border-style", "solid");
         }
+        // else
+
+        self = document.getElementById("inp_self" + i).value;
+        if (self == "") {
+            $("#inp_self" + i).css("background-color", "#ffe6e6");
+            $("#inp_self" + i).css("border-style", "solid");
+            num++;
+        }
+        // if 
+        else {
+            $("#inp_self" + i).css("background-color", "#ffffff");
+            $("#inp_self" + i).css("border-style", "solid");
+        }
         // else 
 
         if (i <= level_row) {
@@ -840,6 +817,12 @@ function clear_css_sel_G_O(i) {
     $("#sdgs_sel" + i).css("border-style", "solid");
 }
 // function clear_css_inp_G_O
+
+function clear_css_inp_self(i) {
+    $("#inp_self" + i).css("background-color", "#ffffff");
+    $("#inp_self" + i).css("border-style", "solid");
+}
+// function clear_css_inp_self
 
 // *************************************** G&O ***************************************
 
@@ -1179,10 +1162,10 @@ function set_tap() {
                                         </center>
                                     </th>
                                     <th width="20%">
-                                        <center>Result</center>
+                                        <center>Self Review</center>
                                     </th>
                                     <th width="3%">
-                                        <center>Score AxB</center>
+                                        <center>Evaluator Review</center>
                                     </th>
                                 </tr>
                             </thead>
