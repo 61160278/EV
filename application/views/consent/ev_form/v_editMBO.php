@@ -2058,7 +2058,7 @@ function set_tap() {
 </div>
 <!-- Modal edt approver-->
 
-<!-- Modal save -->
+<!-- Modal save g_o -->
 <div class="modal fade" id="save_mbo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -2097,7 +2097,7 @@ function set_tap() {
 </div>
 <!-- End Modal save-->
 
-<!-- Modal cancel -->
+<!-- Modal cancel  -->
 <div class="modal fade" id="cancel_mbo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -2134,7 +2134,7 @@ function set_tap() {
 </div>
 <!-- End Modal cancel-->
 
-<!-- Modal cancel -->
+<!-- Modal cancel g-o -->
 <div class="modal fade" id="cancel_g_o" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -2207,7 +2207,7 @@ function set_tap() {
 </div>
 <!-- End Modal check-->
 
-<!-- Modal save -->
+<!-- Modal save g_o -->
 <div class="modal fade" id="save_g_o" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -2245,3 +2245,83 @@ function set_tap() {
     <!-- modal-dialog -->
 </div>
 <!-- End Modal save-->
+
+<!-- Modal approver g-o -->
+<div class="modal fade" id="add_app_g_o" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" id="color_head">
+                <button type="button" class="close" data-dismiss="modal">
+                    <font color="white">&times;</font>
+                </button>
+                <h4 class="modal-title">
+                    <font color="white"><b> Please Select Approver </b></font>
+                </h4>
+            </div>
+            <!-- Modal header-->
+
+            <br>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6" align="center">
+                        <label class="control-label"><strong>Approver 1 : </strong></label>
+                    </div>
+                    <!-- col-6 -->
+
+                    <div class="col-md-6" align="center">
+                        <label class="control-label"><strong>Approver 2 : </strong></label>
+                    </div>
+                    <!-- col-6 -->
+                </div>
+                <!--  row -->
+
+                <div class="row">
+                    <div class="col-md-6" align="center">
+                        <select class="form-control" id="approve1" onchange="clear_css_approve1()">
+                            <option value="0">----- Please Select-----</option>
+                            <option value="00029">Alaska</option>
+                            <option value="00030">Hawaii</option>
+                            <option value="00032">Kunanya</option>
+                        </select>
+                    </div>
+                    <!-- col-6 -->
+
+                    <div class="col-md-6" align="center">
+                        <select class="form-control" id="approve2" onchange="clear_css_approve2()">
+                            <option value="0">----- Please Select-----</option>
+                            <option value="00029">Alaska</option>
+                            <option value="00030">Hawaii</option>
+                            <option value="00032">Kunanya</option>
+                        </select>
+                    </div>
+                    <!-- col-6 -->
+                </div>
+                <!--  row -->
+
+            </div>
+            <!-- Modal body-->
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-6" align="left">
+                        <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                    </div>
+                    <!-- col-6 -->
+
+                    <div class="col-md-6" align="rigth">
+                        <button type="button" class="btn btn-success" onclick="return check_approve()">SAVE</button>
+                    </div>
+                    <!-- col-6 -->
+
+                </div>
+                <!-- row -->
+            </div>
+            <!-- Modal footer-->
+        </div>
+        <!-- Modal content-->
+    </div>
+    <!-- Modal dialog-->
+</div>
+<!-- Modal approver g-o-->
