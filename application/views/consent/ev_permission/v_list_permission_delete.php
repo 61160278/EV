@@ -23,20 +23,36 @@ function emp_delete(emp_id) {
             console.log(status)
 
         }
-		
+
     });
-	
-	var pay_id = 2; 
-	window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/"+pay_id+""
+
+    var pay_id = 2;
+    window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/" + pay_id + ""
 } //function emp_insert
 </script>
+<style>
+th {
+    color: black;
+    text-align: center;
+    font-size: 20px;
+}
 
+td {
+    text-align: center;
+    font-size: 15px;
+}
+
+.panel.panel-default .panel-heading {
+    color: #e8eaf6;
+    background-color: #134466;
+}
+</style>
 <div data-widget-group="group1">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h2>List of Permission for Create MBO</h2>
+                    <h2 style="color:white;"><font size ="6px">List of Permission for Create MBO</font></h2>
 
                     <div class="panel-ctrls"></div>
                 </div>
@@ -86,7 +102,7 @@ function emp_delete(emp_id) {
                                         <a data-toggle="modal" class="btn btn btn-danger"
                                             href="#Delete<?php echo $row->emp_id?>">
                                             <i class="ti ti-trash"></i>
-											
+
                                         </a>
 
                                     </div>
@@ -111,13 +127,6 @@ function emp_delete(emp_id) {
 							
 							?>
                             <input id="count" type="hidden" value="<?php echo  $num++; ?>">
-
-
-
-
-
-
-
                         </tbody>
                     </table>
 
@@ -126,13 +135,13 @@ function emp_delete(emp_id) {
 
                 </div>
 
-           
-       </div>
 
+            </div>
+
+        </div>
     </div>
-</div>
 
-<?php 
+    <?php 
 								
 	$num = 0;
 		foreach($select->result() as $index => $row ) { 
@@ -140,59 +149,58 @@ function emp_delete(emp_id) {
 
 
 
-<!-- Modal Delete -->
-<div class="modal fade" id="Delete<?php echo $row->emp_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:gray;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b>
-                    </font>
-                </button>
-            </div>
-            <!-- Modal header -->
+    <!-- Modal Delete -->
+    <div class="modal fade" id="Delete<?php echo $row->emp_id?>" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:gray;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <font color="White"><b>&times;</b>
+                        </font>
+                    </button>
+                </div>
+                <!-- Modal header -->
 
-            <div class="modal-body">
-                <div class="form-horizontal">
-                    <div class="form-group" align="center">
-                        <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
-                                align="center">
-                                <font size="5px">
-                                    Do you want
-                                    to Delete
-                                    Data YES or
-                                    NO ?</font>
-                            </label>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group" align="center">
+                            <div class="col-sm-12">
+                                <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                                    align="center">
+                                    <font size="5px">
+                                        Do you want
+                                        to Delete
+                                        Data YES or
+                                        NO ?</font>
+                                </label>
 
+                            </div>
                         </div>
                     </div>
+                    <!-- form-horizontal -->
                 </div>
-                <!-- form-horizontal -->
-            </div>
-            <!-- Modal body -->
+                <!-- Modal body -->
 
-            <div class="modal-footer">
-                <div class="btn-group pull-left">
-                    <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
+                <div class="modal-footer">
+                    <div class="btn-group pull-left">
+                        <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
+                    </div>
+                    <button type="button" class="btn btn-success"
+                        onclick="emp_delete('<?php echo $row->emp_id;?>')">YES</button>
+
+
                 </div>
-                <button type="button" class="btn btn-success"
-                   onclick="emp_delete('<?php echo $row->emp_id;?>')">YES</button>
-				  
-				   
+                <!-- Modal footer -->
             </div>
-            <!-- Modal footer -->
+            <!-- modal-content -->
         </div>
-        <!-- modal-content -->
+        <!-- modal-dialog -->
     </div>
-    <!-- modal-dialog -->
-</div>
-<!-- End Modal Delete -->
+    <!-- End Modal Delete -->
 
-<?php
+    <?php
 	$num++;
 	}
 							
 ?>
- 
