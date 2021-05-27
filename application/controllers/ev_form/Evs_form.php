@@ -208,6 +208,7 @@ class Evs_form extends MainController_avenxo {
 		$sdgs = $this->input->post("sdgs");
 		$item = $this->input->post("item");
 		$weight = $this->input->post("weight");
+		$self = $this->input->post("self");
 		$number_index = $this->input->post("number_index");
 
 		$this->load->model('Da_evs_data_g_and_o','ddgo');
@@ -217,6 +218,7 @@ class Evs_form extends MainController_avenxo {
 			$this->ddgo->dgo_sdgs = $sdgs[$i];
 			$this->ddgo->dgo_item = $item[$i];
 			$this->ddgo->dgo_weight = $weight[$i];
+			$this->ddgo->dgo_self_review = $self[$i];
 			$this->ddgo->dgo_emp_id = $Emp_ID;
 			$this->ddgo->dgo_evs_emp_id = $evs_emp_id;
 			$this->ddgo->insert();
@@ -479,6 +481,7 @@ class Evs_form extends MainController_avenxo {
 		$sdgs = $this->input->post("sdgs");
 		$item = $this->input->post("item");
 		$weight = $this->input->post("weight");
+		$self = $this->input->post("self");
 		$check_emp_id = $this->input->post("check_emp_id");
 		$evs_emp_id = $this->input->post("evs_emp_id");
 		
@@ -489,6 +492,7 @@ class Evs_form extends MainController_avenxo {
 			$this->ddgo->dgo_sdgs = $sdgs[$i];
 			$this->ddgo->dgo_item = $item[$i];
 			$this->ddgo->dgo_weight = $weight[$i];
+			$this->ddgo->dgo_self_review = $self[$i];
 			$this->ddgo->dgo_emp_id = $check_emp_id;
 			$this->ddgo->dgo_evs_emp_id = $evs_emp_id;
 			$this->ddgo->dgo_id = $dgo_id[$i];
@@ -556,9 +560,6 @@ class Evs_form extends MainController_avenxo {
 
 		$emp_id = substr($data_sent,0,strpos($data_sent,":"));
 		$pay_id = substr($data_sent,strpos($data_sent,":")+1);
-		echo $emp_id;
-		echo "<br>";
-		echo $pay_id;
 
 		$this->load->model('M_evs_employee','memp');
 		$this->memp->Emp_ID = $emp_id;
@@ -570,7 +571,7 @@ class Evs_form extends MainController_avenxo {
 		$this->load->model('M_evs_position_from','mpf');
 		$this->mpf->ps_pos_id = $tep->Position_ID;
 		$this->mpf->ps_pay_id = $pay_id;
-		$data['form'] = $this->mpf->get_all_by_key_by_year()->row();	
+		$data['form'] = $this->mpf->get_all_by_key_by_year()->row();
 		
 		if($data['form']->ps_form_pe == "MBO"){
 			$this->load->model('M_evs_data_mbo','medm');

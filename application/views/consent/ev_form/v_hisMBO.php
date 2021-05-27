@@ -526,20 +526,22 @@ function set_tap() {
                                         </center>
                                     </th>
                                     <th width="20%">
-                                        <center>Result</center>
+                                        <center>Self Review</center>
                                     </th>
                                     <th width="3%">
-                                        <center>Score AxB</center>
+                                        <center>Evaluator Review</center>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody id="G_O_Table">
                                 <?php $num_index = 1;
                                 $temp = "";
+                                $temps = "";
                                 $row_level = 0;
                                 $row_ranges = 0;
                                 $count = 0;
                                 $span = 0;
+                                $spans = 0;
                                 // print_r($g_o_emp);
 
                                 $col = [];
@@ -618,7 +620,20 @@ function set_tap() {
                                 ?>
                                     <td><?php echo $row->dgol_level; ?></td>
                                     <!-- show level  -->
-                                    <td></td>
+                                    <?php if($index == 0){ ?>
+                                    <td rowspan="<?php echo $col[$spans] ?>"><?php echo $row->dgo_self_review; ?></td>
+                                    <?php 
+                                $spans++;
+                                $temps = $row->dgo_item;
+                                } 
+                                // if 
+                                else if($temps != $row->dgo_item){ ?>
+                                    <td rowspan="<?php echo $col[$spans] ?>"><?php echo $row->dgo_self_review; ?></td>
+                                    <?php
+                                $spans++;
+                                $temps = $row->dgo_item;
+                                } 
+                                // else if?>
                                     <td></td>
                                 </tr>
                                 <!-- end tr  -->

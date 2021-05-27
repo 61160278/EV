@@ -625,7 +625,9 @@ function editG_O() {
     var row_ranges = document.getElementById("row_ranges").value;
 
     var number = 1;
+    var numbers = 1;
     var count_span = 0;
+    var count_spans = 0;
     var data_row = "";
     var sdg = [];
     var col = [];
@@ -792,10 +794,31 @@ function editG_O() {
                     '" type="text" value="' + row.dgol_level +
                     '">'
                 data_row += '</td>'
-                data_row += '<td>'
-                data_row += '</td>'
-                data_row += '<td>'
 
+                if (index == 0) {
+                    data_row += '<td rowspan="' + col[count_spans] + '">'
+                    data_row += '<input class="form-control" type="text" id="inp_self' + numbers +
+                        '" value="' + row.dgo_self_review +
+                        '" onkeyup="clear_css_inp_self('+numbers+')">'
+                    data_row += '</td>'
+                    // show self review
+                    count_spans++;
+                    numbers++;
+                    temps = row.dgo_item;
+                }
+                // if
+                else if(temps != row.dgo_item){
+                    data_row += '<td rowspan="' + col[count_span] + '">'
+                    data_row += '<input class="form-control" type="text" id="inp_self' + numbers +
+                        '" value="' + row.dgo_self_review +
+                        '" onkeyup="clear_css_inp_self('+numbers+')">'
+                    data_row += '</td>'
+                    // show self review
+                    count_spans++;
+                    numbers++;
+                    temps = row.dgo_item;
+                }
+                // else if
                 data_row += '</tr>'
 
             });
@@ -832,6 +855,7 @@ function update_data_G_O() {
     var item = [];
     var weight = [];
     var dgo_data = [];
+    var self = [];
 
     var row_count = document.getElementById("row_count").value;
 
@@ -844,6 +868,7 @@ function update_data_G_O() {
         sdgs.push(document.getElementById("sdgs_sel" + i).value);
         item.push(document.getElementById("inp_item" + i).value);
         weight.push(document.getElementById("weight" + i).value);
+        self.push(document.getElementById("inp_self" + i).value);
     }
     // for
 
@@ -860,6 +885,7 @@ function update_data_G_O() {
             "sdgs": sdgs,
             "item": item,
             "weight": weight,
+            "self":self,
             "row_count": row_count,
             "check_emp_id": check_emp_id,
             "evs_emp_id": evs_emp_id
@@ -955,6 +981,19 @@ function checkG_O() {
             $("#sdgs_sel" + i).css("border-style", "solid");
         }
         // else 
+
+        self = document.getElementById("inp_self" + i).value;
+        if (item == "") {
+            $("#inp_self" + i).css("background-color", "#ffe6e6");
+            $("#inp_self" + i).css("border-style", "solid");
+            num++;
+        }
+        // if
+        else {
+            $("#inp_self" + i).css("background-color", "#ffffff");
+            $("#inp_self" + i).css("border-style", "solid");
+        }
+        // else
     }
     // for
 
@@ -1093,6 +1132,12 @@ function clear_css_inp_rangS(i) {
 function clear_css_sel_G_O(i) {
     $("#sdgs_sel" + i).css("background-color", "#ffffff");
     $("#sdgs_sel" + i).css("border-style", "solid");
+}
+// function clear_css_inp_G_O
+
+function clear_css_inp_self(i) {
+    $("#inp_self" + i).css("background-color", "#ffffff");
+    $("#inp_self" + i).css("border-style", "solid");
 }
 // function clear_css_inp_G_O
 
@@ -1519,10 +1564,10 @@ function set_tap() {
                                         </center>
                                     </th>
                                     <th width="20%">
-                                        <center>Result</center>
+                                        <center>Self Review</center>
                                     </th>
                                     <th width="3%">
-                                        <center>Score AxB</center>
+                                        <center>Evaluator Review</center>
                                     </th>
                                 </tr>
                             </thead>
@@ -1533,6 +1578,8 @@ function set_tap() {
                                 $row_ranges = 0;
                                 $count = 0;
                                 $span = 0;
+                                $spans = 0;
+                                $temps = "";
                                 // print_r($g_o_emp);
 
                                 $col = [];
@@ -1604,15 +1651,24 @@ function set_tap() {
                                 $num_index++;
                                 $temp = $row->dgo_item;    
                                 }
-                                // else if 
-                                else if($temp == $row->dgo_item){ ?>
-                                    <?php }
-                                // else if
-                                ?>
+                                // else if ?>
                                     <td><?php echo $row->dgol_level; ?></td>
                                     <!-- show level  -->
-                                    <td></td>
-                                    <td></td>
+                                    <?php if($index == 0){ ?>
+                                    <td rowspan="<?php echo $col[$spans] ?>"><?php echo $row->dgo_self_review; ?></td>
+                                    <?php 
+                                $spans++;
+                                $temps = $row->dgo_item;
+                                } 
+                                // if 
+                                else if($temps != $row->dgo_item){ ?>
+                                    <td rowspan="<?php echo $col[$spans] ?>"><?php echo $row->dgo_self_review; ?></td>
+                                    <?php
+                                $spans++;
+                                $temps = $row->dgo_item;
+                                } 
+                                // else if?>
+
                                 </tr>
                                 <!-- end tr  -->
                                 <?}
@@ -2058,7 +2114,7 @@ function set_tap() {
 </div>
 <!-- Modal edt approver-->
 
-<!-- Modal save -->
+<!-- Modal save g_o -->
 <div class="modal fade" id="save_mbo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -2097,7 +2153,7 @@ function set_tap() {
 </div>
 <!-- End Modal save-->
 
-<!-- Modal cancel -->
+<!-- Modal cancel  -->
 <div class="modal fade" id="cancel_mbo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -2134,7 +2190,7 @@ function set_tap() {
 </div>
 <!-- End Modal cancel-->
 
-<!-- Modal cancel -->
+<!-- Modal cancel g-o -->
 <div class="modal fade" id="cancel_g_o" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -2207,7 +2263,7 @@ function set_tap() {
 </div>
 <!-- End Modal check-->
 
-<!-- Modal save -->
+<!-- Modal save g_o -->
 <div class="modal fade" id="save_g_o" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -2245,3 +2301,83 @@ function set_tap() {
     <!-- modal-dialog -->
 </div>
 <!-- End Modal save-->
+
+<!-- Modal approver g-o -->
+<div class="modal fade" id="add_app_g_o" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" id="color_head">
+                <button type="button" class="close" data-dismiss="modal">
+                    <font color="white">&times;</font>
+                </button>
+                <h4 class="modal-title">
+                    <font color="white"><b> Please Select Approver </b></font>
+                </h4>
+            </div>
+            <!-- Modal header-->
+
+            <br>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6" align="center">
+                        <label class="control-label"><strong>Approver 1 : </strong></label>
+                    </div>
+                    <!-- col-6 -->
+
+                    <div class="col-md-6" align="center">
+                        <label class="control-label"><strong>Approver 2 : </strong></label>
+                    </div>
+                    <!-- col-6 -->
+                </div>
+                <!--  row -->
+
+                <div class="row">
+                    <div class="col-md-6" align="center">
+                        <select class="form-control" id="approve1" onchange="clear_css_approve1()">
+                            <option value="0">----- Please Select-----</option>
+                            <option value="00029">Alaska</option>
+                            <option value="00030">Hawaii</option>
+                            <option value="00032">Kunanya</option>
+                        </select>
+                    </div>
+                    <!-- col-6 -->
+
+                    <div class="col-md-6" align="center">
+                        <select class="form-control" id="approve2" onchange="clear_css_approve2()">
+                            <option value="0">----- Please Select-----</option>
+                            <option value="00029">Alaska</option>
+                            <option value="00030">Hawaii</option>
+                            <option value="00032">Kunanya</option>
+                        </select>
+                    </div>
+                    <!-- col-6 -->
+                </div>
+                <!--  row -->
+
+            </div>
+            <!-- Modal body-->
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-6" align="left">
+                        <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                    </div>
+                    <!-- col-6 -->
+
+                    <div class="col-md-6" align="rigth">
+                        <button type="button" class="btn btn-success" onclick="return check_approve()">SAVE</button>
+                    </div>
+                    <!-- col-6 -->
+
+                </div>
+                <!-- row -->
+            </div>
+            <!-- Modal footer-->
+        </div>
+        <!-- Modal content-->
+    </div>
+    <!-- Modal dialog-->
+</div>
+<!-- Modal approver g-o-->
