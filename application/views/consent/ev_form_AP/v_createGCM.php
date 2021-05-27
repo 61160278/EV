@@ -83,7 +83,7 @@ function save_GCM() {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/save_data_acm",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/save_data_gcm",
         data: {
             "Emp_ID": Emp_ID,
             "arr_sgc_id": arr_sgc_id,
@@ -100,7 +100,7 @@ function save_GCM() {
         // error
     });
     // ajax
-    window.location = "<?php echo base_url(); ?>/ev_form_AP/Evs_form_AP/index";
+   window.location = "<?php echo base_url(); ?>/ev_form_AP/Evs_form_AP/index";
 }
 </script>
 <!-- script -->

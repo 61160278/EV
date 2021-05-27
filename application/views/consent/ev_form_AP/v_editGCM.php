@@ -62,13 +62,13 @@ function show_weight() {
 
 function save_ACM() {
     var arr_radio = [];
-    var arr_sfa_id = [];
-    var get_arr_sfa_id = "";
+    var arr_sgc_id = [];
+    var get_arr_sgc_id = "";
     var index = document.getElementById("table_index_radio").value;
     var Emp_ID = document.getElementById("Emp_ID").value;
 
     for (i = 0; i < index; i++) {
-        arr_sfa_id.push(document.getElementsByName("sfa_id")[i].value);
+        arr_sgc_id.push(document.getElementsByName("sgc_id")[i].value);
         $("[name = rd_name_" + i + "]").each(function(index) {
             if ($(this).prop("checked") == true) {
                 arr_radio.push(document.getElementsByName("rd_name_" + i + "")[index].value);
@@ -77,16 +77,16 @@ function save_ACM() {
     }
     console.log("index : " + index);
     console.log("Emp_ID :  " + Emp_ID);
-    console.log("arr_sfa_id : " + arr_sfa_id);
+    console.log("arr_sgc_id : " + arr_sgc_id);
     console.log("arr_radio : " + arr_radio);
 
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_acm",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_gcm",
         data: {
             "Emp_ID": Emp_ID,
-            "arr_sfa_id": arr_sfa_id,
+            "arr_sgc_id": arr_sgc_id,
             "arr_radio": arr_radio
 
         },
@@ -236,9 +236,9 @@ function save_ACM() {
                                     $sum_max_rating = 0;
                                     $table_index_radio = 0;
                                     // start foreach
-                                    foreach($info_ability_form->result() as $row){
+                                    foreach($info_gcm_form->result() as $row){
                                 ?>
-                            <input type="text" name="sfa_id" value="<?php echo $row->sfa_id; ?>" hidden>
+                            <input type="text" name="sgc_id" value="<?php echo $row->sgc_id; ?>" hidden>
                             <!-- save index table_index_radio-->
 
                             <tr>
@@ -246,14 +246,14 @@ function save_ACM() {
                                     <center><?php echo $index_acm++; ?></center>
                                 </td>
                                 <td id="dis_color">
-                                    <?php echo $row->cpn_competency_detail_en . "<br><font color='blue'>" . $row->cpn_competency_detail_th ."</font>"; ?>
+                                    <?php echo $row->cpg_competency_detail_en . "<br><font color='blue'>" . $row->cpg_competency_detail_th ."</font>"; ?>
                                 </td>
                                 <!-- show competency  -->
                                 <td id="dis_color">
-                                    <?php foreach($info_expected->result() as $row_ept){ 
-                                            if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_keycomponent != $row_ept->kcp_key_component_detail_en){
-                                                $temp_keycomponent = $row_ept->kcp_key_component_detail_en;?>
-                                    <?php echo $row_ept->kcp_key_component_detail_en . "<br><font color='blue'>" . $row_ept->kcp_key_component_detail_th ."</font>"; ?>
+                                    <?php foreach($info_expected->result() as $row_epg){ 
+                                            if($row->sgc_cpg_id == $row_epg->kcg_cpg_id && $temp_keycomponent != $row_epg->kcg_key_component_detail_en){
+                                                $temp_keycomponent = $row_epg->kcg_key_component_detail_en;?>
+                                    <?php echo $row_epg->kcg_key_component_detail_en . "<br><font color='blue'>" . $row_epg->kcg_key_component_detail_th ."</font>"; ?>
                                     <?php }
                                             // if
                                             }
@@ -261,10 +261,10 @@ function save_ACM() {
                                 </td>
                                 <!-- show key component  -->
                                 <td id="dis_color">
-                                    <?php foreach($info_expected->result() as $row_ept){ 
-                                            if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_expected != $row_ept->ept_expected_detail_en && $row_ept->ept_pos_id == $info_pos_id){
-                                                $temp_expected = $row_ept->ept_expected_detail_en;?>
-                                    <?php echo $row_ept->ept_expected_detail_en . "<br><font color='blue'>" . $row_ept->ept_expected_detail_th ."</font><hr>"; ?>
+                                    <?php foreach($info_expected->result() as $row_epg){ 
+                                            if($row->sgc_cpg_id == $row_epg->kcg_cpg_id && $temp_expected != $row_epg->epg_expected_detail_en && $row_epg->epg_pos_id == $info_pos_id){
+                                                $temp_expected = $row_epg->epg_expected_detail_en;?>
+                                    <?php echo $row_epg->epg_expected_detail_en . "<br><font color='blue'>" . $row_epg->epg_expected_detail_th ."</font><hr>"; ?>
                                     <?php }
                                         // if
                                         }
@@ -272,9 +272,9 @@ function save_ACM() {
                                 </td>
                                 <!-- show expected  -->
                                 <td id="dis_color">
-                                    <center><?php echo $row->sfa_weight; ?></center>
+                                    <center><?php echo $row->sgc_weight; ?></center>
                                     <input type="number" name="weing_a_<?php echo $table_index_radio ?>"
-                                        value="<?php echo $row->sfa_weight; ?>" hidden>
+                                        value="<?php echo $row->sgc_weight; ?>" hidden>
                                 </td>
 
                                 <!-- show weight  -->
@@ -288,18 +288,18 @@ function save_ACM() {
                                    $checked_weight_5 ="";
               
 
-                                    foreach($data_acm->result() as $row_data_acm){
-                                            if($row->sfa_id == $row_data_acm->dta_sfa_id){
-                                                if($row_data_acm->dta_weight == 1){
+                                    foreach($data_gcm->result() as $row_data_gcm){
+                                            if($row->sgc_id == $row_data_gcm->dtg_sgc_id){
+                                                if($row_data_gcm->dtg_weight == 1){
                                                     $checked_weight_1 =  "checked";
                                                 }
-                                                else if($row_data_acm->dta_weight == 2){
+                                                else if($row_data_gcm->dtg_weight == 2){
                                                     $checked_weight_2 =  "checked";
                                                 }
-                                                else if($row_data_acm->dta_weight == 3){
+                                                else if($row_data_gcm->dtg_weight == 3){
                                                     $checked_weight_3 =  "checked";
                                                 }
-                                                else if($row_data_acm->dta_weight == 4){
+                                                else if($row_data_gcm->dtg_weight == 4){
                                                     $checked_weight_4 =  "checked";
                                                 }
                                                 else {

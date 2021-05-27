@@ -203,32 +203,30 @@ class Evs_form_AP extends MainController_avenxo {
 		$this->load->model('M_evs_data_gcm','mdtm');
 		$this->mdtm->dtg_evs_emp_id = $employee_data->emp_id;
 		$data['check'] = $data['data_gcm'] = $this->mdtm->get_by_empID();
-		// $check = sizeof($data['check']);
+		$check = sizeof($data['check']);
 
-		// if($check != 0){
+		if($check != 0){
 
-			// $this->load->model('M_evs_employee','memp');
-			// $this->memp->Emp_ID = $emp_id;
-			// $this->memp->emp_pay_id = $pay_id;
-			// $data['emp_info'] = $this->memp->get_by_empid();
+			$this->load->model('M_evs_employee','memp');
+			$this->memp->Emp_ID = $emp_id;
+			$this->memp->emp_pay_id = $pay_id;
+			$data['emp_info'] = $this->memp->get_by_empid();
 
-			// $tep = $data['emp_info']->row();
-			// $this->load->model('M_evs_set_form_gcm','mesf');
-			// $this->mesf->sgc_pos_id = $tep->Position_ID;
-			// $this->mesf->sgc_pay_id = $pay_id;
-			// $data['info_gcm_form'] = $this->mesf->get_all_competency_by_indicator();
-
-			// $this->load->model('M_evs_expected_behavior','mept');
-			// $data['info_expected'] = $this->mept->get_all_by_pos();
-
-			// $data['info_pos_id'] = $tep->Position_ID;
+			$tep = $data['emp_info']->row();
+			$this->load->model('M_evs_set_form_gcm','mesf');
+			$this->mesf->sgc_pos_id = $tep->Position_ID;
+			$this->mesf->sgc_pay_id = $pay_id;
+			$data['info_gcm_form'] = $this->mesf->get_all_competency_by_indicator();
+			$this->load->model('M_evs_expected_behavior_gcm','mept');
+			$data['info_expected'] = $this->mept->get_all_by_pos();
+			$data['info_pos_id'] = $tep->Position_ID;
 			
 
-			// $this->output('/consent/ev_form_AP/v_editGCM',$data);
-		// }
-		// // if
+			$this->output('/consent/ev_form_AP/v_editGCM',$data);
+		}
+		// if
 
-		// else{
+		else{
 			$this->load->model('M_evs_employee','memp');
 			$this->memp->Emp_ID = $emp_id;
 			$this->memp->emp_pay_id = $pay_id;
@@ -244,7 +242,7 @@ class Evs_form_AP extends MainController_avenxo {
 			$data['info_pos_id'] = $tep->Position_ID;
 
 			$this->output('/consent/ev_form_AP/v_createGCM',$data);
-		// }
+		}
 		// else	
 
 	}
@@ -253,9 +251,9 @@ class Evs_form_AP extends MainController_avenxo {
 	function save_data_gcm(){
 
 		$ps_pos_id = $this->input->post("Emp_ID");
-		$arr_sfa_id = $this->input->post("arr_sfa_id");
+		$arr_sgc_id = $this->input->post("arr_sgc_id");
 		$arr_radio = $this->input->post("arr_radio");
-		$arr_roop = count($arr_sfa_id);
+		$arr_roop = count($arr_sgc_id);
 		//string set year now
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
@@ -263,12 +261,12 @@ class Evs_form_AP extends MainController_avenxo {
 		//end set year now
 		$pay_id = $year->pay_id;
 
-		$this->load->model('Da_evs_data_acm','deda');
+		$this->load->model('Da_evs_data_gcm','dedg');
 		for($i = 0 ; $i < $arr_roop ; $i++){
-		$this->deda->dta_evs_emp_id = $ps_pos_id;
-		$this->deda->dta_sfa_id = $arr_sfa_id[$i];
-		$this->deda->dta_weight = $arr_radio[$i];
-		$this->deda->insert();
+		$this->dedg->dtg_evs_emp_id = $ps_pos_id;
+		$this->dedg->dtg_sgc_id = $arr_sgc_id[$i];
+		$this->dedg->dtg_weight = $arr_radio[$i];
+		$this->dedg->insert();
 		}
 
 		$data = "save_data_acm";
@@ -279,9 +277,9 @@ class Evs_form_AP extends MainController_avenxo {
 	function update_data_gcm(){
 
 		$ps_pos_id = $this->input->post("Emp_ID");
-		$arr_sfa_id = $this->input->post("arr_sfa_id");
+		$arr_sgc_id = $this->input->post("arr_sgc_id");
 		$arr_radio = $this->input->post("arr_radio");
-		$arr_roop = count($arr_sfa_id);
+		$arr_roop = count($arr_sgc_id);
 		//string set year now
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
@@ -289,12 +287,12 @@ class Evs_form_AP extends MainController_avenxo {
 		//end set year now
 		$pay_id = $year->pay_id;
 
-		$this->load->model('M_evs_data_acm','meda');
+		$this->load->model('M_evs_data_gcm','medg');
 		for($i = 0 ; $i < $arr_roop ; $i++){
-		$this->meda->dta_evs_emp_id = $ps_pos_id;
-		$this->meda->dta_sfa_id = $arr_sfa_id[$i];
-		$this->meda->dta_weight = $arr_radio[$i];
-		$this->meda->update();
+		$this->medg->dtg_evs_emp_id = $ps_pos_id;
+		$this->medg->dtg_sgc_id = $arr_sgc_id[$i];
+		$this->medg->dtg_weight = $arr_radio[$i];
+		$this->medg->update();
 		}
 
 		$data = "update_data_acm";
