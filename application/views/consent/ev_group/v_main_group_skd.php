@@ -13,12 +13,22 @@
     <style>
     thead {
         color: black;
-        font-size: 17px;
+        text-align: center;
+        font-size: 20px;
     }
 
     tbody {
-        color: black;
-        font-size: 14px;
+        text-align: center;
+        font-size: 15px;
+    }
+
+    .panel.panel-indigo .panel-heading {
+        color: #e8eaf6;
+        background-color: #134466;
+    }
+
+    .margin {
+        margin-top: 10px;
     }
     </style>
 </head>
@@ -289,16 +299,17 @@ function clear_css(gru_id) {
     <div class="panel panel-indigo">
         <div class="panel-heading">
             <h2>
-                <font color="#ffffff" size="6px"><b>Manage Group SKD</b></font></h2>
-                <div class="panel pull-right" id="addtable_filter">
-                    <select name="example_length" class="form-control" aria-controls="example"
-                        onChange="manage_skd(value)">
-                        <option value="0">Select Company</option>
-                        <option value="1">SDM</option>
-                        <option value="2" selected>SKD</option>
-                    </select>
-                </div>
-                <!-- select company -->
+                <font color="#ffffff" size="6px"><b>Manage Group SKD</b></font>
+            </h2>
+            <div class="pull-right" id="addtable_filter">
+                <select name="example_length" class="form-control margin" aria-controls="example"
+                    onChange="manage_skd(value)">
+                    <option value="0">Select Company</option>
+                    <option value="1">SDM</option>
+                    <option value="2" selected>SKD</option>
+                </select>
+            </div>
+            <!-- select company -->
             </h1>
         </div>
         <!-- panel-heading -->
@@ -308,11 +319,10 @@ function clear_css(gru_id) {
                 <div class="panel panel-indigo" id="panel-addtable">
                     <div class="panel-heading">
                         <div class="panel-ctrls"></div>
-                        <div class="DTTT btn-group pull-right mt-sm">
+                        <div class="DTTT btn-group mt-sm">
                             &emsp;
                             <a data-toggle="modal" class="btn btn btn-success" href="#Add">
-                                <i class="ti ti-plus"></i>
-                                <span>ADD</span>
+                            <i class = "fa fa-plus""></i>  &nbsp; ADD
                             </a>
                         </div>
                         <!-- Add -->
@@ -330,7 +340,7 @@ function clear_css(gru_id) {
                                 cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
                                 style="width: 100%;">
                                 <thead>
-                                    <tr style="background-color:lavender; font-family:'Garamond'">
+                                    <tr>
                                         <th>
                                             <center>No.
                                         </th>
@@ -400,26 +410,40 @@ function clear_css(gru_id) {
                     <!-- panel-footer -->
                 </div>
                 <!-- panel-addtable -->
-                <h4 class="text" style="font-family:'Times New Roman'">
-                    <font size="5px">Description</font>
-                </h4>
-                <div>
-                    <a class="btn btn-danger">
-                        <i class="ti ti-trash"></i>
-                        &nbsp;
-                        Delete
-                    </a>
-                    <a class="btn btn-warning">
-                        <i class="ti ti-pencil-alt"></i>
-                        &nbsp;
-                        Edit
-                    </a>
-                    <a class="btn btn-info">
-                        <i class="fa fa-refresh"></i>
-                        &nbsp;
-                        Transfer
-                    </a>
-                </div>
+                <legend>
+                </legend>
+                <h3>Description</h3>
+                <table height="150px">
+                    <tr>
+                        <td height="20" width="50px"><button type="submit" class="btn btn-danger"><i
+                                    class="ti ti-trash"></i></button></td>
+                        <td width="50px">
+                            <h4>:</h4>
+                        </td>
+                        <td width="150px">
+                            <h4>Delete</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> <button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button>
+                        </td>
+                        <td width="50px">
+                            <h4>:</h4>
+                        </td>
+                        <td>
+                            <h4>Edit</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" class="btn btn-info"><i class="fa fa-refresh"></i></button></td>
+                        <td width="50px">
+                            <h4>:</h4>
+                        </td>
+                        <td>
+                            <h4>Transfer</h4>
+                        </td>
+                    </tr>
+                </table>
             </div>
             <!-- panel-body -->
         </div>
@@ -600,8 +624,8 @@ function clear_css(gru_id) {
                     <font color="Black"><b>&times;</b></font>
                 </button>
                 <h2 class="modal-title" style="font-family:'Georgia'"><b>
-                    <font color="white">Delete</font>
-                </b></h2>
+                        <font color="white">Delete</font>
+                    </b></h2>
             </div>
             <!-- Modal header -->
 
@@ -609,8 +633,7 @@ function clear_css(gru_id) {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label"
-                                align="center">
+                            <label for="focusedinput" class="control-label" align="center">
                                 <font size="5px">Do you want to Delete Data YES or NO ?</font>
                             </label>
                         </div>
@@ -658,8 +681,7 @@ $num++;
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" 
-                                align="center">
+                            <label for="focusedinput" class="control-label" align="center">
                                 <font size="5px">
                                     Please fill in the correct information.</font>
                             </label>

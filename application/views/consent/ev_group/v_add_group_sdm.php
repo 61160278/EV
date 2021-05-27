@@ -9,7 +9,6 @@
 */  
 ?>
 <script>
-
 $(document).ready(function() {
     manage_group();
 
@@ -30,7 +29,7 @@ function table_right(source) {
     for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i] != source)
             checkboxes[i].checked = source.checked;
-            
+
 
     }
 }
@@ -194,7 +193,7 @@ function change_group_remove() {
 function delete_data() {
     var gru_id = document.getElementById("new_group").value;
     console.log(gru_id)
-    
+
     var count_group = document.getElementById("count_group").value;
     var old_group = document.getElementById("select").value;
     var get_emp = [];
@@ -220,7 +219,7 @@ function delete_data() {
         success: function(status) {
             console.log(status)
             console.log(gru_id)
-            
+
         }
         //error จะไม่มีการส่งค่ากลับมา
     });
@@ -230,20 +229,42 @@ function delete_data() {
 // function delete_data
 </script>
 
+<style>
+.panel.panel-indigo .panel-heading {
+    color: #e8eaf6;
+    background-color: #134466;
+}
 
+.margin {
+        margin-top: 10px;
+    }
+
+thead {
+    color: black;
+    text-align: center;
+    font-size: 20px;
+}
+
+tbody {
+    text-align: center;
+    font-size: 15px;
+}
+
+</style>
 <!DOCTYPE html>
 <html>
 <div class="col-md-12">
     <div class="panel panel-indigo">
         <div class="panel-heading">
-            <h1 style="font-family:'Times New Roman'">
-                <font color="#ffffff" size="7px"><b> Manage Group SDM & Head Dept. </b></font>
-            </h1>
+            <h2>
+                <font color="#ffffff" size="6px"><b> Manage Group SDM & Head Dept. </b></font>
+            </h2>
         </div>
 
         <div class="panel-body">
-            <h2 style="font-family:'Arial'">
-                <font size="4px" font color="black"> &emsp; Please select contact group for add contact to the group.
+            <h2>
+                <font size="5px" font color="black"> &emsp; <b>Please select contact group for add contact to the
+                        group.</b>
                 </font>
             </h2>
         </div>
@@ -260,7 +281,7 @@ function delete_data() {
                         <div class="panel pull-right" id="addtable_filter">
                             <select id="select" onchange="manage_group()" name="example_length" class="form-control"
                                 aria-controls="example">
-                                <option value="0" selected >Select Group Contact </option>
+                                <option value="0" selected>Select Group Contact </option>
                                 <?php foreach($gcp_gcm->result() as $row) {?>
                                 <option value="<?php echo $row->gru_id; ?>">
                                     <?php echo $row->gru_name;?>
@@ -279,15 +300,17 @@ function delete_data() {
                             </div>
                             <!--div row for manage size of head panel -->
 
+
                             <table id="add_table" class="table table-striped table-bordered dataTable no-footer"
                                 cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
                                 style="width: 100%;">
                                 <thead>
-                                    <tr style="background-color:lavender; font-family:'Garamond'">
+                                    <tr>
                                         <th>
                                             <center>Select
-                                            <br>
-                                            <input type="checkbox" onclick="table_left(this);">
+                                                <br>
+                                                <input type="checkbox" onclick="table_left(this);">
+
                                         </th>
                                         <th>
                                             <center>Emp.ID
@@ -319,20 +342,19 @@ function delete_data() {
                                 <div class="dataTables_info" id="table_add" role="status" aria-live="polite"></div>
                             </div>
                         </div>
-                        </div>
+                    </div>
                     <!-- panel-footer -->
 
-                        <div class="panel-body">
+                    <div class="panel-body">
                         <div class="DTTT btn-group pull-right mt-sm">
                             <button class="btn btn-success" onclick="change_group()">
-                                <i class="ti ti-plus"></i>
-                                <span>ADD</span>
+                            <i class = "fa fa-plus""></i>  &nbsp; ADD
                             </button>
                         </div>
                         <!-- add -->
-                        </div>
-                        <!-- panel-body -->
-                   
+                    </div>
+                    <!-- panel-body -->
+
                 </div>
                 <!-- table_contact -->
             </div>
@@ -373,11 +395,11 @@ function delete_data() {
                                 cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
                                 style="width: 100%;">
                                 <thead>
-                                    <tr style="background-color:lavender; font-family:'Garamond'" align="center">
+                                    <tr>
                                         <th>
                                             <center>Select
-                                            <br>
-                                            <input type="checkbox" onclick="table_right(this);">
+                                                <br>
+                                                <input type="checkbox" onclick="table_right(this);">
                                         </th>
                                         <th>
                                             <center>Emp.ID
@@ -454,7 +476,7 @@ function delete_data() {
             <!-- panel-body -->
         </div>
         <!-- table right -->
-        
+
         <div class="col-md-12">
             <div class="panel-body">
                 <div class="DTTT btn-group pull-left mt-sm">
@@ -475,21 +497,10 @@ function delete_data() {
 
 </html>
 
-<style>
-thead {
-    color: black;
-    font-size: 14px;
-}
 
-tbody {
-    color: black;
-    font-size: 12px;
-}
-</style>
 
 <!-- Modal Delete -->
-<div class="modal fade" id="Resign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="Resign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color:red;">
@@ -497,8 +508,8 @@ tbody {
                     <font color="Black"><b>&times;</b></font>
                 </button>
                 <h2 class="modal-title" style="font-family:'Georgia'"><b>
-                    <font color="white">Delete</font>
-                </b></h2>
+                        <font color="white">Delete</font>
+                    </b></h2>
             </div>
             <!-- Modal header -->
 
@@ -506,8 +517,7 @@ tbody {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label"
-                                align="center">
+                            <label for="focusedinput" class="control-label" align="center">
                                 <font size="5px">Do you want to Delete Data YES or NO ?</font>
                             </label>
                         </div>
@@ -521,8 +531,7 @@ tbody {
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
                 </div>
-                <button type="button" class="btn btn-success"
-                    onClick="delete_data()">YES</button>
+                <button type="button" class="btn btn-success" onClick="delete_data()">YES</button>
             </div>
             <!-- Modal footer -->
         </div>
@@ -531,4 +540,3 @@ tbody {
     <!-- modal-dialog -->
 </div>
 <!-- End Modal Delete -->
-                                   
