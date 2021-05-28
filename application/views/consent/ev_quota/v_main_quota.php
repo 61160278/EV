@@ -231,13 +231,24 @@ function manage_data(qut_id) {
                 </h2>
             </div>
             <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group" align="center">
+                        <div class="col-sm-12">
+                            <label for="focusedinput" class="control-label" align="center">
+                                <font size="5px">
+                                    Do you want
+                                    to delete
+                                    data ?</font>
+                            </label>
 
-                <p id="modelText">Do you want to delete ?</p>
-
+                        </div>
+                    </div>
+                </div>
+                <!-- form-horizontal -->
             </div>
             <div class="modal-footer">
                 <div class="btn-group pull-left">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
                 </div>
 
                 <button type="button" class="btn btn-success"
