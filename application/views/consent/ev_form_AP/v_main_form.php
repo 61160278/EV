@@ -96,6 +96,20 @@ function validate_his() {
 
                 <div class="row">
 
+                
+                    <div class="col-md-2" align="center">
+                        <a data-toggle="modal" href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/createMBO">
+                            <div class="info-tile ">
+                                <div class="tile-icon"><i class="ti ti-files"></i></div>
+                                <div class="tile-body"><span>MBO</span></div>
+
+                            </div>
+                        </a>
+
+                        <div class="col-md-2" align="center">
+                        </div>
+                    </div>
+
                     <div class="col-md-2" align="center">
                     </div>
                     <div class="col-md-2" align="center">
@@ -111,9 +125,6 @@ function validate_his() {
                     </div>
 
                     <!-- col-4  -->
-
-
-
                     <div class="col-md-2" align="center">
                     </div>
                     <div class="col-md-2" align="center">
@@ -127,6 +138,9 @@ function validate_his() {
                     </div>
                     <div class="col-md-2" align="center">
                     </div>
+
+
+
                 </div>
                 <!-- row  -->
 
