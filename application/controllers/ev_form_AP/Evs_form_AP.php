@@ -311,6 +311,14 @@ class Evs_form_AP extends MainController_avenxo {
 		$emp_id = "00011";
 		$pay_id = 2;
 
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $emp_id;
+		$this->memp->emp_pay_id = $pay_id;
+		$data['emp_info'] = $this->memp->get_by_empid();
+
+		$tep = $data['emp_info']->row();
+		
+
 			$this->load->model('M_evs_data_mbo','medm');
 			$this->medm->dtm_emp_id = $emp_id;
 			$this->medm->dtm_evs_emp_id = $tep->emp_id;
@@ -330,8 +338,7 @@ class Evs_form_AP extends MainController_avenxo {
 				$this->load->model('M_evs_expected_behavior','mept');
 				$data['info_expected'] = $this->mept->get_all_by_pos();
 				$data['info_pos_id'] = $tep->Position_ID;
-				$this->output('/consent/ev_form/v_editMBO',$data);
-		
+				$this->output('/consent/ev_form_AP/v_createMBO',$data);
 	
 
 	}
