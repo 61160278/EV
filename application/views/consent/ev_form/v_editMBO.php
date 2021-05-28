@@ -1889,6 +1889,7 @@ function set_tap() {
                                 } 
                                 // else if?>
 
+                                <td></td>
                                 </tr>
                                 <!-- end tr  -->
                                 <?}

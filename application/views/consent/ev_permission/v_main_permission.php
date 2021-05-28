@@ -22,6 +22,23 @@ h2 {
 .margin {
     margin-top: 5px;
 }
+
+.alert-info {
+  color: #BCBEBF;
+  background-color: #DEE1E3;
+  border-color: #BCBEBF;
+}
+
+.alert-info,
+.alert-info h1,
+.alert-info h2,
+.alert-info h3,
+.alert-info h4,
+.alert-info h5,
+.alert-info h6,
+.alert-info small {
+  color: #828282;
+}
 </style>
 <div class="col-md-12" align="left">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>

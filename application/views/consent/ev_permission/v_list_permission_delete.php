@@ -52,7 +52,9 @@ td {
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h2 style="color:white;"><font size ="6px">List of Permission for Create MBO</font></h2>
+                    <h2 style="color:white;">
+                        <font size="6px">List of Permission for Create MBO</font>
+                    </h2>
 
                     <div class="panel-ctrls"></div>
                 </div>
@@ -154,11 +156,14 @@ td {
         aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header" style="background-color:gray;">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        <font color="White"><b>&times;</b>
-                        </font>
-                    </button>
+                <div class="modal-header" style="background-color:red;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                        style="color:white;">&times;</button>
+                    <h2 class="modal-title">
+                        <b>
+                            <font color="white">Warning</font>
+                        </b>
+                    </h2>
                 </div>
                 <!-- Modal header -->
 
@@ -166,15 +171,9 @@ td {
                     <div class="form-horizontal">
                         <div class="form-group" align="center">
                             <div class="col-sm-12">
-                                <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
-                                    align="center">
-                                    <font size="5px">
-                                        Do you want
-                                        to Delete
-                                        Data YES or
-                                        NO ?</font>
+                                <label for="focusedinput" class="control-label" align="center">
+                                    <font size="5px">Do you want to delete data ?</font>
                                 </label>
-
                             </div>
                         </div>
                     </div>
