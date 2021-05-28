@@ -322,385 +322,394 @@ function clear_css(gru_id) {
                         <div class="DTTT btn-group mt-sm">
                             &emsp;
                             <a data-toggle="modal" class="btn btn btn-success" href="#Add">
-                            <i class = "fa fa-plus""></i>  &nbsp; ADD
+                                <i class="fa fa-plus""></i>  &nbsp; ADD
                             </a>
                         </div>
                         <!-- Add -->
                     </div>
                     <!-- panel-heading -->
 
-                    <div class="panel-body no-padding">
-                        <div id="example_wrapper" class="dataTables_wrapper form-inline no-footer">
-                            <div class="row">
-                                <div class="col-sm-6"></div>
-                                <div class="col-sm-6"></div>
-                            </div>
+                    <div class=" panel-body no-padding">
+                                    <div id="example_wrapper" class="dataTables_wrapper form-inline no-footer">
+                                        <div class="row">
+                                            <div class="col-sm-6"></div>
+                                            <div class="col-sm-6"></div>
+                                        </div>
 
-                            <table id="example" class="table table-striped table-bordered dataTable no-footer"
-                                cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
-                                style="width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <center>No.
-                                        </th>
-                                        <th>
-                                            <center>Group
-                                        </th>
-                                        <th>
-                                            <center>Head Dept.
-                                        </th>
-                                        <th>
-                                            <center>Action
-                                        </th>
-                                    </tr>
-                                </thead>
+                                        <table id="example"
+                                            class="table table-striped table-bordered dataTable no-footer"
+                                            cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
+                                            style="width: 100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <center>No.
+                                                    </th>
+                                                    <th>
+                                                        <center>Group
+                                                    </th>
+                                                    <th>
+                                                        <center>Head Dept.
+                                                    </th>
+                                                    <th>
+                                                        <center>Action
+                                                    </th>
+                                                </tr>
+                                            </thead>
 
-                                <tbody>
-                                    <?php 
+                                            <tbody>
+                                                <?php 
 								$num = 1;
 								foreach($grp_sdm->result() as $row ) { ?>
-                                    <tr class="odd gradeX" align='center'>
-                                        <td><?php echo $num;?> </td>
-                                        <td id="groupname<?php echo $row->gru_id?>"><?php echo $row->gru_name; ?></td>
-                                        <td>
-                                            <?php if($row->gru_head_dept == NULL){ 
+                                                <tr class="odd gradeX" align='center'>
+                                                    <td><?php echo $num;?> </td>
+                                                    <td id="groupname<?php echo $row->gru_id?>">
+                                                        <?php echo $row->gru_name; ?></td>
+                                                    <td>
+                                                        <?php if($row->gru_head_dept == NULL){ 
 													echo "-";
 												} else {
 													echo $row->Empname_eng." ".$row->Empsurname_eng;
 												}
 											?>
-                                        </td>
-                                        <td>
-                                            <div class="demo-btns">
-                                                <a data-toggle="modal" class="btn btn btn-danger"
-                                                    href="#Delete<?php echo $row->gru_id?>">
-                                                    <i class="ti ti-trash"></i>
-                                                </a>
-                                                <a data-toggle="modal" class="btn btn-warning"
-                                                    href="#Edit<?php echo $row->gru_id?>">
-                                                    <i class="ti ti-pencil-alt"></i>
-                                                </a>
-                                                <a class="btn btn-info"
-                                                    onClick="manage_data(<?php echo $row->gru_id; ?>)">
-                                                    <i class="fa fa-refresh"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <?php 
+                                                    </td>
+                                                    <td>
+                                                        <div class="demo-btns">
+                                                            <a data-toggle="modal" class="btn btn btn-danger"
+                                                                href="#Delete<?php echo $row->gru_id?>">
+                                                                <i class="ti ti-trash"></i>
+                                                            </a>
+                                                            <a data-toggle="modal" class="btn btn-warning"
+                                                                href="#Edit<?php echo $row->gru_id?>">
+                                                                <i class="ti ti-pencil-alt"></i>
+                                                            </a>
+                                                            <a class="btn btn-info"
+                                                                onClick="manage_data(<?php echo $row->gru_id; ?>)">
+                                                                <i class="fa fa-refresh"></i>
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <?php 
 								$num++;
 								} ?>
-                                </tbody>
-                                <!-- tbody -->
-                            </table>
-                            <!-- table -->
+                                            </tbody>
+                                            <!-- tbody -->
+                                        </table>
+                                        <!-- table -->
+                                    </div>
+                                    <!-- example_wrapper -->
                         </div>
-                        <!-- example_wrapper -->
-                    </div>
-                    <!-- no-padding -->
+                        <!-- no-padding -->
 
-                    <div class="panel-footer">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="dataTables_info" id="example_info" role="status" aria-live="polite"></div>
+                        <div class="panel-footer">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="dataTables_info" id="example_info" role="status" aria-live="polite">
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <!-- panel-footer -->
                     </div>
-                    <!-- panel-footer -->
+                    <!-- panel-addtable -->
+                    <legend>
+                    </legend>
+                    <h3>Description</h3>
+                    <table height="150px">
+                        <tr>
+                            <td height="20" width="50px"><button type="submit" class="btn btn-danger"><i
+                                        class="ti ti-trash"></i></button></td>
+                            <td width="50px">
+                                <h4>:</h4>
+                            </td>
+                            <td width="150px">
+                                <h4>Delete</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> <button type="submit" class="btn btn-warning"><i
+                                        class="ti ti-pencil-alt "></i></button>
+                            </td>
+                            <td width="50px">
+                                <h4>:</h4>
+                            </td>
+                            <td>
+                                <h4>Edit</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><button type="submit" class="btn btn-info"><i class="fa fa-refresh"></i></button></td>
+                            <td width="50px">
+                                <h4>:</h4>
+                            </td>
+                            <td>
+                                <h4>Transfer</h4>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-                <!-- panel-addtable -->
-                <legend>
-                </legend>
-                <h3>Description</h3>
-                <table height="150px">
-                    <tr>
-                        <td height="20" width="50px"><button type="submit" class="btn btn-danger"><i
-                                    class="ti ti-trash"></i></button></td>
-                        <td width="50px">
-                            <h4>:</h4>
-                        </td>
-                        <td width="150px">
-                            <h4>Delete</h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> <button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button>
-                        </td>
-                        <td width="50px">
-                            <h4>:</h4>
-                        </td>
-                        <td>
-                            <h4>Edit</h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><button type="submit" class="btn btn-info"><i class="fa fa-refresh"></i></button></td>
-                        <td width="50px">
-                            <h4>:</h4>
-                        </td>
-                        <td>
-                            <h4>Transfer</h4>
-                        </td>
-                    </tr>
-                </table>
+                <!-- panel-body -->
             </div>
-            <!-- panel-body -->
+            <!-- col inside-->
         </div>
-        <!-- col inside-->
+        <!-- head panel -->
     </div>
-    <!-- head panel -->
-</div>
-<!-- head outside -->
+    <!-- head outside -->
 
-<!-- Modal Add -->
-<div class="modal fade" id="Add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:gray;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="Black"><b>&times;</b></font>
-                </button>
-                <h2 class="modal-title" style="font-family:'Georgia'"><b>
-                        <font color="white">Add SKD Group Data & Head Dept.</font>
-                    </b></h2>
-            </div>
-            <!-- modal header -->
-
-            <div class="modal-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label for="focusedinput" class="col-sm-3 control-label **text-left**">Group Name</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="grouptext" placeholder="HR AGM" name="Emp_id">
-                            <label class="col-sm-12 control-label"></label>
-                            <p id="alert_grouptext">
-                                <font color="red"><b> This data already to use! </b></font>
-                            </p>
-                        </div>
-
-                    </div>
-                    <!-- Group Name -->
-
-                    <div class="form-group">
-                        <label class="col-sm-1 control-label"></label>
-                        <div class="col-sm-8">
-                            <label style="font-family:'Courier New'"><b>
-                                    <font size="4px" color="Black">Select Head Dept.</font>
-                                </b></label>
-                        </div>
-                    </div>
-                    <!-- Select Head Dept. -->
-
-                    <div class="form-group">
-                        <label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="Emp_id_modol" placeholder="JS000xxx"
-                                onkeyup="get_Emp()">
-                        </div>
-                    </div>
-                    <!--Emp. ID -->
-
-                    <div class="form-group">
-                        <label for="focusedinput" class="col-sm-3 control-label">Name - Surname</label>
-                        <div class="col-sm-6">
-                            <input disabled type="text" class="form-control" id="Showname_modol"
-                                placeholder="Name Surname">
-                        </div>
-                    </div>
-                    <!-- Name Surname -->
-                </form>
-                <!-- form-horizontal -->
-            </div>
-            <!-- modal-body -->
-
-            <div class="modal-footer">
-                <div class="btn-group pull-left">
-                    <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+    <!-- Modal Add -->
+    <div class="modal fade" id="Add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:gray;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                        style="color:white;">&times;</button>
+                    <h2 class="modal-title">
+                        <b>
+                            <font color="white">Add Group Data & Head Dept.</font>
+                        </b>
+                    </h2>
                 </div>
-                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="return check_add()">SAVE</button>
-            </div>
-            <!-- modal-footer -->
-        </div>
-        <!-- modal-content -->
-    </div>
-    <!-- modal-dialog -->
-</div>
-<!-- End Modal Add-->
+                <!-- modal header -->
 
-<?php
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="focusedinput" class="col-sm-3 control-label **text-left**">Group Name</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="grouptext" placeholder="HR AGM"
+                                    name="Emp_id">
+                                <label class="col-sm-12 control-label"></label>
+                                <p id="alert_grouptext">
+                                    <font color="red"><b> This data already to use! </b></font>
+                                </p>
+                            </div>
+
+                        </div>
+                        <!-- Group Name -->
+
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label"></label>
+                            <div class="col-sm-8">
+                                <label><b>
+                                        <font size="4px" color="Black">Select Head Dept.</font>
+                                    </b></label>
+                            </div>
+                        </div>
+                        <!-- Select Head Dept. -->
+
+                        <div class="form-group">
+                            <label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="Emp_id_modol" placeholder="JS000xxx"
+                                    onkeyup="get_Emp()">
+                            </div>
+                        </div>
+                        <!--Emp. ID -->
+
+                        <div class="form-group">
+                            <label for="focusedinput" class="col-sm-3 control-label">Name - Surname</label>
+                            <div class="col-sm-6">
+                                <input disabled type="text" class="form-control" id="Showname_modol"
+                                    placeholder="Name Surname">
+                            </div>
+                        </div>
+                        <!-- Name Surname -->
+                    </form>
+                    <!-- form-horizontal -->
+                </div>
+                <!-- modal-body -->
+
+                <div class="modal-footer">
+                    <div class="btn-group pull-left">
+                        <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                    </div>
+                    <button type="button" class="btn btn-success" id="btnsaveadd"
+                        onclick="return check_add()">SAVE</button>
+                </div>
+                <!-- modal-footer -->
+            </div>
+            <!-- modal-content -->
+        </div>
+        <!-- modal-dialog -->
+    </div>
+    <!-- End Modal Add-->
+
+    <?php
 	$num = 1;
 	foreach($grp_sdm->result() as $row ) { ?>
 
-<!-- Modal Edit -->
-<div class="modal fade" id="Edit<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:#e9ab18;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="Black"><b>&times;</b></font>
-                </button>
-                <h2 class="modal-title" style="font-family:'Georgia'"><b>
-                        <font color="white">Edit SKD Group Data & Head Dept.</font>
-                    </b></h2>
-            </div>
-            <!-- modal header -->
-
-            <div class="modal-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" value="<?php echo $row->gru_name; ?>"
-                                id="group_text<?php echo $row->gru_id; ?>" name="group_text" placeholder="HR AGM"
-                                onkeyup="clear_css(<?php echo $row->gru_id; ?>)">
-                            <label class="col-sm-12 control-label"></label>
-                            <p id="alert_grouptext<?php echo $row->gru_id; ?>" hidden>
-                                <font color="red"><b> This data already to use! </b></font>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Group Name -->
-
-                    <div class="form-group">
-                        <label class="col-sm-1 control-label"></label>
-                        <div class="col-sm-8">
-                            <label style="font-family:'Courier New'"><b>
-                                    <font size="4px" color="Black">Select Head Dept.</font>
-                                </b></label>
-                        </div>
-                    </div>
-                    <!-- Select Head Dept. -->
-
-                    <div class="form-group">
-                        <label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>"
-                                name="Emp_id" id="Emp_id<?php echo $row->gru_id; ?>" placeholder="JS000xxx"
-                                onkeyup="get_idemployee('<?php echo $row->gru_id; ?>')">
-                            <input type="hidden" class="form-control" value="<?php echo $row->gru_id; ?>" name="gru_id"
-                                id="gru_id">
-                        </div>
-                    </div>
-                    <!--Emp. ID -->
-
-                    <div class="form-group">
-                        <label for="focusedinput" class="col-sm-3 control-label">Name - Surname</label>
-                        <div class="col-sm-6">
-                            <input disabled type="text" class="form-control"
-                                value="<?php echo $row->Empname_eng , " ", $row->Empsurname_eng; ?>"
-                                id="nameEmp<?php echo $row->gru_id ?>" placeholder="Name Surname">
-                        </div>
-                    </div>
-                    <!-- Name Surname -->
-                </form>
-                <!-- form -->
-            </div>
-            <!-- modal-body -->
-
-            <div class="modal-footer">
-                <div class="btn-group pull-left">
-                    <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+    <!-- Modal Edit -->
+    <div class="modal fade" id="Edit<?php echo $row->gru_id?>" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#e9ab18;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                        style="color:white;">&times;</button>
+                    <h2 class="modal-title">
+                        <b>
+                            <font color="white">Edit Group Data & Head Dept</font>
+                        </b>
+                    </h2>
                 </div>
-                <button type="submit" class="btn btn-success" id="btnedit<?php echo $row->gru_id; ?>"
-                    onclick="return check_edit_skd('<?php echo $row->gru_id; ?>')">SAVE</button>
+                <!-- modal header -->
+
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="focusedinput" class="col-sm-3 control-label">Group Name</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" value="<?php echo $row->gru_name; ?>"
+                                    id="group_text<?php echo $row->gru_id; ?>" name="group_text" placeholder="HR AGM"
+                                    onkeyup="clear_css(<?php echo $row->gru_id; ?>)">
+                                <label class="col-sm-12 control-label"></label>
+                                <p id="alert_grouptext<?php echo $row->gru_id; ?>" hidden>
+                                    <font color="red"><b> This data already to use! </b></font>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Group Name -->
+
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label"></label>
+                            <div class="col-sm-8">
+                                <label><b>
+                                        <font size="4px" color="Black">Select Head Dept.</font>
+                                    </b></label>
+                            </div>
+                        </div>
+                        <!-- Select Head Dept. -->
+
+                        <div class="form-group">
+                            <label for="focusedinput" class="col-sm-3 control-label">Emp. ID</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>"
+                                    name="Emp_id" id="Emp_id<?php echo $row->gru_id; ?>" placeholder="JS000xxx"
+                                    onkeyup="get_idemployee('<?php echo $row->gru_id; ?>')">
+                                <input type="hidden" class="form-control" value="<?php echo $row->gru_id; ?>"
+                                    name="gru_id" id="gru_id">
+                            </div>
+                        </div>
+                        <!--Emp. ID -->
+
+                        <div class="form-group">
+                            <label for="focusedinput" class="col-sm-3 control-label">Name - Surname</label>
+                            <div class="col-sm-6">
+                                <input disabled type="text" class="form-control"
+                                    value="<?php echo $row->Empname_eng , " ", $row->Empsurname_eng; ?>"
+                                    id="nameEmp<?php echo $row->gru_id ?>" placeholder="Name Surname">
+                            </div>
+                        </div>
+                        <!-- Name Surname -->
+                    </form>
+                    <!-- form -->
+                </div>
+                <!-- modal-body -->
+
+                <div class="modal-footer">
+                    <div class="btn-group pull-left">
+                        <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                    </div>
+                    <button type="submit" class="btn btn-success" id="btnedit<?php echo $row->gru_id; ?>"
+                        onclick="return check_edit_skd('<?php echo $row->gru_id; ?>')">SAVE</button>
+                </div>
+                <!-- modal-footer -->
             </div>
-            <!-- modal-footer -->
+            <!-- modal-content -->
         </div>
-        <!-- modal-content -->
+        <!-- modal-dialog -->
     </div>
-    <!-- modal-dialog -->
-</div>
-<!-- End Modal Edit_add-->
+    <!-- End Modal Edit_add-->
 
-<!-- Modal Delete -->
-<div class="modal fade" id="Delete<?php echo $row->gru_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:red;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="Black"><b>&times;</b></font>
-                </button>
-                <h2 class="modal-title" style="font-family:'Georgia'"><b>
-                        <font color="white">Delete</font>
-                    </b></h2>
-            </div>
-            <!-- Modal header -->
+    <!-- Modal Delete -->
+    <div class="modal fade" id="Delete<?php echo $row->gru_id?>" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:red;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                        style="color:white;">&times;</button>
+                    <h2 class="modal-title">
+                        <b>
+                            <font color="white">Warning</font>
+                        </b>
+                    </h2>
+                </div>
+                <!-- Modal header -->
 
-            <div class="modal-body">
-                <div class="form-horizontal">
-                    <div class="form-group" align="center">
-                        <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" align="center">
-                                <font size="5px">Do you want to Delete Data YES or NO ?</font>
-                            </label>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group" align="center">
+                            <div class="col-sm-12">
+                                <label for="focusedinput" class="control-label" align="center">
+                                    <font size="5px">Do you want to delete data ?</font>
+                                </label>
+                            </div>
                         </div>
                     </div>
+                    <!-- form-horizontal -->
                 </div>
-                <!-- form-horizontal -->
-            </div>
-            <!-- Modal body -->
+                <!-- Modal body -->
 
-            <div class="modal-footer">
-                <div class="btn-group pull-left">
-                    <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
+                <div class="modal-footer">
+                    <div class="btn-group pull-left">
+                        <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
+                    </div>
+                    <button type="button" class="btn btn-success"
+                        onClick="delete_data(<?php echo $row->gru_id; ?>)">YES</button>
                 </div>
-                <button type="button" class="btn btn-success"
-                    onClick="delete_data(<?php echo $row->gru_id; ?>)">YES</button>
+                <!-- Modal footer -->
             </div>
-            <!-- Modal footer -->
+            <!-- modal-content -->
         </div>
-        <!-- modal-content -->
+        <!-- modal-dialog -->
     </div>
-    <!-- modal-dialog -->
-</div>
-<!-- End Modal Delete -->
-<?php 
+    <!-- End Modal Delete -->
+    <?php 
 $num++;
 } ?>
-<!-- foreach modal -->
+    <!-- foreach modal -->
 
-<!-- Modal Warning -->
-<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:#FF9800;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="Black"><b>&times;</b>
-                    </font>
-                </button>
-                <h2 class="modal-title" style="font-family:'Georgia'"><b>
-                        <font color="white">Warning</font>
-                    </b></h2>
-            </div>
-            <!-- Modal header -->
+    <!-- Modal Warning -->
+    <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#FF9800;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <font color="Black"><b>&times;</b>
+                        </font>
+                    </button>
+                    <h2 class="modal-title" style="font-family:'Georgia'"><b>
+                            <font color="white">Warning</font>
+                        </b></h2>
+                </div>
+                <!-- Modal header -->
 
-            <div class="modal-body">
-                <div class="form-horizontal">
-                    <div class="form-group" align="center">
-                        <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" align="center">
-                                <font size="5px">
-                                    Please fill in the correct information.</font>
-                            </label>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group" align="center">
+                            <div class="col-sm-12">
+                                <label for="focusedinput" class="control-label" align="center">
+                                    <font size="5px">
+                                        Please fill in the correct information.</font>
+                                </label>
+                            </div>
                         </div>
                     </div>
+                    <!-- form-horizontal -->
                 </div>
-                <!-- form-horizontal -->
-            </div>
-            <!-- modal body -->
+                <!-- modal body -->
 
-            <div class="modal-footer">
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                <div class="modal-footer">
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                    </div>
                 </div>
+                <!-- modal footer -->
             </div>
-            <!-- modal footer -->
+            <!-- modal-content -->
         </div>
-        <!-- modal-content -->
+        <!-- modal-dialog -->
     </div>
-    <!-- modal-dialog -->
-</div>
-<!-- End Modal Warning -->
+    <!-- End Modal Warning -->

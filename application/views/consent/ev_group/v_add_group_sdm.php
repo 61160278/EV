@@ -236,8 +236,8 @@ function delete_data() {
 }
 
 .margin {
-        margin-top: 10px;
-    }
+    margin-top: 10px;
+}
 
 thead {
     color: black;
@@ -249,7 +249,6 @@ tbody {
     text-align: center;
     font-size: 15px;
 }
-
 </style>
 <!DOCTYPE html>
 <html>
@@ -262,11 +261,12 @@ tbody {
         </div>
 
         <div class="panel-body">
-            <h2>
-                <font size="5px" font color="black"> &emsp; <b>Please select contact group for add contact to the
-                        group.</b>
-                </font>
-            </h2>
+            <div class="alert alert-info">
+                <h2><b>Note !</b></h2>
+                <h3>
+                    Please select contact group for add contact to the group.
+                </h3>
+            </div>
         </div>
         <!-- panel-body h2 -->
 
@@ -348,7 +348,7 @@ tbody {
                     <div class="panel-body">
                         <div class="DTTT btn-group pull-right mt-sm">
                             <button class="btn btn-success" onclick="change_group()">
-                            <i class = "fa fa-plus""></i>  &nbsp; ADD
+                                <i class="fa fa-plus""></i>  &nbsp; ADD
                             </button>
                         </div>
                         <!-- add -->
@@ -362,138 +362,145 @@ tbody {
         </div>
         <!-- tabel left -->
 
-        <div class="col-md-6">
-            <div class="panel-body">
-                <div class="panel panel-indigo" id="panel-addtable">
-                    <div class="panel-heading">
-                        <div col-md-6>
-                            <label class="col-sm-12 control-label">
-                                <label class="col-sm-12 control-label">
-                        </div>
-                        <!-- col-md-6 -->
-                        <?php	
+        <div class=" col-md-6">
+                                    <div class="panel-body">
+                                        <div class="panel panel-indigo" id="panel-addtable">
+                                            <div class="panel-heading">
+                                                <div col-md-6>
+                                                    <label class="col-sm-12 control-label">
+                                                        <label class="col-sm-12 control-label">
+                                                </div>
+                                                <!-- col-md-6 -->
+                                                <?php	
 						      foreach($grpsdm->result() as $row ) { ?>
-                        <h2>
-                            <label class="col-sm-12 control-label">
-                                <font size="6px"><b><?php echo $row->gru_name; ?> </b></font>
-                        </h2>
-                        <input type="text" value="<?php echo $row->gru_id; ?>" hidden id="new_group">
-                        <?php }; ?>
+                                                <h2>
+                                                    <label class="col-sm-12 control-label">
+                                                        <font size="6px"><b><?php echo $row->gru_name; ?> </b></font>
+                                                </h2>
+                                                <input type="text" value="<?php echo $row->gru_id; ?>" hidden
+                                                    id="new_group">
+                                                <?php }; ?>
 
-                        <div class="panel-ctrls"></div>
-                    </div>
-                    <!-- panel-heading -->
+                                                <div class="panel-ctrls"></div>
+                                            </div>
+                                            <!-- panel-heading -->
 
-                    <div class="panel-body no-padding">
-                        <div id="example_wrapper" class="dataTables_wrapper form-inline no-footer">
-                            <div class="row">
-                                <div class="col-sm-6"></div>
-                                <div class="col-sm-6"></div>
-                            </div>
+                                            <div class="panel-body no-padding">
+                                                <div id="example_wrapper"
+                                                    class="dataTables_wrapper form-inline no-footer">
+                                                    <div class="row">
+                                                        <div class="col-sm-6"></div>
+                                                        <div class="col-sm-6"></div>
+                                                    </div>
 
-                            <table id="example" class="table table-striped table-bordered dataTable no-footer"
-                                cellspacing="0" width="100%" role="grid" aria-describedby="example_info"
-                                style="width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <center>Select
-                                                <br>
-                                                <input type="checkbox" onclick="table_right(this);">
-                                        </th>
-                                        <th>
-                                            <center>Emp.ID
-                                        </th>
-                                        <th>
-                                            <center>Name - Surname
-                                        </th>
-                                        <th>
-                                            <center>Section Code
-                                        </th>
-                                    </tr>
-                                </thead>
+                                                    <table id="example"
+                                                        class="table table-striped table-bordered dataTable no-footer"
+                                                        cellspacing="0" width="100%" role="grid"
+                                                        aria-describedby="example_info" style="width: 100%;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    <center>Select
+                                                                        <br>
+                                                                        <input type="checkbox"
+                                                                            onclick="table_right(this);">
+                                                                </th>
+                                                                <th>
+                                                                    <center>Emp.ID
+                                                                </th>
+                                                                <th>
+                                                                    <center>Name - Surname
+                                                                </th>
+                                                                <th>
+                                                                    <center>Section Code
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
 
-                                <tbody id="table_r" align="center">
-                                    <?php
+                                                        <tbody id="table_r" align="center">
+                                                            <?php
 									$num = 0;
 									foreach($group_sdm->result() as $index => $row ) { ?>
-                                    <tr class="odd gradeX">
-                                        <td>
-                                            <div class="checked block">
-                                                <input name="checkbox2" type="checkbox"
-                                                    id="old_check_group<?php echo $index; ?>">
-                                            </div>
-                                        </td>
-                                        <td id="emp_new<?php echo $index; ?>"><?php echo $row->Emp_ID; ?></td>
-                                        <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng; ?>
-                                        </td>
-                                        <td><?php echo $row->Sectioncode_ID; ?></td>
-                                    </tr>
-                                    <?php
+                                                            <tr class="odd gradeX">
+                                                                <td>
+                                                                    <div class="checked block">
+                                                                        <input name="checkbox2" type="checkbox"
+                                                                            id="old_check_group<?php echo $index; ?>">
+                                                                    </div>
+                                                                </td>
+                                                                <td id="emp_new<?php echo $index; ?>">
+                                                                    <?php echo $row->Emp_ID; ?></td>
+                                                                <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng; ?>
+                                                                </td>
+                                                                <td><?php echo $row->Sectioncode_ID; ?></td>
+                                                            </tr>
+                                                            <?php
 									$num++;
 									} ?>
-                                </tbody>
-                                <input type="text" id="count_group" value="<?php echo $num;?>" hidden>
-                            </table>
-                            <!-- table -->
-                        </div>
-                    </div>
-                    <!-- panel-body no-padding -->
+                                                        </tbody>
+                                                        <input type="text" id="count_group" value="<?php echo $num;?>"
+                                                            hidden>
+                                                    </table>
+                                                    <!-- table -->
+                                                </div>
+                                            </div>
+                                            <!-- panel-body no-padding -->
 
-                    <div class="panel-footer">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="dataTables_info" id="example_info" role="status" aria-live="polite"></div>
+                                            <div class="panel-footer">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="dataTables_info" id="example_info" role="status"
+                                                            aria-live="polite"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- panel-footer -->
+
+                                            <div class="panel-body">
+                                                <div class="DTTT btn-group pull-left mt-sm">
+                                                    <button class="btn btn-primary" onclick="change_group_remove()">
+                                                        <i class="fa fa-refresh"></i>
+                                                        &nbsp
+                                                        <span>Transfer</span>
+                                                    </button>
+                                                </div>
+                                                <!-- Transform -->
+
+                                                <div class="DTTT btn-group pull-right mt-sm">
+                                                    &emsp;
+                                                    <a data-toggle="modal" class="btn btn btn-danger" href="#Resign">
+                                                        <i class="ti ti-share-alt"></i>
+                                                        &nbsp
+                                                        <span>RESIGN</span>
+                                                    </a>
+                                                </div>
+                                                <!-- RESIGN -->
+                                            </div>
+                                            <!-- panel-body -->
+                                        </div>
+                                        <!-- panel-addtable -->
+                                    </div>
+                                    <!-- panel-body -->
+                        </div>
+                        <!-- table right -->
+
+                        <div class="col-md-12">
+                            <div class="panel-body">
+                                <div class="DTTT btn-group pull-left mt-sm">
+                                    <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_sdm">
+                                        <button type="button" class="btn btn-inverse" data-dismiss="modal">BACK</button>
+                                    </a>
+                                </div>
+                                <!-- BACK -->
                             </div>
+                            <!--   panelbody -->
                         </div>
+                        <!--   col-md-12 -->
                     </div>
-                    <!-- panel-footer -->
-
-                    <div class="panel-body">
-                        <div class="DTTT btn-group pull-left mt-sm">
-                            <button class="btn btn-primary" onclick="change_group_remove()">
-                                <i class="fa fa-refresh"></i>
-                                &nbsp
-                                <span>Transfer</span>
-                            </button>
-                        </div>
-                        <!-- Transform -->
-
-                        <div class="DTTT btn-group pull-right mt-sm">
-                            &emsp;
-                            <a data-toggle="modal" class="btn btn btn-danger" href="#Resign">
-                                <i class="ti ti-share-alt"></i>
-                                &nbsp
-                                <span>RESIGN</span>
-                            </a>
-                        </div>
-                        <!-- RESIGN -->
-                    </div>
-                    <!-- panel-body -->
+                    <!-- head panel -->
                 </div>
-                <!-- panel-addtable -->
-            </div>
-            <!-- panel-body -->
-        </div>
-        <!-- table right -->
-
-        <div class="col-md-12">
-            <div class="panel-body">
-                <div class="DTTT btn-group pull-left mt-sm">
-                    <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_sdm">
-                        <button type="button" class="btn btn-inverse" data-dismiss="modal">BACK</button>
-                    </a>
-                </div>
-                <!-- BACK -->
-            </div>
-            <!--   panelbody -->
-        </div>
-        <!--   col-md-12 -->
-    </div>
-    <!-- head panel -->
-</div>
-<!-- head outside -->
-</body>
+                <!-- head outside -->
+                </body>
 
 </html>
 
@@ -504,12 +511,13 @@ tbody {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color:red;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="Black"><b>&times;</b></font>
-                </button>
-                <h2 class="modal-title" style="font-family:'Georgia'"><b>
-                        <font color="white">Delete</font>
-                    </b></h2>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                    style="color:white;">&times;</button>
+                <h2 class="modal-title">
+                    <b>
+                        <font color="white">Warning</font>
+                    </b>
+                </h2>
             </div>
             <!-- Modal header -->
 
@@ -518,7 +526,7 @@ tbody {
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
                             <label for="focusedinput" class="control-label" align="center">
-                                <font size="5px">Do you want to Delete Data YES or NO ?</font>
+                                <font size="5px">Do you want to remove the information from the system ?</font>
                             </label>
                         </div>
                     </div>
