@@ -864,6 +864,13 @@ function set_tap() {
                     createG_O();
 
                 }
+                // else if
+                else if(row.ps_form_pe == "MHRD"){
+                    data_tap += '<li class="active"><a href="#G_O" data-toggle="tab">';
+                    data_tap += '<font>MHRD</font>';
+                    data_tap += '</a></li>';
+                    $("#mhrd").addClass("active");
+                }
                 // else if 
                 // check pe tool
 
@@ -1210,6 +1217,140 @@ function set_tap() {
 
                     <!-- ************************************************************************************ -->
 
+                    <div class="tab-pane" id="mhrd">
+                        <br>
+                        <?php foreach($emp_info->result() as $row){?>
+                        <input type="text" id="pos_id" value="<?php echo $row->Position_ID; ?>" hidden>
+                        <input type="text" id="evs_emp_id" value="<?php echo $row->emp_id; ?>" hidden>
+                        <input type="text" id="row_index" value="" hidden>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Employee ID : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_id"><?php echo $row->Emp_ID; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Name : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_name"><?php echo $row->Empname_eng; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Surname : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_lname"><?php echo $row->Empsurname_eng; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                        </div>
+                        <!-- row -->
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Section Code : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_sec"><?php echo $row->Sectioncode_ID; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Department : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_dep"><?php echo $row->Department; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Position : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_pos"><?php echo $row->Position_name; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                        </div>
+                        <!-- row -->
+                        <?php }; ?>
+                        <!-- show infomation employee -->
+
+                        <hr>
+                        <table class="table table-bordered table-striped m-n">
+                            <thead>
+                                <tr>
+                                    <th width="2%">
+                                        <center>
+                                            #
+                                        </center>
+                                    </th>
+                                    <th>
+                                        <center width="5%">
+                                            Type of G&O
+                                        </center>
+                                    </th>
+                                    <th>
+                                        <center width="15%">
+                                            SDGs Goal
+                                        </center>
+                                    </th>
+                                    <th width="30%">
+                                        <center>
+                                            Evaluation Item
+                                        </center>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="mhrd_Table">
+                            </tbody>
+                            <!-- tbody  -->
+
+                            <tfoot>
+                                <td colspan="4"></td>
+                            </tfoot>
+                            <!-- tfoot -->
+                        </table>
+                        <!-- End table level -->
+
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button class="btn btn-inverse" onclick="cancel_form()">BACK</button>
+                                <button class="btn btn-default">CLEAR</button>
+                            </div>
+                            <!-- col-md-6 -->
+
+                            <div class="col-md-6" align="right">
+                                <button class="btn btn-success" id="btn_save_mhrd">SAVE</button>
+                            </div>
+                            <!-- col-md-6 add_app -->
+
+                        </div>
+                        <!-- row -->
+
+                    </div>
+                    <!-- form 1-3 -->
+
+                    <!-- ************************************************************************************ -->
 
                     <div class="tab-pane" id="ACM">
                         <br>
