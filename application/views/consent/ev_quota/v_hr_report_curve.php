@@ -674,9 +674,9 @@ function manage_data(qut_id) {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                            <label for="focusedinput" class="control-label"
                                 align="center">
-                                <font size="3px">
+                                <font size="5px">
                                     Actual value is more than plan!</font>
                             </label>
 
@@ -721,9 +721,9 @@ function manage_data(qut_id) {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                            <label for="focusedinput" class="control-label"
                                 align="center">
-                                <font size="3px">
+                                <font size="5px">
                                     Do you want to save?</font>
                             </label>
 

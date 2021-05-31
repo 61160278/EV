@@ -461,7 +461,7 @@ function clear_css(gru_id) {
     <div class="modal fade" id="Add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header" style="background-color:gray;">
+                <div class="modal-header" style="background-color:#3f51b5;">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                         style="color:white;">&times;</button>
                     <h2 class="modal-title">

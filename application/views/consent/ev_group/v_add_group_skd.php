@@ -266,6 +266,23 @@ tbody {
     text-align: center;
     font-size: 15px;
 }
+
+.alert-info {
+    color: #BCBEBF;
+    background-color: #DEE1E3;
+    border-color: #BCBEBF;
+}
+
+.alert-info,
+.alert-info h1,
+.alert-info h2,
+.alert-info h3,
+.alert-info h4,
+.alert-info h5,
+.alert-info h6,
+.alert-info small {
+    color: #828282;
+}
 </style>
 
 <!DOCTYPE html>
@@ -526,7 +543,7 @@ tbody {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color:red;">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                     style="color:white;">&times;</button>
                 <h2 class="modal-title">
                     <b>
