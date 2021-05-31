@@ -158,10 +158,10 @@ class Evs_form extends MainController_avenxo {
 		// else if G&O
 
 		else if($data['form']->ps_form_pe == "MHRD"){
-			$this->load->model('M_evs_data_g_and_o','mdgo');
-			$this->mdgo->dgo_emp_id = $emp_id;
-			$this->mdgo->dgo_evs_emp_id = $tep->emp_id;
-			$data['check'] = $this->mdgo->get_by_empID()->result();
+			$this->load->model('M_evs_set_form_mhrd','msfm');
+			$this->msfm->sfi_pos_id = $tep->Position_ID;
+			$data['info_mhrd'] = $this->msfm->get_item_description_by_position();
+
 
 			$this->load->model('M_evs_set_form_ability','mesf');
 			$this->mesf->sfa_pos_id = $tep->Position_ID;
