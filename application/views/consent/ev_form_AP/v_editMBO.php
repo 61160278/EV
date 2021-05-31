@@ -81,7 +81,7 @@ function save_MBO() {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/save_data_mbo",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_mbo",
         data: {
             "Emp_ID": Emp_ID,
             "arr_dtm_id": arr_dtm_id,
@@ -242,34 +242,61 @@ function save_MBO() {
                                 </td>
                                 <td id="dis_color">
                                     <center>
+                                    <?php  
+                                   $checked_weight_1 ="";
+                                   $checked_weight_2 ="";
+                                   $checked_weight_3 ="";
+                                   $checked_weight_4 ="";
+                                   $checked_weight_5 ="";
+              
+
+                                    foreach($data_mbo->result() as $row_data_mbo){
+                                            if($row->dtm_id == $row_data_mbo->dmw_dtm_id){
+                                                if($row_data_mbo->dmw_weight == 1){
+                                                    $checked_weight_1 =  "checked";
+                                                }
+                                                else if($row_data_mbo->dmw_weight == 2){
+                                                    $checked_weight_2 =  "checked";
+                                                }
+                                                else if($row_data_mbo->dmw_weight == 3){
+                                                    $checked_weight_3 =  "checked";
+                                                }
+                                                else if($row_data_mbo->dmw_weight == 4){
+                                                    $checked_weight_4 =  "checked";
+                                                }
+                                                else {
+                                                    $checked_weight_5 =  "checked";
+                                                }
+                                            }
+                                        }
+                                ?>
                                         <div class="col-md-12">
                                             <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
                                                 id="rd_<?php echo $table_index_radio ?>" value="1"
-                                                onclick="show_weight()">
+                                                onclick="show_weight()" <?php echo $checked_weight_1 ?>>
                                             <label for="1">&nbsp; 1</label>
                                             &nbsp;&nbsp;
                                             <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
                                                 id="rd_<?php echo $table_index_radio ?>" value="2"
-                                                onclick="show_weight()">
+                                                onclick="show_weight()" <?php echo $checked_weight_2 ?>>
                                             <label for="2">&nbsp; 2</label>
                                             &nbsp;&nbsp;
                                             <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
                                                 id="rd_<?php echo $table_index_radio ?>" value="3"
-                                                onclick="show_weight()" checked>
+                                                onclick="show_weight()" <?php echo $checked_weight_3 ?>>
                                             <label for="3">&nbsp; 3</label>
                                             &nbsp;&nbsp;
                                             <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
-                                                id="rd_<?php echo $table_index_radio ?>" value="4"
-                                                onclick="show_weight()">
+                                                id="rd_<?php echo $table_index_radio ?> " value="4"
+                                                onclick="show_weight()" <?php echo $checked_weight_4 ?>>
                                             <label for="4">&nbsp; 4</label>
                                             &nbsp;&nbsp;
                                             <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
                                                 id="rd_<?php echo $table_index_radio ?>" value="5"
-                                                onclick="show_weight()">
+                                                onclick="show_weight()" <?php echo $checked_weight_5 ?>>
                                             <label for="5">&nbsp; 5</label>
                                             &nbsp;&nbsp;
                                         </div>
-
                                         <!-- col-12 -->
 
                                     </center>
