@@ -239,7 +239,7 @@ function save_ACM() {
                                     foreach($info_ability_form->result() as $row){
                                 ?>
                             <input type="text" name="sfa_id" value="<?php echo $row->sfa_id; ?>" hidden>
-                            <!-- save index table_index_radio-->
+                         
 
                             <tr>
                                 <td id="dis_color">

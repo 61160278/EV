@@ -357,7 +357,56 @@ class Evs_form_AP extends MainController_avenxo {
 		echo json_encode($data);		
 	}
 	// function get_tap_form
+	function save_data_mbo(){
 
+		$ps_pos_id = $this->input->post("Emp_ID");
+		$arr_sgc_id = $this->input->post("arr_sgc_id");
+		$arr_radio = $this->input->post("arr_radio");
+		$arr_roop = count($arr_sgc_id);
+		//string set year now
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+		$this->load->model('Da_evs_data_gcm','dedg');
+		for($i = 0 ; $i < $arr_roop ; $i++){
+		$this->dedg->dtg_evs_emp_id = $ps_pos_id;
+		$this->dedg->dtg_sgc_id = $arr_sgc_id[$i];
+		$this->dedg->dtg_weight = $arr_radio[$i];
+		$this->dedg->insert();
+		}
+
+		$data = "save_data_acm";
+		echo json_encode($data);		
+	}
+	// function get_tap_form
+
+	function update_data_mbo(){
+
+		$ps_pos_id = $this->input->post("Emp_ID");
+		$arr_sgc_id = $this->input->post("arr_sgc_id");
+		$arr_radio = $this->input->post("arr_radio");
+		$arr_roop = count($arr_sgc_id);
+		//string set year now
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+		$this->load->model('M_evs_data_gcm','medg');
+		for($i = 0 ; $i < $arr_roop ; $i++){
+		$this->medg->dtg_evs_emp_id = $ps_pos_id;
+		$this->medg->dtg_sgc_id = $arr_sgc_id[$i];
+		$this->medg->dtg_weight = $arr_radio[$i];
+		$this->medg->update();
+		}
+
+		$data = "update_data_acm";
+		echo json_encode($data);		
+	}
 	
 }
 ?>

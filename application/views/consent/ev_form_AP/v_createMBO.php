@@ -60,13 +60,13 @@ function show_weight() {
 
 function save_MBO() {
     var arr_radio = [];
-    var arr_sfa_id = [];
-    var get_arr_sfa_id = "";
+    var arr_dtm_id = [];
+    var get_arr_dtm_id = "";
     var index = document.getElementById("table_index_radio").value;
     var Emp_ID = document.getElementById("Emp_ID").value;
 
     for (i = 0; i < index; i++) {
-        arr_sfa_id.push(document.getElementsByName("sfa_id")[i].value);
+        arr_dtm_id.push(document.getElementsByName("dtm_id")[i].value);
         $("[name = rd_name_" + i + "]").each(function(index) {
             if ($(this).prop("checked") == true) {
                 arr_radio.push(document.getElementsByName("rd_name_" + i + "")[index].value);
@@ -75,16 +75,16 @@ function save_MBO() {
     }
     console.log("index : " + index);
     console.log("Emp_ID :  " + Emp_ID);
-    console.log("arr_sfa_id : " + arr_sfa_id);
+    console.log("arr_dtm_id : " + arr_dtm_id);
     console.log("arr_radio : " + arr_radio);
 
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/save_data_acm",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/save_data_mbo",
         data: {
             "Emp_ID": Emp_ID,
-            "arr_sfa_id": arr_sfa_id,
+            "arr_dtm_id": arr_dtm_id,
             "arr_radio": arr_radio
 
         },
@@ -98,7 +98,7 @@ function save_MBO() {
         // error
     });
     // ajax
-    window.location = "<?php echo base_url(); ?>/ev_form_AP/Evs_form_AP/index";
+    //window.location = "<?php echo base_url(); ?>/ev_form_AP/Evs_form_AP/index";
 }
 </script>
 <!-- script -->
@@ -119,7 +119,7 @@ function save_MBO() {
                     <br>
                     <?php foreach($emp_info->result() as $row){?>
                     <input type="text" id="pos_id" value="<?php echo $row->Position_ID; ?>" hidden>
-                    <input type="text" id="evs_emp_id" value="<?php echo $row->emp_id; ?>" hidden>
+                    <input type="text" id="Emp_ID" value="<?php echo $row->emp_id; ?>" hidden>
                     <div class="row">
                         <div class="col-md-2">
                             <label class="control-label"><strong>
@@ -279,8 +279,10 @@ function save_MBO() {
                                 </td>
                                 <?php $table_index_radio++;  ?>
                             </tr>
+                            <input type="text" name="dtm_id" value="<?php echo $row->dtm_id; ?>" hidden>
                             <?php  };?>
                             <input type="text" id="table_index_radio" value="<?php echo $table_index_radio; ?>" hidden>
+                    
 
 
                         </tbody>
@@ -313,7 +315,7 @@ function save_MBO() {
                         <!-- col-md-6 -->
 
                         <div class="col-md-6" align="right">
-                            <button class="btn btn-success" onclick="save_ACM()"> Save</button>
+                            <button class="btn btn-success" onclick="save_MBO()"> Save</button>
                         </div>
                         <!-- col-md-6 add_app -->
 
@@ -322,9 +324,6 @@ function save_MBO() {
 
                 </div>
                 <!-- form 1 -->
-
-
-
 
 
             </div>
