@@ -1419,7 +1419,7 @@ function set_tap() {
                     show_approveG_O();
 
                 }
-                // else if 
+                // else if
                 // check pe tool
 
                 if (row.ps_form_ce == "ACM") {
@@ -1457,7 +1457,9 @@ function set_tap() {
     <div class="col-md-12">
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
             <div class="panel-heading" height="50px">
-                <h2 id="tabmenu"><font color="#ffffff" size = "6px"> Form </font></h2>
+                <h2 id="tabmenu">
+                    <font color="#ffffff" size="6px"> Form </font>
+                </h2>
                 <div id="tabmenu">
                     <ul class="nav nav-tabs pull-right tabdrop" id="show_tap">
 
@@ -1950,6 +1952,7 @@ function set_tap() {
                     <!-- form 1-2 -->
 
                     <!-- ************************************************************************************ -->
+
 
                     <div class="tab-pane" id="ACM">
                         <br>

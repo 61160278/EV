@@ -865,8 +865,8 @@ function set_tap() {
 
                 }
                 // else if
-                else if(row.ps_form_pe == "MHRD"){
-                    data_tap += '<li class="active"><a href="#G_O" data-toggle="tab">';
+                else if (row.ps_form_pe == "MHRD") {
+                    data_tap += '<li class="active"><a href="#mhrd" data-toggle="tab">';
                     data_tap += '<font>MHRD</font>';
                     data_tap += '</a></li>';
                     $("#mhrd").addClass("active");
@@ -909,7 +909,9 @@ function set_tap() {
     <div class="col-md-12">
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
             <div class="panel-heading" height="50px">
-                <h2 id="tabmenu"><font color="#ffffff" size = "6px"> Form </font></h2>
+                <h2 id="tabmenu">
+                    <font color="#ffffff" size="6px"> Form </font>
+                </h2>
                 <div id="tabmenu">
                     <ul class="nav nav-tabs pull-right tabdrop" id="show_tap">
                     </ul>
@@ -1305,22 +1307,41 @@ function set_tap() {
                                     </th>
                                     <th>
                                         <center width="5%">
-                                            Type of G&O
+                                            Items
                                         </center>
                                     </th>
                                     <th>
                                         <center width="15%">
-                                            SDGs Goal
+                                            description
                                         </center>
                                     </th>
                                     <th width="30%">
                                         <center>
-                                            Evaluation Item
+                                            Result
                                         </center>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody id="mhrd_Table">
+                                <?php foreach($info_mhrd->result() as $index => $row){ ?>
+                                <tr>
+                                    <td><?php echo ($index+1) ?></td>
+                                    <!-- index  -->
+                                    <td>
+                                        <?php echo $row->itm_item_detail_en; ?>
+                                        <br>
+                                        <?php echo $row->itm_item_detail_th; ?>
+                                    </td>
+                                    <!-- items  -->
+                                    <td>
+                                        <?php echo $row->dep_description_detail_en; ?>
+                                        <br>
+                                        <?php echo $row->dep_description_detail_th; ?>
+                                    </td>
+                                    <!-- description -->
+                                    <td></td>
+                                </tr>
+                                <?php } ?>
                             </tbody>
                             <!-- tbody  -->
 
@@ -1335,15 +1356,8 @@ function set_tap() {
                         <div class="row">
                             <div class="col-md-6">
                                 <button class="btn btn-inverse" onclick="cancel_form()">BACK</button>
-                                <button class="btn btn-default">CLEAR</button>
                             </div>
                             <!-- col-md-6 -->
-
-                            <div class="col-md-6" align="right">
-                                <button class="btn btn-success" id="btn_save_mhrd">SAVE</button>
-                            </div>
-                            <!-- col-md-6 add_app -->
-
                         </div>
                         <!-- row -->
 
