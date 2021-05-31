@@ -856,7 +856,6 @@ function set_tap() {
                                     </th>
                                 </tr>
                             </thead>
-                            <?php print_r($info_mhrd->result()); ?>
                             <tbody id="mhrd_Table">
                                 <?php foreach($info_mhrd->result() as $index => $row){ ?>
                                 <tr>
