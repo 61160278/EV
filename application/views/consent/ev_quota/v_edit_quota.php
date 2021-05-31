@@ -429,9 +429,9 @@ $(document).ready(function() {
                     <div class="form-horizontal">
                         <div class="form-group" align="center">
                             <div class="col-sm-12">
-                                <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                                <label for="focusedinput" class="control-label"
                                     align="center">
-                                    <font size="3px">
+                                    <font size="5px">
                                         Value is more than 100</font>
                                 </label>
 
@@ -477,9 +477,9 @@ $(document).ready(function() {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                            <label for="focusedinput" class="control-label"
                                 align="center">
-                                <font size="3px">
+                                <font size="5px">
                                    Do you want to save?</font>
                             </label>
 

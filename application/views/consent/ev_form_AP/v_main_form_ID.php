@@ -13,6 +13,11 @@
 #color_head {
     background-color: #3f51b5;
 }
+
+.panel.panel-indigo .panel-heading {
+    color: #e8eaf6;
+    background-color: #134466;
+}
 </style>
 <!-- END style -->
 
@@ -87,9 +92,9 @@ function validate_his() {
     <div class="col-md-12">
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
             <div class="panel-heading ">
-                <h1>
-                    <font color="#ffffff"><b> Created & Evaluation </b></font>
-                </h1>
+                <h2>
+                    <font color="#ffffff" size = "6px"><b> Created & Evaluation </b></font>
+                </h2>
             </div>
             <!-- heading -->
             <div class="panel-body" style="height: 400px">

@@ -28,6 +28,11 @@ th {
 #dis_color {
     /* background-color: #F5F5F5; */
 }
+
+.panel.panel-indigo .panel-heading {
+    color: #e8eaf6;
+    background-color: #134466;
+}
 </style>
 <!-- END style -->
 
@@ -262,7 +267,7 @@ function set_tap() {
     <div class="col-md-12">
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
             <div class="panel-heading" height="50px">
-                <h2 id="tabmenu"> Form </h2>
+                <h2 id="tabmenu"><font color="#ffffff" size = "6px"> Form </font></h2>
                 <div id="tabmenu">
                     <ul class="nav nav-tabs pull-right tabdrop" id="show_tap">
                     </ul>

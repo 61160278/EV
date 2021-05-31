@@ -29,6 +29,11 @@ th {
     background-color: #F5F5F5;
 }
 
+.panel.panel-indigo .panel-heading {
+    color: #e8eaf6;
+    background-color: #134466;
+}
+
 th {
     text-align: center;
 }
@@ -37,7 +42,7 @@ th {
 
 <script>
 $(document).ready(function() {
-   
+
 });
 // document ready
 
@@ -45,7 +50,6 @@ function cancel_form() {
     window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/index";
 }
 // function cancel_form
-
 </script>
 <!-- script -->
 
@@ -53,7 +57,9 @@ function cancel_form() {
     <div class="col-md-12">
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
             <div class="panel-heading" height="50px">
-                <h2 id="tabmenu">History MBO</h2>
+                <h2 id="tabmenu">
+                    <font size="6px">History MBO</font>
+                </h2>
             </div>
             <!-- heading -->
             <div class="panel-body">
@@ -182,7 +188,8 @@ function cancel_form() {
                                             <td><?php echo $row->ps_form_ce; ?></td>
                                             <td align="center"></td>
                                             <td align="center">
-                                                <a href="<?php echo base_url(); ?>ev_form/Evs_form/show_his/<?php echo $emp_employee_id.":".$row->pay_id; ?>">
+                                                <a
+                                                    href="<?php echo base_url(); ?>ev_form/Evs_form/show_his/<?php echo $emp_employee_id.":".$row->pay_id; ?>">
                                                     <button class="btn btn-info" id="his_mbo">
                                                         <i class="ti ti-info-alt"></i>
                                                     </button>
