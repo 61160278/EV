@@ -29,46 +29,17 @@
 <script>
 $(document).ready(function() {
     var index = 1; //index table
-    $('#add').click(function() {
-        index++; //upate inextable
-        $('#dynamic_field').append(
-            '<div id="row' + index + '">' +
-            // id=row 
-            '<!-- Start input description -->' +
-            '<div class="row">' +
-            '<div class="col-6">' +
-            '<div class="row">' +
-            '<div class="col-4" align="right">' +
-            '<label for="textarea-input" class=" form-control-label">description EN :</label>' +
-            '</div>' +
-            '<div class="col-8"><textarea name="arr_add_dep_en[]" id="text-Key" rows="4"' +
-            'placeholder="Enter description" class="form-control" style="resize: none"' +
-            'required></textarea>' +
-            '</div>' +
-            '</div>' +
-            '<!-- row -->' +
-            '</div>' +
-            '<!-- col-6-1  -->' +
-            '<div class="col-6">' +
-            '<div class="row">' +
-            '<div class="col-4" align="right">' +
-            '<label for="textarea-input" class=" form-control-label">description TH :</label>' +
-            '</div>' +
-            '<!-- col-4  -->' +
-            '<div class="col-8"><textarea name="arr_add_dep_th[]" id="text-Key" rows="4"' +
-            'placeholder="Enter description" class="form-control" style="resize: none"' +
-            'required></textarea>' +
-            '</div>' +
-            '<!-- col-8  -->' +
-            '</div>' +
-            '<!-- row -->' +
-            '</div>' +
-            '<!-- col-6-2  -->' +
-            '</div>' +
-            '<!-- row  -->' +
-            '<br>' +
-            '<!-- End input description -->' +
 
+    $(document).on('click', '.btn_remove', function() {
+        var button_id = $(this).attr("id"); //remove description
+        $('#row' + button_id + '').remove();
+    });
+
+    $("#addPostion").click(function() {
+        $('#tr_Position_' + $(this).attr("value") + '').append(
+            '<input type= "hidden" id = "id_index' + index + '" value = "' + $(this).attr(
+                "value") + '">' +
+            '<div id="row_position' + index + '">' +
             '<!-- Start input position  -->' +
             '<div class="row">' +
             '<div class="col-6">' +
@@ -78,14 +49,14 @@ $(document).ready(function() {
             '</div>' +
             '<!-- col-4  -->' +
             '<div class="col-8">' +
-            '<select id="pos_lv_' + index +
-            '" class="form-control" onchange="add_pos_level(id) ">' +
+            '<select id="pos_lv_add_' + index +
+            '" class="form-control" onchange="pos_level_add(id)">' +
             '<option>Select position level</option>' +
             '<option value="1">Top Management</option>' +
             '<option value="2">Middle Management</option>' +
             '<option value="3">Junior Management</option>' +
             '<option value="4">Staff</option>' +
-            '<option value="5">Officier</option>' +
+            '<option value="5">Officer</option>' +
             '</select>' +
             '</div>' +
             '<!-- seclect position level  -->' +
@@ -93,40 +64,31 @@ $(document).ready(function() {
             '<!-- row  -->' +
             '</div>' +
             '<!-- col-6  -->' +
-            '<div class="col-6" id="add_table_' + index + '">' +
+            '<div class="col-5" id="add_table_position_' + index + '">' +
+            '</div>' +
+            '<div class="col-1" >' +
+            '<button type="button" name="remove" id="' + index +
+            '" class="btn btn-danger btn_remove_position">' +
+            '<i class="fa fa-times"></i></button>' +
             '</div>' +
             '<!-- include form function add_pos_level -->' +
             '</div>' +
             '<!-- row  -->' +
-
+            '<!-- End insert expected  -->' +
             '<br>' +
-
-            '<div class="col-1"></div>' +
-
-            '<!-- End input position  -->' +
-
-            '<div class="row">' +
-            // start col-12 button
-            '<div class="col-12" align="right">' +
-            '<button type="button" name="remove" id="' + index +
-            '" class="btn btn-danger btn_remove"><i class="fa fa-times"> Delete </i> </button>' +
-            '</div>' +
-            // end col-12 button
-            '</div>' +
-            // End row button 
-
-            '<hr>' +
-
             '</div>'
-            // id row 
-
 
         );
-    });
-    $(document).on('click', '.btn_remove', function() {
-        var button_id = $(this).attr("id"); //remove description
-        $('#row' + button_id + '').remove();
-    });
+        index++;
+
+    }); // add Postion
+    $(document).on('click', '.btn_remove_position', function() {
+        var button_id = $(this).attr("id");
+        $('#row_position' + button_id + '').remove();
+
+    }); //delect expected
+
+
 });
 <?php
 /*
@@ -174,7 +136,8 @@ function add_pos_level(id) {
             drop_pos += '<option>Select position</option>'
             //Start forEach
             data.forEach((row, index) => {
-                drop_pos += '<option value="' + row.Position_ID + '">' + row.Position_name + '</option>'
+                drop_pos += '<option value="' + row.Position_ID + '">' + row.Position_name +
+                    '</option>'
             });
             //end forEach
             drop_pos += '</select>'
@@ -187,6 +150,72 @@ function add_pos_level(id) {
         }
     });
 }
+
+
+<?php
+/*
+* pos_level_add
+* Display manage indicator
+* @input  - 
+* @output position 
+* @author Jakkarin
+* @Update Date 2564-02-10
+*/
+?>
+
+function pos_level_add(id) {
+    var index = 1; //index dropdown
+    var key_pos_lv; //save position level
+    var key_pos_lv_check = id.substring(11); //save position level as table
+
+
+    index_Expected = document.getElementById('id_index' + key_pos_lv_check + '').value;
+    Number(key_pos_lv_check); //change string to int
+    key_pos_lv = document.getElementById('pos_lv_add_' + key_pos_lv_check + '').value;
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/Evs_ability_indicators_form/get_position_indicator",
+        data: {
+            "key_pos_lv": key_pos_lv
+        },
+        dataType: "JSON",
+
+        success: function(data) {
+            // var res = JSON.parse(data);
+            index = 1;
+            var drop_pos = ""
+            // Start col-12 
+            drop_pos += '<div class="row">'
+            // Start label position 
+            drop_pos += '<div class="col-4" align="right">'
+            drop_pos += '<label for="textarea-input"'
+            drop_pos += 'class=" form-control-label">Position :</label>'
+            drop_pos += '</div>'
+            // End label position
+            // Start select 
+            drop_pos += '<div class="col-8">'
+            drop_pos += '<select name="arr_add_pos_' + index_Expected +
+                '" id="select" class="form-control">'
+            drop_pos += '<option>Select position</option>'
+            //Start forEach
+            data.forEach((row, index) => {
+                drop_pos += '<option value="' + row.Position_name + '">' + row.Position_name +
+                    '</option>'
+            });
+            //End forEach
+            drop_pos += '</select>'
+            drop_pos += '</div>'
+            // End select col-12
+            drop_pos += '</div>'
+            // End row
+            $('#add_table_position_' + key_pos_lv_check + '').html(drop_pos);
+            index++; //update index dropdown
+        }
+        // success 
+    });
+    // ajex 
+}
+// pos_level_add
 </script>
 <!-- Start Css -->
 <style>
@@ -237,9 +266,8 @@ function add_pos_level(id) {
                                 </div>
                                 <!-- col-4  -->
                                 <div class="col-8">
-                                    <textarea name="add_item_en" id="textarea-input" rows="3"
-                                        placeholder="Enter Item" class="form-control" style="resize: none"
-                                        required></textarea>
+                                    <textarea name="add_item_en" id="textarea-input" rows="3" placeholder="Enter Item"
+                                        class="form-control" style="resize: none" required></textarea>
                                 </div>
                                 <!-- col-8  -->
                             </div>
@@ -254,9 +282,8 @@ function add_pos_level(id) {
                                 </div>
                                 <!-- col-4  -->
                                 <div class="col-8">
-                                    <textarea name="add_item_th" id="textarea-input" rows="3"
-                                        placeholder="Enter Item" class="form-control" style="resize: none"
-                                        required></textarea>
+                                    <textarea name="add_item_th" id="textarea-input" rows="3" placeholder="Enter Item"
+                                        class="form-control" style="resize: none" required></textarea>
                                 </div>
                                 <!-- col-8  -->
                             </div>
@@ -330,10 +357,19 @@ function add_pos_level(id) {
                         <!-- include form function add_pos_level -->
                     </div>
                     <!-- row  -->
+                    <br>
+                    <div id="tr_Position_1">
+                    </div>
 
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12" align="right">
+                            <button type="button" class="btn btn-success float-center" id="addPostion" value="1"><i
+                                    class="fa fa-plus"></i> Position</button>
+                        </div>
+                    </div>
+                    <!-- row  -->
                     <hr>
-
-                    <div class="col-1"></div>
 
                 </div>
                 <!-- End input position  -->
@@ -344,8 +380,7 @@ function add_pos_level(id) {
                 <div class="row">
                     <div class="col-sm-12" align="right">
 
-                        <button type="button" name="add" id="add" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
-                        <br><br>
+
                         <a href="<?php echo base_url(); ?>/Evs_mhrd_indicators_form/indicator_mhrd">
                             <button type="button" class="btn btn-secondary">Back</button>
                         </a>

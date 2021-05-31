@@ -130,8 +130,7 @@ function validate_his() {
                     </div>
 
                     <!-- col-4  -->
-                    <div class="col-md-2" align="center">
-                    </div>
+                
                     <div class="col-md-2" align="center">
                         <a data-toggle="modal" href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/createGCM">
                             <div class="info-tile ">
@@ -140,11 +139,23 @@ function validate_his() {
 
                             </div>
                         </a>
+                        <div class="col-md-2" align="center">
+                        </div>
                     </div>
+            
+ 
                     <div class="col-md-2" align="center">
+                        <a data-toggle="modal" href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/createg_and_o">
+                            <div class="info-tile ">
+                                <div class="tile-icon"><i class="ti ti-files"></i></div>
+                                <div class="tile-body"><span>G&O</span></div>
+
+                            </div>
+                        </a>
+                        <div class="col-md-2" align="center">
+                        </div>
                     </div>
-
-
+            
 
                 </div>
                 <!-- row  -->
