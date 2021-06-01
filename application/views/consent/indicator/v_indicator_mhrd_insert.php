@@ -194,12 +194,11 @@ function pos_level_add(id) {
             // End label position
             // Start select 
             drop_pos += '<div class="col-8">'
-            drop_pos += '<select name="arr_add_pos_' + index_Expected +
-                '" id="select" class="form-control">'
+            drop_pos += '<select name="arr_add_new_pos[]" id="select" class="form-control">'
             drop_pos += '<option>Select position</option>'
             //Start forEach
             data.forEach((row, index) => {
-                drop_pos += '<option value="' + row.Position_name + '">' + row.Position_name +
+                drop_pos += '<option value="' + row.Position_ID + '">' + row.Position_name +
                     '</option>'
             });
             //End forEach
