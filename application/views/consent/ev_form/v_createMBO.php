@@ -878,6 +878,7 @@ function set_tap() {
                     data_tap += '<li><a href="#ACM" data-toggle="tab">';
                     data_tap += '<font>ACM</font>';
                     data_tap += '</a></li>';
+
                 }
                 // if
                 else if (row.ps_form_ce == "GCM") {
@@ -1704,26 +1705,26 @@ function set_tap() {
                             <!-- thead -->
                             <tbody id="dis_color">
                                 <?php  
-                                    $index_acm = 1;
+                                    $index_gcm = 1;
                                     $temp_keycomponent = "";
                                     $temp_expected = "";
                                     $sum_max_rating = 0;
                                     // start foreach
-                                    foreach($info_ability_form->result() as $row){
+                                    foreach($info_form_gcm->result() as $row){
                                 ?>
                                 <tr>
                                     <td id="dis_color">
-                                        <center><?php echo $index_acm++; ?></center>
+                                        <center><?php echo $index_gcm++; ?></center>
                                     </td>
                                     <td id="dis_color">
-                                        <?php echo $row->cpn_competency_detail_en . "<br><font color='blue'>" . $row->cpn_competency_detail_th ."</font>"; ?>
+                                        <?php echo $row->cpg_competency_detail_en . "<br><font color='blue'>" . $row->cpg_competency_detail_th ."</font>"; ?>
                                     </td>
                                     <!-- show competency  -->
                                     <td id="dis_color">
-                                        <?php foreach($info_expected->result() as $row_ept){ 
-                                            if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_keycomponent != $row_ept->kcp_key_component_detail_en){
-                                                $temp_keycomponent = $row_ept->kcp_key_component_detail_en;?>
-                                        <?php echo $row_ept->kcp_key_component_detail_en . "<br><font color='blue'>" . $row_ept->kcp_key_component_detail_th ."</font>"; ?>
+                                        <?php foreach($info_expected_gcm->result() as $row_ept){ 
+                                            if($row->sgc_cpg_id == $row_ept->kcg_cpg_id && $temp_keycomponent != $row_ept->kcg_key_component_detail_en){
+                                                $temp_keycomponent = $row_ept->kcg_key_component_detail_en;?>
+                                        <?php echo $row_ept->kcg_key_component_detail_en . "<br><font color='blue'>" . $row_ept->kcg_key_component_detail_th ."</font>"; ?>
                                         <?php }
                                             // if
                                             }
@@ -1731,10 +1732,10 @@ function set_tap() {
                                     </td>
                                     <!-- show key component  -->
                                     <td id="dis_color">
-                                        <?php foreach($info_expected->result() as $row_ept){ 
-                                            if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_expected != $row_ept->ept_expected_detail_en && $row_ept->ept_pos_id == $info_pos_id){
-                                                $temp_expected = $row_ept->ept_expected_detail_en;?>
-                                        <?php echo $row_ept->ept_expected_detail_en . "<br><font color='blue'>" . $row_ept->ept_expected_detail_th ."</font><hr>"; ?>
+                                        <?php foreach($info_expected_gcm->result() as $row_ept){ 
+                                            if($row->sgc_cpg_id == $row_ept->kcg_cpg_id && $temp_expected != $row_ept->epg_expected_detail_en && $row_ept->epg_pos_id == $info_pos_id_gcm){
+                                                $temp_expected = $row_ept->epg_expected_detail_en;?>
+                                        <?php echo $row_ept->epg_expected_detail_en . "<br><font color='blue'>" . $row_ept->epg_expected_detail_th ."</font><hr>"; ?>
                                         <?php }
                                         // if
                                         }
@@ -1742,7 +1743,7 @@ function set_tap() {
                                     </td>
                                     <!-- show expected  -->
                                     <td id="dis_color">
-                                        <center><?php echo $row->sfa_weight; ?></center>
+                                        <center><?php echo $row->sgc_weight; ?></center>
                                     </td>
                                     <!-- show weight  -->
                                     <td id="dis_color" width="5%">
