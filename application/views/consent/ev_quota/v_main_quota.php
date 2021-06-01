@@ -105,7 +105,7 @@ function manage_data(qut_id) {
     <div class="panel panel-indigo">
         <div class="panel-heading">
             <h2>
-                <font size="6px">Manage Quota</>
+                <font size="6px">Manage Quota
                 </font>
             </h2>
         </div><!-- panel-heading -->
