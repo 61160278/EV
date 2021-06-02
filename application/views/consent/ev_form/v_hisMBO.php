@@ -832,27 +832,35 @@ function set_tap() {
 
                         <hr>
                         <table class="table table-bordered table-striped m-n">
-                            <thead>
+                        <thead>
                                 <tr>
-                                    <th width="2%">
+                                    <th width="2%" rowspan="2">
                                         <center>
                                             #
                                         </center>
                                     </th>
-                                    <th>
-                                        <center width="5%">
+                                    <th width="35%" rowspan="2">
+                                        <center>
                                             Items
                                         </center>
                                     </th>
-                                    <th>
-                                        <center width="15%">
+                                    <th width="35%" rowspan="2">
+                                        <center>
                                             description
                                         </center>
                                     </th>
-                                    <th width="30%">
+                                    <th width="20%" colspan="2">
                                         <center>
                                             Result
                                         </center>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <center>Score 1</center>
+                                    </th>
+                                    <th>
+                                        <center>Score 1</center>
                                     </th>
                                 </tr>
                             </thead>
@@ -874,6 +882,7 @@ function set_tap() {
                                         <?php echo $row->dep_description_detail_th; ?>
                                     </td>
                                     <!-- description -->
+                                    <td></td>
                                     <td></td>
                                 </tr>
                                 <?php } 

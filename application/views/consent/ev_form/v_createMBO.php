@@ -1301,30 +1301,38 @@ function set_tap() {
                         <table class="table table-bordered table-striped m-n">
                             <thead>
                                 <tr>
-                                    <th width="2%">
+                                    <th width="2%" rowspan="2">
                                         <center>
                                             #
                                         </center>
                                     </th>
-                                    <th>
-                                        <center width="5%">
+                                    <th width="35%" rowspan="2">
+                                        <center>
                                             Items
                                         </center>
                                     </th>
-                                    <th>
-                                        <center width="15%">
+                                    <th width="35%" rowspan="2">
+                                        <center>
                                             description
                                         </center>
                                     </th>
-                                    <th width="30%">
+                                    <th width="20%" colspan="2">
                                         <center>
                                             Result
                                         </center>
                                     </th>
                                 </tr>
+                                <tr>
+                                    <th>
+                                        <center>Score 1</center>
+                                    </th>
+                                    <th>
+                                        <center>Score 1</center>
+                                    </th>
+                                </tr>
                             </thead>
                             <tbody id="mhrd_Table">
-                            <?php if(sizeof($info_mhrd) != 0){ ?>
+                                <?php if(sizeof($info_mhrd) != 0){ ?>
                                 <?php foreach($info_mhrd->result() as $index => $row){ ?>
                                 <tr>
                                     <td><?php echo ($index+1) ?></td>
@@ -1342,17 +1350,18 @@ function set_tap() {
                                     </td>
                                     <!-- description -->
                                     <td></td>
+                                    <td></td>
                                 </tr>
                                 <?php }
                                 // for
                                 }
                                 // if ?>
-                                
+
                             </tbody>
                             <!-- tbody  -->
 
                             <tfoot>
-                                <td colspan="4"></td>
+                                <td colspan="5"></td>
                             </tfoot>
                             <!-- tfoot -->
                         </table>
@@ -1484,7 +1493,7 @@ function set_tap() {
                             </thead>
                             <!-- thead -->
                             <tbody id="dis_color">
-                            <?php if(sizeof($info_ability_form) != 0) { ?>
+                                <?php if(sizeof($info_ability_form) != 0) { ?>
                                 <?php  
                                     $index_acm = 1;
                                     $temp_keycomponent = "";
@@ -1712,7 +1721,7 @@ function set_tap() {
                             </thead>
                             <!-- thead -->
                             <tbody id="dis_color">
-                            <?php if(sizeof($info_form_gcm) != 0){ ?>
+                                <?php if(sizeof($info_form_gcm) != 0){ ?>
                                 <?php  
                                     $index_gcm = 1;
                                     $temp_keycomponent = "";
