@@ -1692,7 +1692,7 @@ function set_tap() {
                                     <th rowspan="2">
                                         <center> No.</center>
                                     </th>
-                                    <th rowspan="2">
+                                    <th rowspan="2" colspan="2">
                                         <center>Competency</center>
                                     </th>
                                     <th rowspan="2">
@@ -1737,6 +1737,7 @@ function set_tap() {
                                     <td id="dis_color">
                                         <?php echo $row->cpg_competency_detail_en . "<br><font color='blue'>" . $row->cpg_competency_detail_th ."</font>"; ?>
                                     </td>
+                                    <td></td>
                                     <!-- show competency  -->
                                     <td id="dis_color">
                                         <?php foreach($info_expected_gcm->result() as $row_ept){ 
