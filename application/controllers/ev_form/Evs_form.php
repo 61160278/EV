@@ -86,10 +86,7 @@ class Evs_form extends MainController_avenxo {
 					$this->load->model('M_evs_expected_behavior','mept');
 					$data['info_expected'] = $this->mept->get_all_by_pos();
 					$data['info_pos_id'] = $tep->Position_ID;
-	
-					$data['info_ability_form_gcm'] = $data['info_form'];
-					$data['info_expected_gcm'] = $data['info_expected'];
-					$data['info_pos_id'] = $tep->Position_ID;
+
 				}
 				// if ACM
 				else if($data['form']->ps_form_ce == "GCM"){
@@ -100,10 +97,6 @@ class Evs_form extends MainController_avenxo {
 					$this->load->model('M_evs_expected_behavior_gcm','mebg');
 					$data['info_expected_gcm'] = $this->mebg->get_all_by_pos();
 					$data['info_pos_id_gcm'] = $tep->Position_ID;
-	
-					$data['info_ability_form'] = $data['info_form_gcm'];
-					$data['info_expected'] = $data['info_expected_gcm'];
-					$data['info_pos_id'] = $tep->Position_ID;
 	
 				}
 				// else if GCM
@@ -121,9 +114,6 @@ class Evs_form extends MainController_avenxo {
 					$data['info_expected'] = $this->mept->get_all_by_pos();
 					$data['info_pos_id'] = $tep->Position_ID;
 	
-					$data['info_ability_form_gcm'] = $data['info_form'];
-					$data['info_expected_gcm'] = $data['info_expected'];
-					$data['info_pos_id'] = $tep->Position_ID;
 				}
 				// if ACM
 				else if($data['form']->ps_form_ce == "GCM"){
@@ -134,10 +124,6 @@ class Evs_form extends MainController_avenxo {
 					$this->load->model('M_evs_expected_behavior_gcm','mebg');
 					$data['info_expected_gcm'] = $this->mebg->get_all_by_pos();
 					$data['info_pos_id_gcm'] = $tep->Position_ID;
-	
-					$data['info_ability_form'] = $data['info_form_gcm'];
-					$data['info_expected'] = $data['info_expected_gcm'];
-					$data['info_pos_id'] = $tep->Position_ID;
 	
 				}
 				// else if GCM
@@ -163,7 +149,6 @@ class Evs_form extends MainController_avenxo {
 				$this->mdgo->dgo_evs_emp_id = $tep->emp_id;
 				$data['g_o_emp'] = $this->mdgo->get_by_empID()->result();
 
-
 				if($data['form']->ps_form_ce == "ACM"){
 					$this->load->model('M_evs_set_form_ability','mesf');
 					$this->mesf->sfa_pos_id = $tep->Position_ID;
@@ -172,10 +157,7 @@ class Evs_form extends MainController_avenxo {
 					$this->load->model('M_evs_expected_behavior','mept');
 					$data['info_expected'] = $this->mept->get_all_by_pos();
 					$data['info_pos_id'] = $tep->Position_ID;
-	
-					$data['info_ability_form_gcm'] = $data['info_form'];
-					$data['info_expected_gcm'] = $data['info_expected'];
-					$data['info_pos_id'] = $tep->Position_ID;
+
 				}
 				// if ACM
 				else if($data['form']->ps_form_ce == "GCM"){
@@ -186,11 +168,7 @@ class Evs_form extends MainController_avenxo {
 					$this->load->model('M_evs_expected_behavior_gcm','mebg');
 					$data['info_expected_gcm'] = $this->mebg->get_all_by_pos();
 					$data['info_pos_id_gcm'] = $tep->Position_ID;
-	
-					$data['info_ability_form'] = $data['info_form_gcm'];
-					$data['info_expected'] = $data['info_expected_gcm'];
-					$data['info_pos_id'] = $tep->Position_ID;
-	
+
 				}
 				// else if GCM
 				
@@ -212,10 +190,7 @@ class Evs_form extends MainController_avenxo {
 					$this->load->model('M_evs_expected_behavior','mept');
 					$data['info_expected'] = $this->mept->get_all_by_pos();
 					$data['info_pos_id'] = $tep->Position_ID;
-	
-					$data['info_ability_form_gcm'] = $data['info_form'];
-					$data['info_expected_gcm'] = $data['info_expected'];
-					$data['info_pos_id'] = $tep->Position_ID;
+
 				}
 				// if ACM
 				else if($data['form']->ps_form_ce == "GCM"){
@@ -227,13 +202,8 @@ class Evs_form extends MainController_avenxo {
 					$data['info_expected_gcm'] = $this->mebg->get_all_by_pos();
 					$data['info_pos_id_gcm'] = $tep->Position_ID;
 	
-					$data['info_ability_form'] = $data['info_form_gcm'];
-					$data['info_expected'] = $data['info_expected_gcm'];
-					$data['info_pos_id'] = $tep->Position_ID;
-	
 				}
 				// else if GCM
-
 				$this->output('/consent/ev_form/v_createMBO',$data);
 			}
 			// else	
@@ -256,9 +226,6 @@ class Evs_form extends MainController_avenxo {
 				$data['info_expected'] = $this->mept->get_all_by_pos();
 				$data['info_pos_id'] = $tep->Position_ID;
 
-				$data['info_ability_form_gcm'] = $data['info_form'];
-				$data['info_expected_gcm'] = $data['info_expected'];
-				$data['info_pos_id'] = $tep->Position_ID;
 			}
 			// if ACM
 			else if($data['form']->ps_form_ce == "GCM"){
@@ -269,10 +236,6 @@ class Evs_form extends MainController_avenxo {
 				$this->load->model('M_evs_expected_behavior_gcm','mebg');
 				$data['info_expected_gcm'] = $this->mebg->get_all_by_pos();
 				$data['info_pos_id_gcm'] = $tep->Position_ID;
-
-				$data['info_ability_form'] = $data['info_form_gcm'];
-				$data['info_expected'] = $data['info_expected_gcm'];
-				$data['info_pos_id'] = $tep->Position_ID;
 
 			}
 			// else if GCM
@@ -511,15 +474,33 @@ class Evs_form extends MainController_avenxo {
 		$this->medm->dtm_evs_emp_id = $tep->emp_id;
 		$data['mbo_emp'] = $this->medm->get_by_empID()->result();
 
-		$this->load->model('M_evs_set_form_ability','mesf');
-		$this->mesf->sfa_pos_id = $tep->Position_ID;
-		$this->mesf->sfa_pay_id = $pay_id;
-		$data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator();
+		$this->load->model('M_evs_position_from','mpf');
+		$this->mpf->ps_pos_id = $tep->Position_ID;
+		$this->mpf->ps_pay_id = $pay_id;
+		$data['form'] = $this->mpf->get_all_by_key_by_year()->row();
 
-		$this->load->model('M_evs_expected_behavior','mept');
-		$data['info_expected'] = $this->mept->get_all_by_pos();
+		if($data['form']->ps_form_ce == "ACM"){
+			$this->load->model('M_evs_set_form_ability','mesf');
+			$this->mesf->sfa_pos_id = $tep->Position_ID;
+			$this->mesf->sfa_pay_id = $pay_id;
+			$data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator();
+			$this->load->model('M_evs_expected_behavior','mept');
+			$data['info_expected'] = $this->mept->get_all_by_pos();
+			$data['info_pos_id'] = $tep->Position_ID;
 
-		$data['info_pos_id'] = $tep->Position_ID;	
+		}
+		// if ACM
+		else if($data['form']->ps_form_ce == "GCM"){
+			$this->load->model('M_evs_set_form_gcm','msfg');
+			$this->msfg->sgc_pos_id = $tep->Position_ID;
+			$this->msfg->sgc_pay_id = $pay_id;
+			$data['info_form_gcm'] = $this->msfg->get_all_competency_by_indicator();
+			$this->load->model('M_evs_expected_behavior_gcm','mebg');
+			$data['info_expected_gcm'] = $this->mebg->get_all_by_pos();
+			$data['info_pos_id_gcm'] = $tep->Position_ID;
+
+		}
+		// else if GCM	
 		
 		$this->output('/consent/ev_form/v_editMBO',$data);
 
@@ -559,14 +540,33 @@ class Evs_form extends MainController_avenxo {
 		$this->mdgo->dgo_evs_emp_id = $tep->emp_id;
 		$data['g_o_emp'] = $this->mdgo->get_by_empID()->result();
 
-		$this->load->model('M_evs_set_form_ability','mesf');
-		$this->mesf->sfa_pos_id = $tep->Position_ID;
-		$this->mesf->sfa_pay_id = $pay_id;
-		$data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator();
+		$this->load->model('M_evs_position_from','mpf');
+		$this->mpf->ps_pos_id = $tep->Position_ID;
+		$this->mpf->ps_pay_id = $pay_id;
+		$data['form'] = $this->mpf->get_all_by_key_by_year()->row();
 
-		$this->load->model('M_evs_expected_behavior','mept');
-		$data['info_expected'] = $this->mept->get_all_by_pos();
-		$data['info_pos_id'] = $tep->Position_ID;
+		if($data['form']->ps_form_ce == "ACM"){
+			$this->load->model('M_evs_set_form_ability','mesf');
+			$this->mesf->sfa_pos_id = $tep->Position_ID;
+			$this->mesf->sfa_pay_id = $pay_id;
+			$data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator();
+			$this->load->model('M_evs_expected_behavior','mept');
+			$data['info_expected'] = $this->mept->get_all_by_pos();
+			$data['info_pos_id'] = $tep->Position_ID;
+
+		}
+		// if ACM
+		else if($data['form']->ps_form_ce == "GCM"){
+			$this->load->model('M_evs_set_form_gcm','msfg');
+			$this->msfg->sgc_pos_id = $tep->Position_ID;
+			$this->msfg->sgc_pay_id = $pay_id;
+			$data['info_form_gcm'] = $this->msfg->get_all_competency_by_indicator();
+			$this->load->model('M_evs_expected_behavior_gcm','mebg');
+			$data['info_expected_gcm'] = $this->mebg->get_all_by_pos();
+			$data['info_pos_id_gcm'] = $tep->Position_ID;
+
+		}
+		// else if GCM
 
 		$this->load->model('M_evs_set_form_g_and_o','mesg');
 		$this->mesg->sfg_pay_id = $pay_id;
@@ -784,10 +784,7 @@ class Evs_form extends MainController_avenxo {
 					$this->load->model('M_evs_expected_behavior','mept');
 					$data['info_expected'] = $this->mept->get_all_by_pos();
 					$data['info_pos_id'] = $tep->Position_ID;
-	
-					$data['info_ability_form_gcm'] = $data['info_form'];
-					$data['info_expected_gcm'] = $data['info_expected'];
-					$data['info_pos_id'] = $tep->Position_ID;
+
 				}
 				// if ACM
 				else if($data['form']->ps_form_ce == "GCM"){
@@ -798,10 +795,7 @@ class Evs_form extends MainController_avenxo {
 					$this->load->model('M_evs_expected_behavior_gcm','mebg');
 					$data['info_expected_gcm'] = $this->mebg->get_all_by_pos();
 					$data['info_pos_id_gcm'] = $tep->Position_ID;
-	
-					$data['info_ability_form'] = $data['info_form_gcm'];
-					$data['info_expected'] = $data['info_expected_gcm'];
-					$data['info_pos_id'] = $tep->Position_ID;
+
 	
 				}
 				// else if GCM
@@ -834,10 +828,7 @@ class Evs_form extends MainController_avenxo {
 					$this->load->model('M_evs_expected_behavior','mept');
 					$data['info_expected'] = $this->mept->get_all_by_pos();
 					$data['info_pos_id'] = $tep->Position_ID;
-	
-					$data['info_ability_form_gcm'] = $data['info_form'];
-					$data['info_expected_gcm'] = $data['info_expected'];
-					$data['info_pos_id'] = $tep->Position_ID;
+
 				}
 				// if ACM
 				else if($data['form']->ps_form_ce == "GCM"){
@@ -848,10 +839,6 @@ class Evs_form extends MainController_avenxo {
 					$this->load->model('M_evs_expected_behavior_gcm','mebg');
 					$data['info_expected_gcm'] = $this->mebg->get_all_by_pos();
 					$data['info_pos_id_gcm'] = $tep->Position_ID;
-	
-					$data['info_ability_form'] = $data['info_form_gcm'];
-					$data['info_expected'] = $data['info_expected_gcm'];
-					$data['info_pos_id'] = $tep->Position_ID;
 	
 				}
 				// else if GCM
@@ -880,9 +867,6 @@ class Evs_form extends MainController_avenxo {
 				$data['info_expected'] = $this->mept->get_all_by_pos();
 				$data['info_pos_id'] = $tep->Position_ID;
 
-				$data['info_ability_form_gcm'] = $data['info_form'];
-				$data['info_expected_gcm'] = $data['info_expected'];
-				$data['info_pos_id'] = $tep->Position_ID;
 			}
 			// if ACM
 			else if($data['form']->ps_form_ce == "GCM"){
@@ -893,11 +877,6 @@ class Evs_form extends MainController_avenxo {
 				$this->load->model('M_evs_expected_behavior_gcm','mebg');
 				$data['info_expected_gcm'] = $this->mebg->get_all_by_pos();
 				$data['info_pos_id_gcm'] = $tep->Position_ID;
-
-				$data['info_ability_form'] = $data['info_form_gcm'];
-				$data['info_expected'] = $data['info_expected_gcm'];
-				$data['info_pos_id'] = $tep->Position_ID;
-
 			}
 			// else if GCM
 

@@ -2066,6 +2066,7 @@ function set_tap() {
                             </thead>
                             <!-- thead -->
                             <tbody id="dis_color">
+                            <?php if(sizeof($info_ability_form) != 0) { ?>
                                 <?php  
                                     $index_acm = 1;
                                     $temp_keycomponent = "";
@@ -2138,6 +2139,8 @@ function set_tap() {
                                 <?php
                                     }
                                     // end foreach
+                                }
+                                //if
                                 ?>
                             </tbody>
                             <!-- tbody -->
@@ -2291,6 +2294,7 @@ function set_tap() {
                             </thead>
                             <!-- thead -->
                             <tbody id="dis_color">
+                            <?php if(sizeof($info_form_gcm) != 0) { ?>
                                 <?php  
                                     $index_gcm = 1;
                                     $temp_keycomponent = "";
@@ -2363,6 +2367,8 @@ function set_tap() {
                                 <?php
                                     }
                                     // end foreach
+                                }
+                                // if
                                 ?>
                             </tbody>
                             <!-- tbody -->
