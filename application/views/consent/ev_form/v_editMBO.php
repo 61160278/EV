@@ -1883,7 +1883,7 @@ function set_tap() {
                                     <!-- show level  -->
                                     <?php if($index == 0){ ?>
                                     <td rowspan="<?php echo $col[$spans] ?>"><?php echo $row->dgo_self_review; ?></td>
-                                    <td rowspan="<?php echo $col[$spans] ?>"><input type="text"></td>
+                                    <td rowspan="<?php echo $col[$spans] ?>"></td>
                                     <?php 
                                 $spans++;
                                 $temps = $row->dgo_item;
@@ -1891,7 +1891,7 @@ function set_tap() {
                                 // if 
                                 else if($temps != $row->dgo_item){ ?>
                                     <td rowspan="<?php echo $col[$spans] ?>"><?php echo $row->dgo_self_review; ?></td>
-                                    <td rowspan="<?php echo $col[$spans] ?>"><input type="text"></td>
+                                    <td rowspan="<?php echo $col[$spans] ?>"></td>
                                     <?php
                                 $spans++;
                                 $temps = $row->dgo_item;
