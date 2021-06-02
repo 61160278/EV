@@ -365,6 +365,12 @@ function cancel_form() {
 }
 // function cancel_form
 
+function back_main() {
+    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/index";
+}
+// function back_main
+
+
 function get_sdgs_mbo(count, sdg) {
 
     $.get("<?php echo base_url(); ?>ev_form/Evs_form/get_sdgs", function(data) {
@@ -2067,7 +2073,7 @@ function set_tap() {
                             </thead>
                             <!-- thead -->
                             <tbody id="dis_color">
-                            <?php if(sizeof($info_ability_form) != 0) { ?>
+                                <?php if(sizeof($info_ability_form) != 0) { ?>
                                 <?php  
                                     $index_acm = 1;
                                     $temp_keycomponent = "";
@@ -2170,7 +2176,10 @@ function set_tap() {
                         <hr>
                         <div class="row">
                             <div class="col-md-12">
-                                <button class="btn btn-inverse" onclick="cancel_form()">BACK</button>
+                                <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
+                                    <button class="btn btn-inverse" id="btn_cencel_backG_O">BACK</button>
+                                </a>
+                                <!-- cancel to back to main  -->
                             </div>
                             <!-- col-md-6 -->
 
@@ -2266,7 +2275,7 @@ function set_tap() {
                                     <th rowspan="2">
                                         <center> No.</center>
                                     </th>
-                                    <th rowspan="2">
+                                    <th rowspan="2" colspan="2">
                                         <center>Competency</center>
                                     </th>
                                     <th rowspan="2">
@@ -2295,10 +2304,11 @@ function set_tap() {
                             </thead>
                             <!-- thead -->
                             <tbody id="dis_color">
-                            <?php if(sizeof($info_form_gcm) != 0) { ?>
+                                <?php if(sizeof($info_form_gcm) != 0) { ?>
                                 <?php  
                                     $index_gcm = 1;
                                     $temp_keycomponent = "";
+                                    $temp_keycomponents = "";
                                     $temp_expected = "";
                                     $sum_max_rating = 0;
                                     // start foreach
@@ -2312,6 +2322,17 @@ function set_tap() {
                                         <?php echo $row->cpg_competency_detail_en . "<br><font color='blue'>" . $row->cpg_competency_detail_th ."</font>"; ?>
                                     </td>
                                     <!-- show competency  -->
+                                    <td id="dis_color">
+                                        <?php foreach($info_expected_gcm->result() as $row_ept){ 
+                                            if($row->sgc_cpg_id == $row_ept->kcg_cpg_id && $temp_keycomponents != $row_ept->kcg_key_component_detail_en){
+                                                $temp_keycomponents = $row_ept->kcg_key_component_detail_en;?>
+                                        <?php echo $row_ept->epg_point;?>
+                                        <?php }
+                                            // if
+                                            }
+                                            // foreach ?>
+                                    </td>
+                                    <!-- show type  -->
                                     <td id="dis_color">
                                         <?php foreach($info_expected_gcm->result() as $row_ept){ 
                                             if($row->sgc_cpg_id == $row_ept->kcg_cpg_id && $temp_keycomponent != $row_ept->kcg_key_component_detail_en){
@@ -2398,7 +2419,10 @@ function set_tap() {
                         <hr>
                         <div class="row">
                             <div class="col-md-12">
-                                <button class="btn btn-inverse" onclick="cancel_form()">BACK</button>
+                                <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
+                                    <button class="btn btn-inverse" id="btn_cencel_backG_O">BACK</button>
+                                </a>
+                                <!-- cancel to back to main  -->
                             </div>
                             <!-- col-md-6 -->
 
