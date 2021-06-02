@@ -246,7 +246,7 @@ class Evs_mhrd_indicators_form extends MainController {
 		$itm_item_detail_th = $this->input->post("up_date_item_th"); //save item detail th
 		$itm_item_id = $this->input->post("item_id"); //save item id
 		$update_pos_length_number_arry = count($this->input->post("arr_update_pos[]")); //max loop update position
-
+		
 		print_r($itm_item_detail_en."<br>");
 		print_r($itm_item_detail_th);
 
@@ -261,9 +261,9 @@ class Evs_mhrd_indicators_form extends MainController {
 		$this->load->model('Da_evs_description','ddep');
 
 		//start for loop
+			$this->ddep->dep_description_detail_en = $this->input->post('arr_update_dep_en');
+			$this->ddep->dep_description_detail_th = $this->input->post('arr_update_dep_th');
 		for($j = 0; $j < $update_pos_length_number_arry; $j++){
-			$this->ddep->dep_description_detail_en = $this->input->post('arr_update_dep_en['.$j.']');
-			$this->ddep->dep_description_detail_th = $this->input->post('arr_update_dep_th['.$j.']');
 			$this->ddep->dep_pos_id = $this->input->post('arr_update_pos['.$j.']');
 		 	$this->ddep->dep_itm_id = $itm_item_id;
 			$this->ddep->dep_id = $this->input->post('arr_description_id['.$j.']');
@@ -271,7 +271,7 @@ class Evs_mhrd_indicators_form extends MainController {
 		}
 		//end for loop
 		
-		$add_pos_length_number_arry = count($this->input->post("arr_add_pos"));//max loop insert position
+		$add_pos_length_number_arry = count($this->input->post("arr_add_pos[]"));//max loop insert position
 		$item_id = 0; //set item id
 		$this->load->model('M_evs_item','mitm');
 		$data = $this->mitm->get_item_all(); //show value item all 
