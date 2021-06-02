@@ -305,9 +305,7 @@ function save_MBO() {
                     </table>
                     <!-- table -->
                     <hr>
-                    <div id="show_approver">
-                    </div>
-                    <!-- show_approver -->
+          
                     <br>
                     <div class="row">
                         <div class="col-md-6">

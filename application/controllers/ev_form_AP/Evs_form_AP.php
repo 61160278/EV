@@ -421,6 +421,17 @@ class Evs_form_AP extends MainController_avenxo {
 
 	function createg_and_o()
 	{
+
+		$emp_id = "00012";
+		$pay_id = 2;
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $emp_id;
+		$this->memp->emp_pay_id = $pay_id;
+		$data['emp_info'] = $this->memp->get_by_empid();
+
+		$tep = $data['emp_info']->row();
+
 		$this->load->model('M_evs_data_g_and_o','mdgo');
 		$this->mdgo->dgo_emp_id = $emp_id;
 		$this->mdgo->dgo_evs_emp_id = $tep->emp_id;
@@ -444,7 +455,7 @@ class Evs_form_AP extends MainController_avenxo {
 			$this->mesg->sfg_pos_id = $tep->Position_ID;
 			$data['row_index'] = $this->mesg->get_all_by_key_by_year()->row();
 
-			$this->output('/consent/ev_form_AP/v_createg_and_o',$data);
+			$this->output('/consent/ev_form_AP/v_createG_and_O',$data);
 		// }
 		// if
 
@@ -459,12 +470,61 @@ class Evs_form_AP extends MainController_avenxo {
 
 		// 	$data['info_pos_id'] = $tep->Position_ID;
 		// 	$this->output('/consent/ev_form/v_createMBO',$data);
+
+		
 		// }
 		// // else	
 
 	}
+		//------------------------------------------------------------------------------------------------------------
+	function createMHRD()
+	{
 
+		$emp_id = "00010";
+		$pay_id = 2;
 
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $emp_id;
+		$this->memp->emp_pay_id = $pay_id;
+		$data['emp_info'] = $this->memp->get_by_empid();
+
+		$tep = $data['emp_info']->row();
+
+		$this->load->model('M_evs_set_form_mhrd','msfm');
+			$this->msfm->sfi_pos_id = $tep->Position_ID;
+			$data['info_mhrd'] = $this->msfm->get_item_description_by_position();
+			$this->output('/consent/ev_form_AP/v_createMHRD',$data);
 	
+		}
+	function save_data_g_and_o(){
+
+		$ps_pos_id = $this->input->post("Emp_ID");
+		$arr_dgo_id = $this->input->post("arr_dgo_id");
+		$arr_radio = $this->input->post("arr_radio");
+		$arr_Evaluator_Review = $this->input->post("arr_Evaluator_Review");
+		$arr_roop = count($arr_dgo_id);
+		//string set year now
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+		$this->load->model('Da_evs_data_g_and_o_weight','degw');
+		for($i = 0 ; $i < $arr_roop ; $i++){
+		$this->degw->dgw_evs_emp_id = $ps_pos_id;
+		$this->degw->dgw_dgo_id = $arr_dgo_id[$i];
+		$this->degw->dgw_evaluator_review = $arr_Evaluator_Review[$i];
+		$this->degw->dgw_weight = $arr_radio[$i];
+		$this->degw->insert();
+		}
+
+		$data = "save_data_g_and_o";
+		echo json_encode($data);		
+	}
+
+
+
+
 }
 ?>
