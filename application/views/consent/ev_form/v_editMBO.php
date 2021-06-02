@@ -365,6 +365,12 @@ function cancel_form() {
 }
 // function cancel_form
 
+function back_main() {
+    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/index";
+}
+// function back_main
+
+
 function get_sdgs_mbo(count, sdg) {
 
     $.get("<?php echo base_url(); ?>ev_form/Evs_form/get_sdgs", function(data) {
@@ -2170,7 +2176,10 @@ function set_tap() {
                         <hr>
                         <div class="row">
                             <div class="col-md-12">
-                                <button class="btn btn-inverse" onclick="cancel_form()">BACK</button>
+                                <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
+                                    <button class="btn btn-inverse" id="btn_cencel_backG_O">BACK</button>
+                                </a>
+                                <!-- cancel to back to main  -->
                             </div>
                             <!-- col-md-6 -->
 
@@ -2410,7 +2419,10 @@ function set_tap() {
                         <hr>
                         <div class="row">
                             <div class="col-md-12">
-                                <button class="btn btn-inverse" onclick="cancel_form()">BACK</button>
+                                <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
+                                    <button class="btn btn-inverse" id="btn_cencel_backG_O">BACK</button>
+                                </a>
+                                <!-- cancel to back to main  -->
                             </div>
                             <!-- col-md-6 -->
 
