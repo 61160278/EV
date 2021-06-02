@@ -287,10 +287,10 @@ class Evs_mhrd_indicators_form extends MainController {
 		//end foreach
 		$this->load->model('Da_evs_description','ddep');
 
+		$this->ddep->dep_description_detail_en = $this->input->post('arr_update_dep_en');
+		$this->ddep->dep_description_detail_th = $this->input->post('arr_update_dep_th');
 		//start for loop
 		for($j = 0; $j < $add_pos_length_number_arry; $j++){
-			$this->ddep->dep_description_detail_en = $this->input->post('arr_add_dep_en['.$j.']');
-			$this->ddep->dep_description_detail_th = $this->input->post('arr_add_dep_th['.$j.']');
 			$this->ddep->dep_pos_id = $this->input->post('arr_add_pos['.$j.']');
 		 	$this->ddep->dep_itm_id = $item_id;
 
