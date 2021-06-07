@@ -718,7 +718,7 @@ class Evs_form extends MainController_avenxo {
 		$this->memp->Emp_ID = $emp_id;
 		$this->memp->emp_pay_id = $pay_id;
 		$data['emp_info'] = $this->memp->get_by_empid();
-
+		$status = [];
 		$temp = $data['emp_info']->row();
 
 		$this->load->model('M_evs_position_from','mepf');
@@ -728,6 +728,70 @@ class Evs_form extends MainController_avenxo {
 		$this->load->model('M_evs_employee','memp');
 		$this->memp->dma_dtm_emp_id = $emp_id;
 		$data['data_his'] = $this->memp->get_his_by_id()->result();
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $emp_id;
+		$this->memp->emp_pay_id = $pay_id;
+		$data['emp_info'] = $this->memp->get_by_empid();
+		$tep = $data['emp_info']->row();
+
+		foreach($data['get_form'] as $row){
+			if($row->ps_form_pe == "MBO"){
+				$this->load->model('M_evs_data_mbo','medm');
+				$this->medm->dtm_emp_id = $emp_id;
+				$this->medm->dtm_evs_emp_id = $tep->emp_id;
+				$data['check'] = $this->medm->get_by_empID()->result();
+				$check = sizeof($data['check']);
+				
+				if($check != 0){
+					array_push($status,1);
+				}
+				// if
+				else{
+					array_push($status,0);
+				}
+				// else 
+			}
+			// if mbo
+
+			else if($row->ps_form_pe == "G&O"){
+				$this->load->model('M_evs_data_g_and_o','mdgo');
+				$this->mdgo->dgo_emp_id = $emp_id;
+				$this->mdgo->dgo_evs_emp_id = $tep->emp_id;
+				$data['check'] = $this->mdgo->get_by_empID()->result();
+	
+				$check = sizeof($data['check']);
+				if($check != 0){
+					array_push($status,1);
+				}
+				// if
+				else{
+					array_push($status,0);
+				}
+				// else 
+			}
+			// else if G&O
+
+			else if($row->ps_form_pe == "MHRD"){
+				$this->load->model('M_evs_set_form_mhrd','msfm');
+				$this->msfm->sfi_pos_id = $tep->Position_ID;
+				$data['info_mhrd'] = $this->msfm->get_item_description_by_position();
+	
+				$check = sizeof($data['info_mhrd']);
+				if($check != 0){
+					array_push($status,1);
+				}
+				// if
+				else{
+					array_push($status,0);
+				}
+				// else 
+			}
+			// else if MHRD
+		}
+		// foreach 
+
+		$data['status_form'] = $status;
 
 		$this->output('/consent/ev_form/v_historyMBO',$data);
 	}
@@ -755,7 +819,6 @@ class Evs_form extends MainController_avenxo {
 		$this->memp->Emp_ID = $emp_id;
 		$this->memp->emp_pay_id = $pay_id;
 		$data['emp_info'] = $this->memp->get_by_empid();
-
 		$tep = $data['emp_info']->row();
 
 		$this->load->model('M_evs_position_from','mpf');

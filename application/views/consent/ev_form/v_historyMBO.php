@@ -188,12 +188,21 @@ function cancel_form() {
                                             <td><?php echo $row->ps_form_ce; ?></td>
                                             <td align="center"></td>
                                             <td align="center">
+                                                <?php if($status_form[$index] == 1){ ?>
                                                 <a
                                                     href="<?php echo base_url(); ?>ev_form/Evs_form/show_his/<?php echo $emp_employee_id.":".$row->pay_id; ?>">
                                                     <button class="btn btn-info" id="his_mbo">
                                                         <i class="ti ti-info-alt"></i>
                                                     </button>
                                                 </a>
+                                                <?php }
+                                            //if 
+                                            else if($status_form[$index] == 0){ ?>
+                                                <button class="btn btn-info" disabled>
+                                                    <i class="ti ti-info-alt"></i>
+                                                </button>
+                                                <?php }
+                                            // else if ?>
                                             </td>
                                         </tr>
                                         <!-- show history  -->
