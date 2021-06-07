@@ -38,9 +38,93 @@ th {
 
 <script>
 $(document).ready(function() {
-
+    show_weight()
 });
 // document ready
+
+function show_weight() {
+    var arr_weight_1 = [];
+    var arr_weight_2 = [];
+    var sum_1 = 0;
+    var sum_2 = 0;
+    var index = document.getElementById("table_index_radio").value;
+    for (i = 0; i < index; i++) {
+
+        $("[name = rd_name_1_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_weight_1.push(document.getElementsByName("rd_name_1_" + i + "")[index].value);
+            } //if
+        });
+
+        $("[name = rd_name_2_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_weight_2.push(document.getElementsByName("rd_name_2_" + i + "")[index].value);
+            } //if
+        });
+    }
+
+    for (i = 0; i < index; i++) {
+        sum_1 += parseInt(arr_weight_1[i]);
+        sum_2 += parseInt(arr_weight_2[i]);
+    }
+    document.getElementById("weight_all_1").innerHTML = sum_1;
+    document.getElementById("weight_all_2").innerHTML = sum_2;
+}
+
+function save_mhrd() {
+    var arr_radio = [];
+    var arr_dgo_id = [];
+    
+    var get_arr_dgo_id = "";
+    var index = document.getElementById("table_index_radio").value;
+    var Emp_ID = document.getElementById("Emp_ID").value;
+
+    for (i = 0; i < index; i++) {
+        arr_dgo_id.push(document.getElementsByName("dgo_id")[i].value);
+        
+        $("[name = rd_name_1_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_radio_1.push(document.getElementsByName("rd_name_1_" + i + "")[index].value);
+            } //if
+        });
+
+        $("[name = rd_name_2_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_radio_2.push(document.getElementsByName("rd_name_2_" + i + "")[index].value);
+            } //if
+        });
+        
+    }
+    console.log("index : " + index);
+    console.log("Emp_ID :  " + Emp_ID);
+    console.log("arr_dgo_id : " + arr_dgo_id);
+    console.log("arr_radio_1 : " + arr_radio_1);
+    console.log("arr_radio_2 : " + arr_radio_2);
+
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/save_nhrd",
+        data: {
+            "Emp_ID": Emp_ID,
+            "arr_dgo_id": arr_dgo_id,
+            "arr_radio": arr_radio,
+            "arr_radio_1": arr_radio_1,
+            "arr_radio_2": arr_radio_2
+        },
+        success: function(data) {
+            console.log(data);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+    window.location = "<?php echo base_url(); ?>/ev_form_AP/Evs_form_AP/index";
+}
 </script>
 <!-- script -->
 
@@ -178,8 +262,12 @@ $(document).ready(function() {
                             </tr>
                         </thead>
                         <tbody id="mhrd_Table">
-                            <?php if(sizeof($info_mhrd) != 0){ ?>
-                            <?php foreach($info_mhrd->result() as $index => $row){ ?>
+
+                            <?php 
+                            
+                            $table_index_radio = 0;
+
+                            foreach($info_mhrd->result() as $index => $row){ ?>
                             <tr>
                                 <td><?php echo ($index+1) ?></td>
                                 <!-- index  -->
@@ -195,19 +283,90 @@ $(document).ready(function() {
                                     <?php echo $row->dep_description_detail_th; ?>
                                 </td>
                                 <!-- description -->
-                                <td></td>
-                                <td></td>
+                                <td>
+                                    <center>
+                                        <div class="col-md-12">
+                                            <input type="radio" name="rd_name_1_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?>" value="1"
+                                                onclick="show_weight()">
+                                            <label for="1">&nbsp; 1</label>
+                                            &nbsp;
+                                            <input type="radio" name="rd_name_1_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?>" value="2"
+                                                onclick="show_weight()">
+                                            <label for="2">&nbsp; 2</label>
+                                            &nbsp;
+                                            <input type="radio" name="rd_name_1_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?>" value="3"
+                                                onclick="show_weight()" checked>
+                                            <label for="3">&nbsp; 3</label>
+                                            &nbsp;
+                                            <input type="radio" name="rd_name_1_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?>" value="4"
+                                                onclick="show_weight()">
+                                            <label for="4">&nbsp; 4</label>
+                                            &nbsp;
+                                            <input type="radio" name="rd_name_1_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?>" value="5"
+                                                onclick="show_weight()">
+                                            <label for="5">&nbsp; 5</label>
+                                            &nbsp;
+                                        </div>
+                                        <!-- col-12 -->
+                                    </center>
+                                </td>
+                                <td>
+                                    <center>
+                                        <div class="col-md-12">
+                                            <input type="radio" name="rd_name_2_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?>" value="1"
+                                                onclick="show_weight()">
+                                            <label for="1">&nbsp; 1</label>
+                                            &nbsp;
+                                            <input type="radio" name="rd_name_2_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?>" value="2"
+                                                onclick="show_weight()">
+                                            <label for="2">&nbsp; 2</label>
+                                            &nbsp;
+                                            <input type="radio" name="rd_name_2_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?>" value="3"
+                                                onclick="show_weight()" checked>
+                                            <label for="3">&nbsp; 3</label>
+                                            &nbsp;
+                                            <input type="radio" name="rd_name_2_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?>" value="4"
+                                                onclick="show_weight()">
+                                            <label for="4">&nbsp; 4</label>
+                                            &nbsp;
+                                            <input type="radio" name="rd_name_2_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?>" value="5"
+                                                onclick="show_weight()">
+                                            <label for="5">&nbsp; 5</label>
+                                            &nbsp;
+                                        </div>
+                                        <!-- col-12 -->
+                                    </center>
+                                </td>
                             </tr>
-                            <?php }
-                                // for
-                                }
-                                // if ?>
+
+                            <?php 
+                        $table_index_radio++;    
+                        }
+                        // for 
+                                 ?>
+                            <input type="text" id="table_index_radio" value="<?php echo $table_index_radio; ?>" hidden>
 
                         </tbody>
                         <!-- tbody  -->
 
                         <tfoot>
-                            <td colspan="5"></td>
+                        <td ></td>
+                        <td ></td>
+                        <td ></td>
+                     
+                       
+                            <td ><p id="weight_all_1"></td>
+                            <td ><p id="weight_all_2"></td>
                         </tfoot>
                         <!-- tfoot -->
                     </table>
@@ -215,7 +374,7 @@ $(document).ready(function() {
 
                     <br>
                     <div class="row">
-                    <div class="col-md-12">
+                        <div class="col-md-12">
                             <a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/index">
                                 <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
                             </a>

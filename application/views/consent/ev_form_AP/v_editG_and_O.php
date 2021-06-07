@@ -64,7 +64,7 @@ function show_weight() {
     document.getElementById("weight_all").innerHTML = sum;
 }
 
-function save_G_and_O() {
+function update_G_and_O() {
     var arr_radio = [];
     var arr_dgo_id = [];
     var arr_Evaluator_Review = [];
@@ -91,7 +91,7 @@ function save_G_and_O() {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/save_data_g_and_o",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_g_and_o",
         data: {
             "Emp_ID": Emp_ID,
             "arr_dgo_id": arr_dgo_id,
@@ -343,35 +343,69 @@ function save_G_and_O() {
                             <!-- show level  -->
                             <?php if($index == 0){ ?>
                             <td rowspan="<?php echo $col[$spans] ?>"><?php echo $row->dgo_self_review; ?></td>
+                            <?php  
+                                   $checked_weight_1 ="";
+                                   $checked_weight_2 ="";
+                                   $checked_weight_3 ="";
+                                   $checked_weight_4 ="";
+                                   $checked_weight_5 ="";
+                                   $evaluator_review = "";
+
+                                    foreach($data_g_and_o->result() as $row_data_g_and_o){
+                                            if($row->dgo_id == $row_data_g_and_o->dgw_dgo_id){
+                                                if($row_data_g_and_o->dgw_weight == 1){
+                                                    $checked_weight_1 =  "checked";
+                                                }
+                                                else if($row_data_g_and_o->dgw_weight == 2){
+                                                    $checked_weight_2 =  "checked";
+                                                }
+                                                else if($row_data_g_and_o->dgw_weight == 3){
+                                                    $checked_weight_3 =  "checked";
+                                                }
+                                                else if($row_data_g_and_o->dgw_weight == 4){
+                                                    $checked_weight_4 =  "checked";
+                                                }
+                                                else {
+                                                    $checked_weight_5 =  "checked";
+                                                }
+                                                $evaluator_review = $row_data_g_and_o->dgw_evaluator_review;
+                                            }
+                                        }
+                                ?>
                             <td rowspan="<?php echo $col[$spans] ?>"><textarea class="form-control" type="text"
-                                    name="Evaluator_Review" placeholder="Enter Evaluator Review"></textarea></td>
-                            <td rowspan="<?php echo $col[$spans] ?>">
-                                <center>
-                                    <div class="col-md-12">
-                                        <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
-                                            id="rd_<?php echo $table_index_radio ?>" value="1" onclick="show_weight()">
-                                        <label for="1">&nbsp; 1</label>
-                                        &nbsp;
-                                        <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
-                                            id="rd_<?php echo $table_index_radio ?>" value="2" onclick="show_weight()">
-                                        <label for="2">&nbsp; 2</label>
-                                        &nbsp;
-                                        <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
-                                            id="rd_<?php echo $table_index_radio ?>" value="3" onclick="show_weight()"
-                                            checked>
-                                        <label for="3">&nbsp; 3</label>
-                                        &nbsp;
-                                        <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
-                                            id="rd_<?php echo $table_index_radio ?>" value="4" onclick="show_weight()">
-                                        <label for="4">&nbsp; 4</label>
-                                        &nbsp;
-                                        <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
-                                            id="rd_<?php echo $table_index_radio ?>" value="5" onclick="show_weight()">
-                                        <label for="5">&nbsp; 5</label>
-                                        &nbsp;
-                                    </div>
-                                    <!-- col-12 -->
-                                </center>
+                                    name="Evaluator_Review" placeholder="Enter Evaluator Review"><?php echo $evaluator_review ?></textarea></td>
+                             <td rowspan="<?php echo $col[$spans] ?>">
+                            <center>                                
+                                        <div class="col-md-12">
+                                            <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?>" value="1"
+                                                onclick="show_weight()" <?php echo $checked_weight_1 ?>>
+                                            <label for="1">&nbsp; 1</label>
+                                            &nbsp;&nbsp;
+                                            <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?>" value="2"
+                                                onclick="show_weight()" <?php echo $checked_weight_2 ?>>
+                                            <label for="2">&nbsp; 2</label>
+                                            &nbsp;&nbsp;
+                                            <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?>" value="3"
+                                                onclick="show_weight()" <?php echo $checked_weight_3 ?>>
+                                            <label for="3">&nbsp; 3</label>
+                                            &nbsp;&nbsp;
+                                            <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?> " value="4"
+                                                onclick="show_weight()" <?php echo $checked_weight_4 ?>>
+                                            <label for="4">&nbsp; 4</label>
+                                            &nbsp;&nbsp;
+                                            <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?>" value="5"
+                                                onclick="show_weight()" <?php echo $checked_weight_5 ?>>
+                                            <label for="5">&nbsp; 5</label>
+                                            &nbsp;&nbsp;
+                                        </div>
+                                        <!-- col-12 -->
+
+                                    </center>
                             </td>
                             <input type="text" name="dgo_id" value="<?php echo $row->dgo_id; ?>" hidden>
                             <?php 
@@ -381,36 +415,72 @@ function save_G_and_O() {
                                 } 
                                 // if 
                                 else if($temps != $row->dgo_item){ ?>
+                                         
                             <td rowspan="<?php echo $col[$spans] ?>"><?php echo $row->dgo_self_review; ?></td>
+                            <?php  
+                                   $checked_weight_1 ="";
+                                   $checked_weight_2 ="";
+                                   $checked_weight_3 ="";
+                                   $checked_weight_4 ="";
+                                   $checked_weight_5 ="";
+                                   $evaluator_review = "";
+
+                                    foreach($data_g_and_o->result() as $row_data_g_and_o){
+                                            if($row->dgo_id == $row_data_g_and_o->dgw_dgo_id){
+                                                if($row_data_g_and_o->dgw_weight == 1){
+                                                    $checked_weight_1 =  "checked";
+                                                }
+                                                else if($row_data_g_and_o->dgw_weight == 2){
+                                                    $checked_weight_2 =  "checked";
+                                                }
+                                                else if($row_data_g_and_o->dgw_weight == 3){
+                                                    $checked_weight_3 =  "checked";
+                                                }
+                                                else if($row_data_g_and_o->dgw_weight == 4){
+                                                    $checked_weight_4 =  "checked";
+                                                }
+                                                else {
+                                                    $checked_weight_5 =  "checked";
+                                                }
+                                                $evaluator_review = $row_data_g_and_o->dgw_evaluator_review;
+                                            }
+                                        }
+                                ?>
                             <td rowspan="<?php echo $col[$spans] ?>"><textarea class="form-control" type="text"
-                                    name="Evaluator_Review" placeholder="Enter Evaluator Review"></textarea></td>
+                                    name="Evaluator_Review" placeholder="Enter Evaluator Review"><?php echo $evaluator_review ?></textarea></td>
                             <td rowspan="<?php echo $col[$spans] ?>">
-                                <center>
-                                    <div class="col-md-12">
-                                        <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
-                                            id="rd_<?php echo $table_index_radio ?>" value="1" onclick="show_weight()">
-                                        <label for="1">&nbsp; 1</label>
-                                        &nbsp;
-                                        <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
-                                            id="rd_<?php echo $table_index_radio ?>" value="2" onclick="show_weight()">
-                                        <label for="2">&nbsp; 2</label>
-                                        &nbsp;
-                                        <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
-                                            id="rd_<?php echo $table_index_radio ?>" value="3" onclick="show_weight()"
-                                            checked>
-                                        <label for="3">&nbsp; 3</label>
-                                        &nbsp;
-                                        <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
-                                            id="rd_<?php echo $table_index_radio ?>" value="4" onclick="show_weight()">
-                                        <label for="4">&nbsp; 4</label>
-                                        &nbsp;
-                                        <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
-                                            id="rd_<?php echo $table_index_radio ?>" value="5" onclick="show_weight()">
-                                        <label for="5">&nbsp; 5</label>
-                                        &nbsp;
-                                    </div>
-                                    <!-- col-12 -->
-                                </center>
+                            <center>
+                          
+                                        <div class="col-md-12">
+                                            <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?>" value="1"
+                                                onclick="show_weight()" <?php echo $checked_weight_1 ?>>
+                                            <label for="1">&nbsp; 1</label>
+                                            &nbsp;&nbsp;
+                                            <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?>" value="2"
+                                                onclick="show_weight()" <?php echo $checked_weight_2 ?>>
+                                            <label for="2">&nbsp; 2</label>
+                                            &nbsp;&nbsp;
+                                            <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?>" value="3"
+                                                onclick="show_weight()" <?php echo $checked_weight_3 ?>>
+                                            <label for="3">&nbsp; 3</label>
+                                            &nbsp;&nbsp;
+                                            <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?> " value="4"
+                                                onclick="show_weight()" <?php echo $checked_weight_4 ?>>
+                                            <label for="4">&nbsp; 4</label>
+                                            &nbsp;&nbsp;
+                                            <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
+                                                id="rd_<?php echo $table_index_radio ?>" value="5"
+                                                onclick="show_weight()" <?php echo $checked_weight_5 ?>>
+                                            <label for="5">&nbsp; 5</label>
+                                            &nbsp;&nbsp;
+                                        </div>
+                                        <!-- col-12 -->
+
+                                    </center>
                             </td>
                             <input type="text" name="dgo_id" value="<?php echo $row->dgo_id; ?>" hidden >
                             <?php
@@ -461,7 +531,7 @@ function save_G_and_O() {
                     <!-- col-md-6 -->
 
                     <div class="col-md-6" align="right">
-                        <button class="btn btn-success" onclick="save_G_and_O()"> Save</button>
+                        <button class="btn btn-success" onclick="update_G_and_O()"> Save</button>
                     </div>
                     <!-- col-md-6 add_app -->
 

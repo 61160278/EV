@@ -83,7 +83,7 @@ function save_ACM() {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_acm",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_acm_weight",
         data: {
             "Emp_ID": Emp_ID,
             "arr_sfa_id": arr_sfa_id,
@@ -288,18 +288,18 @@ function save_ACM() {
                                    $checked_weight_5 ="";
               
 
-                                    foreach($data_acm->result() as $row_data_acm){
-                                            if($row->sfa_id == $row_data_acm->dta_sfa_id){
-                                                if($row_data_acm->dta_weight == 1){
+                                    foreach($data_acm_weight->result() as $row_data_acm_weight){
+                                            if($row->sfa_id == $row_data_acm_weight->dta_sfa_id){
+                                                if($row_data_acm_weight->dta_weight == 1){
                                                     $checked_weight_1 =  "checked";
                                                 }
-                                                else if($row_data_acm->dta_weight == 2){
+                                                else if($row_data_acm_weight->dta_weight == 2){
                                                     $checked_weight_2 =  "checked";
                                                 }
-                                                else if($row_data_acm->dta_weight == 3){
+                                                else if($row_data_acm_weight->dta_weight == 3){
                                                     $checked_weight_3 =  "checked";
                                                 }
-                                                else if($row_data_acm->dta_weight == 4){
+                                                else if($row_data_acm_weight->dta_weight == 4){
                                                     $checked_weight_4 =  "checked";
                                                 }
                                                 else {

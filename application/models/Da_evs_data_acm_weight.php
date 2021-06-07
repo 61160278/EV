@@ -1,12 +1,12 @@
 <?php
 /*
-* Da_evs_data_acm
+* Da_evs_data_acm_weight
 * Category of Position Management
 * @author Jakkarin Pimpaeng
 * @Create Date 2563-09-28
 */ 
 /*
-* Da_evs_data_acm
+* Da_evs_data_acm_weight
 * Category of Position Management
 * @author Tanadon Tangjaimongkhon
 * @update Date 2563-10-04
@@ -16,18 +16,18 @@
 include_once("evs_model.php");
 
 /*
-* Da_evs_data_acm
+* Da_evs_data_acm_weight
 * Category of Position Management
 * @author Jakkarin Pimpaeng
 * @Create Date 2563-09-28
 */
 /*
-* Da_evs_data_acm
+* Da_evs_data_acm_weight
 * Category of Position Management
 * @author Tanadon Tangjaimongkhon
 * @update Date 2563-10-04
 */ 
-class Da_evs_data_acm extends evs_model {		
+class Da_evs_data_acm_weight extends evs_model {		
 	
 	public $dta_id; 
 	public $dta_evs_emp_id; 
@@ -43,7 +43,7 @@ class Da_evs_data_acm extends evs_model {
 	/*
 	* insert
 	* Insert Category into database
-	* @input dta_data_acm_name
+	* @input dta_data_acm_weight_name
 	* @output -
 	* @author Jakkarin Pimpaeng
 	* @Create Date 2563-09-28
@@ -51,14 +51,14 @@ class Da_evs_data_acm extends evs_model {
 	/*
 	* insert
 	* Insert Category into database
-	* @input dta_data_acm_name
+	* @input dta_data_acm_weight_name
 	* @output -
 	* @author Tanadon Tangjaimongkhon
 	* @update Date 2563-10-26
 	*/
 	function insert() {
 	 
-	 	$sql = "INSERT INTO evs_database.evs_data_acm (dta_evs_emp_id,dta_sfa_id,dta_weight)
+	 	$sql = "INSERT INTO evs_database.evs_data_acm_weight (dta_evs_emp_id,dta_sfa_id,dta_weight)
 	 			VALUES(?, ?, ?)";
 		 
 	 	$this->db->query($sql, array($this->dta_evs_emp_id, $this->dta_sfa_id,$this->dta_weight));
@@ -68,7 +68,7 @@ class Da_evs_data_acm extends evs_model {
 	/*
 	* update
 	* Update Category into database
-	* @input dta_id, dta_data_acm_name
+	* @input dta_id, dta_data_acm_weight_name
 	* @output -
 	* @author Jakkarin Pimpaeng
 	* @Create Date 2563-09-28
@@ -76,14 +76,14 @@ class Da_evs_data_acm extends evs_model {
 	/*
 	* update
 	* Update Category into database
-	* @input dta_id, dta_data_acm_name
+	* @input dta_id, dta_data_acm_weight_name
 	* @output -
 	* @author Tanadon Tangjaimongkhon
 	* @update Date 2563-10-26
 	*/
 	function update() {
 	
-	 	$sql = "UPDATE evs_database.evs_data_acm 
+	 	$sql = "UPDATE evs_database.evs_data_acm_weight 
 	 			SET	dta_evs_emp_id=?, dta_sfa_id=?, dta_weight=?
 	 			WHERE dta_id=?";
 		
@@ -109,7 +109,7 @@ class Da_evs_data_acm extends evs_model {
 	*/
 	function delete() {
 	 	
-	 	$sql = "DELETE FROM evs_database.evs_data_acm
+	 	$sql = "DELETE FROM evs_database.evs_data_acm_weight
 	 			WHERE dta_id=?";
 	 	$this->db->query($sql, array($this->dta_id));
 		
@@ -119,7 +119,7 @@ class Da_evs_data_acm extends evs_model {
 	* get_by_key
 	* Get Category from database
 	* @input dta_id
-	* @output dta_id, dta_data_acm_name
+	* @output dta_id, dta_data_acm_weight_name
 	* @author Jakkarin Pimpaeng
 	* @Create Date 2563-09-28
 	*/
@@ -127,13 +127,13 @@ class Da_evs_data_acm extends evs_model {
 	* get_by_key
 	* Get Category from database
 	* @input dta_id
-	* @output dta_id, dta_data_acm_name
+	* @output dta_id, dta_data_acm_weight_name
 	* @author Tanadon Tangjaimongkhon
 	* @update Date 2563-10-26
 	*/
 	function get_by_key() {	
 		$sql = "SELECT * 
-				FROM evs_database.evs_data_acm
+				FROM evs_database.evs_data_acm_weight
 				WHERE dta_id=?";
 		$query = $this->db->query($sql, array($this->dta_id));
 		return $query;

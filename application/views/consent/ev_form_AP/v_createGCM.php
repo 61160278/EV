@@ -83,7 +83,7 @@ function save_GCM() {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/save_data_gcm",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/save_data_gcm_weight",
         data: {
             "Emp_ID": Emp_ID,
             "arr_sgc_id": arr_sgc_id,

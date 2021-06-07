@@ -83,7 +83,7 @@ function save_ACM() {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/save_data_acm",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/save_data_acm_weight",
         data: {
             "Emp_ID": Emp_ID,
             "arr_sfa_id": arr_sfa_id,
