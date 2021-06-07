@@ -858,6 +858,8 @@ class Evs_form extends MainController_avenxo {
 			$this->msfm->sfi_pos_id = $tep->Position_ID;
 			$data['info_mhrd'] = $this->msfm->get_item_description_by_position();
 
+			$check = sizeof($data['info_mhrd']);
+			if($check != 0){
 			if($data['form']->ps_form_ce == "ACM"){
 				$this->load->model('M_evs_set_form_ability','mesf');
 				$this->mesf->sfa_pos_id = $tep->Position_ID;
@@ -881,7 +883,8 @@ class Evs_form extends MainController_avenxo {
 			// else if GCM
 
 			$this->output('/consent/ev_form/v_createMBO',$data);
-			
+		}
+		// if
 		}
 		// else if MHRD
 

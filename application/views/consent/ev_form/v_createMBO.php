@@ -1202,7 +1202,7 @@ function set_tap() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <button class="btn btn-inverse" onclick="check_cancel()">BACK</button>
+                                <button class="btn btn-inverse" onclick="check_cancel-()">BACK</button>
                                 <button class="btn btn-default">CLEAR</button>
                             </div>
                             <!-- col-md-6 -->
@@ -1370,7 +1370,7 @@ function set_tap() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                            <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
+                                <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
                                     <button class="btn btn-inverse" id="btn_cencel_backG_O">BACK</button>
                                 </a>
                                 <!-- cancel to back to main  -->
@@ -1599,7 +1599,7 @@ function set_tap() {
                         <hr>
                         <div class="row">
                             <div class="col-md-12">
-                            <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
+                                <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
                                     <button class="btn btn-inverse" id="btn_cencel_backG_O">BACK</button>
                                 </a>
                                 <!-- cancel to back to main  -->
