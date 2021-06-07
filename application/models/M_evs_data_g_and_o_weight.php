@@ -73,10 +73,10 @@ class M_evs_data_g_and_o_weight extends Da_evs_data_g_and_o_weight {
 	function update() {
 	
 		$sql = "UPDATE evs_database.evs_data_g_and_o_weight 
-				SET	 dgw_weight=?
+				SET	 dgw_weight=?,dgw_evaluator_review=?
 				WHERE dgw_evs_emp_id=? AND dgw_dgo_id=? ";
 	   
-	   $this->db->query($sql, array( $this->dgw_weight, $this->dgw_evs_emp_id, $this->dgw_dgo_id));
+	   $this->db->query($sql, array( $this->dgw_weight,$this->dgw_evaluator_review, $this->dgw_evs_emp_id, $this->dgw_dgo_id));
 		
 	}
 

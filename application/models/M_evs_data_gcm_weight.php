@@ -1,49 +1,49 @@
 <?php
 /*
-* M_evs_data_gcm
-* set data_gcm management
+* M_evs_data_gcm_weight
+* set data_gcm_weight management
 * @author 	Jakkarin Pimpaeng
 * @Create Date 2563-09-01
 */ 
 /*
-* M_evs_data_gcm
-* set data_gcm management
+* M_evs_data_gcm_weight
+* set data_gcm_weight management
 * @author Tanadon Tangjaimongkhon
 * @Update Date 2563-10-4
 */ 
 ?>
 <?php
-include_once("Da_evs_data_gcm.php");
+include_once("Da_evs_data_gcm_weight.php");
 
 /*
-* M_evs_data_gcm
-* set data_gcm management
+* M_evs_data_gcm_weight
+* set data_gcm_weight management
 * @author 	Jakkarin Pimpaeng
 * @Create Date 2563-09-01
 */
 /*
-* M_evs_data_gcm
-* set data_gcm management
+* M_evs_data_gcm_weight
+* set data_gcm_weight management
 * @author Tanadon Tangjaimongkhon
 * @Update Date 2563-10-4
 */  
-class M_evs_data_gcm extends Da_evs_data_gcm {
+class M_evs_data_gcm_weight extends Da_evs_data_gcm_weight {
 
 	/*
-	* get_data_gcm_all
+	* get_data_gcm_weight_all
 	* get data to database
 	* @input -
-	* @output data data_gcm
+	* @output data data_gcm_weight
 	* @author 	Jakkarin Pimpaeng
 	* @Create Date 2563-09-01
 	*/
-    function get_data_gcm_all() {	
+    function get_data_gcm_weight_all() {	
 		$sql = "SELECT * 
-				FROM evs_database.evs_data_gcm";
+				FROM evs_database.evs_data_gcm_weight";
         $query = $this->db->query($sql);
 		return $query;
 	}
-	//get_data_gcm_all
+	//get_data_gcm_weight_all
 
 	/*
 	* get_all
@@ -55,9 +55,9 @@ class M_evs_data_gcm extends Da_evs_data_gcm {
 	*/
 	function get_by_empID(){	
 		$sql = "SELECT *
-		FROM evs_database.evs_data_gcm
+		FROM evs_database.evs_data_gcm_weight
 		WHERE dtg_evs_emp_id = ?
-		ORDER BY `evs_data_gcm`.`dtg_sgc_id` ASC";
+		ORDER BY `evs_data_gcm_weight`.`dtg_sgc_id` ASC";
 		$query = $this->db->query($sql, array($this->dtg_evs_emp_id));
 		return $query;
 	
@@ -65,14 +65,14 @@ class M_evs_data_gcm extends Da_evs_data_gcm {
 	/*
 	* update
 	* Update Category into database
-	* @input dtg_id, dtg_data_gcm_name
+	* @input dtg_id, dtg_data_gcm_weight_name
 	* @output -
 	* @author jakkarin pimpaeng
 	* @update Date 2563-10-26
 	*/
 	function update() {
 	
-		$sql = "UPDATE evs_database.evs_data_gcm 
+		$sql = "UPDATE evs_database.evs_data_gcm_weight 
 				SET	 dtg_weight=?
 				WHERE dtg_evs_emp_id=? AND dtg_sgc_id=? ";
 	   
