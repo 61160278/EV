@@ -246,7 +246,7 @@ class Evs_mhrd_indicators_form extends MainController {
 		$itm_item_detail_th = $this->input->post("up_date_item_th"); //save item detail th
 		$itm_item_id = $this->input->post("item_id"); //save item id
 		$update_pos_length_number_arry = count($this->input->post("arr_update_pos[]")); //max loop update position
-
+		
 		print_r($itm_item_detail_en."<br>");
 		print_r($itm_item_detail_th);
 
@@ -261,9 +261,9 @@ class Evs_mhrd_indicators_form extends MainController {
 		$this->load->model('Da_evs_description','ddep');
 
 		//start for loop
+			$this->ddep->dep_description_detail_en = $this->input->post('arr_update_dep_en');
+			$this->ddep->dep_description_detail_th = $this->input->post('arr_update_dep_th');
 		for($j = 0; $j < $update_pos_length_number_arry; $j++){
-			$this->ddep->dep_description_detail_en = $this->input->post('arr_update_dep_en['.$j.']');
-			$this->ddep->dep_description_detail_th = $this->input->post('arr_update_dep_th['.$j.']');
 			$this->ddep->dep_pos_id = $this->input->post('arr_update_pos['.$j.']');
 		 	$this->ddep->dep_itm_id = $itm_item_id;
 			$this->ddep->dep_id = $this->input->post('arr_description_id['.$j.']');
@@ -287,10 +287,10 @@ class Evs_mhrd_indicators_form extends MainController {
 		//end foreach
 		$this->load->model('Da_evs_description','ddep');
 
+		$this->ddep->dep_description_detail_en = $this->input->post('arr_update_dep_en');
+		$this->ddep->dep_description_detail_th = $this->input->post('arr_update_dep_th');
 		//start for loop
 		for($j = 0; $j < $add_pos_length_number_arry; $j++){
-			$this->ddep->dep_description_detail_en = $this->input->post('arr_add_dep_en['.$j.']');
-			$this->ddep->dep_description_detail_th = $this->input->post('arr_add_dep_th['.$j.']');
 			$this->ddep->dep_pos_id = $this->input->post('arr_add_pos['.$j.']');
 		 	$this->ddep->dep_itm_id = $item_id;
 
@@ -314,7 +314,7 @@ class Evs_mhrd_indicators_form extends MainController {
 
 		$itm_item_detail_en = $this->input->post("add_item_en"); //save item detail eng
 		$itm_item_detail_th = $this->input->post("add_item_th"); //save item detail th
-		$add_pos_length_number_arry = count($this->input->post("arr_add_pos[]")); //max loop insert position
+	
 		$item_id = 0; //set item id
 	
 		$this->load->model('Da_evs_item','ditm');
@@ -336,14 +336,20 @@ class Evs_mhrd_indicators_form extends MainController {
 		$this->load->model('Da_evs_description','ddep');
 
 		//start for loop
-		for($j = 0; $j < $add_pos_length_number_arry; $j++){
+		
 			$this->ddep->dep_description_detail_en = $this->input->post('arr_add_dep_en['.$j.']');
 			$this->ddep->dep_description_detail_th = $this->input->post('arr_add_dep_th['.$j.']');
 			$this->ddep->dep_pos_id = $this->input->post('arr_add_pos['.$j.']');
 		 	$this->ddep->dep_itm_id = $item_id;
-	
-		  $this->ddep->insert();
-		}
+		    $this->ddep->insert();
+		
+
+			$add_pos_new__length_number_arry = count($this->input->post("arr_add_new_pos[]")); //max loop insert position
+			for($j = 0; $j < $add_pos_new__length_number_arry; $j++){
+				$this->ddep->dep_pos_id = $this->input->post('arr_add_new_pos['.$j.']');
+				$this->ddep->dep_itm_id = $item_id;
+				$this->ddep->insert();
+				}
 		//end for loop
 
 		header("Location: " . base_url() . "Evs_mhrd_indicators_form/indicator_mhrd");

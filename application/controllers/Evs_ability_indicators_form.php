@@ -291,41 +291,7 @@ class Evs_ability_indicators_form extends MainController {
 		$this->debv->ept_kcp_id = $key_component_id;
 		$this->debv->insert();
 		}
-		//$chack_arr_posittion_other = cout($this->input->post("arr_save_posittion_other_to_database[0][0]"));
-		
-		// for($i = 0; $i < $add_expected_behavior; $i++){
-		// 	$chack_posittion_other_to_database = false;
-		// 	$add_position_other = count($this->input->post("arr_save_posittion_other_to_database[".$i."]"));
-		// 	for($m = 0; $m < $add_position_other; $m++){
-		// 		$chack_arr_posittion_other_to_database = $this->input->post("arr_save_posittion_other_to_database[".$i."][".$m."]");
-
-		// 		if($chack_arr_posittion_other_to_database != "0"){$chack_posittion_other_to_database = true;}
-		
-		// 		if($chack_arr_posittion_other_to_database){
-		// 			for($j = 0; $j < $add_expected_behavior; $j++){
-		// 				$this->debv->ept_expected_detail_en = $this->input->post("arr_save_expected_en_todatabase[".$j."]");
-		// 				$this->debv->ept_expected_detail_th = $this->input->post("arr_save_expected_th_todatabase[".$j."]");
 	
-		// 				$add_position_other = count($this->input->post("arr_save_posittion_other_to_database[".$j."]"));//max loop key component
-	
-		// 			for($k = 0; $k < $add_position_other; $k++){
-		// 			//start foreach 
-		// 			foreach ($data_pos->result() as $row) {
-		// 					//start if
-		// 				if($row->Position_name==$this->input->post("arr_save_posittion_other_to_database[".$j."][".$k."]") ){
-		// 					$this->debv->ept_pos_id = $row->Position_ID;
-		// 				}
-		// 				//end if
-		// 			}
-		// 				//end foreach
-		// 				$this->debv->ept_kcp_id = $key_component_id;
-		// 				$this->debv->insert();
-		// 			}//for loop K
-		// 			}//for loop J
-		// 		}//if chack_arr_posittion_other_to_database
-		// 	}//for loop M
-		// }//for loop I
-
 		for($i = 0; $i < $add_expected_behavior; $i++){
 			$chack_posittion_other_to_database = false;
 			$add_position_other = count($this->input->post("arr_save_posittion_other_to_database[".$i."]"));
@@ -435,18 +401,7 @@ class Evs_ability_indicators_form extends MainController {
 		$data_pos= $this->mpos->get_all();
 			
 
-		// $this->load->model('M_evs_expected_behavior','mebv');
-		// $data_mebv = $this->mebv->get_all();
-
-		//  $i = 0; 
-		// //start foreach
-		// foreach ($data_mebv->result() as $row) {
-		// 	//start if
-		// 	if($row->ept_kcp_id==$key_component_id){$expected_behavior_id[$i] = $row->ept_id; $i++;}
-		// 	//end if
-
-		// }
-		// //end foreach
+	
 
 
 		$this->load->model('Da_evs_expected_behavior','debv');

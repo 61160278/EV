@@ -365,6 +365,12 @@ function cancel_form() {
 }
 // function cancel_form
 
+function back_main() {
+    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/index";
+}
+// function back_main
+
+
 function get_sdgs_mbo(count, sdg) {
 
     $.get("<?php echo base_url(); ?>ev_form/Evs_form/get_sdgs", function(data) {
@@ -1883,6 +1889,7 @@ function set_tap() {
                                     <!-- show level  -->
                                     <?php if($index == 0){ ?>
                                     <td rowspan="<?php echo $col[$spans] ?>"><?php echo $row->dgo_self_review; ?></td>
+                                    <td rowspan="<?php echo $col[$spans] ?>"></td>
                                     <?php 
                                 $spans++;
                                 $temps = $row->dgo_item;
@@ -1890,13 +1897,13 @@ function set_tap() {
                                 // if 
                                 else if($temps != $row->dgo_item){ ?>
                                     <td rowspan="<?php echo $col[$spans] ?>"><?php echo $row->dgo_self_review; ?></td>
+                                    <td rowspan="<?php echo $col[$spans] ?>"></td>
                                     <?php
                                 $spans++;
                                 $temps = $row->dgo_item;
                                 } 
                                 // else if?>
 
-                                    <td></td>
                                 </tr>
                                 <!-- end tr  -->
                                 <?}
@@ -2031,8 +2038,8 @@ function set_tap() {
                         <!-- show infomation employee -->
                         <hr>
 
-                        <table class="table table-bordered table-striped m-n" id="acm">
-                            <thead id="headacm">
+                        <table class="table table-bordered table-striped m-n" id="mbo">
+                            <thead id="headmbo">
                                 <tr>
                                     <th rowspan="2">
                                         <center> No.</center>
@@ -2046,10 +2053,10 @@ function set_tap() {
                                     <th rowspan="2">
                                         <center>Expected Behavior</center>
                                     </th>
-                                    <th rowspan="2" width="5    %">
+                                    <th rowspan="2" width="6%">
                                         <center>Weight</center>
                                     </th>
-                                    <th colspan="2" width="5%">
+                                    <th colspan="2">
                                         <center>Evaluation</center>
                                     </th>
 
@@ -2066,6 +2073,7 @@ function set_tap() {
                             </thead>
                             <!-- thead -->
                             <tbody id="dis_color">
+                                <?php if(sizeof($info_ability_form) != 0) { ?>
                                 <?php  
                                     $index_acm = 1;
                                     $temp_keycomponent = "";
@@ -2138,41 +2146,293 @@ function set_tap() {
                                 <?php
                                     }
                                     // end foreach
+                                }
+                                //if
                                 ?>
                             </tbody>
                             <!-- tbody -->
+                            <!-- tbody -->
+
                             <tfoot>
                                 <tr height="5%" id="dis_color">
                                     <td colspan="4">
-                                        <center><b> Total Weight </b></center>
+                                        <center> Total Weight</center>
                                     </td>
                                     <td>
-                                        <center><b> 100 </b></center>
+                                        <center> 100</center>
                                     </td>
                                     <td>
-                                        <center><b> Total Result </b></center>
+                                        <center> Total Result</center>
                                     </td>
                                     <td>&nbsp;</td>
                                 </tr>
                             </tfoot>
                             <!-- tfoot -->
+
                         </table>
                         <!-- table -->
+
                         <br>
                         <hr>
                         <div class="row">
                             <div class="col-md-12">
                                 <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
-                                    <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
+                                    <button class="btn btn-inverse" id="btn_cencel_backG_O">BACK</button>
                                 </a>
                                 <!-- cancel to back to main  -->
                             </div>
                             <!-- col-md-6 -->
+
                         </div>
                         <!-- row -->
+
                     </div>
-                    <!-- form 2 -->
-                    <!-- ******************************** form 2 ********************************-->
+                    <!-- form 2-1 -->
+
+                    <!-- ************************************************************************************ -->
+
+
+                    <div class="tab-pane" id="GCM">
+                        <br>
+                        <?php foreach($emp_info->result() as $row){?>
+
+                        <input type="text" id="pos_id_acm" value="<?php echo $row->Position_ID; ?>" hidden>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Employee ID : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_id"><?php echo $row->Emp_ID; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Name : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_name"><?php echo $row->Empname_eng; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Surname : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_lname"><?php echo $row->Empsurname_eng; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                        </div>
+                        <!-- row -->
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Section Code : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_sec"><?php echo $row->Sectioncode_ID; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Department : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_dep"><?php echo $row->Department; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <label class="control-label"><strong>
+                                        <font size="3px">Position : </font>
+                                    </strong></label>
+                            </div>
+                            <!-- col-md-2 -->
+                            <div class="col-md-2">
+                                <p id="emp_pos"><?php echo $row->Position_name; ?></p>
+                            </div>
+                            <!-- col-md-2 -->
+                        </div>
+                        <!-- row -->
+                        <?php }; ?>
+                        <!-- show infomation employee -->
+                        <hr>
+
+                        <table class="table table-bordered table-striped m-n" id="mbo">
+                            <thead id="headmbo">
+                                <tr>
+                                    <th rowspan="2">
+                                        <center> No.</center>
+                                    </th>
+                                    <th rowspan="2" colspan="2">
+                                        <center>Competency</center>
+                                    </th>
+                                    <th rowspan="2">
+                                        <center>Key component</center>
+                                    </th>
+                                    <th rowspan="2">
+                                        <center>Expected Behavior</center>
+                                    </th>
+                                    <th rowspan="2" width="6%">
+                                        <center>Weight</center>
+                                    </th>
+                                    <th colspan="2">
+                                        <center>Evaluation</center>
+                                    </th>
+
+                                </tr>
+                                <tr>
+                                    <th width="25%">
+                                        <center>Result</center>
+                                    </th>
+                                    <th width="15%">
+                                        <center>Score AxB</center>
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <!-- thead -->
+                            <tbody id="dis_color">
+                                <?php if(sizeof($info_form_gcm) != 0) { ?>
+                                <?php  
+                                    $index_gcm = 1;
+                                    $temp_keycomponent = "";
+                                    $temp_keycomponents = "";
+                                    $temp_expected = "";
+                                    $sum_max_rating = 0;
+                                    // start foreach
+                                    foreach($info_form_gcm->result() as $row){
+                                ?>
+                                <tr>
+                                    <td id="dis_color">
+                                        <center><?php echo $index_gcm++; ?></center>
+                                    </td>
+                                    <td id="dis_color">
+                                        <?php echo $row->cpg_competency_detail_en . "<br><font color='blue'>" . $row->cpg_competency_detail_th ."</font>"; ?>
+                                    </td>
+                                    <!-- show competency  -->
+                                    <td id="dis_color">
+                                        <?php foreach($info_expected_gcm->result() as $row_ept){ 
+                                            if($row->sgc_cpg_id == $row_ept->kcg_cpg_id && $temp_keycomponents != $row_ept->kcg_key_component_detail_en){
+                                                $temp_keycomponents = $row_ept->kcg_key_component_detail_en;?>
+                                        <?php echo $row_ept->epg_point;?>
+                                        <?php }
+                                            // if
+                                            }
+                                            // foreach ?>
+                                    </td>
+                                    <!-- show type  -->
+                                    <td id="dis_color">
+                                        <?php foreach($info_expected_gcm->result() as $row_ept){ 
+                                            if($row->sgc_cpg_id == $row_ept->kcg_cpg_id && $temp_keycomponent != $row_ept->kcg_key_component_detail_en){
+                                                $temp_keycomponent = $row_ept->kcg_key_component_detail_en;?>
+                                        <?php echo $row_ept->kcg_key_component_detail_en . "<br><font color='blue'>" . $row_ept->kcg_key_component_detail_th ."</font>"; ?>
+                                        <?php }
+                                            // if
+                                            }
+                                            // foreach ?>
+                                    </td>
+                                    <!-- show key component  -->
+                                    <td id="dis_color">
+                                        <?php foreach($info_expected_gcm->result() as $row_ept){ 
+                                            if($row->sgc_cpg_id == $row_ept->kcg_cpg_id && $temp_expected != $row_ept->epg_expected_detail_en && $row_ept->epg_pos_id == $info_pos_id_gcm){
+                                                $temp_expected = $row_ept->epg_expected_detail_en;?>
+                                        <?php echo $row_ept->epg_expected_detail_en . "<br><font color='blue'>" . $row_ept->epg_expected_detail_th ."</font><hr>"; ?>
+                                        <?php }
+                                        // if
+                                        }
+                                        // foreach ?>
+                                    </td>
+                                    <!-- show expected  -->
+                                    <td id="dis_color">
+                                        <center><?php echo $row->sgc_weight; ?></center>
+                                    </td>
+                                    <!-- show weight  -->
+                                    <td id="dis_color" width="5%">
+                                        <center>
+                                            <div class="col-md-12">
+                                                <form action="">
+                                                    <input type="radio" name="result" value="1" Disabled Unchecked>
+                                                    <label for="1">&nbsp; 1</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="2" Disabled Unchecked>
+                                                    <label for="2">&nbsp; 2</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="3" Disabled Unchecked>
+                                                    <label for="3">&nbsp; 3</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="4" Disabled Unchecked>
+                                                    <label for="4">&nbsp; 4</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="5" Disabled Unchecked>
+                                                    <label for="5">&nbsp; 5</label>
+                                                    &nbsp;&nbsp;
+                                                </form>
+                                            </div>
+                                            <!-- col-12 -->
+                                        </center>
+                                    </td>
+                                    <td id="dis_color" width="2%"></td>
+                                </tr>
+
+                                <?php
+                                    }
+                                    // end foreach
+                                }
+                                // if
+                                ?>
+                            </tbody>
+                            <!-- tbody -->
+                            <!-- tbody -->
+
+                            <tfoot>
+                                <tr height="5%" id="dis_color">
+                                    <td colspan="4">
+                                        <center> Total Weight</center>
+                                    </td>
+                                    <td>
+                                        <center> 100</center>
+                                    </td>
+                                    <td>
+                                        <center> Total Result</center>
+                                    </td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </tfoot>
+                            <!-- tfoot -->
+
+                        </table>
+                        <!-- table -->
+
+                        <br>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
+                                    <button class="btn btn-inverse" id="btn_cencel_backG_O">BACK</button>
+                                </a>
+                                <!-- cancel to back to main  -->
+                            </div>
+                            <!-- col-md-6 -->
+
+                        </div>
+                        <!-- row -->
+
+                    </div>
+                    <!-- form 2-1 -->
+
+                    <!-- ************************************************************************************ -->
 
 
                 </div>

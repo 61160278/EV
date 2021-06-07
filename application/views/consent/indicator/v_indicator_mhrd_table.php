@@ -77,27 +77,8 @@ function get_data_for_item_table() {
                     cate_th = row.itm_item_detail_th
                     index_catagory = index_check
                     chack_Manage = 0;
-                }
-                // if
-                else if (cate_check == row.itm_id) {
-                    cate_en = ''
-                    cate_th = ''
-                    cate_check = cate_check
-                    index_catagory = ''
 
-                }
-                // else if
-                else if (cate_check != row.itm_id) {
-                    cate_en = row.itm_item_detail_en
-                    cate_th = row.itm_item_detail_th
-                    cate_check = row.itm_id
-                    index_check++
-                    index_catagory = index_check
-                    chack_Manage = 0;
-                }
-                // else if
-
-
+                    
                 $table += '<tr>'
                 $table += '<td>'
                 $table += index_catagory
@@ -105,7 +86,7 @@ function get_data_for_item_table() {
                 // show index 
 
                 $table += '<td>'
-                $table += cate_en + '<br>' + cate_th
+                $table += row.itm_item_detail_en + '<br>' + row.itm_item_detail_th
                 $table += '</td>'
                 // show key_component
 
@@ -116,7 +97,9 @@ function get_data_for_item_table() {
                 // show expected_detail
 
                 $table += '<td>'
-                $table += row.Position_name
+                data.forEach((row2, index) => {
+                if(row2.itm_item_detail_en == row.itm_item_detail_en){$table += row2.Position_name +"<br>"}
+                })
                 $table += '</td>'
                 // show position 
                 if (chack_Manage == 0) {
@@ -141,6 +124,76 @@ function get_data_for_item_table() {
                 // manage 
 
                 $table += '<tr>'
+                }
+                // if
+                else if (cate_check == row.itm_id) {
+                    cate_en = ''
+                    cate_th = ''
+                    cate_check = cate_check
+                    index_catagory = ''
+
+          
+
+                }
+                // else if
+                else if (cate_check != row.itm_id) {
+                    cate_en = row.itm_item_detail_en
+                    cate_th = row.itm_item_detail_th
+                    cate_check = row.itm_id
+                    index_check++
+                    index_catagory = index_check
+                    chack_Manage = 0;
+
+                    
+                $table += '<tr>'
+                $table += '<td>'
+                $table += index_catagory
+                $table += '</td>'
+                // show index 
+
+                $table += '<td>'
+                $table += row.itm_item_detail_en + '<br>' + row.itm_item_detail_th
+                $table += '</td>'
+                // show key_component
+
+                $table += '<td>'
+                $table += row.dep_description_detail_en + '<br>' + row
+                    .dep_description_detail_th
+                $table += '</td>'
+                // show expected_detail
+
+                $table += '<td>'
+                data.forEach((row2, index) => {
+                if(row2.itm_item_detail_en == row.itm_item_detail_en){$table += row2.Position_name +"<br>"}
+                })
+                $table += '</td>'
+                // show position 
+                if (chack_Manage == 0) {
+                    $table += '<td >'
+                    $table += '<center>'
+                    $table +=
+                        '<a href="<?php echo base_url(); ?>/Evs_mhrd_indicators_form/indicator_mhrd_view_edit_data/' +
+                        row.itm_id + '"><button class="btn btn-warning float-center">'
+                    $table += '<i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit &nbsp;</button></p></a>'
+                    // button edit in manage 
+
+                    $table +=
+                        '<button type="button" class="btn btn-danger float-center"data-toggle="modal" href="#myModal_delete" Onclick="send_id_to_delete(' +
+                        row.itm_id + ')">'
+                    $table += '<i class="fa fa-times"></i>Delete</button>'
+                    // button delete in manage 
+                    $table += '</center>'
+                    $table += '</td>'
+                    chack_Manage = 1;
+                }
+
+                // manage 
+
+                $table += '<tr>'
+                }
+                // else if
+
+
             })
             // loop for show data 
 
