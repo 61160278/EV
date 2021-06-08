@@ -14,9 +14,8 @@ h2 {
     color: white;
 }
 
-.panel.panel-indigo .panel-heading {
-    color: #e8eaf6;
-    background-color: #134466;
+.logo {
+    background-color: black;
 }
 
 .margin {
@@ -24,9 +23,9 @@ h2 {
 }
 
 .alert-info {
-  color: #BCBEBF;
-  background-color: #DEE1E3;
-  border-color: #BCBEBF;
+    color: #BCBEBF;
+    background-color: #DEE1E3;
+    border-color: #BCBEBF;
 }
 
 .alert-info,
@@ -37,7 +36,7 @@ h2 {
 .alert-info h5,
 .alert-info h6,
 .alert-info small {
-  color: #828282;
+    color: #828282;
 }
 </style>
 <div class="col-md-12" align="left">

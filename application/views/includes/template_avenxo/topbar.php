@@ -10,8 +10,8 @@
 
 ?>
 <!-- <style>
-	#topnav .navbar-brand {
-  background: url("../img/logo.png") no-repeat left 0 center;
+#topnav .navbar-brand {
+    background: url("../img/logo.png") no-repeat left 0 center;
 }
 </style> -->
 <header id="topnav" class="navbar navbar-fixed-top navbar-deep-orange" role="banner">
@@ -24,6 +24,7 @@
                 </span>
             </a>
         </span>
+        <img height="60px" src="<?php echo base_url();?>avenxo/assets/img/logo_1.png">
         <div>
             <a class="navbar-brand" href="<?php echo base_url(); ?>/Evs_all_manage/index"></a>
         </div>
