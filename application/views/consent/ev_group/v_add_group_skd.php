@@ -298,13 +298,13 @@ tbody {
 
         <div class="panel-body">
             <div class="alert alert-info">
-                <h2><b>Note !</b></h2>
-                <h3>
+                <h3><b>Note !</b></h3>
+                <h4>
                     Please select contact group for add contact to the group.
-                </h3>
+                </h4>
             </div>
         </div>
-        <!-- panel-body h2 -->
+        <!-- panel-body h3 -->
 
         <div class="col-md-6">
             <div class="panel-body">

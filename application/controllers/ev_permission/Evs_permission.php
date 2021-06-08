@@ -37,7 +37,22 @@ class Evs_permission extends MainController_avenxo {
 	*/
 	function index()
 	{
-		$this->output('/consent/ev_permission/v_main_permission');
+		$pay_id = 2;
+		$this->load->model('M_evs_employee','mevg');
+		$this->mevg->emp_pay_id= $pay_id;
+		$data['select'] = $this->mevg->get_all_emp_delete();
+
+		$check = sizeof($data['select']->result());
+
+		if($check != 0){
+			$this->output('/consent/ev_permission/v_list_permission_delete',$data);
+		}
+		// if
+		else {
+			$this->output('/consent/ev_permission/v_main_permission');
+		}
+		// else 
+		
 	}
 	// function index()
 
@@ -92,11 +107,6 @@ class Evs_permission extends MainController_avenxo {
 
 		$data['select'] = $this->mevg->get_all_emp();
 		$this->output('/consent/ev_permission/v_list_permission',$data);
-          
-
-
-         
-
 
 	}
 	// function select_bas
@@ -119,7 +129,7 @@ class Evs_permission extends MainController_avenxo {
 		$this->deep->emp_company_id = $Company[$i];
 
 		$this->deep->emp_pay_id = 2;
-		$this->deep->emp_ghr_id = 1;
+		$this->deep->emp_ghr_id = 0;
 		$this->deep->insert();
 
 		}
