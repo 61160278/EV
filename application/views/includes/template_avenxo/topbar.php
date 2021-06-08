@@ -24,7 +24,6 @@
                 </span>
             </a>
         </span>
-        <img height="60px" src="<?php echo base_url();?>avenxo/assets/img/logo_2.png">
         <div>
             <a class="navbar-brand" href="<?php echo base_url(); ?>/Evs_all_manage/index"></a>
         </div>
