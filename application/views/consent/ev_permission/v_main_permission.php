@@ -55,7 +55,7 @@ h2 {
             <div class="panel-body">
                 <div class="alert alert-info">
                     <h2><b>Note !</b></h2>
-                    <h3>Please select Position & Probation due date</h3>
+                    <h3>Please select Probation due date</h3>
                 </div>
                 <div class="form-group">
                     <div class="row">

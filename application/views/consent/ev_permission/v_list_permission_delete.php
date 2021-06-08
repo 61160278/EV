@@ -134,14 +134,31 @@ td {
 
                 </div>
                 <div class="panel-footer">
-
+                    <hr>
+                    <h3>Description</h3>
+                    <table>
+                        <tr>
+                            <td height="20" width="50px">
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="ti ti-trash"></i>
+                                </button>
+                            </td>
+                            <td width="50px">
+                                <h4>:</h4>
+                            </td>
+                            <td width="150px">
+                                <h4>Delete</h4>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-
-
+                <!-- footer  -->
             </div>
-
+            <!-- panel-default -->
         </div>
+        <!-- col-md-12 -->
     </div>
+    <!-- row  -->
 
     <?php 
 								
