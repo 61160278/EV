@@ -546,20 +546,37 @@ class Evs_form_AP extends MainController_avenxo {
 
 		$tep = $data['emp_info']->row();
 
+		$this->load->model('M_evs_data_mhrd_weight','memw');
+		$this->memw->dgw_evs_emp_id = $tep->emp_id;
+		$data['check'] = $data['data_mhrd'] = $this->memw->get_by_empID();
+
+		$check = sizeof($data['check']);
+
+		if($check != 0){
 		$this->load->model('M_evs_set_form_mhrd','msfm');
 			$this->msfm->sfi_pos_id = $tep->Position_ID;
 			$data['info_mhrd'] = $this->msfm->get_item_description_by_position();
-			$this->output('/consent/ev_form_AP/v_createMHRD',$data);
-	
+			$this->output('/consent/ev_form_AP/v_editMHRD',$data);
 		}
+		// if
+
+		else{
+			$this->load->model('M_evs_set_form_mhrd','msfm');
+			$this->msfm->sfi_pos_id = $tep->Position_ID;
+			$data['info_mhrd'] = $this->msfm->get_item_description_by_position();
+			$this->output('/consent/ev_form_AP/v_createMHRD',$data);
+		}
+
+	}
 	
 		function save_mhrd(){
 
 			$ps_pos_id = $this->input->post("Emp_ID");
-			$arr_dgo_id = $this->input->post("arr_dgo_id");
-			$arr_radio = $this->input->post("arr_radio");
+			$arr_sfi_id = $this->input->post("arr_sfi_id");
+			$arr_radio_1 = $this->input->post("arr_radio_1");
+			$arr_radio_2 = $this->input->post("arr_radio_2");
 		
-			$arr_roop = count($arr_dgo_id);
+			$arr_roop = count($arr_sfi_id);
 			//string set year now
 			$this->load->model('M_evs_pattern_and_year','myear');
 			$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
@@ -567,16 +584,16 @@ class Evs_form_AP extends MainController_avenxo {
 			//end set year now
 			$pay_id = $year->pay_id;
 	
-			$this->load->model('Da_evs_data_g_and_o_weight','degw');
+			$this->load->model('Da_evs_data_mhrd_weight','demw');
 			for($i = 0 ; $i < $arr_roop ; $i++){
-			$this->degw->dgw_evs_emp_id = $ps_pos_id;
-			$this->degw->dgw_dgo_id = $arr_dgo_id[$i];
-			$this->degw->dgw_evaluator_review = $arr_Evaluator_Review[$i];
-			$this->degw->dgw_weight = $arr_radio[$i];
-			$this->degw->insert();
+			$this->demw->mhw_evs_emp_id = $ps_pos_id;
+			$this->demw->mhw_sfi_id = $arr_sfi_id[$i];
+			$this->demw->mhw_weight_1 = $arr_radio_1[$i];
+			$this->demw->mhw_weight_2 = $arr_radio_2[$i];
+			$this->demw->insert();
 			}
 	
-			$data = "save_data_g_and_o";
+			$data = "save_data_mhrd";
 			echo json_encode($data);		
 		}
 

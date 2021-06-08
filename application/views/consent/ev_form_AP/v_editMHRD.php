@@ -71,7 +71,7 @@ function show_weight() {
     document.getElementById("weight_all_2").innerHTML = sum_2;
 }
 
-function save_mhrd() {
+function updates_mhrd() {
    
     var arr_sfi_id = [];
     var arr_weight_1 = [];
@@ -104,7 +104,7 @@ function save_mhrd() {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/save_mhrd",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_mhrd",
         data: {
             "Emp_ID": Emp_ID,
             "arr_sfi_id": arr_sfi_id,
@@ -379,7 +379,7 @@ function save_mhrd() {
                             </a>
                             <!-- cancel to back to main  -->
                             <div class="col-md-6" align="right">
-                            <button class="btn btn-success" onclick="save_mhrd()"> Save</button>
+                            <button class="btn btn-success" onclick="update_mhrd()"> Save</button>
                         </div>
                         <!-- col-md-6 add_app -->
                         </div>
