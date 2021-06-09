@@ -184,7 +184,8 @@ function pos_level(id) {
             drop_pos += '<option>Select position</option>'
             //Start forEach
             data.forEach((row, index) => {
-                drop_pos += '<option value="' + row.Position_ID + '">' + row.Position_name + '</option>'
+                drop_pos += '<option value="' + row.Position_ID + '">' + row.Position_name +
+                    '</option>'
             });
             //end forEach
             drop_pos += '</select>'
@@ -242,7 +243,8 @@ function add_pos_level(id) {
             drop_pos += '<option>Select position</option>'
             //Start forEach
             data.forEach((row, index) => {
-                drop_pos += '<option value="' + row.Position_ID + '">' + row.Position_name + '</option>'
+                drop_pos += '<option value="' + row.Position_ID + '">' + row.Position_name +
+                    '</option>'
             });
             //end forEach
             drop_pos += '</select>'

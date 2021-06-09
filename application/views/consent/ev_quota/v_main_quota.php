@@ -117,100 +117,100 @@ function manage_data(qut_id) {
                 <div class="panel-heading bgcolor1" id="head_">
 
                     <a href="<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_ca"><button type="submit"
-                            class="btn btn-success" id="add"> <i class = "fa fa-plus""></i>  &nbsp;ADD </button></a>
-                    <div class="panel-ctrls">
+                            class="btn btn-success" id="add"> <i class="fa fa-plus""></i>  &nbsp;ADD </button></a>
+                    <div class=" panel-ctrls">
 
+                </div>
+                <!-- col-8 -->
+            </div>
+            <!-- heading -->
+            <div class="panel-body no-padding">
+                <div class="dataTables_wrapper form-inline no-footer" id="example_wrapper">
+                    <div class="row">
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-6"></div>
                     </div>
-                    <!-- col-8 -->
+                    <table width="100%" class="table table-striped table-bordered dataTable no-footer" id="example"
+                        role="grid" aria-describedby="example_info" style="width: 100%;" cellspacing="0">
+                        <thead>
+                            <tr role="row">
+                                <th>Quota</th>
+                                <th>Positon of Quota</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="qut_table">
+
+                            <?php foreach($qut_data as $value){ ?>
+                            <tr id="idquota">
+                                <td><?php echo $value->qut_type;?> </td>
+                                <td><?php echo $value->qut_pos;?> </td>
+                                <td><?php echo $value->qut_date;?> </td>
+
+                                <td class="center">
+
+                                    <!-- <a href="<?php //echo base_url();?>/ev_quota/Evs_quota/manage_quota">      -->
+
+                                    <a onclick=" manage_data( <?php echo $value->qut_id;?>)">
+                                        <button type="submit" class="btn btn-info"><i
+                                                class="ti ti-info-alt"></i></button></a>
+                                    <a onclick="edit_data(<?php echo $value->qut_id;?>)">
+                                        <button type="submit" class="btn btn-warning"><i
+                                                class="ti ti-pencil-alt "></i></button></a>
+                                    <a data-toggle="modal" href="#delete<?php echo $value->qut_id;?>"><button
+                                            type="submit" class="btn btn-danger"><i
+                                                class="ti ti-trash"></i></button></a>
+                                </td>
+
+                            </tr>
+
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
-                <!-- heading -->
-                <div class="panel-body no-padding">
-                    <div class="dataTables_wrapper form-inline no-footer" id="example_wrapper">
-                        <div class="row">
-                            <div class="col-sm-6"></div>
-                            <div class="col-sm-6"></div>
-                        </div>
-                        <table width="100%" class="table table-striped table-bordered dataTable no-footer" id="example"
-                            role="grid" aria-describedby="example_info" style="width: 100%;" cellspacing="0">
-                            <thead>
-                                <tr role="row">
-                                    <th>Quota</th>
-                                    <th>Positon of Quota</th>
-                                    <th>Date</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="qut_table">
+            </div>
 
-                                <?php foreach($qut_data as $value){ ?>
-                                <tr id="idquota">
-                                    <td><?php echo $value->qut_type;?> </td>
-                                    <td><?php echo $value->qut_pos;?> </td>
-                                    <td><?php echo $value->qut_date;?> </td>
-
-                                    <td class="center">
-
-                                        <!-- <a href="<?php //echo base_url();?>/ev_quota/Evs_quota/manage_quota">      -->
-
-                                        <a onclick=" manage_data( <?php echo $value->qut_id;?>)">
-                                            <button type="submit" class="btn btn-info"><i
-                                                    class="ti ti-info-alt"></i></button></a>
-                                        <a onclick="edit_data(<?php echo $value->qut_id;?>)">
-                                            <button type="submit" class="btn btn-warning"><i
-                                                    class="ti ti-pencil-alt "></i></button></a>
-                                        <a data-toggle="modal" href="#delete<?php echo $value->qut_id;?>"><button
-                                                type="submit" class="btn btn-danger"><i
-                                                    class="ti ti-trash"></i></button></a>
-                                    </td>
-
-                                </tr>
-
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="panel-footer">
-
-                </div>
+            <div class="panel-footer">
 
             </div>
-            <legend></legend>
-            <h3>Description</h3>
-            <table height="150px">
-                <tr>
-                    <td height="20" width="50px"><button type="submit" class="btn btn-info"><i
-                                class="ti ti-info-alt"></i></button></td>
-                    <td width="50px">
-                        <h4>:</h4>
-                    </td>
-                    <td width="150px">
-                        <h4>Manage quota</h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td> <button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></td>
-                    <td width="50px">
-                        <h4>:</h4>
-                    </td>
-                    <td>
-                        <h4>Edit quota</h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td><button type="submit" class="btn btn-danger"><i class="ti ti-trash"></i></button></td>
-                    <td width="50px">
-                        <h4>:</h4>
-                    </td>
-                    <td>
-                        <h4>Delete quota</h4>
-                    </td>
-                </tr>
-            </table>
+
         </div>
-        <!--panel-body-->
-    </div><!-- panel-indigo -->
+        <legend></legend>
+        <h3>Description</h3>
+        <table height="150px">
+            <tr>
+                <td height="20" width="50px"><button type="submit" class="btn btn-info"><i
+                            class="ti ti-info-alt"></i></button></td>
+                <td width="50px">
+                    <h4>:</h4>
+                </td>
+                <td width="150px">
+                    <h4>Manage quota</h4>
+                </td>
+            </tr>
+            <tr>
+                <td> <button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></td>
+                <td width="50px">
+                    <h4>:</h4>
+                </td>
+                <td>
+                    <h4>Edit quota</h4>
+                </td>
+            </tr>
+            <tr>
+                <td><button type="submit" class="btn btn-danger"><i class="ti ti-trash"></i></button></td>
+                <td width="50px">
+                    <h4>:</h4>
+                </td>
+                <td>
+                    <h4>Delete quota</h4>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--panel-body-->
+</div><!-- panel-indigo -->
 </div><!-- col-md-12 -->
 
 

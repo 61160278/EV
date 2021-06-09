@@ -251,7 +251,7 @@ function get_definetion_com() {
                 '<a href="<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm_view_edit_data/' +
                 com_sel +
                 '"><button class="btn btn-warning float-center"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit &nbsp;</button></a><br><br><button class="btn btn-danger float-center" data-toggle="modal" href="#myModal_delete_Competency"><i class="fa fa-times"></i>&nbsp;Delete</button>'
-                );
+            );
             // $('#link').html(
             //     '<button class="btn btn-warning float-center"><i class="fa fa-pencil">&nbsp;&nbsp;Edit &nbsp;</i></button>'
             // );

@@ -54,9 +54,10 @@ td {
 tbody:hover {
     background-color: #ffffff;
 }
+
 .panel.panel-indigo .panel-heading {
-  color: #e8eaf6;
-  background-color: #134466;
+    color: #e8eaf6;
+    background-color: #134466;
 }
 </style>
 <script>
@@ -289,7 +290,7 @@ function show_quotaplan() {
     };
     // </block:config>
     var myChart = new Chart(document.getElementById('myChart'), config); //new Chart
-  $('#submit').on('click', function() {
+    $('#submit').on('click', function() {
         myChart.destroy();
         show_linebarChart()
     });
@@ -333,9 +334,9 @@ function insert_quota_actual() {
             quotaActual = null;
         } else {
             valueActual = parseFloat(check);
-           
+
             grade[i] = valueActual;
-             sum_actual += grade[i];
+            sum_actual += grade[i];
             console.log(valueActual);
             quotaActual = (valueActual * 100) / parseFloat(quota);
             // grade[i] =quotaActual;
@@ -345,7 +346,7 @@ function insert_quota_actual() {
 
         } // if 
 
-       
+
     }
     // for i  
     // check = document.getElementById("quotaPlan").value;
@@ -419,8 +420,8 @@ function insert_quota_actual() {
                                 <h4><b> : </b></h4>
                             </td>
                             <td class="qut_type" width="300"></td>
-                       
-                       
+
+
                             <td class="qut" width="175">
                                 <h4><b>Position of Quota</b></h4>
                             </td>
@@ -437,7 +438,7 @@ function insert_quota_actual() {
                             </td>
                             <td class="qut_type" id="qut_pos"></td>
                         </tr>
-                       
+
                     </table>
                     <!-- <div class="col-md-2">
                         <select class="form-control text" id="">
@@ -456,16 +457,16 @@ function insert_quota_actual() {
                     <!-- <div class="col-md-2">
                         <select for="pos_select" id="pos_select" class="form-control text">
                             <option value="select">Select Position</option> -->
-                            <!-- <option value="0">All Position</option> -->
-                            <!-- start foreach -->
-                            <?php foreach($pos_data as $value){ ?>
-                            <!-- <option value="<?php //echo $value->Position_ID;?>"> -->
-                                <?php //echo $value->Pos_shortName;?>
-                            <!-- </option> -->
-                            <?php } ?>
-                            <!-- end foreach -->
-                        <!-- </select> -->
-                    <!-- </div> --> 
+                    <!-- <option value="0">All Position</option> -->
+                    <!-- start foreach -->
+                    <?php foreach($pos_data as $value){ ?>
+                    <!-- <option value="<?php //echo $value->Position_ID;?>"> -->
+                    <?php //echo $value->Pos_shortName;?>
+                    <!-- </option> -->
+                    <?php } ?>
+                    <!-- end foreach -->
+                    <!-- </select> -->
+                    <!-- </div> -->
                     <div class="col-md-11">
                     </div>
                     <div class="col-md-1">
@@ -650,50 +651,48 @@ function insert_quota_actual() {
 
 </div>
 
-                        <!-- Modal Warning -->
-                        <div class="modal fade" id="warning_save" tabindex="-1" role="dialog"
-                            aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color:#FF9800;">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                            <font color="White"><b>&times;</b>
-                                            </font>
-                                        </button>
-                                        <h2 class="modal-title"><b>
-                                                <font color="white">Warning</font>
-                                            </b></h2>
-                                    </div>
-                                    <!-- Modal header -->
+<!-- Modal Warning -->
+<div class="modal fade" id="warning_save" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#FF9800;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b>
+                    </font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Warning</font>
+                    </b></h2>
+            </div>
+            <!-- Modal header -->
 
-                                    <div class="modal-body">
-                                        <div class="form-horizontal">
-                                            <div class="form-group" align="center">
-                                                <div class="col-sm-12">
-                                                    <label for="focusedinput" class="control-label"
-                                                        style="font-family:'Courier New'" align="center">
-                                                        <font size="3px">
-                                                        Do you want to save?</font>
-                                                    </label>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group" align="center">
+                        <div class="col-sm-12">
+                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                                align="center">
+                                <font size="3px">
+                                    Do you want to save?</font>
+                            </label>
 
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- form-horizontal -->
-                                    </div>
-                                    <!-- Modal body -->
-
-                                    <div class="modal-footer">
-                                        <div class="btn-group pull-right">
-                                            <button type="button" class="btn btn-success"
-                                                data-dismiss="modal">Yes</button>
-                                        </div>
-
-                                    </div>
-                                    <!-- Modal footer -->
-                                </div>
-                                <!-- modal-content -->
-                            </div>
-                            <!-- modal-dialog -->
                         </div>
-                        <!-- End Modal Warning -->
+                    </div>
+                </div>
+                <!-- form-horizontal -->
+            </div>
+            <!-- Modal body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                </div>
+
+            </div>
+            <!-- Modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal Warning -->

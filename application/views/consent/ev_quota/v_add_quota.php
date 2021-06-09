@@ -512,8 +512,7 @@ function show_qouta() {
                     <div class="form-horizontal">
                         <div class="form-group" align="center">
                             <div class="col-sm-12">
-                                <label for="focusedinput" class="control-label"
-                                    align="center">
+                                <label for="focusedinput" class="control-label" align="center">
                                     <font size="5px">
                                         Value is more than 100</font>
                                 </label>
@@ -560,8 +559,7 @@ function show_qouta() {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label"
-                                align="center">
+                            <label for="focusedinput" class="control-label" align="center">
                                 <font size="5px">
                                     Do you want to save ?</font>
                             </label>

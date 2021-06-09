@@ -174,7 +174,8 @@ function add_pos_level(id) {
             drop_pos += '<option>Select position</option>'
             //Start forEach
             data.forEach((row, index) => {
-                drop_pos += '<option value="' + row.Position_ID + '">' + row.Position_name + '</option>'
+                drop_pos += '<option value="' + row.Position_ID + '">' + row.Position_name +
+                    '</option>'
             });
             //end forEach
             drop_pos += '</select>'
@@ -344,7 +345,8 @@ function add_pos_level(id) {
                 <div class="row">
                     <div class="col-sm-12" align="right">
 
-                        <button type="button" name="add" id="add" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
+                        <button type="button" name="add" id="add" class="btn btn-success"><i class="fa fa-plus"></i>
+                            Add</button>
                         <br><br>
                         <a href="<?php echo base_url(); ?>/Evs_attitude_indicators_form/indicator_attitude">
                             <button type="button" class="btn btn-secondary">Back</button>

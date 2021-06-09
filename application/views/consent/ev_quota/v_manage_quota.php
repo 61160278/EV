@@ -443,7 +443,7 @@ h4 {
                         <?php } //foreach qut_data?>
                         <?php } //if qut_pos == 'Operational Associate'?>
                         <?php } //foreach manage_qut_data?>
-                        
+
                         <?php foreach($manage_qut_data as $value){ ?>
                         <?php  if ($value->qut_pos == 'Staff above') {?>
                         <!-- start foreach -->
@@ -495,7 +495,7 @@ h4 {
                                             <th>Company</th>
                                             <th>Department</th>
                                             <th>position</th>
-                                            <th colspan = "2">Action</th>
+                                            <th colspan="2">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
