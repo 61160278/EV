@@ -93,7 +93,7 @@ function validate_his() {
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
             <div class="panel-heading ">
                 <h2>
-                    <font color="#ffffff" size ="6px"><b> Created & Evaluation </b></font>
+                    <font color="#ffffff" size="6px"><b> Created & Evaluation </b></font>
                 </h2>
             </div>
             <!-- heading -->
