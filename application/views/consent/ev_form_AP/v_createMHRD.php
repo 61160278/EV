@@ -121,7 +121,7 @@ function save_mhrd() {
         // error
     });
     // ajax
-    //window.location = "<?php echo base_url(); ?>/ev_form_AP/Evs_form_AP/index";
+    window.location = "<?php echo base_url(); ?>/ev_form_AP/Evs_form_AP/index";
 }
 </script>
 <!-- script -->

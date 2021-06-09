@@ -486,7 +486,7 @@ class Evs_form_AP extends MainController_avenxo {
 		$arr_dgo_id = $this->input->post("arr_dgo_id");
 		$arr_radio = $this->input->post("arr_radio");
 		$arr_Evaluator_Review = $this->input->post("arr_Evaluator_Review");
-		$arr_roop = count($arr_dgo_id);
+		$arr_roop = count($arr_dgo_id); 
 		//string set year now
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
@@ -547,7 +547,7 @@ class Evs_form_AP extends MainController_avenxo {
 		$tep = $data['emp_info']->row();
 
 		$this->load->model('M_evs_data_mhrd_weight','memw');
-		$this->memw->dgw_evs_emp_id = $tep->emp_id;
+		$this->memw->mhw_evs_emp_id = $tep->emp_id;
 		$data['check'] = $data['data_mhrd'] = $this->memw->get_by_empID();
 
 		$check = sizeof($data['check']);
@@ -594,6 +594,34 @@ class Evs_form_AP extends MainController_avenxo {
 			}
 	
 			$data = "save_data_mhrd";
+			echo json_encode($data);		
+		}
+		
+		function update_mhrd(){
+
+			$ps_pos_id = $this->input->post("Emp_ID");
+			$arr_sfi_id = $this->input->post("arr_sfi_id");
+			$arr_radio_1 = $this->input->post("arr_radio_1");
+			$arr_radio_2 = $this->input->post("arr_radio_2");
+		
+			$arr_roop = count($arr_sfi_id);
+			//string set year now
+			$this->load->model('M_evs_pattern_and_year','myear');
+			$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+			$year = $data['patt_year']->row(); // show value year now
+			//end set year now
+			$pay_id = $year->pay_id;
+	
+			$this->load->model('M_evs_data_mhrd_weight','memw');
+			for($i = 0 ; $i < $arr_roop ; $i++){
+			$this->memw->mhw_evs_emp_id = $ps_pos_id;
+			$this->memw->mhw_sfi_id = $arr_sfi_id[$i];
+			$this->memw->mhw_weight_1 = $arr_radio_1[$i];
+			$this->memw->mhw_weight_2 = $arr_radio_2[$i];
+			$this->memw->update();
+			}
+	
+			$data = "update_data_mhrd";
 			echo json_encode($data);		
 		}
 

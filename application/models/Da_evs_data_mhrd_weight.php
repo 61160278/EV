@@ -85,7 +85,7 @@ class Da_evs_data_mhrd_weight extends evs_model {
 	function update() {
 	
 	 	$sql = "UPDATE evs_database.evs_data_mhrd_weight 
-	 			SET	mhw_evs_emp_id=?, mhw_sfi_id=?, mhw_weight=?
+	 			SET	mhw_evs_emp_id=?, mhw_sfi_id=?, mhw_weight_1=?,mhw_weight_2=?
 	 			WHERE mhw_id=?";
 		
 		$this->db->query($sql, array($this->mhw_evs_emp_id, $this->mhw_sfi_id, $this->mhw_weight_1,$this->mhw_weight_2, $this->mhw_id));
