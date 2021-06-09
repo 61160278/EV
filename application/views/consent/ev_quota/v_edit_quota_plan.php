@@ -51,6 +51,7 @@ th {
     color: black;
     font-size: 20px;
 }
+
 td {
     text-align: center;
     color: black;
@@ -139,13 +140,13 @@ function check_quota_plan() {
     check = document.getElementById("quotaPlan").value;
     console.log(check);
     if (check == "") {
-    
-            for (var i = 1; i <= 6; i++) {
-               
-                 console.log("123456 : "+check);
 
-             document.getElementById("show_quotaPlan" + i).innerHTML = check;
-            } //for
+        for (var i = 1; i <= 6; i++) {
+
+            console.log("123456 : " + check);
+
+            document.getElementById("show_quotaPlan" + i).innerHTML = check;
+        } //for
     } else {
         $("#saveData").attr("disabled", false);
         for (var i = 1; i <= 6; i++) {
@@ -157,12 +158,12 @@ function check_quota_plan() {
 
         } //for
     }
-   
- 
+
+
 } //check_quota_plan
 
 function show_quotaplan() {
-   // $("#quotaPlan").attr("disabled", true);
+    // $("#quotaPlan").attr("disabled", true);
 
     var dataQuota = [];
     var arrQuota = [];
@@ -327,61 +328,61 @@ function manage_data(qut_id) {
             <?php foreach($qup_data as $value){ ?>
             <input type="text" id="qup_id" value="<?php echo $value->qup_id?>" hidden>
             <?php } ?>
-                <table style="border:1;">
+            <table style="border:1;">
+                <?php foreach($cdp_data as $value){ ?>
+                <input type="text" id="position_id" value="<?php echo $value->Position_ID?>" hidden>
+                <tr>
+                    <td class="qut" width="175">
+                        <h4><b>Company </b></h4>
+                    </td>
+                    <td width="75">
+                        <h4><b> : </b></h4>
+                    </td>
+                    <td class="qut_type" width="300"><?php echo $value->Company_name;?></td>
+                    <?php } ?>
+                </tr>
+
+                <?php foreach($manage_qut_data as $value){ ?>
+                <input type="text" id="qut_id" value="<?php echo $value->qut_id?>" hidden>
+                <tr>
+                    <td class="qut" width="175">
+                        <h4><b>Quota </b></h4>
+                    </td>
+                    <td width="75">
+                        <h4><b> : </b></h4>
+                    </td>
+                    <td class="qut_type" width="200"><?php echo $value->qut_type;?></td>
+
+                    <td class="qut">
+                        <h4><b>Position of Quota </b></h4>
+                    </td>
+                    <td width="75">
+                        <h4><b> : </b></h4>
+                    </td>
+                    <td class="qut_type" id="qut_pos"><?php echo $value->qut_pos;?></td>
+                </tr>
+                <?php } ?>
+                <tr>
                     <?php foreach($cdp_data as $value){ ?>
-                    <input type="text" id="position_id" value="<?php echo $value->Position_ID?>" hidden>
-                    <tr>
-                        <td class="qut" width="175">
-                            <h4><b>Company </b></h4>
-                        </td>
-                        <td width="75">
-                            <h4><b> : </b></h4>
-                        </td>
-                        <td class="qut_type" width="300"><?php echo $value->Company_name;?></td>
-                        <?php } ?>
-                    </tr>
+                    <td class="qut" width="175">
+                        <h4><b>Department </b></h4>
+                    </td>
+                    <td width="75">
+                        <h4><b> : </b></h4>
+                    </td>
+                    <td class="qut_type" width="200"><?php echo $value->Dep_Name;?></td>
 
-                    <?php foreach($manage_qut_data as $value){ ?>
-                    <input type="text" id="qut_id" value="<?php echo $value->qut_id?>" hidden>
-                    <tr>
-                        <td class="qut" width="175">
-                            <h4><b>Quota </b></h4>
-                        </td>
-                        <td width="75">
-                            <h4><b> : </b></h4>
-                        </td>
-                        <td class="qut_type" width="200"><?php echo $value->qut_type;?></td>
+                    <td class="qut">
+                        <h4><b>position</b></h4>
 
-                        <td class="qut">
-                            <h4><b>Position of Quota </b></h4>
-                        </td>
-                        <td width="75">
-                            <h4><b> : </b></h4>
-                        </td>
-                        <td class="qut_type" id="qut_pos"><?php echo $value->qut_pos;?></td>
-                    </tr>
-                    <?php } ?>
-                    <tr>
-                        <?php foreach($cdp_data as $value){ ?>
-                        <td class="qut" width="175">
-                            <h4><b>Department </b></h4>
-                        </td>
-                        <td width="75">
-                            <h4><b> : </b></h4>
-                        </td>
-                        <td class="qut_type" width="200"><?php echo $value->Dep_Name;?></td>
-
-                        <td class="qut">
-                            <h4><b>position</b></h4>
-
-                        </td>
-                        <td width="75">
-                            <h4><b> : </b></h4>
-                        </td>
-                        <td class="qut_type" id="qut_pos"><?php echo $value->Position_name;?></td>
-                    </tr>
-                    <?php } ?>
-                </table>
+                    </td>
+                    <td width="75">
+                        <h4><b> : </b></h4>
+                    </td>
+                    <td class="qut_type" id="qut_pos"><?php echo $value->Position_name;?></td>
+                </tr>
+                <?php } ?>
+            </table>
             <hr>
             <!-- <form onsubmit="required()"> -->
             <div class="row">
@@ -443,7 +444,7 @@ function manage_data(qut_id) {
                 </div>
             </div>
             <br>
-            
+
             <!-- </form> -->
             <br>
             <div class="row">
@@ -474,8 +475,8 @@ function manage_data(qut_id) {
 
             </div>
             <?php foreach($manage_qut_data as $value){ ?>
-            <a onclick =" manage_data(<?php echo $value->qut_id;?>)"> 
-            <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
+            <a onclick=" manage_data(<?php echo $value->qut_id;?>)">
+                <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
             </a>
             <?php } ?>
             <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;" id="saveData"
@@ -503,10 +504,9 @@ function manage_data(qut_id) {
                     <div class="form-horizontal">
                         <div class="form-group" align="center">
                             <div class="col-sm-12">
-                                <label for="focusedinput" class="control-label"
-                                    align="center">
+                                <label for="focusedinput" class="control-label" align="center">
                                     <font size="5px">
-                                    Do you want to save?</font>
+                                        Do you want to save?</font>
                                 </label>
 
                             </div>

@@ -52,8 +52,6 @@ td {
 }
 </style>
 <script>
-
-
 function edit_quota() {
     var check = "";
 
@@ -173,10 +171,12 @@ function confirm_save() {
 
 
 }
-function main_quota(){
+
+function main_quota() {
     confirm_save();
     window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/index";
 }
+
 function show_qouta() {
 
     for (var i = 1; i <= 6; i++) {
@@ -283,7 +283,7 @@ $(document).ready(function() {
             <div class="col-md-9">
             </div>
             <div class="col-md-1">
-              
+
             </div>
         </div>
         <div class="panel-body" style="" id="qut_data">
@@ -404,7 +404,7 @@ $(document).ready(function() {
                 </div>
             </div>
             <a href="<?php echo base_url();?>/ev_quota/Evs_quota/index">
-            <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
+                <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
             </a>
             <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;" id="saveData"
                 onclick="confirm_save()">SAVE</button>
@@ -429,8 +429,7 @@ $(document).ready(function() {
                     <div class="form-horizontal">
                         <div class="form-group" align="center">
                             <div class="col-sm-12">
-                                <label for="focusedinput" class="control-label"
-                                    align="center">
+                                <label for="focusedinput" class="control-label" align="center">
                                     <font size="5px">
                                         Value is more than 100</font>
                                 </label>
@@ -477,10 +476,9 @@ $(document).ready(function() {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label"
-                                align="center">
+                            <label for="focusedinput" class="control-label" align="center">
                                 <font size="5px">
-                                   Do you want to save?</font>
+                                    Do you want to save?</font>
                             </label>
 
                         </div>
@@ -492,8 +490,9 @@ $(document).ready(function() {
 
             <div class="modal-footer">
                 <div class="btn-group pull-right">
-                    
-                        <button type="button" class="btn btn-success" data-dismiss="modal" onclick ="main_quota()">Yes</button>
+
+                    <button type="button" class="btn btn-success" data-dismiss="modal"
+                        onclick="main_quota()">Yes</button>
                     </a>
                 </div>
 

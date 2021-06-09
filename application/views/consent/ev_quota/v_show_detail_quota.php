@@ -46,6 +46,7 @@ th {
     color: black;
     font-size: 20px;
 }
+
 td {
     text-align: center;
     color: black;
@@ -421,7 +422,7 @@ function manage_data(qut_id) {
                 <div class="col-md-8">
 
                     <table style="width:100%" class="table table-hover m-n orange">
-                        <thead class = "font1">
+                        <thead class="font1">
                             <div class="col-md-1">
                                 <tr class="orange ">
                                     <th>Grade</th>
@@ -460,7 +461,8 @@ function manage_data(qut_id) {
                                     <td id="show_quotaPlan4"><?php echo $value->qup_grad_B_N;?></td>
                                     <td id="show_quotaPlan5"><?php echo $value->qup_grad_C;?></td>
                                     <td id="show_quotaPlan6"><?php echo $value->qup_grad_D;?></td>
-                                    <td id="quotaPlan" onchange="check_quota_plan()"><?php echo $value->qup_total;?></td>
+                                    <td id="quotaPlan" onchange="check_quota_plan()"><?php echo $value->qup_total;?>
+                                    </td>
                                     <?php } ?>
                                 </tr>
                             </div>
@@ -470,7 +472,7 @@ function manage_data(qut_id) {
                 </div>
             </div>
             <br>
-          
+
             <!-- </form> -->
             <br>
             <div class="row">
@@ -506,7 +508,7 @@ function manage_data(qut_id) {
                     onclick=" manage_data( <?php echo $value->qut_id;?>)">CANCEL</button>
             </a>
             <?php }?>
-            
+
         </div>
     </div>
 
@@ -533,7 +535,7 @@ function manage_data(qut_id) {
                                 <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
                                     align="center">
                                     <font size="3px">
-                                    Do you want to save?</font>
+                                        Do you want to save?</font>
                                 </label>
 
                             </div>

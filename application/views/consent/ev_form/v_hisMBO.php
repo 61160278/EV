@@ -274,7 +274,9 @@ function set_tap() {
     <div class="col-md-12">
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
             <div class="panel-heading" height="50px">
-                <h2 id="tabmenu"><font color="#ffffff" size = "6px"> Form </font></h2>
+                <h2 id="tabmenu">
+                    <font color="#ffffff" size="6px"> Form </font>
+                </h2>
                 <div id="tabmenu">
                     <ul class="nav nav-tabs pull-right tabdrop" id="show_tap">
                     </ul>
@@ -832,7 +834,7 @@ function set_tap() {
 
                         <hr>
                         <table class="table table-bordered table-striped m-n">
-                        <thead>
+                            <thead>
                                 <tr>
                                     <th width="2%" rowspan="2">
                                         <center>
@@ -865,7 +867,7 @@ function set_tap() {
                                 </tr>
                             </thead>
                             <tbody id="mhrd_Table">
-                            <?php if(sizeof($info_mhrd) != 0) { ?>
+                                <?php if(sizeof($info_mhrd) != 0) { ?>
                                 <?php foreach($info_mhrd->result() as $index => $row){ ?>
                                 <tr>
                                     <td><?php echo ($index+1) ?></td>
@@ -903,7 +905,7 @@ function set_tap() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                            <form action="<?php echo base_url() ?>ev_form/Evs_form/historyMBO" method="post">
+                                <form action="<?php echo base_url() ?>ev_form/Evs_form/historyMBO" method="post">
                                     <input type="text" name="emp_id_his" id="emp_id_his"
                                         value="<?php echo $emp_id_back; ?>" hidden>
                                     <input type="submit" class="btn btn-inverse" value="BACK">
@@ -1032,7 +1034,7 @@ function set_tap() {
                             </thead>
                             <!-- thead -->
                             <tbody id="dis_color">
-                            <?php if(sizeof($info_ability_form) != 0){ ?>
+                                <?php if(sizeof($info_ability_form) != 0){ ?>
                                 <?php  
                                     $index_acm = 1;
                                     $temp_keycomponent = "";
@@ -1135,7 +1137,7 @@ function set_tap() {
                         <hr>
                         <div class="row">
                             <div class="col-md-12">
-                            <form action="<?php echo base_url() ?>ev_form/Evs_form/historyMBO" method="post">
+                                <form action="<?php echo base_url() ?>ev_form/Evs_form/historyMBO" method="post">
                                     <input type="text" name="emp_id_his" id="emp_id_his"
                                         value="<?php echo $emp_id_back; ?>" hidden>
                                     <input type="submit" class="btn btn-inverse" value="BACK">
@@ -1380,7 +1382,7 @@ function set_tap() {
                         <hr>
                         <div class="row">
                             <div class="col-md-12">
-                            <form action="<?php echo base_url() ?>ev_form/Evs_form/historyMBO" method="post">
+                                <form action="<?php echo base_url() ?>ev_form/Evs_form/historyMBO" method="post">
                                     <input type="text" name="emp_id_his" id="emp_id_his"
                                         value="<?php echo $emp_id_back; ?>" hidden>
                                     <input type="submit" class="btn btn-inverse" value="BACK">

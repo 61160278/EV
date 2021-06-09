@@ -381,7 +381,7 @@ function show_qouta() {
             </h2>
             <div class="pull-right margin">
                 <select class="form-control" aria-controls="example" onChange="select_quota(value)">
-                    <option value="">Select</option>
+                    <option value="">Select Type</option>
                     <option value="1">Saraly Increment</option>
                     <option value="2">Year End Bonus</option>
                 </select>
@@ -391,18 +391,23 @@ function show_qouta() {
 
             <div class="row">
                 <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h1><span class="label label-default">Year End Bonus</span></h1>
+                        </div>
+                    </div>
                     <div class="col-md-3">
                     </div>
                     <div class="col-md-3">
                         <select class="form-control text" id="quotaType">
-                            <option value="0">Quota</option>
+                            <option value="0">Select Quota</option>
                             <option value="1">Year End Bonus</option>
                             <!-- <option value="2">Salary Increment</option> -->
                         </select>
                     </div>
                     <div class="col-md-3">
                         <select class="form-control text" id="groupPosition">
-                            <option value="0">Position Of Quota</option>
+                            <option value="0">Select Position Of Quota</option>
                             <option value="1">All Position</option>
                             <option value="2">Operational Associate above</option>
                             <option value="3">Staff above</option>
@@ -515,8 +520,7 @@ function show_qouta() {
                     <div class="form-horizontal">
                         <div class="form-group" align="center">
                             <div class="col-sm-12">
-                                <label for="focusedinput" class="control-label"
-                                    align="center">
+                                <label for="focusedinput" class="control-label" align="center">
                                     <font size="5px">
                                         Value is more than 100</font>
                                 </label>
@@ -563,8 +567,7 @@ function show_qouta() {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label"
-                                align="center">
+                            <label for="focusedinput" class="control-label" align="center">
                                 <font size="5px">
                                     Do you want to save?</font>
                             </label>
@@ -612,8 +615,7 @@ function show_qouta() {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label"
-                                align="center">
+                            <label for="focusedinput" class="control-label" align="center">
                                 <font size="5px">
                                     Already in information!</font>
                             </label>

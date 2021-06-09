@@ -67,7 +67,7 @@
             document.getElementById('adt_PE_' + position_atd_pe).innerHTML = score_atd + "%";
         }
         // End if 
-    }//show_attendance_pe
+    } //show_attendance_pe
 
     /*
      * show_attendance_ce
@@ -91,7 +91,7 @@
             document.getElementById('adt_CE_' + position_atd_ce).innerHTML = score_atd + "%";
         }
         // End if 
-    }//show_attendance_ce
+    } //show_attendance_ce
     </script>
 
     <style>
@@ -329,7 +329,8 @@
                                     <td align="center">
                                         <label class="switch">
                                             <input type="checkbox" id="<?php echo "statusPE".$index; ?>"
-                                                value="<?php echo $row->Position_ID; ?>" name="arr_checked_PE[] " checked>
+                                                value="<?php echo $row->Position_ID; ?>" name="arr_checked_PE[] "
+                                                checked>
                                             <span class="slider round">
                                             </span>
                                         </label>
@@ -377,7 +378,8 @@
                                     <td align="center">
                                         <label class="switch">
                                             <input type="checkbox" id="<?php echo "statusCE".$index; ?>"
-                                                value="<?php echo $row->Position_ID; ?>" name="arr_checked_CE[]" checked>
+                                                value="<?php echo $row->Position_ID; ?>" name="arr_checked_CE[]"
+                                                checked>
                                             <span class="slider round">
                                             </span>
                                         </label>
@@ -463,7 +465,7 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <p>Enable form</p>
-                            <label class="switch"><input type="checkbox"  checked disabled>
+                            <label class="switch"><input type="checkbox" checked disabled>
                                 <span class="slider round"></span>
                             </label>
                         </div>

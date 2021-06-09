@@ -78,52 +78,55 @@ function get_data_for_item_table() {
                     index_catagory = index_check
                     chack_Manage = 0;
 
-                    
-                $table += '<tr>'
-                $table += '<td>'
-                $table += index_catagory
-                $table += '</td>'
-                // show index 
 
-                $table += '<td>'
-                $table += row.itm_item_detail_en + '<br>' + row.itm_item_detail_th
-                $table += '</td>'
-                // show key_component
-
-                $table += '<td>'
-                $table += row.dep_description_detail_en + '<br>' + row
-                    .dep_description_detail_th
-                $table += '</td>'
-                // show expected_detail
-
-                $table += '<td>'
-                data.forEach((row2, index) => {
-                if(row2.itm_item_detail_en == row.itm_item_detail_en){$table += row2.Position_name +"<br>"}
-                })
-                $table += '</td>'
-                // show position 
-                if (chack_Manage == 0) {
-                    $table += '<td >'
-                    $table += '<center>'
-                    $table +=
-                        '<a href="<?php echo base_url(); ?>/Evs_mhrd_indicators_form/indicator_mhrd_view_edit_data/' +
-                        row.itm_id + '"><button class="btn btn-warning float-center">'
-                    $table += '<i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit &nbsp;</button></p></a>'
-                    // button edit in manage 
-
-                    $table +=
-                        '<button type="button" class="btn btn-danger float-center"data-toggle="modal" href="#myModal_delete" Onclick="send_id_to_delete(' +
-                        row.itm_id + ')">'
-                    $table += '<i class="fa fa-times"></i>Delete</button>'
-                    // button delete in manage 
-                    $table += '</center>'
+                    $table += '<tr>'
+                    $table += '<td>'
+                    $table += index_catagory
                     $table += '</td>'
-                    chack_Manage = 1;
-                }
+                    // show index 
 
-                // manage 
+                    $table += '<td>'
+                    $table += row.itm_item_detail_en + '<br>' + row.itm_item_detail_th
+                    $table += '</td>'
+                    // show key_component
 
-                $table += '<tr>'
+                    $table += '<td>'
+                    $table += row.dep_description_detail_en + '<br>' + row
+                        .dep_description_detail_th
+                    $table += '</td>'
+                    // show expected_detail
+
+                    $table += '<td>'
+                    data.forEach((row2, index) => {
+                        if (row2.itm_item_detail_en == row.itm_item_detail_en) {
+                            $table += row2.Position_name + "<br>"
+                        }
+                    })
+                    $table += '</td>'
+                    // show position 
+                    if (chack_Manage == 0) {
+                        $table += '<td >'
+                        $table += '<center>'
+                        $table +=
+                            '<a href="<?php echo base_url(); ?>/Evs_mhrd_indicators_form/indicator_mhrd_view_edit_data/' +
+                            row.itm_id + '"><button class="btn btn-warning float-center">'
+                        $table +=
+                            '<i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit &nbsp;</button></p></a>'
+                        // button edit in manage 
+
+                        $table +=
+                            '<button type="button" class="btn btn-danger float-center"data-toggle="modal" href="#myModal_delete" Onclick="send_id_to_delete(' +
+                            row.itm_id + ')">'
+                        $table += '<i class="fa fa-times"></i>Delete</button>'
+                        // button delete in manage 
+                        $table += '</center>'
+                        $table += '</td>'
+                        chack_Manage = 1;
+                    }
+
+                    // manage 
+
+                    $table += '<tr>'
                 }
                 // if
                 else if (cate_check == row.itm_id) {
@@ -132,7 +135,7 @@ function get_data_for_item_table() {
                     cate_check = cate_check
                     index_catagory = ''
 
-          
+
 
                 }
                 // else if
@@ -144,52 +147,55 @@ function get_data_for_item_table() {
                     index_catagory = index_check
                     chack_Manage = 0;
 
-                    
-                $table += '<tr>'
-                $table += '<td>'
-                $table += index_catagory
-                $table += '</td>'
-                // show index 
 
-                $table += '<td>'
-                $table += row.itm_item_detail_en + '<br>' + row.itm_item_detail_th
-                $table += '</td>'
-                // show key_component
-
-                $table += '<td>'
-                $table += row.dep_description_detail_en + '<br>' + row
-                    .dep_description_detail_th
-                $table += '</td>'
-                // show expected_detail
-
-                $table += '<td>'
-                data.forEach((row2, index) => {
-                if(row2.itm_item_detail_en == row.itm_item_detail_en){$table += row2.Position_name +"<br>"}
-                })
-                $table += '</td>'
-                // show position 
-                if (chack_Manage == 0) {
-                    $table += '<td >'
-                    $table += '<center>'
-                    $table +=
-                        '<a href="<?php echo base_url(); ?>/Evs_mhrd_indicators_form/indicator_mhrd_view_edit_data/' +
-                        row.itm_id + '"><button class="btn btn-warning float-center">'
-                    $table += '<i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit &nbsp;</button></p></a>'
-                    // button edit in manage 
-
-                    $table +=
-                        '<button type="button" class="btn btn-danger float-center"data-toggle="modal" href="#myModal_delete" Onclick="send_id_to_delete(' +
-                        row.itm_id + ')">'
-                    $table += '<i class="fa fa-times"></i>Delete</button>'
-                    // button delete in manage 
-                    $table += '</center>'
+                    $table += '<tr>'
+                    $table += '<td>'
+                    $table += index_catagory
                     $table += '</td>'
-                    chack_Manage = 1;
-                }
+                    // show index 
 
-                // manage 
+                    $table += '<td>'
+                    $table += row.itm_item_detail_en + '<br>' + row.itm_item_detail_th
+                    $table += '</td>'
+                    // show key_component
 
-                $table += '<tr>'
+                    $table += '<td>'
+                    $table += row.dep_description_detail_en + '<br>' + row
+                        .dep_description_detail_th
+                    $table += '</td>'
+                    // show expected_detail
+
+                    $table += '<td>'
+                    data.forEach((row2, index) => {
+                        if (row2.itm_item_detail_en == row.itm_item_detail_en) {
+                            $table += row2.Position_name + "<br>"
+                        }
+                    })
+                    $table += '</td>'
+                    // show position 
+                    if (chack_Manage == 0) {
+                        $table += '<td >'
+                        $table += '<center>'
+                        $table +=
+                            '<a href="<?php echo base_url(); ?>/Evs_mhrd_indicators_form/indicator_mhrd_view_edit_data/' +
+                            row.itm_id + '"><button class="btn btn-warning float-center">'
+                        $table +=
+                            '<i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit &nbsp;</button></p></a>'
+                        // button edit in manage 
+
+                        $table +=
+                            '<button type="button" class="btn btn-danger float-center"data-toggle="modal" href="#myModal_delete" Onclick="send_id_to_delete(' +
+                            row.itm_id + ')">'
+                        $table += '<i class="fa fa-times"></i>Delete</button>'
+                        // button delete in manage 
+                        $table += '</center>'
+                        $table += '</td>'
+                        chack_Manage = 1;
+                    }
+
+                    // manage 
+
+                    $table += '<tr>'
                 }
                 // else if
 
@@ -284,7 +290,7 @@ function send_id_to_delete(itm_id) {
                     <!-- Start Card Header -->
                     <div class="card-header">
                         <strong class="card-title" id="title_indicator">
-                            Information Items form MHRD 
+                            Information Items form MHRD
                         </strong>
                     </div>
                     <!-- End Card-header  -->

@@ -1202,7 +1202,7 @@ function set_tap() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <button class="btn btn-inverse" onclick="check_cancel-()">BACK</button>
+                                <button class="btn btn-inverse" onclick="check_cancel()">BACK</button>
                                 <button class="btn btn-default">CLEAR</button>
                             </div>
                             <!-- col-md-6 -->

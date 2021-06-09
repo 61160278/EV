@@ -61,7 +61,7 @@
      * @Update Date 2563-10-05
      */
     function show_attendance_ce(id) {
-        var score_all = document.getElementById(id).value;  // score all is score attendance CE
+        var score_all = document.getElementById(id).value; // score all is score attendance CE
         position_atd_ce = id.substring(12); //position table
         var score_atd; //save calculate score
         score_atd = 100 - score_all; //calculate score
@@ -280,9 +280,8 @@
                         <!-- End Widgets  -->
                     </div>
                     <!-- Start table show position information -->
-        
-                    <form method="post"
-                        action="<?php if($patt_before_year == date("Y")) {echo base_url();?>/Evs_position/position_edit/<?php echo $pls_level_from;} 
+
+                    <form method="post" action="<?php if($patt_before_year == date("Y")) {echo base_url();?>/Evs_position/position_edit/<?php echo $pls_level_from;} 
                         else {echo base_url();?>/Evs_position/position_insert/<?php echo $pls_level_from;} ?>">
                         <table id="t01" border="1" class="table" width="100%">
                             <thead>

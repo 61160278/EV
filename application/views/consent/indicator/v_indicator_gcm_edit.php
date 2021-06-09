@@ -425,7 +425,7 @@ function insert_data_key_component_and_expected_behavior() {
                 table_data += '' + arr_save_expected_en_todatabase[i] + '<br>'
                 table_data += '' + arr_save_expected_th_todatabase[i] + '<hr>'
                 table_data += '</div>'
-               
+
                 table_data += '<div class="col-2">'
                 table_data += '' + arr_save_posittion_to_database[i] + '<hr>'
                 table_arr_for_count = arr_save_posittion_other_to_database[i].length
@@ -490,7 +490,8 @@ function insert_data_key_component_and_expected_behavior() {
         // success
     });
     // ajex
-   window.location.href ="<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm_view_edit_data/<?php echo $competency_id; ?>";
+    window.location.href =
+        "<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm_view_edit_data/<?php echo $competency_id; ?>";
 }
 
 
@@ -588,14 +589,14 @@ function update_data_key_component_and_expected_behavior() {
                     table_data += '</div>'
                 } //End if
                 table_data += '<div class="col-1">'
-               
-                    table_arr_for_count = arr_save_posittion_other_to_database[i].length
-                    table_data += '' + arr_save_point_to_database[i] + '<br>'
-                    for (j = 1; j < table_arr_for_count; j++) {
-                        table_data += '<br>'
-                    }
-                    table_data += '<hr>'
-               
+
+                table_arr_for_count = arr_save_posittion_other_to_database[i].length
+                table_data += '' + arr_save_point_to_database[i] + '<br>'
+                for (j = 1; j < table_arr_for_count; j++) {
+                    table_data += '<br>'
+                }
+                table_data += '<hr>'
+
                 table_data += '</div>'
 
 
@@ -669,7 +670,8 @@ function update_data_key_component_and_expected_behavior() {
     });
     // ajex
     //$("#edit_form").hide();
-    window.location.href = "<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm_view_edit_data/<?php echo $competency_id; ?>";
+    window.location.href =
+        "<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm_view_edit_data/<?php echo $competency_id; ?>";
 }
 
 <?php

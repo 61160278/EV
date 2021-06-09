@@ -129,8 +129,8 @@ $(document).ready(function() {
     $("#reset").click(function() {
         $("#quotaPlan").attr("disabled", false);
     }); //click
-    show_quotaplan() 
-     $("#saveData").attr("disabled", true);
+    show_quotaplan()
+    $("#saveData").attr("disabled", true);
 }); //ready
 
 
@@ -143,14 +143,14 @@ function check_quota_plan() {
     console.log(check);
     if (check == "") {
         //     // 
-            for (var i = 1; i <= 6; i++) {
-               
-                 console.log("123456 : "+check);
+        for (var i = 1; i <= 6; i++) {
 
-             document.getElementById("show_quotaPlan" + i).innerHTML = check;
-            } //for
+            console.log("123456 : " + check);
+
+            document.getElementById("show_quotaPlan" + i).innerHTML = check;
+        } //for
     } else {
-$("#saveData").attr("disabled", false);
+        $("#saveData").attr("disabled", false);
         for (var i = 1; i <= 6; i++) {
 
             quota = document.getElementById("quota" + i).innerHTML;
@@ -559,8 +559,7 @@ function manage_data(qut_id) {
                     <div class="form-horizontal">
                         <div class="form-group" align="center">
                             <div class="col-sm-12">
-                                <label for="focusedinput" class="control-label" 
-                                    align="center">
+                                <label for="focusedinput" class="control-label" align="center">
                                     <font size="5px">
                                         Do you want to save?</font>
                                 </label>
@@ -609,8 +608,7 @@ function manage_data(qut_id) {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label"
-                                align="center">
+                            <label for="focusedinput" class="control-label" align="center">
                                 <font size="5px">
                                     Already in information!</font>
                             </label>

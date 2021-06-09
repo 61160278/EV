@@ -129,7 +129,7 @@ function check_quota_actual() {
             add_alert();
             $("#submit").attr("disabled", true);
             $("#saveData").attr("disabled", true);
-        }else if (actual == parseFloat(quota)) {
+        } else if (actual == parseFloat(quota)) {
             $("#submit").attr("disabled", false);
             $("#show_Actual").css("color", "#000000");
             $("#saveData").attr("disabled", false);
@@ -674,8 +674,7 @@ function manage_data(qut_id) {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label"
-                                align="center">
+                            <label for="focusedinput" class="control-label" align="center">
                                 <font size="5px">
                                     Actual value is more than plan!</font>
                             </label>
@@ -721,8 +720,7 @@ function manage_data(qut_id) {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label"
-                                align="center">
+                            <label for="focusedinput" class="control-label" align="center">
                                 <font size="5px">
                                     Do you want to save?</font>
                             </label>

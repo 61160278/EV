@@ -9,10 +9,6 @@
 */
 
 ?>
-
-
-
-
 <!-- right Panel -->
 <div id="right-panel" class="right-panel">
     <!-- Header-->
@@ -22,7 +18,7 @@
             <!-- Start div navbar-header -->
             <div class="navbar-header">
                 <a class="navbar-brand" href="<?php echo base_url()?>Evs_Controller/index"><img
-                        src="<?php echo base_url();?>elaadmin/images/logo_EV.png" alt="Logo"></a>
+                        src="<?php echo base_url();?>elaadmin/images/LOGO_49.png" alt="Logo"></a>
                 <a class="navbar-brand hidden" href="<?php echo base_url()?>Evs_Controller/index"><img
                         src="<?php echo base_url();?>elaadmin/images/logo_EV-2.png" alt="Logo"></a>
                 <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
