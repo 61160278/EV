@@ -283,67 +283,125 @@ function updates_mhrd() {
                                 </td>
                                 <!-- description -->
                                 <td>
-                                    <center>
+                                <center>
+                                <?php  
+                                   $checked_weight_1 ="";
+                                   $checked_weight_2 ="";
+                                   $checked_weight_3 ="";
+                                   $checked_weight_4 ="";
+                                   $checked_weight_5 ="";
+              
+
+                                    foreach($data_mhrd->result() as $row_data_mhrd){
+                                            if($row->sfi_id == $row_data_mhrd->mhw_sfi_id){
+                                                if($row_data_mhrd->mhw_weight_1 == 1){
+                                                    $checked_weight_1 =  "checked";
+                                                }
+                                                else if($row_data_mhrd->mhw_weight_1 == 2){
+                                                    $checked_weight_2 =  "checked";
+                                                }
+                                                else if($row_data_mhrd->mhw_weight_1 == 3){
+                                                    $checked_weight_3 =  "checked";
+                                                }
+                                                else if($row_data_mhrd->mhw_weight_1 == 4){
+                                                    $checked_weight_4 =  "checked";
+                                                }
+                                                else {
+                                                    $checked_weight_5 =  "checked";
+                                                }
+                                            }
+                                        }
+                                ?>
                                         <div class="col-md-12">
                                             <input type="radio" name="rd_name_1_<?php echo $table_index_radio ?>"
                                                 id="rd_name_1_<?php echo $table_index_radio ?>" value="1"
-                                                onclick="show_weight()">
+                                                onclick="show_weight()" <?php echo $checked_weight_1 ?>>
                                             <label for="1">&nbsp; 1</label>
-                                            &nbsp;
+                                            &nbsp;&nbsp;
                                             <input type="radio" name="rd_name_1_<?php echo $table_index_radio ?>"
                                                 id="rd_name_1_<?php echo $table_index_radio ?>" value="2"
-                                                onclick="show_weight()">
+                                                onclick="show_weight()" <?php echo $checked_weight_2 ?>>
                                             <label for="2">&nbsp; 2</label>
-                                            &nbsp;
+                                            &nbsp;&nbsp;
                                             <input type="radio" name="rd_name_1_<?php echo $table_index_radio ?>"
                                                 id="rd_name_1_<?php echo $table_index_radio ?>" value="3"
-                                                onclick="show_weight()" checked>
+                                                onclick="show_weight()" <?php echo $checked_weight_3 ?>>
                                             <label for="3">&nbsp; 3</label>
-                                            &nbsp;
+                                            &nbsp;&nbsp;
                                             <input type="radio" name="rd_name_1_<?php echo $table_index_radio ?>"
-                                                id="rd_name_1_<?php echo $table_index_radio ?>" value="4"
-                                                onclick="show_weight()">
+                                                id="rd_name_1_<?php echo $table_index_radio ?> " value="4"
+                                                onclick="show_weight()" <?php echo $checked_weight_4 ?>>
                                             <label for="4">&nbsp; 4</label>
-                                            &nbsp;
+                                            &nbsp;&nbsp;
                                             <input type="radio" name="rd_name_1_<?php echo $table_index_radio ?>"
                                                 id="rd_name_1_<?php echo $table_index_radio ?>" value="5"
-                                                onclick="show_weight()">
+                                                onclick="show_weight()" <?php echo $checked_weight_5 ?>>
                                             <label for="5">&nbsp; 5</label>
-                                            &nbsp;
+                                            &nbsp;&nbsp;
                                         </div>
                                         <!-- col-12 -->
+
                                     </center>
                                 </td>
                                 <td>
-                                    <center>
+                                <center>
+                                <?php  
+                                   $checked_weight_1 ="";
+                                   $checked_weight_2 ="";
+                                   $checked_weight_3 ="";
+                                   $checked_weight_4 ="";
+                                   $checked_weight_5 ="";
+              
+
+                                    foreach($data_mhrd->result() as $row_data_mhrd){
+                                            if($row->sfi_id == $row_data_mhrd->mhw_sfi_id){
+                                                if($row_data_mhrd->mhw_weight_2 == 1){
+                                                    $checked_weight_1 =  "checked";
+                                                }
+                                                else if($row_data_mhrd->mhw_weight_2 == 2){
+                                                    $checked_weight_2 =  "checked";
+                                                }
+                                                else if($row_data_mhrd->mhw_weight_2 == 3){
+                                                    $checked_weight_3 =  "checked";
+                                                }
+                                                else if($row_data_mhrd->mhw_weight_2 == 4){
+                                                    $checked_weight_4 =  "checked";
+                                                }
+                                                else {
+                                                    $checked_weight_5 =  "checked";
+                                                }
+                                            }
+                                        }
+                                ?>
                                         <div class="col-md-12">
                                             <input type="radio" name="rd_name_2_<?php echo $table_index_radio ?>"
                                                 id="rd_name_2_<?php echo $table_index_radio ?>" value="1"
-                                                onclick="show_weight()">
+                                                onclick="show_weight()" <?php echo $checked_weight_1 ?>>
                                             <label for="1">&nbsp; 1</label>
-                                            &nbsp;
+                                            &nbsp;&nbsp;
                                             <input type="radio" name="rd_name_2_<?php echo $table_index_radio ?>"
                                                 id="rd_name_2_<?php echo $table_index_radio ?>" value="2"
-                                                onclick="show_weight()">
+                                                onclick="show_weight()" <?php echo $checked_weight_2 ?>>
                                             <label for="2">&nbsp; 2</label>
-                                            &nbsp;
+                                            &nbsp;&nbsp;
                                             <input type="radio" name="rd_name_2_<?php echo $table_index_radio ?>"
                                                 id="rd_name_2_<?php echo $table_index_radio ?>" value="3"
-                                                onclick="show_weight()" checked>
+                                                onclick="show_weight()" <?php echo $checked_weight_3 ?>>
                                             <label for="3">&nbsp; 3</label>
-                                            &nbsp;
+                                            &nbsp;&nbsp;
                                             <input type="radio" name="rd_name_2_<?php echo $table_index_radio ?>"
-                                                id="rd_name_2_<?php echo $table_index_radio ?>" value="4"
-                                                onclick="show_weight()">
+                                                id="rd_name_2_<?php echo $table_index_radio ?> " value="4"
+                                                onclick="show_weight()" <?php echo $checked_weight_4 ?>>
                                             <label for="4">&nbsp; 4</label>
-                                            &nbsp;
+                                            &nbsp;&nbsp;
                                             <input type="radio" name="rd_name_2_<?php echo $table_index_radio ?>"
                                                 id="rd_name_2_<?php echo $table_index_radio ?>" value="5"
-                                                onclick="show_weight()">
+                                                onclick="show_weight()" <?php echo $checked_weight_5 ?>>
                                             <label for="5">&nbsp; 5</label>
-                                            &nbsp;
+                                            &nbsp;&nbsp;
                                         </div>
                                         <!-- col-12 -->
+
                                     </center>
                                 </td>
                             </tr>
@@ -362,10 +420,8 @@ function updates_mhrd() {
                         <td ></td>
                         <td ></td>
                         <td ></td>
-                     
-                       
-                            <td ><p id="weight_all_1"></td>
-                            <td ><p id="weight_all_2"></td>
+                        <td ><p id="weight_all_1"></td>
+                        <td ><p id="weight_all_2"></td>
                         </tfoot>
                         <!-- tfoot -->
                     </table>
