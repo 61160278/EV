@@ -21,81 +21,98 @@
     <link type="text/css" href="<?php echo base_url();?>avenxo/assets/css/styles.css" rel="stylesheet">
 </head>
 
-<body class="focused-form animated-content">
+<style>
+#bg_login {
+    background-image: url("<?php echo base_url();?>pic/BG_LOGIN.jpg");
+}
+/* body  */
+#login_txt{
+
+}
+/* login_txt */
+
+</style>
+
+<body class="focused-form animated-content" id="bg_login">
 
 
     <div class="container" id="login-form">
         <div class="row">
-            <div class="col-md-12" align="center">
-                <a href="#" class="login-logo"><img src="<?php echo base_url();?>avenxo/assets/img/LOGO_49.png"></a>
+            <div class="col-md-5" align="center">
+                <img class="login-logo" src="<?php echo base_url();?>pic/denso.png" height="70%">
             </div>
-            <!-- col -12  -->
-        </div>
-        <!-- row  -->
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="panel panel-default"
-                    style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
-                    <div class="panel-heading">
-                        <h2>Login Form</h2>
-                    </div>
-                    <!-- panel-heading  -->
-
-                    <div class="panel-body">
-                        <form action="#" class="form-horizontal" id="validate-form">
-                            <div class="form-group mb-md">
-                                <div class="col-xs-12">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="ti ti-user"></i>
-                                        </span>
-                                        <input type="text" class="form-control" placeholder="Username"
-                                            data-parsley-minlength="6" required="">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-md">
-                                <div class="col-xs-12">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="ti ti-key"></i>
-                                        </span>
-                                        <input type="password" class="form-control" id="exampleInputPassword1"
-                                            placeholder="Password">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-n">
-                                <div class="col-xs-12">
-                                    <a href="extras-forgotpassword.html" class="pull-left">Forgot password?</a>
-                                    <div class="checkbox-inline icheck pull-right p-n">
-                                        <label for="" class="">
-                                            <div class="icheckbox_minimal-blue" style="position: relative;"><input
-                                                    type="checkbox" style="position: absolute; opacity: 0;"><ins
-                                                    class="iCheck-helper"
-                                                    style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                            </div>
-                                            Remember me
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- panel-body -->
-                    <div class="panel-footer">
-                        <div class="clearfix">
-                            <a href="extras-registration.html" class="btn btn-default pull-left">Register</a>
-                            <a href="extras-login.html" class="btn btn-primary pull-right">Login</a>
+            <!-- col -6  -->
+            <div class="col-md-7" align="center" >
+                <img class="login-logo" src="<?php echo base_url();?>avenxo/assets/img/Logofinal.png" height="15%">
+                <div class="col-md-8 col-md-offset-2" >
+                    <div class="panel panel-default">
+                        <div class="panel-heading" align="center">
+                            <h3 id="login_txt">Login</h3>
                         </div>
+                        <!-- panel-heading  -->
+
+                        <div class="panel-body">
+                            <form action="#" class="form-horizontal" id="validate-form">
+                                <div class="form-group mb-md">
+                                    <div class="col-xs-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="ti ti-user"></i>
+                                            </span>
+                                            <input type="text" class="form-control" placeholder="Username"
+                                                data-parsley-minlength="6" required="">
+                                        </div>
+                                        <!-- input-group -->
+                                    </div>
+                                    <!-- col-xs-12 -->
+                                </div>
+                                <!-- form-group
+                             -->
+                                <div class="form-group mb-md">
+                                    <div class="col-xs-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="ti ti-key"></i>
+                                            </span>
+                                            <input type="password" class="form-control" id="exampleInputPassword1"
+                                                placeholder="Password">
+                                        </div>
+                                        <!-- input-group -->
+                                    </div>
+                                    <!-- col-xs-12 -->
+                                </div>
+                                <!-- form-group -->
+
+                                <div class="form-group mb-n">
+                                    <div class="col-xs-12">
+                                        <a href="extras-forgotpassword.html" class="pull-left">Forgot password?</a>
+                                        <div class="checkbox-inline icheck pull-right p-n">
+                                            <label for="" class="">
+                                                <div class="icheckbox_minimal-blue" style="position: relative;"><input
+                                                        type="checkbox" style="position: absolute; opacity: 0;"><ins
+                                                        class="iCheck-helper"
+                                                        style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                                </div>
+                                                Remember me
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- panel-body -->
+                        <div class="panel-footer">
+                            <div class="clearfix">
+                                <a href="#" class="btn btn-primary pull-right">Login</a>
+                            </div>
+                        </div>
+                        <!-- panel-footer -->
                     </div>
-                    <!-- panel-footer -->
+                    <!-- panel panel-default -->
                 </div>
-                <!-- panel panel-default -->
+                <!-- col-md-4 -->
             </div>
-            <!-- col-md-4 -->
+            <!-- col -6  -->
         </div>
         <!-- row -->
     </div>
