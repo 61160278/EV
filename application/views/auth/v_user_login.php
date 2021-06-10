@@ -25,13 +25,33 @@
 #bg_login {
     background-image: url("<?php echo base_url();?>pic/BG_LOGIN.jpg");
 }
+
 /* body  */
-#login_txt{
+</style>
+
+<script>
+function validate() {
+
+    var user = document.getElementById("user").value;
+    var pass = document.getElementById("pass").value;
+
+    if (user != "" && pass != "") {
+
+        return true;
+    }
+    // if
+    else if (user == "" && pass == "") {
+        $("#user").css("background-color", "#ffe6e6");
+        $("#user").css("border-style", "solid");
+        $("#pass").css("background-color", "#ffe6e6");
+        $("#pass").css("border-style", "solid");
+        return false;
+    }
+    // else if 
 
 }
-/* login_txt */
-
-</style>
+// function validate
+</script>
 
 <body class="focused-form animated-content" id="bg_login">
 
@@ -42,9 +62,9 @@
                 <img class="login-logo" src="<?php echo base_url();?>pic/denso.png" height="70%">
             </div>
             <!-- col -6  -->
-            <div class="col-md-7" align="center" >
+            <div class="col-md-7" align="center">
                 <img class="login-logo" src="<?php echo base_url();?>avenxo/assets/img/Logofinal.png" height="15%">
-                <div class="col-md-8 col-md-offset-2" >
+                <div class="col-md-8 col-md-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-heading" align="center">
                             <h3 id="login_txt">Login</h3>
@@ -52,30 +72,28 @@
                         <!-- panel-heading  -->
 
                         <div class="panel-body">
-                            <form action="#" class="form-horizontal" id="validate-form">
+                            <form action="#" class="form-horizontal" onsubmit="return validate()" id="validate-form">
                                 <div class="form-group mb-md">
                                     <div class="col-xs-12">
                                         <div class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="ti ti-user"></i>
                                             </span>
-                                            <input type="text" class="form-control" placeholder="Username"
-                                                data-parsley-minlength="6" required="">
+                                            <input type="text" class="form-control" id="user" placeholder="Username" required="">
                                         </div>
                                         <!-- input-group -->
                                     </div>
                                     <!-- col-xs-12 -->
                                 </div>
-                                <!-- form-group
-                             -->
+                                <!-- form-group -->
+
                                 <div class="form-group mb-md">
                                     <div class="col-xs-12">
                                         <div class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="ti ti-key"></i>
                                             </span>
-                                            <input type="password" class="form-control" id="exampleInputPassword1"
-                                                placeholder="Password">
+                                            <input type="password" class="form-control" id="pass" placeholder="Password" required="">
                                         </div>
                                         <!-- input-group -->
                                     </div>
@@ -96,19 +114,23 @@
                                                 Remember me
                                             </label>
                                         </div>
+                                        <!-- checkbox-inline -->
                                     </div>
+                                    <!-- col-xs-12 -->
                                 </div>
-                            </form>
+                                <!-- form-group mb-n -->
                         </div>
                         <!-- panel-body -->
                         <div class="panel-footer">
                             <div class="clearfix">
-                                <a href="#" class="btn btn-primary pull-right">Login</a>
+                                <input type="submit" class="btn btn-primary pull-right" value="Login">
                             </div>
                         </div>
                         <!-- panel-footer -->
                     </div>
                     <!-- panel panel-default -->
+                    </form>
+                    <!-- form  -->
                 </div>
                 <!-- col-md-4 -->
             </div>
