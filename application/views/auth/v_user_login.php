@@ -72,14 +72,14 @@ function validate() {
                         <!-- panel-heading  -->
 
                         <div class="panel-body">
-                            <form action="#" class="form-horizontal" onsubmit="return validate()" id="validate-form">
+                            <form action="<?php echo base_url();?>Auth/check_login" class="form-horizontal" id="validate-form" method="POST">
                                 <div class="form-group mb-md">
                                     <div class="col-xs-12">
                                         <div class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="ti ti-user"></i>
                                             </span>
-                                            <input type="text" class="form-control" id="user" placeholder="Username" required="">
+                                            <input type="text" class="form-control" name="user" id="user" placeholder="Username" required="">
                                         </div>
                                         <!-- input-group -->
                                     </div>
@@ -93,7 +93,7 @@ function validate() {
                                             <span class="input-group-addon">
                                                 <i class="ti ti-key"></i>
                                             </span>
-                                            <input type="password" class="form-control" id="pass" placeholder="Password" required="">
+                                            <input type="password" class="form-control" name="pass" id="pass" placeholder="Password" required="">
                                         </div>
                                         <!-- input-group -->
                                     </div>
