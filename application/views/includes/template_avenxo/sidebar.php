@@ -37,7 +37,7 @@
 
 
                             <ul class="acc-menu">
-                                <?php if($_SESSION['UsRole'] = 1){ ?>
+                                <?php if($_SESSION['UsRole'] == 1){ ?>
                                 <li><a href="<?php echo base_url() ?>Evs_all_manage/index"><i
                                             class="fa fa-home"></i><span>HOME</span></span></a></li>
                                 <li class="nav-separator"><span>Menu</span></li>
@@ -46,8 +46,15 @@
 
                                 <?php }
                                 // if
-                                else if($_SESSION['UsRole'] = 2) { ?>
-
+                                else if($_SESSION['UsRole'] == 2) { ?>
+                                <li class="nav-separator"><span>Menu</span></li>
+                                <li><a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/index"><i
+                                            class="fa fa-book"></i><span>Manage form by Department
+                                            head</span></span></a></li>
+                                <?php }
+                                //else 
+                                else if($_SESSION['UsRole'] == 3) { ?>
+                                <li class="nav-separator"><span>Menu</span></li>
                                 <li><a href="<?php echo base_url() ?>ev_permission/Evs_permission/index"><i
                                             class="fa fa-user"></i><span>Manage permission</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_group/Evs_group/index"><i
@@ -56,11 +63,8 @@
                                             class="fa fa-bar-chart-o"></i><span>Manage quota</span></span></a></li>
                                 <li><a href="<?php echo base_url()?>Evs_Controller/index"><i
                                             class="fa fa-book"></i><span>Manage form by Amin</span></span></a></li>
-                                <li><a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/index"><i
-                                            class="fa fa-book"></i><span>Manage form by Department
-                                            head</span></span></a></li>
                                 <?php }
-                                //else ?>
+                                //else if ?>
 
                             </ul>
                         </nav>

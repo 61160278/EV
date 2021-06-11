@@ -60,23 +60,12 @@ class Auth extends MainController
 
 	public function logout()
 	{
-		$this->session->unset_userdata('HOME');
-		$this->session->unset_userdata('URL');
-		$this->session->unset_userdata('MnID');
-		$this->session->unset_userdata('MnURL');
-		$this->session->unset_userdata('MnNameT');
-		$this->session->unset_userdata('UsID');
-		$this->session->unset_userdata('GpID');
-		$this->session->unset_userdata('StID');
-		$this->session->unset_userdata('UsPsCode');
-		$this->session->unset_userdata('UsLogin');
-		$this->session->unset_userdata('SysName');
-		$this->session->unset_userdata('UsName');
-		$this->session->unset_userdata('dpName');
-		$this->session->unset_userdata('logged_in');
-		$this->session->unset_userdata('GpName');
-		$this->session->unset_userdata('UsWgID');
-		$this->session->unset_userdata('UsAdmin');
+		$this->session->unset_userdata('UsEmp_ID');
+		$this->session->unset_userdata('UsName_EN');
+		$this->session->unset_userdata('UsName_TH');
+		$this->session->unset_userdata('UsDepartment');
+		$this->session->unset_userdata('UsRole');
+		$this->session->unset_userdata('Uspay_id');
 		redirect('index.php/auth/login', 'refresh');
 	}
 }
