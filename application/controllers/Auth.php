@@ -30,14 +30,17 @@ class Auth extends MainController
 		// if
 		else{
 			$temp = $data['user']->row();
+			// print_r($temp);
 			$this->session->set_userdata('UsEmp_ID', $temp->emp_employee_id);
+			$this->session->set_userdata('UsName_EN', $temp->Empname_eng." ".$temp->Empsurname_eng);
+			$this->session->set_userdata('UsName_TH', $temp->Empname_th." ".$temp->Empsurname_th);
+			$this->session->set_userdata('UsDepartment', $temp->Department);
 			$this->session->set_userdata('Uspay_id', $temp->pay_id);
 
 			$this-> main();
 			
 		}
 		// else 
-
 
 	}
 
