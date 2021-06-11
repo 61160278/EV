@@ -60,7 +60,7 @@ function show_weight() {
     document.getElementById("weight_all").innerHTML = sum;
 }
 
-function save_ACM() {
+function update_ACM() {
     var arr_radio = [];
     var arr_sfa_id = [];
     var get_arr_sfa_id = "";
@@ -386,7 +386,7 @@ function save_ACM() {
                         </div>
                         <!-- col-md-6 -->
                         <div class="col-md-6" align="right">
-                            <button class="btn btn-success" onclick="save_ACM()"> Save</button>
+                            <button class="btn btn-success" onclick="update_ACM()"> Save</button>
                         </div>
                     </div>
                     <!-- row -->

@@ -192,7 +192,7 @@ function save_MBO() {
 
                     <hr>
 
-                    <table class="table table-bordered table-striped m-n" id="mbo">
+                    <table class="table table-bordered table-striped m-n" >
                         <thead id="headmbo">
                             <tr>
                                 <th rowspan="2" width="2%">
@@ -223,7 +223,7 @@ function save_MBO() {
                         <!-- thead -->
                         <tbody id="row_mbo">
                             <?php 
-                            $table_index_radio = 0;
+                            $table_index_radio_mbo = 0;
 							foreach($mbo_emp as $index => $row) {?>
                             <tr>
                                 <td>
@@ -237,7 +237,7 @@ function save_MBO() {
                                     <?php echo $row->dtm_weight; 
                             
                                         ?>
-                                         <input type="number" name="weing_a_<?php echo $table_index_radio ?>"
+                                         <input type="number" name="weing_mbo_<?php echo $table_index_radio_mbo ?>"
                                         value="<?php echo $row->dtm_weight; ?>" hidden>
                                 </td>
                                 <td id="dis_color">
@@ -271,29 +271,29 @@ function save_MBO() {
                                         }
                                 ?>
                                         <div class="col-md-12">
-                                            <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
+                                            <input type="radio" name="rd_mbo_<?php echo $table_index_radio_mbo ?>"
                                                 id="rd_<?php echo $table_index_radio ?>" value="1"
-                                                onclick="show_weight()" <?php echo $checked_weight_1 ?>>
+                                                onclick="show_weight_mbo()" <?php echo $checked_weight_1 ?>>
                                             <label for="1">&nbsp; 1</label>
                                             &nbsp;&nbsp;
-                                            <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
+                                            <input type="radio" name="rd_mbo_<?php echo $table_index_radio_mbo ?>"
                                                 id="rd_<?php echo $table_index_radio ?>" value="2"
-                                                onclick="show_weight()" <?php echo $checked_weight_2 ?>>
+                                                onclick="show_weight_mbo()" <?php echo $checked_weight_2 ?>>
                                             <label for="2">&nbsp; 2</label>
                                             &nbsp;&nbsp;
-                                            <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
+                                            <input type="radio" name="rd_mbo_<?php echo $table_index_radio_mbo ?>"
                                                 id="rd_<?php echo $table_index_radio ?>" value="3"
-                                                onclick="show_weight()" <?php echo $checked_weight_3 ?>>
+                                                onclick="show_weight_mbo()" <?php echo $checked_weight_3 ?>>
                                             <label for="3">&nbsp; 3</label>
                                             &nbsp;&nbsp;
-                                            <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
+                                            <input type="radio" name="rd_mbo_<?php echo $table_index_radio_mbo ?>"
                                                 id="rd_<?php echo $table_index_radio ?> " value="4"
-                                                onclick="show_weight()" <?php echo $checked_weight_4 ?>>
+                                                onclick="show_weight_mbo()" <?php echo $checked_weight_4 ?>>
                                             <label for="4">&nbsp; 4</label>
                                             &nbsp;&nbsp;
-                                            <input type="radio" name="rd_name_<?php echo $table_index_radio ?>"
+                                            <input type="radio" name="rd_mbo_<?php echo $table_index_radio_mbo ?>"
                                                 id="rd_<?php echo $table_index_radio ?>" value="5"
-                                                onclick="show_weight()" <?php echo $checked_weight_5 ?>>
+                                                onclick="show_weight_mbo()" <?php echo $checked_weight_5 ?>>
                                             <label for="5">&nbsp; 5</label>
                                             &nbsp;&nbsp;
                                         </div>
@@ -302,13 +302,13 @@ function save_MBO() {
                                     </center>
                                 </td>
                                 <td id="dis_color" width="2%">
-                                    <p id="weight_<?php echo $table_index_radio ?>"></p>
+                                    <p id="weight_mbo_<?php echo $table_index_radio_mbo ?>"></p>
                                 </td>
-                                <?php $table_index_radio++;  ?>
+                                <?php $table_index_radio_mbo++;  ?>
                             </tr>
                             <input type="text" name="dtm_id" value="<?php echo $row->dtm_id; ?>" hidden>
                             <?php  };?>
-                            <input type="text" id="table_index_radio" value="<?php echo $table_index_radio; ?>" hidden>
+                            <input type="text" id="table_index_radio_mbo" value="<?php echo $table_index_radio_mbo; ?>" hidden>
                     
 
 
@@ -337,18 +337,13 @@ function save_MBO() {
                                 <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
                             </a>
                             <!-- cancel to back to main  -->
-
                         </div>
                         <!-- col-md-6 -->
-
                         <div class="col-md-6" align="right">
-                            <button class="btn btn-success" onclick="save_MBO()"> Save</button>
                         </div>
                         <!-- col-md-6 add_app -->
-
                     </div>
                     <!-- row -->
-
                 </div>
                 <!-- form 1 -->
 
