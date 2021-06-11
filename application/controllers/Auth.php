@@ -35,6 +35,7 @@ class Auth extends MainController
 			$this->session->set_userdata('UsName_EN', $temp->Empname_eng." ".$temp->Empsurname_eng);
 			$this->session->set_userdata('UsName_TH', $temp->Empname_th." ".$temp->Empsurname_th);
 			$this->session->set_userdata('UsDepartment', $temp->Department);
+			$this->session->set_userdata('UsRole', $temp->log_role);
 			$this->session->set_userdata('Uspay_id', $temp->pay_id);
 
 			$this-> main();

@@ -100,24 +100,27 @@ function validate_his() {
             <div class="panel-body" style="height: 400px">
 
                 <div class="row">
-                    <div class="col-md-4" align="center">
-                        <a data-toggle="modal" href="#input_empid">
-                            <img src="<?php echo base_url();?>/pic/created_MBO.png" height="350px">
-                        </a>
+                    <div class="col-md-6" align="center">
+                        <form method="POST" action="<?php echo base_url(); ?>ev_form/Evs_form/createMBO">
+                            <input id="emp_id" name="emp_id" type="text" value="<?php echo $_SESSION['UsEmp_ID'] ?>"
+                                hidden>
+                            <input type="image" src="<?php echo base_url();?>/pic/created_MBO.png" alt="Submit"
+                                height="350px">
+
+                        </form>
+                        <!-- form  -->
                     </div>
                     <!-- col-4  -->
 
-                    <div class="col-md-4" align="center">
-                        <a href="">
-                            <img src="<?php echo base_url();?>/pic/evaluation.png" height="350px">
-                        </a>
-                    </div>
-                    <!-- col-4  -->
+                    <div class="col-md-6" align="center">
+                        <form method="POST" action="<?php echo base_url(); ?>ev_form/Evs_form/historyMBO">
+                            <input id="emp_id_his" name="emp_id_his" type="text"
+                                value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
+                            <input type="image" src="<?php echo base_url();?>/pic/historyMBO.png" alt="Submit"
+                                height="350px">
 
-                    <div class="col-md-4" align="center">
-                        <a data-toggle="modal" href="#input_empid_his">
-                            <img src="<?php echo base_url();?>/pic/historyMBO.png" height="350px">
-                        </a>
+                        </form>
+                        <!-- form  -->
                     </div>
                     <!-- col-4  -->
                 </div>

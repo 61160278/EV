@@ -51,7 +51,7 @@ class Evs_form extends MainController_avenxo {
 	function createMBO()
 	{
 		$emp_id = $this->input->post("emp_id");
-		$pay_id = 2;
+		$pay_id = $_SESSION['Uspay_id'];
 
 		$this->load->model('M_evs_employee','memp');
 		$this->memp->Emp_ID = $emp_id;
@@ -251,7 +251,7 @@ class Evs_form extends MainController_avenxo {
 	function get_tap_form(){
 
 		$ps_pos_id = $this->input->post("ps_pos_id");
-		$pay_id = 2;
+		$pay_id = $_SESSION['Uspay_id'];;
 
 		$this->load->model('M_evs_position_from','mpf');
 		$this->mpf->ps_pos_id = $ps_pos_id;
@@ -264,7 +264,7 @@ class Evs_form extends MainController_avenxo {
 	
 	function get_mbo_by_pos(){
 
-		$pay_id = 2;
+		$pay_id = $_SESSION['Uspay_id'];;
 		$pos = $this->input->post("pos");
 		$this->load->model('M_evs_set_form_mbo','mesf');
 		$this->mesf->sfm_pay_id = $pay_id;
@@ -277,7 +277,7 @@ class Evs_form extends MainController_avenxo {
 
 	function get_G_O_by_pos(){
 		
-		$pay_id = 2;
+		$pay_id = $_SESSION['Uspay_id'];;
 		$pos = $this->input->post("pos");
 		$this->load->model('M_evs_set_form_g_and_o','mesg');
 		$this->mesg->sfg_pay_id = $pay_id;
@@ -461,7 +461,7 @@ class Evs_form extends MainController_avenxo {
 	// function get_approve
 
 	function edit_mbo($emp_id_edit){
-		$pay_id = 2;
+		$pay_id = $_SESSION['Uspay_id'];;
 
 		$this->load->model('M_evs_employee','memp');
 		$this->memp->Emp_ID = $emp_id_edit;
@@ -510,7 +510,7 @@ class Evs_form extends MainController_avenxo {
 	function get_mbo_to_edit(){
 
 		$dtm_emp_id = $this->input->post("dtm_emp_id");
-		$pay_id = 2;
+		$pay_id = $_SESSION['Uspay_id'];;
 		$this->load->model('M_evs_employee','memp');
 		$this->memp->Emp_ID = $dtm_emp_id;
 		$this->memp->emp_pay_id = $pay_id;
@@ -579,7 +579,7 @@ class Evs_form extends MainController_avenxo {
 	// function edit_g_o($emp_id_edit)
 
 	function get_g_o_edit(){
-		$pay_id = 2;
+		$pay_id = $_SESSION['Uspay_id'];;
 
 		$dgo_emp_id = $this->input->post("dgo_emp_id");
 
@@ -713,7 +713,7 @@ class Evs_form extends MainController_avenxo {
 	function historyMBO()
 	{
 		$emp_id = $this->input->post("emp_id_his");
-		$pay_id = 2;
+		$pay_id = $_SESSION['Uspay_id'];;
 		$this->load->model('M_evs_employee','memp');
 		$this->memp->Emp_ID = $emp_id;
 		$this->memp->emp_pay_id = $pay_id;
@@ -800,7 +800,7 @@ class Evs_form extends MainController_avenxo {
 	function get_approve_his(){
 
 		$app_emp = $this->input->post("app_emp");
-		$pay_id = 2;
+		$pay_id = $_SESSION['Uspay_id'];;
 		$this->load->model('M_evs_employee','memp');
 		$this->memp->Emp_ID = $app_emp;
 		$this->memp->emp_pay_id = $pay_id;
