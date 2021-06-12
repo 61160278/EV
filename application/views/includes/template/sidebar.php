@@ -25,8 +25,40 @@
     <nav class="navbar navbar-expand-sm navbar-default">
         <div id="main-menu" class="main-menu collapse navbar-collapse">
 
+
+
             <!-- Start tap menu sidebar   -->
             <ul class="nav navbar-nav">
+
+                <div class="card-body">
+                    <div class="stat-widget-one">
+                        <div align="center">
+                            <img src="http://placehold.it/300&text=Placeholder" width="80px">
+                            <!-- image  -->
+                        </div>
+                        <!-- center img  -->
+                        <div class="stat-content dib">
+                            <div class="stat-text">
+                                <span><?php echo $_SESSION['UsName_EN']; ?></span>
+                            </div>
+                            <!-- name EN  -->
+
+                            <div class="stat-text">
+                                <span><?php echo $_SESSION['UsName_TH']; ?></span>
+                            </div>
+                            <!-- name TH  -->
+                            <div class="stat-text">
+                                <span id="department"><?php echo $_SESSION['UsDepartment']; ?></span>
+                            </div>
+                            <hr>
+                        </div>
+                        <!-- content -->
+                    </div>
+                    <!-- widget -->
+                </div>
+                <!-- card -->
+
+
                 <li class="menu-item">
                     <a href="<?php echo base_url()?>Evs_Controller/index"><i class="menu-icon fa fa-home"
                             style="color:"></i>Home </a>
@@ -34,7 +66,7 @@
                 <!-- Home page  -->
 
                 <li class="menu-title">Menu</li>
-                <!-- /.menu-title -->                
+                <!-- /.menu-title -->
 
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
@@ -57,8 +89,8 @@
                 <!-- menu manage forms  -->
 
                 <li class="menu-item">
-                    <a href="<?php echo base_url() ?>ev_permission/Evs_permission/index"><i class="menu-icon fa fa-tasks"
-                            style="color:"></i>Manage Permision </a>
+                    <a href="<?php echo base_url() ?>ev_permission/Evs_permission/index"><i
+                            class="menu-icon fa fa-tasks" style="color:"></i>Manage Permision </a>
                 </li>
                 <!-- Manage Permision  -->
 
@@ -73,7 +105,7 @@
                             style="color:"></i>Manage quota </a>
                 </li>
                 <!-- Manage quota  -->
-              
+
 
             </ul>
             <!-- End tap menu sidebar  -->

@@ -32,6 +32,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- widget -->
                     <div class="widget stay-on-collapse" id="widget-sidebar">
                         <nav role="navigation" class="widget-body">
 
@@ -76,8 +77,11 @@
                     </div>
 
                 </div>
+                <!-- sidebar -->
             </div>
+            <!-- static-sidebar -->
         </div>
+        <!-- static-sidebar-wrapper -->
 
         <div class="static-content-wrapper">
             <div class="static-content">
