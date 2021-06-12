@@ -437,8 +437,7 @@ function update_mhrd() {
                             <div class="col-md-6" align="right">
                             <button class="btn btn-success" onclick="update_mhrd()"> Save</button>
                         </div>
-                        <!-- col-md-6 add_app -->
-                        </div>
+                        <!-- col-md-6 add_app --> 
                     </div>
                     <!-- row -->
 
