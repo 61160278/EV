@@ -29,36 +29,6 @@
 
             <!-- Start tap menu sidebar   -->
             <ul class="nav navbar-nav">
-
-                <div class="card-body">
-                    <div class="stat-widget-one">
-                        <div align="center">
-                            <img src="http://placehold.it/300&text=Placeholder" width="80px">
-                            <!-- image  -->
-                        </div>
-                        <!-- center img  -->
-                        <div class="stat-content dib">
-                            <div class="stat-text">
-                                <span><?php echo $_SESSION['UsName_EN']; ?></span>
-                            </div>
-                            <!-- name EN  -->
-
-                            <div class="stat-text">
-                                <span><?php echo $_SESSION['UsName_TH']; ?></span>
-                            </div>
-                            <!-- name TH  -->
-                            <div class="stat-text">
-                                <span id="department"><?php echo $_SESSION['UsDepartment']; ?></span>
-                            </div>
-                            <hr>
-                        </div>
-                        <!-- content -->
-                    </div>
-                    <!-- widget -->
-                </div>
-                <!-- card -->
-
-
                 <li class="menu-item">
                     <a href="<?php echo base_url()?>Evs_Controller/index"><i class="menu-icon fa fa-home"
                             style="color:"></i>Home </a>

@@ -53,7 +53,7 @@ function select_company(value) {
             </div>
             <!-- panel-body -->
         </div>
-        <!-- col-md-12 --> -->
+        <!-- col-md-12 -->
     </div>
     <!-- panel panel-indigo -->
 </div>
