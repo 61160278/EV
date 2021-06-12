@@ -57,7 +57,7 @@ class Evs_form_AP extends MainController_avenxo {
 		$year = $data['patt_year']->row(); // show value year now
 		//end set year now
 		$pay_id = $year->pay_id;
-		$emp_id = "00009";
+		$emp_id = "00010";
 
 		$this->load->model('M_evs_employee','memp');
 		$this->memp->Emp_ID = $emp_id;
