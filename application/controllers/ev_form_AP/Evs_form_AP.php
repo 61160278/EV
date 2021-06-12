@@ -52,15 +52,12 @@ class Evs_form_AP extends MainController_avenxo {
 	{
 		$data['data_from_pe'] = "";
 		$data['data_from_ce'] = "";
-		$emp_id = "00009";
-		//$pay_id = 2;
-		//string set year now
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
 		$year = $data['patt_year']->row(); // show value year now
 		//end set year now
 		$pay_id = $year->pay_id;
-
+		$emp_id = "00009";
 
 		$this->load->model('M_evs_employee','memp');
 		$this->memp->Emp_ID = $emp_id;
@@ -85,37 +82,28 @@ class Evs_form_AP extends MainController_avenxo {
 
 
 		if($data['form']->ps_form_pe == "MBO"){
-
 			$this->load->model('M_evs_data_mbo_weight','medw');
 			$this->medw->dmw_evs_emp_id = $tep->emp_id;
 			$data['check'] = $data['data_mbo'] = $this->medw->get_by_empID()->result();
 			$check_mbo = sizeof($data['check']);
 	
+			$this->load->model('M_evs_data_mbo','medm');
+			$this->medm->dtm_emp_id = $emp_id;
+			$this->medm->dtm_evs_emp_id = $tep->emp_id;
+			$data['mbo_emp'] = $this->medm->get_by_empID()->result();
+			$data['info_pos_id'] = $tep->Position_ID;
 	
 			if($check_mbo != 0){
-					$this->load->model('M_evs_data_mbo','medm');
-					$this->medm->dtm_emp_id = $emp_id;
-					$this->medm->dtm_evs_emp_id = $tep->emp_id;
-					$data['mbo_emp'] = $this->medm->get_by_empID()->result();
-					$data['info_pos_id'] = $tep->Position_ID;
 					$data['data_from_pe'] = "MBO_edit";		
-					
 			}
 			// if
 			else{
-					$this->load->model('M_evs_data_mbo','medm');
-					$this->medm->dtm_emp_id = $emp_id;
-					$this->medm->dtm_evs_emp_id = $tep->emp_id;
-					$data['mbo_emp'] = $this->medm->get_by_empID()->result();
-	
-					$data['info_pos_id'] = $tep->Position_ID;
 					$data['data_from_pe'] = "MBO";
 			}
-
 		}
 
 
-		if($data['form']->ps_form_pe == "G&O"){
+		else if($data['form']->ps_form_pe == "G&O"){
 
 		$this->load->model('M_evs_data_g_and_o_weight','megw');
 		$this->megw->dgw_evs_emp_id = $tep->emp_id;
@@ -145,26 +133,22 @@ class Evs_form_AP extends MainController_avenxo {
 		// else	
 		}
 
-		if($data['form']->ps_form_pe == "MHRD"){
+		else if($data['form']->ps_form_pe == "MHRD"){
 			$this->load->model('M_evs_data_mhrd_weight','memw');
 			$this->memw->mhw_evs_emp_id = $tep->emp_id;
 			$data['check'] = $data['data_mhrd'] = $this->memw->get_by_empID()->result();
 	
 			$check = sizeof($data['check']);
-	
-			if($check != 0){
 			$this->load->model('M_evs_set_form_mhrd','msfm');
 				$this->msfm->sfi_pos_id = $tep->Position_ID;
 				$data['info_mhrd'] = $this->msfm->get_item_description_by_position()->result();
-				$data['data_from_pe'] = "MHRD_edit";
-				
+	
+			if($check != 0){
+				$data['data_from_pe'] = "MHRD_edit";	
 			}
 			// if
 	
 			else{
-				$this->load->model('M_evs_set_form_mhrd','msfm');
-				$this->msfm->sfi_pos_id = $tep->Position_ID;
-				$data['info_mhrd'] = $this->msfm->get_item_description_by_position()->result();
 				$data['data_from_pe'] = "MHRD";
 			}
 		}
@@ -208,7 +192,7 @@ class Evs_form_AP extends MainController_avenxo {
 		// else	
 		}
 
-		if($data['form']->ps_form_ce == "GCM"){
+		else if($data['form']->ps_form_ce == "GCM"){
 			$this->load->model('M_evs_data_gcm_weight','mdtm');
 			$this->mdtm->dtg_evs_emp_id = $employee_data->emp_id;
 			$data['check'] = $data['data_gcm_weight'] = $this->mdtm->get_by_empID()->result();
