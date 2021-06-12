@@ -102,68 +102,16 @@ function validate_his() {
                 <div class="row">
 
                 
-                    <div class="col-md-2" align="center">
+                    <div class="col-md-6" align="center">
                         <a data-toggle="modal" href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/createFROM">
                             <div class="info-tile ">
                                 <div class="tile-icon"><i class="ti ti-files"></i></div>
-                                <div class="tile-body"><span>MBO</span></div>
+                                <div class="tile-body"><span>evaluate</span></div>
 
                             </div>
                         </a>
 
-                        <div class="col-md-2" align="center">
-                        </div>
-                    </div>
-
-                    <div class="col-md-2" align="center">
-                    </div>
-                    <div class="col-md-2" align="center">
-                        <a data-toggle="modal" href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/createACM">
-                            <div class="info-tile ">
-                                <div class="tile-icon"><i class="ti ti-files"></i></div>
-                                <div class="tile-body"><span>ACM</span></div>
-
-                            </div>
-                        </a>
-                        <div class="col-md-2" align="center">
-                        </div>
-                    </div>
-
-                    <!-- col-4  -->
-                
-                    <div class="col-md-2" align="center">
-                        <a data-toggle="modal" href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/createGCM">
-                            <div class="info-tile ">
-                                <div class="tile-icon"><i class="ti ti-files"></i></div>
-                                <div class="tile-body"><span>GCM</span></div>
-
-                            </div>
-                        </a>
-                        <div class="col-md-2" align="center">
-                        </div>
-                    </div>
-            
- 
-                    <div class="col-md-2" align="center">
-                        <a data-toggle="modal" href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/createg_and_o">
-                            <div class="info-tile ">
-                                <div class="tile-icon"><i class="ti ti-files"></i></div>
-                                <div class="tile-body"><span>G&O</span></div>
-
-                            </div>
-                        </a>
-                        <div class="col-md-2" align="center">
-                        </div>
-                    </div>
-                    <div class="col-md-2" align="center">
-                        <a data-toggle="modal" href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/createMHRD">
-                            <div class="info-tile ">
-                                <div class="tile-icon"><i class="ti ti-files"></i></div>
-                                <div class="tile-body"><span>MHRD</span></div>
-
-                            </div>
-                        </a>
-                        <div class="col-md-2" align="center">
+                        <div class="col-md-6" align="center">
                         </div>
                     </div>
             
