@@ -37,7 +37,7 @@ class Evs_permission extends MainController_avenxo {
 	*/
 	function index()
 	{
-		$pay_id = 2;
+		$pay_id = $_SESSION['Uspay_id'];
 		$this->load->model('M_evs_employee','mevg');
 		$this->mevg->emp_pay_id= $pay_id;
 		$data['select'] = $this->mevg->get_all_emp_delete();
@@ -119,6 +119,10 @@ class Evs_permission extends MainController_avenxo {
 		$Sectioncode = $this->input->post("Sectioncode");
 		$Company = $this->input->post("Company");
 		$count = $this->input->post("count");
+
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now all
+		$temp = $data['patt_year']->result();
 		
 		$this->load->model('Da_evs_employee','deep');
 		for($i=0;$i<$count;$i++){
@@ -128,7 +132,7 @@ class Evs_permission extends MainController_avenxo {
 		$this->deep->emp_section_code_ID = $Sectioncode[$i];
 		$this->deep->emp_company_id = $Company[$i];
 
-		$this->deep->emp_pay_id = 2;
+		$this->deep->emp_pay_id = $temp->pay_id;
 		$this->deep->emp_ghr_id = 0;
 		$this->deep->insert();
 

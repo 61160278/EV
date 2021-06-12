@@ -703,10 +703,5 @@ function edit_quota_actual($data_sent){
 }
 
 
-
-
-
-
-
 }// end class
 ?>
