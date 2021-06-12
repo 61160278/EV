@@ -25,6 +25,8 @@
     <nav class="navbar navbar-expand-sm navbar-default">
         <div id="main-menu" class="main-menu collapse navbar-collapse">
 
+
+
             <!-- Start tap menu sidebar   -->
             <ul class="nav navbar-nav">
                 <li class="menu-item">
@@ -55,6 +57,25 @@
 
                 </li>
                 <!-- menu manage forms  -->
+
+                <li class="menu-item">
+                    <a href="<?php echo base_url() ?>ev_permission/Evs_permission/index"><i
+                            class="menu-icon fa fa-tasks" style="color:"></i>Manage Permision </a>
+                </li>
+                <!-- Manage Permision  -->
+
+                <li class="menu-item">
+                    <a href="<?php echo base_url() ?>ev_group/Evs_group/index"><i class="menu-icon fa fa-users"
+                            style="color:"></i>Manage group </a>
+                </li>
+                <!-- Manage group  -->
+
+                <li class="menu-item">
+                    <a href="<?php echo base_url() ?>ev_quota/Evs_quota/index"><i class="menu-icon fa  fa-bar-chart-o"
+                            style="color:"></i>Manage quota </a>
+                </li>
+                <!-- Manage quota  -->
+
 
             </ul>
             <!-- End tap menu sidebar  -->
