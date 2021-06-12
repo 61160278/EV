@@ -48,7 +48,19 @@ class Auth extends MainController
 	public function main()
 	{
 		if (!empty($this->session->userdata('UsEmp_ID'))) {
-			redirect('Evs_all_manage/index_u', 'refresh');
+			if($_SESSION['UsRole'] == 1){
+				redirect('Evs_all_manage/index_u', 'refresh');
+			}
+			// if 
+			else if($_SESSION['UsRole'] == 2){
+				redirect('Evs_all_manage/index_u', 'refresh');
+			}
+			// else if 
+			else if($_SESSION['UsRole'] == 3){
+				redirect('Evs_Controller/index', 'refresh');
+			}
+			// else if 
+			
 		}
 		// if
 		else {

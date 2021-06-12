@@ -46,7 +46,7 @@
 
                         <!-- Start profile  -->
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="<?php echo base_url(); ?>/Auth/logout"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                         <!-- End profile  -->
                     </div>
