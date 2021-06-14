@@ -405,6 +405,7 @@ class Evs_form extends MainController_avenxo {
 		$this->load->model('Da_evs_data_approve','deda');
 		$this->deda->dma_approve1 = $approve1;
 		$this->deda->dma_approve2 = $approve2;
+		$this->deda->dma_status = 1;
 		$this->deda->dma_dtm_emp_id = $Emp_ID;
 		$this->deda->dma_emp_id = $emp_employee_id;
 		$this->deda->insert();
@@ -427,6 +428,7 @@ class Evs_form extends MainController_avenxo {
 		$this->load->model('Da_evs_data_approve','deda');
 		$this->deda->dma_approve1 = $approve1;
 		$this->deda->dma_approve2 = $approve2;
+		$this->deda->dma_status = 1;
 		$this->deda->dma_dtm_emp_id = $Emp_id;
 		$this->deda->dma_emp_id = $emp_employee_id;
 		$this->deda->update();
@@ -655,6 +657,7 @@ class Evs_form extends MainController_avenxo {
 		$this->load->model('Da_evs_data_approve','deda');
 		$this->deda->dma_approve1 = $approve1;
 		$this->deda->dma_approve2 = $approve2;
+		$this->deda->dma_status = 1;
 		$this->deda->dma_dtm_emp_id = $Emp_ID;
 		$this->deda->dma_emp_id = $emp_employee_id;
 		$this->deda->insert();
@@ -677,6 +680,7 @@ class Evs_form extends MainController_avenxo {
 		$this->load->model('Da_evs_data_approve','deda');
 		$this->deda->dma_approve1 = $approve1;
 		$this->deda->dma_approve2 = $approve2;
+		$this->deda->dma_status = 1;
 		$this->deda->dma_dtm_emp_id = $Emp_id;
 		$this->deda->dma_emp_id = $emp_employee_id;
 		$this->deda->update();
