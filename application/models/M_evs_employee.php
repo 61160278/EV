@@ -87,7 +87,7 @@ class M_evs_employee extends Da_evs_employee {
 	*/
 	function get_his_by_id(){	
 		$sql = "SELECT * 
-				FROM evs_database.evs_data_mbo_approve AS evs_mbo
+				FROM evs_database.evs_data_approve AS evs_mbo
 				INNER JOIN evs_database.evs_employee AS evs_emp
 				ON evs_emp.emp_employee_id = evs_mbo.dma_dtm_emp_id
 				INNER JOIN evs_database.evs_pattern_and_year AS evs_pay

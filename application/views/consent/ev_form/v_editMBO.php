@@ -1175,6 +1175,8 @@ function show_approveG_O() {
     var evs_emp_id = document.getElementById("evs_emp_id").value;
     var data_show = "";
 
+    // console.log(evs_emp_id);
+
     $.ajax({
         type: "post",
         dataType: "json",

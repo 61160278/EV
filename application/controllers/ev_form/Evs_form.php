@@ -402,14 +402,14 @@ class Evs_form extends MainController_avenxo {
 		$emp_employee_id = $this->input->post("evs_emp_id");
 		$Emp_ID = $this->input->post("dma_emp_id");
 
-		$this->load->model('Da_evs_data_mbo_approve','deda');
+		$this->load->model('Da_evs_data_approve','deda');
 		$this->deda->dma_approve1 = $approve1;
 		$this->deda->dma_approve2 = $approve2;
 		$this->deda->dma_dtm_emp_id = $Emp_ID;
 		$this->deda->dma_emp_id = $emp_employee_id;
 		$this->deda->insert();
 
-		$this->load->model('M_evs_data_mbo_approve','meda');
+		$this->load->model('M_evs_data_approve','meda');
 		$this->meda->dma_emp_id = $emp_employee_id;
 		$data['data_app'] = $this->meda->get_by_id()->row();
 
@@ -424,14 +424,14 @@ class Evs_form extends MainController_avenxo {
 		$emp_employee_id = $this->input->post("evs_emp_id");
 		$Emp_id = $this->input->post("dma_emp_id");
 
-		$this->load->model('Da_evs_data_mbo_approve','deda');
+		$this->load->model('Da_evs_data_approve','deda');
 		$this->deda->dma_approve1 = $approve1;
 		$this->deda->dma_approve2 = $approve2;
 		$this->deda->dma_dtm_emp_id = $Emp_id;
 		$this->deda->dma_emp_id = $emp_employee_id;
 		$this->deda->update();
 
-		$this->load->model('M_evs_data_mbo_approve','meda');
+		$this->load->model('M_evs_data_approve','meda');
 		$this->meda->dma_emp_id = $emp_employee_id;
 		$data['data_app'] = $this->meda->get_by_id()->row();
 
@@ -443,7 +443,7 @@ class Evs_form extends MainController_avenxo {
 
 		$evs_emp_id = $this->input->post("evs_emp_id");
 
-		$this->load->model('M_evs_data_mbo_approve','meda');
+		$this->load->model('M_evs_data_approve','meda');
 		$this->meda->dma_emp_id = $evs_emp_id;
 		$data['data_app'] = $this->meda->get_by_id()->row();
 
@@ -652,15 +652,15 @@ class Evs_form extends MainController_avenxo {
 		$emp_employee_id = $this->input->post("evs_emp_id");
 		$Emp_ID = $this->input->post("dma_emp_id");
 
-		$this->load->model('Da_evs_data_g_and_o_approve','deda');
-		$this->deda->dga_approve1 = $approve1;
-		$this->deda->dga_approve2 = $approve2;
-		$this->deda->dga_dtm_emp_id = $Emp_ID;
-		$this->deda->dga_emp_id = $emp_employee_id;
+		$this->load->model('Da_evs_data_approve','deda');
+		$this->deda->dma_approve1 = $approve1;
+		$this->deda->dma_approve2 = $approve2;
+		$this->deda->dma_dtm_emp_id = $Emp_ID;
+		$this->deda->dma_emp_id = $emp_employee_id;
 		$this->deda->insert();
 
-		$this->load->model('M_evs_data_g_and_o_approve','meda');
-		$this->meda->dga_emp_id = $emp_employee_id;
+		$this->load->model('M_evs_data_approve','meda');
+		$this->meda->dma_emp_id = $emp_employee_id;
 		$data['data_app'] = $this->meda->get_by_id()->row();
 
 		echo json_encode($data);
@@ -674,15 +674,15 @@ class Evs_form extends MainController_avenxo {
 		$emp_employee_id = $this->input->post("evs_emp_id");
 		$Emp_id = $this->input->post("dma_emp_id");
 
-		$this->load->model('Da_evs_data_g_and_o_approve','deda');
-		$this->deda->dga_approve1 = $approve1;
-		$this->deda->dga_approve2 = $approve2;
-		$this->deda->dga_dtm_emp_id = $Emp_id;
-		$this->deda->dga_emp_id = $emp_employee_id;
+		$this->load->model('Da_evs_data_approve','deda');
+		$this->deda->dma_approve1 = $approve1;
+		$this->deda->dma_approve2 = $approve2;
+		$this->deda->dma_dtm_emp_id = $Emp_id;
+		$this->deda->dma_emp_id = $emp_employee_id;
 		$this->deda->update();
 
-		$this->load->model('M_evs_data_g_and_o_approve','meda');
-		$this->meda->dga_emp_id = $emp_employee_id;
+		$this->load->model('M_evs_data_approve','meda');
+		$this->meda->dma_emp_id = $emp_employee_id;
 		$data['data_app'] = $this->meda->get_by_id()->row();
 
 		echo json_encode($data);
@@ -693,16 +693,16 @@ class Evs_form extends MainController_avenxo {
 
 		$evs_emp_id = $this->input->post("evs_emp_id");
 
-		$this->load->model('M_evs_data_g_and_o_approve','meda');
-		$this->meda->dga_emp_id = $evs_emp_id;
+		$this->load->model('M_evs_data_approve','meda');
+		$this->meda->dma_emp_id = $evs_emp_id;
 		$data['data_app'] = $this->meda->get_by_id()->row();
 
 		$this->load->model('M_evs_employee','memp');
-		$this->memp->Emp_ID = $data['data_app']->dga_approve1;
+		$this->memp->Emp_ID = $data['data_app']->dma_approve1;
 		$data['app1'] = $this->memp->get_by_appid()->result();
 
 		$this->load->model('M_evs_employee','memp');
-		$this->memp->Emp_ID = $data['data_app']->dga_approve2;
+		$this->memp->Emp_ID = $data['data_app']->dma_approve2;
 		$data['app2'] = $this->memp->get_by_appid()->result();
 
 		echo json_encode($data);
