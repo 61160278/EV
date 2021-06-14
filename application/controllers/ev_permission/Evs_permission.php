@@ -1,4 +1,3 @@
-
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once(dirname(__FILE__) . "/../MainController_avenxo.php");
@@ -37,8 +36,15 @@ class Evs_permission extends MainController_avenxo {
 	*/
 	function index()
 	{
-		$pay_id = $_SESSION['Uspay_id'];
+		
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
 		$this->load->model('M_evs_employee','mevg');
+		printf($pay_id);
 		$this->mevg->emp_pay_id= $pay_id;
 		$data['select'] = $this->mevg->get_all_emp_delete();
 
@@ -121,8 +127,9 @@ class Evs_permission extends MainController_avenxo {
 		$count = $this->input->post("count");
 
 		$this->load->model('M_evs_pattern_and_year','myear');
-		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now all
-		$temp = $data['patt_year']->result();
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
 		
 		$this->load->model('Da_evs_employee','deep');
 		for($i=0;$i<$count;$i++){
@@ -132,12 +139,33 @@ class Evs_permission extends MainController_avenxo {
 		$this->deep->emp_section_code_ID = $Sectioncode[$i];
 		$this->deep->emp_company_id = $Company[$i];
 
-		$this->deep->emp_pay_id = $temp->pay_id;
+		$this->deep->emp_pay_id = $year->pay_id;
 		$this->deep->emp_ghr_id = 0;
 		$this->deep->insert();
 
 		}
 		//emp_employee_id,emp_company_id,emp_position_id,emp_section_code_ID,emp_pay_id,emp_ghr_id	
+
+		$this->load->model('M_evs_login','miog');
+		$data_login = $this->miog->get_all()->result(); // show value year now
+		//end set year now
+		$chack_data_log = 0;
+		for($i=0;$i<$count;$i++){
+			$chack_data_log = 0;
+			foreach($data_login as $index => $row ) { 
+				if($empid[$i] == $row->log_user_id){
+					$chack_data_log = 1;
+				}
+			}
+			if($chack_data_log == 0){
+				$this->miog->log_user_id = $empid[$i];
+				$this->miog->log_password = $empid[$i];
+				$this->miog->log_role = 1;
+				$this->miog->insert();
+			}
+		}
+
+
 	} // function insert_emp
 
 	function delete_emp($pay_id){

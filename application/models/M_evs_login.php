@@ -46,5 +46,16 @@ class M_evs_login extends Da_evs_login {
 		return $query;
 	}
 
+
+    function get_all() {	
+		$sql = "SELECT * 
+		FROM evs_database.evs_login";
+		$query = $this->db->query($sql);
+		return $query;
+	}
+
+
+
+
 } 
 ?>

@@ -49,7 +49,7 @@ function emp_insert() {
     });
     // ajax
     var pay_id = 2;
-    window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/" + pay_id + ""
+    //window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/" + pay_id + ""
 
 } //function emp_insert
 </script>

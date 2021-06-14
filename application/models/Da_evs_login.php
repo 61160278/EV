@@ -31,7 +31,8 @@ class Da_evs_login extends evs_model {
 	public $log_id; //Number Sequence	
     public $log_user_id; //user id for login	
     public $log_password; //passeord for login	
-	public $log_per_id; //person base Sequence	
+	public $log_role; //
+	public $log_time;	
 
 	function __construct() {
 		parent::__construct();
@@ -47,10 +48,10 @@ class Da_evs_login extends evs_model {
     * @Create Date 2563-10-26
 	*/
 	function insert() {
-	 	$sql = "INSERT INTO evs_login (log_user_id, log_password, log_per_id)
+	 	$sql = "INSERT INTO evs_database.evs_login (log_user_id, log_password, log_role)
 	 			VALUES(?, ?, ?)";
 		 
-	 	$this->db->query($sql, array($this->log_user_id, $this->log_password, $this->log_per_id));
+	 	$this->db->query($sql, array($this->log_user_id, $this->log_password, $this->log_role));
 	
 	 }
 
@@ -63,11 +64,11 @@ class Da_evs_login extends evs_model {
     * @Create Date 2563-10-26
 	*/
 	function update() {
-	 	$sql = "UPDATE evs_login 
-	 			SET	log_user_id=?, log_password=?, log_per_id=?
+	 	$sql = "UPDATE evs_database.evs_login 
+	 			SET	log_user_id=?, log_password=?, log_role=?
 	 			WHERE log_id=?";
 		
-	 	$this->db->query($sql, array($this->log_user_id, $this->log_password, $this->log_per_id, $this->log_id));
+	 	$this->db->query($sql, array($this->log_user_id, $this->log_password, $this->log_role, $this->log_id));
 		
 	 }
 
@@ -80,9 +81,9 @@ class Da_evs_login extends evs_model {
     * @Create Date 2563-10-26
 	*/
 	function delete() {
-	 	$sql = "DELETE FROM evs_login
+	 	$sql = "DELETE FROM evs_database.evs_login
 	 			WHERE log_id=?";
-	 	$this->db->query($sql, array($this->yap_id));
+	 	$this->db->query($sql, array($this->log_id));
 		
 	 }
 	 
@@ -96,7 +97,7 @@ class Da_evs_login extends evs_model {
 	*/
 	function get_by_key() {	
 		$sql = "SELECT * 
-				FROM evs_login
+				FROM evs_database.evs_login
 				WHERE log_id=?";
 		$this->db->query($sql, array($this->log_id));
 		return $query;
