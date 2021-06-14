@@ -958,5 +958,34 @@ class Evs_form extends MainController_avenxo {
 		
 	}
 	// function show_mbo_his
+
+	function show_ststus(){
+
+		$emp_id = $_SESSION['UsEmp_ID'];
+		$pay_id = $_SESSION['Uspay_id'];
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $emp_id;
+		$this->memp->emp_pay_id = $pay_id;
+		$data['emp_info'] = $this->memp->get_by_empid();
+
+		$temp = $data['emp_info']->row();
+
+		$this->load->model('M_evs_data_approve','meda');
+		$this->meda->dma_emp_id = $temp->emp_id;
+		$data['data_app'] = $this->meda->get_by_id()->row();
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $data['data_app']->dma_approve1;
+		$data['app1'] = $this->memp->get_by_appid()->row();
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $data['data_app']->dma_approve2;
+		$data['app2'] = $this->memp->get_by_appid()->row();
+
+		$this->output('/consent/ev_form/v_show_status',$data);
+
+	}
+	// function show_ststus
 }
 ?>

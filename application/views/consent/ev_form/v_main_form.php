@@ -116,7 +116,7 @@ function validate_his() {
                         <form method="POST" action="">
                             <input id="emp_id" name="emp_id" type="text" value="<?php echo $_SESSION['UsEmp_ID'] ?>"
                                 hidden>
-                            <input type="image" src="<?php echo base_url();?>/pic/created_MBO.png" alt="Submit"
+                            <input type="image" src="<?php echo base_url();?>/pic/evaluation.png" alt="Submit"
                                 height="350px">
 
                         </form>

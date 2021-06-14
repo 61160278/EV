@@ -44,6 +44,8 @@
                                 <li class="nav-separator"><span>Menu</span></li>
                                 <li><a href="<?php echo base_url() ?>ev_form/Evs_form/index"><i
                                             class="fa fa-book"></i><span>Create Form</span></span></a></li>
+                                <li><a href="<?php echo base_url() ?>ev_form/Evs_form/show_ststus"><i
+                                            class="fa fa-book"></i><span>Status Form</span></span></a></li>
 
                                 <?php }
                                 // if
