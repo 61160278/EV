@@ -160,7 +160,7 @@ function change_group_remove() {
 
         },
         dataType: "JSON",
-        error: function(status) {
+        success: function(status) {
             console.log(status)
             manage_group();
             manage_group_right();
