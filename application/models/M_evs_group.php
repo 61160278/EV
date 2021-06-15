@@ -98,8 +98,8 @@ class M_evs_group extends Da_evs_group {
 				FROM evs_database.evs_employee as evg
 				LEFT JOIN dbmc.employee as em
 				ON em.Emp_ID = evg.emp_employee_id
-				WHERE evg.emp_ghr_id = ? ";
-		$query = $this->db->query($sql, array($this->emp_ghr_id));
+				WHERE evg.emp_gru_id = ? AND emp_pay_id = ?";
+		$query = $this->db->query($sql, array($this->emp_gru_id,$this->emp_pay_id));
 		return $query;
 	
 	}//get_group
@@ -107,10 +107,10 @@ class M_evs_group extends Da_evs_group {
 	function update_group() {
 	
 		$sql = "UPDATE evs_database.evs_employee 
-				SET emp_ghr_id = ? 
+				SET emp_gru_id = ? 
 				WHERE emp_employee_id = ? AND emp_pay_id = ?" ;
 	     
-	     $this->db->query($sql, array($this->emp_ghr_id, $this->emp_employee_id ,$this->emp_pay_id));
+	     $this->db->query($sql, array($this->emp_gru_id, $this->emp_employee_id ,$this->emp_pay_id));
 	    
 	}//update_group
 

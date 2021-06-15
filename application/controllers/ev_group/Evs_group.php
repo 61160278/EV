@@ -69,6 +69,9 @@ class Evs_group extends MainController_avenxo {
 		$group = $this->input->post("group");
 		$Emp_id = $this->input->post("Emp_id");
 		
+
+
+		
 		$this->load->model('M_evs_group','meg');
 		$this->meg->gru_name = $group;
 		$this->meg->gru_head_dept = $Emp_id;
@@ -154,7 +157,7 @@ class Evs_group extends MainController_avenxo {
 		$data = $this->mevg->get_name_emp_by_IDemp_sdm();
 		echo json_encode($data);
 	}
-	// function search_by_employee_id
+	// function search_by_employee_id_sdm
 
 	/*
 	* @author  Jirayu Jaravichit
@@ -186,8 +189,26 @@ class Evs_group extends MainController_avenxo {
 		$this->sedt->gru_head_dept = $Emp_id;
 		$this->sedt->gru_company_id = 1;
 		$this->sedt->update();
-		$this->select_company_sdm();
+		
 
+		
+		$this->load->model('M_evs_login','miog');
+		$data_login = $this->miog->get_all()->result(); // show value year now
+		//end set year now
+		$chack_data_log = 0;
+			foreach($data_login as $index => $row ) { 
+				if($Emp_id == $row->log_user_id){
+					$chack_data_log = 1;
+				}
+			}
+			if($chack_data_log == 1){
+				$this->miog->log_user_id = $Emp_id;
+				$this->miog->log_role = 2;
+				$this->miog->updatte_role();
+			}
+			$data = "save_edit_sdm";
+			echo json_encode($data);
+			
 	}
 	// function save_edit_sdm
 
@@ -209,6 +230,25 @@ class Evs_group extends MainController_avenxo {
 		$this->sav_edit->gru_head_dept = $Emp_id;
 		$this->sav_edit->gru_company_id = 2;
 		$this->sav_edit->update();
+
+		$this->load->model('M_evs_login','miog');
+		$data_login = $this->miog->get_all()->result(); // show value year now
+		//end set year now
+		$chack_data_log = 0;
+			foreach($data_login as $index => $row ) { 
+				if($Emp_id == $row->log_user_id){
+					$chack_data_log = 1;
+				}
+			}
+			if($chack_data_log == 1){
+				$this->miog->log_user_id = $Emp_id;
+				$this->miog->log_role = 2;
+				$this->miog->updatte_role();
+			}
+			$data = "save_edit_sdm";
+			echo json_encode($data);
+
+
 		$this->select_company_skd();
 	}
 	// function save_edit_skd
@@ -223,8 +263,15 @@ class Evs_group extends MainController_avenxo {
 		$this->mgc->gru_company_id = 1;
 		$data['gcp_gcm'] = $this->mgc->get_all_com();
 
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
 		$this->load->model('M_evs_group','mevg');
-		$this->mevg->emp_ghr_id = $gru_id;
+		$this->mevg->emp_gru_id = $gru_id;
+		$this->mevg->emp_pay_id = $pay_id;
 		$data['group_sdm'] = $this->mevg->get_group();
 		$this->mevg->gru_id = $gru_id;
 		$data['grpsdm'] = $this->mevg->get_by_id();
@@ -242,8 +289,15 @@ class Evs_group extends MainController_avenxo {
 		$this->mdk->gru_company_id = 2;
 		$data['gcp_gkd'] = $this->mdk->get_all_com();
 
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
 		$this->load->model('M_evs_group','mevg');
-		$this->mevg->emp_ghr_id = $gru_id;
+		$this->mevg->emp_gru_id = $gru_id;
+		$this->mevg->emp_pay_id = $pay_id;
 		$data['group_skd'] = $this->mevg->get_group();
 		$this->mevg->gru_id = $gru_id;
 		$data['grpskd'] = $this->mevg->get_by_id();
@@ -284,8 +338,16 @@ class Evs_group extends MainController_avenxo {
 	*/	
 	function query_man(){
 		$gru_id = $this->input->post('gru_id');
+
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
 		$this->load->model('M_evs_group','mevg');
-		$this->mevg->emp_ghr_id = $gru_id;
+		$this->mevg->emp_gru_id = $gru_id;
+		$this->mevg->emp_pay_id = $pay_id;
 		$data = $this->mevg->get_group()->result();
 		echo json_encode($data);
 
@@ -298,8 +360,17 @@ class Evs_group extends MainController_avenxo {
 	*/	
 	function query_man_new(){
 		$gru_id = $this->input->post('gru_id');
+
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+
 		$this->load->model('M_evs_group','mevg');
-		$this->mevg->emp_ghr_id = $gru_id;
+		$this->mevg->emp_gru_id = $gru_id;
+		$this->mevg->emp_pay_id = $pay_id;
 		$data = $this->mevg->get_group()->result();
 		echo json_encode($data);
 
@@ -312,19 +383,30 @@ class Evs_group extends MainController_avenxo {
 	*/	
 	function add_new_group()
 	{
+
+		
 		$group = $this->input->post('group');
 		$get_emp = $this->input->post("get_emp");
 		$count = $this->input->post("count");
 		
 
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
 		$this->load->model('M_evs_group','egs');
 		for ($i = 0; $i < $count; $i++) {
-			$this->egs->emp_ghr_id = $group;
+			$this->egs->emp_gru_id = $group;
 			$this->egs->emp_employee_id = $get_emp[$i];
-			$this->egs->emp_pay_id = 2;
+			$this->egs->emp_pay_id = $pay_id;
 			$this->egs->update_group();
 		}
 		// for
+
+		$data = "save_edit_sdm";
+		echo json_encode($get_emp);
 	}
 	// function add_new_group
 }

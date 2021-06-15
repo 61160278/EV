@@ -97,7 +97,7 @@ function manage_group_right() {
                 data_row += '<td>'
                 data_row += '<div align="center" class="checked block">'
                 data_row += '<input id = "old_check_group' + index +
-                    '" name="checkbox2" type="checkbox">'
+                    '" name="checkbox2" type="checkbox"> <input type="text" value="'+ row.Emp_ID +'" hidden id="new_group">'
                 data_row += '</div>'
                 data_row += '</td>'
                 data_row += '<td id="emp_new' + index + '">'
@@ -145,8 +145,7 @@ function change_group() {
             console.log(status)
             manage_group();
             manage_group_right();
-        } //error ไม่ส่งค่ากลับมาเลยใช้ฟังก์ชันนี้
-
+        } 
 
     }); //ajax
 
@@ -157,7 +156,6 @@ function change_group() {
 
 function change_group_remove() {
     var count_group = document.getElementById("count_group").value;
-    // var new_group = document.getElementById("new_group").value;
     var old_group = document.getElementById("select").value;
     var get_emp = [];
     for (i = 0; i < count_group; i++) {
@@ -179,7 +177,7 @@ function change_group_remove() {
 
         },
         dataType: "JSON",
-        error: function(status) {
+        success: function(status) {
             console.log(status)
             manage_group();
             manage_group_right();
@@ -219,7 +217,8 @@ function delete_data() {
         success: function(status) {
             console.log(status)
             console.log(gru_id)
-
+            manage_group();
+            manage_group_right();
         }
         //error จะไม่มีการส่งค่ากลับมา
     });
@@ -445,8 +444,7 @@ tbody {
                                                                             id="old_check_group<?php echo $index; ?>">
                                                                     </div>
                                                                 </td>
-                                                                <td id="emp_new<?php echo $index; ?>">
-                                                                    <?php echo $row->Emp_ID; ?></td>
+                                                                <td id="emp_new<?php echo $index; ?>"><?php echo $row->Emp_ID; ?></td>
                                                                 <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng; ?>
                                                                 </td>
                                                                 <td><?php echo $row->Sectioncode_ID; ?></td>

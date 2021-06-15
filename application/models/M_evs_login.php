@@ -54,6 +54,13 @@ class M_evs_login extends Da_evs_login {
 		return $query;
 	}
 
+	function updatte_role() {	
+		$sql = "UPDATE evs_database.evs_login 
+		SET	log_role=?
+		WHERE log_user_id=?";
+		$query = $this->db->query($sql,array($this->log_role, $this->log_user_id));
+		return $query;
+	}
 
 
 

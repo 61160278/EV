@@ -51,8 +51,6 @@ function select_company(value) {
 $(document).ready(function() {
     $("#alert_grouptext").hide();
 
-
-
     $("#grouptext").keyup(function() {
         $("#alert_grouptext").hide();
     });
