@@ -831,71 +831,59 @@ function clear_css_inp_self(i) {
 
 // *************************************** G&O ***************************************
 
-function check_approve() {
-    var approve1 = document.getElementById("approve1").value;
-    var approve2 = document.getElementById("approve2").value;
+function check_approve_mhrd() {
+    var approve1 = document.getElementById("approve1_mhrd").value;
+    var approve2 = document.getElementById("approve2_mhrd").value;
 
     if (approve2 != "0") {
         console.log(1);
-        save_approve()
+        save_approve_mhrd()
         return true;
     }
     // if
     else if (approve2 == "0") {
-        $("#approve2").css("background-color", "#ffe6e6");
-        $("#approve2").css("border-style", "solid");
+        $("#approve2_mhrd").css("background-color", "#ffe6e6");
+        $("#approve2_mhrd").css("border-style", "solid");
         return false;
     }
     // else if
 }
 // function check_approve
 
-function check_approve_edt() {
-    var approve1 = document.getElementById("approve1_edt").value;
-    var approve2 = document.getElementById("approve2_edt").value;
+function check_approve_edt_mhrd() {
+    var approve1 = document.getElementById("approve1_edt_mhrd").value;
+    var approve2 = document.getElementById("approve2_edt_mhrd").value;
 
     if (approve2 != "0") {
         console.log(1);
-        update_approve();
+        update_approve_mhrd();
         return true;
     }
     // if
     else if (approve2 == "0") {
-        $("#approve2_edt").css("background-color", "#ffe6e6");
-        $("#approve2_edt").css("border-style", "solid");
+        $("#approve2_edt_mhrd").css("background-color", "#ffe6e6");
+        $("#approve2_edt_mhrd").css("border-style", "solid");
         return false;
     }
     // else if
 }
 // function check_approve
 
-function clear_css_approve1() {
-    $("#approve1").css("background-color", "#ffffff");
-    $("#approve1").css("border-style", "solid");
+function clear_css_approve2_mhrd() {
+    $("#approve2_mhrd").css("background-color", "#ffffff");
+    $("#approve2_mhrd").css("border-style", "solid");
 }
 // function clear_css_approve1
 
-function clear_css_approve2() {
-    $("#approve2").css("background-color", "#ffffff");
-    $("#approve2").css("border-style", "solid");
-}
-// function clear_css_approve1
-
-function clear_css_approve1_edt() {
-    $("#approve1_edt").css("background-color", "#ffffff");
-    $("#approve1_edt").css("border-style", "solid");
-}
-// function clear_css_approve1
-
-function clear_css_approve2_edt() {
-    $("#approve2_edt").css("background-color", "#ffffff");
-    $("#approve2_edt").css("border-style", "solid");
+function clear_css_approve2_edt_mhrd() {
+    $("#approve2_edt_mhrd").css("background-color", "#ffffff");
+    $("#approve2_edt_mhrd").css("border-style", "solid");
 }
 // function clear_css_approve2
 
-function save_approve() {
-    var approve1 = document.getElementById("approve1").value;
-    var approve2 = document.getElementById("approve2").value;
+function save_approve_mhrd() {
+    var approve1 = document.getElementById("approve1_mhrd").value;
+    var approve2 = document.getElementById("approve2_mhrd").value;
     var evs_emp_id = document.getElementById("evs_emp_id").value;
     var dma_emp_id = document.getElementById("emp_id").innerHTML;
 
@@ -916,7 +904,7 @@ function save_approve() {
         },
         success: function(data) {
             console.log(data);
-            show_approve()
+            show_approve_mhrd()
 
         },
         // success
@@ -930,9 +918,9 @@ function save_approve() {
 }
 // function save_approve
 
-function update_approve() {
-    var approve1 = document.getElementById("approve1_edt").value;
-    var approve2 = document.getElementById("approve2_edt").value;
+function update_approve_mhrd() {
+    var approve1 = document.getElementById("approve1_edt_mhrd").value;
+    var approve2 = document.getElementById("approve2_edt_mhrd").value;
     var evs_emp_id = document.getElementById("evs_emp_id").value;
     var dma_emp_id = document.getElementById("emp_id").innerHTML;
 
@@ -955,8 +943,8 @@ function update_approve() {
         },
         success: function(data) {
             console.log(data);
-            $("#edt_app").modal('hide');
-            show_approve()
+            $("#edt_app_mhrd").modal('hide');
+            show_approve_mhrd()
 
         },
         // success
@@ -970,7 +958,7 @@ function update_approve() {
 }
 // function update_approve
 
-function show_approve() {
+function show_approve_mhrd() {
 
     var evs_emp_id = document.getElementById("evs_emp_id").value;
     var data_show = "";
@@ -1028,23 +1016,23 @@ function show_approve() {
                 data_show += '</div>'
                 data_show += '<!-- row  -->'
                 data_show += '<hr>'
-                $("#approve1_edt").val(id_app1);
-                $("#approve2_edt").val(id_app2);
+                $("#approve1_edt_mhrd").val(id_app1);
+                $("#approve2_edt_mhrd").val(id_app2);
                 console.log(id_app1 + "....." + id_app2);
-                $("#btn_send_insert").hide();
-                $("#btn_send_edit").show();
+                $("#btn_send_insert_mhrd").hide();
+                $("#btn_send_edit_mhrd").show();
 
-                $("#add_app").modal('hide');
-                $("#btn_edit").hide();
+                $("#add_app_mhrd").modal('hide');
+                $("#btn_edit_mhrd").hide();
 
-                $("#show_approver").html(data_show);
-                $("#btn_clear").hide();
+                $("#show_approver_mhrd").html(data_show);
+                $("#btn_clear_mhrd").hide();
 
             }
             // if
             else {
-                $("#btn_send_insert").show();
-                $("#btn_send_edit").hide();
+                $("#btn_send_insert_mhrd").show();
+                $("#btn_send_edit_mhrd").hide();
 
             }
             // else
@@ -1052,7 +1040,7 @@ function show_approve() {
         },
         // success
         error: function(data) {
-            $("#btn_send_edit").hide();
+            $("#btn_send_edit_mhrd").hide();
             console.log("9999 : error");
         }
         // error
@@ -1103,7 +1091,7 @@ function set_tap() {
                     data_tap += '<font>MHRD</font>';
                     data_tap += '</a></li>';
                     $("#mhrd").addClass("active");
-                    show_approve()
+                    show_approve_mhrd()
                 }
                 // else if 
                 // check pe tool
@@ -1601,7 +1589,7 @@ function set_tap() {
                         </table>
                         <!-- End table level -->
                         <br>
-                        <div id="show_approver">
+                        <div id="show_approver_mhrd">
                         </div>
                         <!-- show_approver-->
 
@@ -1609,16 +1597,16 @@ function set_tap() {
                         <div class="row">
                             <div class="col-md-6">
                                 <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
-                                    <button class="btn btn-inverse" id="btn_cencel_backG_O">BACK</button>
+                                    <button class="btn btn-inverse" id="btn_cencel_back_mhrd">BACK</button>
                                 </a>
                                 <!-- cancel to back to main  -->
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-primary" id="btn_send_insert" data-toggle="modal"
-                                    data-target="#add_app">SEND <i class="fa fa-share-square-o"></i></button>
-                                <button class="btn btn-warning" id="btn_send_edit" data-toggle="modal"
-                                    data-target="#edt_app">SEND <i class="fa fa-share-square-o"></i></button>
+                                <button class="btn btn-primary" id="btn_send_insert_mhrd" data-toggle="modal"
+                                    data-target="#add_app_mhrd">SEND <i class="fa fa-share-square-o"></i></button>
+                                <button class="btn btn-warning" id="btn_send_edit_mhrd" data-toggle="modal"
+                                    data-target="#edt_app_mhrd">SEND <i class="fa fa-share-square-o"></i></button>
                             </div>
                             <!-- col-md-6 add_app -->
 
@@ -2308,7 +2296,7 @@ function set_tap() {
 <!-- End Modal save-->
 
 <!-- Modal approver -->
-<div class="modal fade" id="add_app" role="dialog">
+<div class="modal fade" id="add_app_mhrd" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -2341,7 +2329,7 @@ function set_tap() {
 
                 <div class="row">
                     <div class="col-md-6" align="center">
-                        <select class="form-control" id="approve1" onchange="clear_css_approve1()">
+                        <select class="form-control" id="approve1_mhrd">
                             <option value="0">----- Please Select-----</option>
                             <option value="00029">Alaska</option>
                             <option value="00030">Hawaii</option>
@@ -2351,7 +2339,7 @@ function set_tap() {
                     <!-- col-6 -->
 
                     <div class="col-md-6" align="center">
-                        <select class="form-control" id="approve2" onchange="clear_css_approve2()">
+                        <select class="form-control" id="approve2_mhrd" onchange="clear_css_approve2_mhrd()">
                             <option value="0">----- Please Select-----</option>
                             <option value="00029">Alaska</option>
                             <option value="00030">Hawaii</option>
@@ -2372,7 +2360,7 @@ function set_tap() {
                     <!-- col-6 -->
 
                     <div class="col-md-6" align="rigth">
-                        <button type="button" class="btn btn-success" onclick="return check_approve()">SAVE</button>
+                        <button type="button" class="btn btn-success" onclick="return check_approve_mhrd()">SAVE</button>
                     </div>
                     <!-- col-6 -->
 
@@ -2388,7 +2376,7 @@ function set_tap() {
 <!-- Modal approver-->
 
 <!-- Modal edt approver -->
-<div class="modal fade" id="edt_app" role="dialog">
+<div class="modal fade" id="edt_app_mhrd" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -2421,7 +2409,7 @@ function set_tap() {
 
                 <div class="row">
                     <div class="col-md-6" align="center">
-                        <select class="form-control" id="approve1_edt" onchange="clear_css_approve1_edt()">
+                        <select class="form-control" id="approve1_edt_mhrd">
                             <option value="0">----- Please Select-----</option>
                             <option value="00029">Alaska</option>
                             <option value="00030">Hawaii</option>
@@ -2431,7 +2419,7 @@ function set_tap() {
                     <!-- col-6 -->
 
                     <div class="col-md-6" align="center">
-                        <select class="form-control" id="approve2_edt" onchange="clear_css_approve2_edt()">
+                        <select class="form-control" id="approve2_edt_mhrd" onchange="clear_css_approve2_edt()">
                             <option value="0">----- Please Select-----</option>
                             <option value="00029">Alaska</option>
                             <option value="00030">Hawaii</option>
@@ -2452,7 +2440,7 @@ function set_tap() {
                     <!-- col-6 -->
 
                     <div class="col-md-6" align="rigth">
-                        <button type="button" class="btn btn-success" onclick="return check_approve_edt()">SAVE</button>
+                        <button type="button" class="btn btn-success" onclick="return check_approve_edt_mhrd()">SAVE</button>
                     </div>
                     <!-- col-6 -->
 

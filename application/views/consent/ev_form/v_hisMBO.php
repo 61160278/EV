@@ -197,6 +197,81 @@ function show_approveG_O() {
 }
 // function show_approveG_O
 
+function show_approve_mhrd() {
+
+var evs_emp_id = document.getElementById("evs_emp_id").value;
+var data_show = "";
+
+$.ajax({
+    type: "post",
+    dataType: "json",
+    url: "<?php echo base_url(); ?>ev_form/Evs_form/get_approve",
+    data: {
+        "evs_emp_id": evs_emp_id
+
+    },
+    success: function(data) {
+        // console.log(data);
+        var app1 = "";
+        var app2 = "";
+        var id_app1 = "";
+        var id_app2 = "";
+
+        if (data['app2'].length != 0) {
+            data['app1'].forEach((row, index) => {
+                app1 = row.Empname_eng + " " + row.Empsurname_eng;
+                id_app1 = row.Emp_ID;
+            });
+            // foreach app 1
+            data['app2'].forEach((row, index) => {
+                app2 = row.Empname_eng + " " + row.Empsurname_eng;
+                id_app2 = row.Emp_ID;
+            });
+            // foreach app 1
+
+            data_show = '<div class="row">'
+            data_show += '<div class="col-md-2">'
+            data_show += ' <label class="control-label"><strong>'
+            data_show += '<font size="3px">Approver 1 : </font>'
+            data_show += '</strong></label>'
+            data_show += '</div>'
+            data_show += '<!-- col-2  -->'
+            data_show += '<div class="col-md-4">'
+            data_show += '<p id="app1">' + app1 + '</p>'
+            data_show += '</div>'
+            data_show += '<!-- col-4  -->'
+            data_show += '<!-- -------------------- -->'
+            data_show += '<div class="col-md-2">'
+            data_show += '<label class="control-label"><strong>'
+            data_show += '<font size="3px">Approver 2 : </font>'
+            data_show += '</strong></label>'
+            data_show += '</div>'
+            data_show += '<!-- col-2  -->'
+            data_show += '<div class="col-md-4">'
+            data_show += '<p id="app">' + app2 + '</p>'
+            data_show += '</div>'
+            data_show += '<!-- col-4  -->'
+            data_show += '<!-- -------------------- -->'
+            data_show += '</div>'
+            data_show += '<!-- row  -->'
+            data_show += '<hr>'
+            $("#show_approver_mhrd").html(data_show);
+        }
+        // if
+
+
+    },
+    // success
+    error: function(data) {
+        console.log("9999 : error");
+    }
+    // error
+});
+// ajax
+
+}
+// function show_approve
+
 function set_tap_his() {
 
     var ps_pos_id = document.getElementById("pos_id").value;
@@ -234,6 +309,7 @@ function set_tap_his() {
                     data_tap += '<li class="active"><a href="#mhrd" data-toggle="tab">';
                     data_tap += '<font>MHRD</font>';
                     data_tap += '</a></li>';
+                    show_approve_mhrd
                     $("#mhrd").addClass("active");
                 }
                 // else if 
@@ -901,6 +977,11 @@ function set_tap_his() {
                             <!-- tfoot -->
                         </table>
                         <!-- End table level -->
+
+                        <hr>
+                        <div id="show_approver_mhrd">
+                        </div>
+                        <!-- show_approver -->
 
                         <br>
                         <div class="row">
