@@ -37,7 +37,22 @@ class Evs_form_AP extends MainController_avenxo {
 	*/
 	function index()
 	{
-		$this->output('/consent/ev_form_AP/v_main_form');
+		
+
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+
+		$this->load->model('M_evs_group','megu');
+		$this->megu->emp_pay_id = $pay_id;
+		$data['data_group'] = $this->megu->get_group_by_head_dept()->result();
+
+		$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
+		
+		$this->output('/consent/ev_form_AP/v_main_form',$data);
 	}
 	// function index()
 	
@@ -48,7 +63,7 @@ class Evs_form_AP extends MainController_avenxo {
 	* @author 	Kunanya Singmee
 	* @Create Date 2564-04-07
 	*/
-	function createFROM()
+	function createFROM($EMP_ID)
 	{
 		$data['data_from_pe'] = "";
 		$data['data_from_ce'] = "";
@@ -57,7 +72,7 @@ class Evs_form_AP extends MainController_avenxo {
 		$year = $data['patt_year']->row(); // show value year now
 		//end set year now
 		$pay_id = $year->pay_id;
-		$emp_id = "00012";
+		$emp_id = $EMP_ID;
 
 		$this->load->model('M_evs_employee','memp');
 		$this->memp->Emp_ID = $emp_id;

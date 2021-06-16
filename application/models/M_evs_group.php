@@ -114,6 +114,19 @@ class M_evs_group extends Da_evs_group {
 	    
 	}//update_group
 
+	
+	function get_group_by_head_dept(){
+		$sql = "SELECT * 
+				FROM evs_database.evs_group as gru
+				INNER JOIN evs_database.evs_employee as eem
+				ON gru.gru_id =  eem.emp_gru_id
+				INNER JOIN dbmc.employee as dem
+				ON eem.emp_employee_id =  dem.Emp_ID
+				WHERE emp_pay_id = ?" ;
+		$query = $this->db->query($sql, array($this->emp_pay_id));
+		return $query;
+	}
+
 
 
 } 

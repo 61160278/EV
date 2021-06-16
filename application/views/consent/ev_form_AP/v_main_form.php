@@ -93,7 +93,7 @@ function validate_his() {
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
             <div class="panel-heading ">
                 <h2>
-                    <font color="#ffffff" size = "6px"><b> Created & Evaluation </b></font>
+                    <font color="#ffffff" size="6px"><b> Evaluation </b></font>
                 </h2>
             </div>
             <!-- heading -->
@@ -101,32 +101,69 @@ function validate_his() {
 
                 <div class="row">
 
-                
-                    <div class="col-md-6" align="center">
-                        <a data-toggle="modal" href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/createFROM">
-                            <div class="info-tile ">
-                                <div class="tile-icon"><i class="ti ti-files"></i></div>
-                                <div class="tile-body"><span>evaluate</span></div>
+                    <div class="col-md-12">
+                        <table class="table table-bordered table-striped m-n">
+                            <thead id="headmbo">
+                                <tr>
+                                    <th rowspan="2" width="2%">
+                                        <center> No.</center>
+                                    </th>
+                                    <th rowspan="2" width="15%">
+                                        <center>name</center>
+                                    </th>
+                                    <th rowspan="2" width="20%">
+                                        <center>Management</center>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <!-- thead -->
+                            <tbody id="row_mbo">
+                                <?php 
+                            
+							foreach($data_group as $index => $row) {
+                                if($data_emp_id != $row->emp_employee_id) {
+                                
+                                ?>
+                                <tr>
+                                    <td>
+                                        <center>
+                                            <?php echo $index+1 ?>
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <?php echo $row->Empname_engTitle." ".$row->Empname_eng." ".$row->Empsurname_eng ?>
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <a
+                                                href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/createFROM/<?php echo $row->emp_employee_id ?>">
+                                                <button class="btn btn-success">
+                                                    <i class="fa fa-file-text-o"></i> Evaluaion
+                                                </button>
+                                            </a>
+                                        </center>
+                                    </td>
 
-                            </div>
-                        </a>
-
-                        <div class="col-md-6" align="center">
-                        </div>
+                                    <?php 
+                                }
+                            }?>
+                                <tr>
+                            </tbody>
                     </div>
-            
-
                 </div>
-                <!-- row  -->
-
             </div>
-            <!-- body -->
+            <!-- row  -->
+
         </div>
-        <!-- panel-indigo -->
-        <hr>
-        <br>
+        <!-- body -->
     </div>
-    <!-- col-12 -->
+    <!-- panel-indigo -->
+    <hr>
+    <br>
+</div>
+<!-- col-12 -->
 </div>
 <!-- row -->
 <br>
