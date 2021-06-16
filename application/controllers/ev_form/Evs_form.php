@@ -974,15 +974,17 @@ class Evs_form extends MainController_avenxo {
 		$this->load->model('M_evs_data_approve','meda');
 		$this->meda->dma_emp_id = $temp->emp_id;
 		$data['data_app'] = $this->meda->get_by_id()->row();
-
-		$this->load->model('M_evs_employee','memp');
-		$this->memp->Emp_ID = $data['data_app']->dma_approve1;
-		$data['app1'] = $this->memp->get_by_appid()->row();
-
-		$this->load->model('M_evs_employee','memp');
-		$this->memp->Emp_ID = $data['data_app']->dma_approve2;
-		$data['app2'] = $this->memp->get_by_appid()->row();
-
+		if(sizeof($data['data_app']) != 0){
+			$this->load->model('M_evs_employee','memp');
+			$this->memp->Emp_ID = $data['data_app']->dma_approve1;
+			$data['app1'] = $this->memp->get_by_appid()->row();
+	
+			$this->load->model('M_evs_employee','memp');
+			$this->memp->Emp_ID = $data['data_app']->dma_approve2;
+			$data['app2'] = $this->memp->get_by_appid()->row();
+	
+		}
+		// if 		
 		$this->output('/consent/ev_form/v_show_status',$data);
 
 	}

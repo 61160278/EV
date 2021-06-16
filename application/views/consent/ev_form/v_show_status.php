@@ -23,7 +23,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
+        <div class="panel panel-indigo">
             <div class="panel-heading ">
                 <h2>
                     <font color="#ffffff" size="6px"><b> Status form </b></font>
@@ -32,7 +32,7 @@
             <!-- heading -->
             <br>
             <br>
-            <div class="panel-body" style="height: 400px">
+            <div class="panel-body" >
                 <div class="row">
                     <div class="col-md-6" align="center">
                         <img src="http://placehold.it/300&text=Placeholder">
@@ -135,28 +135,37 @@
                                     </strong></label>
                             </div>
                             <!-- col-md-4 -->
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <?php $row = $data_app; 
-                                if($row->dma_status == 1){ ?>
+                                if(sizeof($row) != 0){
+                                    if($row->dma_status == 1){ ?>
                                 <button class="btn btn-warning" data-toggle="modal" data-target="#show_status">Wait
                                     APPROVER 1 </button>
                                 <?php }
-                                // if
-                                else if($row->dma_status == 2){ ?>
+                                    // if
+                                    else if($row->dma_status == 2){ ?>
                                 <button class="btn btn-warning" data-toggle="modal" data-target="#show_status">Wait
                                     APPROVER 2 </button>
                                 <?php }
-                                // else if
-                                else if($row->dma_status == 3){ ?>
+                                    // else if
+                                    else if($row->dma_status == 3){ ?>
                                 <button class="btn btn-warning" data-toggle="modal" data-target="#show_status">Wait HR
                                 </button>
                                 <?php }
-                                // else if
-                                else if($row->dma_status == 4){ ?>
+                                    // else if
+                                    else if($row->dma_status == 4){ ?>
                                 <button class="btn btn-success" data-toggle="modal" data-target="#show_status">Approve
                                 </button>
                                 <?php }
-                                // else if
+                                    // else if
+                                }
+                                // if check 
+                                else{ ?>
+                                <div class="alert alert-warning col-md-12">
+                                    <strong>Please select Approver !</strong>
+                                </div>
+                                <?php }
+                                // else 
                                 ?>
                             </div>
                             <!-- col-md-4 -->
