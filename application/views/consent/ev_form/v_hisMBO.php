@@ -309,7 +309,7 @@ function set_tap_his() {
                     data_tap += '<li class="active"><a href="#mhrd" data-toggle="tab">';
                     data_tap += '<font>MHRD</font>';
                     data_tap += '</a></li>';
-                    show_approve_mhrd
+                    show_approve_mhrd();
                     $("#mhrd").addClass("active");
                 }
                 // else if 
