@@ -237,7 +237,7 @@ class Evs_form_AP extends MainController_avenxo {
 		}
 
 
-		$this->output('/consent/ev_form_AP/v_createACM',$data);
+		$this->output('/consent/ev_form_AP/v_createFROM',$data);
 
 	}
 	// function createACM
