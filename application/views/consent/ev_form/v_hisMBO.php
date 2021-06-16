@@ -40,7 +40,7 @@ th {
 var count = 0;
 
 $(document).ready(function() {
-    set_tap()
+    set_tap_his()
 });
 // document ready
 
@@ -197,7 +197,82 @@ function show_approveG_O() {
 }
 // function show_approveG_O
 
-function set_tap() {
+function show_approve_mhrd() {
+
+var evs_emp_id = document.getElementById("evs_emp_id").value;
+var data_show = "";
+
+$.ajax({
+    type: "post",
+    dataType: "json",
+    url: "<?php echo base_url(); ?>ev_form/Evs_form/get_approve",
+    data: {
+        "evs_emp_id": evs_emp_id
+
+    },
+    success: function(data) {
+        // console.log(data);
+        var app1 = "";
+        var app2 = "";
+        var id_app1 = "";
+        var id_app2 = "";
+
+        if (data['app2'].length != 0) {
+            data['app1'].forEach((row, index) => {
+                app1 = row.Empname_eng + " " + row.Empsurname_eng;
+                id_app1 = row.Emp_ID;
+            });
+            // foreach app 1
+            data['app2'].forEach((row, index) => {
+                app2 = row.Empname_eng + " " + row.Empsurname_eng;
+                id_app2 = row.Emp_ID;
+            });
+            // foreach app 1
+
+            data_show = '<div class="row">'
+            data_show += '<div class="col-md-2">'
+            data_show += ' <label class="control-label"><strong>'
+            data_show += '<font size="3px">Approver 1 : </font>'
+            data_show += '</strong></label>'
+            data_show += '</div>'
+            data_show += '<!-- col-2  -->'
+            data_show += '<div class="col-md-4">'
+            data_show += '<p id="app1">' + app1 + '</p>'
+            data_show += '</div>'
+            data_show += '<!-- col-4  -->'
+            data_show += '<!-- -------------------- -->'
+            data_show += '<div class="col-md-2">'
+            data_show += '<label class="control-label"><strong>'
+            data_show += '<font size="3px">Approver 2 : </font>'
+            data_show += '</strong></label>'
+            data_show += '</div>'
+            data_show += '<!-- col-2  -->'
+            data_show += '<div class="col-md-4">'
+            data_show += '<p id="app">' + app2 + '</p>'
+            data_show += '</div>'
+            data_show += '<!-- col-4  -->'
+            data_show += '<!-- -------------------- -->'
+            data_show += '</div>'
+            data_show += '<!-- row  -->'
+            data_show += '<hr>'
+            $("#show_approver_mhrd").html(data_show);
+        }
+        // if
+
+
+    },
+    // success
+    error: function(data) {
+        console.log("9999 : error");
+    }
+    // error
+});
+// ajax
+
+}
+// function show_approve
+
+function set_tap_his() {
 
     var ps_pos_id = document.getElementById("pos_id").value;
     var data_tap = "";
@@ -234,6 +309,7 @@ function set_tap() {
                     data_tap += '<li class="active"><a href="#mhrd" data-toggle="tab">';
                     data_tap += '<font>MHRD</font>';
                     data_tap += '</a></li>';
+                    show_approve_mhrd();
                     $("#mhrd").addClass("active");
                 }
                 // else if 
@@ -902,6 +978,11 @@ function set_tap() {
                         </table>
                         <!-- End table level -->
 
+                        <hr>
+                        <div id="show_approver_mhrd">
+                        </div>
+                        <!-- show_approver -->
+
                         <br>
                         <div class="row">
                             <div class="col-md-6">
@@ -1409,241 +1490,3 @@ function set_tap() {
     <!-- col-12 -->
 </div>
 <!-- row -->
-
-<!-- ****************************************** modal ************************************** -->
-
-<!-- Modal approver -->
-<div class="modal fade" id="add_app" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header" id="color_head">
-                <button type="button" class="close" data-dismiss="modal">
-                    <font color="white">&times;</font>
-                </button>
-                <h4 class="modal-title">
-                    <font color="white"><b> Please Select Approver </b></font>
-                </h4>
-            </div>
-            <!-- Modal header-->
-
-            <br>
-
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6" align="center">
-                        <label class="control-label"><strong>Approver 1 : </strong></label>
-                    </div>
-                    <!-- col-6 -->
-
-                    <div class="col-md-6" align="center">
-                        <label class="control-label"><strong>Approver 2 : </strong></label>
-                    </div>
-                    <!-- col-6 -->
-                </div>
-                <!--  row -->
-
-                <div class="row">
-                    <div class="col-md-6" align="center">
-                        <select class="form-control" id="approve1" onchange="clear_css_approve1()">
-                            <option value="0">----- Please Select-----</option>
-                            <option value="00029">Alaska</option>
-                            <option value="00030">Hawaii</option>
-                            <option value="00032">Kunanya</option>
-                        </select>
-                    </div>
-                    <!-- col-6 -->
-
-                    <div class="col-md-6" align="center">
-                        <select class="form-control" id="approve2" onchange="clear_css_approve2()">
-                            <option value="0">----- Please Select-----</option>
-                            <option value="00029">Alaska</option>
-                            <option value="00030">Hawaii</option>
-                            <option value="00032">Kunanya</option>
-                        </select>
-                    </div>
-                    <!-- col-6 -->
-                </div>
-                <!--  row -->
-
-            </div>
-            <!-- Modal body-->
-            <div class="modal-footer">
-                <div class="row">
-                    <div class="col-md-6" align="left">
-                        <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
-                    </div>
-                    <!-- col-6 -->
-
-                    <div class="col-md-6" align="rigth">
-                        <button type="button" class="btn btn-success" onclick="return check_approve()">SAVE</button>
-                    </div>
-                    <!-- col-6 -->
-
-                </div>
-                <!-- row -->
-            </div>
-            <!-- Modal footer-->
-        </div>
-        <!-- Modal content-->
-    </div>
-    <!-- Modal dialog-->
-</div>
-<!-- Modal approver-->
-
-<!-- Modal edt approver -->
-<div class="modal fade" id="edt_app" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header" id="color_head">
-                <button type="button" class="close" data-dismiss="modal">
-                    <font color="white">&times;</font>
-                </button>
-                <h4 class="modal-title">
-                    <font color="white"><b> Please Select Approver </b></font>
-                </h4>
-            </div>
-            <!-- Modal header-->
-
-            <br>
-
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6" align="center">
-                        <label class="control-label"><strong>Approver 1 : </strong></label>
-                    </div>
-                    <!-- col-6 -->
-
-                    <div class="col-md-6" align="center">
-                        <label class="control-label"><strong>Approver 2 : </strong></label>
-                    </div>
-                    <!-- col-6 -->
-                </div>
-                <!--  row -->
-
-                <div class="row">
-                    <div class="col-md-6" align="center">
-                        <select class="form-control" id="approve1_edt" onchange="clear_css_approve1_edt()">
-                            <option value="0">----- Please Select-----</option>
-                            <option value="00029">Alaska</option>
-                            <option value="00030">Hawaii</option>
-                            <option value="00032">Kunanya</option>
-                        </select>
-                    </div>
-                    <!-- col-6 -->
-
-                    <div class="col-md-6" align="center">
-                        <select class="form-control" id="approve2_edt" onchange="clear_css_approve2_edt()">
-                            <option value="0">----- Please Select-----</option>
-                            <option value="00029">Alaska</option>
-                            <option value="00030">Hawaii</option>
-                            <option value="00032">Kunanya</option>
-                        </select>
-                    </div>
-                    <!-- col-6 -->
-                </div>
-                <!--  row -->
-
-            </div>
-            <!-- Modal body-->
-            <div class="modal-footer">
-                <div class="row">
-                    <div class="col-md-6" align="left">
-                        <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
-                    </div>
-                    <!-- col-6 -->
-
-                    <div class="col-md-6" align="rigth">
-                        <button type="button" class="btn btn-success" onclick="return check_approve_edt()">SAVE</button>
-                    </div>
-                    <!-- col-6 -->
-
-                </div>
-                <!-- row -->
-            </div>
-            <!-- Modal footer-->
-        </div>
-        <!-- Modal content-->
-    </div>
-    <!-- Modal dialog-->
-</div>
-<!-- Modal edt approver-->
-
-<!-- Modal save -->
-<div class="modal fade" id="save_mbo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:gray;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b></font>
-                </button>
-                <h2 class="modal-title"><b>
-                        <font color="white">Do you want to Save Data YES or NO ?</font>
-                    </b></h2>
-            </div>
-            <!-- modal header -->
-
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="focusedinput" class="col-sm-12 control-label" align="center">Please verify the accuracy
-                        of the information.</label>
-                </div>
-                <!-- Group Name -->
-            </div>
-            <!-- modal-body -->
-
-            <div class="modal-footer">
-                <div class="btn-group pull-left">
-                    <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
-                </div>
-                <!--<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_sdm">-->
-                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="update_dataMBO()">SAVE</button>
-                <!--</a>-->
-            </div>
-            <!-- modal-footer -->
-        </div>
-        <!-- modal-content -->
-    </div>
-    <!-- modal-dialog -->
-</div>
-<!-- End Modal save-->
-
-<!-- Modal cancel -->
-<div class="modal fade" id="cancel_mbo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:gray;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b></font>
-                </button>
-                <h2 class="modal-title"><b>
-                        <font color="white">Do you want to back to menu YES or NO ?</font>
-                    </b></h2>
-            </div>
-            <!-- modal header -->
-
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="focusedinput" class="col-sm-12 control-label" align="center">Please verify the accuracy
-                        of the information.</label>
-                </div>
-                <!-- Group Name -->
-            </div>
-            <!-- modal-body -->
-
-            <div class="modal-footer">
-                <div class="btn-group pull-left">
-                    <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
-                </div>
-                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="cancel_form()">Yes</button>
-            </div>
-            <!-- modal-footer -->
-        </div>
-        <!-- modal-content -->
-    </div>
-    <!-- modal-dialog -->
-</div>
-<!-- End Modal cancel-->

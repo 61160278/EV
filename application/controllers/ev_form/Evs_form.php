@@ -949,7 +949,7 @@ class Evs_form extends MainController_avenxo {
 			}
 			// else if GCM
 
-			$this->output('/consent/ev_form/v_createMBO',$data);
+			$this->output('/consent/ev_form/v_hisMBO',$data);
 		}
 		// if
 		}
