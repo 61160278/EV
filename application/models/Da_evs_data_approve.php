@@ -34,10 +34,10 @@ class Da_evs_data_approve extends evs_model {
 	
 	function insert() {
 	 
-	 	$sql = "INSERT INTO evs_database.evs_data_approve (dma_approve1	,dma_approve2,dma_dtm_emp_id,dma_emp_id)
-	 	VALUES(?,?,?,?)";
+	 	$sql = "INSERT INTO evs_database.evs_data_approve (dma_approve1	,dma_approve2,dma_status,dma_dtm_emp_id,dma_emp_id)
+	 	VALUES(?,?,?,?,?)";
 		 
-	 	$this->db->query($sql, array($this->dma_approve1, $this->dma_approve2, $this->dma_dtm_emp_id, $this->dma_emp_id));
+	 	$this->db->query($sql, array($this->dma_approve1, $this->dma_approve2, $this->dma_status, $this->dma_dtm_emp_id, $this->dma_emp_id));
 	 }
 	 
 	/*
@@ -52,10 +52,10 @@ class Da_evs_data_approve extends evs_model {
 	function update() {
 	
 	 	$sql = "UPDATE evs_database.evs_data_approve 
-	 			SET dma_approve1=?, dma_approve2=?, dma_dtm_emp_id=?
+	 			SET dma_approve1=?, dma_approve2=?, dma_status=? , dma_dtm_emp_id=?
 	 			WHERE dma_emp_id=?";
 		
-		$this->db->query($sql, array($this->dma_approve1, $this->dma_approve2, $this->dma_dtm_emp_id, $this->dma_emp_id));
+		$this->db->query($sql, array($this->dma_approve1, $this->dma_approve2, $this->dma_status, $this->dma_dtm_emp_id, $this->dma_emp_id));
 		 
 	 }
 
