@@ -115,7 +115,9 @@ class Evs_form_AP extends MainController_avenxo {
 			else{
 					$data['data_from_pe'] = "MBO";
 			}
+			// else
 		}
+		// if
 
 
 		else if($data['form']->ps_form_pe == "G&O"){
@@ -137,16 +139,17 @@ class Evs_form_AP extends MainController_avenxo {
 		$this->mesg->sfg_pos_id = $tep->Position_ID;
 		$data['row_index'] = $this->mesg->get_all_by_key_by_year()->row();
 		
-		if($check_g_o != 0){
-			$data['data_from_pe'] = "G_and_O_edit";
-		}
-		// if
+			if($check_g_o != 0){
+				$data['data_from_pe'] = "G_and_O_edit";
+			}
+			// if
 
-		else{
-			$data['data_from_pe'] = "G_and_O";
+			else{
+				$data['data_from_pe'] = "G_and_O";
+			}
+			// else	
 		}
-		// else	
-		}
+		// else if
 
 		else if($data['form']->ps_form_pe == "MHRD"){
 			$this->load->model('M_evs_data_mhrd_weight','memw');
@@ -166,8 +169,9 @@ class Evs_form_AP extends MainController_avenxo {
 			else{
 				$data['data_from_pe'] = "MHRD";
 			}
+			// else 
 		}
-
+		// else if 
 
 		if($data['form']->ps_form_ce == "ACM"){
 	
@@ -188,7 +192,6 @@ class Evs_form_AP extends MainController_avenxo {
 
 				$data['info_pos_id'] = $tep->Position_ID;
 				$data['data_from_ce'] = "ACM_edit";
-			
 	
 			}
 			// if
@@ -214,9 +217,6 @@ class Evs_form_AP extends MainController_avenxo {
 			$check_gcm = sizeof($data['check']);
 	
 			if($check_gcm != 0){
-	
-				
-	
 				$tep = $data['emp_info']->row();
 				$this->load->model('M_evs_set_form_gcm','mesf');
 				$this->mesf->sgc_pos_id = $tep->Position_ID;
@@ -227,14 +227,11 @@ class Evs_form_AP extends MainController_avenxo {
 				$data['info_pos_id'] = $tep->Position_ID;
 				$data['data_from_ce'] = "GCM_edit";
 				
-	
-				
 			}
 			// if
 	
 			else{
 
-	
 				$tep = $data['emp_info']->row();
 				$this->load->model('M_evs_set_form_gcm','mesf');
 				$this->mesf->sgc_pos_id = $tep->Position_ID;
@@ -247,10 +244,8 @@ class Evs_form_AP extends MainController_avenxo {
 				
 			}
 			// else	
-
-
 		}
-
+		// else if
 
 		$this->output('/consent/ev_form_AP/v_createFROM',$data);
 

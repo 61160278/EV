@@ -93,8 +93,13 @@ $(document).ready(function() {
                                     <td><?php echo $row->Sectioncode_ID; ?></td>
                                     <td><?php echo $row->Department; ?></td>
                                     <td><?php echo $row->Position_name; ?></td>
-                                    <td><button type="button" class="btn btn-info"><i
-                                                class="fa fa-info-circle"></i></button>
+                                    <td>
+                                        <a href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/createFROM/<?php echo $row->Emp_ID; ?>">
+                                            <button type="button" class="btn btn-info">
+                                                <i class="fa fa-info-circle"></i>
+                                            </button>
+                                        </a>
+                                        <!-- a href  -->
                                     </td>
                                 </tr>
                                 <?php }
