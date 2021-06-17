@@ -32,7 +32,7 @@
             <!-- heading -->
             <br>
             <br>
-            <div class="panel-body" >
+            <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6" align="center">
                         <img src="http://placehold.it/300&text=Placeholder">

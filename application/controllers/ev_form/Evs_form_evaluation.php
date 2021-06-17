@@ -37,7 +37,20 @@ class Evs_form_evaluation extends MainController_avenxo {
 	*/
 	function index()
 	{
-		$this->output('/consent/ev_form/v_show_evaluation');
+		$emp_id = $this->input->post("emp_id");
+		$pay_id = $_SESSION['Uspay_id'];
+
+		$this->load->model('M_evs_data_approve','meda');
+		$this->meda->dma_approve1 = $emp_id;
+		$this->meda->emp_pay_id = $pay_id;
+		$data['data_app1'] = $this->meda->get_by_approver1()->result();
+
+		$this->meda->dma_approve1 = $emp_id;
+		$this->meda->emp_pay_id = $pay_id;
+		$data['data_app2'] = $this->meda->get_by_approver2()->result();
+
+
+		$this->output('/consent/ev_form/v_show_evaluation',$data);
 	}
 	// function index()
 	

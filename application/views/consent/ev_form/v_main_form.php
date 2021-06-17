@@ -113,10 +113,14 @@ function validate_his() {
                     <!-- col-4  -->
 
                     <div class="col-md-4" align="center">
-                        <a href="<?php echo base_url(); ?>ev_form/Evs_form_evaluation/index">
-                            <img src="<?php echo base_url();?>/pic/evaluation.png" height="350px">
-                        </a>
-                        <!-- a href img  -->
+                        <form method="POST" action="<?php echo base_url(); ?>ev_form/Evs_form_evaluation/index">
+                            <input id="emp_id" name="emp_id" type="text" value="<?php echo $_SESSION['UsEmp_ID'] ?>"
+                                hidden>
+                            <input type="image" src="<?php echo base_url();?>/pic/evaluation.png" alt="Submit"
+                                height="350px">
+
+                        </form>
+                        <!-- form  -->
                     </div>
                     <!-- col-4  -->
 

@@ -63,7 +63,9 @@ class Evs_form extends MainController_avenxo {
 		$this->load->model('M_evs_position_from','mpf');
 		$this->mpf->ps_pos_id = $tep->Position_ID;
 		$this->mpf->ps_pay_id = $pay_id;
-		$data['form'] = $this->mpf->get_all_by_key_by_year()->row();	
+		$data['form'] = $this->mpf->get_all_by_key_by_year()->row();
+		
+		if(sizeof($data['form']) != 0){
 		
 		if($data['form']->ps_form_pe == "MBO"){
 			$this->load->model('M_evs_data_mbo','medm');
@@ -244,6 +246,13 @@ class Evs_form extends MainController_avenxo {
 			
 		}
 		// else if MHRD
+
+	}
+	// if main
+	else{
+		$this->output('/consent/ev_form/v_main_form');
+	}
+	// else main 
 
 	}
 	// function createMBO

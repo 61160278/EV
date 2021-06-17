@@ -21,6 +21,15 @@
 </style>
 <!-- END style -->
 
+<script>
+$(document).ready(function() {
+    $("#App1").addClass("active");
+});
+// document ready 
+</script>
+
+<!-- END script  -->
+
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
@@ -28,84 +37,140 @@
                 <h2 id="tabmenu">
                     <font color="#ffffff" size="6px"> Evaluation </font>
                 </h2>
+                <div id="tabmenu">
+                    <ul class="nav nav-tabs pull-right tabdrop" id="show_tap">
+                        <li class="active">
+                            <a href="#App1" data-toggle="tab">
+                                <font>Approver 1</font>
+                            </a>
+                        </li>
+                        <!-- approver1 -->
+                        <li>
+                            <a href="#App2" data-toggle="tab">
+                                <font>Approver 2</font>
+                            </a>
+                        </li>
+                        <!-- approver2 -->
+                    </ul>
+                </div>
+                <!-- tabmenu -->
             </div>
             <!-- heading -->
 
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>List of employees to approve</h3>
+                <div class="tab-content">
+
+                    <div class="tab-pane" id="App1">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>List of employees to approve : Approver 1 </h3>
+                            </div>
+                            <!-- col-12  -->
+                        </div>
+                        <!-- row  -->
+                        <hr>
+                        <table class="table m-n">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Employee ID</th>
+                                    <th>Name - surname</th>
+                                    <th>Section Code</th>
+                                    <th>Department</th>
+                                    <th>Position</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <!-- thead  -->
+                            <tbody>
+                                <?php 
+                                if(sizeof($data_app1) != 0){
+                                foreach($data_app1 as $index => $row){ ?>
+                                <tr>
+                                    <td><?php echo ($index+1); ?></td>
+                                    <td><?php echo $row->Emp_ID; ?></td>
+                                    <td><?php echo $row->Empname_eng . " " . $row->Empsurname_eng ?></td>
+                                    <td><?php echo $row->Sectioncode_ID; ?></td>
+                                    <td><?php echo $row->Department; ?></td>
+                                    <td><?php echo $row->Position_name; ?></td>
+                                    <td><button type="button" class="btn btn-info"><i
+                                                class="fa fa-info-circle"></i></button>
+                                    </td>
+                                </tr>
+                                <?php }
+                                    // for  
+                                }
+                                // if 
+                                else { ?>
+                                <td colspan="7">No list of approved employees.</td>
+                                <?php }
+                                // else  ?>
+
+                            </tbody>
+                            <!-- tbody  -->
+                        </table>
+                        <!-- table  -->
                     </div>
-                    <!-- col-12  -->
+                    <!-- ****************************************** App1 ****************************************** -->
+
+
+                    <div class="tab-pane" id="App2">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>List of employees to approve : Approver 2 </h3>
+                            </div>
+                            <!-- col-12  -->
+                        </div>
+                        <!-- row  -->
+                        <hr>
+                        <table class="table m-n">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Employee ID</th>
+                                    <th>Name - surname</th>
+                                    <th>Section Code</th>
+                                    <th>Department</th>
+                                    <th>Position</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <!-- thead  -->
+                            <tbody>
+                                <?php 
+                                if(sizeof($data_app2) != 0){
+                                foreach($data_app2 as $index => $row){ ?>
+                                <tr>
+                                    <td><?php echo ($index+1); ?></td>
+                                    <td><?php echo $row->Emp_ID; ?></td>
+                                    <td><?php echo $row->Empname_eng . " " . $row->Empsurname_eng ?></td>
+                                    <td><?php echo $row->Sectioncode_ID; ?></td>
+                                    <td><?php echo $row->Department; ?></td>
+                                    <td><?php echo $row->Position_name; ?></td>
+                                    <td><button type="button" class="btn btn-info"><i
+                                                class="fa fa-info-circle"></i></button>
+                                    </td>
+                                </tr>
+                                <?php }
+                                    // for  
+                                }
+                                // if 
+                                else { ?>
+                                <td colspan="7">No list of approved employees.</td>
+                                <?php }
+                                // else  ?>
+
+                            </tbody>
+                            <!-- tbody  -->
+                        </table>
+                        <!-- table  -->
+                    </div>
+                    <!-- ****************************************** App2 ****************************************** -->
+
+
                 </div>
-                <!-- row  -->
-                <hr>
+                <!-- tab-content -->
 
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <!-- col-2  -->
-                    <div class="col-md-2" align="right">
-                        <label for="depart_search">Department : </label>
-                    </div>
-                    <!-- col-2  -->
-                    <div class="col-md-2">
-                        <select id="depart_search" class="form-control">
-                            <option value="1">123456789</option>
-                            <option value="2">999999999</option>
-                            <option value="3">888888888</option>
-                        </select>
-                        <!-- select  -->
-                    </div>
-                    <!-- col-4  -->
-                    <div class="col-md-2" align="right">
-                        <label for="pos_lev_search">Level : </label>
-                    </div>
-                    <!-- col-2  -->
-                    <div class="col-md-2">
-                        <select class="form-control">
-                            <option value="1">123456789</option>
-                            <option value="2">999999999</option>
-                            <option value="3">888888888</option>
-                        </select>
-                        <!-- select  -->
-                    </div>
-                    <!-- col-4  -->
-                </div>
-                <!-- row  -->
-                <hr>
-
-                <table class="table m-n">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Employee ID</th>
-                            <th>Name - surname</th>
-                            <th>Section Code</th>
-                            <th>Department</th>
-                            <th>Position</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <!-- thead  -->
-                    <tbody>
-                        <?php for($i=0; $i < 10; $i++){ ?>
-                        <tr>
-                            <td><?php echo ($i+1); ?></td>
-                            <td><?php echo "0000".$i; ?></td>
-                            <td><?php echo "Name-Surname".$i; ?></td>
-                            <td><?php echo "100".$i; ?></td>
-                            <td><?php echo "Dep".$i; ?></td>
-                            <td><?php echo "Pos".$i; ?></td>
-                            <td><button type="button" class="btn btn-info"><i class="fa fa-info-circle"></i></button>
-                            </td>
-                        </tr>
-                        <?php }
-                    // for  ?>
-
-                    </tbody>
-                    <!-- tbody  -->
-                </table>
-                <!-- table  -->
             </div>
             <!-- body -->
         </div>
