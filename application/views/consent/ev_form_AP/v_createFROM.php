@@ -506,11 +506,13 @@ function save_GCM() {
         // success
         error: function(data) {
             console.log("9-9-9-9 : error");
-            update_approve();
+            
         }
         // error
     });
     // ajax
+
+    update_approve();
 
 }
 
@@ -852,10 +854,26 @@ function update_MHRD_edit() {
 
 function update_approve(){
     var Emp_ID = document.getElementById("Emp_ID").value;
-    var App = <?php $_SESSION['UsEmp_ID']; ?>;
+    var App =  document.getElementById("App_Emp_ID").value;;
 
-    console.log(Emp_ID);
-    console.log(App);
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_approve",
+        data: {
+            "Emp_ID": Emp_ID,
+            "App":App
+        },
+        success: function(data) {
+            console.log(data);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
 
 }
 // update_approve
@@ -875,6 +893,7 @@ function update_approve(){
                     <ul class="nav nav-tabs pull-right tabdrop" id="show_tap">
                     </ul>
                 </div>
+                <input type="text" id="App_Emp_ID" value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
             </div>
             <!-- heading -->
 
@@ -886,6 +905,7 @@ function update_approve(){
                     foreach($emp_info->result() as $row){?>
                     <input type="text" id="pos_id" value="<?php echo $row->Position_ID; ?>" hidden>
                     <input type="text" id="Emp_ID" value="<?php echo $row->emp_id; ?>" hidden>
+                    <input type="text" id="employee_ID" value="<?php echo $row->Emp_ID; ?>" hidden>
                     <div class="row">
                         <div class="col-md-2">
                             <label class="control-label"><strong>
@@ -1409,7 +1429,7 @@ function update_approve(){
                                                 &nbsp;
                                                 <input type="radio" name="rd_g_o_<?php echo $table_index_radio_g_o ?>"
                                                     id="rd_<?php echo $table_index_radio_g_o ?>" value="3"
-                                                    onclick="show_weight_g_and_o()" checked>
+                                                    onclick="show_weight_g_and_o()" >
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;
                                                 <input type="radio" name="rd_g_o_<?php echo $table_index_radio_g_o ?>"
@@ -1453,7 +1473,7 @@ function update_approve(){
                                                 &nbsp;
                                                 <input type="radio" name="rd_g_o_<?php echo $table_index_radio_g_o ?>"
                                                     id="rd_<?php echo $table_index_radio_g_o ?>" value="3"
-                                                    onclick="show_weight_g_and_o()" checked>
+                                                    onclick="show_weight_g_and_o()" >
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;
                                                 <input type="radio" name="rd_g_o_<?php echo $table_index_radio_g_o ?>"
@@ -1991,7 +2011,7 @@ function update_approve(){
                                                 <input type="radio"
                                                     name="rd_mhrd_2_<?php echo $table_index_radio_mhrd ?>"
                                                     id="rd_mbo_2_<?php echo $table_index_radio_mhrd ?>" value="3"
-                                                    onclick="show_weight_mhrd()" checked>
+                                                    onclick="show_weight_mhrd()">
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;
                                                 <input type="radio"
@@ -2437,7 +2457,7 @@ function update_approve(){
                                                 &nbsp;&nbsp;
                                                 <input type="radio" name="rd_acm_<?php echo $table_index_radio_acm ?>"
                                                     id="rd_acm_<?php echo $table_index_radio_acm ?>" value="3"
-                                                    onclick="show_weight_acm()" checked>
+                                                    onclick="show_weight_acm()" >
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio" name="rd_acm_<?php echo $table_index_radio_acm ?>"
@@ -2816,7 +2836,7 @@ function update_approve(){
                                                 &nbsp;&nbsp;
                                                 <input type="radio" name="rd_gcm_<?php echo $table_index_radio_gcm ?>"
                                                     id="rd_<?php echo $table_index_radio_gcm ?>" value="3"
-                                                    onclick="show_weight_gcm()" checked>
+                                                    onclick="show_weight_gcm()">
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio" name="rd_gcm_<?php echo $table_index_radio_gcm ?>"

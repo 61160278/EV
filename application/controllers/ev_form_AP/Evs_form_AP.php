@@ -535,7 +535,27 @@ class Evs_form_AP extends MainController_avenxo {
 
 		function update_approve(){
 
-			
+		$Emp_ID = $this->input->post("Emp_ID");
+		$App = $this->input->post("App");
+
+		$this->load->model('M_evs_data_approve','meda');
+		$this->meda->dma_emp_id = $Emp_ID;
+		$this->meda->dma_approve1 = $App;
+		$this->meda->dma_approve2 = $App;
+		$data = $this->meda->get_by_update()->row();
+		
+		$status = intval($data->dma_status);
+		$status++;
+
+		$this->load->model('Da_evs_data_approve','deda');
+		$this->deda->dma_approve1 = $data->dma_approve1;
+		$this->deda->dma_approve2 = $data->dma_approve2;
+		$this->deda->dma_status = $status;
+		$this->deda->dma_dtm_emp_id = $data->dma_dtm_emp_id;
+		$this->deda->dma_emp_id = $data->dma_emp_id;
+		$this->deda->update();
+		
+		echo json_encode($data);
 
 		}
 		// update_approve 

@@ -1,4 +1,3 @@
-
 <?php
 include_once("Da_evs_data_approve.php");
 
@@ -25,6 +24,15 @@ class M_evs_data_approve extends Da_evs_data_approve {
 				WHERE dma_emp_id = ?" ;
 				
 		$query = $this->db->query($sql, array($this->dma_emp_id));
+		return $query;
+	}//get_by_id
+
+	function get_by_update(){	
+		$sql = "SELECT * 
+				FROM evs_database.evs_data_approve
+				WHERE dma_emp_id = ? AND dma_emp_id=?";
+				
+		$query = $this->db->query($sql, array($this->dma_emp_id, $this->dma_emp_id));
 		return $query;
 	}//get_by_id
 
