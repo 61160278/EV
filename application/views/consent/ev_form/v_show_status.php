@@ -148,12 +148,12 @@
                                     APPROVER 2 </button>
                                 <?php }
                                     // else if
-                                    else if($row->dma_status == 3){ ?>
+                                    else if($row->dma_status == 4){ ?>
                                 <button class="btn btn-warning" data-toggle="modal" data-target="#show_status">Wait HR
                                 </button>
                                 <?php }
                                     // else if
-                                    else if($row->dma_status == 4){ ?>
+                                    else if($row->dma_status > 4){ ?>
                                 <button class="btn btn-success" data-toggle="modal" data-target="#show_status">Approve
                                 </button>
                                 <?php }
@@ -210,9 +210,11 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     <font color="White"><b>&times;</b></font>
                 </button>
-                <h2 class="modal-title"><b>
+                <h2 class="modal-title">
+                    <b>
                         <font color="white">Status form</font>
-                    </b></h2>
+                    </b>
+                </h2>
             </div>
             <!-- modal header -->
 
@@ -296,7 +298,7 @@
                             </strong></label>
                     </div>
                     <!-- col-md-3 -->
-                    <?php if($data_app->dma_status == 3){ ?>
+                    <?php if($data_app->dma_status == 4){ ?>
                     <div class="col-md-6" align="center">
                         <div class="alert alert-dismissable alert-warning">
                             <strong> Wait HR </strong>
@@ -305,7 +307,7 @@
                     <!-- col-md-6 -->
                     <?php }
                     // if
-                    else if($data_app->dma_status > 3){?>
+                    else if($data_app->dma_status > 4){?>
                     <div class="col-md-6" align="center">
                         <div class="alert alert-dismissable alert-success">
                             <strong> Approve </strong>

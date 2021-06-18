@@ -113,7 +113,7 @@ function set_tap() {
                 // check pe tool
 
                 if (row.ps_form_ce == "ACM") {
-                    if ("<?php echo $data_from_pe; ?>" == "ACM") {
+                    if ("<?php echo $data_from_ce; ?>" == "ACM") {
                         data_tap += '<li><a href="#ACM" data-toggle="tab">';
                         data_tap += '<font>ACM</font>';
                         data_tap += '</a></li>';
@@ -128,7 +128,7 @@ function set_tap() {
                 }
                 // if
                 else if (row.ps_form_ce == "GCM") {
-                    if ("<?php echo $data_from_pe; ?>" == "GCM") {
+                    if ("<?php echo $data_from_ce; ?>" == "GCM") {
                         data_tap += '<li><a href="#GCM" data-toggle="tab">';
                         data_tap += '<font>GCM</font>';
                         data_tap += '</a></li>';
