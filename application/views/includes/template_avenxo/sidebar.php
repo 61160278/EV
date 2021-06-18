@@ -57,6 +57,8 @@
                                             class="fa fa-pencil-square"></i><span>Create Form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/index"><i
                                             class="fa fa-tachometer"></i><span>Evaluate employees</span></span></a></li>
+                                <li><a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/index"><i
+                                            class="fa fa-tachometer"></i><span>approve goup</span></span></a></li>
                                 <?php }
                                 //else 
                                 else if($_SESSION['UsRole'] == 3) { ?>

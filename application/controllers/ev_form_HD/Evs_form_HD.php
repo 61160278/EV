@@ -9,7 +9,7 @@ require_once(dirname(__FILE__) . "/../MainController_avenxo.php");
 * @Create Date 2564-04-05
 */
 
-class Evs_form_AP extends MainController_avenxo {
+class Evs_form_HD extends MainController_avenxo {
 
 
 	/**
@@ -37,6 +37,9 @@ class Evs_form_AP extends MainController_avenxo {
 	*/
 	function index()
 	{
+		$data_chack_form = [];	
+		$check = 0;
+		
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
 		$year = $data['patt_year']->row(); // show value year now
@@ -46,11 +49,65 @@ class Evs_form_AP extends MainController_avenxo {
 
 		$this->load->model('M_evs_group','megu');
 		$this->megu->emp_pay_id = $pay_id;
-		$data['data_group'] = $this->megu->get_group_by_head_dept()->result();
+		$emp_data = $data['data_group'] = $this->megu->get_group_by_head_dept()->result();
+
+
+		
+
+
+		foreach ($emp_data as $row) {
+			if($row->emp_employee_id != $_SESSION['UsEmp_ID']){
+			$this->load->model('M_evs_employee','memp');
+			$this->memp->Emp_ID = $row->emp_employee_id;
+			$this->memp->emp_pay_id = $pay_id;
+			$data['emp_info'] = $this->memp->get_by_empid();
+
+			$tep = $data['emp_info']->row();
+		
+			$this->load->model('M_evs_data_mbo_weight','medw');
+			$this->medw->dmw_evs_emp_id = $tep->emp_id;
+			$data['check'] = $data['data_mbo'] = $this->medw->get_by_empID()->result();
+			$check += sizeof($data['check']);
+	
+
+			$this->load->model('M_evs_data_g_and_o_weight','megw');
+			$this->megw->dgw_evs_emp_id = $tep->emp_id;
+			$data['check'] = $data['data_g_and_o'] = $this->megw->get_by_empID()->result();
+			$check += sizeof($data['check']);
+
+
+	
+			$this->load->model('M_evs_data_mhrd_weight','memw');
+			$this->memw->mhw_evs_emp_id = $tep->emp_id;
+			$data['check'] = $data['data_mhrd'] = $this->memw->get_by_empID()->result();
+			$check += sizeof($data['check']);
+
+
+	
+			$this->load->model('M_evs_data_acm_weight','mdtm');
+			$this->mdtm->dta_evs_emp_id = $tep->emp_id;
+			$data['check'] = $data['data_acm_weight'] = $this->mdtm->get_by_empID()->result();
+			$check += sizeof($data['check']);
+
+
+	
+			$this->load->model('M_evs_data_gcm_weight','mdtg');
+			$this->mdtg->dtg_evs_emp_id = $tep->emp_id;
+			$data['check'] = $data['data_gcm_weight'] = $this->mdtg->get_by_empID()->result();
+			$check += sizeof($data['check']);
+
+			
+			}
+			array_push($data_chack_form,$check);
+
+		} 
+
+		
+		$data['data_chack_form'] = $data_chack_form;
 
 		$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
 		
-		$this->output('/consent/ev_form_AP/v_main_form',$data);
+		$this->output('/consent/ev_form_HD/v_main_form',$data);
 	}
 	// function index()
 	
@@ -113,9 +170,7 @@ class Evs_form_AP extends MainController_avenxo {
 			else{
 					$data['data_from_pe'] = "MBO";
 			}
-			// else
 		}
-		// if
 
 
 		else if($data['form']->ps_form_pe == "G&O"){
@@ -137,17 +192,16 @@ class Evs_form_AP extends MainController_avenxo {
 		$this->mesg->sfg_pos_id = $tep->Position_ID;
 		$data['row_index'] = $this->mesg->get_all_by_key_by_year()->row();
 		
-			if($check_g_o != 0){
-				$data['data_from_pe'] = "G_and_O_edit";
-			}
-			// if
-
-			else{
-				$data['data_from_pe'] = "G_and_O";
-			}
-			// else	
+		if($check_g_o != 0){
+			$data['data_from_pe'] = "G_and_O_edit";
 		}
-		// else if
+		// if
+
+		else{
+			$data['data_from_pe'] = "G_and_O";
+		}
+		// else	
+		}
 
 		else if($data['form']->ps_form_pe == "MHRD"){
 			$this->load->model('M_evs_data_mhrd_weight','memw');
@@ -167,9 +221,8 @@ class Evs_form_AP extends MainController_avenxo {
 			else{
 				$data['data_from_pe'] = "MHRD";
 			}
-			// else 
 		}
-		// else if 
+
 
 		if($data['form']->ps_form_ce == "ACM"){
 	
@@ -178,31 +231,23 @@ class Evs_form_AP extends MainController_avenxo {
 			$data['check'] = $data['data_acm_weight'] = $this->mdtm->get_by_empID()->result();
 			$check_acm = sizeof($data['check']);
 
-			if($check_acm != 0){
+			$this->load->model('M_evs_set_form_ability','mesf');
+			$this->mesf->sfa_pos_id = $tep->Position_ID;
+			$this->mesf->sfa_pay_id = $pay_id;
+			$data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator()->result();
 
-				$this->load->model('M_evs_set_form_ability','mesf');
-				$this->mesf->sfa_pos_id = $tep->Position_ID;
-				$this->mesf->sfa_pay_id = $pay_id;
-				$data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator()->result();
+			$this->load->model('M_evs_expected_behavior','mept');
+			$data['info_expected'] = $this->mept->get_all_by_pos()->result();
 
-				$this->load->model('M_evs_expected_behavior','mept');
-				$data['info_expected'] = $this->mept->get_all_by_pos()->result();
+			$data['info_pos_id'] = $tep->Position_ID;
 
-				$data['info_pos_id'] = $tep->Position_ID;
+			if($check_acm != 0){	
 				$data['data_from_ce'] = "ACM_edit";
-	
+			
 			}
 			// if
 
 			else{
-			
-				$this->load->model('M_evs_set_form_ability','mesf');
-				$this->mesf->sfa_pos_id = $tep->Position_ID;
-				$this->mesf->sfa_pay_id = $pay_id;
-				$data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator()->result();
-				$this->load->model('M_evs_expected_behavior','mept');
-				$data['info_expected'] = $this->mept->get_all_by_pos()->result();
-				$data['info_pos_id'] = $tep->Position_ID;	
 				$data['data_from_ce'] = "ACM";
 			}
 		// else	
@@ -223,13 +268,11 @@ class Evs_form_AP extends MainController_avenxo {
 				$this->load->model('M_evs_expected_behavior_gcm','mept');
 				$data['info_expected'] = $this->mept->get_all_by_pos()->result();
 				$data['info_pos_id'] = $tep->Position_ID;
-				$data['data_from_ce'] = "GCM_edit";
-				
+				$data['data_from_ce'] = "GCM_edit";	
 			}
 			// if
 	
 			else{
-
 				$tep = $data['emp_info']->row();
 				$this->load->model('M_evs_set_form_gcm','mesf');
 				$this->mesf->sgc_pos_id = $tep->Position_ID;
@@ -239,11 +282,12 @@ class Evs_form_AP extends MainController_avenxo {
 				$data['info_expected'] = $this->mept->get_all_by_pos()->result();
 				$data['info_pos_id'] = $tep->Position_ID;
 				$data['data_from_ce'] = "GCM";
-				
 			}
 			// else	
+
+
 		}
-		// else if
+
 
 		$this->output('/consent/ev_form_AP/v_createFROM',$data);
 
