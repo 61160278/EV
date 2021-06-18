@@ -505,7 +505,8 @@ function save_GCM() {
         },
         // success
         error: function(data) {
-            console.log("9999 : error");
+            console.log("9-9-9-9 : error");
+            update_approve();
         }
         // error
     });
@@ -847,6 +848,17 @@ function update_MHRD_edit() {
     // ajax
 
 }
+// update_MHRD_edit
+
+function update_approve(){
+    var Emp_ID = document.getElementById("Emp_ID").value;
+    var App = <?php $_SESSION['UsEmp_ID']; ?>;
+
+    console.log(Emp_ID);
+    console.log(App);
+
+}
+// update_approve
 </script>
 <!-- script -->
 
@@ -2282,36 +2294,45 @@ function update_MHRD_edit() {
                         if($data_from_pe == "MBO"){
                             $onclek_form_pe = "save_MBO();";
                         }
+                        // else if
                         else if($data_from_pe == "MBO_edit"){
                             $onclek_form_pe = "update_MBO_edit();";
                         }
+                        // else if
                         else if($data_from_pe == "MHRD"){
                             $onclek_form_pe = "save_MHRD();";
                         }
+                        // else if
                         else if($data_from_pe == "MHRD_edit"){
                             $onclek_form_pe = "update_MHRD_edit();";
                         }
+                        // else if
                         else if($data_from_pe == "G_and_O"){
                             $onclek_form_pe = "save_G_and_O();";
                         }
+                        // else if
                         else if($data_from_pe == "G_and_O_edit"){
                             $onclek_form_pe = "update_G_and_O_edit();";
                         }
+                        // else if
                         if($data_from_ce == "ACM"){
                             $onclek_form_ce = "save_ACM();";
                         }
+                        // if
                         else if($data_from_ce == "ACM_edit"){
                             $onclek_form_ce = "update_ACM_edit();";
                         }
+                        // else if
                         else if($data_from_ce == "GCM"){
                             $onclek_form_ce = "save_GCM();";
                         }
+                        // else if
                         else if($data_from_ce == "GCM_edit"){
                             $onclek_form_ce = "update_GCM_edit();";
                         }
+                        // else if
                     
-                    
-                    
+                
                         $onclek_form_all = "onclick='".$onclek_form_pe." ".$onclek_form_ce."'";
                     
                     ?>

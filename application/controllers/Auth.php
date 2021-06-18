@@ -17,13 +17,19 @@ class Auth extends MainController
 
 	public function check_login()
 	{
-		
-		$this->load->model('M_evs_login', 'melog');
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
 
+		$pay_id = $year->pay_id;
+
+		$this->load->model('M_evs_login', 'melog');
 		$this->melog->log_user_id = $_POST['user'];
 		$this->melog->log_password = $_POST['pass'];
+		$this->melog->pay_id = $pay_id;
 		$data['user'] = $this->melog->check_login();
-
+ 
 		if(sizeof($data['user']->row()) == 0){
 			$this->login();
 		}

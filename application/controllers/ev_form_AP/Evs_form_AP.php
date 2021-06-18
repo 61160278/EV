@@ -501,6 +501,7 @@ class Evs_form_AP extends MainController_avenxo {
 			$data = "save_data_mhrd";
 			echo json_encode($data);		
 		}
+		// save_mhrd
 		
 		function update_mhrd(){
 
@@ -525,10 +526,19 @@ class Evs_form_AP extends MainController_avenxo {
 			$this->memw->mhw_weight_2 = $arr_radio_2[$i];
 			$this->memw->update();
 			}
+			// for
 	
 			$data = "update_data_mhrd";
 			echo json_encode($data);		
 		}
+		// update_mhrd
+
+		function update_approve(){
+
+			
+
+		}
+		// update_approve 
 
 
 
