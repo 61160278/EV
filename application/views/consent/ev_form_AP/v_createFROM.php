@@ -1,7 +1,7 @@
 <?php
 /*
-* v_main_permission.php
-* Display v_main_permission
+* v_createFROM.php
+* Display v_createFROM
 * @input    
 * @output
 * @author   Kunanya Singmee
@@ -24,8 +24,13 @@ th {
     background-color: #212121;
 }
 
-#dis_color {
-    background-color: #F5F5F5;
+#color_head {
+    background-color: #3f51b5;
+}
+
+.panel.panel-indigo .panel-heading {
+    color: #e8eaf6;
+    background-color: #134466;
 }
 </style>
 <!-- END style -->
@@ -970,6 +975,7 @@ function update_MHRD_edit() {
                                 </tr>
                             </thead>
                             <!-- thead -->
+
                             <tbody id="row_mbo">
                                 <?php 
                             $table_index_radio_mbo = 0;
@@ -989,7 +995,7 @@ function update_MHRD_edit() {
                                         <input type="number" name="weing_mbo_<?php echo $table_index_radio_mbo ?>"
                                             value="<?php echo $row->dtm_weight; ?>" hidden>
                                     </td>
-                                    <td id="dis_color">
+                                    <td>
                                         <center>
                                             <div class="col-md-12">
                                                 <input type="radio" name="rd_mbo_<?php echo $table_index_radio_mbo ?>"
@@ -1004,7 +1010,7 @@ function update_MHRD_edit() {
                                                 &nbsp;&nbsp;
                                                 <input type="radio" name="rd_mbo_<?php echo $table_index_radio_mbo ?>"
                                                     id="rd_<?php echo $table_index_radio_mbo ?>" value="3"
-                                                    onclick="show_weight_mbo()" checked>
+                                                    onclick="show_weight_mbo()">
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio" name="rd_mbo_<?php echo $table_index_radio_mbo ?>"
@@ -1023,7 +1029,7 @@ function update_MHRD_edit() {
 
                                         </center>
                                     </td>
-                                    <td id="dis_color" width="2%">
+                                    <td id="dis_color" width="2%" align="center">
                                         <p id="weight_mbo_<?php echo $table_index_radio_mbo ?>"></p>
                                     </td>
                                     <?php $table_index_radio_mbo++;  ?>
@@ -1041,8 +1047,9 @@ function update_MHRD_edit() {
                                 <tr>
                                     <td colspan="3" align="right"><b>Total Weight</b></td>
                                     <td id="show_weight" align="center">100</td>
-                                    <td colspan="2">
-                                        <p id="weight_all_mbo">
+                                    <td align="center">Total Result</td>
+                                    <td align="center">
+                                        <p id="weight_all_mbo"></p>
                                     </td>
                                 </tr>
                             </tfoot>
@@ -1054,11 +1061,12 @@ function update_MHRD_edit() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/index">
-                                    <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
-                                </a>
-                                <!-- cancel to back to main  -->
-
+                                <form method="POST" action="<?php echo base_url(); ?>ev_form/Evs_form_evaluation/index">
+                                    <input id="emp_id" name="emp_id" type="text"
+                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
+                                    <input type="submit" class="btn btn-inverse" value="BACK">
+                                </form>
+                                <!-- form  -->
                             </div>
                             <!-- col-md-6 -->
 
@@ -1218,11 +1226,12 @@ function update_MHRD_edit() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/index">
-                                    <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
-                                </a>
-                                <!-- cancel to back to main  -->
-
+                            <form method="POST" action="<?php echo base_url(); ?>ev_form/Evs_form_evaluation/index">
+                                    <input id="emp_id" name="emp_id" type="text"
+                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
+                                    <input type="submit" class="btn btn-inverse" value="BACK">
+                                </form>
+                                <!-- form  -->
                             </div>
                             <!-- col-md-6 -->
 
@@ -1486,10 +1495,12 @@ function update_MHRD_edit() {
 
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/index">
-                                    <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
-                                </a>
-                                <!-- cancel to back to main  -->
+                                <form method="POST" action="<?php echo base_url(); ?>ev_form/Evs_form_evaluation/index">
+                                    <input id="emp_id" name="emp_id" type="text"
+                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
+                                    <input type="submit" class="btn btn-inverse" value="BACK">
+                                </form>
+                                <!-- form  -->
 
                             </div>
                             <!-- col-md-6 -->
@@ -1838,10 +1849,12 @@ function update_MHRD_edit() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/index">
-                                    <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
-                                </a>
-                                <!-- cancel to back to main  -->
+                                <form method="POST" action="<?php echo base_url(); ?>ev_form/Evs_form_evaluation/index">
+                                    <input id="emp_id" name="emp_id" type="text"
+                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
+                                    <input type="submit" class="btn btn-inverse" value="BACK">
+                                </form>
+                                <!-- form  -->
 
                             </div>
                             <!-- col-md-6 -->
@@ -2016,10 +2029,12 @@ function update_MHRD_edit() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/index">
-                                    <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
-                                </a>
-                                <!-- cancel to back to main  -->
+                                <form method="POST" action="<?php echo base_url(); ?>ev_form/Evs_form_evaluation/index">
+                                    <input id="emp_id" name="emp_id" type="text"
+                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
+                                    <input type="submit" class="btn btn-inverse" value="BACK">
+                                </form>
+                                <!-- form  -->
                                 <div class="col-md-6" align="right">
                                 </div>
                                 <!-- col-md-6 add_app -->
@@ -2119,27 +2134,32 @@ function update_MHRD_edit() {
                                             <div class="col-md-12">
                                                 <input type="radio"
                                                     name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="1" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_1_1 ?>>
+                                                    value="1" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_1_1 ?>>
                                                 <label for="1">&nbsp; 1</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="2" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_1_2 ?>>
+                                                    value="2" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_1_2 ?>>
                                                 <label for="2">&nbsp; 2</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="3" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_1_3 ?>>
+                                                    value="3" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_1_3 ?>>
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="4" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_1_4 ?>>
+                                                    value="4" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_1_4 ?>>
                                                 <label for="4">&nbsp; 4</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="5" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_1_5 ?>>
+                                                    value="5" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_1_5 ?>>
                                                 <label for="5">&nbsp; 5</label>
                                                 &nbsp;
                                             </div>
@@ -2178,27 +2198,32 @@ function update_MHRD_edit() {
                                             <div class="col-md-12">
                                                 <input type="radio"
                                                     name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="1" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_2_1 ?>>
+                                                    value="1" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_2_1 ?>>
                                                 <label for="1">&nbsp; 1</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?> "
-                                                    value="2" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_2_2 ?>>
+                                                    value="2" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_2_2 ?>>
                                                 <label for="2">&nbsp; 2</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="3" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_2_3 ?>>
+                                                    value="3" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_2_3 ?>>
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="4" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_2_4 ?>>
+                                                    value="4" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_2_4 ?>>
                                                 <label for="4">&nbsp; 4</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="5" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_2_5 ?>>
+                                                    value="5" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_2_5 ?>>
                                                 <label for="5">&nbsp; 5</label>
                                                 &nbsp;
                                             </div>
@@ -2236,10 +2261,12 @@ function update_MHRD_edit() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/index">
-                                    <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
-                                </a>
-                                <!-- cancel to back to main  -->
+                                <form method="POST" action="<?php echo base_url(); ?>ev_form/Evs_form_evaluation/index">
+                                    <input id="emp_id" name="emp_id" type="text"
+                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
+                                    <input type="submit" class="btn btn-inverse" value="BACK">
+                                </form>
+                                <!-- form  -->
                                 <div class="col-md-6" align="right">
                                 </div>
                                 <!-- col-md-6 add_app -->
@@ -2288,7 +2315,6 @@ function update_MHRD_edit() {
                         $onclek_form_all = "onclick='".$onclek_form_pe." ".$onclek_form_ce."'";
                     
                     ?>
-
 
                     <div class="tab-pane" id="ACM">
                         <table class="table table-bordered table-striped m-n">
@@ -2448,10 +2474,12 @@ function update_MHRD_edit() {
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url(); ?>/ev_form_AP/Evs_form_AP/index">
-                                    <button type="button" class="btn btn-inverse"><i
-                                            class="fa fa-mail-reply"></i>Back</button>
-                                </a>
+                                <form method="POST" action="<?php echo base_url(); ?>ev_form/Evs_form_evaluation/index">
+                                    <input id="emp_id" name="emp_id" type="text"
+                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
+                                    <input type="submit" class="btn btn-inverse" value="BACK">
+                                </form>
+                                <!-- form  -->
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
@@ -2825,10 +2853,12 @@ function update_MHRD_edit() {
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url(); ?>/ev_form_AP/Evs_form_AP/index">
-                                    <button type="button" class="btn btn-inverse"><i
-                                            class="fa fa-mail-reply"></i>Back</button>
-                                </a>
+                                <form method="POST" action="<?php echo base_url(); ?>ev_form/Evs_form_evaluation/index">
+                                    <input id="emp_id" name="emp_id" type="text"
+                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
+                                    <input type="submit" class="btn btn-inverse" value="BACK">
+                                </form>
+                                <!-- form  -->
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
@@ -3031,10 +3061,12 @@ function update_MHRD_edit() {
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url(); ?>/ev_form_AP/Evs_form_AP/index">
-                                    <button type="button" class="btn btn-inverse"><i
-                                            class="fa fa-mail-reply"></i>Back</button>
-                                </a>
+                                <form method="POST" action="<?php echo base_url(); ?>ev_form/Evs_form_evaluation/index">
+                                    <input id="emp_id" name="emp_id" type="text"
+                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
+                                    <input type="submit" class="btn btn-inverse" value="BACK">
+                                </form>
+                                <!-- form  -->
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">

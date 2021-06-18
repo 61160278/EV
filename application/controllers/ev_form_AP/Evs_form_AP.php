@@ -210,7 +210,7 @@ class Evs_form_AP extends MainController_avenxo {
 
 		else if($data['form']->ps_form_ce == "GCM"){
 			$this->load->model('M_evs_data_gcm_weight','mdtm');
-			$this->mdtm->dtg_evs_emp_id = $employee_data->emp_id;
+			$this->mdtm->dtg_evs_emp_id = $tep->emp_id;
 			$data['check'] = $data['data_gcm_weight'] = $this->mdtm->get_by_empID()->result();
 			$check_gcm = sizeof($data['check']);
 	
