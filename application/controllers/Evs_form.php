@@ -140,8 +140,15 @@ class Evs_form extends MainController {
 	*/
 	function manage_form($position_level){
 		$this->load->model('M_evs_position_from','mpf');
+
 		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
 		$this->mpf->pos_psl_id = $position_level;
+		$this->mpf->ps_pay_id = $pay_id;
 		$data['info_position'] = $this->mpf->get_by_level_pos(); //show value position level by position id
 		$data['info_pattern_year'] = $this->myear->get_by_year_now_year(); //show value pattern and year by year now
 		$data['position_level'] = $position_level; // show value position level 

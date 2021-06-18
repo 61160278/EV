@@ -97,91 +97,101 @@ function validate_his() {
                 </h2>
             </div>
             <!-- heading -->
-            <div class="panel-body" style="height: 400px">
+            <div class="panel-body">
 
-                <div class="row">
 
-                    <div class="col-md-12">
-                        <table class="table table-bordered table-striped m-n">
-                            <thead id="headmbo">
-                                <tr>
-                                    <th rowspan="2" width="2%">
-                                        <center> No.</center>
-                                    </th>
-                                    <th rowspan="2" width="15%">
-                                        <center>name</center>
-                                    </th>
-                                    <th rowspan="2" width="20%">
-                                        <center>Management</center>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <!-- thead -->
-                            <tbody id="row_mbo">
-                                <?php 
+                <table class="table table-bordered table-striped m-n">
+                    <thead>
+                        <tr>
+                            <th rowspan="2" width="2%">
+                                <center> No.</center>
+                            </th>
+                            <th rowspan="2" width="15%">
+                                <center>employee id</center>
+                            </th>
+                            <th rowspan="2" width="15%">
+                                <center>name</center>
+                            </th>
+                            <th rowspan="2" width="15%">
+                                <center>group</center>
+                            </th>
+                            <th rowspan="2" width="20%">
+                                <center>Management</center>
+                            </th>
+                        </tr>
+                    </thead>
+                    <!-- thead -->
+                    <tbody id="row_mbo">
+                        <?php 
                             
-							foreach($data_group as $index => $row) {
-                                if($data_emp_id != $row->emp_employee_id) {
+							    foreach($data_group as $index => $row) {
+                                 if($data_emp_id != $row->emp_employee_id) {
                                 
                                 ?>
-                                <tr>
-                                    <td>
-                                        <center>
-                                            <?php echo $index+1 ?>
-                                        </center>
-                                    </td>
-                                    <td>
-                                        <center>
-                                            <?php echo $row->Empname_engTitle." ".$row->Empname_eng." ".$row->Empsurname_eng ?>
-                                        </center>
-                                    </td>
-                                    <td>
-                                        <?php 
+                        <tr>
+                            <td>
+                                <center>
+                                    <?php echo $index+1 ?>
+                                </center>
+                            </td>
+                            <td>
+                                <center>
+                                    <?php echo  $row->emp_employee_id ?>
+                                </center>
+                            </td>
+                            <td>
+                                <center>
+                                    <?php echo $row->Empname_engTitle." ".$row->Empname_eng." ".$row->Empsurname_eng ?>
+                                </center>
+                            </td>
+                            <td>
+                                <center>
+                                    <?php echo $row->gru_name ?>
+                                </center>
+                            </td>
+                            <td>
+                                <?php 
                             
 							            if($data_chack_form[$index]  != 0){
                                 
                                         ?>
-                                        <center>
-                                            <a
-                                                href="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/createFROM/<?php echo $row->emp_employee_id ?>">
-                                                <button class="btn btn-info">
-                                                    <i class="ti ti-search"></i> view information
-                                                </button>
-                                            </a>
-                                        </center>
-                                        <?php 
+                                <center>
+                                    <a
+                                        href="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/createFROM/<?php echo $row->emp_employee_id ?>">
+                                        <button class="btn btn-info">
+                                            <i class="ti ti-search"></i> view information
+                                        </button>
+                                    </a>
+                                </center>
+                                <?php 
                                         }
 							            else{
                                         ?>
-                                        <center>
-                                                <button class="btn btn-info" disabled>
-                                                    <i class="ti ti-search"></i> view information
-                                                </button>
-                                        </center>
-                                        <?php 
+                                <center>
+                                    <button class="btn btn-info" disabled>
+                                        <i class="ti ti-search"></i> view information
+                                    </button>
+                                </center>
+                                <?php 
                                         }
                                         ?>
 
-                                    </td>
+                            </td>
+                        </tr>
+                        <?php 
+                                         }
+                                    }?>
 
-                                    <?php 
-                                }
-                            }?>
-                                <tr>
-                            </tbody>
+
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6" align="right">
                     </div>
                 </div>
             </div>
-            <!-- row  -->
-
         </div>
-        <!-- body -->
     </div>
-    <!-- panel-indigo -->
-    <hr>
-    <br>
 </div>
-<!-- col-12 -->
-</div>
-<!-- row -->
-<br>

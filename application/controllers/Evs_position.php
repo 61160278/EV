@@ -169,7 +169,7 @@ class Evs_position extends mainController {
 		//end set year now
 
 		$year->pay_id;
-		$data['patt_before_year'] = $year->pay_year; // show value before year now
+		$data['data_pay_save'] = 0; // show value before year now
 
 		$this->load->model('M_evs_position_from','mps'); 
 		$this->mps->pos_psl_id = $pos_psl_id;
@@ -186,7 +186,7 @@ class Evs_position extends mainController {
 
 	
 	/*
-	* show_position_edit
+	* show_position_new_year_edit
 	* Display v_main_position
 	* @input position level id
 	* @output edit manage position to database
@@ -210,7 +210,7 @@ class Evs_position extends mainController {
 		//end set year now
 
 		$year->pay_id;
-		$data['patt_before_year'] = $year->pay_year; // show value before pattern now
+		$data['data_pay_save'] = 1; // show value before pattern now
 
 		$this->load->model('M_evs_position_from','mps');
 		$this->mps->pos_psl_id = $pos_psl_id;

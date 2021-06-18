@@ -107,6 +107,13 @@ class Evs_permission extends MainController_avenxo {
 	
 	function select_emp()
 	{
+
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+
+		$data['year'] = $year->pay_id;
 		$date = $this->input->post("Date");
 		$this->load->model('M_evs_employee','mevg');
 		$this->mevg->Emp_startingdate = $date;
@@ -140,7 +147,7 @@ class Evs_permission extends MainController_avenxo {
 		$this->deep->emp_company_id = $Company[$i];
 
 		$this->deep->emp_pay_id = $year->pay_id;
-		$this->deep->emp_ghr_id = 0;
+		$this->deep->emp_gru_id = 0;
 		$this->deep->insert();
 
 		}

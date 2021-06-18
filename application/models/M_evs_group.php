@@ -122,8 +122,9 @@ class M_evs_group extends Da_evs_group {
 				ON gru.gru_id =  eem.emp_gru_id
 				INNER JOIN dbmc.employee as dem
 				ON eem.emp_employee_id =  dem.Emp_ID
-				WHERE emp_pay_id = ?" ;
-		$query = $this->db->query($sql, array($this->emp_pay_id));
+				WHERE emp_pay_id = ? AND gru_head_dept = ?
+				ORDER BY `gru`.`gru_name` ASC" ;
+		$query = $this->db->query($sql, array($this->emp_pay_id, $this->gru_head_dept));
 		return $query;
 	}
 

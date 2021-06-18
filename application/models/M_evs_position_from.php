@@ -160,9 +160,9 @@ class M_evs_position_from extends Da_evs_position_from {
 		ON ps_pos_id = Position_ID
 		left join dbmc.position_level
 		ON position_level_id = psl_id
-		WHERE position_level_id=?
+		WHERE position_level_id=? AND ps_pay_id = ?
 		ORDER BY ps_pos_id";
-		$query = $this->evs->query($sql, array($this->pos_psl_id));
+		$query = $this->evs->query($sql, array($this->pos_psl_id,$this->ps_pay_id));
 		return $query;
 	}//get_by_level_pos
 

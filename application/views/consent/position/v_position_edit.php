@@ -281,7 +281,7 @@
                     </div>
                     <!-- Start table show position information -->
 
-                    <form method="post" action="<?php if($patt_before_year == date("Y")) {echo base_url();?>/Evs_position/position_edit/<?php echo $pls_level_from;} 
+                    <form method="post" action="<?php if($data_pay_save == 0) {echo base_url();?>/Evs_position/position_edit/<?php echo $pls_level_from;} 
                         else {echo base_url();?>/Evs_position/position_insert/<?php echo $pls_level_from;} ?>">
                         <table id="t01" border="1" class="table" width="100%">
                             <thead>
