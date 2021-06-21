@@ -148,7 +148,7 @@
                                     APPROVER 2 </button>
                                 <?php }
                                     // else if
-                                    else if($row->dma_status == 4){ ?>
+                                    else if($row->dma_status == 3 || $row->dma_status == 4){ ?>
                                 <button class="btn btn-warning" data-toggle="modal" data-target="#show_status">Wait HR
                                 </button>
                                 <?php }
@@ -298,7 +298,7 @@
                             </strong></label>
                     </div>
                     <!-- col-md-3 -->
-                    <?php if($data_app->dma_status == 4){ ?>
+                    <?php if($data_app->dma_status == 3 || $row->dma_status == 4){ ?>
                     <div class="col-md-6" align="center">
                         <div class="alert alert-dismissable alert-warning">
                             <strong> Wait HR </strong>
