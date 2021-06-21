@@ -289,6 +289,8 @@ function update_ACM_edit() {
     });
     // ajax
 
+    update_approve();
+
 }
 
 function show_weight_g_and_o() {
@@ -514,6 +516,7 @@ function save_GCM() {
 
     update_approve();
 
+
 }
 
 function update_GCM_edit() {
@@ -556,6 +559,7 @@ function update_GCM_edit() {
         // error
     });
     // ajax
+    update_approve();
 
 }
 
@@ -865,15 +869,18 @@ function update_approve() {
             "App": App
         },
         success: function(data) {
-            console.log(data);
+            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form_evaluation/Main/" + App;
         },
         // success
         error: function(data) {
-            console.log("9999 : error");
+            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form_evaluation/Main/" + App;
         }
         // error
     });
     // ajax
+
+    
+
 
 }
 // update_approve
