@@ -567,21 +567,26 @@ function show_weight_mbo() {
     var arr_weight = [];
     var sum = 0;
     var index = document.getElementById("table_index_radio_mbo").value;
-    for (i = 0; i < index; i++) {
+    console.log(index);
 
+    for (i = 0; i < index; i++) {
         $("[name = rd_mbo_" + i + "]").each(function(index) {
             if ($(this).prop("checked") == true) {
                 arr_weight.push(document.getElementsByName("rd_mbo_" + i + "")[index].value);
-            } //if
+            }
+            //if
         });
+        // each
     }
+    // for
+
     for (i = 0; i < index; i++) {
-        document.getElementById("weight_mbo_" + i + "").innerHTML = arr_weight[i] * document.getElementsByName(
-            "weing_mbo_" +
-            i + "")[0].value;
+        $("#weight_mbo_" + i + "").text(arr_weight[i] * document.getElementsByName("weing_mbo_" + i + "")[0].value);
         sum += arr_weight[i] * document.getElementsByName("weing_mbo_" + i + "")[0].value;
     }
-    document.getElementById("weight_all_mbo").innerHTML = sum;
+    // for
+    console.log(sum);
+    $("#weight_all_mbo").text(sum);
 }
 
 function show_weight_mbo_edit() {
@@ -593,9 +598,12 @@ function show_weight_mbo_edit() {
         $("[name = rd_mbo_edit_" + i + "]").each(function(index) {
             if ($(this).prop("checked") == true) {
                 arr_weight.push(document.getElementsByName("rd_mbo_edit_" + i + "")[index].value);
-            } //if
+            }
+            //if
         });
+        // each 
     }
+    // for 
     for (i = 0; i < index; i++) {
         document.getElementById("weight_mbo_edit_" + i + "").innerHTML = arr_weight[i] * document.getElementsByName(
             "weing_mbo_edit_" +
@@ -879,7 +887,7 @@ function update_approve() {
     });
     // ajax
 
-    
+
 
 
 }
