@@ -133,6 +133,49 @@ function show_weight_acm_edit() {
 }
 
 
+function update_ACM_edit() {
+    var arr_radio = [];
+    var arr_sfa_id = [];
+    var get_arr_sfa_id = "";
+    var index = document.getElementById("table_index_radio_acm_edit").value;
+    var Emp_ID = document.getElementById("Emp_ID").value;
+
+    for (i = 0; i < index; i++) {
+        arr_sfa_id.push(document.getElementsByName("sfa_id")[i].value);
+        $("[name = rd_acm_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_radio.push(document.getElementsByName("rd_acm_edit_" + i + "")[index].value);
+            } //if
+        });
+    }
+    console.log("index : " + index);
+    console.log("Emp_ID :  " + Emp_ID);
+    console.log("arr_sfa_id : " + arr_sfa_id);
+    console.log("arr_radio : " + arr_radio);
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_acm_weight",
+        data: {
+            "Emp_ID": Emp_ID,
+            "arr_sfa_id": arr_sfa_id,
+            "arr_radio": arr_radio
+
+        },
+        success: function(data) {
+            console.log(data);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+
+}
+
 
 function show_weight_g_and_o_edit() {
     var arr_weight = [];
@@ -157,6 +200,53 @@ function show_weight_g_and_o_edit() {
 }
 
 
+function update_G_and_O_edit() {
+    var arr_radio = [];
+    var arr_dgo_id = [];
+    var arr_Evaluator_Review_edit = [];
+    var get_arr_dgo_id = "";
+    var index = document.getElementById("table_index_radio_g_o_edit").value;
+    var Emp_ID = document.getElementById("Emp_ID").value;
+
+    for (i = 0; i < index; i++) {
+        arr_dgo_id.push(document.getElementsByName("dgo_id")[i].value);
+        arr_Evaluator_Review_edit.push(document.getElementsByName("Evaluator_Review_edit")[i].value);
+        $("[name = rd_g_o_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_radio.push(document.getElementsByName("rd_g_o_edit_" + i + "")[index].value);
+            } //if
+        });
+    }
+    console.log("index : " + index);
+    console.log("Emp_ID :  " + Emp_ID);
+    console.log("arr_dgo_id : " + arr_dgo_id);
+    console.log("arr_radio : " + arr_radio);
+    console.log("arr_Evaluator_Review : " + arr_Evaluator_Review_edit);
+
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_g_and_o",
+        data: {
+            "Emp_ID": Emp_ID,
+            "arr_dgo_id": arr_dgo_id,
+            "arr_radio": arr_radio,
+            "arr_Evaluator_Review": arr_Evaluator_Review_edit
+        },
+        success: function(data) {
+            console.log(data);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+}
+
+
 function show_weight_gcm_edit() {
     var arr_weight = [];
     var sum = 0;
@@ -178,13 +268,55 @@ function show_weight_gcm_edit() {
     document.getElementById("weight_all_gcm_edit").innerHTML = sum;
 }
 
+function update_GCM_edit() {
+    var arr_radio = [];
+    var arr_sgc_id = [];
+    var get_arr_sgc_id = "";
+    var index = document.getElementById("table_index_radio_gcm_edit").value;
+    var Emp_ID = document.getElementById("Emp_ID").value;
+
+    for (i = 0; i < index; i++) {
+        arr_sgc_id.push(document.getElementsByName("sgc_id")[i].value);
+        $("[name = rd_gcm_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_radio.push(document.getElementsByName("rd_gcm_edit_" + i + "")[index].value);
+            } //if
+        });
+    }
+    console.log("index : " + index);
+    console.log("Emp_ID :  " + Emp_ID);
+    console.log("arr_sgc_id : " + arr_sgc_id);
+    console.log("arr_radio : " + arr_radio);
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_gcm_weight",
+        data: {
+            "Emp_ID": Emp_ID,
+            "arr_sgc_id": arr_sgc_id,
+            "arr_radio": arr_radio
+
+        },
+        success: function(data) {
+            console.log(data);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+
+}
 
 
 function show_weight_mbo_edit() {
     var arr_weight = [];
     var sum = 0;
     var index = document.getElementById("table_index_radio_mbo_edit").value;
-    for (i = 0; i < index; i++){
+    for (i = 0; i < index; i++) {
 
         $("[name = rd_mbo_edit_" + i + "]").each(function(index) {
             if ($(this).prop("checked") == true) {
@@ -192,7 +324,7 @@ function show_weight_mbo_edit() {
             } //if
         });
     }
-    for (i = 0; i < index; i++){
+    for (i = 0; i < index; i++) {
         document.getElementById("weight_mbo_edit_" + i + "").innerHTML = arr_weight[i] * document.getElementsByName(
             "weing_mbo_edit_" +
             i + "")[0].value;
@@ -200,6 +332,53 @@ function show_weight_mbo_edit() {
     }
     document.getElementById("weight_all_mbo_edit").innerHTML = sum;
 }
+
+function update_MBO_edit() {
+    var arr_radio = [];
+    var arr_dtm_id = [];
+    var get_arr_dtm_id = "";
+    var index = document.getElementById("table_index_radio_mbo_edit").value;
+    var Emp_ID = document.getElementById("Emp_ID").value;
+
+    for (i = 0; i < index; i++) {
+        arr_dtm_id.push(document.getElementsByName("dtm_id")[i].value);
+
+        $("[name = rd_mhrd_2_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_radio.push(document.getElementsByName("rd_mbo_edit_" + i + "")[index].value);
+            } //if
+        });
+
+        console.log("index : " + index);
+        console.log("Emp_ID :  " + Emp_ID);
+        console.log("arr_dtm_id : " + arr_dtm_id);
+        console.log("arr_radio : " + arr_radio);
+
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_mbo",
+            data: {
+                "Emp_ID": Emp_ID,
+                "arr_dtm_id": arr_dtm_id,
+                "arr_radio": arr_radio
+
+            },
+            success: function(data) {
+                console.log(data);
+            },
+            // success
+            error: function(data) {
+                console.log("9999 : error");
+            }
+            // error
+        });
+        // ajax
+
+    }
+}
+
+
 
 
 function show_weight_mhrd_edit() {
@@ -230,9 +409,92 @@ function show_weight_mhrd_edit() {
     document.getElementById("weight_all_mhrd_1_edit").innerHTML = sum_1;
     document.getElementById("weight_all_mhrd_2_edit").innerHTML = sum_2;
 }
+
+
+function update_MHRD_edit() {
+
+    var arr_sfi_id = [];
+    var arr_weight_1 = [];
+    var arr_weight_2 = [];
+    var get_arr_sfi_id = "";
+    var Emp_ID = document.getElementById("Emp_ID").value;
+
+    var index = document.getElementById("table_index_radio_mhrd_edit").value;
+    for (i = 0; i < index; i++) {
+        arr_sfi_id.push(document.getElementsByName("sfi_id")[i].value);
+        $("[name = rd_mhrd_1_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_weight_1.push(document.getElementsByName("rd_mhrd_1_edit_" + i + "")[index].value);
+            } //if
+        });
+
+        $("[name = rd_mhrd_2_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_weight_2.push(document.getElementsByName("rd_mhrd_2_edit_" + i + "")[index].value);
+            } //if
+        });
+    }
+    console.log("index : " + index);
+    console.log("Emp_ID :  " + Emp_ID);
+    console.log("arr_sfi_id : " + arr_sfi_id);
+    console.log("arr_radio_1 : " + arr_weight_1);
+    console.log("arr_radio_2 : " + arr_weight_2);
+
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_mhrd",
+        data: {
+            "Emp_ID": Emp_ID,
+            "arr_sfi_id": arr_sfi_id,
+            "arr_radio_1": arr_weight_1,
+            "arr_radio_2": arr_weight_2
+        },
+        success: function(data) {
+            console.log(data);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+
+}
 </script>
 <!-- script -->
-
+<?php  
+                        $onclek_form_pe = "";
+                        $onclek_form_ce = "";
+                        $onclek_form_all= "";
+    
+                         if($data_from_pe == "MBO_edit"){
+                            $onclek_form_pe = "update_MBO_edit();";
+                        }
+                   
+                        else if($data_from_pe == "MHRD_edit"){
+                            $onclek_form_pe = "update_MHRD_edit();";
+                        }
+                  
+                        else if($data_from_pe == "G_and_O_edit"){
+                            $onclek_form_pe = "update_G_and_O_edit();";
+                        }
+               
+                       if($data_from_ce == "ACM_edit"){
+                            $onclek_form_ce = "update_ACM_edit();";
+                        }
+                    
+                        else if($data_from_ce == "GCM_edit"){
+                            $onclek_form_ce = "update_GCM_edit();";
+                        }
+                    
+                    
+                    
+                        $onclek_form_all = "onclick='".$onclek_form_pe." ".$onclek_form_ce."'";
+                    
+              ?>
 
 
 <div class="row">
@@ -414,36 +676,31 @@ function show_weight_mhrd_edit() {
                                                 <input type="radio"
                                                     name="rd_mbo_edit_<?php echo $table_index_radio_mbo_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_mbo_edit ?>" value="1"
-                                                    onclick="show_weight_mbo_edit()" <?php echo $checked_weight_1 ?>
-                                                    disabled>
+                                                    onclick="show_weight_mbo_edit()" <?php echo $checked_weight_1 ?>>
                                                 <label for="1">&nbsp; 1</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_mbo_edit_<?php echo $table_index_radio_mbo_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_mbo_edit ?>" value="2"
-                                                    onclick="show_weight_mbo_edit()" <?php echo $checked_weight_2 ?>
-                                                    disabled>
+                                                    onclick="show_weight_mbo_edit()" <?php echo $checked_weight_2 ?>>
                                                 <label for="2">&nbsp; 2</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_mbo_edit_<?php echo $table_index_radio_mbo_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_mbo_edit ?>" value="3"
-                                                    onclick="show_weight_mbo_edit()" <?php echo $checked_weight_3 ?>
-                                                    disabled>
+                                                    onclick="show_weight_mbo_edit()" <?php echo $checked_weight_3 ?>>
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_mbo_edit_<?php echo $table_index_radio_mbo_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_mbo_edit ?> " value="4"
-                                                    onclick="show_weight_mbo_edit()" <?php echo $checked_weight_4 ?>
-                                                    disabled>
+                                                    onclick="show_weight_mbo_edit()" <?php echo $checked_weight_4 ?>>
                                                 <label for="4">&nbsp; 4</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_mbo_edit_<?php echo $table_index_radio_mbo_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_mbo_edit ?>" value="5"
-                                                    onclick="show_weight_mbo_edit()" <?php echo $checked_weight_5 ?>
-                                                    disabled>
+                                                    onclick="show_weight_mbo_edit()" <?php echo $checked_weight_5 ?>>
                                                 <label for="5">&nbsp; 5</label>
                                                 &nbsp;&nbsp;
                                             </div>
@@ -492,6 +749,7 @@ function show_weight_mhrd_edit() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
+                                <button class="btn btn-success" <?php echo $onclek_form_all  ?>> Save</button>
                             </div>
                             <!-- col-md-6 add_app -->
 
@@ -676,36 +934,35 @@ function show_weight_mhrd_edit() {
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_g_o_edit ?>" value="1"
-                                                    onclick="show_weight_g_and_o()" <?php echo $checked_weight_1 ?>
-                                                    disabled>
+                                                    onclick="show_weight_g_and_o()" <?php echo $checked_weight_1 ?>>
                                                 <label for="1">&nbsp; 1</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_g_o_edit ?>" value="2"
-                                                    onclick="show_weight_g_and_o_edit()" <?php echo $checked_weight_2 ?>
-                                                    disabled>
+                                                    onclick="show_weight_g_and_o_edit()"
+                                                    <?php echo $checked_weight_2 ?>>
                                                 <label for="2">&nbsp; 2</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_g_o_edit ?>" value="3"
-                                                    onclick="show_weight_g_and_o_edit()" <?php echo $checked_weight_3 ?>
-                                                    disabled>
+                                                    onclick="show_weight_g_and_o_edit()"
+                                                    <?php echo $checked_weight_3 ?>>
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_g_o_edit ?> " value="4"
-                                                    onclick="show_weight_g_and_o_edit()" <?php echo $checked_weight_4 ?>
-                                                    disabled>
+                                                    onclick="show_weight_g_and_o_edit()"
+                                                    <?php echo $checked_weight_4 ?>>
                                                 <label for="4">&nbsp; 4</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_g_o_edit ?>" value="5"
-                                                    onclick="show_weight_g_and_o_edit()" <?php echo $checked_weight_5 ?>
-                                                    disabled>
+                                                    onclick="show_weight_g_and_o_edit()"
+                                                    <?php echo $checked_weight_5 ?>>
                                                 <label for="5">&nbsp; 5</label>
                                                 &nbsp;&nbsp;
                                             </div>
@@ -763,36 +1020,36 @@ function show_weight_mhrd_edit() {
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_g_o_edit ?>" value="1"
-                                                    onclick="show_weight_g_and_o_edit()" <?php echo $checked_weight_1 ?>
-                                                    disabled>
+                                                    onclick="show_weight_g_and_o_edit()"
+                                                    <?php echo $checked_weight_1 ?>>
                                                 <label for="1">&nbsp; 1</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_g_o_edit ?>" value="2"
-                                                    onclick="show_weight_g_and_o_edit()" <?php echo $checked_weight_2 ?>
-                                                    disabled>
+                                                    onclick="show_weight_g_and_o_edit()"
+                                                    <?php echo $checked_weight_2 ?>>
                                                 <label for="2">&nbsp; 2</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_g_o_edit ?>" value="3"
-                                                    onclick="show_weight_g_and_o_edit()" <?php echo $checked_weight_3 ?>
-                                                    disabled>
+                                                    onclick="show_weight_g_and_o_edit()"
+                                                    <?php echo $checked_weight_3 ?>>
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_g_o_edit ?> " value="4"
-                                                    onclick="show_weight_g_and_o_edit()" <?php echo $checked_weight_4 ?>
-                                                    disabled>
+                                                    onclick="show_weight_g_and_o_edit()"
+                                                    <?php echo $checked_weight_4 ?>>
                                                 <label for="4">&nbsp; 4</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_g_o_edit ?>" value="5"
-                                                    onclick="show_weight_g_and_o_edit()" <?php echo $checked_weight_5 ?>
-                                                    disabled>
+                                                    onclick="show_weight_g_and_o_edit()"
+                                                    <?php echo $checked_weight_5 ?>>
                                                 <label for="5">&nbsp; 5</label>
                                                 &nbsp;&nbsp;
                                             </div>
@@ -847,7 +1104,7 @@ function show_weight_mhrd_edit() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-
+                                <button class="btn btn-success" <?php echo $onclek_form_all  ?>> Save</button>
                             </div>
                             <!-- col-md-6 add_app -->
 
@@ -948,31 +1205,31 @@ function show_weight_mhrd_edit() {
                                                 <input type="radio"
                                                     name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
                                                     value="1" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_1_1 ?> disabled>
+                                                    <?php echo $checked_weight_1_1 ?>>
                                                 <label for="1">&nbsp; 1</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
                                                     value="2" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_1_2 ?> disabled>
+                                                    <?php echo $checked_weight_1_2 ?>>
                                                 <label for="2">&nbsp; 2</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
                                                     value="3" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_1_3 ?> disabled>
+                                                    <?php echo $checked_weight_1_3 ?>>
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
                                                     value="4" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_1_4 ?> disabled>
+                                                    <?php echo $checked_weight_1_4 ?>>
                                                 <label for="4">&nbsp; 4</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
                                                     value="5" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_1_5 ?> disabled>
+                                                    <?php echo $checked_weight_1_5 ?>>
                                                 <label for="5">&nbsp; 5</label>
                                                 &nbsp;
                                             </div>
@@ -1012,31 +1269,31 @@ function show_weight_mhrd_edit() {
                                                 <input type="radio"
                                                     name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
                                                     value="1" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_2_1 ?> disabled>
+                                                    <?php echo $checked_weight_2_1 ?>>
                                                 <label for="1">&nbsp; 1</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?> "
                                                     value="2" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_2_2 ?> disabled>
+                                                    <?php echo $checked_weight_2_2 ?>>
                                                 <label for="2">&nbsp; 2</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
                                                     value="3" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_2_3 ?> disabled>
+                                                    <?php echo $checked_weight_2_3 ?>>
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
                                                     value="4" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_2_4 ?> disabled>
+                                                    <?php echo $checked_weight_2_4 ?>>
                                                 <label for="4">&nbsp; 4</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
                                                     value="5" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_2_5 ?> disabled>
+                                                    <?php echo $checked_weight_2_5 ?>>
                                                 <label for="5">&nbsp; 5</label>
                                                 &nbsp;
                                             </div>
@@ -1081,6 +1338,7 @@ function show_weight_mhrd_edit() {
                             </div>
                             <!-- cancel to back to main  -->
                             <div class="col-md-6" align="right">
+                                <button class="btn btn-success" <?php echo $onclek_form_all  ?>> Save</button>
                             </div>
                             <!-- col-md-6 add_app -->
 
@@ -1210,36 +1468,31 @@ function show_weight_mhrd_edit() {
                                             <input type="radio"
                                                 name="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?>"
                                                 id="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?>" value="1"
-                                                onclick="show_weight_acm_edit()" <?php echo $checked_weight_1 ?>
-                                                disabled>
+                                                onclick="show_weight_acm_edit()" <?php echo $checked_weight_1 ?>>
                                             <label for="1">&nbsp; 1</label>
                                             &nbsp;&nbsp;
                                             <input type="radio"
                                                 name="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?>"
                                                 id="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?>" value="2"
-                                                onclick="show_weight_acm_edit()" <?php echo $checked_weight_2 ?>
-                                                disabled>
+                                                onclick="show_weight_acm_edit()" <?php echo $checked_weight_2 ?>>
                                             <label for="2">&nbsp; 2</label>
                                             &nbsp;&nbsp;
                                             <input type="radio"
                                                 name="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?>"
                                                 id="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?>" value="3"
-                                                onclick="show_weight_acm_edit()" <?php echo $checked_weight_3 ?>
-                                                disabled>
+                                                onclick="show_weight_acm_edit()" <?php echo $checked_weight_3 ?>>
                                             <label for="3">&nbsp; 3</label>
                                             &nbsp;&nbsp;
                                             <input type="radio"
                                                 name="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?>"
                                                 id="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?> " value="4"
-                                                onclick="show_weight_acm_edit()" <?php echo $checked_weight_4 ?>
-                                                disabled>
+                                                onclick="show_weight_acm_edit()" <?php echo $checked_weight_4 ?>>
                                             <label for="4">&nbsp; 4</label>
                                             &nbsp;&nbsp;
                                             <input type="radio"
                                                 name="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?>"
                                                 id="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?>" value="5"
-                                                onclick="show_weight_acm_edit()" <?php echo $checked_weight_5 ?>
-                                                disabled>
+                                                onclick="show_weight_acm_edit()" <?php echo $checked_weight_5 ?>>
                                             <label for="5">&nbsp; 5</label>
                                             &nbsp;&nbsp;
                                         </div>
@@ -1295,7 +1548,7 @@ function show_weight_mhrd_edit() {
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
-
+                                <button class="btn btn-success" <?php echo $onclek_form_all  ?>> Save</button>
                             </div>
                         </div>
                         <!-- row -->
@@ -1423,36 +1676,31 @@ function show_weight_mhrd_edit() {
                                                 <input type="radio"
                                                     name="rd_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_gcm_edit ?>" value="1"
-                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_1 ?>
-                                                    disabled>
+                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_1 ?>>
                                                 <label for="1">&nbsp; 1</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_gcm_edit ?>" value="2"
-                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_2 ?>
-                                                    disabled>
+                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_2 ?>>
                                                 <label for="2">&nbsp; 2</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_gcm_edit ?>" value="3"
-                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_3 ?>
-                                                    disabled>
+                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_3 ?>>
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_gcm_edit ?> " value="4"
-                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_4 ?>
-                                                    disabled>
+                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_4 ?>>
                                                 <label for="4">&nbsp; 4</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
                                                     id="rd_<?php echo $table_index_radio_gcm_edit ?>" value="5"
-                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_5 ?>
-                                                    disabled>
+                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_5 ?>>
                                                 <label for="5">&nbsp; 5</label>
                                                 &nbsp;&nbsp;
                                             </div>
@@ -1508,7 +1756,7 @@ function show_weight_mhrd_edit() {
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
-
+                                <button class="btn btn-success" <?php echo $onclek_form_all  ?>> Save</button>
                             </div>
                         </div>
                     </div>

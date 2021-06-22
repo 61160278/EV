@@ -70,6 +70,16 @@ class M_evs_data_approve extends Da_evs_data_approve {
 		return $query;
 	}//get_by_approver 2
 	
+	function update_status() {
+	
+		$sql = "UPDATE evs_database.evs_data_approve 
+				SET dma_status=?
+				WHERE dma_emp_id=?";
+	   
+	   $this->db->query($sql, array($this->dma_status, $this->dma_emp_id));
+	}
+
+
 
 } 
 ?>

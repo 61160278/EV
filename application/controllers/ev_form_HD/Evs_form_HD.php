@@ -277,25 +277,33 @@ class Evs_form_HD extends MainController_avenxo {
 	// function createACM
 	function save_group_to_HR(){
     
-		// $Emp_id = $this->input->post("Emp_id");
+		$Emp_id = $this->input->post("Emp_id");
+		$index = $this->input->post("index");
+
+
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $Emp_id;
+		$this->memp->emp_pay_id = $pay_id;
+		$data['emp_info'] = $this->memp->get_by_empid();
+
+		$tep = $data['emp_info']->row();
 	
-	
-		// $this->load->model('M_evs_login','miog');
-		// $data_login = $this->miog->get_all()->result(); // show value year now
-		// //end set year now
-		// $chack_data_log = 0;
-		// 	foreach($data_login as $index => $row ) { 
-		// 		if($Emp_id == $row->log_user_id){
-		// 			$chack_data_log = 1;
-		// 		}
-		// 	}
-		// 	if($chack_data_log == 1){
-		// 		$this->miog->log_user_id = $Emp_id;
-		// 		$this->miog->log_role = 4;
-		// 		$this->miog->updatte_role();
-		// 	}
-		// 	$data = "save_group_to_HR";
-		// 	echo json_encode($data);
+
+		$this->load->model('M_evs_data_approve','mdap');
+		for ($i = 0; $i < $index; $i++) {
+			$this->mdap->dma_emp_id = $tep->emp_id[$i];
+			$this->mdap->dma_status = 4;
+			$this->mdap->update_status(); 
+		}
+		
+		$data = "save_group_to_HR";
+		echo json_encode($data);
 	
 	}
 
