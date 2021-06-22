@@ -23,69 +23,43 @@
 
 <script>
 $(document).ready(function() {
-    $("#show_noti").hide();
-    $("#show_noti_his").hide();
+    if (<?php echo $chack_save ?> = "Chack") {
+        document.getElementById("save").disabled = true;
+    } else {
+        document.getElementById("save").disabled = false;
+    }
 });
 // document ready
 
-function onChangeBG() {
-    $("#emp_id").css("background-color", "#ffffff");
-    $("#emp_id").css("border-style", "solid");
-    $("#emp_id").css("border-color", "#d9d9d9");
-    $("#show_noti").hide();
-}
-// function onChangeBG
+function save_group_to_HR() {
 
-function onChangeBG_his() {
-    $("#emp_id_his").css("background-color", "#ffffff");
-    $("#emp_id_his").css("border-style", "solid");
-    $("#emp_id_his").css("border-color", "#d9d9d9");
-    $("#show_noti_his").hide();
-}
-// function onChangeBG_his
-
-
-function validate() {
-
-    var check = document.getElementById("emp_id").value;
-    console.log(check);
-
-    if (check == "" || check.length <= 4 || check.length >= 8) {
-        $("#emp_id").css("background-color", "#ffe6e6");
-        $("#emp_id").css("border-style", "solid");
-        $("#emp_id").css("border-color", "#e60000");
-        $("#show_noti").show();
-
-        return false;
+    var Emp_ID = [];
+    var index = document.getElementById("table_index_radio_mhrd_edit").value;
+    for (i = 0; i < index; i++) {
+        Emp_ID.push(document.getElementsByName("Emp_ID")[index].value);
     }
-    // if 
-    else {
-        return true;
-    }
-    // else 
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/save_group_to_HR",
+        data: {
+            "Emp_ID": Emp_ID,
+            "index": index
+        },
+        success: function(data) {
+            console.log(data);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+
+
+
 }
-// function varidate
-
-function validate_his() {
-
-    var check = document.getElementById("emp_id_his").value;
-    console.log(check);
-
-    if (check == "" || check.length <= 4 || check.length >= 8) {
-        $("#emp_id_his").css("background-color", "#ffe6e6");
-        $("#emp_id_his").css("border-style", "solid");
-        $("#emp_id_his").css("border-color", "#e60000");
-        $("#show_noti_his").show();
-
-        return false;
-    }
-    // if 
-    else {
-        return true;
-    }
-    // else 
-}
-// function varidate_his
 </script>
 
 <div class="row">
@@ -123,11 +97,12 @@ function validate_his() {
                     <!-- thead -->
                     <tbody id="row_mbo">
                         <?php 
-                            
+                                $table_index = 0;
 							    foreach($data_group as $index => $row) {
-                                 if($data_emp_id != $row->emp_employee_id) {
+                                if($data_emp_id != $row->emp_employee_id) {
                                 
                                 ?>
+                        <input name="Emp_ID" type="text" value="<?php echo $row->emp_employee_id ?>" hidden>
                         <tr>
                             <td>
                                 <center>
@@ -179,16 +154,19 @@ function validate_his() {
                             </td>
                         </tr>
                         <?php 
+                            $table_index += 1;
                                          }
-                                    }?>
+                                    } ?>
 
-
+                        <input type="text" id="table_index" value="<?php echo $table_index; ?>" hidden>
                     </tbody>
                 </table>
+                <br>
                 <div class="row">
                     <div class="col-md-6">
                     </div>
                     <div class="col-md-6" align="right">
+                        <button id="save" class="btn btn-success" onclick="save_group_to_HR()" > Save</button>
                     </div>
                 </div>
             </div>

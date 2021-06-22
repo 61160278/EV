@@ -54,42 +54,42 @@ function set_tap() {
 
             data.forEach((row, index) => {
                 if (row.ps_form_pe == "MBO") {
-                        data_tap += '<li class="active"><a href="#MBO_edit" data-toggle="tab">';
-                        data_tap += '<font>MBO</font>';
-                        data_tap += '</a></li>';
-                        $("#MBO_edit").addClass("active");
-                        show_weight_mbo_edit()
+                    data_tap += '<li class="active"><a href="#MBO_edit" data-toggle="tab">';
+                    data_tap += '<font>MBO</font>';
+                    data_tap += '</a></li>';
+                    $("#MBO_edit").addClass("active");
+                    show_weight_mbo_edit()
                 }
                 // if
                 else if (row.ps_form_pe == "G&O") {
-                        data_tap += '<li class="active"><a href="#G_O_edit" data-toggle="tab">';
-                        data_tap += '<font>G&O</font>';
-                        data_tap += '</a></li>';
-                        $("#G_O_edit").addClass("active");
-                        show_weight_g_and_o_edit();
+                    data_tap += '<li class="active"><a href="#G_O_edit" data-toggle="tab">';
+                    data_tap += '<font>G&O</font>';
+                    data_tap += '</a></li>';
+                    $("#G_O_edit").addClass("active");
+                    show_weight_g_and_o_edit();
                 }
                 // else if
                 else if (row.ps_form_pe == "MHRD") {
-                        data_tap += '<li class="active"><a href="#MHRD_edit" data-toggle="tab">';
-                        data_tap += '<font>MHRD</font>';
-                        data_tap += '</a></li>';
-                        $("#MHRD_edit").addClass("active");
-                        show_weight_mhrd_edit();
+                    data_tap += '<li class="active"><a href="#MHRD_edit" data-toggle="tab">';
+                    data_tap += '<font>MHRD</font>';
+                    data_tap += '</a></li>';
+                    $("#MHRD_edit").addClass("active");
+                    show_weight_mhrd_edit();
                 }
                 // else if 
                 // check pe tool
                 if (row.ps_form_ce == "ACM") {
-                        data_tap += '<li><a href="#ACM_edit" data-toggle="tab">';
-                        data_tap += '<font>ACM</font>';
-                        data_tap += '</a></li>';
-                        show_weight_acm_edit();
+                    data_tap += '<li><a href="#ACM_edit" data-toggle="tab">';
+                    data_tap += '<font>ACM</font>';
+                    data_tap += '</a></li>';
+                    show_weight_acm_edit();
                 }
                 // if
                 else if (row.ps_form_ce == "GCM") {
-                        data_tap += '<li><a href="#GCM_edit" data-toggle="tab">';
-                        data_tap += '<font>GCM</font>';
-                        data_tap += '</a></li>';
-                        show_weight_gcm_edit();
+                    data_tap += '<li><a href="#GCM_edit" data-toggle="tab">';
+                    data_tap += '<font>GCM</font>';
+                    data_tap += '</a></li>';
+                    show_weight_gcm_edit();
                 }
                 // else if 
                 // check ce tool
@@ -130,9 +130,51 @@ function show_weight_acm_edit() {
         sum += arr_weight[i] * document.getElementsByName("weing_acm_edit_" + i + "")[0].value;
     }
     document.getElementById('weight_all_acm_edit').innerHTML = sum;
-
 }
 
+
+function update_ACM_edit() {
+    var arr_radio = [];
+    var arr_sfa_id = [];
+    var get_arr_sfa_id = "";
+    var index = document.getElementById("table_index_radio_acm_edit").value;
+    var Emp_ID = document.getElementById("Emp_ID").value;
+
+    for (i = 0; i < index; i++) {
+        arr_sfa_id.push(document.getElementsByName("sfa_id")[i].value);
+        $("[name = rd_acm_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_radio.push(document.getElementsByName("rd_acm_edit_" + i + "")[index].value);
+            } //if
+        });
+    }
+    console.log("index : " + index);
+    console.log("Emp_ID :  " + Emp_ID);
+    console.log("arr_sfa_id : " + arr_sfa_id);
+    console.log("arr_radio : " + arr_radio);
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_acm_weight",
+        data: {
+            "Emp_ID": Emp_ID,
+            "arr_sfa_id": arr_sfa_id,
+            "arr_radio": arr_radio
+
+        },
+        success: function(data) {
+            console.log(data);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+
+}
 
 
 function show_weight_g_and_o_edit() {
@@ -158,6 +200,53 @@ function show_weight_g_and_o_edit() {
 }
 
 
+function update_G_and_O_edit() {
+    var arr_radio = [];
+    var arr_dgo_id = [];
+    var arr_Evaluator_Review_edit = [];
+    var get_arr_dgo_id = "";
+    var index = document.getElementById("table_index_radio_g_o_edit").value;
+    var Emp_ID = document.getElementById("Emp_ID").value;
+
+    for (i = 0; i < index; i++) {
+        arr_dgo_id.push(document.getElementsByName("dgo_id")[i].value);
+        arr_Evaluator_Review_edit.push(document.getElementsByName("Evaluator_Review_edit")[i].value);
+        $("[name = rd_g_o_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_radio.push(document.getElementsByName("rd_g_o_edit_" + i + "")[index].value);
+            } //if
+        });
+    }
+    console.log("index : " + index);
+    console.log("Emp_ID :  " + Emp_ID);
+    console.log("arr_dgo_id : " + arr_dgo_id);
+    console.log("arr_radio : " + arr_radio);
+    console.log("arr_Evaluator_Review : " + arr_Evaluator_Review_edit);
+
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_g_and_o",
+        data: {
+            "Emp_ID": Emp_ID,
+            "arr_dgo_id": arr_dgo_id,
+            "arr_radio": arr_radio,
+            "arr_Evaluator_Review": arr_Evaluator_Review_edit
+        },
+        success: function(data) {
+            console.log(data);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+}
+
+
 function show_weight_gcm_edit() {
     var arr_weight = [];
     var sum = 0;
@@ -179,6 +268,48 @@ function show_weight_gcm_edit() {
     document.getElementById("weight_all_gcm_edit").innerHTML = sum;
 }
 
+function update_GCM_edit() {
+    var arr_radio = [];
+    var arr_sgc_id = [];
+    var get_arr_sgc_id = "";
+    var index = document.getElementById("table_index_radio_gcm_edit").value;
+    var Emp_ID = document.getElementById("Emp_ID").value;
+
+    for (i = 0; i < index; i++) {
+        arr_sgc_id.push(document.getElementsByName("sgc_id")[i].value);
+        $("[name = rd_gcm_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_radio.push(document.getElementsByName("rd_gcm_edit_" + i + "")[index].value);
+            } //if
+        });
+    }
+    console.log("index : " + index);
+    console.log("Emp_ID :  " + Emp_ID);
+    console.log("arr_sgc_id : " + arr_sgc_id);
+    console.log("arr_radio : " + arr_radio);
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_gcm_weight",
+        data: {
+            "Emp_ID": Emp_ID,
+            "arr_sgc_id": arr_sgc_id,
+            "arr_radio": arr_radio
+
+        },
+        success: function(data) {
+            console.log(data);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+
+}
 
 
 function show_weight_mbo_edit() {
@@ -201,6 +332,53 @@ function show_weight_mbo_edit() {
     }
     document.getElementById("weight_all_mbo_edit").innerHTML = sum;
 }
+
+function update_MBO_edit() {
+    var arr_radio = [];
+    var arr_dtm_id = [];
+    var get_arr_dtm_id = "";
+    var index = document.getElementById("table_index_radio_mbo_edit").value;
+    var Emp_ID = document.getElementById("Emp_ID").value;
+
+    for (i = 0; i < index; i++) {
+        arr_dtm_id.push(document.getElementsByName("dtm_id")[i].value);
+
+        $("[name = rd_mhrd_2_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_radio.push(document.getElementsByName("rd_mbo_edit_" + i + "")[index].value);
+            } //if
+        });
+
+        console.log("index : " + index);
+        console.log("Emp_ID :  " + Emp_ID);
+        console.log("arr_dtm_id : " + arr_dtm_id);
+        console.log("arr_radio : " + arr_radio);
+
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_mbo",
+            data: {
+                "Emp_ID": Emp_ID,
+                "arr_dtm_id": arr_dtm_id,
+                "arr_radio": arr_radio
+
+            },
+            success: function(data) {
+                console.log(data);
+            },
+            // success
+            error: function(data) {
+                console.log("9999 : error");
+            }
+            // error
+        });
+        // ajax
+
+    }
+}
+
+
 
 
 function show_weight_mhrd_edit() {
@@ -233,9 +411,90 @@ function show_weight_mhrd_edit() {
 }
 
 
+function update_MHRD_edit() {
+
+    var arr_sfi_id = [];
+    var arr_weight_1 = [];
+    var arr_weight_2 = [];
+    var get_arr_sfi_id = "";
+    var Emp_ID = document.getElementById("Emp_ID").value;
+
+    var index = document.getElementById("table_index_radio_mhrd_edit").value;
+    for (i = 0; i < index; i++) {
+        arr_sfi_id.push(document.getElementsByName("sfi_id")[i].value);
+        $("[name = rd_mhrd_1_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_weight_1.push(document.getElementsByName("rd_mhrd_1_edit_" + i + "")[index].value);
+            } //if
+        });
+
+        $("[name = rd_mhrd_2_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_weight_2.push(document.getElementsByName("rd_mhrd_2_edit_" + i + "")[index].value);
+            } //if
+        });
+    }
+    console.log("index : " + index);
+    console.log("Emp_ID :  " + Emp_ID);
+    console.log("arr_sfi_id : " + arr_sfi_id);
+    console.log("arr_radio_1 : " + arr_weight_1);
+    console.log("arr_radio_2 : " + arr_weight_2);
+
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_mhrd",
+        data: {
+            "Emp_ID": Emp_ID,
+            "arr_sfi_id": arr_sfi_id,
+            "arr_radio_1": arr_weight_1,
+            "arr_radio_2": arr_weight_2
+        },
+        success: function(data) {
+            console.log(data);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+
+}
 </script>
 <!-- script -->
-
+<?php  
+                        $onclek_form_pe = "";
+                        $onclek_form_ce = "";
+                        $onclek_form_all= "";
+    
+                         if($data_from_pe == "MBO_edit"){
+                            $onclek_form_pe = "update_MBO_edit();";
+                        }
+                   
+                        else if($data_from_pe == "MHRD_edit"){
+                            $onclek_form_pe = "update_MHRD_edit();";
+                        }
+                  
+                        else if($data_from_pe == "G_and_O_edit"){
+                            $onclek_form_pe = "update_G_and_O_edit();";
+                        }
+               
+                       if($data_from_ce == "ACM_edit"){
+                            $onclek_form_ce = "update_ACM_edit();";
+                        }
+                    
+                        else if($data_from_ce == "GCM_edit"){
+                            $onclek_form_ce = "update_GCM_edit();";
+                        }
+                    
+                    
+                    
+                        $onclek_form_all = "onclick='".$onclek_form_pe." ".$onclek_form_ce."'";
+                    
+              ?>
 
 
 <div class="row">
@@ -331,7 +590,7 @@ function show_weight_mhrd_edit() {
                     <!-- show infomation employee -->
                     <hr>
 
-               
+
                     <!-- form MBO -->
                     <div class="tab-pane" id="MBO_edit">
                         <table class="table table-bordered table-striped m-n">
@@ -480,8 +739,9 @@ function show_weight_mhrd_edit() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/index">
-                                    <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
+                                <a href="<?php echo base_url(); ?>/ev_form_HD/Evs_form_HD/index">
+                                    <button type="button" class="btn btn-inverse"><i
+                                            class="fa fa-mail-reply"></i>Back</button>
                                 </a>
                                 <!-- cancel to back to main  -->
 
@@ -489,13 +749,14 @@ function show_weight_mhrd_edit() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
+                                <button class="btn btn-success" <?php echo $onclek_form_all  ?>> Save</button>
                             </div>
                             <!-- col-md-6 add_app -->
 
                         </div>
                     </div>
                     <!-- form MBO_edit -->
-                   
+
                     <!-- form G&O -->
                     <div class="tab-pane" id="G_O_edit">
                         <table class="table table-bordered table-striped m-n">
@@ -833,23 +1094,24 @@ function show_weight_mhrd_edit() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/index">
-                                    <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
+                                <a href="<?php echo base_url(); ?>/ev_form_HD/Evs_form_HD/index">
+                                    <button type="button" class="btn btn-inverse"><i
+                                            class="fa fa-mail-reply"></i>Back</button>
                                 </a>
-                                <!-- cancel to back to main  -->
+
 
                             </div>
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-
+                                <button class="btn btn-success" <?php echo $onclek_form_all  ?>> Save</button>
                             </div>
                             <!-- col-md-6 add_app -->
 
                         </div>
                     </div>
                     <!-- form G_O_edit -->
-               
+
                     <!-- form MHRD -->
                     <div class="tab-pane" id="MHRD_edit">
                         <table class="table table-bordered table-striped m-n">
@@ -942,27 +1204,32 @@ function show_weight_mhrd_edit() {
                                             <div class="col-md-12">
                                                 <input type="radio"
                                                     name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="1" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_1_1 ?>>
+                                                    value="1" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_1_1 ?>>
                                                 <label for="1">&nbsp; 1</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="2" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_1_2 ?>>
+                                                    value="2" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_1_2 ?>>
                                                 <label for="2">&nbsp; 2</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="3" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_1_3 ?>>
+                                                    value="3" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_1_3 ?>>
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="4" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_1_4 ?>>
+                                                    value="4" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_1_4 ?>>
                                                 <label for="4">&nbsp; 4</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="5" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_1_5 ?>>
+                                                    value="5" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_1_5 ?>>
                                                 <label for="5">&nbsp; 5</label>
                                                 &nbsp;
                                             </div>
@@ -1001,27 +1268,32 @@ function show_weight_mhrd_edit() {
                                             <div class="col-md-12">
                                                 <input type="radio"
                                                     name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="1" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_2_1 ?>>
+                                                    value="1" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_2_1 ?>>
                                                 <label for="1">&nbsp; 1</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?> "
-                                                    value="2" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_2_2 ?>>
+                                                    value="2" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_2_2 ?>>
                                                 <label for="2">&nbsp; 2</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="3" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_2_3 ?>>
+                                                    value="3" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_2_3 ?>>
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="4" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_2_4 ?>>
+                                                    value="4" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_2_4 ?>>
                                                 <label for="4">&nbsp; 4</label>
                                                 &nbsp;
                                                 <input type="radio"
                                                     name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="5" onclick="show_weight_mhrd_edit()" <?php echo $checked_weight_2_5 ?>>
+                                                    value="5" onclick="show_weight_mhrd_edit()"
+                                                    <?php echo $checked_weight_2_5 ?>>
                                                 <label for="5">&nbsp; 5</label>
                                                 &nbsp;
                                             </div>
@@ -1059,57 +1331,23 @@ function show_weight_mhrd_edit() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/index">
-                                    <button class="btn btn-inverse" id="btn_cencel_back">BACK</button>
+                                <a href="<?php echo base_url(); ?>/ev_form_HD/Evs_form_HD/index">
+                                    <button type="button" class="btn btn-inverse"><i
+                                            class="fa fa-mail-reply"></i>Back</button>
                                 </a>
-                                <!-- cancel to back to main  -->
-                                <div class="col-md-6" align="right">
-                                </div>
-                                <!-- col-md-6 add_app -->
                             </div>
+                            <!-- cancel to back to main  -->
+                            <div class="col-md-6" align="right">
+                                <button class="btn btn-success" <?php echo $onclek_form_all  ?>> Save</button>
+                            </div>
+                            <!-- col-md-6 add_app -->
+
                         </div>
                         <!-- row -->
                     </div>
 
-                    <?php  
-                        $onclek_form_pe = "";
-                        $onclek_form_ce = "";
-                        $onclek_form_all= "";
-                        if($data_from_pe == "MBO"){
-                            $onclek_form_pe = "save_MBO();";
-                        }
-                        else if($data_from_pe == "MBO_edit"){
-                            $onclek_form_pe = "update_MBO_edit();";
-                        }
-                        else if($data_from_pe == "MHRD"){
-                            $onclek_form_pe = "save_MHRD();";
-                        }
-                        else if($data_from_pe == "MHRD_edit"){
-                            $onclek_form_pe = "update_MHRD_edit();";
-                        }
-                        else if($data_from_pe == "G_and_O"){
-                            $onclek_form_pe = "save_G_and_O();";
-                        }
-                        else if($data_from_pe == "G_and_O_edit"){
-                            $onclek_form_pe = "update_G_and_O_edit();";
-                        }
-                        if($data_from_ce == "ACM"){
-                            $onclek_form_ce = "save_ACM();";
-                        }
-                        else if($data_from_ce == "ACM_edit"){
-                            $onclek_form_ce = "update_ACM_edit();";
-                        }
-                        else if($data_from_ce == "GCM"){
-                            $onclek_form_ce = "save_GCM();";
-                        }
-                        else if($data_from_ce == "GCM_edit"){
-                            $onclek_form_ce = "update_GCM_edit();";
-                        }        
-    
-                        $onclek_form_all = "onclick='".$onclek_form_pe." ".$onclek_form_ce."'";
-                    
-                    ?>
-                   
+
+
                     <!-- form ACM -->
                     <div class="tab-pane" id="ACM_edit">
                         <table class="table table-bordered table-striped m-n">
@@ -1303,7 +1541,7 @@ function show_weight_mhrd_edit() {
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url(); ?>/ev_form_AP/Evs_form_AP/index">
+                                <a href="<?php echo base_url(); ?>/ev_form_HD/Evs_form_HD/index">
                                     <button type="button" class="btn btn-inverse"><i
                                             class="fa fa-mail-reply"></i>Back</button>
                                 </a>
@@ -1316,7 +1554,7 @@ function show_weight_mhrd_edit() {
                         <!-- row -->
                     </div>
                     <!-- form ACM_edit -->
-                  
+
                     <!-- form GCM -->
                     <div class="tab-pane" id="GCM_edit">
                         <table class="table table-bordered table-striped m-n">
@@ -1511,7 +1749,7 @@ function show_weight_mhrd_edit() {
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url(); ?>/ev_form_AP/Evs_form_AP/index">
+                                <a href="<?php echo base_url(); ?>/ev_form_HD/Evs_form_HD/index">
                                     <button type="button" class="btn btn-inverse"><i
                                             class="fa fa-mail-reply"></i>Back</button>
                                 </a>
