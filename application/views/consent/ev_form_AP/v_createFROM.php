@@ -245,6 +245,7 @@ function save_ACM() {
         // error
     });
     // ajax
+    update_approve()
 
 }
 
