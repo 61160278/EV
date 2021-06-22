@@ -1064,6 +1064,9 @@ function update_approve() {
                                         <center>
                                             <div class="col-md-12">
                                                 <input type="radio" name="rd_mbo_<?php echo $table_index_radio_mbo ?>"
+                                                    id="rd_<?php echo $table_index_radio_mbo ?>" value="0" checked
+                                                    hidden>
+                                                <input type="radio" name="rd_mbo_<?php echo $table_index_radio_mbo ?>"
                                                     id="rd_<?php echo $table_index_radio_mbo ?>" value="1"
                                                     onclick="show_weight_mbo()">
                                                 <label for="1">&nbsp; 1</label>
@@ -1144,6 +1147,7 @@ function update_approve() {
 
                     </div>
                     <!-- form MBO -->
+
                     <div class="tab-pane" id="MBO_edit">
                         <table class="table table-bordered table-striped m-n">
                             <thead id="headmbo">
@@ -1307,6 +1311,7 @@ function update_approve() {
                         </div>
                     </div>
                     <!-- form MBO_edit -->
+
                     <div class="tab-pane" id="G_O">
                         <table class="table table-bordered table-striped m-n">
                             <thead>
@@ -1451,6 +1456,9 @@ function update_approve() {
                                         <center>
                                             <div class="col-md-12">
                                                 <input type="radio" name="rd_g_o_<?php echo $table_index_radio_g_o ?>"
+                                                    id="rd_<?php echo $table_index_radio_g_o ?>" value="0" checked
+                                                    hidden>
+                                                <input type="radio" name="rd_g_o_<?php echo $table_index_radio_g_o ?>"
                                                     id="rd_<?php echo $table_index_radio_g_o ?>" value="1"
                                                     onclick="show_weight_g_and_o()">
                                                 <label for="1">&nbsp; 1</label>
@@ -1494,6 +1502,9 @@ function update_approve() {
                                     <td rowspan="<?php echo $col[$spans] ?>">
                                         <center>
                                             <div class="col-md-12">
+                                                <input type="radio" name="rd_g_o_<?php echo $table_index_radio_g_o ?>"
+                                                    id="rd_<?php echo $table_index_radio_g_o ?>" value="0" checked
+                                                    hidden>
                                                 <input type="radio" name="rd_g_o_<?php echo $table_index_radio_g_o ?>"
                                                     id="rd_<?php echo $table_index_radio_g_o ?>" value="1"
                                                     onclick="show_weight_g_and_o()">
@@ -1578,6 +1589,7 @@ function update_approve() {
 
                     </div>
                     <!-- form G&O -->
+
                     <div class="tab-pane" id="G_O_edit">
                         <table class="table table-bordered table-striped m-n">
                             <thead>
@@ -1932,6 +1944,7 @@ function update_approve() {
                         </div>
                     </div>
                     <!-- form G_O_edit -->
+
                     <div class="tab-pane" id="MHRD">
                         <table class="table table-bordered table-striped m-n">
                             <thead>
@@ -1994,6 +2007,10 @@ function update_approve() {
                                             <div class="col-md-12">
                                                 <input type="radio"
                                                     name="rd_mhrd_1_<?php echo $table_index_radio_mhrd ?>"
+                                                    id="rd_mbo_1_<?php echo $table_index_radio_mhrd ?>" value="0"
+                                                    checked hidden>
+                                                <input type="radio"
+                                                    name="rd_mhrd_1_<?php echo $table_index_radio_mhrd ?>"
                                                     id="rd_mbo_1_<?php echo $table_index_radio_mhrd ?>" value="1"
                                                     onclick="show_weight_mhrd()">
                                                 <label for="1">&nbsp; 1</label>
@@ -2029,6 +2046,10 @@ function update_approve() {
                                     <td>
                                         <center>
                                             <div class="col-md-12">
+                                                <input type="radio"
+                                                    name="rd_mhrd_2_<?php echo $table_index_radio_mhrd ?>"
+                                                    id="rd_mbo_2_<?php echo $table_index_radio_mhrd ?>" value="0"
+                                                    checked hidden>
                                                 <input type="radio"
                                                     name="rd_mhrd_2_<?php echo $table_index_radio_mhrd ?>"
                                                     id="rd_mbo_2_<?php echo $table_index_radio_mhrd ?>" value="1"
@@ -2108,6 +2129,7 @@ function update_approve() {
                         <!-- row -->
                     </div>
                     <!-- form MHRD -->
+
                     <div class="tab-pane" id="MHRD_edit">
                         <table class="table table-bordered table-striped m-n">
                             <thead>
@@ -2339,6 +2361,7 @@ function update_approve() {
                         </div>
                         <!-- row -->
                     </div>
+                    <!-- form MHRD_edit  -->
 
                     <?php  
                         $onclek_form_pe = "";
@@ -2478,6 +2501,9 @@ function update_approve() {
                                     <td id="dis_color" width="5%">
                                         <center>
                                             <div class="col-md-12">
+                                                <input type="radio" name="rd_acm_<?php echo $table_index_radio_acm ?>"
+                                                    id="rd_acm_<?php echo $table_index_radio_acm ?>" value="0" checked
+                                                    hidden>
                                                 <input type="radio" name="rd_acm_<?php echo $table_index_radio_acm ?>"
                                                     id="rd_acm_<?php echo $table_index_radio_acm ?>" value="1"
                                                     onclick="show_weight_acm()">
