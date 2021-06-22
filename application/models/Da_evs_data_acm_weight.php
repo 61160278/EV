@@ -58,10 +58,10 @@ class Da_evs_data_acm_weight extends evs_model {
 	*/
 	function insert() {
 	 
-	 	$sql = "INSERT INTO evs_database.evs_data_acm_weight (dta_evs_emp_id,dta_sfa_id,dta_weight)
-	 			VALUES(?, ?, ?)";
+	 	$sql = "INSERT INTO evs_database.evs_data_acm_weight (dta_evs_emp_id,dta_sfa_id,dta_weight,dta_approver)
+	 			VALUES(?, ?, ?,?)";
 		 
-	 	$this->db->query($sql, array($this->dta_evs_emp_id, $this->dta_sfa_id,$this->dta_weight));
+	 	$this->db->query($sql, array($this->dta_evs_emp_id, $this->dta_sfa_id,$this->dta_weight,$this->dta_approver));
 	
 	 }
 	 
@@ -84,10 +84,10 @@ class Da_evs_data_acm_weight extends evs_model {
 	function update() {
 	
 	 	$sql = "UPDATE evs_database.evs_data_acm_weight 
-	 			SET	dta_evs_emp_id=?, dta_sfa_id=?, dta_weight=?
+	 			SET	dta_evs_emp_id=?, dta_sfa_id=?, dta_weight=?, dta_approver = ?
 	 			WHERE dta_id=?";
 		
-		$this->db->query($sql, array($this->dta_evs_emp_id, $this->dta_sfa_id, $this->dta_weight, $this->dta_id));
+		$this->db->query($sql, array($this->dta_evs_emp_id, $this->dta_sfa_id, $this->dta_weight,$this->dta_approver, $this->dta_id));
 		 
 	 }
 

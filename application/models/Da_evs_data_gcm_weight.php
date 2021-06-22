@@ -58,10 +58,10 @@ class Da_evs_data_gcm_weight extends evs_model {
 	*/
 	function insert() {
 	 
-	 	$sql = "INSERT INTO evs_database.evs_data_gcm_weight (dtg_evs_emp_id,dtg_sgc_id,dtg_weight)
-	 			VALUES(?, ?, ?)";
+	 	$sql = "INSERT INTO evs_database.evs_data_gcm_weight (dtg_evs_emp_id,dtg_sgc_id,dtg_weight,dtg_approver)
+	 			VALUES(?, ?, ?,?)";
 		 
-	 	$this->db->query($sql, array($this->dtg_evs_emp_id, $this->dtg_sgc_id,$this->dtg_weight));
+	 	$this->db->query($sql, array($this->dtg_evs_emp_id, $this->dtg_sgc_id,$this->dtg_weight,$this->dtg_approver));
 	
 	 }
 	 
@@ -84,10 +84,10 @@ class Da_evs_data_gcm_weight extends evs_model {
 	function update() {
 	
 	 	$sql = "UPDATE evs_database.evs_data_gcm_weight 
-	 			SET	dtg_evs_emp_id=?, dtg_sgc_id=?, dtg_weight=?
+	 			SET	dtg_evs_emp_id=?, dtg_sgc_id=?, dtg_weight=?, dtg_approver=?
 	 			WHERE dtg_id=?";
 		
-		$this->db->query($sql, array($this->dtg_evs_emp_id, $this->dtg_sgc_id, $this->dtg_weight, $this->dtg_id));
+		$this->db->query($sql, array($this->dtg_evs_emp_id, $this->dtg_sgc_id, $this->dtg_weight,$this->dtg_approver, $this->dtg_id));
 		 
 	 }
 

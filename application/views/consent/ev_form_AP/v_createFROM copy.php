@@ -159,6 +159,8 @@ function set_tap() {
 }
 // function set_tap
 
+
+
 function show_weight_acm() {
     var arr_weight = [];
     var sum = 0;
@@ -209,7 +211,6 @@ function save_ACM() {
     var get_arr_sfa_id = "";
     var index = document.getElementById("table_index_radio_acm").value;
     var Emp_ID = document.getElementById("Emp_ID").value;
-    var App = document.getElementById("App_Emp_ID").value;
 
     for (i = 0; i < index; i++) {
         arr_sfa_id.push(document.getElementsByName("sfa_id")[i].value);
@@ -231,8 +232,7 @@ function save_ACM() {
         data: {
             "Emp_ID": Emp_ID,
             "arr_sfa_id": arr_sfa_id,
-            "arr_radio": arr_radio,
-            "App": App
+            "arr_radio": arr_radio
 
         },
         success: function(data) {
@@ -254,7 +254,6 @@ function update_ACM_edit() {
     var get_arr_sfa_id = "";
     var index = document.getElementById("table_index_radio_acm_edit").value;
     var Emp_ID = document.getElementById("Emp_ID").value;
-    var App = document.getElementById("App_Emp_ID").value;
 
     for (i = 0; i < index; i++) {
         arr_sfa_id.push(document.getElementsByName("sfa_id")[i].value);
@@ -276,8 +275,7 @@ function update_ACM_edit() {
         data: {
             "Emp_ID": Emp_ID,
             "arr_sfa_id": arr_sfa_id,
-            "arr_radio": arr_radio,
-            "App": App
+            "arr_radio": arr_radio
 
         },
         success: function(data) {
@@ -345,7 +343,6 @@ function save_G_and_O() {
     var get_arr_dgo_id = "";
     var index = document.getElementById("table_index_radio_g_o").value;
     var Emp_ID = document.getElementById("Emp_ID").value;
-    var App = document.getElementById("App_Emp_ID").value;
 
     for (i = 0; i < index; i++) {
         arr_dgo_id.push(document.getElementsByName("dgo_id")[i].value);
@@ -371,8 +368,7 @@ function save_G_and_O() {
             "Emp_ID": Emp_ID,
             "arr_dgo_id": arr_dgo_id,
             "arr_radio": arr_radio,
-            "arr_Evaluator_Review": arr_Evaluator_Review,
-            "App": App
+            "arr_Evaluator_Review": arr_Evaluator_Review
         },
         success: function(data) {
             console.log(data);
@@ -394,7 +390,6 @@ function update_G_and_O_edit() {
     var get_arr_dgo_id = "";
     var index = document.getElementById("table_index_radio_g_o_edit").value;
     var Emp_ID = document.getElementById("Emp_ID").value;
-    var App = document.getElementById("App_Emp_ID").value;
 
     for (i = 0; i < index; i++) {
         arr_dgo_id.push(document.getElementsByName("dgo_id")[i].value);
@@ -420,8 +415,7 @@ function update_G_and_O_edit() {
             "Emp_ID": Emp_ID,
             "arr_dgo_id": arr_dgo_id,
             "arr_radio": arr_radio,
-            "arr_Evaluator_Review": arr_Evaluator_Review_edit,
-            "App": App
+            "arr_Evaluator_Review": arr_Evaluator_Review_edit
         },
         success: function(data) {
             console.log(data);
@@ -484,7 +478,6 @@ function save_GCM() {
     var get_arr_sgc_id = "";
     var index = document.getElementById("table_index_radio_gcm").value;
     var Emp_ID = document.getElementById("Emp_ID").value;
-    var App = document.getElementById("App_Emp_ID").value;
 
     for (i = 0; i < index; i++) {
         arr_sgc_id.push(document.getElementsByName("sgc_id")[i].value);
@@ -506,8 +499,7 @@ function save_GCM() {
         data: {
             "Emp_ID": Emp_ID,
             "arr_sgc_id": arr_sgc_id,
-            "arr_radio": arr_radio,
-            "App": App
+            "arr_radio": arr_radio
 
         },
         success: function(data) {
@@ -533,7 +525,6 @@ function update_GCM_edit() {
     var get_arr_sgc_id = "";
     var index = document.getElementById("table_index_radio_gcm_edit").value;
     var Emp_ID = document.getElementById("Emp_ID").value;
-    var App = document.getElementById("App_Emp_ID").value;
 
     for (i = 0; i < index; i++) {
         arr_sgc_id.push(document.getElementsByName("sgc_id")[i].value);
@@ -555,8 +546,7 @@ function update_GCM_edit() {
         data: {
             "Emp_ID": Emp_ID,
             "arr_sgc_id": arr_sgc_id,
-            "arr_radio": arr_radio,
-            "App": App
+            "arr_radio": arr_radio
 
         },
         success: function(data) {
@@ -629,7 +619,6 @@ function save_MBO() {
     var get_arr_dtm_id = "";
     var index = document.getElementById("table_index_radio_mbo").value;
     var Emp_ID = document.getElementById("Emp_ID").value;
-    var App = document.getElementById("App_Emp_ID").value;
 
     for (i = 0; i < index; i++) {
         arr_dtm_id.push(document.getElementsByName("dtm_id")[i].value);
@@ -651,8 +640,7 @@ function save_MBO() {
         data: {
             "Emp_ID": Emp_ID,
             "arr_dtm_id": arr_dtm_id,
-            "arr_radio": arr_radio,
-            "App": App
+            "arr_radio": arr_radio
 
         },
         success: function(data) {
@@ -674,7 +662,6 @@ function update_MBO_edit() {
     var get_arr_dtm_id = "";
     var index = document.getElementById("table_index_radio_mbo_edit").value;
     var Emp_ID = document.getElementById("Emp_ID").value;
-    var App = document.getElementById("App_Emp_ID").value;
 
     for (i = 0; i < index; i++) {
         arr_dtm_id.push(document.getElementsByName("dtm_id")[i].value);
@@ -696,8 +683,7 @@ function update_MBO_edit() {
         data: {
             "Emp_ID": Emp_ID,
             "arr_dtm_id": arr_dtm_id,
-            "arr_radio": arr_radio,
-            "App": App
+            "arr_radio": arr_radio
 
         },
         success: function(data) {
@@ -778,7 +764,6 @@ function save_MHRD() {
     var arr_weight_2 = [];
     var get_arr_sfi_id = "";
     var Emp_ID = document.getElementById("Emp_ID").value;
-    var App = document.getElementById("App_Emp_ID").value;
 
     var index = document.getElementById("table_index_radio_mhrd").value;
     for (i = 0; i < index; i++) {
@@ -810,8 +795,7 @@ function save_MHRD() {
             "Emp_ID": Emp_ID,
             "arr_sfi_id": arr_sfi_id,
             "arr_radio_1": arr_weight_1,
-            "arr_radio_2": arr_weight_2,
-            "App": App
+            "arr_radio_2": arr_weight_2
         },
         success: function(data) {
             console.log(data);
@@ -833,7 +817,6 @@ function update_MHRD_edit() {
     var arr_weight_2 = [];
     var get_arr_sfi_id = "";
     var Emp_ID = document.getElementById("Emp_ID").value;
-    var App = document.getElementById("App_Emp_ID").value;
 
     var index = document.getElementById("table_index_radio_mhrd_edit").value;
     for (i = 0; i < index; i++) {
@@ -865,8 +848,7 @@ function update_MHRD_edit() {
             "Emp_ID": Emp_ID,
             "arr_sfi_id": arr_sfi_id,
             "arr_radio_1": arr_weight_1,
-            "arr_radio_2": arr_weight_2,
-            "App": App
+            "arr_radio_2": arr_weight_2
         },
         success: function(data) {
             console.log(data);
@@ -884,7 +866,7 @@ function update_MHRD_edit() {
 
 function update_approve() {
     var Emp_ID = document.getElementById("Emp_ID").value;
-    var App = document.getElementById("App_Emp_ID").value;
+    var App = document.getElementById("App_Emp_ID").value;;
 
     $.ajax({
         type: "post",

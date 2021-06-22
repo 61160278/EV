@@ -59,10 +59,10 @@ class Da_evs_data_g_and_o_weight extends evs_model {
 	*/
 	function insert() {
 	 
-	 	$sql = "INSERT INTO evs_database.evs_data_g_and_o_weight (dgw_evs_emp_id,dgw_dgo_id,dgw_evaluator_review,dgw_weight)
-	 			VALUES(?, ?, ?, ?)";
+	 	$sql = "INSERT INTO evs_database.evs_data_g_and_o_weight (dgw_evs_emp_id,dgw_dgo_id,dgw_evaluator_review,dgw_weight,dgw_approver)
+	 			VALUES(?, ?, ?, ?,?)";
 		 
-	 	$this->db->query($sql, array($this->dgw_evs_emp_id, $this->dgw_dgo_id, $this->dgw_evaluator_review,$this->dgw_weight));
+	 	$this->db->query($sql, array($this->dgw_evs_emp_id, $this->dgw_dgo_id, $this->dgw_evaluator_review,$this->dgw_weight,$this->dgw_approver));
 	
 	 }
 	 
@@ -85,10 +85,10 @@ class Da_evs_data_g_and_o_weight extends evs_model {
 	function update() {
 	
 	 	$sql = "UPDATE evs_database.evs_data_g_and_o_weight 
-	 			SET	dgw_evs_emp_id=?, dgw_dgo_id=?, dgw_weight=?, dgw_evaluator_review=?
+	 			SET	dgw_evs_emp_id=?, dgw_dgo_id=?, dgw_weight=?, dgw_evaluator_review=?, dgw_approver=?
 	 			WHERE dgw_id=?";
 		
-		$this->db->query($sql, array($this->dgw_evs_emp_id, $this->dgw_dgo_id, $this->dgw_weight, $this->dgw_evaluator_review, $this->dgw_id));
+		$this->db->query($sql, array($this->dgw_evs_emp_id, $this->dgw_dgo_id, $this->dgw_weight, $this->dgw_evaluator_review,$this->dgw_approver, $this->dgw_id));
 		 
 	 }
 

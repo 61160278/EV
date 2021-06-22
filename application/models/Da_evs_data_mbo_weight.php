@@ -58,10 +58,10 @@ class Da_evs_data_mbo_weight extends evs_model {
 	*/
 	function insert() {
 	 
-	 	$sql = "INSERT INTO evs_database.evs_data_mbo_weight (dmw_evs_emp_id,dmw_dtm_id,dmw_weight)
-	 			VALUES(?, ?, ?)";
+	 	$sql = "INSERT INTO evs_database.evs_data_mbo_weight (dmw_evs_emp_id,dmw_dtm_id,dmw_weight,dmw_approver)
+	 			VALUES(?, ?, ?,?)";
 		 
-	 	$this->db->query($sql, array($this->dmw_evs_emp_id, $this->dmw_dtm_id,$this->dmw_weight));
+	 	$this->db->query($sql, array($this->dmw_evs_emp_id, $this->dmw_dtm_id,$this->dmw_weight,$this->dmw_approver));
 	
 	 }
 	 
@@ -84,10 +84,10 @@ class Da_evs_data_mbo_weight extends evs_model {
 	function update() {
 	
 	 	$sql = "UPDATE evs_database.evs_data_mbo_weight 
-	 			SET	dmw_evs_emp_id=?, dmw_dtm_id=?, dmw_weight=?
+	 			SET	dmw_evs_emp_id=?, dmw_dtm_id=?, dmw_weight=?, dmw_approver=?
 	 			WHERE dmw_id=?";
 		
-		$this->db->query($sql, array($this->dmw_evs_emp_id, $this->dmw_dtm_id, $this->dmw_weight, $this->dmw_id));
+		$this->db->query($sql, array($this->dmw_evs_emp_id, $this->dmw_dtm_id, $this->dmw_weight,$this->dmw_approver, $this->dmw_id));
 		 
 	 }
 
