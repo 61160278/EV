@@ -57,7 +57,7 @@ class M_evs_data_g_and_o_weight extends Da_evs_data_g_and_o_weight {
 		$sql = "SELECT *
 		FROM evs_database.evs_data_g_and_o_weight
 		WHERE dgw_evs_emp_id = ?
-		ORDER BY `evs_data_g_and_o_weight`.`dgw_dgo_id` ASC";
+		ORDER BY `evs_data_g_and_o_weight`.`dgw_id` ASC";
 		$query = $this->db->query($sql, array($this->dgw_evs_emp_id));
 		return $query;
 	

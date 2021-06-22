@@ -57,7 +57,7 @@ class M_evs_data_acm_weight extends Da_evs_data_acm_weight {
 		$sql = "SELECT *
 		FROM evs_database.evs_data_acm_weight
 		WHERE dta_evs_emp_id = ?
-		ORDER BY `evs_data_acm_weight`.`dta_sfa_id` ASC";
+		ORDER BY `evs_data_acm_weight`.`dta_id` ASC";
 		$query = $this->db->query($sql, array($this->dta_evs_emp_id));
 		return $query;
 	

@@ -57,7 +57,7 @@ class M_evs_data_mhrd_weight extends Da_evs_data_mhrd_weight {
 		$sql = "SELECT *
 		FROM evs_database.evs_data_mhrd_weight
 		WHERE mhw_evs_emp_id = ?
-		ORDER BY `evs_data_mhrd_weight`.`mhw_sfi_id` ASC";
+		ORDER BY `evs_data_mhrd_weight`.`mhw_id` ASC";
 		$query = $this->db->query($sql, array($this->mhw_evs_emp_id));
 		return $query;
 	

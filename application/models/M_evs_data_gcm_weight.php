@@ -57,7 +57,7 @@ class M_evs_data_gcm_weight extends Da_evs_data_gcm_weight {
 		$sql = "SELECT *
 		FROM evs_database.evs_data_gcm_weight
 		WHERE dtg_evs_emp_id = ?
-		ORDER BY `evs_data_gcm_weight`.`dtg_sgc_id` ASC";
+		ORDER BY `evs_data_gcm_weight`.`dtg_id` ASC";
 		$query = $this->db->query($sql, array($this->dtg_evs_emp_id));
 		return $query;
 	
