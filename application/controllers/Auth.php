@@ -62,6 +62,10 @@ class Auth extends MainController
 			}
 			// else if 
 			else if($_SESSION['UsRole'] == 3){
+				redirect('Evs_all_manage/index_u', 'refresh');
+			}
+			// else if 
+			else if($_SESSION['UsRole'] == 4){
 				redirect('Evs_Controller/index', 'refresh');
 			}
 			// else if 
