@@ -43,7 +43,6 @@
 
 <!-- Start style CSS  -->
 <style>
-
 .border4 {
     border-left: 4px solid #4b6777;
 }
@@ -80,12 +79,12 @@
 
             </div>
             <!-- End header  -->
-			
 
-			
+
+
             <!-- Start content  -->
             <div class="card-body row">
-			
+
                 <!-- Start Menu Manage Form -->
                 <div class="col-xl-4 col-md-6 mb-4">
                     <a href="<?php echo base_url() ?>/Evs_Controller/main_manage_form">
@@ -96,19 +95,19 @@
                                         <div class="text-xs font-weight-bold text4 text-uppercase mb-1">Menu</div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">Manage Form</div>
                                     </div>
-									<!-- col-2 -->
+                                    <!-- col-2 -->
                                 </div>
-								<!-- row -->
+                                <!-- row -->
                             </div>
-							<!-- card body -->
+                            <!-- card body -->
                         </div>
-						<!-- card -->
+                        <!-- card -->
                     </a>
-					<!-- a href -->
+                    <!-- a href -->
                 </div>
                 <!-- End Menu Manage Form  -->
-				
-				<!-- Start Menu Manage Permision -->
+
+                <!-- Start Menu Manage Permision -->
                 <div class="col-xl-4 col-md-6 mb-4">
                     <a href="<?php echo base_url() ?>ev_permission/Evs_permission/index">
                         <div class="card border4 shadow h-100 py-2">
@@ -116,21 +115,21 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text4 text-uppercase mb-1">Menu</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage Permision  </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage Permision </div>
                                     </div>
-									<!-- col-2 -->
+                                    <!-- col-2 -->
                                 </div>
-								<!-- row -->
+                                <!-- row -->
                             </div>
-							<!-- card body -->
+                            <!-- card body -->
                         </div>
-						<!-- card -->
+                        <!-- card -->
                     </a>
-					<!-- a href -->
+                    <!-- a href -->
                 </div>
                 <!-- End Menu Manage Permision  -->
-				
-				<!-- Start Menu Manage group -->
+
+                <!-- Start Menu Manage group -->
                 <div class="col-xl-4 col-md-6 mb-4">
                     <a href="<?php echo base_url() ?>ev_group/Evs_group/index">
                         <div class="card border4 shadow h-100 py-2">
@@ -138,21 +137,21 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text4 text-uppercase mb-1">Menu</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage group  </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage group </div>
                                     </div>
-									<!-- col-2 -->
+                                    <!-- col-2 -->
                                 </div>
-								<!-- row -->
+                                <!-- row -->
                             </div>
-							<!-- card body -->
+                            <!-- card body -->
                         </div>
-						<!-- card -->
+                        <!-- card -->
                     </a>
-					<!-- a href -->
+                    <!-- a href -->
                 </div>
                 <!-- End Menu Manage group  -->
-				
-				<!-- Start Menu Manage quota -->
+
+                <!-- Start Menu Manage quota -->
                 <div class="col-xl-4 col-md-6 mb-4">
                     <a href="<?php echo base_url() ?>ev_quota/Evs_quota/index">
                         <div class="card border4 shadow h-100 py-2">
@@ -160,26 +159,50 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text4 text-uppercase mb-1">Menu</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage quota  </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage quota </div>
                                     </div>
-									<!-- col-2 -->
+                                    <!-- col-2 -->
                                 </div>
-								<!-- row -->
+                                <!-- row -->
                             </div>
-							<!-- card body -->
+                            <!-- card body -->
                         </div>
-						<!-- card -->
+                        <!-- card -->
                     </a>
-					<!-- a href -->
+                    <!-- a href -->
                 </div>
                 <!-- End Menu Manage quota  -->
 
+
+                <!-- Start Menu Manage quota -->
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/index">
+                        <div class="card border4 shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text4 text-uppercase mb-1">Menu</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">goup report </div>
+                                    </div>
+                                    <!-- col-2 -->
+                                </div>
+                                <!-- row -->
+                            </div>
+                            <!-- card body -->
+                        </div>
+                        <!-- card -->
+                    </a>
+                    <!-- a href -->
+                </div>
+                <!-- End Menu Manage quota  -->
+
+
+            </div>
+            <!-- End card shadow -->
+
         </div>
-        <!-- End card shadow -->
+        <!-- End  col-lg-12 -->
+
 
     </div>
-    <!-- End  col-lg-12 -->
-
-
-</div>
-<!-- /.container-fluid -->
+    <!-- /.container-fluid -->

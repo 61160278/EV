@@ -55,11 +55,19 @@
                                 <li class="nav-separator"><span>Menu</span></li>
                                 <li><a href="<?php echo base_url() ?>ev_form/Evs_form/index"><i
                                             class="fa fa-pencil-square"></i><span>Create Form</span></span></a></li>
+                                <?php }
+
+                                else if($_SESSION['UsRole'] == 3) { ?>
+                                <li><a href="<?php echo base_url() ?>Evs_all_manage/index"><i
+                                            class="fa fa-home"></i><span>HOME</span></span></a></li>
+                                <li class="nav-separator"><span>Menu</span></li>
+                                <li><a href="<?php echo base_url() ?>ev_form/Evs_form/index"><i
+                                            class="fa fa-pencil-square"></i><span>Create Form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/index"><i
                                             class="fa fa-tachometer"></i><span>approve goup</span></span></a></li>
                                 <?php }
                                 //else 
-                                else if($_SESSION['UsRole'] == 3) { ?>
+                                else if($_SESSION['UsRole'] == 4) { ?>
                                 <li><a href="<?php echo base_url()?>Evs_Controller/index"><i
                                             class="fa fa-home"></i><span>HOME</span></span></a></li>
                                 <li class="nav-separator"><span>Menu</span></li>
@@ -71,6 +79,8 @@
                                             class="fa fa-users"></i><span>Manage group</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_quota/Evs_quota/index"><i
                                             class="fa fa-bar-chart-o"></i><span>Manage quota</span></span></a></li>
+                                <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/index"><i
+                                            class="fa fa-tachometer"></i><span>goup report</span></span></a></li>
                                 <?php }
                                 //else if ?>
 
