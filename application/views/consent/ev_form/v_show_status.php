@@ -162,7 +162,7 @@
                                 // if check 
                                 else{ ?>
                                 <div class="alert alert-warning col-md-12">
-                                    <strong>Please select Approver !</strong>
+                                    <strong>Please create form and select Approver !</strong>
                                 </div>
                                 <?php }
                                 // else 
