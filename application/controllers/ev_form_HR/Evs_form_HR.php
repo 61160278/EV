@@ -9,7 +9,7 @@ require_once(dirname(__FILE__) . "/../MainController_avenxo.php");
 * @Create Date 2564-04-05
 */
 
-class Evs_form_HD extends MainController_avenxo {
+class Evs_form_HR extends MainController_avenxo {
 
 
 	/**
@@ -28,14 +28,35 @@ class Evs_form_HD extends MainController_avenxo {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	
+
 	/*
-	* index
+	* table_uesr_goup
 	* @input 
 	* @output 
 	* @author 	Kunanya Singmee
 	* @Create Date 2564-04-05
 	*/
 	function index()
+	{
+
+			$this->output('/consent/ev_form_HR/v_main_goup',$data);
+
+
+
+
+	}
+
+
+
+
+	/*
+	* table_uesr_goup
+	* @input 
+	* @output 
+	* @author 	Kunanya Singmee
+	* @Create Date 2564-04-05
+	*/
+	function table_uesr_goup()
 	{
 		$data_chack_form = [];	
 		$check = 0;
