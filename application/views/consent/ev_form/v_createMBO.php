@@ -2360,7 +2360,8 @@ function set_tap() {
                     <!-- col-6 -->
 
                     <div class="col-md-6" align="rigth">
-                        <button type="button" class="btn btn-success" onclick="return check_approve_mhrd()">SAVE</button>
+                        <button type="button" class="btn btn-success"
+                            onclick="return check_approve_mhrd()">SAVE</button>
                     </div>
                     <!-- col-6 -->
 
@@ -2440,7 +2441,8 @@ function set_tap() {
                     <!-- col-6 -->
 
                     <div class="col-md-6" align="rigth">
-                        <button type="button" class="btn btn-success" onclick="return check_approve_edt_mhrd()">SAVE</button>
+                        <button type="button" class="btn btn-success"
+                            onclick="return check_approve_edt_mhrd()">SAVE</button>
                     </div>
                     <!-- col-6 -->
 

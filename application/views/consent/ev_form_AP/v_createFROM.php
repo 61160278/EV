@@ -1196,7 +1196,7 @@ function update_approve() {
                                             name="weing_mbo_edit_<?php echo $table_index_radio_mbo_edit ?>"
                                             value="<?php echo $row->dtm_weight; ?>" hidden>
                                     </td>
-                                    <td >
+                                    <td>
                                         <center>
                                             <?php  
                                    $checked_weight_1 ="";
@@ -1262,7 +1262,7 @@ function update_approve() {
 
                                         </center>
                                     </td>
-                                    <td width="2%" >
+                                    <td width="2%">
                                         <p id="weight_mbo_edit_<?php echo $table_index_radio_mbo_edit ?>"></p>
                                     </td>
                                     <?php $table_index_radio_mbo_edit++;  ?>
@@ -2422,7 +2422,7 @@ function update_approve() {
                                 </tr>
                             </thead>
                             <!-- thead -->
-                            <tbody >
+                            <tbody>
                                 <?php  
                                     $index_acm = 1;
                                     $temp_keycomponent = "";
@@ -2436,7 +2436,7 @@ function update_approve() {
 
 
                                 <tr>
-                                    <td >
+                                    <td>
                                         <center><?php echo $index_acm++; ?></center>
                                     </td>
                                     <td>
@@ -2454,7 +2454,7 @@ function update_approve() {
                                             // foreach ?>
                                     </td>
                                     <!-- show key component  -->
-                                    <td >
+                                    <td>
                                         <?php foreach($info_expected as $row_ept){ 
                                             if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_expected != $row_ept->ept_expected_detail_en && $row_ept->ept_pos_id == $info_pos_id){
                                                 $temp_expected = $row_ept->ept_expected_detail_en;?>
@@ -2733,7 +2733,7 @@ function update_approve() {
                             <!-- save index table_index_radio_acm-->
 
                             <tfoot>
-                                <tr height="5%" >
+                                <tr height="5%">
                                     <td colspan="4">
                                         <center> Total Weight</center>
                                     </td>
@@ -2806,7 +2806,7 @@ function update_approve() {
                                 </tr>
                             </thead>
                             <!-- thead -->
-                            <tbody >
+                            <tbody>
                                 <?php  
                                     $index_acm = 1;
                                     $temp_keycomponent = "";
@@ -2982,7 +2982,7 @@ function update_approve() {
                                 </tr>
                             </thead>
                             <!-- thead -->
-                            <tbody >
+                            <tbody>
                                 <?php  
                                     $index_acm = 1;
                                     $temp_keycomponent = "";
@@ -2999,7 +2999,7 @@ function update_approve() {
                                     <td>
                                         <center><?php echo $index_acm++; ?></center>
                                     </td>
-                                    <td >
+                                    <td>
                                         <?php echo $row->cpg_competency_detail_en . "<br><font color='blue'>" . $row->cpg_competency_detail_th ."</font>"; ?>
                                     </td>
                                     <!-- show competency  -->
@@ -3116,7 +3116,7 @@ function update_approve() {
                             <!-- save index table_index_radio_gcm-->
 
                             <tfoot>
-                                <tr height="5%" >
+                                <tr height="5%">
                                     <td colspan="4">
                                         <center> Total Weight</center>
                                     </td>
