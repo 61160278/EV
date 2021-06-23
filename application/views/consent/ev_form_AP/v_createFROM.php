@@ -906,11 +906,14 @@ function update_approve() {
     });
     // ajax
 
-
-
-
 }
 // update_approve
+
+function next_tap(){
+    $("#ACM").tab('show');
+}
+// function next_tap 
+
 </script>
 <!-- script -->
 
@@ -1578,11 +1581,11 @@ function update_approve() {
                                     <input type="submit" class="btn btn-inverse" value="BACK">
                                 </form>
                                 <!-- form  -->
-
                             </div>
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
+                            <button class="btn btn-primary" onclick="next_tap()">NEXT</button>
                             </div>
                             <!-- col-md-6 add_app -->
                         </div>
