@@ -1973,7 +1973,7 @@ function update_approve() {
                                         <center>Score 1</center>
                                     </th>
                                     <th width="15%">
-                                        <center>Score 1</center>
+                                        <center>Score 2</center>
                                     </th>
                                 </tr>
                             </thead>
@@ -2134,7 +2134,7 @@ function update_approve() {
                                         <center>Score 1</center>
                                     </th>
                                     <th>
-                                        <center>Score 1</center>
+                                        <center>Score 2</center>
                                     </th>
                                 </tr>
                             </thead>
