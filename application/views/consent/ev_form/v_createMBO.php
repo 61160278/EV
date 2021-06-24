@@ -2054,17 +2054,17 @@ function set_tap() {
                             <!-- tbody -->
 
                             <tfoot>
-                                <tr height="5%" id="dis_color">
-                                    <td colspan="4">
+                                <tr height="5%">
+                                    <td colspan="4" id="dis_color">
                                         <center> Total Weight</center>
                                     </td>
-                                    <td>
+                                    <td id="dis_color">
                                         <center> 100</center>
                                     </td>
-                                    <td>
+                                    <td id="dis_color">
                                         <center> Total Result</center>
                                     </td>
-                                    <td>&nbsp;</td>
+                                    <td id="dis_color">&nbsp;</td>
                                 </tr>
                             </tfoot>
                             <!-- tfoot -->
