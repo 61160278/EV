@@ -23,19 +23,10 @@
 
 <script>
 $(document).ready(function() {
-    if (<?php echo $chack_save ?> = "Chack") {
-        document.getElementById("save").disabled = true;
-    } else {
-        document.getElementById("save").disabled = false;
-    }
+    
 });
 // document ready
 
-
-
-
-
-}
 </script>
 
 <div class="row">
@@ -140,9 +131,12 @@ $(document).ready(function() {
                 <br>
                 <div class="row">
                     <div class="col-md-6">
+                    <a href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/index">
+                            <button type="button" class="btn btn-inverse">Back</button>
+                        </a>
                     </div>
                     <div class="col-md-6" align="right">
-                        <button id="save" class="btn btn-success" onclick="" > Save</button>
+                        <button id="save" class="btn btn-info" onclick="" >report grad</button>
                     </div>
                 </div>
             </div>

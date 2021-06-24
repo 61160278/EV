@@ -30,36 +30,6 @@ $(document).ready(function() {
     }
 });
 // document ready
-
-function save_group_to_HR() {
-
-    var Emp_ID = [];
-    var index = document.getElementById("table_index_radio_mhrd_edit").value;
-    for (i = 0; i < index; i++) {
-        Emp_ID.push(document.getElementsByName("Emp_ID")[index].value);
-    }
-    $.ajax({
-        type: "post",
-        dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/save_group_to_HR",
-        data: {
-            "Emp_ID": Emp_ID,
-            "index": index
-        },
-        success: function(data) {
-            console.log(data);
-        },
-        // success
-        error: function(data) {
-            console.log("9999 : error");
-        }
-        // error
-    });
-    // ajax
-
-
-
-}
 </script>
 
 <div class="row">
@@ -92,7 +62,7 @@ function save_group_to_HR() {
                             <th rowspan="2" width="20%">
                                 <center>Management</center>
                             </th>
-                          
+
                         </tr>
                     </thead>
                     <!-- thead -->
@@ -131,14 +101,15 @@ function save_group_to_HR() {
                             </td>
                             <td>
                                 <center>
-                                <a href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $row->Emp_ID ?>">
+                                    <a
+                                        href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $row->Emp_ID ?>">
                                         <button class="btn btn-info">
                                             <i class="ti ti-search"></i> View goroup
                                         </button>
                                     </a>
                                 </center>
                             </td>
-                      
+
                         </tr>
                         <?php 
                             $table_index += 1;
@@ -151,9 +122,10 @@ function save_group_to_HR() {
                 <br>
                 <div class="row">
                     <div class="col-md-6">
+                      
                     </div>
                     <div class="col-md-6" align="right">
-                        <button id="save" class="btn btn-success" onclick="save_group_to_HR()"> Save</button>
+
                     </div>
                 </div>
             </div>
