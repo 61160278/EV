@@ -36,20 +36,21 @@
     <link rel="stylesheet" href="<?php echo base_url();?>elaadmin/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
-    <link rel="stylesheet"href="<?php echo base_url();?>elaadmin/assets/css/pe-icon-7-stroke.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>elaadmin/assets/css/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>elaadmin/assets/css/flag-icon.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>elaadmin/assets/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="<?php echo base_url();?>elaadmin/assets/css/style.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>elaadmin/assets/css/lib/datatable/dataTables.bootstrap.min.css">
+    <link rel="stylesheet"
+        href="<?php echo base_url();?>elaadmin/assets/css/lib/datatable/dataTables.bootstrap.min.css">
 
     <link href="<?php echo base_url();?>elaadmin/assets/css/chartist.min.css" rel="stylesheet">
     <link href="<?php echo base_url();?>elaadmin/assets/css/jqvmap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- End include stylesheet -->
-	<?php date_default_timezone_set("Asia/Bangkok"); ?>
+    <?php date_default_timezone_set("Asia/Bangkok"); ?>
 
-    
+
 </head>
 
 

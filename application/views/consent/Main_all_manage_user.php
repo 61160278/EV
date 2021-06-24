@@ -1,7 +1,7 @@
 <?php
 /*
-* v_main_permission.php
-* Display v_main_permission
+* Main_all_manage_user.php
+* Display Main_all_manage_user
 * @input    
 * @output
 * @author   Kunanya Singmee
@@ -19,51 +19,55 @@
             </div>
             <!-- heading -->
             <div class="panel-body" style="height: 400px">
-                <br>
-                <div class="row">
+                <div class="row" align="center">
                     <div class="col-md-12">
+                        <img src="<?php echo base_url() ?>pic/Logo_final_2.png" width="50%">
                     </div>
                     <!-- col-12  -->
                 </div>
                 <!-- row  -->
+                <hr>
                 <div class="row">
-                    <div class="col-md-12" align="center">
-                        <div class="row">
-                            <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
-                                <div class="col-md-4">
-                                    <div class="info-tile tile-indigo">
-                                        <div class="tile-icon"><i class="fa fa-pencil-square"></i></div>
-                                        <div class="tile-heading"><span>MENU</span></div>
-                                        <div class="tile-body">
-                                            <span>Create Form</span>
-                                        </div>
-                                        <!-- body  -->
-                                    </div>
-                                    <!-- title  -->
-                                </div>
-                                <!-- col-4  -->
-                            </a>
-                            <!-- create form  -->
-
-                            <a href="<?php echo base_url() ?>ev_form/Evs_form/show_ststus">
-                                <div class="col-md-4">
-                                    <div class="info-tile tile-indigo">
-                                        <div class="tile-icon"><i class="fa fa-book"></i></div>
-                                        <div class="tile-heading"><span>MENU</span></div>
-                                        <div class="tile-body">
-                                            <span>Status Form</span>
-                                        </div>
-                                        <!-- body  -->
-                                    </div>
-                                    <!-- title  -->
-                                </div>
-                                <!-- col-4  -->
-                            </a>
-                            <!-- status form  -->
-                        </div>
-                        <!-- row  -->
+                    <div class="col-md-1" align="center">
+                        <h3>
+                            <font size="5px"> <b>MENU </b></font>
+                        </h3>
                     </div>
-                    <!-- col-12  -->
+                    <!-- col-6  -->
+                </div>
+                <!-- row  -->
+                <div class="row">
+                    <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
+                        <div class="col-md-6">
+                            <div class="info-tile">
+                                <div class="tile-icon"><i class="fa fa-pencil-square"></i></div>
+                                <div class="tile-heading"><span>MENU</span></div>
+                                <div class="tile-body">
+                                    <span>Create Form</span>
+                                </div>
+                                <!-- body  -->
+                            </div>
+                            <!-- title  -->
+                        </div>
+                        <!-- col-4  -->
+                    </a>
+                    <!-- create form  -->
+
+                    <a href="<?php echo base_url() ?>ev_form/Evs_form/show_ststus">
+                        <div class="col-md-6">
+                            <div class="info-tile">
+                                <div class="tile-icon"><i class="fa fa-book"></i></div>
+                                <div class="tile-heading"><span>MENU</span></div>
+                                <div class="tile-body">
+                                    <span>Status Form</span>
+                                </div>
+                                <!-- body  -->
+                            </div>
+                            <!-- title  -->
+                        </div>
+                        <!-- col-4  -->
+                    </a>
+                    <!-- status form  -->
                 </div>
                 <!-- row  -->
             </div>

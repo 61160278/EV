@@ -35,7 +35,8 @@
                 <img class="img-circle" src="http://placehold.it/300&text=Placeholder" alt="" />
             </a>
             <ul class="dropdown-menu userinfo arrow">
-                <li><a href="<?php echo base_url(); ?>/Auth/logout"><i class="ti ti-shift-right"></i><span>Sign Out</span></a></li>
+                <li><a href="<?php echo base_url(); ?>/Auth/logout"><i class="ti ti-shift-right"></i><span>Sign
+                            Out</span></a></li>
             </ul>
         </li>
 

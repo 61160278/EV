@@ -39,7 +39,7 @@
 
                             <ul class="acc-menu">
                                 <?php if($_SESSION['UsRole'] == 1){ ?>
-                                <li><a href="<?php echo base_url() ?>Evs_all_manage/index"><i
+                                <li><a href="<?php echo base_url() ?>Evs_all_manage/index_u"><i
                                             class="fa fa-home"></i><span>HOME</span></span></a></li>
                                 <li class="nav-separator"><span>Menu</span></li>
                                 <li><a href="<?php echo base_url() ?>ev_form/Evs_form/index"><i
@@ -50,17 +50,7 @@
                                 <?php }
                                 // if
                                 else if($_SESSION['UsRole'] == 2) { ?>
-                                <li><a href="<?php echo base_url() ?>Evs_all_manage/index"><i
-                                            class="fa fa-home"></i><span>HOME</span></span></a></li>
-                                <li class="nav-separator"><span>Menu</span></li>
-                                <li><a href="<?php echo base_url() ?>ev_form/Evs_form/index"><i
-                                            class="fa fa-pencil-square"></i><span>Create Form</span></span></a></li>
-                                <li><a href="<?php echo base_url() ?>ev_form/Evs_form/show_ststus"><i
-                                            class="fa fa-book"></i><span>Status Form</span></span></a></li>
-                                <?php }
-                                // else if
-                                else if($_SESSION['UsRole'] == 3) { ?>
-                                <li><a href="<?php echo base_url() ?>Evs_all_manage/index"><i
+                                <li><a href="<?php echo base_url() ?>Evs_all_manage/index_a"><i
                                             class="fa fa-home"></i><span>HOME</span></span></a></li>
                                 <li class="nav-separator"><span>Menu</span></li>
                                 <li><a href="<?php echo base_url() ?>ev_form/Evs_form/index"><i
@@ -69,7 +59,7 @@
                                             class="fa fa-tachometer"></i><span>Approve group</span></span></a></li>
                                 <?php }
                                 //else if 
-                                else if($_SESSION['UsRole'] == 4) { ?>
+                                else if($_SESSION['UsRole'] == 3) { ?>
                                 <li><a href="<?php echo base_url()?>Evs_Controller/index"><i
                                             class="fa fa-home"></i><span>HOME</span></span></a></li>
                                 <li class="nav-separator"><span>Menu</span></li>

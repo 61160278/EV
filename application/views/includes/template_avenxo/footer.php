@@ -9,10 +9,11 @@
 */
 
 ?>
-								</div>  <!-- .container-fluid -->
-                            </div> <!-- page-content -->
-                        </div> <!-- static-content -->
-                    </div><!-- static-content-wrapper -->
+</div> <!-- .container-fluid -->
+</div> <!-- page-content -->
+</div> <!-- static-content -->
+</div><!-- static-content-wrapper -->
 
-    </body>
+</body>
+
 </html>
