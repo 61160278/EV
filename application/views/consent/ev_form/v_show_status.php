@@ -181,7 +181,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="<?php echo base_url() ?>Evs_all_manage/index">
+                        <a href="<?php echo base_url() ?>Evs_all_manage/index_u">
                             <button class="btn btn-inverse">BACK</button>
                         </a>
                         <!-- cancel to back to main  -->

@@ -97,7 +97,7 @@ function validate_his() {
                 </h2>
             </div>
             <!-- heading -->
-            <div class="panel-body" style="height: 400px">
+            <div class="panel-body" style="height: 450px">
 
                 <div class="row">
                     <div class="col-md-4" align="center">
@@ -137,6 +137,17 @@ function validate_his() {
                     <!-- col-4  -->
                 </div>
                 <!-- row  -->
+                <hr>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="<?php echo base_url() ?>Evs_all_manage/index_u">
+                            <button class="btn btn-inverse">BACK</button>
+                        </a>
+                        <!-- cancel to back to main  -->
+                    </div>
+                    <!-- col-md-6 -->
+                </div>
+                <!-- row -->
 
             </div>
             <!-- body -->
