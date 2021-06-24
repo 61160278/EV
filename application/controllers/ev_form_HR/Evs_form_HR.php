@@ -38,12 +38,10 @@ class Evs_form_HR extends MainController_avenxo {
 	*/
 	function index()
 	{
+		$this->load->model('M_evs_group','megu');
+		$data['data_group'] = $this->megu->get_group_and_name_head_dept()->result();
 
-			$this->output('/consent/ev_form_HR/v_main_goup',$data);
-
-
-
-
+		$this->output('/consent/ev_form_HR/v_main_goup',$data);
 	}
 
 

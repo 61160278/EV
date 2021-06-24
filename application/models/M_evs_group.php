@@ -128,6 +128,14 @@ class M_evs_group extends Da_evs_group {
 		return $query;
 	}
 
+	function get_group_and_name_head_dept(){
+		$sql = "SELECT * 
+		FROM evs_database.evs_group as gru
+		 LEFT JOIN dbmc.employee as dem
+		ON gru.gru_head_dept =  dem.Emp_ID";
+		$query = $this->db->query($sql);
+		return $query;
+	}
 
 
 } 
