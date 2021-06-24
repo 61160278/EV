@@ -203,7 +203,7 @@ class Evs_group extends MainController_avenxo {
 			}
 			if($chack_data_log == 1){
 				$this->miog->log_user_id = $Emp_id;
-				$this->miog->log_role = 2;
+				$this->miog->log_role = 3;
 				$this->miog->updatte_role();
 			}
 			$data = "save_edit_sdm";
@@ -242,7 +242,7 @@ class Evs_group extends MainController_avenxo {
 			}
 			if($chack_data_log == 1){
 				$this->miog->log_user_id = $Emp_id;
-				$this->miog->log_role = 2;
+				$this->miog->log_role = 3;
 				$this->miog->updatte_role();
 			}
 			$data = "save_edit_sdm";
