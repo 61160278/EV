@@ -18,7 +18,7 @@
         <!-- Start div top-right  -->
         <div class="top-left">
             <!-- Start div navbar-header -->
-            <div class="navbar-header" >
+            <div class="navbar-header">
                 <a class="navbar-brand" href="<?php echo base_url()?>Evs_Controller/index">
                     <img src="<?php echo base_url();?>elaadmin/images/LOGO_49.png" alt="Logo" height="80%">
                 </a>
@@ -46,7 +46,7 @@
                         <!-- End image   -->
 
                         <!-- Start profile  -->
-                        <div class="user-menu dropdown-menu" >
+                        <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="<?php echo base_url(); ?>/Auth/logout"><i
                                     class="fa fa-power -off"></i>Logout</a>
                         </div>

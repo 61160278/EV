@@ -51,4 +51,3 @@
 <script src="<?php echo base_url();?>elaadmin/assets/js/lib/data-table/buttons.colVis.min.js"></script>
 <script src="<?php echo base_url();?>elaadmin/assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
 <script src="<?php echo base_url();?>elaadmin/assets/js/init/datatables-init.js"></script>
-
