@@ -131,7 +131,7 @@ function save_group_to_HR() {
                             </td>
                             <td>
                                 <center>
-                                <a href="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/createFROM/<?php echo $row->Emp_ID ?>">
+                                <a href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $row->Emp_ID ?>">
                                         <button class="btn btn-info">
                                             <i class="ti ti-search"></i> View goroup
                                         </button>

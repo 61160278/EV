@@ -191,7 +191,6 @@ class Evs_form_HD extends MainController_avenxo {
 		$this->megw->dgw_evs_emp_id = $tep->emp_id;
 		$data['data_g_and_o'] = $this->megw->get_by_empID()->result();
 
-		$check_g_o = sizeof($data['check']);
 
 		$this->load->model('M_evs_data_g_and_o','mdgo');
 		$this->mdgo->dgo_emp_id = $emp_id;
@@ -212,9 +211,8 @@ class Evs_form_HD extends MainController_avenxo {
 		else if($data['form']->ps_form_pe == "MHRD"){
 			$this->load->model('M_evs_data_mhrd_weight','memw');
 			$this->memw->mhw_evs_emp_id = $tep->emp_id;
-			$data['check'] = $data['data_mhrd'] = $this->memw->get_by_empID()->result();
+			$data['data_mhrd'] = $this->memw->get_by_empID()->result();
 	
-			$check = sizeof($data['check']);
 			$this->load->model('M_evs_set_form_mhrd','msfm');
 				$this->msfm->sfi_pos_id = $tep->Position_ID;
 				$data['info_mhrd'] = $this->msfm->get_item_description_by_position()->result();
@@ -230,8 +228,8 @@ class Evs_form_HD extends MainController_avenxo {
 	
 			$this->load->model('M_evs_data_acm_weight','mdtm');
 			$this->mdtm->dta_evs_emp_id = $employee_data->emp_id;
-			$data['check'] = $data['data_acm_weight'] = $this->mdtm->get_by_empID()->result();
-			$check_acm = sizeof($data['check']);
+			$data['data_acm_weight'] = $this->mdtm->get_by_empID()->result();
+			
 
 			$this->load->model('M_evs_set_form_ability','mesf');
 			$this->mesf->sfa_pos_id = $tep->Position_ID;
@@ -253,8 +251,8 @@ class Evs_form_HD extends MainController_avenxo {
 		else if($data['form']->ps_form_ce == "GCM"){
 			$this->load->model('M_evs_data_gcm_weight','mdtm');
 			$this->mdtm->dtg_evs_emp_id = $employee_data->emp_id;
-			$data['check'] = $data['data_gcm_weight'] = $this->mdtm->get_by_empID()->result();
-			$check_gcm = sizeof($data['check']);
+			$data['data_gcm_weight'] = $this->mdtm->get_by_empID()->result();
+			
 	
 
 			$tep = $data['emp_info']->row();

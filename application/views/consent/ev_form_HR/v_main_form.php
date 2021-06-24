@@ -31,31 +31,7 @@ $(document).ready(function() {
 });
 // document ready
 
-function save_group_to_HR() {
 
-    var Emp_ID = [];
-    var index = document.getElementById("table_index_radio_mhrd_edit").value;
-    for (i = 0; i < index; i++) {
-        Emp_ID.push(document.getElementsByName("Emp_ID")[index].value);
-    }
-    $.ajax({
-        type: "post",
-        dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/save_group_to_HR",
-        data: {
-            "Emp_ID": Emp_ID,
-            "index": index
-        },
-        success: function(data) {
-            console.log(data);
-        },
-        // success
-        error: function(data) {
-            console.log("9999 : error");
-        }
-        // error
-    });
-    // ajax
 
 
 
@@ -132,7 +108,7 @@ function save_group_to_HR() {
                                         ?>
                                 <center>
                                     <a
-                                        href="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/createFROM/<?php echo $row->emp_employee_id ?>">
+                                        href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/createFROM/<?php echo $row->emp_employee_id; ?>/<?php echo $data_hard_dep; ?>">
                                         <button class="btn btn-warning">
                                             <i class="ti ti-search"></i> Edit Information
                                         </button>
@@ -166,7 +142,7 @@ function save_group_to_HR() {
                     <div class="col-md-6">
                     </div>
                     <div class="col-md-6" align="right">
-                        <button id="save" class="btn btn-success" onclick="save_group_to_HR()" > Save</button>
+                        <button id="save" class="btn btn-success" onclick="" > Save</button>
                     </div>
                 </div>
             </div>

@@ -2188,10 +2188,11 @@ function update_MHRD_edit() {
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url(); ?>/ev_form_AP/Evs_form_AP/index">
-                                    <button type="button" class="btn btn-inverse"><i
-                                            class="fa fa-mail-reply"></i>Back</button>
-                                </a>
+                                <form method="POST" action="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/index">
+                                    <input id="emp_id" name="emp_id" type="text"
+                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
+                                    <input type="submit" class="btn btn-inverse" value="BACK">
+                                </form>
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
