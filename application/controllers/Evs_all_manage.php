@@ -1,4 +1,3 @@
-
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once(dirname(__FILE__) . "/MainController_avenxo.php");
@@ -51,9 +50,23 @@ class Evs_all_manage extends MainController_avenxo {
 		$this->memp->emp_pay_id = $pay_id;
 		$data['emp_info'] = $this->memp->get_by_empid();
 		// print_r($data['emp_info']->result());
-		$this->output('/consent/Main_all_manage');
+		$this->output('/consent/Main_all_manage_user');
 	}
 	// function index_u()
+
+	function index_a(){
+		
+		$emp_id = $_SESSION['UsEmp_ID'];
+		$pay_id = $_SESSION['Uspay_id'];
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $emp_id;
+		$this->memp->emp_pay_id = $pay_id;
+		$data['emp_info'] = $this->memp->get_by_empid();
+		// print_r($data['emp_info']->result());
+		$this->output('/consent/Main_all_manage_approver');
+	}
+	// function index_a()
  
 }
 ?>
