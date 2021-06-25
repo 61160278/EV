@@ -26,6 +26,57 @@ $(document).ready(function() {
 
 });
 // document ready
+
+function save_grade() {
+    var arr_radio = [];
+    var arr_dgo_id = [];
+    var arr_Evaluator_Review_edit = [];
+    var get_arr_dgo_id = "";
+    var index = document.getElementById("table_index_radio_g_o_edit").value;
+    var Emp_ID = document.getElementById("Emp_ID").value;
+    var App = document.getElementById("App_Emp_ID").value;
+
+    for (i = 0; i < index; i++) {
+        arr_dgo_id.push(document.getElementsByName("dgo_id")[i].value);
+        arr_Evaluator_Review_edit.push(document.getElementsByName("Evaluator_Review_edit")[i].value);
+        $("[name = rd_g_o_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_radio.push(document.getElementsByName("rd_g_o_edit_" + i + "")[index].value);
+            } //if
+        });
+    }
+    console.log("index : " + index);
+    console.log("Emp_ID :  " + Emp_ID);
+    console.log("arr_dgo_id : " + arr_dgo_id);
+    console.log("arr_radio : " + arr_radio);
+    console.log("arr_Evaluator_Review : " + arr_Evaluator_Review_edit);
+
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_g_and_o",
+        data: {
+            "Emp_ID": Emp_ID,
+            "arr_dgo_id": arr_dgo_id,
+            "arr_radio": arr_radio,
+            "arr_Evaluator_Review": arr_Evaluator_Review_edit,
+            "App": App
+        },
+        success: function(data) {
+            console.log(data);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+}
+
+
+
 </script>
 
 <div class="row">
@@ -58,13 +109,11 @@ $(document).ready(function() {
                             <th rowspan="2" width="20%">
                                 <center>grade</center>
                             </th>
-                            <th rowspan="2" width="20%">
-                                <center>Management grade</center>
-                            </th>
+                           
                         </tr>
                     </thead>
                     <!-- thead -->
-                    <tbody id="row_mbo">
+                    <tbody >
                         <?php 
                                 $table_index = 0;
 							    foreach($data_group as $index => $row) {
@@ -100,17 +149,7 @@ $(document).ready(function() {
                                       -
                                 </center>
                             </td>
-                            <td>
-                                <center>
-                                    <select name="grade_<?php echo $index; ?>" id="grade_<?php echo $index; ?>">
-                                        <option>Select grade</option>
-                                        <option value="A">A</option>
-                                        <option value="B">B</option>
-                                        <option value="C">C</option>
-                                        <option value="D">D</option>
-                                    </select>
-                                </center>
-                            </td>
+                           
                         </tr>
                         <?php 
                             $table_index += 1;
