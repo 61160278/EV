@@ -363,8 +363,7 @@ function clear_css(gru_id) {
 								foreach($grp_sdm->result() as $row ) { ?>
                                                 <tr class="odd gradeX" align='center'>
                                                     <td><?php echo $num;?> </td>
-                                                    <td id="groupname<?php echo $row->gru_id?>">
-                                                        <?php echo $row->gru_name; ?></td>
+                                                    <td id="groupname<?php echo $row->gru_id?>"><?php echo $row->gru_name; ?></td>
                                                     <td>
                                                         <?php if($row->gru_head_dept == NULL){ 
 													echo "-";

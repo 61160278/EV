@@ -42,19 +42,16 @@ class Evs_form_HD extends MainController_avenxo {
 		$chack_save = 0;
 		$chack_form_save = 0;
 		
-		
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
 		$year = $data['patt_year']->row(); // show value year now
 		//end set year now
 		$pay_id = $year->pay_id;
 
-
 		$this->load->model('M_evs_group','megu');
 		$this->megu->emp_pay_id = $pay_id;
 		$this->megu->gru_head_dept = $_SESSION['UsEmp_ID'];
 		$emp_data = $data['data_group'] = $this->megu->get_group_by_head_dept()->result();
-
 
 		foreach ($emp_data as $row) {
 			if($row->emp_employee_id != $_SESSION['UsEmp_ID']){
@@ -64,7 +61,6 @@ class Evs_form_HD extends MainController_avenxo {
 			$data['emp_info'] = $this->memp->get_by_empid();
 
 			$tep = $data['emp_info']->row();
-
 			$check = 0;
 
 			$this->load->model('M_evs_data_mbo_weight','medw');
@@ -72,34 +68,28 @@ class Evs_form_HD extends MainController_avenxo {
 			$data['check'] = $data['data_mbo'] = $this->medw->get_by_empID()->result();
 			$check += sizeof($data['check']);
 	
-
 			$this->load->model('M_evs_data_g_and_o_weight','megw');
 			$this->megw->dgw_evs_emp_id = $tep->emp_id;
 			$data['check'] = $data['data_g_and_o'] = $this->megw->get_by_empID()->result();
 			$check += sizeof($data['check']);
 
-
-	
 			$this->load->model('M_evs_data_mhrd_weight','memw');
 			$this->memw->mhw_evs_emp_id = $tep->emp_id;
 			$data['check'] = $data['data_mhrd'] = $this->memw->get_by_empID()->result();
 			$check += sizeof($data['check']);
-
-
 	
 			$this->load->model('M_evs_data_acm_weight','mdtm');
 			$this->mdtm->dta_evs_emp_id = $tep->emp_id;
 			$data['check'] = $data['data_acm_weight'] = $this->mdtm->get_by_empID()->result();
 			$check += sizeof($data['check']);
 
-
-	
 			$this->load->model('M_evs_data_gcm_weight','mdtg');
 			$this->mdtg->dtg_evs_emp_id = $tep->emp_id;
 			$data['check'] = $data['data_gcm_weight'] = $this->mdtg->get_by_empID()->result();
 			$check += sizeof($data['check']);
 
 			}
+			// if
 			array_push($data_chack_form,$check);
 
 		} 
@@ -109,12 +99,15 @@ class Evs_form_HD extends MainController_avenxo {
 			if($data_chack_form[$index]  != 0){
 				$chack_form_save += 1; 
 			}
+			// if
 			$chack_save += 1;
 		}
+		// foreach
 		
 		if($chack_form_save == $chack_save){ 
 			$chack_save_button = "Chack";
 		}
+		// if 
 		else{$chack_save_button = "Un_Chack";}
 
 		$data['chack_save'] = $chack_save_button;
@@ -128,7 +121,7 @@ class Evs_form_HD extends MainController_avenxo {
 	// function index()
 	
 	/*
-	* createACM
+	* createFROM
 	* @input emp_id
 	* @output infomation employee
 	* @author 	Kunanya Singmee
@@ -271,11 +264,11 @@ class Evs_form_HD extends MainController_avenxo {
 
 	}
 	// function createACM
+
 	function save_group_to_HR(){
     
-		$Emp_id = $this->input->post("Emp_id");
+		$Emp_ID = $this->input->post("Emp_ID");
 		$index = $this->input->post("index");
-
 
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
@@ -283,25 +276,20 @@ class Evs_form_HD extends MainController_avenxo {
 		//end set year now
 		$pay_id = $year->pay_id;
 
-		$this->load->model('M_evs_employee','memp');
-		$this->memp->Emp_ID = $Emp_id;
-		$this->memp->emp_pay_id = $pay_id;
-		$data['emp_info'] = $this->memp->get_by_empid();
-
-		$tep = $data['emp_info']->row();
-	
-
 		$this->load->model('M_evs_data_approve','mdap');
+
 		for ($i = 0; $i < $index; $i++) {
-			$this->mdap->dma_emp_id = $tep->emp_id[$i];
+			$this->mdap->dma_dtm_emp_id = $Emp_ID[$i];
 			$this->mdap->dma_status = 4;
 			$this->mdap->update_status(); 
 		}
+		// for 
 		
 		$data = "save_group_to_HR";
 		echo json_encode($data);
 	
 	}
+	// save_group_to_HR
 
 	function save_data_acm_weight(){
 

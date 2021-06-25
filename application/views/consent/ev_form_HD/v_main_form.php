@@ -26,19 +26,28 @@ $(document).ready(function() {
 
     if ("<?php echo $chack_save ?>" == "Chack") {
         document.getElementById("save").disabled = false;
-    } else {
+    }
+    // if
+    else {
         document.getElementById("save").disabled = true;
     }
+    // else 
 });
 // document ready
 
 function save_group_to_HR() {
 
     var Emp_ID = [];
-    var index = document.getElementById("table_index_radio_mhrd_edit").value;
+    var index = document.getElementById("table_index").value;
+
     for (i = 0; i < index; i++) {
-        Emp_ID.push(document.getElementsByName("Emp_ID")[index].value);
+        Emp_ID.push(document.getElementById("Emp_ID"+i).value);
     }
+    // for 
+
+    console.log(Emp_ID);
+    console.log(index);
+
     $.ajax({
         type: "post",
         dataType: "json",
@@ -58,10 +67,11 @@ function save_group_to_HR() {
     });
     // ajax
 
-
-
 }
+// save_group_to_HR
+
 </script>
+<!-- END script -->
 
 <div class="row">
     <div class="col-md-12">
@@ -73,8 +83,6 @@ function save_group_to_HR() {
             </div>
             <!-- heading -->
             <div class="panel-body">
-
-
                 <table class="table table-bordered table-striped m-n">
                     <thead>
                         <tr>
@@ -96,6 +104,7 @@ function save_group_to_HR() {
                         </tr>
                     </thead>
                     <!-- thead -->
+
                     <tbody id="row_mbo">
                         <?php 
                                 $table_index = 0;
@@ -103,7 +112,7 @@ function save_group_to_HR() {
                                 if($data_emp_id != $row->emp_employee_id) {
                                 
                                 ?>
-                        <input name="Emp_ID" type="text" value="<?php echo $row->emp_employee_id ?>" hidden>
+                        <input name="Emp_ID" id="Emp_ID<?php echo $index; ?>" type="text" value="<?php echo $row->emp_employee_id ?>" hidden>
                         <tr>
                             <td>
                                 <center>
@@ -161,16 +170,26 @@ function save_group_to_HR() {
 
                         <input type="text" id="table_index" value="<?php echo $table_index; ?>" hidden>
                     </tbody>
+                    <!-- tbody  -->
                 </table>
+                <!-- table  -->
+
                 <br>
                 <div class="row">
                     <div class="col-md-6">
                     </div>
+                    <!-- col-6  -->
                     <div class="col-md-6" align="right">
                         <button id="save" class="btn btn-success" onclick="save_group_to_HR()" > Save</button>
                     </div>
+                    <!-- col-6  -->
                 </div>
+                <!-- row  -->
             </div>
+            <!-- body -->
         </div>
+        <!-- panel -->
     </div>
+    <!-- col-12  -->
 </div>
+<!-- row  -->

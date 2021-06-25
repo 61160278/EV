@@ -74,9 +74,9 @@ class M_evs_data_approve extends Da_evs_data_approve {
 	
 		$sql = "UPDATE evs_database.evs_data_approve 
 				SET dma_status=?
-				WHERE dma_emp_id=?";
+				WHERE dma_dtm_emp_id=?";
 	   
-	   $this->db->query($sql, array($this->dma_status, $this->dma_emp_id));
+	   $this->db->query($sql, array($this->dma_status, $this->dma_dtm_emp_id));
 	}
 
 
