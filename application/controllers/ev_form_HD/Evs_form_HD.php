@@ -227,7 +227,7 @@ class Evs_form_HD extends MainController_avenxo {
 		if($data['form']->ps_form_ce == "ACM"){
 	
 			$this->load->model('M_evs_data_acm_weight','mdtm');
-			$this->mdtm->dta_evs_emp_id = $employee_data->emp_id;
+			$this->mdtm->dta_evs_emp_id = $tep->emp_id;
 			$data['data_acm_weight'] = $this->mdtm->get_by_empID()->result();
 			
 
@@ -240,9 +240,7 @@ class Evs_form_HD extends MainController_avenxo {
 			$data['info_expected'] = $this->mept->get_all_by_pos()->result();
 
 			$data['info_pos_id'] = $tep->Position_ID;
-
-		
-				$data['data_from_ce'] = "ACM_edit";
+			$data['data_from_ce'] = "ACM_edit";
 			
 	
 		// else	

@@ -837,22 +837,29 @@ function update_MHRD_edit() {
                                                 if($row_data_mbo->dmw_weight == 1){
                                                     $checked_weight_1 =  "checked";
                                                 }
+                                                // if
                                                 else if($row_data_mbo->dmw_weight == 2){
                                                     $checked_weight_2 =  "checked";
                                                 }
+                                                // else if
                                                 else if($row_data_mbo->dmw_weight == 3){
                                                     $checked_weight_3 =  "checked";
                                                 }
+                                                // else if
                                                 else if($row_data_mbo->dmw_weight == 4){
                                                     $checked_weight_4 =  "checked";
                                                 }
+                                                // else if
                                                 else {
                                                     $checked_weight_5 =  "checked";
                                                 }
+                                                // else 
                                                 
                                             }
+                                            // if
                                         
                                         }
+                                        // foeeach
                                 ?>
                                             <div class="col-md-12">
                                                 <input type="radio"
@@ -937,6 +944,7 @@ function update_MHRD_edit() {
                         </div>
                     </div>
                     <!-- form MBO_edit -->
+
                     <div class="tab-pane" id="G_O">
                         <table class="table table-bordered table-striped m-n">
                             <thead>
@@ -1208,6 +1216,7 @@ function update_MHRD_edit() {
 
                     </div>
                     <!-- form G&O -->
+
                     <div class="tab-pane" id="G_O_edit">
                         <table class="table table-bordered table-striped m-n">
                             <thead>
@@ -1815,8 +1824,6 @@ function update_MHRD_edit() {
                         <!-- row -->
                     </div>
 
-
-
                     <div class="tab-pane" id="ACM">
                         <table class="table table-bordered table-striped m-n">
                             <thead id="headmbo">
@@ -2087,29 +2094,37 @@ function update_MHRD_edit() {
               
 
                                     foreach($data_acm_weight as $row_data_acm_weight){
-                                        $checked_weight_1 ="";
-                                        $checked_weight_2 ="";
-                                        $checked_weight_3 ="";
-                                        $checked_weight_4 ="";
-                                        $checked_weight_5 ="";
                                             if($row->sfa_id == $row_data_acm_weight->dta_sfa_id){
+                                                $checked_weight_1 ="";
+                                                $checked_weight_2 ="";
+                                                $checked_weight_3 ="";
+                                                $checked_weight_4 ="";
+                                                $checked_weight_5 ="";
+
                                                 if($row_data_acm_weight->dta_weight == 1){
                                                     $checked_weight_1 =  "checked";
                                                 }
+                                                // if
                                                 else if($row_data_acm_weight->dta_weight == 2){
                                                     $checked_weight_2 =  "checked";
                                                 }
+                                                // else if
                                                 else if($row_data_acm_weight->dta_weight == 3){
                                                     $checked_weight_3 =  "checked";
                                                 }
+                                                // else if 
                                                 else if($row_data_acm_weight->dta_weight == 4){
                                                     $checked_weight_4 =  "checked";
                                                 }
+                                                // else if 
                                                 else {
                                                     $checked_weight_5 =  "checked";
                                                 }
+                                                // else
                                             }
+                                            // if
                                         }
+                                        // foreach
                                 ?>
                                         <div class="col-md-12">
                                             <input type="radio"
@@ -2202,6 +2217,7 @@ function update_MHRD_edit() {
                         <!-- row -->
                     </div>
                     <!-- form ACM_edit -->
+
                     <div class="tab-pane" id="GCM">
                         <table class="table table-bordered table-striped m-n">
                             <thead>
@@ -2375,6 +2391,7 @@ function update_MHRD_edit() {
                         <!-- row -->
                     </div>
                     <!-- form GCM -->
+
                     <div class="tab-pane" id="GCM_edit">
                         <table class="table table-bordered table-striped m-n">
                             <thead>
@@ -2453,7 +2470,7 @@ function update_MHRD_edit() {
                                         // foreach ?>
                                     </td>
                                     <!-- show expected  -->
-                                    <td id="dis_color">
+                                    <td>
                                         <center><?php echo $row->sgc_weight; ?></center>
                                         <input type="number"
                                             name="weing_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
@@ -2461,7 +2478,7 @@ function update_MHRD_edit() {
                                     </td>
 
                                     <!-- show weight  -->
-                                    <td id="dis_color" width="5%">
+                                    <td width="5%">
                                         <center>
                                             <?php  
                                    $checked_weight_1 ="";
@@ -2472,30 +2489,39 @@ function update_MHRD_edit() {
               
 
                                     foreach($data_gcm_weight as $row_data_gcm_weight){
-                                        $checked_weight_1 ="";
-                                        $checked_weight_2 ="";
-                                        $checked_weight_3 ="";
-                                        $checked_weight_4 ="";
-                                        $checked_weight_5 ="";
+ 
                                             if($row->sgc_id == $row_data_gcm_weight->dtg_sgc_id){
+                                                $checked_weight_1 ="";
+                                                $checked_weight_2 ="";
+                                                $checked_weight_3 ="";
+                                                $checked_weight_4 ="";
+                                                $checked_weight_5 ="";
+                                                
                                                 if($row_data_gcm_weight->dtg_weight == 1){
                                                     $checked_weight_1 =  "checked";
                                                 }
+                                                // if
                                                 else if($row_data_gcm_weight->dtg_weight == 2){
                                                     $checked_weight_2 =  "checked";
                                                 }
+                                                // else if 
                                                 else if($row_data_gcm_weight->dtg_weight == 3){
                                                     $checked_weight_3 =  "checked";
                                                 }
+                                                // else if
                                                 else if($row_data_gcm_weight->dtg_weight == 4){
                                                     $checked_weight_4 =  "checked";
                                                 }
+                                                // else if
                                                 else {
                                                     $checked_weight_5 =  "checked";
                                                 }
+                                                // else 
                                                 
                                             }
+                                            // if
                                         }
+                                        // foreach
                                 ?>
                                             <div class="col-md-12">
                                                 <input type="radio"

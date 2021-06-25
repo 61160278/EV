@@ -1280,7 +1280,8 @@ function update_approve() {
                                 <tr>
                                     <td colspan="3" align="right"><b>Total Weight</b></td>
                                     <td id="show_weight" align="center">100</td>
-                                    <td colspan="2">
+                                    <td align="center">Total Result</td>
+                                    <td>
                                         <p id="weight_all_mbo_edit">
                                     </td>
                                 </tr>
