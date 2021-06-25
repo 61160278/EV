@@ -273,6 +273,7 @@ class Evs_group extends MainController_avenxo {
 		$this->mevg->emp_gru_id = $gru_id;
 		$this->mevg->emp_pay_id = $pay_id;
 		$data['group_sdm'] = $this->mevg->get_group();
+		
 		$this->mevg->gru_id = $gru_id;
 		$data['grpsdm'] = $this->mevg->get_by_id();
 		$this->output('/consent/ev_group/v_add_group_sdm',$data);
