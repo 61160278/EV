@@ -35,8 +35,6 @@ function table_right(source) {
 }
 // Check all table right
 
-
-
 function manage_group() {
     var gru_id = document.getElementById("select").value;
     var data_row = " ";
