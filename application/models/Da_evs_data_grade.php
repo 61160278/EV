@@ -31,6 +31,8 @@ class Da_evs_data_grade extends evs_model {
 	
 	public $dgr_id; 
 	public $dgr_grade; 
+	public $dgr_comment;
+	public $dgr_satatus;
 	public $dgr_dtm_emp_id; 
 	public $dgr_pay_id;
 	 
@@ -59,10 +61,10 @@ class Da_evs_data_grade extends evs_model {
 	*/
 	function insert() {
 	 
-	 	$sql = "INSERT INTO evs_database.evs_data_grade (dgr_grade,dgr_dtm_emp_id,dgr_pay_id)
-	 			VALUES(?, ?, ?)";
+	 	$sql = "INSERT INTO evs_database.evs_data_grade (dgr_grade,dgr_comment,dgr_satatus,dgr_dtm_emp_id,dgr_pay_id)
+	 			VALUES(?, ?, ?, ?, ?)";
 		 
-	 	$this->db->query($sql, array($this->dgr_grade, $this->dgr_dtm_emp_id,$this->dgr_pay_id));
+	 	$this->db->query($sql, array($this->dgr_grade,$this->dgr_comment,$this->$dgr_satatus,$this->dgr_dtm_emp_id,$this->dgr_pay_id));
 	
 	 }
 	 
@@ -85,10 +87,10 @@ class Da_evs_data_grade extends evs_model {
 	function update() {
 	
 	 	$sql = "UPDATE evs_database.evs_data_grade 
-	 			SET	dgr_grade=?, dgr_dtm_emp_id=?, dgr_pay_id=?
+	 			SET	dgr_grade=?, dgr_comment=?, dgr_satatus=? ,dgr_dtm_emp_id=?, dgr_pay_id=?
 	 			WHERE dgr_id=?";
 		
-		$this->db->query($sql, array($this->dgr_grade, $this->dgr_dtm_emp_id, $this->dgr_pay_id, $this->dgr_id));
+		$this->db->query($sql, array($this->dgr_grade,$this->dgr_comment,$this->$dgr_satatus,$this->dgr_dtm_emp_id, $this->dgr_pay_id, $this->dgr_id));
 		 
 	 }
 

@@ -152,8 +152,8 @@ function save_grade() {
                             <td>
                                 <center>
                         
-                                    <textarea type="text" placeholder="Enter comment" class="form-control">
-                       </textarea>
+                                    <textarea type="text" name="comment" placeholder="Enter comment" class="form-control">
+                                    </textarea>
                                 </center>
                             </td>
                         </tr>
