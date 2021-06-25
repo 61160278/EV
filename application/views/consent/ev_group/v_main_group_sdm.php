@@ -32,8 +32,8 @@
     }
 
     #color_head {
-    background-color: #3f51b5;
-}
+        background-color: #3f51b5;
+    }
     </style>
 </head>
 <script>
@@ -242,6 +242,12 @@ function check_data() {
     var group = document.getElementById("grouptext").value;
     var Emp_id = document.getElementById("Emp_id_modol").value;
     var Showname_modol = document.getElementById("Showname_modol").value;
+    var group_old = document.getElementById("groupname").innerHTML;
+
+    console.log(group);
+    console.log(Emp_id);
+    console.log(Showname_modol);
+    console.log(group_old);
 
     if (group != "" && Emp_id != "") {
         if (Showname_modol != "ไม่มีข้อมูล") {
@@ -253,8 +259,11 @@ function check_data() {
                         count++;
                     }
                     // if-else
+
                 });
                 // forEach
+                cosole.log(count);
+
                 if (count == 0) {
                     add_group();
                     return true;
@@ -412,8 +421,7 @@ function check_data_edt(check) {
 									foreach($grp_sdm->result() as $row ) { ?>
                                                 <tr class="odd gradeX" align='center'>
                                                     <td> <?php echo $num;?> </td>
-                                                    <td id="groupname<?php echo $row->gru_id?>">
-                                                        <?php echo $row->gru_name; ?></td>
+                                                    <td id="groupname<?php echo $row->gru_id?>"><?php echo $row->gru_name; ?></td>
                                                     <td id="name<?php echo $num; ?>">
                                                         <?php
 												if($row->gru_head_dept != NULL){
