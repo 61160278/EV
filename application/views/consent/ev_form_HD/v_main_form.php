@@ -41,7 +41,7 @@ function save_group_to_HR() {
     var index = document.getElementById("table_index").value;
 
     for (i = 0; i < index; i++) {
-        Emp_ID.push(document.getElementById("Emp_ID"+i).value);
+        Emp_ID.push(document.getElementById("Emp_ID" + i).value);
     }
     // for 
 
@@ -69,7 +69,6 @@ function save_group_to_HR() {
 
 }
 // save_group_to_HR
-
 </script>
 <!-- END script -->
 
@@ -107,12 +106,21 @@ function save_group_to_HR() {
 
                     <tbody id="row_mbo">
                         <?php 
+                                $status = [];
+                                if(sizeof($data_status) != 0){
+                                    foreach($data_status as $row_status){
+                                        array_push($status,$row_status->dma_dtm_emp_id);
+                                    }
+                                    // foreach
+                                }
+                                // if
+
                                 $table_index = 0;
+
 							    foreach($data_group as $index => $row) {
-                                if($data_emp_id != $row->emp_employee_id) {
-                                
-                                ?>
-                        <input name="Emp_ID" id="Emp_ID<?php echo $index; ?>" type="text" value="<?php echo $row->emp_employee_id ?>" hidden>
+                                if($data_emp_id != $row->emp_employee_id ) { ?>
+                        <input name="Emp_ID" id="Emp_ID<?php echo $index; ?>" type="text"
+                            value="<?php echo $row->emp_employee_id ?>" hidden>
                         <tr>
                             <td>
                                 <center>
@@ -166,7 +174,11 @@ function save_group_to_HR() {
                         <?php 
                             $table_index += 1;
                                          }
-                                    } ?>
+                                         // if
+                                    }
+                                    // foreach 
+                    
+                        ?>
 
                         <input type="text" id="table_index" value="<?php echo $table_index; ?>" hidden>
                     </tbody>
@@ -180,7 +192,7 @@ function save_group_to_HR() {
                     </div>
                     <!-- col-6  -->
                     <div class="col-md-6" align="right">
-                        <button id="save" class="btn btn-success" onclick="save_group_to_HR()" > Save</button>
+                        <button id="save" class="btn btn-success" onclick="save_group_to_HR()"> Save</button>
                     </div>
                     <!-- col-6  -->
                 </div>

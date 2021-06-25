@@ -27,6 +27,17 @@ class M_evs_data_approve extends Da_evs_data_approve {
 		return $query;
 	}//get_by_id
 
+	function get_by_emp_and_status(){	
+		$sql = "SELECT * 
+			FROM evs_database.evs_data_approve AS evs_app
+			INNER JOIN evs_database.evs_employee AS evs_emp
+			ON evs_emp.emp_employee_id = evs_app.dma_dtm_emp_id
+			WHERE evs_emp.emp_employee_id = ? AND evs_app.dma_status = ?" ;
+		
+	$query = $this->db->query($sql, array($this->emp_employee_id, $this->dma_status));
+	return $query;
+	}//get_by_emp and status
+
 	function get_by_update(){	
 		$sql = "SELECT * 
 				FROM evs_database.evs_data_approve
