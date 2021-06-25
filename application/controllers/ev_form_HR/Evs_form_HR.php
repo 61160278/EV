@@ -393,7 +393,8 @@ class Evs_form_HR extends MainController_avenxo {
 		$check = 0;
 		$chack_save = 0;
 		$chack_form_save = 0;
-		
+		$chack_form_pe ="";
+		$chack_form_ce ="";
 		
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now

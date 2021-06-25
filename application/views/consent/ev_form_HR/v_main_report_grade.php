@@ -32,24 +32,24 @@ function save_grade() {
     var arr_dgo_id = [];
     var arr_Evaluator_Review_edit = [];
     var get_arr_dgo_id = "";
-    var index = document.getElementById("table_index_radio_g_o_edit").value;
-    var Emp_ID = document.getElementById("Emp_ID").value;
-    var App = document.getElementById("App_Emp_ID").value;
+    var index = document.getElementById("table_index").value;
+
+    
 
     for (i = 0; i < index; i++) {
+
         arr_dgo_id.push(document.getElementsByName("dgo_id")[i].value);
         arr_Evaluator_Review_edit.push(document.getElementsByName("Evaluator_Review_edit")[i].value);
-        $("[name = rd_g_o_edit_" + i + "]").each(function(index) {
-            if ($(this).prop("checked") == true) {
-                arr_radio.push(document.getElementsByName("rd_g_o_edit_" + i + "")[index].value);
-            } //if
-        });
+
+        
+
+
+
+
+
+
     }
-    console.log("index : " + index);
-    console.log("Emp_ID :  " + Emp_ID);
-    console.log("arr_dgo_id : " + arr_dgo_id);
-    console.log("arr_radio : " + arr_radio);
-    console.log("arr_Evaluator_Review : " + arr_Evaluator_Review_edit);
+    
 
 
     $.ajax({
@@ -146,10 +146,9 @@ function save_grade() {
                             </td>
                             <td>
                                 <center>
-                                      -
+                                       -
                                 </center>
                             </td>
-                           
                         </tr>
                         <?php 
                             $table_index += 1;
