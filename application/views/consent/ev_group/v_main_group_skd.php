@@ -227,7 +227,7 @@ function check_edit_skd(check) {
     var group = document.getElementById("group_text" + check).value;
     var Emp_id = document.getElementById("Emp_id" + check).value;
     var Showname_modol = document.getElementById("nameEmp" + check).value;
-    var groupname = document.getElementById("groupname" + check).innerHTML;
+    var groupname = document.getElementById("groupname" + check).value;
     var count = 0;
     var temp = " ";
 
@@ -362,8 +362,10 @@ function clear_css(gru_id) {
 								$num = 1;
 								foreach($grp_sdm->result() as $row ) { ?>
                                                 <tr class="odd gradeX" align='center'>
+                                                    <input type="text" id="groupname<?php echo $row->gru_id?>"
+                                                        value="<?php echo $row->gru_name; ?>" hidden>
                                                     <td><?php echo $num;?> </td>
-                                                    <td id="groupname<?php echo $row->gru_id?>"><?php echo $row->gru_name; ?></td>
+                                                    <td><?php echo $row->gru_name; ?></td>
                                                     <td>
                                                         <?php if($row->gru_head_dept == NULL){ 
 													echo "-";

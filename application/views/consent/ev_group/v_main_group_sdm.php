@@ -80,7 +80,7 @@ function add_group() {
         },
         dataType: "JSON",
         success: function(status) {
-            console.log(status)
+            // console.log(status)
         }
         // success function
 
@@ -108,7 +108,7 @@ function edit_group(gru_id) {
         },
         dataType: "JSON",
         error: function(status) {
-            console.log(status)
+            // console.log(status)
         }
         // success function
 
@@ -132,7 +132,7 @@ function Delete_data(gru_id) {
         },
         dataType: "JSON",
         success: function(data, status) {
-            console.log(status)
+            // console.log(status)
 
         }
 
@@ -145,7 +145,7 @@ function Delete_data(gru_id) {
 
 function manage_data(gru_id) {
 
-    console.log(gru_id);
+    // console.log(gru_id);
     window.location.href = "<?php echo base_url(); ?>/ev_group/Evs_group/select_group_company_sdm/" + gru_id;
 }
 //function manage_data
@@ -155,8 +155,7 @@ function manage_data(gru_id) {
 function get_idemployee(gru_id) {
     Emp_id = document.getElementById("Emp_id" + gru_id).value;
     var empname = "";
-    console.log(gru_id)
-    console.log(Emp_id)
+
     console.log("1,2,3,4,5")
     $.ajax({
         type: "POST",
@@ -166,8 +165,8 @@ function get_idemployee(gru_id) {
         },
         dataType: "JSON",
         success: function(data, status) {
-            console.log(status)
-            console.log(data)
+            // console.log(status)
+            // console.log(data)
 
             if (data.length == 0) {
 
@@ -189,14 +188,12 @@ function get_idemployee(gru_id) {
 // function get_idemployee
 
 
-
-
 function get_Emp() {
     Emp_id = document.getElementById("Emp_id_modol").value;
     var empname = "";
 
-    console.log(Emp_id)
-    console.log("1,2,3,4,5")
+    // console.log(Emp_id)
+    // console.log("1,2,3,4,5")
     $.ajax({
         type: "POST",
         url: "<?php echo base_url(); ?>/ev_group/Evs_group/search_by_employee_id_sdm",
@@ -205,8 +202,8 @@ function get_Emp() {
         },
         dataType: "JSON",
         success: function(data, status) {
-            console.log(status)
-            console.log(data)
+            // console.log(status)
+            // console.log(data)
 
             if (data.length == 0) {
 
@@ -242,12 +239,7 @@ function check_data() {
     var group = document.getElementById("grouptext").value;
     var Emp_id = document.getElementById("Emp_id_modol").value;
     var Showname_modol = document.getElementById("Showname_modol").value;
-    var group_old = document.getElementById("groupname").innerHTML;
 
-    console.log(group);
-    console.log(Emp_id);
-    console.log(Showname_modol);
-    console.log(group_old);
 
     if (group != "" && Emp_id != "") {
         if (Showname_modol != "ไม่มีข้อมูล") {
@@ -262,7 +254,6 @@ function check_data() {
 
                 });
                 // forEach
-                cosole.log(count);
 
                 if (count == 0) {
                     add_group();
@@ -292,7 +283,7 @@ function check_data_edt(check) {
     var group = document.getElementById("grouptext" + check).value;
     var Emp_id = document.getElementById("Emp_id" + check).value;
     var Showname_modol = document.getElementById("nameEmp" + check).value;
-    var groupname = document.getElementById("groupname" + check).innerHTML;
+    var groupname = document.getElementById("groupname" + check).value;
     var count = 0;
     console.log(group)
     console.log(Emp_id)
@@ -310,7 +301,6 @@ function check_data_edt(check) {
                     if (group == row.gru_name) {
                         count++;
                         temp = row.gru_name;
-                        console.log(count)
                     }
                     // if-else
                 });
@@ -420,8 +410,12 @@ function check_data_edt(check) {
 									$num = 1;
 									foreach($grp_sdm->result() as $row ) { ?>
                                                 <tr class="odd gradeX" align='center'>
+                                                    <input type="text" id="groupname<?php echo $row->gru_id?>"
+                                                        value="<?php echo $row->gru_name; ?>" hidden>
                                                     <td> <?php echo $num;?> </td>
-                                                    <td id="groupname<?php echo $row->gru_id?>"><?php echo $row->gru_name; ?></td>
+                                                    <td>
+                                                        <?php echo $row->gru_name; ?>
+                                                    </td>
                                                     <td id="name<?php echo $num; ?>">
                                                         <?php
 												if($row->gru_head_dept != NULL){
