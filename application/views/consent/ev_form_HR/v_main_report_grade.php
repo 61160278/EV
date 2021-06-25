@@ -23,10 +23,9 @@
 
 <script>
 $(document).ready(function() {
-    
+
 });
 // document ready
-
 </script>
 
 <div class="row">
@@ -57,7 +56,10 @@ $(document).ready(function() {
                                 <center>group</center>
                             </th>
                             <th rowspan="2" width="20%">
-                                <center>Management</center>
+                                <center>grade</center>
+                            </th>
+                            <th rowspan="2" width="20%">
+                                <center>Management grade</center>
                             </th>
                         </tr>
                     </thead>
@@ -79,6 +81,8 @@ $(document).ready(function() {
                             <td>
                                 <center>
                                     <?php echo  $row->emp_employee_id ?>
+                                    <input type="text" id="emp_id_<?php echo $index; ?>"
+                                value="<?php echo $row->emp_employee_id ?>" hidden>
                                 </center>
                             </td>
                             <td>
@@ -92,32 +96,20 @@ $(document).ready(function() {
                                 </center>
                             </td>
                             <td>
-                                <?php 
-                            
-							            if($data_chack_form[$index]  != 0){
-                                
-                                        ?>
                                 <center>
-                                    <a
-                                        href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/createFROM/<?php echo $row->emp_employee_id; ?>/<?php echo $data_hard_dep; ?>">
-                                        <button class="btn btn-warning">
-                                            <i class="ti ti-search"></i> Edit Information
-                                        </button>
-                                    </a>
+                                      -
                                 </center>
-                                <?php 
-                                        }
-							            else{
-                                        ?>
+                            </td>
+                            <td>
                                 <center>
-                                    <button class="btn btn-warning" disabled>
-                                        <i class="ti ti-search"></i> Edit Information
-                                    </button>
+                                    <select name="grade_<?php echo $index; ?>" id="grade_<?php echo $index; ?>">
+                                        <option>Select grade</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                    </select>
                                 </center>
-                                <?php 
-                                        }
-                                        ?>
-
                             </td>
                         </tr>
                         <?php 
@@ -131,14 +123,12 @@ $(document).ready(function() {
                 <br>
                 <div class="row">
                     <div class="col-md-6">
-                    <a href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/index">
+                        <a href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/index">
                             <button type="button" class="btn btn-inverse">Back</button>
                         </a>
                     </div>
                     <div class="col-md-6" align="right">
-                    <a href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_report/<?php echo $data_hard_dep; ?>">
-                        <button id="save" class="btn btn-info" onclick="" >report grad</button>
-                        </a>
+                        <button class="btn btn-success"> Save</button>
                     </div>
                 </div>
             </div>
