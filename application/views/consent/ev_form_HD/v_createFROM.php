@@ -171,6 +171,7 @@ function update_ACM_edit() {
         },
         success: function(data) {
             console.log(data);
+            main_index()
         },
         // success
         error: function(data) {
@@ -178,7 +179,6 @@ function update_ACM_edit() {
         }
         // error
     });
-    ajaxwindow.location.href = "<?php echo base_url();?>ev_form_HD/Evs_form_HD/index";
 
 }
 
@@ -315,6 +315,7 @@ function update_GCM_edit() {
         },
         success: function(data) {
             console.log(data);
+            main_index()
         },
         // success
         error: function(data) {
@@ -323,7 +324,7 @@ function update_GCM_edit() {
         // error
     });
     // ajax
-    window.location.href = "<?php echo base_url();?>ev_form_HD/Evs_form_HD/index";
+    
 
 }
 
@@ -484,8 +485,16 @@ function update_MHRD_edit() {
 
 }
 // update_MHRD_edit
+
+function main_index(){
+    window.location.href = "<?php echo base_url();?>/ev_form_HD/Evs_form_HD/index";
+}
+// main_index 
+
 </script>
 <!-- script -->
+
+
 <?php  
                         $onclek_form_pe = "";
                         $onclek_form_ce = "";
