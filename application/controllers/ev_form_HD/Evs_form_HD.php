@@ -294,7 +294,7 @@ class Evs_form_HD extends MainController_avenxo {
 		$this->load->model('M_evs_data_approve','mdap');
 		for ($i = 0; $i < $index; $i++) {
 			$this->mdap->dma_emp_id = $tep->emp_id[$i];
-			$this->mdap->dma_status = 3;
+			$this->mdap->dma_status = 4;
 			$this->mdap->update_status(); 
 		}
 		

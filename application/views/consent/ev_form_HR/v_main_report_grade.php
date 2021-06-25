@@ -34,14 +34,14 @@ function save_grade() {
     var get_arr_dgo_id = "";
     var index = document.getElementById("table_index").value;
 
-    
+
 
     for (i = 0; i < index; i++) {
 
         arr_dgo_id.push(document.getElementsByName("dgo_id")[i].value);
         arr_Evaluator_Review_edit.push(document.getElementsByName("Evaluator_Review_edit")[i].value);
 
-        
+
 
 
 
@@ -49,7 +49,7 @@ function save_grade() {
 
 
     }
-    
+
 
 
     $.ajax({
@@ -74,9 +74,6 @@ function save_grade() {
     });
     // ajax
 }
-
-
-
 </script>
 
 <div class="row">
@@ -109,11 +106,14 @@ function save_grade() {
                             <th rowspan="2" width="20%">
                                 <center>grade</center>
                             </th>
-                           
+                            <th rowspan="2" width="20%">
+                                <center>comment</center>
+                            </th>
+
                         </tr>
                     </thead>
                     <!-- thead -->
-                    <tbody >
+                    <tbody>
                         <?php 
                                 $table_index = 0;
 							    foreach($data_group as $index => $row) {
@@ -131,7 +131,7 @@ function save_grade() {
                                 <center>
                                     <?php echo  $row->emp_employee_id ?>
                                     <input type="text" id="emp_id_<?php echo $index; ?>"
-                                value="<?php echo $row->emp_employee_id ?>" hidden>
+                                        value="<?php echo $row->emp_employee_id ?>" hidden>
                                 </center>
                             </td>
                             <td>
@@ -146,7 +146,14 @@ function save_grade() {
                             </td>
                             <td>
                                 <center>
-                                       -
+                                    -
+                                </center>
+                            </td>
+                            <td>
+                                <center>
+                        
+                                    <textarea type="text" placeholder="Enter comment" class="form-control">
+                       </textarea>
                                 </center>
                             </td>
                         </tr>

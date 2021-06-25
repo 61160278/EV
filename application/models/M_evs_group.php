@@ -137,7 +137,7 @@ class M_evs_group extends Da_evs_group {
         ON emem.emp_gru_id = gru.gru_id
         INNER JOIN evs_database.evs_data_approve as dap
          ON emem.emp_id =  dap.dma_emp_id
-		 WHERE dma_status = '3'";
+		 WHERE dma_status = '4'";
 		$query = $this->db->query($sql);
 		return $query;
 	}

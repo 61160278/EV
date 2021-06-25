@@ -23,10 +23,11 @@
 
 <script>
 $(document).ready(function() {
-    if (<?php echo $chack_save ?> = "Chack") {
-        document.getElementById("save").disabled = true;
-    } else {
+
+    if ("<?php echo $chack_save ?>" == "Chack") {
         document.getElementById("save").disabled = false;
+    } else {
+        document.getElementById("save").disabled = true;
     }
 });
 // document ready
