@@ -153,7 +153,7 @@ class Evs_form_HR extends MainController_avenxo {
 	* @author 	Kunanya Singmee
 	* @Create Date 2564-04-07
 	*/
-	function createFROM($EMP_ID,$Hard_Dep)
+	function createFROM($EMP_ID,$Hard_Dep,$group)
 	{
 		$data['data_from_pe'] = "";
 		$data['data_from_ce'] = "";
@@ -287,13 +287,14 @@ class Evs_form_HR extends MainController_avenxo {
 
 		}
 		$data['data_hard_dep'] = $Hard_Dep;
+		$data['data_focas_group'] = $group;
 
 		$this->output('/consent/ev_form_HR/v_createFROM',$data);
 
 	}
 	// function createACM
 	
-	function table_goup($Emp_ID)
+	function table_goup($Emp_ID,$group)
 	{
 		$data_chack_form = [];	
 		$check = 0;
@@ -311,7 +312,8 @@ class Evs_form_HR extends MainController_avenxo {
 		$this->load->model('M_evs_group','megu');
 		$this->megu->emp_pay_id = $pay_id;
 		$this->megu->gru_head_dept = $Emp_ID;
-		$emp_data = $data['data_group'] = $this->megu->get_group_by_head_dept()->result();
+		$this->megu->gru_name = $group;
+		$emp_data = $data['data_group'] = $this->megu->get_group_by_group_head_dept()->result();
 
 
 		foreach ($emp_data as $row) {
@@ -381,11 +383,12 @@ class Evs_form_HR extends MainController_avenxo {
 
 		$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
 		$data['data_hard_dep'] = $Emp_ID;
+		$data['data_focas_group'] = $group;
 		
 		$this->output('/consent/ev_form_HR/v_main_form',$data);
 	}
 
-	function table_report($Emp_ID)
+	function table_report($Emp_ID,$group)
 	{
 		$data_chack_form = [];	
 		$data_grade = [];
@@ -414,7 +417,8 @@ class Evs_form_HR extends MainController_avenxo {
 		$this->load->model('M_evs_group','megu');
 		$this->megu->emp_pay_id = $pay_id;
 		$this->megu->gru_head_dept = $Emp_ID;
-		$emp_data = $data['data_group'] = $this->megu->get_group_by_head_dept()->result();
+		$this->megu->gru_name = $group;
+		$emp_data = $data['data_group'] = $this->megu->get_group_by_group_head_dept()->result();
 
 
 		foreach ($emp_data as $row) {
@@ -574,6 +578,8 @@ class Evs_form_HR extends MainController_avenxo {
 			}
 
 
+		
+
 
 			if($chack_form_ce ="ACM"){
 				$this->load->model('M_evs_data_acm_weight','mdtm');
@@ -636,10 +642,10 @@ class Evs_form_HR extends MainController_avenxo {
 
 		}
 
-		if((($sum_percent_pe+$sum_percent_ce/200)*100) >= 80){array_push($data_grade,"A");}
-		else if ((($sum_percent_pe+$sum_percent_ce/200)*100) >= 70){array_push($data_grade,"B");}
-		else if ((($sum_percent_pe+$sum_percent_ce/200)*100) >= 60){array_push($data_grade,"C");}
-		else if ((($sum_percent_pe+$sum_percent_ce/200)*100) >= 50){array_push($data_grade,"D");}
+		if((($sum_percent_pe+$sum_percent_ce/100)) >= 80) {array_push($data_grade,"A");}
+		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 70){array_push($data_grade,"B");}
+		else if ((($sum_percent_pe+$sum_percent_ce/200)) >= 60){array_push($data_grade,"C");}
+		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 50){array_push($data_grade,"D");}
 
 			array_push($data_chack_form,$check);
 
@@ -664,9 +670,44 @@ class Evs_form_HR extends MainController_avenxo {
 
 		$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
 		$data['data_hard_dep'] = $Emp_ID;
+		$data['data_focas_group'] = $group;
 		
 		$this->output('/consent/ev_form_HR/v_main_report_grade',$data);
 	}
+
+
+	function save_grade(){
+
+		$emp_id = $this->input->post("Emp_ID");
+		$arr_roop = count($emp_id);
+
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+
+
+		$this->load->model('Da_evs_data_grade','ddgr');
+		for($i = 0 ; $i < $arr_roop ; $i++){
+			$this->ddgr->dgr_grade = $this->input->post("gru_id[".$i."]");
+			$this->ddgr->dgr_comment = $this->input->post("comment[".$i."]");
+			$this->ddgr->dgr_dtm_emp_id = $this->input->post("Emp_ID[".$i."]");
+			$this->ddgr->dgr_satatus = 4;
+			$this->ddgr->dgr_pay_id = $pay_id;
+			$this->ddgr->insert();
+		}
+		// for
+
+		$data = "save_data_acm_weight";
+		echo json_encode($data);
+
+	}
+
+
+
+
 	
 	function save_data_acm_weight(){
 

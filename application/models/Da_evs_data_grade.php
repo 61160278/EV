@@ -64,7 +64,7 @@ class Da_evs_data_grade extends evs_model {
 	 	$sql = "INSERT INTO evs_database.evs_data_grade (dgr_grade,dgr_comment,dgr_satatus,dgr_dtm_emp_id,dgr_pay_id)
 	 			VALUES(?, ?, ?, ?, ?)";
 		 
-	 	$this->db->query($sql, array($this->dgr_grade,$this->dgr_comment,$this->$dgr_satatus,$this->dgr_dtm_emp_id,$this->dgr_pay_id));
+	 	$this->db->query($sql, array($this->dgr_grade,$this->dgr_comment,$this->dgr_satatus,$this->dgr_dtm_emp_id,$this->dgr_pay_id));
 	
 	 }
 	 

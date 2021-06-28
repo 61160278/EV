@@ -107,7 +107,7 @@ $(document).ready(function() {
                             <td>
                                 <center>
                                     <a
-                                        href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $row->Emp_ID ?>">
+                                        href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $row->Emp_ID ?>/<?php echo $row->gru_name ?>">
                                         <button class="btn btn-info">
                                             <i class="ti ti-search"></i> View goroup
                                         </button>

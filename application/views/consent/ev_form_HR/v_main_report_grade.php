@@ -28,32 +28,35 @@ $(document).ready(function() {
 // document ready
 
 function save_grade() {
-    var arr_radio = [];
-    var arr_dgo_id = [];
-    var arr_Evaluator_Review_edit = [];
-    var get_arr_dgo_id = "";
+    Emp_ID = [];
+    gru_id = [];
+    comment = [];
     var index = document.getElementById("table_index").value;
 
 
 
     for (i = 0; i < index; i++) {
+<<<<<<< Updated upstream
 
         arr_dgo_id.push(document.getElementsByName("dgo_id")[i].value);
         arr_Evaluator_Review_edit.push(document.getElementsByName("Evaluator_Review_edit")[i].value);
 
+=======
+        Emp_ID.push(document.getElementsByName("Emp_ID")[i].value);
+        gru_id.push(document.getElementsByName("gru_name")[i].value);
+        comment.push(document.getElementsByName("comment")[i].value);
+>>>>>>> Stashed changes
     }
     // for
 
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_g_and_o",
+        url: "<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/save_grade",
         data: {
             "Emp_ID": Emp_ID,
-            "arr_dgo_id": arr_dgo_id,
-            "arr_radio": arr_radio,
-            "arr_Evaluator_Review": arr_Evaluator_Review_edit,
-            "App": App
+            "gru_id": gru_id,
+            "comment": comment
         },
         success: function(data) {
             console.log(data);
@@ -65,6 +68,8 @@ function save_grade() {
         // error
     });
     // ajax
+
+    window.location.href = "<?php echo base_url();?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $data_hard_dep;?>/<?php echo $data_focas_group; ?>";
 }
 </script>
 <!-- END script  -->
@@ -109,11 +114,12 @@ function save_grade() {
                     <tbody>
                         <?php 
                                 $table_index = 0;
+                            
 							    foreach($data_group as $index => $row) {
                                 if($data_emp_id != $row->emp_employee_id) {
                                 
                                 ?>
-                        <input name="Emp_ID" type="text" value="<?php echo $row->emp_employee_id ?>" hidden>
+                        <input name="Emp_ID" type="text" value="<?php echo $row->emp_id ?>" hidden>
                         <tr>
                             <td>
                                 <center>
@@ -123,8 +129,7 @@ function save_grade() {
                             <td>
                                 <center>
                                     <?php echo  $row->emp_employee_id ?>
-                                    <input type="text" id="emp_id_<?php echo $index; ?>"
-                                        value="<?php echo $row->emp_employee_id ?>" hidden>
+                                   
                                 </center>
                             </td>
                             <td>
@@ -135,6 +140,8 @@ function save_grade() {
                             <td>
                                 <center>
                                     <?php echo $row->gru_name ?>
+                                    <input type="text" name="gru_name" 
+                                        value="<?php echo $row->emp_employee_id ?>" hidden>
                                 </center>
                             </td>
                             <td>
@@ -144,10 +151,15 @@ function save_grade() {
                             </td>
                             <td>
                                 <center>
+<<<<<<< Updated upstream
 
                                     <textarea type="text" name="comment" placeholder="Enter comment"
                                         class="form-control">
                                     </textarea>
+=======
+                        
+                                    <textarea type="text" name="comment" placeholder="Enter comment" class="form-control"></textarea>
+>>>>>>> Stashed changes
                                 </center>
                             </td>
                         </tr>
@@ -167,7 +179,7 @@ function save_grade() {
                         </a>
                     </div>
                     <div class="col-md-6" align="right">
-                        <button class="btn btn-success"> Save</button>
+                        <button class="btn btn-success" onclick="save_grade()" > Save</button>
                     </div>
                 </div>
             </div>

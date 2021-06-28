@@ -65,6 +65,7 @@ $(document).ready(function() {
                     <tbody id="row_mbo">
                         <?php 
                                 $table_index = 0;
+                             
 							    foreach($data_group as $index => $row) {
                                 if($data_emp_id != $row->emp_employee_id) {
                                 
@@ -99,7 +100,7 @@ $(document).ready(function() {
                                         ?>
                                 <center>
                                     <a
-                                        href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/createFROM/<?php echo $row->emp_employee_id; ?>/<?php echo $data_hard_dep; ?>">
+                                        href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/createFROM/<?php echo $row->emp_employee_id; ?>/<?php echo $data_hard_dep; ?>/<?php echo $data_focas_group; ?>">
                                         <button class="btn btn-warning">
                                             <i class="ti ti-search"></i> Edit Information
                                         </button>
@@ -138,9 +139,14 @@ $(document).ready(function() {
                     </div>
                     <!-- col-6  -->
                     <div class="col-md-6" align="right">
+<<<<<<< Updated upstream
                         <a
                             href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_report/<?php echo $data_hard_dep; ?>">
                             <button id="save" class="btn btn-info" onclick="">Report Grade</button>
+=======
+                    <a href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_report/<?php echo $data_hard_dep; ?>/<?php echo $data_focas_group; ?>">
+                        <button id="save" class="btn btn-info" onclick="" >report grad</button>
+>>>>>>> Stashed changes
                         </a>
                     </div>
                     <!-- col -6  -->
