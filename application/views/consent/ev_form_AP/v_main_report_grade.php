@@ -24,37 +24,34 @@
 <script>
 $(document).ready(function() {
 
+
 });
 // document ready
 
-function save_grade() {
-    Emp_ID = [];
-    gru_id = [];
-    comment = [];
+function save_group_to_HR() {
+
+    var Emp_ID = [];
     var index = document.getElementById("table_index").value;
 
-
-
     for (i = 0; i < index; i++) {
-
-        Emp_ID.push(document.getElementsByName("Emp_ID")[i].value);
-        grade.push(document.getElementsByName("grade")[i].value);
-        comment.push(document.getElementsByName("comment")[i].value);
-
+        Emp_ID.push(document.getElementById("Emp_ID" + i).value);
     }
-    // for
+    // for 
+
+    console.log(Emp_ID);
+    console.log(index);
 
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/save_grade",
+        url: "<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/save_group_to_HR",
         data: {
             "Emp_ID": Emp_ID,
-            "grade": grade,
-            "comment": comment
+            "index": index
         },
         success: function(data) {
             console.log(data);
+            main_index();
         },
         // success
         error: function(data) {
@@ -64,10 +61,15 @@ function save_grade() {
     });
     // ajax
 
-    window.location.href = "<?php echo base_url();?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $data_hard_dep;?>/<?php echo $data_focas_group; ?>";
 }
+// save_group_to_HR
+
+function main_index() {
+    window.location.href = "<?php echo base_url();?>/ev_form_HD/Evs_form_HD/index";
+}
+// main_index 
 </script>
-<!-- END script  -->
+<!-- END script -->
 
 <div class="row">
     <div class="col-md-12">
@@ -79,8 +81,6 @@ function save_grade() {
             </div>
             <!-- heading -->
             <div class="panel-body">
-
-
                 <table class="table table-bordered table-striped m-n">
                     <thead>
                         <tr>
@@ -96,35 +96,39 @@ function save_grade() {
                             <th rowspan="2" width="15%">
                                 <center>group</center>
                             </th>
-                            <th rowspan="2" width="20%">
-                                <center>grade</center>
+                            <th rowspan="2" width="10%">
+                                <center>Grade</center>
                             </th>
-                            <th rowspan="2" width="20%">
-                                <center>comment</center>
+                            <th rowspan="2" width="10%">
+                                <center>Year</center>
                             </th>
-
+                            <th rowspan="2" width="30%">
+                                <center>Comment</center>
+                            </th>
                         </tr>
                     </thead>
                     <!-- thead -->
-                    <tbody>
+
+                    <tbody id="row_mbo">
                         <?php 
+          
                                 $table_index = 0;
-                            
-							    foreach($data_group as $index => $row) {
-                                if($data_emp_id != $row->emp_employee_id) {
-                                
-                                ?>
-                        <input name="Emp_ID" type="text" value="<?php echo $row->emp_id ?>" hidden>
+
+                              
+							    foreach($emp_info as $index => $row) {
+                                    if($row->emp_employee_id == $data_emp_id){
+                            ?>
+                        <input name="Emp_ID" id="Emp_ID<?php echo $index; ?>" type="text"
+                            value="<?php echo $row->emp_employee_id ?>" hidden>
                         <tr>
                             <td>
                                 <center>
-                                    <?php echo $index+1 ?>
+                                    <?php echo $table_index+1 ?>
                                 </center>
                             </td>
                             <td>
                                 <center>
                                     <?php echo  $row->emp_employee_id ?>
-                                   
                                 </center>
                             </td>
                             <td>
@@ -135,45 +139,69 @@ function save_grade() {
                             <td>
                                 <center>
                                     <?php echo $row->gru_name ?>
+                                </center>
+                            </td>
+                            <td>
+                                <center>
+                                    <?php 
+        
+                                   foreach($data_grade as $index => $row_grade) {
+                                       if($row_grade->dgr_dtm_emp_id == $row->emp_id){
+                                            echo $row_grade->dgr_grade;
+                                       }
+                                   }
+                                ?>
+                                    <center>
+                            </td>
+                            <td>
+                                <center>
+                                    <?php echo $row->pay_year ?>
+                                </center>
+                            </td>
+
+                            <td>
+                    
+                                    <?php 
+                                   foreach($data_grade as $index => $row_grade) {
+                                       if($row_grade->dgr_dtm_emp_id == $row->emp_id){
+                                            echo $row_grade->dgr_comment;
+                                       }
+                                   }
+                                ?>
                                    
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-                                    <?php echo $data_grade[$index]; ?>
-                                    <input type="text" name="grade" 
-                                        value="<?php echo $data_grade[$index]; ?>" hidden>
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-
-                        
-                                    <textarea type="text" name="comment" placeholder="Enter comment" class="form-control"></textarea>
-
-                                </center>
                             </td>
                         </tr>
                         <?php 
                             $table_index += 1;
-                                         }
-                                    } ?>
+                                         
+                                         // if
+                                    }
+                                    // foreach 
+                                }
+                                // if
+                            ?>
 
                         <input type="text" id="table_index" value="<?php echo $table_index; ?>" hidden>
                     </tbody>
+                    <!-- tbody  -->
                 </table>
+                <!-- table  -->
+
                 <br>
                 <div class="row">
                     <div class="col-md-6">
-                        <a href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/index">
-                            <button type="button" class="btn btn-inverse">Back</button>
-                        </a>
                     </div>
+                    <!-- col-6  -->
                     <div class="col-md-6" align="right">
-                        <button class="btn btn-success" onclick="save_grade()" > Save</button>
                     </div>
+                    <!-- col-6  -->
                 </div>
+                <!-- row  -->
             </div>
+            <!-- body -->
         </div>
+        <!-- panel -->
     </div>
+    <!-- col-12  -->
 </div>
+<!-- row  -->

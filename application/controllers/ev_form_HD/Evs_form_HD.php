@@ -613,6 +613,35 @@ class Evs_form_HD extends MainController_avenxo {
 			echo json_encode($data);		
 		}
 		// update_mhrd
+		function report_grade()
+		{
+			$status = [];
+			$data_chack_form = [];	
+			$check = 0;
+			$chack_save = 0;
+			$chack_form_save = 0;
+			
+			$this->load->model('M_evs_pattern_and_year','myear');
+			$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+			$year = $data['patt_year']->row(); // show value year now
+			//end set year now
+			$pay_id = $year->pay_id;
+	
+			$this->load->model('M_evs_group','megu');
+			$this->megu->emp_pay_id = $pay_id;
+			$this->megu->gru_head_dept = $_SESSION['UsEmp_ID'];
+			$data['data_group'] = $this->megu->get_group_by_head_dept()->result();
+			
+			$this->load->model('M_evs_data_grade','mdgd');
+			$this->mdgd->dgr_pay_id = $pay_id;
+			$data['data_grade'] = $this->mdgd->get_all_by_year()->result();
+
+		
+			$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
+			
+			$this->output('/consent/ev_form_HD/v_report_grade',$data);
+
+		}
 
 }
 ?>

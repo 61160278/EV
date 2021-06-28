@@ -691,7 +691,7 @@ class Evs_form_HR extends MainController_avenxo {
 
 		$this->load->model('Da_evs_data_grade','ddgr');
 		for($i = 0 ; $i < $arr_roop ; $i++){
-			$this->ddgr->dgr_grade = $this->input->post("gru_id[".$i."]");
+			$this->ddgr->dgr_grade = $this->input->post("grade[".$i."]");
 			$this->ddgr->dgr_comment = $this->input->post("comment[".$i."]");
 			$this->ddgr->dgr_dtm_emp_id = $this->input->post("Emp_ID[".$i."]");
 			$this->ddgr->dgr_satatus = 4;
@@ -1020,6 +1020,10 @@ class Evs_form_HR extends MainController_avenxo {
 			echo json_encode($data);		
 		}
 		// update_mhrd
+
+		
+
+
 
 }
 ?>

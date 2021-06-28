@@ -589,7 +589,33 @@ class Evs_form_AP extends MainController_avenxo {
 		}
 		// update_approve 
 
+		function report_grade()
+		{
+			$status = [];
+			$data_chack_form = [];	
+			$check = 0;
+			$chack_save = 0;
+			$chack_form_save = 0;
+			
+			$this->load->model('M_evs_pattern_and_year','myear');
+			$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+			$year = $data['patt_year']->row(); // show value year now
+			//end set year now
+			$pay_id = $year->pay_id;
+	
+			$this->load->model('M_evs_employee','memp');
+			$data['emp_info'] = $this->memp->get_all_by_year()->result();
 
+			$this->load->model('M_evs_data_grade','mdgd');
+			$this->mdgd->dgr_pay_id = $pay_id;
+			$data['data_grade'] = $this->mdgd->get_all_by_year()->result();
+
+		
+			$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
+			
+			$this->output('/consent/ev_form_AP/v_main_report_grade',$data);
+
+		}
 
 
 }

@@ -142,6 +142,7 @@ class M_evs_group extends Da_evs_group {
 		$query = $this->db->query($sql);
 		return $query;
 	}
+	
 	function get_group_by_group_head_dept(){
 		$sql = "SELECT * 
 				FROM evs_database.evs_group as gru

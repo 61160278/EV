@@ -37,7 +37,7 @@ class M_evs_data_grade extends Da_evs_data_grade {
 	* @author 	Jakkarin Pimpaeng
 	* @Create Date 2563-09-01
 	*/
-    function get_data_grade_all() {	
+    function get_all() {	
 		$sql = "SELECT * 
 				FROM evs_database.evs_data_grade";
         $query = $this->db->query($sql);
@@ -63,6 +63,24 @@ class M_evs_data_grade extends Da_evs_data_grade {
 	
 	}//get_all_com
 	
+	/*
+	* get_data_grade_all
+	* get data to database
+	* @input -
+	* @output data data_grade
+	* @author Jakkarin Pimpaeng
+	* @Create Date 2563-09-01
+	*/
+    function get_all_by_year() {	
+		$sql = "SELECT * 
+				FROM evs_database.evs_data_grade
+				WHERE dgr_pay_id = ?
+				";
+        $query = $this->db->query($sql, array($this->dgr_pay_id));
+		return $query;
+	}
+	//get_data_grade_all
+
 
 } 
 ?>
