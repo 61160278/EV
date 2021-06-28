@@ -58,6 +58,7 @@ function save_group_to_HR() {
         },
         success: function(data) {
             console.log(data);
+            main_index();
         },
         // success
         error: function(data) {
@@ -69,6 +70,11 @@ function save_group_to_HR() {
 
 }
 // save_group_to_HR
+
+function main_index() {
+    window.location.href = "<?php echo base_url();?>/ev_form_HD/Evs_form_HD/index";
+}
+// main_index 
 </script>
 <!-- END script -->
 
@@ -106,10 +112,22 @@ function save_group_to_HR() {
 
                     <tbody id="row_mbo">
                         <?php 
+                                $status = [];
+
+                                if(sizeof($data_status) != 0){
+                                    foreach($data_status as $row){
+                                        array_push($status,$row);
+                                    }
+                                    // foreach 
+                                }
+                                // if
+
                                 $table_index = 0;
 
+                                if(sizeof($status) != 0){
+
 							    foreach($data_group as $index => $row) {
-                                if($data_emp_id != $row->emp_employee_id ) { ?>
+                                if($data_emp_id != $row->emp_employee_id && $row->emp_employee_id == $status[$index]) { ?>
                         <input name="Emp_ID" id="Emp_ID<?php echo $index; ?>" type="text"
                             value="<?php echo $row->emp_employee_id ?>" hidden>
                         <tr>
@@ -168,8 +186,12 @@ function save_group_to_HR() {
                                          // if
                                     }
                                     // foreach 
-                    
-                        ?>
+                                }
+                                // if
+                                else { ?>
+                        <td colspan="7">No list of approved employees.</td>
+                        <?php }
+                                    // else  ?>
 
                         <input type="text" id="table_index" value="<?php echo $table_index; ?>" hidden>
                     </tbody>
@@ -183,7 +205,14 @@ function save_group_to_HR() {
                     </div>
                     <!-- col-6  -->
                     <div class="col-md-6" align="right">
+                    <?php if(sizeof($status) != 0){ ?>
                         <button id="save" class="btn btn-success" onclick="save_group_to_HR()"> Save</button>
+                    <?php } 
+                    // if
+                    else {?>
+                        <button class="btn btn-success" disabled> Save</button>
+                    <?php }
+                    // else ?>
                     </div>
                     <!-- col-6  -->
                 </div>

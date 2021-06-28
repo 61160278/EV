@@ -37,6 +37,7 @@ class Evs_form_HD extends MainController_avenxo {
 	*/
 	function index()
 	{
+		$status = [];
 		$data_chack_form = [];	
 		$check = 0;
 		$chack_save = 0;
@@ -88,6 +89,17 @@ class Evs_form_HD extends MainController_avenxo {
 			$data['check'] = $data['data_gcm_weight'] = $this->mdtg->get_by_empID()->result();
 			$check += sizeof($data['check']);
 
+			$this->load->model('M_evs_data_approve','meda');
+			$this->meda->emp_employee_id = $row->emp_employee_id;
+			$this->meda->dma_status = 3;
+			$data['st_emp'] = $this->meda->get_by_emp_and_status()->row();
+			$temp = $data['st_emp'];
+			if(sizeof($temp) != 0){
+				array_push($status,$temp->emp_employee_id);
+			}
+			// 
+			
+
 			}
 			// if
 			array_push($data_chack_form,$check);
@@ -110,9 +122,7 @@ class Evs_form_HD extends MainController_avenxo {
 		// if 
 		else{$chack_save_button = "Un_Chack";}
 		// else 
-
-
-
+		$data['data_status'] = $status;
 		$data['chack_save'] = $chack_save_button;
 		$data['data_chack_form'] = $data_chack_form;
 		$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
