@@ -41,16 +41,8 @@ function save_grade() {
         arr_dgo_id.push(document.getElementsByName("dgo_id")[i].value);
         arr_Evaluator_Review_edit.push(document.getElementsByName("Evaluator_Review_edit")[i].value);
 
-
-
-
-
-
-
-
     }
-
-
+    // for
 
     $.ajax({
         type: "post",
@@ -75,6 +67,7 @@ function save_grade() {
     // ajax
 }
 </script>
+<!-- END script  -->
 
 <div class="row">
     <div class="col-md-12">
@@ -146,13 +139,14 @@ function save_grade() {
                             </td>
                             <td>
                                 <center>
-                                  <?php echo $data_grade[$index]; ?>
+                                    <?php echo $data_grade[$index]; ?>
                                 </center>
                             </td>
                             <td>
                                 <center>
-                        
-                                    <textarea type="text" name="comment" placeholder="Enter comment" class="form-control">
+
+                                    <textarea type="text" name="comment" placeholder="Enter comment"
+                                        class="form-control">
                                     </textarea>
                                 </center>
                             </td>

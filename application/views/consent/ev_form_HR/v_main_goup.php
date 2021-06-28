@@ -25,12 +25,17 @@
 $(document).ready(function() {
     if (<?php echo $chack_save ?> = "Chack") {
         document.getElementById("save").disabled = true;
-    } else {
+    }
+    // if
+    else {
         document.getElementById("save").disabled = false;
     }
+    // else
 });
 // document ready
 </script>
+<!-- END script  -->
+
 
 <div class="row">
     <div class="col-md-12">
@@ -124,11 +129,18 @@ $(document).ready(function() {
                     <div class="col-md-6">
                       
                     </div>
+                    <!-- col-6  -->
                     <div class="col-md-6" align="right">
 
                     </div>
+                    <!-- col-6  -->
                 </div>
+                <!-- row  -->
             </div>
+            <!-- body  -->
         </div>
+        <!-- panel  -->
     </div>
+    <!-- col-12  -->
 </div>
+<!-- row  -->

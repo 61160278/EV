@@ -23,11 +23,11 @@
 
 <script>
 $(document).ready(function() {
-    
+
 });
 // document ready
-
 </script>
+<!-- End Script  -->
 
 <div class="row">
     <div class="col-md-12">
@@ -128,20 +128,29 @@ $(document).ready(function() {
                         <input type="text" id="table_index" value="<?php echo $table_index; ?>" hidden>
                     </tbody>
                 </table>
+                <!-- table  -->
                 <br>
                 <div class="row">
                     <div class="col-md-6">
-                    <a href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/index">
+                        <a href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/index">
                             <button type="button" class="btn btn-inverse">Back</button>
                         </a>
                     </div>
+                    <!-- col-6  -->
                     <div class="col-md-6" align="right">
-                    <a href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_report/<?php echo $data_hard_dep; ?>">
-                        <button id="save" class="btn btn-info" onclick="" >report grad</button>
+                        <a
+                            href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_report/<?php echo $data_hard_dep; ?>">
+                            <button id="save" class="btn btn-info" onclick="">Report Grade</button>
                         </a>
                     </div>
+                    <!-- col -6  -->
                 </div>
+                <!-- row  -->
             </div>
+            <!-- body  -->
         </div>
+        <!-- panel  -->
     </div>
+    <!-- col-12  -->
 </div>
+<!-- row  -->
