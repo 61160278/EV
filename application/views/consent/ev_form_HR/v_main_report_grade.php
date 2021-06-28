@@ -146,7 +146,7 @@ function save_grade() {
                             </td>
                             <td>
                                 <center>
-                                    -
+                                  <?php echo $data_grade[$index]; ?>
                                 </center>
                             </td>
                             <td>

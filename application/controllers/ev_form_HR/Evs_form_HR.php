@@ -388,6 +388,7 @@ class Evs_form_HR extends MainController_avenxo {
 	function table_report($Emp_ID)
 	{
 		$data_chack_form = [];	
+		$data_grade = [];
 		$check = 0;
 		$chack_save = 0;
 		$chack_form_save = 0;
@@ -401,6 +402,7 @@ class Evs_form_HR extends MainController_avenxo {
 		$sum_percent_pe = 0;
 		$sum_percent_ce = 0;
 		$sum_percent_all = 0;
+		
 		
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
@@ -417,6 +419,7 @@ class Evs_form_HR extends MainController_avenxo {
 
 		foreach ($emp_data as $row) {
 			if($row->emp_employee_id != $Emp_ID){
+
 			$this->load->model('M_evs_employee','memp');
 			$this->memp->Emp_ID = $row->emp_employee_id;
 			$this->memp->emp_pay_id = $pay_id;
@@ -476,26 +479,38 @@ class Evs_form_HR extends MainController_avenxo {
 			}
 
 			//-----------------------------------------------------------------------------------
+
+
+			$sum = 0;
+			$sum_all = 0;
+			$sum_max = 0;
+			$sum_max_all = 0;
+			$sum_percent_pe = 0;
+			$sum_percent_ce = 0;
+
 			if($chack_form_pe =="MBO"){
 
 				$this->load->model('M_evs_data_mbo_weight','medw');
 				$this->medw->dmw_evs_emp_id = $tep->emp_id;
-				$data['data_mbo'] = $this->medw->get_by_empID()->result();
+				$data_mbo = $data['data_mbo'] = $this->medw->get_by_empID()->result();
 		
 				$this->load->model('M_evs_data_mbo','medm');
-				$this->medm->dtm_emp_id = $emp_id;
+				$this->medm->dtm_emp_id = $row->emp_employee_id;
 				$this->medm->dtm_evs_emp_id = $tep->emp_id;
-				$data['mbo_emp'] = $this->medm->get_by_empID()->result();
+				$mbo_emp = $data['mbo_emp'] = $this->medm->get_by_empID()->result();
 
 				foreach($mbo_emp as $index => $row) {
 					foreach($data_mbo as $row_data_mbo){  
 						if($row->dtm_id == $row_data_mbo->dmw_dtm_id){
 							$sum = $row->dtm_weight*$row_data_mbo->dmw_weight;
 							$sum_max = $row->dtm_weight*5;
+
+
+							$sum_all += $sum;
+							$sum_max_all += $sum_max;
 						}
 					}
-					$sum_all += $sum;
-					$sum_max_all += $sum_max;
+				
 				}
 
 				$sum_percent_pe = ($sum_all/$sum_max_all)*100;
@@ -506,22 +521,24 @@ class Evs_form_HR extends MainController_avenxo {
 	
 				$this->load->model('M_evs_data_g_and_o_weight','megw');
 				$this->megw->dgw_evs_emp_id = $tep->emp_id;
-				$data['data_g_and_o'] = $this->megw->get_by_empID()->result();
+				$data_g_and_o = $data['data_g_and_o'] = $this->megw->get_by_empID()->result();
 		
 				$this->load->model('M_evs_data_g_and_o','mdgo');
-				$this->mdgo->dgo_emp_id = $emp_id;
+				$this->mdgo->dgo_emp_id = $row->emp_employee_id;
 				$this->mdgo->dgo_evs_emp_id = $tep->emp_id;
-				$data['g_o_emp'] = $this->mdgo->get_by_empID()->result();
+				$g_o_emp = $data['g_o_emp'] = $this->mdgo->get_by_empID()->result();
 
 				foreach($g_o_emp as $index => $row){
 					foreach($data_g_and_o as $row_data_g_and_o){
 						if($row->dgo_id == $row_data_g_and_o->dgw_dgo_id){
 							$sum = $row->dgo_weight*$row_data_g_and_o->dgw_dgo_id;
 							$sum_max = $row->dgo_weight*5;
+
+							$sum_all += $sum;
+							$sum_max_all += $sum_max;
 						}
 					}
-					$sum_all += $sum;
-					$sum_max_all += $sum_max;
+				
 				}
 
 				$sum_percent_pe = ($sum_all/$sum_max_all)*100;
@@ -532,12 +549,12 @@ class Evs_form_HR extends MainController_avenxo {
 	
 				$this->load->model('M_evs_data_mhrd_weight','memw');
 				$this->memw->mhw_evs_emp_id = $tep->emp_id;
-				$data['data_mhrd'] = $this->memw->get_by_empID()->result();
+				$data_mhrd  = $data['data_mhrd'] = $this->memw->get_by_empID()->result();
 		
 			
 				$this->load->model('M_evs_set_form_mhrd','msfm');
 					$this->msfm->sfi_pos_id = $tep->Position_ID;
-					$data['info_mhrd'] = $this->msfm->get_item_description_by_position()->result();
+					$info_mhrd = $data['info_mhrd'] = $this->msfm->get_item_description_by_position()->result();
 	
 					foreach($info_mhrd as $index => $row){ 
 						foreach($data_mhrd as $row_data_mhrd){                                       
@@ -545,24 +562,29 @@ class Evs_form_HR extends MainController_avenxo {
 								$sum = $row_data_mhrd->mhw_weight_1+$row_data_mhrd->mhw_weight_2;
 								$sum_max = 5+5;
 
+								$sum_all += $sum;
+								$sum_max_all += $sum_max;
+
 							}
 						}
-						$sum_all += $sum;
-						$sum_max_all += $sum_max;
+					
 					}
 	
 					$sum_percent_pe = ($sum_all/$sum_max_all)*100;
 			}
+
+
+
 			if($chack_form_ce ="ACM"){
 				$this->load->model('M_evs_data_acm_weight','mdtm');
-				$this->mdtm->dta_evs_emp_id = $employee_data->emp_id;
-				$data['data_acm_weight'] = $this->mdtm->get_by_empID()->result();
+				$this->mdtm->dta_evs_emp_id = $tep->emp_id;
+				$data_acm_weight = $data['data_acm_weight'] = $this->mdtm->get_by_empID()->result();
 		
 	
 				$this->load->model('M_evs_set_form_ability','mesf');
 				$this->mesf->sfa_pos_id = $tep->Position_ID;
 				$this->mesf->sfa_pay_id = $pay_id;
-				$data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator()->result();
+				$info_ability_form = $data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator()->result();
 
 				
 				foreach($info_ability_form as $row){
@@ -570,68 +592,58 @@ class Evs_form_HR extends MainController_avenxo {
 						if($row->sfa_id == $row_data_acm_weight->dta_sfa_id){
 							$sum = $row->sfa_weight*$row_data_acm_weight->dta_weight;
 							$sum_max = $row->sfa_weight*5;
+
+
+							$sum_all += $sum;
+							$sum_max_all += $sum_max;
 						}
 					}
-					$sum_all += $sum;
-					$sum_max_all += $sum_max;
+				
 				}
 
+			
 				$sum_percent_ce = ($sum_all/$sum_max_all)*100;
 
 			}
 			else if($chack_form_ce ="GCM"){
 	
 				$this->load->model('M_evs_data_gcm_weight','mdtm');
-				$this->mdtm->dtg_evs_emp_id = $employee_data->emp_id;
-				$data['data_gcm_weight'] = $this->mdtm->get_by_empID()->result();
+				$this->mdtm->dtg_evs_emp_id = $tep->emp_id;
+				$data_gcm_weight = $data['data_gcm_weight'] = $this->mdtm->get_by_empID()->result();
 				
 				$tep = $data['emp_info']->row();
 				$this->load->model('M_evs_set_form_gcm','mesf');
 				$this->mesf->sgc_pos_id = $tep->Position_ID;
 				$this->mesf->sgc_pay_id = $pay_id;
-				$data['info_gcm_form'] = $this->mesf->get_all_competency_by_indicator()->result();
+				$info_gcm_form = $data['info_gcm_form'] = $this->mesf->get_all_competency_by_indicator()->result();
+				
+
+				foreach($info_gcm_form as $row){
+					foreach($data_gcm_weight as $row_data_gcm_weight){
+							if($row->sgc_id == $row_data_gcm_weight->dtg_sgc_id){
+								$sum = $row->sgc_weight*$row_data_acm_weight->dta_weight;
+								$sum_max = $row->sgc_weight*5;
+
+								$sum_all += $sum;
+								$sum_max_all += $sum_max;
+							}
+					}
+					
+				}
+				$sum_percent_ce = ($sum_all/$sum_max_all)*100;
 				
 			}
 
 		}
+
+		if((($sum_percent_pe+$sum_percent_ce/200)*100) >= 80){array_push($data_grade,"A");}
+		else if ((($sum_percent_pe+$sum_percent_ce/200)*100) >= 70){array_push($data_grade,"B");}
+		else if ((($sum_percent_pe+$sum_percent_ce/200)*100) >= 60){array_push($data_grade,"C");}
+		else if ((($sum_percent_pe+$sum_percent_ce/200)*100) >= 50){array_push($data_grade,"D");}
+
 			array_push($data_chack_form,$check);
 
-		} 
-
-
-
-
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		}
 
 		foreach($emp_data as $index => $row) {
 			if($data_chack_form[$index]  != 0){
@@ -648,6 +660,7 @@ class Evs_form_HR extends MainController_avenxo {
 		$data['chack_save'] = $chack_save_button;
 
 		$data['data_chack_form'] = $data_chack_form;
+		$data['data_grade'] = $data_grade;
 
 		$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
 		$data['data_hard_dep'] = $Emp_ID;

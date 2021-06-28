@@ -2481,12 +2481,13 @@ function update_MHRD_edit() {
               
 
                                     foreach($data_gcm_weight as $row_data_gcm_weight){
-                                        $checked_weight_1 ="";
-                                        $checked_weight_2 ="";
-                                        $checked_weight_3 ="";
-                                        $checked_weight_4 ="";
-                                        $checked_weight_5 ="";
+                                    
                                             if($row->sgc_id == $row_data_gcm_weight->dtg_sgc_id){
+                                                $checked_weight_1 ="";
+                                                $checked_weight_2 ="";
+                                                $checked_weight_3 ="";
+                                                $checked_weight_4 ="";
+                                                $checked_weight_5 ="";
                                                 if($row_data_gcm_weight->dtg_weight == 1){
                                                     $checked_weight_1 =  "checked";
                                                 }
