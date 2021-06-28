@@ -139,14 +139,9 @@ $(document).ready(function() {
                     </div>
                     <!-- col-6  -->
                     <div class="col-md-6" align="right">
-<<<<<<< Updated upstream
-                        <a
-                            href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_report/<?php echo $data_hard_dep; ?>">
-                            <button id="save" class="btn btn-info" onclick="">Report Grade</button>
-=======
                     <a href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_report/<?php echo $data_hard_dep; ?>/<?php echo $data_focas_group; ?>">
                         <button id="save" class="btn btn-info" onclick="" >report grad</button>
->>>>>>> Stashed changes
+
                         </a>
                     </div>
                     <!-- col -6  -->

@@ -36,16 +36,11 @@ function save_grade() {
 
 
     for (i = 0; i < index; i++) {
-<<<<<<< Updated upstream
 
-        arr_dgo_id.push(document.getElementsByName("dgo_id")[i].value);
-        arr_Evaluator_Review_edit.push(document.getElementsByName("Evaluator_Review_edit")[i].value);
-
-=======
         Emp_ID.push(document.getElementsByName("Emp_ID")[i].value);
         gru_id.push(document.getElementsByName("gru_name")[i].value);
         comment.push(document.getElementsByName("comment")[i].value);
->>>>>>> Stashed changes
+
     }
     // for
 
@@ -151,15 +146,10 @@ function save_grade() {
                             </td>
                             <td>
                                 <center>
-<<<<<<< Updated upstream
 
-                                    <textarea type="text" name="comment" placeholder="Enter comment"
-                                        class="form-control">
-                                    </textarea>
-=======
                         
                                     <textarea type="text" name="comment" placeholder="Enter comment" class="form-control"></textarea>
->>>>>>> Stashed changes
+
                                 </center>
                             </td>
                         </tr>
