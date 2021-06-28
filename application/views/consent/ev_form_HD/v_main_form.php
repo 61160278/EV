@@ -106,15 +106,6 @@ function save_group_to_HR() {
 
                     <tbody id="row_mbo">
                         <?php 
-                                $status = [];
-                                if(sizeof($data_status) != 0){
-                                    foreach($data_status as $row_status){
-                                        array_push($status,$row_status->dma_dtm_emp_id);
-                                    }
-                                    // foreach
-                                }
-                                // if
-
                                 $table_index = 0;
 
 							    foreach($data_group as $index => $row) {
