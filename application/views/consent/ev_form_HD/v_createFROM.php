@@ -1705,19 +1705,6 @@ function main_index(){
                                                     value="3" onclick="show_weight_mhrd_edit()"
                                                     <?php echo $checked_weight_1_3 ?>>
                                                 <label for="3">&nbsp; 3</label>
-                                                &nbsp;
-                                                <input type="radio"
-                                                    name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="4" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_1_4 ?>>
-                                                <label for="4">&nbsp; 4</label>
-                                                &nbsp;
-                                                <input type="radio"
-                                                    name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="5" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_1_5 ?>>
-                                                <label for="5">&nbsp; 5</label>
-                                                &nbsp;
                                             </div>
                                             <!-- col-12 -->
                                         </center>
@@ -1774,19 +1761,6 @@ function main_index(){
                                                     value="3" onclick="show_weight_mhrd_edit()"
                                                     <?php echo $checked_weight_2_3 ?>>
                                                 <label for="3">&nbsp; 3</label>
-                                                &nbsp;
-                                                <input type="radio"
-                                                    name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="4" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_2_4 ?>>
-                                                <label for="4">&nbsp; 4</label>
-                                                &nbsp;
-                                                <input type="radio"
-                                                    name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="5" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_2_5 ?>>
-                                                <label for="5">&nbsp; 5</label>
-                                                &nbsp;
                                             </div>
                                             <!-- col-12 -->
                                         </center>
