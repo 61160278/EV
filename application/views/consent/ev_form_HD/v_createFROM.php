@@ -324,7 +324,7 @@ function update_GCM_edit() {
         // error
     });
     // ajax
-    
+
 
 }
 
@@ -486,11 +486,10 @@ function update_MHRD_edit() {
 }
 // update_MHRD_edit
 
-function main_index(){
+function main_index() {
     window.location.href = "<?php echo base_url();?>/ev_form_HD/Evs_form_HD/index";
 }
 // main_index 
-
 </script>
 <!-- script -->
 

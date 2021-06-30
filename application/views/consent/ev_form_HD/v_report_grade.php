@@ -1,7 +1,7 @@
 <?php
 /*
-* v_main_form.php
-* Display v_main_form
+* report_grade.php
+* Display report_grade
 * @input    
 * @output
 * @author   Kunanya Singmee
@@ -150,15 +150,15 @@ function main_index() {
                                     <center>
                             </td>
                             <td>
-                    
-                                    <?php 
+
+                                <?php 
                                    foreach($data_grade as $index => $row_grade) {
                                        if($row_grade->dgr_dtm_emp_id == $row->emp_id){
                                             echo $row_grade->dgr_comment;
                                        }
                                    }
                                 ?>
-                                   
+
                             </td>
                         </tr>
                         <?php 

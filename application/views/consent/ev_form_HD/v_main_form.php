@@ -206,13 +206,13 @@ function main_index() {
                     </div>
                     <!-- col-6  -->
                     <div class="col-md-6" align="right">
-                    <?php if(sizeof($status) != 0){ ?>
+                        <?php if(sizeof($status) != 0){ ?>
                         <button id="save" class="btn btn-success" onclick="save_group_to_HR()"> Save</button>
-                    <?php } 
+                        <?php } 
                     // if
                     else {?>
                         <button class="btn btn-success" disabled> Save</button>
-                    <?php }
+                        <?php }
                     // else ?>
                     </div>
                     <!-- col-6  -->
