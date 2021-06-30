@@ -564,7 +564,7 @@ class Evs_form_HR extends MainController_avenxo {
 						foreach($data_mhrd as $row_data_mhrd){                                       
 							if($row->sfi_id == $row_data_mhrd->mhw_sfi_id){
 								$sum = $row_data_mhrd->mhw_weight_1+$row_data_mhrd->mhw_weight_2;
-								$sum_max = 5+5;
+								$sum_max = 3+3;
 
 								$sum_all += $sum;
 								$sum_max_all += $sum_max;
@@ -646,6 +646,7 @@ class Evs_form_HR extends MainController_avenxo {
 		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 70){array_push($data_grade,"B");}
 		else if ((($sum_percent_pe+$sum_percent_ce/200)) >= 60){array_push($data_grade,"C");}
 		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 50){array_push($data_grade,"D");}
+		else{array_push($data_grade,"F");}
 
 			array_push($data_chack_form,$check);
 

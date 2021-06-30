@@ -286,7 +286,7 @@ function confirm_save() {
     form_mhrd_insert();
     change_status();
     success_save();
-    //window.location = "<?php echo base_url(); ?>/Evs_form/form_position/" + value_pos_id + "/" + value_year_id;
+    window.location = "<?php echo base_url(); ?>/Evs_form/form_position/" + value_pos_id + "/" + value_year_id;
 }
 /*
  * success_save

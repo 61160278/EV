@@ -306,7 +306,7 @@ class Evs_gcm_indicators_form extends MainController {
 					
 						$this->depg->epg_expected_detail_en = $this->input->post("arr_save_expected_en_todatabase[".$i."]");
 						$this->depg->epg_expected_detail_th = $this->input->post("arr_save_expected_th_todatabase[".$i."]");
-						$this->depg->epg_point = $this->input->post("arr_save_point_to_database[".$j."]");
+						$this->depg->epg_point = $this->input->post("arr_save_point_to_database[".$i."]");
 				
 					//start foreach 
 					foreach ($data_pos->result() as $row) {

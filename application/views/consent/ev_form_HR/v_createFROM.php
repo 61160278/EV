@@ -1640,8 +1640,7 @@ function update_MHRD_edit() {
                                    $checked_weight_1_1 ="";
                                    $checked_weight_1_2 ="";
                                    $checked_weight_1_3 ="";
-                                   $checked_weight_1_4 ="";
-                                   $checked_weight_1_5 ="";
+                     
               
 
                                    foreach($data_mhrd as $row_data_mhrd){                                       
@@ -1649,8 +1648,7 @@ function update_MHRD_edit() {
                                         $checked_weight_1_1 ="";
                                         $checked_weight_1_2 ="";
                                         $checked_weight_1_3 ="";
-                                        $checked_weight_1_4 ="";
-                                        $checked_weight_1_5 ="";
+                          
                                         if($row_data_mhrd->mhw_weight_1 == 1){
                                             $checked_weight_1_1 =  "checked";
                                         }
@@ -1660,12 +1658,7 @@ function update_MHRD_edit() {
                                         else if($row_data_mhrd->mhw_weight_1 == 3){
                                             $checked_weight_1_3 =  "checked";
                                         }
-                                        else if($row_data_mhrd->mhw_weight_1 == 4){
-                                            $checked_weight_1_4 =  "checked";
-                                        }
-                                        else {
-                                            $checked_weight_1_5 =  "checked";
-                                        }
+                
                                     }
                                 }
                                    
@@ -1689,18 +1682,7 @@ function update_MHRD_edit() {
                                                     <?php echo $checked_weight_1_3 ?>>
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;
-                                                <input type="radio"
-                                                    name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="4" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_1_4 ?>>
-                                                <label for="4">&nbsp; 4</label>
-                                                &nbsp;
-                                                <input type="radio"
-                                                    name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="5" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_1_5 ?>>
-                                                <label for="5">&nbsp; 5</label>
-                                                &nbsp;
+                                        
                                             </div>
                                             <!-- col-12 -->
                                         </center>
@@ -1711,8 +1693,7 @@ function update_MHRD_edit() {
                                    $checked_weight_2_1 ="";
                                    $checked_weight_2_2 ="";
                                    $checked_weight_2_3 ="";
-                                   $checked_weight_2_4 ="";
-                                   $checked_weight_2_5 ="";
+                        
              
                                     foreach($data_mhrd as $row_data_mhrd){
                                             if($row->sfi_id == $row_data_mhrd->mhw_sfi_id){
@@ -1730,12 +1711,7 @@ function update_MHRD_edit() {
                                                 else if($row_data_mhrd->mhw_weight_2 == 3){
                                                     $checked_weight_2_3 =  "checked";
                                                 }
-                                                else if($row_data_mhrd->mhw_weight_2 == 4){
-                                                    $checked_weight_2_4 =  "checked";
-                                                }
-                                                else {
-                                                    $checked_weight_2_5 =  "checked";
-                                                }
+                                        
                                             }
                                         }
                                 ?>
@@ -1758,18 +1734,7 @@ function update_MHRD_edit() {
                                                     <?php echo $checked_weight_2_3 ?>>
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;
-                                                <input type="radio"
-                                                    name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="4" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_2_4 ?>>
-                                                <label for="4">&nbsp; 4</label>
-                                                &nbsp;
-                                                <input type="radio"
-                                                    name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="5" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_2_5 ?>>
-                                                <label for="5">&nbsp; 5</label>
-                                                &nbsp;
+                                               
                                             </div>
                                             <!-- col-12 -->
                                         </center>
