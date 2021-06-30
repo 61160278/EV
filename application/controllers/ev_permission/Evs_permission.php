@@ -131,31 +131,38 @@ class Evs_permission extends MainController_avenxo {
 		$Posid = $this->input->post("Posid");
 		$Sectioncode = $this->input->post("Sectioncode");
 		$Company = $this->input->post("Company");
-		$count = $this->input->post("count");
+		$count = $this->input->post("count_insert");
 
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
 		$year = $data['patt_year']->row(); // show value year now
 		//end set year now
 		
-		$this->load->model('Da_evs_employee','deep');
-		for($i=0;$i<$count;$i++){
 
+		
+		for($i=0;$i<$count;$i++){
+		$this->load->model('Da_evs_employee','deep');
+		$this->load->model('M_evs_employee','memp');
+		
 		$this->deep->emp_employee_id = $empid[$i];
 		$this->deep->emp_position_id = $Posid[$i];
 		$this->deep->emp_section_code_ID = $Sectioncode[$i];
 		$this->deep->emp_company_id = $Company[$i];
-
 		$this->deep->emp_pay_id = $year->pay_id;
-		$this->deep->emp_gru_id = 0;
+		
+		$this->memp->Emp_ID = $empid[$i];
+		$data['emp_info'] = $this->memp->get_by_Empid_group();
+		$tep = $data['emp_info']->row();
+		$this->deep->emp_gru_id = $tep->ev_group;
 		$this->deep->insert();
 
 		}
-		//emp_employee_id,emp_company_id,emp_position_id,emp_section_code_ID,emp_pay_id,emp_ghr_id	
+		// insert 
 
 		$this->load->model('M_evs_login','miog');
 		$data_login = $this->miog->get_all()->result(); // show value year now
 		//end set year now
+		
 		$chack_data_log = 0;
 		for($i=0;$i<$count;$i++){
 			$chack_data_log = 0;
@@ -169,9 +176,11 @@ class Evs_permission extends MainController_avenxo {
 				$this->miog->log_password = $empid[$i];
 				$this->miog->log_role = 1;
 				$this->miog->insert();
-			}
+			}// if
 		}
-
+		// for
+		$data = $empid;
+		echo json_encode($data);
 
 	} // function insert_emp
 

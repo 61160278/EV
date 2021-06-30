@@ -11,31 +11,56 @@
 <script>
 function emp_insert() {
     var count = document.getElementById("count").value;
-
-    console.log(count);
-
+	var count_send = 0;
+	var count_loop = 0;
+	var loop_count = (count / 200).toFixed(1);
+	var count_insert = 0;
     var empid = []
     var Posid = []
     var Sectioncode = []
     var Company = []
+	
+	console.log(count);
+	console.log(loop_count);
+	
+	for(j=0; j < loop_count; j++){
+		
+	empid = []
+    Posid = []
+    Sectioncode = []
+    Company = []
+	
+	count_send  = 0 + (200*j);
+	count_loop = count_send+199;
+	count_insert = 0;
+	
+	//console.log(count_send);
+	//console.log(count_loop);
+	//console.log("--------------");
+		
+    for (i = count_send; i <= count_loop; i++){
+		if(i < count){
+			
+			empid.push(document.getElementById("empid" + i).value);
+			// console.log(empid);
+			
+			Posid.push(document.getElementById("Posid" + i).value);
+			//console.log(Posid);
 
+			Sectioncode.push(document.getElementById("Sectioncode" + i).value);
+			//console.log(Sectioncode);
 
-    for (i = 0; i < count; i++) {
-        empid.push(document.getElementById("empid" + i).value);
-        console.log(empid);
-
-        Posid.push(document.getElementById("Posid" + i).value);
-        console.log(Posid);
-
-        Sectioncode.push(document.getElementById("Sectioncode" + i).value);
-        console.log(Sectioncode);
-
-        Company.push(document.getElementById("Company" + i).value);
-        console.log(Company);
+			Company.push(document.getElementById("Company" + i).value);
+			//console.log(Company);
+			count_insert++;
+		}
+		// if 
 
     } // for
-
-    $.ajax({
+	
+	console.log(count_insert);
+	
+	$.ajax({
         type: "post",
         dataType: "json",
         url: "<?php echo base_url(); ?>ev_permission/Evs_permission/insert_emp",
@@ -44,10 +69,17 @@ function emp_insert() {
             "Posid": Posid,
             "Sectioncode": Sectioncode,
             "Company": Company,
-            "count": count
-        }
+            "count_insert": count_insert
+        },
+		success : function(data){
+			console.log(data);
+		}
     });
     // ajax
+
+	}
+	// for 
+	
     
     window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/" + <?php echo $year; ?> + ""
 
@@ -83,7 +115,7 @@ td {
                 </div>
                 <div class="panel-body no-padding">
 
-                    <table id="example" class="table table-striped table-bordered dataTable no-footer" cellspacing="0"
+                    <table class="table table-striped table-bordered dataTable no-footer" cellspacing="0"
                         width="100%">
                         <thead>
                             <tr>
@@ -130,20 +162,17 @@ td {
 
 
                             </tr>
-                            </tr>
                             <?php
 								$num++;
 							}
 							
 							?>
-                            <input id="count" type="hidden" value="<?php echo  $num++; ?>">
-
-
-
-
+                           
 
                         </tbody>
+
                     </table>
+					 <input id="count" type="hidden" value="<?php echo $num++; ?>">
                 </div>
                 <div class="panel-footer">
 

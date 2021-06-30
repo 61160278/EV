@@ -56,6 +56,28 @@ class M_evs_employee extends Da_evs_employee {
 		$query = $this->db->query($sql,array($this->Emp_ID, $this->emp_pay_id));
 		return $query;
 	}//get_by_empid
+	
+		/*
+	* get_by_empid
+	* Get employee by Emp_ID
+	* @input  Emp_ID
+	* @output Employee by Emp_ID
+	* @author Kunanya Singmee
+	* @Create Date 2564-04-07
+	*/
+	function get_by_Empid_group(){	
+		$sql = "SELECT * 
+				FROM dbmc.employee AS emp
+				INNER JOIN dbmc.group_secname AS gsec 
+				ON gsec.Sectioncode = emp.Sectioncode_ID
+				INNER JOIN dbmc.position AS pos
+				ON pos.Position_ID = emp.Position_ID
+				INNER JOIN dbmc.sectioncode AS sec
+				ON sec.Sectioncode = emp.Sectioncode_ID
+				WHERE emp.Emp_ID=?" ;
+		$query = $this->db->query($sql,array($this->Emp_ID));
+		return $query;
+	}//get_by_Empid_group
 
 		/*
 	* get_by_appid

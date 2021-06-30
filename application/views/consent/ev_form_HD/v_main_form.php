@@ -121,13 +121,14 @@ function main_index() {
                                     // foreach 
                                 }
                                 // if
+							
 
                                 $table_index = 0;
-
+// && $row->emp_employee_id == $status[$index]
                                 if(sizeof($status) != 0){
 
 							    foreach($data_group as $index => $row) {
-                                if($data_emp_id != $row->emp_employee_id && $row->emp_employee_id == $status[$index]) { ?>
+                                if($data_emp_id != $row->emp_employee_id ) { ?>
                         <input name="Emp_ID" id="Emp_ID<?php echo $index; ?>" type="text"
                             value="<?php echo $row->emp_employee_id ?>" hidden>
                         <tr>

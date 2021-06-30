@@ -27,7 +27,6 @@ class Auth extends MainController
 		$this->load->model('M_evs_login', 'melog');
 		$this->melog->log_user_id = $_POST['user'];
 		$this->melog->log_password = $_POST['pass'];
-		$this->melog->pay_id = $pay_id;
 		$data['user'] = $this->melog->check_login();
  
 		if(sizeof($data['user']->row()) == 0){
@@ -37,12 +36,12 @@ class Auth extends MainController
 		else{
 			$temp = $data['user']->row();
 			// print_r($temp);
-			$this->session->set_userdata('UsEmp_ID', $temp->emp_employee_id);
+			$this->session->set_userdata('UsEmp_ID', $temp->Emp_ID);
 			$this->session->set_userdata('UsName_EN', $temp->Empname_eng." ".$temp->Empsurname_eng);
 			$this->session->set_userdata('UsName_TH', $temp->Empname_th." ".$temp->Empsurname_th);
 			$this->session->set_userdata('UsDepartment', $temp->Department);
 			$this->session->set_userdata('UsRole', $temp->log_role);
-			$this->session->set_userdata('Uspay_id', $temp->pay_id);
+			$this->session->set_userdata('Uspay_id', $pay_id);
 			$this-> main();
 			
 		}
