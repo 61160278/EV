@@ -41,6 +41,7 @@ class M_evs_login extends Da_evs_login {
 		$query = $this->db->query($sql, array($this->log_user_id, $this->log_password));
 		return $query;
 	}
+	// check_login
 
 
     function get_all() {	
@@ -49,6 +50,7 @@ class M_evs_login extends Da_evs_login {
 		$query = $this->db->query($sql);
 		return $query;
 	}
+	//get_all
 
 	function updatte_role() {	
 		$sql = "UPDATE evs_database.evs_login 
@@ -57,8 +59,7 @@ class M_evs_login extends Da_evs_login {
 		$query = $this->db->query($sql,array($this->log_role, $this->log_user_id));
 		return $query;
 	}
-
-
+	// updatte_role
 
 } 
 ?>
