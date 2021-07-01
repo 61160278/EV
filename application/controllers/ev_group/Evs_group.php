@@ -55,7 +55,34 @@ class Evs_group extends MainController_avenxo {
 		$this->meg->gru_company_id = 1;
 		$this->meg->insert();
 		$this->select_company_sdm();
-		// $this->meg->connect();
+
+		$this->load->model('M_evs_login','miog');
+		$data_login = $this->miog->get_all()->result();
+		$chack_data_log = 0;
+
+			foreach($data_login as $index => $row ) { 
+
+				if($Emp_id == $row->log_user_id){
+					$chack_data_log = 1;
+				}
+				// if
+			}
+			// foreach 
+
+			if($chack_data_log == 1){
+				$this->miog->log_user_id = $Emp_id;
+				$this->miog->log_role = 2;
+				$this->miog->updatte_role();
+			}
+			// if
+			else{
+				$this->load->model('M_evs_login','miog');
+				$this->miog->log_user_id = $Emp_id;
+				$this->miog->log_password = $Emp_id;
+				$this->miog->log_role = 2;
+				$this->miog->insert();
+			}
+			// else 
 	
 	}
 	// function add_group_sdm
@@ -69,15 +96,40 @@ class Evs_group extends MainController_avenxo {
 		$group = $this->input->post("group");
 		$Emp_id = $this->input->post("Emp_id");
 		
-
-
-		
 		$this->load->model('M_evs_group','meg');
 		$this->meg->gru_name = $group;
 		$this->meg->gru_head_dept = $Emp_id;
 		$this->meg->gru_company_id = 2;
 		$this->select_company_skd();
 		$this->meg->insert();
+
+		$this->load->model('M_evs_login','miog');
+		$data_login = $this->miog->get_all()->result();
+		$chack_data_log = 0;
+
+			foreach($data_login as $index => $row ) { 
+
+				if($Emp_id == $row->log_user_id){
+					$chack_data_log = 1;
+				}
+				// if
+			}
+			// foreach 
+
+			if($chack_data_log == 1){
+				$this->miog->log_user_id = $Emp_id;
+				$this->miog->log_role = 2;
+				$this->miog->updatte_role();
+			}
+			// if
+			else{
+				$this->load->model('M_evs_login','miog');
+				$this->miog->log_user_id = $Emp_id;
+				$this->miog->log_password = $Emp_id;
+				$this->miog->log_role = 2;
+				$this->miog->insert();
+			}
+			// else 
 		
 	}
 	// function add_group_skd
@@ -192,10 +244,6 @@ class Evs_group extends MainController_avenxo {
 				
 		$this->load->model('M_evs_login','miog');
 		$data_login = $this->miog->get_all()->result();
-
-		// $this->miog->log_user_id = $Emp_id;
-		// $data_user = $this->miog->check_user()->row();
-
 		$chack_data_log = 0;
 
 			foreach($data_login as $index => $row ) { 
@@ -249,19 +297,33 @@ class Evs_group extends MainController_avenxo {
 		$this->sav_edit->update();
 
 		$this->load->model('M_evs_login','miog');
-		$data_login = $this->miog->get_all()->result(); // show value year now
-		//end set year now
+		$data_login = $this->miog->get_all()->result();
 		$chack_data_log = 0;
+
 			foreach($data_login as $index => $row ) { 
+
 				if($Emp_id == $row->log_user_id){
 					$chack_data_log = 1;
 				}
+				// if
 			}
+			// foreach 
+
 			if($chack_data_log == 1){
 				$this->miog->log_user_id = $Emp_id;
-				$this->miog->log_role = 3;
+				$this->miog->log_role = 2;
 				$this->miog->updatte_role();
 			}
+			// if
+			else{
+				$this->load->model('M_evs_login','miog');
+				$this->miog->log_user_id = $Emp_id;
+				$this->miog->log_password = $Emp_id;
+				$this->miog->log_role = 2;
+				$this->miog->insert();
+			}
+			// else 
+			
 			$data = "save_edit_sdm";
 			echo json_encode($data);
 

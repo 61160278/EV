@@ -86,6 +86,8 @@ function add_group() {
 
     });
 
+    // ajax 
+
     window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_sdm";
 
 }
