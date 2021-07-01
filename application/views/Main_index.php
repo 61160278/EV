@@ -174,7 +174,7 @@
                 <!-- End Menu Manage quota  -->
 
 
-                <!-- Start Menu Manage quota -->
+                <!-- Start Menu Manage Report Group -->
                 <div class="col-xl-4 col-md-6 mb-4">
                     <a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/index">
                         <div class="card border4 shadow h-100 py-2">
@@ -182,7 +182,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text4 text-uppercase mb-1">Menu</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Report Group </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage Report Group </div>
                                     </div>
                                     <!-- col-2 -->
                                 </div>
@@ -194,7 +194,29 @@
                     </a>
                     <!-- a href -->
                 </div>
-                <!-- End Menu Manage quota  -->
+                <!-- End Menu Manage Report Group  -->
+
+                 <!-- Start Menu Manage Form MHRD (Excel) -->
+                 <div class="col-xl-4 col-md-6 mb-4">
+                    <a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/excel">
+                        <div class="card border4 shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text4 text-uppercase mb-1">Menu</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage Form MHRD (Excel) </div>
+                                    </div>
+                                    <!-- col-2 -->
+                                </div>
+                                <!-- row -->
+                            </div>
+                            <!-- card body -->
+                        </div>
+                        <!-- card -->
+                    </a>
+                    <!-- a href -->
+                </div>
+                <!-- End Menu Manage Form MHRD (Excel)  -->
 
 
             </div>

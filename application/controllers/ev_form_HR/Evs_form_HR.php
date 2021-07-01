@@ -29,6 +29,12 @@ class Evs_form_HR extends MainController_avenxo {
 	 */
 	
 
+	public function __construct()
+    {
+    parent::__construct();
+	  $this->load->library('excel');
+    }
+
 	/*
 	* table_uesr_goup
 	* @input 
@@ -674,6 +680,71 @@ class Evs_form_HR extends MainController_avenxo {
 		$data['data_focas_group'] = $group;
 		
 		$this->output('/consent/ev_form_HR/v_main_report_grade',$data);
+	}
+
+	function excel(){
+		$this->output('/consent/ev_form_HR/v_main_excel');
+	}
+
+	function import()
+	{
+
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+		$this->load->model('M_evs_employee','memp');
+		$this->load->model('M_evs_set_form_mhrd','msmd');
+
+		if(isset($_FILES["file"]["name"]))
+		{
+
+			$path = $_FILES["file"]["tmp_name"];
+			$object = PHPExcel_IOFactory::load($path);
+			foreach($object->getWorksheetIterator() as $worksheet)
+			{
+				$highestRow = $worksheet->getHighestRow();
+				$highestColumn = $worksheet->getHighestColumn();
+				
+				for($row=2; $row<=$highestRow; $row++)
+				{
+
+					$this->memp->Emp_ID = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+					$this->memp->emp_pay_id = $pay_id;
+					$data['emp_info'] = $this->memp->get_by_empid();
+			
+					$tep = $data['emp_info']->row();
+
+					$mhw_evs_emp_id = $tep->emp_id;
+
+					$this->msmd->sfi_pos_id = $tep->emp_position_id;;
+					$ps_data  = $this->msmd->get_item_description_by_position();
+					foreach($ps_data as $index => $row) {
+						
+
+
+
+					}
+					
+					$mhw_sfi_id = "";
+					$mhw_weight_1 = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+					$mhw_weight_2 = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+					$mhw_approver = 
+					$data[] = array(
+						'mhw_evs_emp_id'		=>	$mhw_evs_emp_id,
+						'mhw_sfi_id'			=>	$mhw_sfi_id,
+						'mhw_weight_1'			=>	$mhw_weight_1,
+						'mhw_weight_2'			=>	$mhw_weight_2,
+						'mhw_approver'			=>	$mhw_approver
+					);
+				}
+			}
+			 $this->load->model($this->config->item('acr_m_folder') . 'Import_model', "im");
+			$this->im->insert($data);
+			echo json_encode( 'Data Imported successfully');
+		}	
 	}
 
 

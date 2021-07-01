@@ -77,6 +77,8 @@
                                             class="fa fa-bar-chart-o"></i><span>Manage quota</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/index"><i
                                             class="fa fa-tachometer"></i><span>Report group</span></span></a></li>
+                                <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/excel"><i
+                                            class="fa fa-tachometer"></i><span>Manage Form MHRD (Excel)</span></span></a></li>
                                 <?php }
                                 //else if ?>
 
