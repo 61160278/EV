@@ -189,24 +189,41 @@ class Evs_group extends MainController_avenxo {
 		$this->sedt->gru_head_dept = $Emp_id;
 		$this->sedt->gru_company_id = 1;
 		$this->sedt->update();
-		
-
-		
+				
 		$this->load->model('M_evs_login','miog');
-		$data_login = $this->miog->get_all()->result(); // show value year now
-		//end set year now
+		$data_login = $this->miog->get_all()->result();
+
+		// $this->miog->log_user_id = $Emp_id;
+		// $data_user = $this->miog->check_user()->row();
+
 		$chack_data_log = 0;
+
 			foreach($data_login as $index => $row ) { 
+
 				if($Emp_id == $row->log_user_id){
 					$chack_data_log = 1;
 				}
+				// if
 			}
+			// foreach 
+
 			if($chack_data_log == 1){
 				$this->miog->log_user_id = $Emp_id;
 				$this->miog->log_role = 2;
 				$this->miog->updatte_role();
 			}
-			$data = "save_edit_sdm";
+			// if
+			else{
+				$this->load->model('M_evs_login','miog');
+				$this->miog->log_user_id = $Emp_id;
+				$this->miog->log_password = $Emp_id;
+				$this->miog->log_role = 2;
+				$this->miog->insert();
+			}
+			// else 
+
+			$data = "update group";
+
 			echo json_encode($data);
 			
 	}

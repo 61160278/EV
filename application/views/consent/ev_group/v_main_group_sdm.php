@@ -107,12 +107,13 @@ function edit_group(gru_id) {
 
         },
         dataType: "JSON",
-        error: function(status) {
-            // console.log(status)
+        error: function(data) {
+            console.log(data)
         }
         // success function
 
     });
+    // ajax 
 
     window.location.href = "<?php echo base_url();?>/ev_group/Evs_group/select_company_sdm";
 
@@ -121,8 +122,6 @@ function edit_group(gru_id) {
 function Delete_data(gru_id) {
 
     console.log(gru_id);
-
-
 
     $.ajax({
         type: "post",
@@ -172,15 +171,16 @@ function get_idemployee(gru_id) {
 
                 document.getElementById("nameEmp" + gru_id).value = "ไม่มีข้อมูล";
                 console.log(gru_id)
-            } else {
+            }
+            // if
+            else {
                 empname = data[0].Empname_eng + " " + data[0].Empsurname_eng
                 document.getElementById("nameEmp" + gru_id).value = empname;
                 console.log(gru_id)
                 console.log(999)
                 console.log(empname)
             }
-
-            // if-else
+            // else
         }
     });
     // ajax
@@ -227,8 +227,6 @@ function get_Emp() {
 
 
 function warning() {
-
-
     $('#warning').modal('show');
 
 }
@@ -310,16 +308,21 @@ function check_data_edt(check) {
                     console.log("true")
                     edit_group(check);
                     return true;
-                } else {
+                }
+                // if
+                else {
                     $("#alert_text" + check).show();
                     $("#btnedit" + check).attr("disabled", true);
                     return false;
                 }
+                // else
             });
             // $.get
 
         }
         // if
+
+
         else {
             warning();
             return false;
