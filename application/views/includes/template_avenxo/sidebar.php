@@ -70,15 +70,15 @@
                                 <li><a href="<?php echo base_url()?>Evs_Controller/index"><i
                                             class="fa fa-book"></i><span>Manage form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_permission/Evs_permission/index"><i
-                                            class="fa fa-user"></i><span>Manage permission</span></span></a></li>
+                                            class="fa fa-tasks"></i><span>Manage permission</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_group/Evs_group/index"><i
                                             class="fa fa-users"></i><span>Manage group</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_quota/Evs_quota/index"><i
                                             class="fa fa-bar-chart-o"></i><span>Manage quota</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/index"><i
-                                            class="fa fa-tachometer"></i><span>Report group</span></span></a></li>
+                                            class="fa fa-signal"></i><span>Report group</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/excel"><i
-                                            class="fa fa-tachometer"></i><span>Manage Form MHRD (Excel)</span></span></a></li>
+                                            class="fa fa-upload"></i><span>Manage Form MHRD (Excel)</span></span></a></li>
                                 <?php }
                                 //else if ?>
 

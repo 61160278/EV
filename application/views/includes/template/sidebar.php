@@ -77,14 +77,14 @@
                 <!-- Manage quota  -->
 
                 <li class="menu-item">
-                    <a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/index"><i class="menu-icon fa  fa-bar-chart-o"
+                    <a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/index"><i class="menu-icon fa fa-signal"
                             style="color:"></i>Manage Report Group </a>
                 </li>
                 <!-- Manage Report Group -->
 
                 <li class="menu-item">
-                    <a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/excel"><i class="menu-icon fa  fa-bar-chart-o"
-                            style="color:"></i>Manage Form MHRD (Excel)</a>
+                    <a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/excel"><i class="menu-icon fa fa-upload"
+                            style="color:"></i>Manage Form MHRD</a>
                 </li>
                 <!-- Manage Report Group -->
 
