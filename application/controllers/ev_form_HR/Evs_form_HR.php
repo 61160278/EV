@@ -719,30 +719,30 @@ class Evs_form_HR extends MainController_avenxo {
 
 					$mhw_evs_emp_id = $tep->emp_id;
 
-					$this->msmd->sfi_pos_id = $tep->emp_position_id;;
-					$ps_data  = $this->msmd->get_item_description_by_position();
+					$this->msmd->sfi_pos_id = $tep->emp_position_id;
+					$this->msmd->sfi_pay_id = $pay_id;
+					$ps_data  = $this->msmd->get_all_by_key_by_year_and_satatus();
 					foreach($ps_data as $index => $row) {
 						
-
+						$mhw_sfi_id = $row->sfi_id;
+						$mhw_weight_1 = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+						$mhw_weight_2 = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+						$mhw_approver = $_SESSION['UsEmp_ID'];
+						$data[] = array(
+							'mhw_evs_emp_id'		=>	$mhw_evs_emp_id,
+							'mhw_sfi_id'			=>	$mhw_sfi_id,
+							'mhw_weight_1'			=>	$mhw_weight_1,
+							'mhw_weight_2'			=>	$mhw_weight_2,
+							'mhw_approver'			=>	$mhw_approver
+						);
 
 
 					}
 					
-					$mhw_sfi_id = "";
-					$mhw_weight_1 = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
-					$mhw_weight_2 = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
-					$mhw_approver = 
-					$data[] = array(
-						'mhw_evs_emp_id'		=>	$mhw_evs_emp_id,
-						'mhw_sfi_id'			=>	$mhw_sfi_id,
-						'mhw_weight_1'			=>	$mhw_weight_1,
-						'mhw_weight_2'			=>	$mhw_weight_2,
-						'mhw_approver'			=>	$mhw_approver
-					);
 				}
 			}
-			 $this->load->model($this->config->item('acr_m_folder') . 'Import_model', "im");
-			$this->im->insert($data);
+			$this->load->model('M_evs_set_form_mhrd','msmd');
+			$this->msmd->save_data_excal($data);
 			echo json_encode( 'Data Imported successfully');
 		}	
 	}

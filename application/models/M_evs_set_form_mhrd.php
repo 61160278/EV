@@ -189,5 +189,28 @@ class M_evs_set_form_mhrd extends Da_evs_set_form_mhrd {
 	   
 	}
 
+	/*
+	* get_all_by_key_by_year
+	* Get all by id by year
+	* @input position id and patten and year id
+	* @output form mhrd by year by id data
+	* @author Tanadon Tangjaimongkhon
+	* @Create Date 2563-12-26
+	*/
+	function get_all_by_key_by_year_and_satatus(){
+		$sql = "SELECT * 
+				FROM evs_database.evs_set_form_mhrd
+				WHERE sfi_pos_id = ? AND sfi_pay_id = ? AND sfi_excel_import = ?";
+        $query = $this->db->query($sql, array($this->sfi_pos_id, $this->sfi_pay_id,$this->sfi_excel_import));
+		return $query;
+
+	}
+	//get_all_by_key_by_year
+
+	function save_data_excal($data)
+	{
+		$this->db->insert_batch('evs_data_mhrd_weight', $data);
+	}
+
 } 
 ?>
