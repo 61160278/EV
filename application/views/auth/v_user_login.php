@@ -59,7 +59,7 @@ function validate() {
     <div class="container" id="login-form">
         <div class="row">
             <div class="col-md-5" align="center">
-                <img class="login-logo" src="<?php echo base_url();?>pic/denso.png" height="70%">
+                <img class="login-logo" src="<?php echo base_url();?>pic/denso.png" height="60%">
             </div>
             <!-- col -6  -->
             <div class="col-md-7" align="center">
