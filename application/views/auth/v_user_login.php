@@ -59,7 +59,7 @@ function validate() {
     <div class="container" id="login-form">
         <div class="row">
             <div class="col-md-5" align="center">
-                <img class="login-logo" src="<?php echo base_url();?>pic/denso.png" height="70%">
+                <img class="login-logo" src="<?php echo base_url();?>pic/denso.png" height="60%">
             </div>
             <!-- col -6  -->
             <div class="col-md-7" align="center">
@@ -108,14 +108,6 @@ function validate() {
                                     <div class="col-xs-12">
                                         <a href="extras-forgotpassword.html" class="pull-left">Forgot password?</a>
                                         <div class="checkbox-inline icheck pull-right p-n">
-                                            <label for="" class="">
-                                                <div class="icheckbox_minimal-blue" style="position: relative;"><input
-                                                        type="checkbox" style="position: absolute; opacity: 0;"><ins
-                                                        class="iCheck-helper"
-                                                        style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                                </div>
-                                                Remember me
-                                            </label>
                                         </div>
                                         <!-- checkbox-inline -->
                                     </div>
