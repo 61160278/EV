@@ -33,6 +33,7 @@ class Evs_form_HR extends MainController_avenxo {
     {
     parent::__construct();
 	  $this->load->library('excel');
+	  date_default_timezone_set("Asia/Bangkok");
     }
 
 	/*
@@ -689,6 +690,8 @@ class Evs_form_HR extends MainController_avenxo {
 	function import()
 	{
 
+
+		
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
 		$year = $data['patt_year']->row(); // show value year now
@@ -697,6 +700,7 @@ class Evs_form_HR extends MainController_avenxo {
 
 		$this->load->model('M_evs_employee','memp');
 		$this->load->model('M_evs_set_form_mhrd','msmd');
+		$this->load->model('Da_evs_data_mhrd_weight','ddmw');
 
 		if(isset($_FILES["file"]["name"]))
 		{
@@ -721,28 +725,26 @@ class Evs_form_HR extends MainController_avenxo {
 
 					$this->msmd->sfi_pos_id = $tep->emp_position_id;
 					$this->msmd->sfi_pay_id = $pay_id;
-					$ps_data  = $this->msmd->get_all_by_key_by_year_and_satatus();
-					foreach($ps_data as $index => $row) {
+					$this->msmd->sfi_excel_import = 1;
+					$ps_data  = $this->msmd->get_all_by_key_by_year_and_satatus()->result();
+					foreach($ps_data as $index => $row_ps) {
 						
-						$mhw_sfi_id = $row->sfi_id;
+						$mhw_sfi_id = $row_ps->sfi_id;
 						$mhw_weight_1 = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
 						$mhw_weight_2 = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
 						$mhw_approver = $_SESSION['UsEmp_ID'];
-						$data[] = array(
-							'mhw_evs_emp_id'		=>	$mhw_evs_emp_id,
-							'mhw_sfi_id'			=>	$mhw_sfi_id,
-							'mhw_weight_1'			=>	$mhw_weight_1,
-							'mhw_weight_2'			=>	$mhw_weight_2,
-							'mhw_approver'			=>	$mhw_approver
-						);
+						
+						$this->ddmw->mhw_evs_emp_id = $mhw_evs_emp_id;
+						$this->ddmw->mhw_sfi_id  = $mhw_sfi_id;
+						$this->ddmw->mhw_weight_1 = $mhw_weight_1;
+						$this->ddmw->mhw_weight_2 = $mhw_weight_2;
+						$this->ddmw->mhw_approver = $mhw_approver;
 
-
+						$this->ddmw->insert();
 					}
 					
 				}
 			}
-			$this->load->model('M_evs_set_form_mhrd','msmd');
-			$this->msmd->save_data_excal($data);
 			echo json_encode( 'Data Imported successfully');
 		}	
 	}

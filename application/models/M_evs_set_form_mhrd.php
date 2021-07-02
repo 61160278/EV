@@ -207,10 +207,7 @@ class M_evs_set_form_mhrd extends Da_evs_set_form_mhrd {
 	}
 	//get_all_by_key_by_year
 
-	function save_data_excal($data)
-	{
-		$this->db->insert_batch('evs_data_mhrd_weight', $data);
-	}
+	
 
 } 
 ?>

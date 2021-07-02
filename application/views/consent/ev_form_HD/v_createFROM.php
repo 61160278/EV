@@ -949,6 +949,7 @@ function main_index() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
+                            <button class="btn btn-info" > Reject Report </button>
                             </div>
                             <!-- col-md-6 add_app -->
 
@@ -1220,6 +1221,7 @@ function main_index() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
+                            <button class="btn btn-info" > Reject Report </button>
                             </div>
                             <!-- col-md-6 add_app -->
                         </div>
@@ -1586,7 +1588,7 @@ function main_index() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-
+                            <button class="btn btn-info" > Reject Report </button>
                             </div>
                             <!-- col-md-6 add_app -->
 

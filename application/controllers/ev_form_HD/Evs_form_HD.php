@@ -222,9 +222,6 @@ class Evs_form_HD extends MainController_avenxo {
 				$data['info_mhrd'] = $this->msfm->get_item_description_by_position()->result();
 	
 				$data['data_from_pe'] = "MHRD_edit";	
-		
-	
-	
 		}
 
 
