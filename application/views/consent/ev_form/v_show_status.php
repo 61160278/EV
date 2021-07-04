@@ -229,7 +229,11 @@
                         <label class="control-label"><strong>
                                 <font size="3px">Approver 1</font>
                             </strong></label>
-                        <p><?php echo $app1->Empname_eng . "  " . $app1->Empsurname_eng; ?></p>
+                            <?php if(sizeof($app1) != 0){ ?>
+                                <p><?php echo $app1->Empname_eng . "  " . $app1->Empsurname_eng; ?></p>
+                            <?php }
+                            // if ?>
+
                     </div>
                     <!-- col-md-3 -->
                     <?php if($data_app->dma_status == 1){ ?>
