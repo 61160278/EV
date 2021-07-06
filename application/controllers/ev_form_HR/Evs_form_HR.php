@@ -691,12 +691,33 @@ class Evs_form_HR extends MainController_avenxo {
 	{
 
 
-		
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
 		$year = $data['patt_year']->row(); // show value year now
 		//end set year now
 		$pay_id = $year->pay_id;
+
+
+		$this->load->model('Da_evs_excel_report','derp');
+
+		$config["upload_path"] = "./excel_report/";
+		$config["allowed_types"] = "xls|xlsx";
+
+		$this->load->library("upload",$config);
+
+		
+		$gg  = $_FILES["file"];
+
+		if($this->upload->do_upload("file")){
+				$upload_data = $this->upload->data();
+				$this->derp->erp_excel_name = $upload_data["file_name"];
+				$this->derp->erp_pay_id = $pay_id;
+				$this->derp->insert();
+
+		}else{
+				print_r($this->upload->display_errors());
+
+		}
 
 		$this->load->model('M_evs_employee','memp');
 		$this->load->model('M_evs_set_form_mhrd','msmd');
@@ -714,7 +735,7 @@ class Evs_form_HR extends MainController_avenxo {
 				
 				for($row=2; $row<=$highestRow; $row++)
 				{
-
+					
 					$this->memp->Emp_ID = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
 					$this->memp->emp_pay_id = $pay_id;
 					$data['emp_info'] = $this->memp->get_by_empid();
@@ -745,7 +766,7 @@ class Evs_form_HR extends MainController_avenxo {
 					
 				}
 			}
-			echo json_encode( 'Data Imported successfully');
+			echo json_encode($gg );
 		}	
 	}
 
