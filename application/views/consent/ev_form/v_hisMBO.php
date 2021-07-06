@@ -86,7 +86,15 @@ function show_approve() {
                 data_show += '</div>'
                 data_show += '<!-- col-2  -->'
                 data_show += '<div class="col-md-4">'
-                data_show += '<p id="app1">' + app1 + '</p>'
+                if(app1 != ""){
+					data_show += '<p id="app1">' + app1 + '</p>'
+				}
+				// if
+
+                else {
+					data_show += '<p id="app1">No Approver 1</p>'
+				}
+				// else 
                 data_show += '</div>'
                 data_show += '<!-- col-4  -->'
                 data_show += '<!-- -------------------- -->'
@@ -161,7 +169,15 @@ function show_approveG_O() {
                 data_show += '</div>'
                 data_show += '<!-- col-2  -->'
                 data_show += '<div class="col-md-4">'
-                data_show += '<p id="app1">' + app1 + '</p>'
+                if(app1 != ""){
+					data_show += '<p id="app1">' + app1 + '</p>'
+				}
+				// if
+
+                else {
+					data_show += '<p id="app1">No Approver 1</p>'
+				}
+				// else 
                 data_show += '</div>'
                 data_show += '<!-- col-4  -->'
                 data_show += '<!-- -------------------- -->'
@@ -237,7 +253,15 @@ function show_approve_mhrd() {
                 data_show += '</div>'
                 data_show += '<!-- col-2  -->'
                 data_show += '<div class="col-md-4">'
-                data_show += '<p id="app1">' + app1 + '</p>'
+                if(app1 != ""){
+					data_show += '<p id="app1">' + app1 + '</p>'
+				}
+				// if
+
+                else {
+					data_show += '<p id="app1">No Approver 1</p>'
+				}
+				// else 
                 data_show += '</div>'
                 data_show += '<!-- col-4  -->'
                 data_show += '<!-- -------------------- -->'
@@ -446,13 +470,13 @@ function set_tap_his() {
                                     <th rowspan="2" width="2%">
                                         <center> No.</center>
                                     </th>
-                                    <th rowspan="2" width="15%">
+                                    <th rowspan="2" width="10%">
                                         <center>SDGs Goals</center>
                                     </th>
-                                    <th rowspan="2" width="45%">
+                                    <th rowspan="2" width="28%">
                                         <center>Management by objective</center>
                                     </th>
-                                    <th rowspan="2" width="8%">
+                                    <th rowspan="2" width="7%">
                                         <center>Weight</center>
                                     </th>
                                     <th colspan="2">
@@ -1083,7 +1107,7 @@ function set_tap_his() {
                         <table class="table table-bordered table-striped m-n" id="mbo">
                             <thead id="headmbo">
                                 <tr>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="2%">
                                         <center> No.</center>
                                     </th>
                                     <th rowspan="2">
@@ -1095,7 +1119,7 @@ function set_tap_his() {
                                     <th rowspan="2">
                                         <center>Expected Behavior</center>
                                     </th>
-                                    <th rowspan="2" width="6%">
+                                    <th rowspan="2" width="5%">
                                         <center>Weight</center>
                                     </th>
                                     <th colspan="2">
@@ -1104,10 +1128,10 @@ function set_tap_his() {
 
                                 </tr>
                                 <tr>
-                                    <th width="25%">
+                                    <th width="30%">
                                         <center>Result</center>
                                     </th>
-                                    <th width="15%">
+                                    <th width="8%">
                                         <center>Score AxB</center>
                                     </th>
 

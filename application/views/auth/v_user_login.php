@@ -104,16 +104,6 @@ function validate() {
                                 </div>
                                 <!-- form-group -->
 
-                                <div class="form-group mb-n">
-                                    <div class="col-xs-12">
-                                        <a href="extras-forgotpassword.html" class="pull-left">Forgot password?</a>
-                                        <div class="checkbox-inline icheck pull-right p-n">
-                                        </div>
-                                        <!-- checkbox-inline -->
-                                    </div>
-                                    <!-- col-xs-12 -->
-                                </div>
-                                <!-- form-group mb-n -->
                         </div>
                         <!-- panel-body -->
                         <div class="panel-footer">

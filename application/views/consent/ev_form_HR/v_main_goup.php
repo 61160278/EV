@@ -42,7 +42,7 @@ $(document).ready(function() {
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
             <div class="panel-heading ">
                 <h2>
-                    <font color="#ffffff" size="6px"><b> Evaluation </b></font>
+                    <font color="#ffffff" size="6px"><b> Report Group </b></font>
                 </h2>
             </div>
             <!-- heading -->
@@ -56,13 +56,13 @@ $(document).ready(function() {
                                 <center> No.</center>
                             </th>
                             <th rowspan="2" width="15%">
-                                <center>employee id</center>
+                                <center>Employee id</center>
                             </th>
                             <th rowspan="2" width="15%">
-                                <center>name</center>
+                                <center>Name</center>
                             </th>
                             <th rowspan="2" width="15%">
-                                <center>group</center>
+                                <center>Group</center>
                             </th>
                             <th rowspan="2" width="20%">
                                 <center>Management</center>

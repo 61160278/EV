@@ -633,7 +633,14 @@ class Evs_form_HD extends MainController_avenxo {
 			$this->mdgd->dgr_pay_id = $pay_id;
 			$data['data_grade'] = $this->mdgd->get_all_by_year()->result();
 
-		
+			$this->load->model('M_evs_employee','memp');
+			$data['emp_info'] = $this->memp->get_all_by_year()->result();
+
+			$this->load->model('M_evs_data_grade','mdgd');
+			$this->mdgd->dgr_pay_id = $pay_id;
+			$data['data_grades'] = $this->mdgd->get_all_by_year()->result();
+
+			
 			$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
 			
 			$this->output('/consent/ev_form_HD/v_report_grade',$data);

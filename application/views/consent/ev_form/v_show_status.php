@@ -35,91 +35,92 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6" align="center">
-                        <img src="http://placehold.it/300&text=Placeholder">
+                        <img src="http://10.73.148.5/DBMC/IMG/emp120/<?echo $_SESSION["UsEmp_ID"]?>.jpg" width="50%" class="img-responsive img-circle">
                     </div>
-                    <!-- col-4 show img  -->
+                    <!-- col-6 show img  -->
+					
                     <div class="col-md-6">
                         <?php foreach($emp_info->result() as $row){?>
 
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <label class="control-label"><strong>
                                         <font size="4px">Employee ID : </font>
                                     </strong></label>
                             </div>
-                            <!-- col-md-4 -->
-                            <div class="col-md-4">
+                            <!-- col-md-5 -->
+                            <div class="col-md-5">
                                 <p id="emp_id">
                                     <font size="4px"><?php echo $row->Emp_ID; ?> </font>
                                 </p>
                             </div>
-                            <!-- col-md-4 -->
+                            <!-- col-md-5 -->
                         </div>
                         <!-- row emp_id  -->
 
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <label class="control-label"><strong>
                                         <font size="4px">Name - Surname : </font>
                                     </strong></label>
                             </div>
-                            <!-- col-md-4 -->
-                            <div class="col-md-4">
+                            <!-- col-md-5 -->
+                            <div class="col-md-5">
                                 <p id="emp_id">
                                     <font size="4px"><?php echo $row->Empname_eng . "  " . $row->Empsurname_eng; ?>
                                     </font>
                                 </p>
                             </div>
-                            <!-- col-md-4 -->
+                            <!-- col-md-5 -->
                         </div>
                         <!-- row emp_name  -->
 
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <label class="control-label"><strong>
                                         <font size="4px">Section Code : </font>
                                     </strong></label>
                             </div>
-                            <!-- col-md-4 -->
-                            <div class="col-md-4">
+                            <!-- col-md-5 -->
+                            <div class="col-md-5">
                                 <p id="emp_id">
                                     <font size="4px"><?php echo $row->Sectioncode_ID; ?> </font>
                                 </p>
                             </div>
-                            <!-- col-md-4 -->
+                            <!-- col-md-5 -->
                         </div>
                         <!-- row Sectioncode_ID  -->
 
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <label class="control-label"><strong>
                                         <font size="4px">Department : </font>
                                     </strong></label>
                             </div>
-                            <!-- col-md-4 -->
-                            <div class="col-md-4">
+                            <!-- col-md-5 -->
+                            <div class="col-md-5">
                                 <p id="emp_id">
                                     <font size="4px"><?php echo $row->Department; ?> </font>
                                 </p>
                             </div>
-                            <!-- col-md-4 -->
+                            <!-- col-md-5 -->
                         </div>
                         <!-- row Department  -->
 
 
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <label class="control-label"><strong>
                                         <font size="4px">Position : </font>
                                     </strong></label>
                             </div>
-                            <!-- col-md-4 -->
-                            <div class="col-md-4">
+                            <!-- col-md-5 -->
+                            <div class="col-md-5">
                                 <p id="emp_id">
                                     <font size="4px"><?php echo $row->Position_name; ?> </font>
                                 </p>
                             </div>
-                            <!-- col-md-4 -->
+                            <!-- col-md-5 -->
                         </div>
                         <!-- row Department  -->
 
@@ -142,7 +143,6 @@
                                 <button class="btn btn-warning" data-toggle="modal" data-target="#show_status">Wait
                                     APPROVER 1 </button>
                                 <?php }
-                                    // if
                                     else if($row->dma_status == 2){ ?>
                                 <button class="btn btn-warning" data-toggle="modal" data-target="#show_status">Wait
                                     APPROVER 2 </button>
@@ -170,8 +170,6 @@
                             </div>
                             <!-- col-md-4 -->
                         </div>
-                        <!-- row Department  -->
-
 
                     </div>
                     <!-- col-8  -->
@@ -236,7 +234,7 @@
 
                     </div>
                     <!-- col-md-3 -->
-                    <?php if($data_app->dma_status == 1){ ?>
+                    <?php if($data_app->dma_status == 1 && sizeof($app1) != 0){ ?>
                     <div class="col-md-6" align="center">
                         <div class="alert alert-dismissable alert-warning">
                             <strong> Wait Approve 1 </strong>
@@ -245,7 +243,16 @@
                     <!-- col-md-6 -->
                     <?php }
                     // if
-                    else if($data_app->dma_status > 1){?>
+					else if($data_app->dma_status == 1 && sizeof($app1) == 0){ ?>
+					<div class="col-md-6" align="center">
+                        <div class="alert alert-dismissable alert-inverse">
+                            <strong> No Approve 1 </strong>
+                        </div>
+                    </div>
+                    <!-- col-md-6 -->
+					<?php }
+					// else 
+                    else if($data_app->dma_status > 1 && sizeof($app1) != 0){?>
                     <div class="col-md-6" align="center">
                         <div class="alert alert-dismissable alert-success">
                             <strong> Approve </strong>
@@ -253,7 +260,15 @@
                     </div>
                     <!-- col-md-6 -->
                     <?php }
-                    // else if?>
+                    // else if
+					else if($data_app->dma_status > 1 && sizeof($app1) == 0){ ?>
+						<div class="col-md-6" align="center">
+                        <div class="alert alert-dismissable alert-inverse">
+                            <strong> No Approve 1 </strong>
+                        </div>
+                    </div>
+					<?php }
+					// else if?>
 
                 </div>
                 <!-- row  -->
@@ -318,6 +333,16 @@
                         </div>
                     </div>
                     <!-- col-md-6 -->
+					
+					<div class="row">
+						<div class="col-md-10" align="right">
+							<a href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/report_grade">
+								<button class="btn btn-success" >Report Grade</button>
+							</a>
+						</div>
+						<!-- col-11 -->
+					</div>
+					<!-- row -->
                     <?php }
                     // else if ?>
                 </div>

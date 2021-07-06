@@ -32,7 +32,7 @@
     <ul class="nav navbar-nav toolbar pull-right">
         <li class="dropdown toolbar-icon-bg">
             <a href="#" class="dropdown-toggle username" data-toggle="dropdown">
-                <img class="img-circle" src="http://placehold.it/300&text=Placeholder" alt="" />
+                <img class="img-circle" src="http://10.73.148.5/DBMC/IMG/emp120/<?echo $_SESSION["UsEmp_ID"]?>.jpg" alt="" />
             </a>
             <ul class="dropdown-menu userinfo arrow">
                 <li><a href="<?php echo base_url(); ?>/Auth/logout"><i class="ti ti-shift-right"></i><span>Sign

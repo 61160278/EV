@@ -558,13 +558,7 @@
                                                             </th>
                                                             <th colspan="3">
                                                                 <center>
-                                                                    <font color="white">First-half year evaluation
-                                                                    </font>
-                                                                </center>
-                                                            </th>
-                                                            <th colspan="3">
-                                                                <center>
-                                                                    <font color="white">Second-half year evaluation
+                                                                    <font color="white">Evaluation
                                                                     </font>
                                                                 </center>
                                                             </th>
@@ -587,30 +581,10 @@
                                                                     <font color="white">Max. Rating</font>
                                                                 </center>
                                                             </th>
-                                                            <th>
-                                                                <center>
-                                                                    <font color="white">Result</font>
-                                                                </center>
-                                                            </th>
-
-                                                            <th rowspan="2">
-                                                                <center>
-                                                                    <font color="white">Score</font>
-                                                                </center>
-                                                            </th>
-                                                            <th rowspan="2">
-                                                                <center>
-                                                                    <font color="white">Max. Rating</font>
-                                                                </center>
-                                                            </th>
 
                                                         </tr>
                                                         <tr>
-                                                            <th width="15%">
-                                                                <center>
-                                                                    <font color="white">[Fill score 1-5]</font>
-                                                                </center>
-                                                            </th>
+        
                                                             <th width="15%">
                                                                 <center>
                                                                     <font color="white">[Fill score 1-5]</font>
@@ -637,11 +611,6 @@
                                                             <td>
                                                                 <center>0</center>
                                                             </td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td>
-                                                                <center>0</center>
-                                                            </td>
                                                         </tr>
                                                     </tbody>
                                                     <?php
@@ -660,16 +629,8 @@
                                                             <td>
                                                                 <center><?php echo 0;?></center>
                                                             </td>
-                                                            <td rowspan="2">
-                                                                <center> Score Total </center>
-                                                            </td>
-                                                            <td></td>
-                                                            <td>
-                                                                <center><?php echo 0;?></center>
-                                                            </td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="2"></td>
                                                             <td colspan="2"></td>
                                                         </tr>
                                                     </tfoot>
@@ -677,6 +638,7 @@
                                                 <!-- End table  -->
                                             </div>
                                             <!-- end form MBO -->
+											
                                             <?php  
                                         if($check_tab == 3){ ?>
                                             <div class="tab-pane fade show active" id="custom-nav-mhrd" role="tabpanel"
@@ -715,13 +677,13 @@
                                                                 </th>
                                                                 <th >
                                                                     <center>
-                                                                        <font color="white">scort 1
+                                                                        <font color="white">score 1
                                                                         </font>
                                                                     </center>
                                                                 </th>
                                                                 <th >
                                                                     <center>
-                                                                        <font color="white">scort 2
+                                                                        <font color="white">score 2
                                                                         </font>
                                                                     </center>
                                                                 </th>
@@ -832,37 +794,13 @@
 
                                                                 <th colspan="3">
                                                                     <center>
-                                                                        <font color="white">First-half year
-                                                                            evaluation
+                                                                        <font color="white">
+                                                                            Evaluation
                                                                         </font>
                                                                     </center>
                                                                 </th>
-                                                                <th colspan="3">
-                                                                    <center>
-                                                                        <font color="white">Second-half year
-                                                                            evaluation
-                                                                        </font>
-                                                                    </center>
-                                                                </th>
-
                                                             </tr>
                                                             <tr>
-                                                                <th>
-                                                                    <center>
-                                                                        <font color="white">Result</font>
-                                                                    </center>
-                                                                </th>
-
-                                                                <th rowspan="2">
-                                                                    <center>
-                                                                        <font color="white">Score</font>
-                                                                    </center>
-                                                                </th>
-                                                                <th rowspan="2">
-                                                                    <center>
-                                                                        <font color="white">Max. Rating</font>
-                                                                    </center>
-                                                                </th>
                                                                 <th>
                                                                     <center>
                                                                         <font color="white">Result</font>
@@ -882,11 +820,7 @@
 
                                                             </tr>
                                                             <tr>
-                                                                <th>
-                                                                    <center>
-                                                                        <font color="white">[Fill score 1-5]</font>
-                                                                    </center>
-                                                                </th>
+  
                                                                 <th>
                                                                     <center>
                                                                         <font color="white">[Fill score 1-5]</font>
@@ -944,11 +878,6 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td><center><?php echo ($row->sfa_weight)*5; $sum_max_rating += ($row->sfa_weight)*5;?></center>
-                                                                </td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td><center><?php echo ($row->sfa_weight)*5; ?></td></center>
-
 
                                                             </tr>
 
@@ -970,16 +899,8 @@
                                                                 <td>
                                                                     <center><?php echo $sum_max_rating;?></center>
                                                                 </td>
-                                                                <td rowspan="2">
-                                                                    <center> Score Total </center>
-                                                                </td>
-                                                                <td></td>
-                                                                <td>
-                                                                    <center><?php echo $sum_max_rating;?></center>
-                                                                </td>
                                                             </tr>
                                                             <tr>
-                                                                <td colspan="2"></td>
                                                                 <td colspan="2"></td>
                                                             </tr>
                                                         </tfoot>
@@ -1024,13 +945,6 @@
                                                                         </font>
                                                                     </center>
                                                                 </th>
-                                                                <th colspan="3">
-                                                                    <center>
-                                                                        <font color="white">Second-half year
-                                                                            evaluation
-                                                                        </font>
-                                                                    </center>
-                                                                </th>
 
                                                             </tr>
                                                             <tr>
@@ -1050,30 +964,10 @@
                                                                         <font color="white">Max. Rating</font>
                                                                     </center>
                                                                 </th>
-                                                                <th>
-                                                                    <center>
-                                                                        <font color="white">Result</font>
-                                                                    </center>
-                                                                </th>
-
-                                                                <th rowspan="2">
-                                                                    <center>
-                                                                        <font color="white">Score</font>
-                                                                    </center>
-                                                                </th>
-                                                                <th rowspan="2">
-                                                                    <center>
-                                                                        <font color="white">Max. Rating</font>
-                                                                    </center>
-                                                                </th>
-
+                                                               
                                                             </tr>
                                                             <tr>
-                                                                <th>
-                                                                    <center>
-                                                                        <font color="white">[Fill score 1-5]</font>
-                                                                    </center>
-                                                                </th>
+
                                                                 <th>
                                                                     <center>
                                                                         <font color="white">[Fill score 1-5]</font>
@@ -1125,14 +1019,6 @@
                                                                         <?php echo ($row->sft_weight)*5;  $sum_max_rating += ($row->sft_weight)*5;?>
                                                                     </center>
                                                                 </td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td>
-                                                                    <center><?php echo ($row->sft_weight)*5; ?>
-                                                                    </center>
-                                                                </td>
-
-
                                                             </tr>
 
                                                             <?php
@@ -1153,16 +1039,9 @@
                                                                 <td>
                                                                     <center><?php echo $sum_max_rating;?></center>
                                                                 </td>
-                                                                <td rowspan="2">
-                                                                    <center> Score Total </center>
-                                                                </td>
-                                                                <td></td>
-                                                                <td>
-                                                                    <center><?php echo $sum_max_rating;?></center>
-                                                                </td>
                                                             </tr>
                                                             <tr>
-                                                                <td colspan="2"></td>
+                                                                
                                                                 <td colspan="2"></td>
                                                             </tr>
                                                         </tfoot>
@@ -1217,13 +1096,6 @@
                                                                         </font>
                                                                     </center>
                                                                 </th>
-                                                                <th colspan="3">
-                                                                    <center>
-                                                                        <font color="white">Second-half year
-                                                                            evaluation
-                                                                        </font>
-                                                                    </center>
-                                                                </th>
 
                                                             </tr>
                                                             <tr>
@@ -1243,30 +1115,9 @@
                                                                         <font color="white">Max. Rating</font>
                                                                     </center>
                                                                 </th>
-                                                                <th>
-                                                                    <center>
-                                                                        <font color="white">Result</font>
-                                                                    </center>
-                                                                </th>
-
-                                                                <th rowspan="2">
-                                                                    <center>
-                                                                        <font color="white">Score</font>
-                                                                    </center>
-                                                                </th>
-                                                                <th rowspan="2">
-                                                                    <center>
-                                                                        <font color="white">Max. Rating</font>
-                                                                    </center>
-                                                                </th>
 
                                                             </tr>
                                                             <tr>
-                                                                <th>
-                                                                    <center>
-                                                                        <font color="white">[Fill score 1-5]</font>
-                                                                    </center>
-                                                                </th>
                                                                 <th>
                                                                     <center>
                                                                         <font color="white">[Fill score 1-5]</font>
@@ -1337,10 +1188,6 @@
                                                                 <td></td>
                                                                 <td><center><?php echo ($row->sgc_weight)*5; $sum_max_rating += ($row->sgc_weight)*5;?></center>
                                                                 </td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td><center><?php echo ($row->sgc_weight)*5; ?></center></td>
-
 
                                                             </tr>
 
@@ -1362,16 +1209,9 @@
                                                                 <td>
                                                                     <center><?php echo $sum_max_rating;?></center>
                                                                 </td>
-                                                                <td rowspan="2">
-                                                                    <center> Score Total </center>
-                                                                </td>
-                                                                <td></td>
-                                                                <td>
-                                                                    <center><?php echo $sum_max_rating;?></center>
-                                                                </td>
+
                                                             </tr>
                                                             <tr>
-                                                                <td colspan="2"></td>
                                                                 <td colspan="2"></td>
                                                             </tr>
                                                         </tfoot>
@@ -1380,10 +1220,6 @@
                                                     <!-- End table  -->
                                                 </div>
                                                 <!-- end form ACM -->
-
-
-
-
 
                                             </div>
 

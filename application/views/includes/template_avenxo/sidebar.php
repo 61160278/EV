@@ -19,7 +19,7 @@
                         <div class="widget-body">
                             <div class="userinfo">
                                 <div class="avatar">
-                                    <img src="http://placehold.it/300&text=Placeholder"
+                                    <img src="http://10.73.148.5/DBMC/IMG/emp120/<?echo $_SESSION["UsEmp_ID"]?>.jpg"
                                         class="img-responsive img-circle">
                                 </div>
                                 <div class="info">
@@ -47,7 +47,7 @@
                                 <li><a href="<?php echo base_url() ?>ev_form/Evs_form/show_ststus"><i
                                             class="fa fa-book"></i><span>Status Form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/report_grade"><i
-                                            class="fa fa-book"></i><span>Report Grade</span></span></a></li>
+                                            class="fa fa-bar-chart-o"></i><span>Report Grade</span></span></a></li>
 
                                 <?php }
                                 // if
@@ -59,8 +59,10 @@
                                             class="fa fa-pencil-square"></i><span>Create Form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/index"><i
                                             class="fa fa-tachometer"></i><span>Approve group</span></span></a></li>
+								<li><a href="<?php echo base_url() ?>ev_form/Evs_form/show_ststus"><i
+                                            class="fa fa-book"></i><span>Status Form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/report_grade"><i
-                                            class="fa fa-tachometer"></i><span>Report Grade</span></span></a></li>
+                                            class="fa fa-bar-chart-o"></i><span>Report Grade</span></span></a></li>
                                 <?php }
                                 //else if 
                                 else if($_SESSION['UsRole'] == 3) { ?>
@@ -78,7 +80,7 @@
                                 <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/index"><i
                                             class="fa fa-signal"></i><span>Report group</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/excel"><i
-                                            class="fa fa-upload"></i><span>Manage Form MHRD (Excel)</span></span></a></li>
+                                            class="fa fa-upload"></i><span>Import Score MHRD</span></span></a></li>
                                 <?php }
                                 //else if ?>
 

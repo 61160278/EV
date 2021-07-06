@@ -998,7 +998,15 @@ function show_approve_mhrd() {
                 data_show += '</div>'
                 data_show += '<!-- col-2  -->'
                 data_show += '<div class="col-md-4">'
-                data_show += '<p id="app1">' + app1 + '</p>'
+                if(app1 != ""){
+					data_show += '<p id="app1">' + app1 + '</p>'
+				}
+				// if
+
+                else {
+					data_show += '<p id="app1">No Approver 1</p>'
+				}
+				// else 
                 data_show += '</div>'
                 data_show += '<!-- col-4  -->'
                 data_show += '<!-- -------------------- -->'
@@ -1232,7 +1240,7 @@ function set_tap() {
                                     <th rowspan="2" width="15%">
                                         <center>SDGs Goals</center>
                                     </th>
-                                    <th rowspan="2" width="45%">
+                                    <th rowspan="2" width="35%">
                                         <center>Management by objective</center>
                                     </th>
                                     <th rowspan="2" width="8%">

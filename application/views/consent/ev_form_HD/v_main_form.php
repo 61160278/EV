@@ -83,7 +83,7 @@ function main_index() {
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
             <div class="panel-heading ">
                 <h2>
-                    <font color="#ffffff" size="6px"><b> Evaluation </b></font>
+                    <font color="#ffffff" size="6px"><b> Approve Group </b></font>
                 </h2>
             </div>
             <!-- heading -->
@@ -91,19 +91,19 @@ function main_index() {
                 <table class="table table-bordered table-striped m-n">
                     <thead>
                         <tr>
-                            <th rowspan="2" width="2%">
+                            <th width="2%">
                                 <center> No.</center>
                             </th>
-                            <th rowspan="2" width="15%">
-                                <center>employee id</center>
+                            <th width="15%">
+                                <center>Employee id</center>
                             </th>
-                            <th rowspan="2" width="15%">
-                                <center>name</center>
+                            <th width="15%">
+                                <center>Name-Surname</center>
                             </th>
-                            <th rowspan="2" width="15%">
-                                <center>group</center>
+                            <th width="15%">
+                                <center>Group</center>
                             </th>
-                            <th rowspan="2" width="20%">
+                            <th width="20%">
                                 <center>Management</center>
                             </th>
                         </tr>

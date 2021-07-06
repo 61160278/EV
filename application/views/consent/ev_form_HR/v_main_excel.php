@@ -23,29 +23,33 @@
 
 <script>
 $(document).ready(function() {
+	
+	$("#show_emp").hide();
 
-    // $('#import_form').on('submit', function(form_submit) {
-    //     form_submit.preventDefault();
-    //     $.ajax({
-    //         url: "<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/import ",
-    //         method: "POST",
-    //         data: new FormData(this),
-    //         contentType: false,
-    //         cache: false,
-    //         processData: false,
-    //         dataType: "JSON",
-    //         success: function(data) {
-    //             $('#file').val('');
-               
-    //             alert(data);
-    //         }
-    //     })
-    // });
-
-
+    $('#import_form').on('submit', function(form_submit) {
+        form_submit.preventDefault();
+        $.ajax({
+            url: "<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/import ",
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            dataType: "JSON",
+            success: function(data) {
+                $('#file').val('');
+               $("#show_emp").show();
+                alert(data);
+            }
+			// success
+        })
+		// ajax
+    });
+	// onsubmit
 
 });
 // document ready
+
 </script>
 <!-- END script  -->
 
@@ -54,49 +58,72 @@ $(document).ready(function() {
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
             <div class="panel-heading ">
                 <h2>
-                    <font color="#ffffff" size="6px"><b> Evaluation </b></font>
+                    <font color="#ffffff" size="6px"><b> Import score of form MHRD </b></font>
                 </h2>
             </div>
             <!-- heading -->
             <div class="panel-body">
-                <center>
-                    <h3 align="center">Import Excel Data</h3>
-                    <form method="post" id="import_form" enctype="multipart/form-data"  action="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/import"> 
-                        <p><label>Select Excel File</label>
-                            <input type="file" name="file" id="file" required accept=".xls, .xlsx" />
-                        </p>
-                        <br />
-                        <input type="submit" name="import" value="Import" class="btn btn-info" />
-                    </form>
-                </center>
-                <br />
+				<div class="row">
+					<div class="col-md-7" align="right">
+						<h3 align="center"><i class="fa fa-upload"></i></h3>
+						<h3 align="center">Import Score of associate</h3>
+					</div>
+					<!--col-6 -->
+					
+					<div class="col-md-5" >
+						<form method="post" id="import_form" enctype="multipart/form-data">
+							<div class="row">
+								<div class="col-md-12">
+									<p><label>Choose file Excel to Import Data</label>
+										<input type="file" name="file" id="file" required accept=".xls, .xlsx" />
+									</p>
+								</div>
+								<!-- col-6 -->
+							</div>
+							<!-- row -->	
+							
+							<div class="row">
+								<div class="col-md-6">
+									<input type="submit" name="import" value="Import" class="btn btn-info" />
+								</div>
+								<!-- col-6 -->
+							</div>
+							<!-- row -->
+							
+							
+						</form>
+					</div>
+					<!--col-6 -->
+				</div>
+				<!-- row -->
+                <hr>
 
 
-                <!-- <table class="table table-bordered table-striped m-n">
+                <table class="table table-bordered table-striped m-n" id="show_emp">
                     <thead>
                         <tr>
-                            <th rowspan="2" width="2%">
+                            <th width="2%">
                                 <center> No.</center>
                             </th>
-                            <th rowspan="2" width="15%">
-                                <center>employee id</center>
+                            <th width="15%">
+                                <center>Employee id</center>
                             </th>
-                            <th rowspan="2" width="15%">
-                                <center>name</center>
+                            <th width="20%">
+                                <center>Name-Surname</center>
                             </th>
-                            <th rowspan="2" width="15%">
-                                <center>group</center>
+							<th width="20%">
+                                <center>Department</center>
                             </th>
-                            <th rowspan="2" width="20%">
-                                <center>grade</center>
+                            <th width="15%">
+                                <center>Score 1</center>
                             </th>
-                            <th rowspan="2" width="20%">
-                                <center>comment</center>
+							<th width="15%">
+                                <center>Score 2</center>
                             </th>
-
                         </tr>
-                    </thead> -->
+                    </thead>
                 <!-- thead -->
+				
                 <!-- <tbody>
                         <?php 
                                 // $table_index = 0;

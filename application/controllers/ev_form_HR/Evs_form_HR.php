@@ -33,7 +33,6 @@ class Evs_form_HR extends MainController_avenxo {
     {
     parent::__construct();
 	  $this->load->library('excel');
-	  $this->load->library('upload');
 	  date_default_timezone_set("Asia/Bangkok");
     }
 
@@ -692,19 +691,7 @@ class Evs_form_HR extends MainController_avenxo {
 	{
 
 
-		$config["upload_path"] = "./upload/";
-		$config["allowed_types"] = "xls|xlsx";
-
-		$this->load->library("upload",$config);
-
-		if($this->upload->do_upload("file")){
-				$upload_data = $this->upload->data();
-		}else{
-			print_r($this->upload->display_errors());
-
-		}
-
-
+		
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
 		$year = $data['patt_year']->row(); // show value year now
@@ -775,18 +762,22 @@ class Evs_form_HR extends MainController_avenxo {
 		$pay_id = $year->pay_id;
 
 
-
+		$this->load->model('M_evs_data_approve','mdap');
 		$this->load->model('Da_evs_data_grade','ddgr');
 		for($i = 0 ; $i < $arr_roop ; $i++){
 			$this->ddgr->dgr_grade = $this->input->post("grade[".$i."]");
 			$this->ddgr->dgr_comment = $this->input->post("comment[".$i."]");
-			$this->ddgr->dgr_dtm_emp_id = $this->input->post("Emp_ID[".$i."]");
+			$this->ddgr->dgr_emp_id = $this->input->post("Emp_ID[".$i."]");
 			$this->ddgr->dgr_satatus = 4;
 			$this->ddgr->dgr_pay_id = $pay_id;
 			$this->ddgr->insert();
+			
+			$this->mdap->dma_dtm_emp_id = $this->input->post("Emp_ID[".$i."]");
+			$this->mdap->dma_status = 5;
+			$this->mdap->update_status(); 
 		}
 		// for
-
+		
 		$data = "save_data_acm_weight";
 		echo json_encode($data);
 

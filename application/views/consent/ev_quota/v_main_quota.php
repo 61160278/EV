@@ -130,6 +130,7 @@ function manage_data(qut_id) {
                         <div class="col-sm-6"></div>
                         <div class="col-sm-6"></div>
                     </div>
+					<!-- row -->
                     <table width="100%" class="table table-striped table-bordered dataTable no-footer" id="example"
                         role="grid" aria-describedby="example_info" style="width: 100%;" cellspacing="0">
                         <thead>
@@ -167,15 +168,23 @@ function manage_data(qut_id) {
 
                             <?php } ?>
                         </tbody>
+						<!-- tbody -->
                     </table>
+					<!-- table -->
                 </div>
+				<!-- wrapper -->
+				
             </div>
+			<!--body -->
 
             <div class="panel-footer">
 
             </div>
+			<!-- footer -->
 
         </div>
+		<!-- col-12 -->
+		
         <legend></legend>
         <h3>Description</h3>
         <table height="150px">
@@ -208,6 +217,7 @@ function manage_data(qut_id) {
                 </td>
             </tr>
         </table>
+		<!-- table -->
     </div>
     <!--panel-body-->
 </div><!-- panel-indigo -->

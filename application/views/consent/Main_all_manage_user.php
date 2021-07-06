@@ -9,6 +9,34 @@
 */  
 ?>
 
+
+<style>
+#tabmenu {
+    font-size: 20px;
+}
+
+#color_head {
+    background-color: #3f51b5;
+}
+
+th {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #212121;
+}
+
+#dis_color {
+    background-color: #F5F5F5;
+}
+
+.panel.panel-indigo .panel-heading {
+    color: #e8eaf6;
+    background-color: #134466;
+}
+</style>
+<!-- END style -->
+
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
@@ -38,9 +66,9 @@
                 <!-- row  -->
                 <div class="row">
                     <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
-                        <div class="col-md-6">
-                            <div class="info-tile">
-                                <div class="tile-icon"><i class="fa fa-pencil-square"></i></div>
+                        <div class="col-md-4">
+                            <div class="info-tile tile-indigo">
+                                <div class="tile-icon "><i class="fa fa-pencil-square"></i></div>
                                 <div class="tile-heading"><span>MENU</span></div>
                                 <div class="tile-body">
                                     <span>Create Form</span>
@@ -54,9 +82,9 @@
                     <!-- create form  -->
 
                     <a href="<?php echo base_url() ?>ev_form/Evs_form/show_ststus">
-                        <div class="col-md-6">
-                            <div class="info-tile">
-                                <div class="tile-icon"><i class="fa fa-book"></i></div>
+                        <div class="col-md-4">
+                            <div class="info-tile tile-indigo">
+                                <div class="tile-icon "><i class="fa fa-book"></i></div>
                                 <div class="tile-heading"><span>MENU</span></div>
                                 <div class="tile-body">
                                     <span>Status Form</span>
@@ -68,6 +96,22 @@
                         <!-- col-4  -->
                     </a>
                     <!-- status form  -->
+					
+					<a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/report_grade">
+                        <div class="col-md-4">
+                            <div class="info-tile tile-indigo">
+                                <div class="tile-icon"><i class="fa fa-bar-chart-o"></i></div>
+                                <div class="tile-heading"><span>MENU</span></div>
+                                <div class="tile-body">
+                                    <span>Report grade</span>
+                                </div>
+                                <!-- body  -->
+                            </div>
+                            <!-- title  -->
+                        </div>
+                        <!-- col-4  -->
+                    </a>
+                    <!-- Report grade  -->
                 </div>
                 <!-- row  -->
             </div>

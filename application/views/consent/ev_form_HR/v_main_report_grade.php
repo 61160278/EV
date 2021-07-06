@@ -29,11 +29,11 @@ $(document).ready(function() {
 
 function save_grade() {
     Emp_ID = [];
-    gru_id = [];
+	grade = [];
     comment = [];
     var index = document.getElementById("table_index").value;
 
-
+console.log(index);
 
     for (i = 0; i < index; i++) {
 
@@ -43,6 +43,11 @@ function save_grade() {
 
     }
     // for
+	console.log(Emp_ID);
+	console.log(grade);
+	console.log(comment);
+	
+	
 
     $.ajax({
         type: "post",
@@ -64,7 +69,7 @@ function save_grade() {
     });
     // ajax
 
-    window.location.href = "<?php echo base_url();?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $data_hard_dep;?>/<?php echo $data_focas_group; ?>";
+    //window.location.href = "<?php echo base_url();?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $data_hard_dep;?>/<?php echo $data_focas_group; ?>";
 }
 </script>
 <!-- END script  -->
@@ -74,7 +79,7 @@ function save_grade() {
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
             <div class="panel-heading ">
                 <h2>
-                    <font color="#ffffff" size="6px"><b> Evaluation </b></font>
+                    <font color="#ffffff" size="6px"><b> Report Grade </b></font>
                 </h2>
             </div>
             <!-- heading -->
@@ -88,19 +93,19 @@ function save_grade() {
                                 <center> No.</center>
                             </th>
                             <th rowspan="2" width="15%">
-                                <center>employee id</center>
+                                <center>Employee id</center>
                             </th>
                             <th rowspan="2" width="15%">
-                                <center>name</center>
+                                <center>Name-Surname</center>
                             </th>
                             <th rowspan="2" width="15%">
-                                <center>group</center>
+                                <center>Group</center>
                             </th>
                             <th rowspan="2" width="20%">
-                                <center>grade</center>
+                                <center>Grade</center>
                             </th>
                             <th rowspan="2" width="20%">
-                                <center>comment</center>
+                                <center>Comment</center>
                             </th>
 
                         </tr>

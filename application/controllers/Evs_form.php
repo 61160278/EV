@@ -207,6 +207,8 @@ class Evs_form extends MainController {
 		$this->msgc->sgc_pos_id = $pos_id;
 		$this->msgc->sgc_pay_id = $year_id;
 		$data['info_gcm_form'] = $this->msgc->get_all_competency_by_indicator(); // form
+		
+		$data['year_id'] = $year_id;
 
 		$this->output("consent/form/v_position_form_insert",$data);
 	}

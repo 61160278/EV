@@ -934,9 +934,9 @@ function update_MHRD_edit() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-                            <button class="btn btn-info" > Reject Report </button>
+									<button class="btn btn-info" >Reject Report</button>
                             </div>
-                            <!-- col-md-6 add_app -->
+                            <!-- col-md-6  -->
 
                         </div>
                     </div>
@@ -1725,7 +1725,7 @@ function update_MHRD_edit() {
                                                 <label for="1">&nbsp; 1</label>
                                                 &nbsp;
                                                 <input type="radio"
-                                                    name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?> "
+                                                    name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
                                                     value="2" onclick="show_weight_mhrd_edit()"
                                                     <?php echo $checked_weight_2_2 ?>>
                                                 <label for="2">&nbsp; 2</label>
@@ -1779,11 +1779,12 @@ function update_MHRD_edit() {
                                     <input type="submit" class="btn btn-inverse" value="BACK">
                                 </form>
                                 <!-- form  -->
+							</div>
                                 <div class="col-md-6" align="right">
                                 <button class="btn btn-info" > Reject Report </button>
                                 </div>
                                 <!-- col-md-6 add_app -->
-                            </div>
+                            
                         </div>
                         <!-- row -->
                     </div>
