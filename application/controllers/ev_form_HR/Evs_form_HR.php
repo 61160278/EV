@@ -33,6 +33,7 @@ class Evs_form_HR extends MainController_avenxo {
     {
     parent::__construct();
 	  $this->load->library('excel');
+	  $this->load->library('upload');
 	  date_default_timezone_set("Asia/Bangkok");
     }
 
@@ -691,7 +692,19 @@ class Evs_form_HR extends MainController_avenxo {
 	{
 
 
-		
+		$config["upload_path"] = "./upload/";
+		$config["allowed_types"] = "xls|xlsx";
+
+		$this->load->library("upload",$config);
+
+		if($this->upload->do_upload("file")){
+				$upload_data = $this->upload->data();
+		}else{
+			print_r($this->upload->display_errors());
+
+		}
+
+
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
 		$year = $data['patt_year']->row(); // show value year now

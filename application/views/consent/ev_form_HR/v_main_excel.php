@@ -24,23 +24,23 @@
 <script>
 $(document).ready(function() {
 
-    $('#import_form').on('submit', function(form_submit) {
-        form_submit.preventDefault();
-        $.ajax({
-            url: "<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/import ",
-            method: "POST",
-            data: new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
-            dataType: "JSON",
-            success: function(data) {
-                $('#file').val('');
+    // $('#import_form').on('submit', function(form_submit) {
+    //     form_submit.preventDefault();
+    //     $.ajax({
+    //         url: "<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/import ",
+    //         method: "POST",
+    //         data: new FormData(this),
+    //         contentType: false,
+    //         cache: false,
+    //         processData: false,
+    //         dataType: "JSON",
+    //         success: function(data) {
+    //             $('#file').val('');
                
-                alert(data);
-            }
-        })
-    });
+    //             alert(data);
+    //         }
+    //     })
+    // });
 
 
 
@@ -61,7 +61,7 @@ $(document).ready(function() {
             <div class="panel-body">
                 <center>
                     <h3 align="center">Import Excel Data</h3>
-                    <form method="post" id="import_form" enctype="multipart/form-data">
+                    <form method="post" id="import_form" enctype="multipart/form-data"  action="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/import"> 
                         <p><label>Select Excel File</label>
                             <input type="file" name="file" id="file" required accept=".xls, .xlsx" />
                         </p>
