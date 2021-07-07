@@ -9,6 +9,11 @@
 */  
 ?>
 <script>
+$(document).ready(function(){
+    
+});
+// document.ready
+
 function emp_insert() {
     var count = document.getElementById("count").value;
 	var count_send = 0;
@@ -80,11 +85,14 @@ function emp_insert() {
 	}
 	// for 
 	
-    
     window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/" + <?php echo $year; ?> + ""
 
 } //function emp_insert
+
 </script>
+<!-- END Script  -->
+
+
 <style>
 th {
     color: black;
@@ -116,7 +124,7 @@ td {
                 <div class="panel-body no-padding">
 
                     <table class="table table-striped table-bordered dataTable no-footer" cellspacing="0"
-                        width="100%">
+                        width="100%" id="show_emp">
                         <thead>
                             <tr>
                                 <th>
@@ -136,9 +144,7 @@ td {
                                 </th>
                             </tr>
                         </thead>
-                        <tbody id="show_emp">
-
-
+                        <tbody >
                             <?php 
 								
 								$num = 0;
