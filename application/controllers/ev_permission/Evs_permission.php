@@ -44,7 +44,6 @@ class Evs_permission extends MainController_avenxo {
 		$pay_id = $year->pay_id;
 
 		$this->load->model('M_evs_employee','mevg');
-		printf($pay_id);
 		$this->mevg->emp_pay_id= $pay_id;
 		$data['select'] = $this->mevg->get_all_emp_delete();
 

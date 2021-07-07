@@ -35,10 +35,11 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6" align="center">
-                        <img src="http://10.73.148.5/DBMC/IMG/emp120/<?echo $_SESSION["UsEmp_ID"]?>.jpg" width="50%" class="img-responsive img-circle">
+                        <img src="http://10.73.148.5/DBMC/IMG/emp120/<?echo $_SESSION[" UsEmp_ID"]?>.jpg" width="50%"
+                        class="img-responsive img-circle">
                     </div>
                     <!-- col-6 show img  -->
-					
+
                     <div class="col-md-6">
                         <?php foreach($emp_info->result() as $row){?>
 
@@ -227,9 +228,9 @@
                         <label class="control-label"><strong>
                                 <font size="3px">Approver 1</font>
                             </strong></label>
-                            <?php if(sizeof($app1) != 0){ ?>
-                                <p><?php echo $app1->Empname_eng . "  " . $app1->Empsurname_eng; ?></p>
-                            <?php }
+                        <?php if(sizeof($app1) != 0){ ?>
+                        <p><?php echo $app1->Empname_eng . "  " . $app1->Empsurname_eng; ?></p>
+                        <?php }
                             // if ?>
 
                     </div>
@@ -244,13 +245,13 @@
                     <?php }
                     // if
 					else if($data_app->dma_status == 1 && sizeof($app1) == 0){ ?>
-					<div class="col-md-6" align="center">
+                    <div class="col-md-6" align="center">
                         <div class="alert alert-dismissable alert-inverse">
                             <strong> No Approve 1 </strong>
                         </div>
                     </div>
                     <!-- col-md-6 -->
-					<?php }
+                    <?php }
 					// else 
                     else if($data_app->dma_status > 1 && sizeof($app1) != 0){?>
                     <div class="col-md-6" align="center">
@@ -262,12 +263,12 @@
                     <?php }
                     // else if
 					else if($data_app->dma_status > 1 && sizeof($app1) == 0){ ?>
-						<div class="col-md-6" align="center">
+                    <div class="col-md-6" align="center">
                         <div class="alert alert-dismissable alert-inverse">
                             <strong> No Approve 1 </strong>
                         </div>
                     </div>
-					<?php }
+                    <?php }
 					// else if?>
 
                 </div>
@@ -333,16 +334,16 @@
                         </div>
                     </div>
                     <!-- col-md-6 -->
-					
-					<div class="row">
-						<div class="col-md-10" align="right">
-							<a href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/report_grade">
-								<button class="btn btn-success" >Report Grade</button>
-							</a>
-						</div>
-						<!-- col-11 -->
-					</div>
-					<!-- row -->
+
+                    <div class="row">
+                        <div class="col-md-10" align="right">
+                            <a href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/report_grade">
+                                <button class="btn btn-success">Report Grade</button>
+                            </a>
+                        </div>
+                        <!-- col-11 -->
+                    </div>
+                    <!-- row -->
                     <?php }
                     // else if ?>
                 </div>

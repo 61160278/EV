@@ -38,7 +38,15 @@ h2 {
 .alert-info small {
     color: #828282;
 }
+
+.panel.panel-indigo .panel-heading {
+    color: #e8eaf6;
+    background-color: #134466;
+}
 </style>
+<!-- END Style -->
+
+
 <div class="col-md-12" align="left">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
 
@@ -50,13 +58,14 @@ h2 {
             </div>
         </div>
         <!-- heading -->
+
         <form method="POST" action="<?php echo base_url(); ?>/ev_permission/Evs_permission/select_emp">
-            <div class="panel-editbox" data-widget-controls=""></div>
             <div class="panel-body">
                 <div class="alert alert-info">
-                    <h2><b>Note !</b></h2>
-                    <h3>Please select Probation due date</h3>
+                    <h3><b>Note !</b></h3>
+                    <h4>Please select Probation due date</h4>
                 </div>
+                <!--  alert -->
                 <div class="form-group">
                     <div class="row">
                         <label for="checkbox" class="control-label col-md-3 margin" align="center">
@@ -77,13 +86,13 @@ h2 {
 
                 <div class="row">
                     <div class="col-sm-8" align="left">
-                        <button class="btn btn-inverse">CANCEL</button>
-                        <button class="btn btn-default btn">CLEAR</button>
-
+                        <a href="<?php echo base_url(); ?>Evs_Controller/index">
+                            <button class="btn btn-inverse">BACK</button>
+                        </a>
                     </div>
+                    <!-- col - 8 -->
                     <div class="col-sm-4" align="right">
-                        <button class="btn btn-success btn">Submit</button>
-
+                        <input type="submit" class="btn btn-success btn" value="Submit">
                     </div>
                     <!-- col-sm-4 -->
                 </div>

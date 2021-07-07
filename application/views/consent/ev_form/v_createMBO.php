@@ -998,15 +998,14 @@ function show_approve_mhrd() {
                 data_show += '</div>'
                 data_show += '<!-- col-2  -->'
                 data_show += '<div class="col-md-4">'
-                if(app1 != ""){
-					data_show += '<p id="app1">' + app1 + '</p>'
-				}
-				// if
-
+                if (app1 != "") {
+                    data_show += '<p id="app1">' + app1 + '</p>'
+                }
+                // if
                 else {
-					data_show += '<p id="app1">No Approver 1</p>'
-				}
-				// else 
+                    data_show += '<p id="app1">No Approver 1</p>'
+                }
+                // else 
                 data_show += '</div>'
                 data_show += '<!-- col-4  -->'
                 data_show += '<!-- -------------------- -->'
