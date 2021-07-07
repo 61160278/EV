@@ -96,14 +96,12 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <!-- Load page level scripts-->
-<!-- <script type="text/javascript" src="<?php echo base_url();?>/avenxo/assets/plugins/datatables/jquery.dataTables.js"></script>                            Data Tables -->
-<!-- <script type="text/javascript" src="<?php echo base_url();?>/avenxo/assets/plugins/datatables/TableTools.js"></script>                                   TableTools -->
-<!-- <script type="text/javascript" src="<?php echo base_url();?>/avenxo/assets/plugins/jquery-editable/jquery.editable.js"></script>                         jQuery Editable -->
-<!-- <script type="text/javascript" src="<?php echo base_url();?>/avenxo/assets/plugins/datatables/dataTables.editor.js"></script>                            Data Tables Editor -->
-<!-- <script type="text/javascript" src="<?php echo base_url();?>/avenxo/assets/plugins/datatables/dataTables.editor.bootstrap.js"></script>                  Data Tables Editor for Bootstrap -->
-<!-- <script type="text/javascript" src="<?php echo base_url();?>/avenxo/assets/plugins/datatables/dataTables.bootstrap.js"></script>  		
-<script type="text/javascript" src="<?php echo base_url();?>/avenxo/assets/plugins/datatables/dataTables.bootstrap.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>/avenxo/assets/demo/demo-datatables.js"></script> -->
-
-
+<script type="text/javascript" src="<?php echo base_url();?>avenxo/assets/plugins/datatables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>avenxo/assets/plugins/datatables/TableTools.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>avenxo/assets/plugins/jquery-editable/jquery.editable.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>avenxo/assets/plugins/datatables/dataTables.editor.js"></script> 
+<script type="text/javascript" src="<?php echo base_url();?>avenxo/assets/plugins/datatables/dataTables.editor.bootstrap.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>avenxo/assets/plugins/datatables/dataTables.bootstrap.js"></script>  		
+<script type="text/javascript" src="<?php echo base_url();?>avenxo/assets/plugins/datatables/dataTables.bootstrap.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>avenxo/assets/demo/demo-datatables.js"></script>
 <!-- End loading page level scripts-->
