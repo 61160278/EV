@@ -53,7 +53,7 @@ h2 {
         <div class="panel-heading">
             <div align="right">
                 <h2>
-                    <font size="6px">Manage Permission for Create MBO</font>
+                    <font size="6px"><i class="fa fa-tasks"></i>Manage Permission</font>
                 </h2>
             </div>
         </div>
