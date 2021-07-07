@@ -110,7 +110,6 @@ td {
     background-color: #134466;
 }
 </style>
-<div data-widget-group="group1">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -121,10 +120,10 @@ td {
                     <input id="date" type="hidden" value="<?php echo $_POST["Date"]?>">
                     <div class="panel-ctrls"></div>
                 </div>
-                <div class="panel-body no-padding">
-
+                <!-- panel-heading -->
+                <div class="panel-body">
                     <table class="table table-striped table-bordered dataTable no-footer" cellspacing="0"
-                        width="100%" id="show_emp">
+                        width="100%" >
                         <thead>
                             <tr>
                                 <th>
@@ -144,13 +143,13 @@ td {
                                 </th>
                             </tr>
                         </thead>
-                        <tbody >
+                        <tbody id="show_emp">
                             <?php 
 								
 								$num = 0;
 								foreach($select->result() as $index => $row ) { 
 							?>
-                            <tr class="odd gradeX" align='center'>
+                            <tr align='center'>
                                 <td><?php echo $row->Emp_ID?></td>
                                 <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
                                 <td><?php echo $row->Sectioncode_ID?></td>
@@ -183,14 +182,17 @@ td {
                 <div class="panel-footer">
 
                 </div>
+                <!-- footer -->
 
             </div>
+            <!--  panel-default  -->
             <div class="row">
                 <div class="col-sm-8" align="left">
                     <a href="http://localhost/EV/ev_permission/Evs_permission/index">
                         <button class="btn btn-inverse"><i class="fa fa-mail-reply"></i> Back</button>
                     </a>
                 </div>
+                <!-- col-8  -->
                 <div class="col-sm-4" align="right">
                     <button class="btn btn-success btn" onclick="emp_insert()">Submit</button>
 
@@ -198,6 +200,8 @@ td {
                 </div>
                 <!-- col-sm-4 -->
             </div>
+            <!-- row  -->
         </div>
+        <!-- col-12  -->
     </div>
-</div>
+    <!-- row  -->
