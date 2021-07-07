@@ -115,7 +115,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text4 text-uppercase mb-1">Menu</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage Permision </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage Permission </div>
                                     </div>
                                     <!-- col-2 -->
                                 </div>
