@@ -80,5 +80,25 @@ class M_evs_data_mhrd_weight extends Da_evs_data_mhrd_weight {
 		
 	}
 
+	/*
+	* get_all
+	* Get All Group from database
+	* @input  -
+	* @output Group all
+	* @author jakkarin pimpaeng
+	* @Create Date 2564-07-07
+	*/
+	function get_data_by_pay_id(){	
+		$sql = "SELECT *
+		FROM evs_database.evs_data_mhrd_weight
+		INNER JOIN evs_database.evs_employee 
+		ON emp_employee_id = mhw_evs_emp_id
+		WHERE emp_pay_id = ?
+		ORDER BY `evs_data_mhrd_weight`.`mhw_id` ASC";
+		$query = $this->db->query($sql, array($this->emp_pay_id));
+		return $query;
+	
+	}//get_all_com
+
 } 
 ?>

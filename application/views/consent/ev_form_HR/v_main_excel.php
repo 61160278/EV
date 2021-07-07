@@ -23,8 +23,6 @@
 
 <script>
 $(document).ready(function() {
-	
-	$("#show_emp").hide();
 
     $('#import_form').on('submit', function(form_submit) {
         form_submit.preventDefault();
@@ -38,7 +36,6 @@ $(document).ready(function() {
             dataType: "JSON",
             success: function(data) {
                 $('#file').val('');
-               $("#show_emp").show();
                 alert(data);
             }
 			// success
@@ -99,98 +96,6 @@ $(document).ready(function() {
                 <hr>
 
 
-                <table class="table table-bordered table-striped m-n" id="show_emp">
-                    <thead>
-                        <tr>
-                            <th width="2%">
-                                <center> No.</center>
-                            </th>
-                            <th width="15%">
-                                <center>Employee id</center>
-                            </th>
-                            <th width="20%">
-                                <center>Name-Surname</center>
-                            </th>
-							<th width="20%">
-                                <center>Department</center>
-                            </th>
-                            <th width="15%">
-                                <center>Score 1</center>
-                            </th>
-							<th width="15%">
-                                <center>Score 2</center>
-                            </th>
-                        </tr>
-                    </thead>
-                <!-- thead -->
-				
-                <!-- <tbody>
-                        <?php 
-                                // $table_index = 0;
-                            
-							    // foreach($data_group as $index => $row) {
-                                // if($data_emp_id != $row->emp_employee_id) {
-                                
-                                ?>
-                        <input name="Emp_ID" type="text" value="<?php //echo $row->emp_id ?>" hidden>
-                        <tr>
-                            <td>
-                                <center>
-                                    <?php // echo $index+1 ?>
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-                                    <?php //echo  $row->emp_employee_id ?>
-                                   
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-                                    <?php //echo $row->Empname_engTitle." ".$row->Empname_eng." ".$row->Empsurname_eng ?>
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-                                    <?php //echo $row->gru_name ?>
-                                   
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-                                    <?php // echo $data_grade[$index]; ?>
-                                    <input type="text" name="grade" 
-                                        value="<?php //echo $data_grade[$index]; ?>" hidden>
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-
-                        
-                                    <textarea type="text" name="comment" placeholder="Enter comment" class="form-control"></textarea>
-
-                                </center>
-                            </td>
-                        </tr>
-                        <?php 
-                           // $table_index += 1;
-                                     //    }
-                               //     } ?>
-
-                        <input type="text" id="table_index" value="<?php //echo $table_index; ?>" hidden>
-                    </tbody>
-                </table>
-                <br>
-                <div class="row">
-                    <div class="col-md-6">
-                        <a href="<?php //echo base_url(); ?>ev_form_HR/Evs_form_HR/index">
-                            <button type="button" class="btn btn-inverse">Back</button>
-                        </a>
-                    </div>
-                    <div class="col-md-6" align="right">
-                        <button class="btn btn-success" onclick="save_grade()" > Save</button>
-                    </div>
-                </div>-->
             </div>
         </div>
     </div>

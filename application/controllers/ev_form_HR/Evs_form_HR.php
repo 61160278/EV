@@ -706,7 +706,7 @@ class Evs_form_HR extends MainController_avenxo {
 		$this->load->library("upload",$config);
 
 		
-		$gg  = $_FILES["file"];
+
 
 		if($this->upload->do_upload("file")){
 				$upload_data = $this->upload->data();
@@ -723,6 +723,7 @@ class Evs_form_HR extends MainController_avenxo {
 		$this->load->model('M_evs_set_form_mhrd','msmd');
 		$this->load->model('Da_evs_data_mhrd_weight','ddmw');
 
+		
 		if(isset($_FILES["file"]["name"]))
 		{
 
@@ -766,7 +767,7 @@ class Evs_form_HR extends MainController_avenxo {
 					
 				}
 			}
-			echo json_encode($gg );
+			echo json_encode("import successfully");
 		}	
 	}
 

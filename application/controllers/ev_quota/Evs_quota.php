@@ -66,19 +66,7 @@ class Evs_quota extends MainController_avenxo {
 	}
 	// function add_quota()
 	
-	/*
-	* add_quota
-	* @input
-	* @output 
-	* @author 	Piyasak Srijan
-	* @Create Date 2564-04-05
-	*/
-	function add_quota_pa()
-	{
-		$this->load->model('M_evs_pattern_and_year','mpay');
-		$data['year_quota_data'] = $this->mpay->get_by_year(); 
-		$this->output('/consent/ev_quota/v_add_quota_pa',$data);
-	}
+	
 	
 	/*
 	* hd_report_curve
