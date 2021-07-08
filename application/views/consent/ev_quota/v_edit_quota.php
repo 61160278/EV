@@ -248,21 +248,17 @@ function show_qouta() {
     var myChart = new Chart(ctx, config);
     $('#reset').on('click', function() {
         myChart.destroy();
-
-    });
-
-    $(document).ready(function() {
-        $("#reset").click(function() {
-            for (var i = 1; i <= 6; i++) {
+        for (var i = 1; i <= 6; i++) {
                 $("#quota" + i).attr("disabled", false);
             }
 
-        });
     });
+
+
 
 } //showChart
 $(document).ready(function() {
-    $("#idDataQuota").hide();
+    show_qouta();
 });
 </script>
 <style>
@@ -291,7 +287,7 @@ $(document).ready(function() {
             <div class="row">
                 <div class="col-md-2">
                     <?php foreach($edit_qut_data as $value){ ?>
-                    <input id="idDataQuota" value="<?php echo $value->qut_id;?>">
+                    <input id="idDataQuota" value="<?php echo $value->qut_id;?>" hidden>
                     <?php } ?>
                 </div>
                 <div class="col-md-8">

@@ -11,7 +11,7 @@
 <script>
 $(document).ready(function() {
     // get_department()
-    show_data()
+   // show_data()
 
 }); //ready
 
@@ -159,9 +159,10 @@ function search_data() {
     var dep_select = document.getElementById("dep_select").value;
     var pos_select = document.getElementById("pos_select").value;
 
-    console.log(pos_lv_select)
+    
     console.log(com_select)
     console.log(dep_select)
+    console.log(pos_lv_select)
     console.log(pos_select)
     $.ajax({
         type: "post",
@@ -276,6 +277,8 @@ function get_position() {
 
         }
     });
+
+    search_data();
 } //get_position
 function get_department() {
     var dep_sel = document.getElementById("com_select").value; // get kay by id
@@ -306,7 +309,7 @@ function get_department() {
 
         }
     });
-
+    search_data();
 } //get_department()
 
 function manage_data(qut_id, i) {
@@ -412,7 +415,7 @@ h4 {
             <legend></legend>
             <div>
                 <label class="col-md-3">
-                    <select id="com_select" name="example_length" class="form-control" onclick="get_department()">
+                    <select id="com_select" name="example_length" class="form-control" onclick="get_department();">
                         <option value="0">Company</option>
                         <!-- start foreach -->
                         <?php foreach($com_data->result() as $value){ ?>
