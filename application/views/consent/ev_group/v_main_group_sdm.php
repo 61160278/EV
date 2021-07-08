@@ -526,7 +526,7 @@ function check_data_edt(check) {
     <div class="modal fade" id="Add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header" style="background-color:#3f51b5;">
+                <div class="modal-header" style="background-color:#134466;">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                         style="color:white;">&times;</button>
                     <h2 class="modal-title">
