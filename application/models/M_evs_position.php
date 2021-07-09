@@ -127,7 +127,7 @@ class M_evs_position extends Da_evs_position {
 	* @Create Date 2563-04-21
 	*/	
 
-	function get_pos_com_dep(){	
+	function get_pos_com_dep($sql_data){	
 		$sql = " SELECT *
 		FROM dbmc.employee
 		LEFT JOIN dbmc.position
@@ -140,9 +140,9 @@ class M_evs_position extends Da_evs_position {
 		ON sectioncode.dep_id = department.Dep_id
 		LEFT JOIN dbmc.company
 		ON department.Company_ID = company.Company_ID
-        WHERE employee.Company_ID = ?
-        GROUP BY department.Dep_id";
-		$query = $this->db->query($sql, array($this->Company_ID));
+        WHERE ".$sql_data."
+        GROUP BY  position.Position_ID ";
+		$query = $this->db->query($sql);
 		return $query;
 	}//get_all WHERE NOT pos_psl_id=6
 	

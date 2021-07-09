@@ -362,6 +362,7 @@ function get_search_data(){
 	$com_select = "";
 	$dep_sel ="";
 	$pos_select ="";
+	$sql_data = "";
 
 	$com_select = $this->input->post("com_select");
 	$dep_sel = $this->input->post("dep_sel");
@@ -371,22 +372,31 @@ function get_search_data(){
 		$this->load->model('M_evs_position','mpos');	
 
 		if(($com_select == "1" || $com_select == "2") && $dep_sel == "0" && $pos_lv_select == "0" &&  $pos_select == "0"){
-			$this->mpos->Company_ID = ''.$com_select.'';
+			$sql_data =  'employee.Company_ID = '.$com_select.'';
 		}
 		else if($com_select == "3" && $dep_sel == "0" && $pos_lv_select == "0" &&  $pos_select == "0"){
-			$this->mpos->Company_ID = '1 OR employee.Company_ID = 2';
+			$sql_data =  '(employee.Company_ID = 1 or employee.Company_ID = 2)';
+		}
+		else if($com_select == "3" && $dep_sel != "0" && $pos_lv_select == "0" &&  $pos_select == "0"){
+			$sql_data = '(employee.Company_ID = 1 or employee.Company_ID = 2) and department.Dep_id '.'='.$dep_sel.' ';
+		}
+		else if($com_select == "3" && $dep_sel != "0" && $pos_lv_select != "0" &&  $pos_select == "0"){
+			$sql_data = '(employee.Company_ID = 1 or employee.Company_ID = 2) and department.Dep_id '.'='.$dep_sel.' and position_level.psl_id '.'='.$pos_lv_select.' ';
+		}
+		else if($com_select == "3" && $dep_sel != "0" && $pos_lv_select != "0" &&  $pos_select != "0"){
+			$sql_data  = '(employee.Company_ID = 1 or employee.Company_ID = 2) and department.Dep_id '.'='.$dep_sel.' and position_level.psl_id '.'='.$pos_lv_select.' and position.Position_ID '.'='.$pos_select.' ';
 		}
 		else if(($com_select == "1" || $com_select == "2") && $dep_sel != "0" && $pos_lv_select == "0" &&  $pos_select == "0"){
-			$this->mpos->Company_ID = ''.$com_select.' and department.Dep_id '.'='.$dep_sel.'';
+			$sql_data = 'employee.Company_ID = '.$com_select.' and department.Dep_id '.'='.$dep_sel.' ';
 		}
 		else if(($com_select == "1" || $com_select == "2") && $dep_sel != "0" && $pos_lv_select != "0" &&  $pos_select == "0"){
-			$this->mpos->Company_ID = ''.$com_select.' and department.Dep_id '.'='.$dep_sel.' and position_level.psl_id '.'='.$pos_lv_select.'';
+			$sql_data = 'employee.Company_ID = '.$com_select.' and department.Dep_id '.'='.$dep_sel.' and position_level.psl_id '.'='.$pos_lv_select.' ';
 		}
 		else if(($com_select == "1" || $com_select == "2") && $dep_sel != "0" && $pos_lv_select != "0" &&  $pos_select != "0"){
-			$this->mpos->Company_ID = ''.$com_select.' and department.Dep_id '.'='.$dep_sel.' and position_level.psl_id '.'='.$pos_lv_select.' and position.Position_ID '.'='.$pos_select.'';
+			$sql_data  = 'employee.Company_ID = '.$com_select.' and department.Dep_id '.'='.$dep_sel.' and position_level.psl_id '.'='.$pos_lv_select.' and position.Position_ID '.'='.$pos_select.' ';
 		}
 		// $this->mpos->Position_Level = $Position_Level;
-		$data = $this->mpos->get_pos_com_dep()->result();
+		$data = $this->mpos->get_pos_com_dep($sql_data)->result();
 		echo json_encode($data);
 
 }//get_search_data

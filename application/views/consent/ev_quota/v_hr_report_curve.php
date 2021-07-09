@@ -75,12 +75,10 @@ $(document).ready(function() {
     check_quota_plan()
     check_quota_actual()
     show_quotaplan()
-    document.getElementById("submit").disabled = true;
+    //document.getElementById("submit").disabled = true;
     $("#saveData").attr("disabled", true);
 });
-$(document).ready(function() {
-    $("#saveData").attr("disabled", true);
-});
+
 
 function check_quota_plan() {
 
@@ -88,7 +86,7 @@ function check_quota_plan() {
     var value_quotaPlan = 0;
     var quota = 0;
     //console.log(quota);
-    document.getElementById("submit").disabled = false;
+    //document.getElementById("submit").disabled = false;
     check = document.getElementById("quotaPlanToT").innerHTML;
     //console.log(check);
     for (var i = 1; i <= 6; i++) {
@@ -127,10 +125,9 @@ function check_quota_actual() {
         if (actual > parseFloat(quota)) {
             $("#show_Actual").css("color", "red");
             add_alert();
-            $("#submit").attr("disabled", true);
+            //$("#submit").attr("disabled", true);
             $("#saveData").attr("disabled", true);
-        } else if (actual == parseFloat(quota)) {
-            $("#submit").attr("disabled", false);
+        } else  {            
             $("#show_Actual").css("color", "#000000");
             $("#saveData").attr("disabled", false);
         }
@@ -299,18 +296,10 @@ function show_linebarChart() {
     });
     $('#reset').on('click', function() {
         mixedChart.destroy();
-
-    });
-
-    $(document).ready(function() {
-        $("#reset").click(function() {
-
-            for (var i = 1; i <= 6; i++) {
+        for (var i = 1; i <= 6; i++) {
                 $("#quotaActual" + i).attr("disabled", false);
             }
-            $("#submit").attr("disabled", true);
-        });
-
+            //$("#submit").attr("disabled", true);
 
     });
 
