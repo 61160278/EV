@@ -276,10 +276,10 @@ tbody {
 
         <div class="panel-body">
             <div class="alert alert-info">
-                <h3><b>Note !</b></h3>
-                <h4>
+                <h4><b>Note !</b></h4>
+                <h5>
                     Please select contact group for add contact to the group.
-                </h4>
+                </h5>
             </div>
         </div>
         <!-- panel-body h3 -->
