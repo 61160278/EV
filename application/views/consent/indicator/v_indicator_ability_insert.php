@@ -727,7 +727,7 @@ function clear_data_componet() {
         <!-- Start Card Body -->
         <div class="card-body">
             <!-- Start Form : Ability -->
-            <h2 class="m-0 ">Please add Items form ACM</h2><br>
+            <h2 class="m-0 ">Please add items form ACM</h2><br>
             <hr>
             <div class="form-group">
                 <!-- Start add Competency -->
