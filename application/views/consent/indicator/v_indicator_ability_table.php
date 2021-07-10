@@ -249,7 +249,7 @@ function get_definetion_com() {
                 '<a href="<?php echo base_url();?>/Evs_ability_indicators_form/indicator_ability_view_edit_data/' +
                 com_sel +
                 '"><button class="btn btn-warning float-center"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit &nbsp;</button></a><br><br><button class="btn btn-danger float-center" data-toggle="modal" href="#myModal_delete_Competency"><i class="fa fa-times"></i>&nbsp;Delete</button>'
-                );
+            );
             // $('#link').html(
             //     '<button class="btn btn-warning float-center"><i class="fa fa-pencil">&nbsp;&nbsp;Edit &nbsp;</i></button>'
             // );
@@ -591,7 +591,7 @@ input:checked+.slider:before {
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header btn-danger">
-                <h3 class="modal-title ">Do you want to delete Competency</h3>
+                <h4 class="modal-title ">Do you want to delete Competency</h4>
             </div>
             <!-- modal-header -->
             <div class="modal-body">
@@ -599,11 +599,18 @@ input:checked+.slider:before {
             </div>
             <!-- modal-body -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel_del"><i
-                        class="fa fa-times">&nbsp;Cancel</i></button>
-                <a href="<?php echo base_url();?>/Evs_ability_indicators_form/indicator_ability">
-                    <button id="success_btn" class="btn btn-success" onclick="clear_data_componet()"><i
-                            class="fa fa-check">&nbsp;Confirm</i></button></a>
+
+                    <div class="col-6" align="left">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel_del">
+                            <i class="fa fa-times">&nbsp;Cancel</i></button>
+                    </div>
+                    <!-- col-6  -->
+                    <div class="col-6" align="right">
+                        <a href="<?php echo base_url();?>/Evs_ability_indicators_form/indicator_ability">
+                            <button id="success_btn" class="btn btn-success" onclick="clear_data_componet()"><i
+                                    class="fa fa-check">&nbsp;Confirm</i></button></a>
+                    </div>
+                    <!-- col-6  -->
             </div>
             <!-- modal-footer -->
             <!-- add button  -->
