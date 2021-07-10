@@ -52,14 +52,6 @@ td {
 }
 </style>
 <script>
-function select_quota(value) {
-
-    if (value == "2") {
-        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_pa";
-    } else {
-        window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/add_quota_ca";
-    }
-} //select_quota
 $(document).ready(function() {
     $("#saveData").attr("disabled", true);
 
@@ -85,21 +77,23 @@ function insert_quota() {
 
         if (quotaType == 1) {
 
-            quotaType = document.getElementById("quotaType").options[1].text;
+            quotaType = document.getElementById("quotaType").options[0].text;
             // groupPosition = document.getElementById("groupPosition").options[1].text;
 
+        } else {
+            quotaType = document.getElementById("quotaType").options[1].text;
         }
         if (groupPosition == 1) {
 
-            groupPosition = document.getElementById("groupPosition").options[1].text;
+            groupPosition = document.getElementById("groupPosition").options[0].text;
 
         } else if (groupPosition == 2) {
 
-            groupPosition = document.getElementById("groupPosition").options[2].text;
+            groupPosition = document.getElementById("groupPosition").options[1].text;
 
         } else if (groupPosition == 3) {
 
-            groupPosition = document.getElementById("groupPosition").options[3].text;
+            groupPosition = document.getElementById("groupPosition").options[2].text;
         }
 
         //end if-else groupPosition
@@ -221,21 +215,23 @@ function confirm_save() {
 
         if (quotaType == 1) {
 
-            quotaType = document.getElementById("quotaType").options[1].text;
+            quotaType = document.getElementById("quotaType").options[0].text;
             // groupPosition = document.getElementById("groupPosition").options[1].text;
 
+        } else {
+            quotaType = document.getElementById("quotaType").options[1].text;
         }
         if (groupPosition == 1) {
 
-            groupPosition = document.getElementById("groupPosition").options[1].text;
+            groupPosition = document.getElementById("groupPosition").options[0].text;
 
         } else if (groupPosition == 2) {
 
-            groupPosition = document.getElementById("groupPosition").options[2].text;
+            groupPosition = document.getElementById("groupPosition").options[1].text;
 
         } else if (groupPosition == 3) {
 
-            groupPosition = document.getElementById("groupPosition").options[3].text;
+            groupPosition = document.getElementById("groupPosition").options[2].text;
         }
     }
     console.log(groupPosition);
@@ -358,13 +354,13 @@ function show_qouta() {
         myChart.destroy();
 
         for (var i = 1; i <= 6; i++) {
-                $("#quota" + i).attr("disabled", false);
-            }
+            $("#quota" + i).attr("disabled", false);
+        }
 
     });
 
     $(document).ready(function() {
-       
+
     });
 
 } //showChart
@@ -380,23 +376,23 @@ function show_qouta() {
 
             <div class="row">
                 <div class="form-group">
-                    <div class = "row">
+                    <div class="row">
                         <div class="col-md-3">
-                            
+
                         </div>
                     </div>
                     <div class="col-md-3">
                     </div>
                     <div class="col-md-3">
                         <select class="form-control text" id="quotaType">
-                           
+
                             <option value="1">Salary Increment</option>
                             <option value="2">Year End Bonus</option>
                         </select>
                     </div>
                     <div class="col-md-3">
                         <select class="form-control text" id="groupPosition">
-                        
+
                             <option value="1">All Position</option>
                             <option value="2">Operational Associate above</option>
                             <option value="3">Staff above</option>

@@ -72,8 +72,8 @@ tbody:hover {
 $(document).ready(function() {
     check_quota_plan()
     check_quota_actual()
-
     show_linebarChart()
+
 });
 
 function check_quota_plan() {
@@ -101,10 +101,14 @@ function check_quota_actual() {
     var quota = "";
     var sumQuotaActual = 0;
 
+
+
     quota = document.getElementById("quotaPlanToT").innerHTML;
+
     // document.getElementById("submit").disabled = false;
     for (var i = 1; i <= 6; i++) {
-        check = document.getElementById("quotaActual" + i).innerHTML;
+        check = document.getElementById("quotaActual" + i).value;
+        console.log(check);
         if (check == "") {
             quotaActual = null;
         } else if (check < 0) {
@@ -112,9 +116,9 @@ function check_quota_actual() {
         } else {
             valueActual = parseFloat(check);
             console.log(valueActual);
-            quotaActual = (valueActual * 100) / (parseFloat(quota).toFixed(2));
+            quotaActual = (valueActual * 100) / (parseFloat(quota));
             sumQuotaActual += quotaActual;
-            console.log(quotaActual + "=" + valueActual + "* 100 /" + (parseFloat(quota).toFixed(2)));
+            console.log(quotaActual + "=" + valueActual + "* 100 /" + parseFloat(quota));
             actual += valueActual;
 
         }
@@ -134,6 +138,7 @@ function check_quota_actual() {
 
     }
     // for i  
+    
 }
 
 function add_alert() {
@@ -159,9 +164,7 @@ function get_data() {
 
 function show_linebarChart() {
 
-    for (var i = 1; i <= 6; i++) {
-        $("#quotaActual" + i).attr("disabled", true);
-    }
+
     var dataQuota = [];
     var arrQuota = [];
     var dataActual = [];
@@ -185,7 +188,7 @@ function show_linebarChart() {
     console.log(dataActual);
 
     var ctx = document.getElementById('myChart').getContext('2d');
-
+    
     var mixedChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -224,19 +227,11 @@ function show_linebarChart() {
             }
         }
     });
-    $('#reset').on('click', function() {
+    $('#submit').on('click', function() {
         mixedChart.destroy();
-
+        show_linebarChart();
     });
-
-    $(document).ready(function() {
-        $("#reset").click(function() {
-            for (var i = 1; i <= 6; i++) {
-                $("#quotaActual" + i).attr("disabled", false);
-            }
-
-        });
-    });
+  
 
 } //show_linebarChart
 
@@ -342,12 +337,7 @@ function manage_data(qut_id) {
     window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
 } //manage_data
 
-function edit_data() {
-    var pos_id = document.getElementById("edit_pos").value;
-    var qut_id = document.getElementById("edit_qut").value;
-    console.log(pos_id);
-    console.log(qut_id);
-    var data_sent = qut_id + ":" + pos_id;
+function edit_data(data_sent) {
     window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/edit_quota_actual/" + data_sent;
 } //manage_data
 </script>
@@ -474,35 +464,44 @@ function edit_data() {
                                             <div class="col-md-1">
                                                 <tr class="orange2">
                                                     <td><b>Plan</b></td>
-                                                    <?php foreach($qup_data as $value){ ?>
-                                                    <td id="show_quotaPlan1"><?php echo $value->qup_grad_S;?></td>
-                                                    <td id="show_quotaPlan2"><?php echo $value->qup_grad_A;?></td>
-                                                    <td id="show_quotaPlan3"><?php echo $value->qup_grad_B;?></td>
-                                                    <td id="show_quotaPlan4"><?php echo $value->qup_grad_B_N;?></td>
-                                                    <td id="show_quotaPlan5"><?php echo $value->qup_grad_C;?></td>
-                                                    <td id="show_quotaPlan6"><?php echo $value->qup_grad_D;?></td>
-                                                    <td id="quotaPlanToT"><?php echo $value->qup_total;?></td>
-                                                    <?php } ?>
+                                                    <td id="show_quotaPlan1"></td>
+                                                    <td id="show_quotaPlan2"></td>
+                                                    <td id="show_quotaPlan3"></td>
+                                                    <td id="show_quotaPlan4"></td>
+                                                    <td id="show_quotaPlan5"></td>
+                                                    <td id="show_quotaPlan6"></td>
+                                                    <td id="quotaPlanToT"><?php echo $data_Plan;?></td>
+
                                             </div>
                                             </tr>
                                             <div class="col-md-1">
                                                 <tr class="orange2">
                                                     <td><b>Actual</b></td>
-                                                    <?php foreach($qua_data as $value){ ?>
-                                                    <td id="quotaActual1" onchange="check_quota_actual()">
-                                                        <?php echo $value->qua_grad_S;?></td>
-                                                    <td id="quotaActual2" onchange="check_quota_actual()">
-                                                        <?php echo $value->qua_grad_A;?></td>
-                                                    <td id="quotaActual3" onchange="check_quota_actual()">
-                                                        <?php echo $value->qua_grad_B;?></td>
-                                                    <td id="quotaActual4" onchange="check_quota_actual()">
-                                                        <?php echo $value->qua_grad_B_N;?></td>
-                                                    <td id="quotaActual5" onchange="check_quota_actual()">
-                                                        <?php echo $value->qua_grad_C;?></td>
-                                                    <td id="quotaActual6" onchange="check_quota_actual()">
-                                                        <?php echo $value->qua_grad_D;?></td>
-                                                    <td id="show_Actual"><?php echo $value->qua_total;?></td>
-                                                    <?php } ?>
+                                                    <td>
+                                                        <input type="number" class="form-control" id="quotaActual1"
+                                                            onchange="check_quota_actual()" value="0" min="0">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="form-control" id="quotaActual2"
+                                                            onchange="check_quota_actual()" value="0" min="0">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="form-control" id="quotaActual3"
+                                                            onchange="check_quota_actual()" value="0" min="0">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="form-control" id="quotaActual4"
+                                                            onchange="check_quota_actual()" value="0" min="0">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="form-control" id="quotaActual5"
+                                                            onchange="check_quota_actual()" value="0" min="0">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="form-control" id="quotaActual6"
+                                                            onchange="check_quota_actual()" value="0" min="0">
+                                                    </td>
+                                                    <td id="show_Actual"></td>
                                                 </tr>
                                             </div>
                                             <div class="col-md-1">
@@ -526,7 +525,8 @@ function edit_data() {
                                     </tbody>
                                 </table>
                                 <br>
-
+                                <button class="btn-success btn pull-right" id="submit" type="submit"
+                                        onclick="show_linebarChart()">SUBMIT</button>
                                 <br>
 
                                 <canvas id="myChart" width="100"></canvas>
@@ -546,12 +546,11 @@ function edit_data() {
                 onclick=" manage_data(<?php echo $value->qut_id;?>)">CANCEL</button>
             <?php } ?>
 
-            <?php foreach($qua_data as $value){ ?>
-            <input type="text" id="edit_pos" value="<?php echo $value->qua_Position_ID;?>" hidden>
-            <input type="text" id="edit_qut" value="<?php echo $value->qua_qut_id;?>" hidden>
+
+
             <button type="button" class="btn btn-warning pull-right" style="background-color:#0000CD;" id="edit"
-                onclick="edit_data()">EDIT</button>
-            <?php } ?>
+                onclick="edit_data(<?php echo $data_dep_pos; ?>)">EDIT</button>
+
         </div>
         <br>
     </div>
