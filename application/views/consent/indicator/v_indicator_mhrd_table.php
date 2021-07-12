@@ -230,10 +230,15 @@ function get_data_for_item_table() {
 
 function send_id_to_delete(itm_id) {
     var button = ""
+    button += '<div class="col-6" align="left">'
     button +=
-        '<button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel_del">Cancel</button>'
+        '<button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel_del"><i class="fa fa-times">&nbsp;Cancel</i></button>'
+    button += '</div>'
+    button += '<div class="col-6" align="right">'
     button += '<a href="<?php echo base_url(); ?>/Evs_mhrd_indicators_form/indicator_mhrd_delete/' +
-        itm_id + '"><button id="success_btn" class="btn btn-success">Confirm</button></a>'
+        itm_id +
+        '"><button id="success_btn" class="btn btn-success"><i class="fa fa-check">&nbsp;Confirm</i></button></a>'
+    button += '</div>'
     $('#modal_delete').html(button)
 }
 // send_id_to_delete
