@@ -88,8 +88,8 @@ function get_data_for_competency_table() {
                 $table += 'No infomation indicator, Please add indicator'
                 $table += '</td>'
                 $table += '</tr>'
-                // $("#def_info").hide();
-                // $("#com_info").hide();
+                $("#def_info").hide();
+                $("#com_info").hide();
 
             }
             // else

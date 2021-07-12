@@ -89,7 +89,7 @@ $(document).ready(function() {
             '<div class="col-6">' +
             '<div class="row">' +
             '<div class="col-4">' +
-            '<label for="textarea-input" class=" form-control-label">Target Level : </label>' +
+            '<label for="textarea-input" class=" form-control-label" align="right">Target Level : </label>' +
             '</div>' +
             '<!-- col-4  -->' +
             '<div class="col-8">' +
@@ -845,20 +845,20 @@ function clear_data_componet() {
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="row">
-                                    <div class="col-3">
+                                    <div class="col-2" align="right">
                                         <label class=" form-control-label">Key
                                             component EN : </label>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         <textarea type="text" id="text_key_component_en" name="arr_add_key_component_en"
                                             placeholder="Enter Key component" class="form-control"></textarea>
                                     </div>
 
-                                    <div class="col-3">
+                                    <div class="col-2" align="right">
                                         <label class=" form-control-label">Key
                                             component TH : </label>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         <textarea type="text" id="text_key_component_th" name="arr_add_key_component_th"
                                             placeholder="Enter Key component" class="form-control"></textarea>
                                     </div>
@@ -905,8 +905,8 @@ function clear_data_componet() {
                         <div class="row">
                             <div class="col-6">
                                 <div class="row">
-                                    <div class="col-4">
-                                        <label for="textarea-input" class=" form-control-label">Target Level : </label>
+                                    <div class="col-4" align="right">
+                                        <label for="textarea-input" class="form-control-label" >Target Level : </label>
                                     </div>
                                     <!-- col-4  -->
                                     <div class="col-8">
@@ -917,11 +917,15 @@ function clear_data_componet() {
                                         </select>
                                         <!-- name="arr_add_point"  -->
                                     </div>
+                                    <!-- col 8  -->
                                 </div>
+                                <!-- row  -->
                             </div>
+                            <!-- col-6  -->
                         </div>
+                        <!-- row  -->
                         <br>
-                        <!-- End input Identification -->
+                        <!-- End input Target Level -->
 
                         <!-- Start input position  -->
                         <div class="row">
