@@ -161,7 +161,7 @@ function get_data() {
         }
     });
 }
-
+mixedChart = null;
 function show_linebarChart() {
 
 
@@ -189,7 +189,7 @@ function show_linebarChart() {
 
     var ctx = document.getElementById('myChart').getContext('2d');
     
-    var mixedChart = new Chart(ctx, {
+     mixedChart = new Chart(ctx, {
         type: 'bar',
         data: {
             datasets: [{
@@ -227,17 +227,22 @@ function show_linebarChart() {
             }
         }
     });
-    $('#submit').on('click', function() {
-        mixedChart.destroy();
-        show_linebarChart();
-    });
+  
   
 
 } //show_linebarChart
 
+
+function delete_Chart() {
+    //$('#myChart').html("");
+        mixedChart.destroy();
+        show_linebarChart();
+}
+
 function confirm_save() {
     insert_quota_actual();
-    $('#warning_save').modal('show');
+    check_quota_plan();
+   //window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + <?php echo $data_dep_pos; ?>;
 }
 
 function insert_quota_actual() {
@@ -331,6 +336,100 @@ function insert_quota_actual() {
         }
     }); //ajax
 } //insert_quota
+
+function insert_quota_plan() {
+    var check = "";
+
+    var sum_quota_plan = 0;
+    var grade = [];
+    var qup_gradeS = 0;
+    var qup_gradeA = 0;
+    var qup_gradeB = 0;
+    var qup_gradeB_N = 0;
+    var qup_gradeC = 0;
+    var qup_gradeD = 0;
+    var qup_gradeTOT = 0;
+
+    var check = "";
+    var value_quotaPlan = 0;
+    var quota = 0;
+    var pos_id = "";
+    var qut_id = "";
+
+    pos_id = document.getElementById("position_id").value;
+    qut_id = document.getElementById("qut_id").value;
+    check = document.getElementById("show_quotaPlan").value;
+    console.log(check);
+    console.log(pos_id);
+    console.log(qut_id);
+    //}
+    if (check == " ") {
+        check = null;
+    } else {
+        var datedata = new Date();
+        var day = datedata.getDate();
+        var month = datedata.getMonth() + 1;
+        var year = datedata.getFullYear();
+        // get date form new date() 
+        var savedate = year + "-" + month + "-" + day;
+
+
+        <?php foreach($year_quota_data->result() as $value){ ?>
+        if (year == "<?php echo $value->pay_year;?>") {
+            var year_id = <?php echo $value->pay_id;?>
+        }
+        <?php } ?>
+        for (var i = 1; i <= 6; i++) {
+            quota = document.getElementById("quota" + i).innerHTML;
+            value_quotaPlan = parseFloat(check) * quota / 100;
+            grade[i] = value_quotaPlan;
+            sum_quota_plan += grade[i];
+        } //for 
+        grade.shift();
+        console.log(grade);
+        console.log(sum_quota_plan);
+        qup_gradeS = grade[0];
+        qup_gradeA = grade[1];
+        qup_gradeB = grade[2];
+        qup_gradeB_N = grade[3];
+        qup_gradeC = grade[4];
+        qup_gradeD = grade[5];
+
+        console.log(qup_gradeS);
+        console.log(qup_gradeA);
+        console.log(qup_gradeB);
+        console.log(qup_gradeB_N);
+        console.log(qup_gradeC);
+        console.log(qup_gradeD);
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_plan_insert",
+
+            data: {
+
+                "qup_gradeS": qup_gradeS,
+                "qup_gradeA": qup_gradeA,
+                "qup_gradeB": qup_gradeB,
+                "qup_gradeB_N": qup_gradeB_N,
+                "qup_gradeC": qup_gradeC,
+                "qup_gradeD": qup_gradeD,
+                "sum_quota_plan": sum_quota_plan,
+                "qut_id": qut_id,
+                "pos_id": pos_id,
+                "year_id": year_id
+            },
+            dataType: "JSON",
+
+            success: function(status) {
+                console.log(status);
+
+            }
+
+        }); //ajax
+    }
+
+} //insert_quota
+
 
 function manage_data(qut_id) {
     console.log(qut_id);
@@ -526,7 +625,7 @@ function edit_data(data_sent) {
                                 </table>
                                 <br>
                                 <button class="btn-success btn pull-right" id="submit" type="submit"
-                                        onclick="show_linebarChart()">SUBMIT</button>
+                                        onclick="delete_Chart()">SUBMIT</button>
                                 <br>
 
                                 <canvas id="myChart" width="100"></canvas>
@@ -548,8 +647,8 @@ function edit_data(data_sent) {
 
 
 
-            <button type="button" class="btn btn-warning pull-right" style="background-color:#0000CD;" id="edit"
-                onclick="edit_data(<?php echo $data_dep_pos; ?>)">EDIT</button>
+            <!-- <button type="button" class="btn btn-success pull-right" style="background-color:#0000CD;" id="edit"
+                onclick="confirm_save()">SAVE</button> -->
 
         </div>
         <br>

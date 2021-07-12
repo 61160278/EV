@@ -133,6 +133,9 @@ class Evs_quota extends MainController_avenxo {
 
 		   $data['data_dep_pos'] = $data_sent;
 
+		   $this->load->model('M_evs_pattern_and_year','mpay');
+		$data['year_quota_data'] = $this->mpay->get_by_year();
+
 		   $this->load->model('M_evs_position','mpos');	
 		   $sql_data = 'employee.Company_ID = '.$com_select.' and department.Dep_id '.'='.$dep_sel.' ';
 		   $data['data_Plan']  = sizeof( $this->mpos->get_pos_com_dep($sql_data)->result());

@@ -59,7 +59,7 @@
                                             class="fa fa-pencil-square"></i><span>Create Form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/index"><i
                                             class="fa fa-tachometer"></i><span>Approve group</span></span></a></li>
-								<li><a href="<?php echo base_url() ?>ev_form/Evs_form/show_ststus"><i
+                                <li><a href="<?php echo base_url() ?>ev_form/Evs_form/show_ststus"><i
                                             class="fa fa-book"></i><span>Status Form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/report_grade"><i
                                             class="fa fa-bar-chart-o"></i><span>Report Grade</span></span></a></li>
@@ -79,6 +79,8 @@
                                             class="fa fa-bar-chart-o"></i><span>Manage quota</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/index"><i
                                             class="fa fa-signal"></i><span>Report group</span></span></a></li>
+                                <li><a href="<?php echo base_url() ?>ev_quota/Evs_quota/index"><i
+                                            class="fa fa-bar-chart-o"></i><span>Report quota</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/excel"><i
                                             class="fa fa-upload"></i><span>Import Score MHRD</span></span></a></li>
                                 <?php }
