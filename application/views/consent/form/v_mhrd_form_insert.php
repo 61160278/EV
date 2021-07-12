@@ -250,28 +250,28 @@ function form_mhrd_insert() {
 
 
 
-//console.log(arr_item);
-console.log(checkbox_ex);
+    //console.log(arr_item);
+    console.log(checkbox_ex);
 
-//start ajax
-$.ajax({
-    type: "post",
-    url: "<?php echo base_url(); ?>/Evs_mhrd_form/form_mhrd_insert",
-    data: {
-        "arr_item": arr_item,
-        "checkbox_ex": checkbox_ex,
-        "index": arr_save_index_arr_add_pos.length,
-        "pos_id": value_pos_id,
-        "value_year_id": value_year_id
+    //start ajax
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/Evs_mhrd_form/form_mhrd_insert",
+        data: {
+            "arr_item": arr_item,
+            "checkbox_ex": checkbox_ex,
+            "index": arr_save_index_arr_add_pos.length,
+            "pos_id": value_pos_id,
+            "value_year_id": value_year_id
 
-    },
-    dataType: "JSON",
-    success: function(data, status) {
-        console.log(status);
+        },
+        dataType: "JSON",
+        success: function(data, status) {
+            console.log(status);
 
-    }
-});
-//end ajax
+        }
+    });
+    //end ajax
 } // function form_mhrd_input()
 
 /*
@@ -468,12 +468,12 @@ input[type=number] {
                             </th>
                             <th width="50%">
                                 <center>
-                                    <font color="white">description</font>
+                                    <font color="white">Description</font>
                                 </center>
                             </th>
                             <th width="5%">
                                 <center>
-                                    <font color="white">excel export</font>
+                                    <font color="white">Import score</font>
                                 </center>
                             </th>
                             <th width="5%">
@@ -497,58 +497,22 @@ input[type=number] {
                 <!-- End table  -->
                 <!-- Start Back to main form by position  -->
                 <div class="row">
-                    <div class="col-sm-12" align="right">
-
+                    <div class="col-sm-6">
                         <a
                             href="<?php echo base_url(); ?>/Evs_form/form_position/<?php echo $info_pos_id; ?>/<?php echo $row->pay_id; ?>">
                             <button type="button" class="btn btn-secondary">Back</button>
                         </a>
 
-                        <button type="button" class="btn btn-success float-right" id="save_data" data-toggle="modal"
-                            data-target="#confirm_save">Save</button>
-
                     </div>
                     <!-- End Back to main form by position  -->
+                    <div class="col-sm-6" align="right">
+                        <button type="button" class="btn btn-success float-right" id="save_data" data-toggle="modal"
+                            data-target="#confirm_save">Save</button>
+                    </div>
+                    <!-- col -6  -->
                 </div>
+                <!-- row  -->
                 <hr>
-                <!-- Start Description -->
-                <div>
-                    <h4 class="text">Description</h4><br>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h5>Status : Status perform manage</h5><br>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-5">
-                        <p>Managed : Perform manage finished</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p>No manage : Perform manage Not finished</p>
-                    </div>
-
-                </div>
-                <!-- Status  -->
-                <hr>
-
-                <div class="row">
-                    <div class="col-sm-4">
-                        <h5>Tools : Evaluation tools</h5><br>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <p>PE : Performent Evaluation</p>
-                        <p>CE : Compentency Evaluation</p>
-                    </div>
-                </div>
-                <!-- Tools -->
-
-                <hr>
-
-                <!-- End Description -->
 
             </div>
             <!-- card-body -->
