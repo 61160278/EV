@@ -183,11 +183,14 @@
             //    if 
         }
         // foreach
+        if($count_pos != 0){
+            $progess_percent = (($count_evaluation / $count_pos) * 100);
+            $percent = 100 / $count_deactivate;
+            $progess_percent += $percent;
+            $count_progess_percent = ($count_pos - $count_deactivate);
+        }
+        // if
 
-        $progess_percent = (($count_evaluation / $count_pos) * 100);
-        $percent = 100 / $count_deactivate;
-        $progess_percent += $percent;
-        $count_progess_percent = ($count_pos - $count_deactivate);
                         
         $sum_percent = 0;
         if($count_deactivate > 1){
@@ -202,7 +205,11 @@
         }
         // else if 
         else if($count_deactivate == 1){
-            $sum_percent = ($count_evaluation/$num_activate)*100;
+            if($num_activate != 0){
+                $sum_percent = ($count_evaluation/$num_activate)*100;
+            }
+            // if 
+            
         }
         // else if 
     
