@@ -338,13 +338,16 @@ function clear_data_componet() {
 function send_id_to_delete(value_key_en) {
     console.log(value_key_en);
     var button = "" // set to madal
+    button += '<div class="col-6" align="left">'
     button +=
         '<button type="button" class="btn btn-secondary btn-lg ti ti-close" data-dismiss="modal" id="cancel_del"></button>'
     button += '<a href="<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm">'
+    button += '</div>'
+    button += '<div class="col-6" align="right">'
     button +=
         '<button  id="success_btn" class="btn btn-success ti ti-check btn-lg ti ti-close float-center" value = "' +
         value_key_en + '" onclick="delete_key_component_and_expected(value)" ></button></a>'
-
+    button += '</div>'
     $('#modal_delete').html(button)
 }
 </script>
@@ -604,12 +607,17 @@ input:checked+.slider:before {
             </div>
             <!-- modal-body -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel_del"><i
-                        class="fa fa-times">&nbsp;Cancel</i></button>
-                <a href="<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm">
-                    <button id="success_btn" class="btn btn-success" onclick="clear_data_componet()"><i
-                            class="fa fa-check">&nbsp;Confirm</i></button>
-                </a>
+                <div class="col-6" align="left">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel_del">
+                        <i class="fa fa-times">&nbsp;Cancel</i></button>
+                </div>
+                <!-- col-6  -->
+                <div class="col-6" align="right">
+                    <a href="<?php echo base_url();?>/Evs_ability_indicators_form/indicator_ability">
+                        <button id="success_btn" class="btn btn-success" onclick="clear_data_componet()"><i
+                                class="fa fa-check">&nbsp;Confirm</i></button></a>
+                </div>
+                <!-- col-6  -->
             </div>
             <!-- modal-footer -->
             <!-- add button  -->
