@@ -171,10 +171,15 @@ function get_data_for_category_table() {
 
 function send_id_to_delete(ctg_id) {
     var button = ""
+    button += '<div class="col-6" align="left">'
     button +=
-        '<button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel_del">Cancel</button>'
+        '<button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel_del"><i class="fa fa-times">&nbsp;Cancel</i></button>'
+    button += '</div>'
+    button += '<div class="col-6" align="right">'
     button += '<a href="<?php echo base_url(); ?>/Evs_attitude_indicators_form/indicator_attitude_delete/' +
-        ctg_id + '"><button id="success_btn" class="btn btn-success">Confirm</button></a>'
+        ctg_id +
+        '"><button id="success_btn" class="btn btn-success"><i class="fa fa-check">&nbsp;Confirm</i></button></a>'
+    button += '</div>'
     $('#modal_delete').html(button)
 }
 // send_id_to_delete
