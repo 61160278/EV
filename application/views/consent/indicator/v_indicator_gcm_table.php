@@ -340,12 +340,12 @@ function send_id_to_delete(value_key_en) {
     var button = "" // set to madal
     button += '<div class="col-6" align="left">'
     button +=
-        '<button type="button" class="btn btn-secondary btn-lg ti ti-close" data-dismiss="modal" id="cancel_del"><i class="fa fa-times">&nbsp;Cancel</i></button>'
+        '<button type="button" class="btn btn-secondary " data-dismiss="modal" id="cancel_del"><i class="fa fa-times">&nbsp;Cancel</i></button>'
     button += '<a href="<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm">'
     button += '</div>'
     button += '<div class="col-6" align="right">'
     button +=
-        '<button  id="success_btn" class="btn btn-success ti ti-check btn-lg ti ti-close float-center" value = "' +
+        '<button  id="success_btn" class="btn btn-success " value = "' +
         value_key_en +
         '" onclick="delete_key_component_and_expected(value)" ><i class="fa fa-check">&nbsp;Confirm</i></button></a>'
     button += '</div>'
