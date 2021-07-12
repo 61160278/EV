@@ -340,13 +340,14 @@ function send_id_to_delete(value_key_en) {
     var button = "" // set to madal
     button += '<div class="col-6" align="left">'
     button +=
-        '<button type="button" class="btn btn-secondary btn-lg ti ti-close" data-dismiss="modal" id="cancel_del"></button>'
+        '<button type="button" class="btn btn-secondary btn-lg ti ti-close" data-dismiss="modal" id="cancel_del"><i class="fa fa-times">&nbsp;Cancel</i></button>'
     button += '<a href="<?php echo base_url();?>/Evs_gcm_indicators_form/indicator_gcm">'
     button += '</div>'
     button += '<div class="col-6" align="right">'
     button +=
         '<button  id="success_btn" class="btn btn-success ti ti-check btn-lg ti ti-close float-center" value = "' +
-        value_key_en + '" onclick="delete_key_component_and_expected(value)" ></button></a>'
+        value_key_en +
+        '" onclick="delete_key_component_and_expected(value)" ><i class="fa fa-check">&nbsp;Confirm</i></button></a>'
     button += '</div>'
     $('#modal_delete').html(button)
 }
@@ -599,7 +600,7 @@ input:checked+.slider:before {
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header btn-danger">
-                <h3 class="modal-title ">Do you want to delete Competency</h3>
+                <h4 class="modal-title ">Do you want to delete Competency</h4>
             </div>
             <!-- modal-header -->
             <div class="modal-body">
@@ -613,7 +614,7 @@ input:checked+.slider:before {
                 </div>
                 <!-- col-6  -->
                 <div class="col-6" align="right">
-                    <a href="<?php echo base_url();?>/Evs_ability_indicators_form/indicator_ability">
+                    <a href="<?php echo base_url();?>Evs_gcm_indicators_form/indicator_gcm">
                         <button id="success_btn" class="btn btn-success" onclick="clear_data_componet()"><i
                                 class="fa fa-check">&nbsp;Confirm</i></button></a>
                 </div>
@@ -635,7 +636,7 @@ input:checked+.slider:before {
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header btn-danger">
-                <h3 class="modal-title ">Do you want to delete Key Component </h3>
+                <h4 class="modal-title ">Do you want to delete Key Component </h4>
             </div>
             <!-- modal-header -->
             <div class="modal-body">
