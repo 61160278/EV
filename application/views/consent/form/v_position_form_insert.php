@@ -10,13 +10,14 @@
 ?>
 
 <input type="hidden" id="value_pos_id" name="value_pos_id" value="<?php echo $info_pos_id; ?>">
- <input type="hidden" id="year" name="year" value="<?php echo $year_id; ?>">
+<input type="hidden" id="year" name="year" value="<?php echo $year_id; ?>">
+ 
 <script>
 var value_pos_id = document.getElementById("value_pos_id").value; // position id
  var value_year_id = document.getElementById("year").value; // year now ID
 $(document).ready(function() {
-  window.location = "<?php echo base_url(); ?>/Evs_form/form_position/" + value_pos_id + "/" + value_year_id;
-}
+//   window.location = "<?php echo base_url(); ?>/Evs_form/form_position/" + value_pos_id + "/" + value_year_id;
+});
 
 </script>
 

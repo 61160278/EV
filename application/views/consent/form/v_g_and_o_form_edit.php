@@ -572,37 +572,6 @@ textarea {
                 </div>
                 <hr>
 
-                <!-- Start Description -->
-                <div>
-                    <h4 class="text">Description</h4><br>
-                </div>
-
-                <div>
-                    <p>Type of G&O</p>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p>C : Company Achievement</p>
-                    </div>
-                    <!-- col-3  -->
-                    <div class="col-sm-3">
-                        <p>D : Department Achievement</p>
-                    </div>
-                    <!-- col-3  -->
-                </div>
-                <!-- row  -->
-                <hr>
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <p>SDGs Goal : Sustainable Development Goals</p>
-                    </div>
-                    <!-- col-6  -->
-                </div>
-                <!-- row  -->
-                <hr>
-                <!-- End Description -->
-
             </div>
         </div>
         <!-- End Card -->
