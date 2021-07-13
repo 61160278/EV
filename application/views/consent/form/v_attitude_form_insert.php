@@ -47,7 +47,7 @@ var arr_save_index_arr_add_pos = [];
  */
 function check_weight_all() {
 
-    sum_weight_all  = document.getElementById('value_total_weight').value;
+    sum_weight_all = document.getElementById('value_total_weight').value;
 
     //start if-else
     if (sum_weight_all == 100) {
@@ -82,13 +82,13 @@ function total_weight() {
     sum_weight = 0;
     //start for loop
     table_arr_for_count = document.getElementsByName("weight").length
-   for (i = 0; i < table_arr_for_count; i++) {
+    for (i = 0; i < table_arr_for_count; i++) {
         arr_weight_check = document.getElementsByName("weight")[i].value;
         Number(arr_weight_check);
-        sum_weight += Number(arr_weight_check); 
+        sum_weight += Number(arr_weight_check);
         Number(sum_weight);
         console.log(index);
-   }
+    }
     //end for loop
 
     if (sum_weight == 100) {
@@ -99,7 +99,7 @@ function total_weight() {
         document.getElementById('value_total_weight').style.color = "red"
     }
 
-   
+
 
 }
 //total_weight
@@ -112,7 +112,7 @@ $(document).ready(function() {
     var table_ready; // table ready
     var button_add; // button for add data
     var table_ready_score = '';
-    
+
 
 
 
@@ -162,7 +162,8 @@ $(document).ready(function() {
         table_ready_score += '</center>';
         table_ready_score += '</td>';
         table_ready_score += '<td >';
-        table_ready_score += '<input id="value_total_weight" style="text-align:center" value = "0" disabled>';
+        table_ready_score +=
+            '<input id="value_total_weight" style="text-align:center" value = "0" disabled>';
         table_ready_score += '</td>';
         table_ready_score += '<td>';
         table_ready_score += '</td>';
@@ -309,8 +310,8 @@ function form_attitude_insert() {
 
 
     for (i = 0; i < arr_save_index_arr_add_pos.length; i++) {
-        arr_category.push($('#category' + (parseInt(arr_save_index_arr_add_pos[i])+1)).val());
-        arr_weight.push($('#weight_' + (parseInt(arr_save_index_arr_add_pos[i])+1)).val());
+        arr_category.push($('#category' + (parseInt(arr_save_index_arr_add_pos[i]) + 1)).val());
+        arr_weight.push($('#weight_' + (parseInt(arr_save_index_arr_add_pos[i]) + 1)).val());
         console.log(arr_save_index_arr_add_pos[i]);
     }
     //end for loop
@@ -409,6 +410,7 @@ function change_status() {
 input[type=number] {
     text-align: center;
 }
+
 #t01 th {
 
     background-color: #2c2c2c;
@@ -436,7 +438,7 @@ input[type=number] {
         <div class="card shadow mb-4">
             <div class="card-header py-3" id="panel_th_topManage">
                 <div class="col-xl-12">
-                   
+
                     <h1 class="m-0 font-weight-bold text-primary">
                         <a
                             href="<?php echo base_url(); ?>/Evs_form/form_position/<?php echo $info_pos_id; ?>/<?php echo $row->pay_id; ?>">
@@ -565,58 +567,22 @@ input[type=number] {
                 <!-- End table  -->
                 <!-- Start Back to main form by position  -->
                 <div class="row">
-                    <div class="col-sm-12" align="right">
+                    <div class="col-sm-6">
 
                         <a
                             href="<?php echo base_url(); ?>/Evs_form/form_position/<?php echo $info_pos_id; ?>/<?php echo $row->pay_id; ?>">
                             <button type="button" class="btn btn-secondary">Back</button>
                         </a>
-
+                    </div>
+                    <!-- col -6  -->
+                    <div class="col-sm-6" align="right">
                         <button type="button" class="btn btn-success float-right" id="save_data" data-toggle="modal"
                             data-target="#confirm_save">Save</button>
 
                     </div>
-                    <!-- End Back to main form by position  -->
+                    <!-- col- 6 -->
                 </div>
                 <hr>
-                <!-- Start Description -->
-                <div>
-                    <h4 class="text">Description</h4><br>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h5>Status : Status perform manage</h5><br>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-5">
-                        <p>Managed : Perform manage finished</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p>No manage : Perform manage Not finished</p>
-                    </div>
-
-                </div>
-                <!-- Status  -->
-                <hr>
-
-                <div class="row">
-                    <div class="col-sm-4">
-                        <h5>Tools : Evaluation tools</h5><br>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <p>PE : Performent Evaluation</p>
-                        <p>CE : Compentency Evaluation</p>
-                    </div>
-                </div>
-                <!-- Tools -->
-
-                <hr>
-
-                <!-- End Description -->
 
             </div>
             <!-- card-body -->

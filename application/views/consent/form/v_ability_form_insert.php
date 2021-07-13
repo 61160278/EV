@@ -649,45 +649,6 @@ input[type=number] {
                     <!-- End Back to main form by position  -->
                 </div>
                 <hr>
-                <!-- Start Description -->
-                <div>
-                    <h4 class="text">Description</h4><br>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h5>Status : Status perform manage</h5><br>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-5">
-                        <p>Managed : Perform manage finished</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p>No manage : Perform manage Not finished</p>
-                    </div>
-
-                </div>
-                <!-- Status  -->
-                <hr>
-
-                <div class="row">
-                    <div class="col-sm-4">
-                        <h5>Evaluation Tool :</h5><br>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <p>PE : Performance Evaluation </p>
-                        <p>CE : Compentency Evaluation </p>
-                        <p>WA : Work Attendance </p>
-                    </div>
-                </div>
-                <!-- Tools -->
-
-                <hr>
-
-                <!-- End Description -->
 
             </div>
         </div>
