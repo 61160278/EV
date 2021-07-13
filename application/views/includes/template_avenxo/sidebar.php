@@ -79,7 +79,7 @@
                                             class="fa fa-bar-chart-o"></i><span>Manage quota</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/index"><i
                                             class="fa fa-signal"></i><span>Report group</span></span></a></li>
-                                <li><a href="<?php echo base_url() ?>ev_quota/Evs_quota/index"><i
+                                <li><a href="<?php echo base_url() ?>ev_quota/Evs_quota/index_report"><i
                                             class="fa fa-bar-chart-o"></i><span>Report quota</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/excel"><i
                                             class="fa fa-upload"></i><span>Import Score MHRD</span></span></a></li>

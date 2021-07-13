@@ -66,13 +66,13 @@
 
                 <li class="menu-item">
                     <a href="<?php echo base_url() ?>ev_group/Evs_group/index"><i class="menu-icon fa fa-users"
-                            style="color:"></i>Manage group </a>
+                            style="color:"></i>Manage Group </a>
                 </li>
                 <!-- Manage group  -->
 
                 <li class="menu-item">
                     <a href="<?php echo base_url() ?>ev_quota/Evs_quota/index"><i class="menu-icon fa  fa-bar-chart-o"
-                            style="color:"></i>Manage quota </a>
+                            style="color:"></i>Manage Quota </a>
                 </li>
                 <!-- Manage quota  -->
 
@@ -86,7 +86,12 @@
                     <a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/excel"><i class="menu-icon fa fa-upload"
                             style="color:"></i>Import Score MHRD</a>
                 </li>
-                <!-- Manage Report Group -->
+                <!-- Manage Report Quota -->
+                <li class="menu-item">
+                    <a href="<?php echo base_url() ?>ev_quota/Evs_quota/index_report"><i class="menu-icon fa fa-upload"
+                            style="color:"></i>Report Quota</a>
+                </li>
+                <!-- Manage Report Quota -->
 
 
             </ul>

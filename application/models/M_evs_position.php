@@ -144,8 +144,68 @@ class M_evs_position extends Da_evs_position {
         GROUP BY  position.Position_ID ";
 		$query = $this->db->query($sql);
 		return $query;
-	}//get_all WHERE NOT pos_psl_id=6
+	}
+
+/*
+	* get_pos_com_dep_posiion
+	* Get company position department from database
+	* @input  
+	* @output company
+	* @author Piyasak Srijan
+	* @Create Date 2563-04-21
+	*/	
+
+	function get_pos_com_dep_posiion($sql_data){	
+		$sql = " SELECT *
+		FROM dbmc.employee
+		LEFT JOIN dbmc.position
+		ON employee.Position_ID = position.Position_ID
+		LEFT JOIN dbmc.position_level
+		ON position.position_level_id = position_level.psl_id
+		LEFT JOIN dbmc.sectioncode
+		ON employee.Sectioncode_ID = sectioncode.Sectioncode
+		LEFT JOIN dbmc.department
+		ON sectioncode.dep_id = department.Dep_id
+		LEFT JOIN dbmc.company
+		ON department.Company_ID = company.Company_ID
+        WHERE ".$sql_data."";
+		$query = $this->db->query($sql);
+		return $query;
+	}
+
 	
+
+/*
+	* get_pos_com_dep_posiion
+	* Get company position department from database
+	* @input  
+	* @output company
+	* @author Piyasak Srijan
+	* @Create Date 2563-04-21
+	*/	
+
+	function get_pos_com_dep_posiion_and_grade($sql_data){	
+		$sql = " SELECT *
+		FROM dbmc.employee
+		LEFT JOIN dbmc.position
+		ON employee.Position_ID = position.Position_ID
+		LEFT JOIN dbmc.position_level
+		ON position.position_level_id = position_level.psl_id
+		LEFT JOIN dbmc.sectioncode
+		ON employee.Sectioncode_ID = sectioncode.Sectioncode
+		LEFT JOIN dbmc.department
+		ON sectioncode.dep_id = department.Dep_id
+		LEFT JOIN dbmc.company
+		ON department.Company_ID = company.Company_ID
+        LEFT JOIN evs_database.evs_employee
+        ON employee.Emp_ID = evs_employee.emp_employee_id
+        LEFT JOIN evs_database.evs_data_grade
+        ON evs_employee.emp_id = evs_data_grade.dgr_dtm_emp_id
+        WHERE ".$sql_data."";
+		$query = $this->db->query($sql);
+		return $query;
+	}
+
 	function get_pos_com_dep_all(){	
 		$sql = " SELECT * 
 		FROM dbmc.employee 

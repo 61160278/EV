@@ -49,6 +49,22 @@ class Evs_quota extends MainController_avenxo {
 	}
 	// function index()
 	
+/*
+	* index
+	* @input 
+	* @output 
+	* @author 	Kunanya Singmee
+	* @Create Date 2564-04-05
+	*/
+	function index_report()
+	{
+		$this->load->model('M_evs_quota','mqut');
+ 		$data['qut_data'] = $this->mqut->get_all()->result(); // show value quota all
+		$this->output('/consent/ev_quota/v_main_quota_report',$data);
+	}
+	// function index()
+
+
 	/*
 	* add_quota
 	* @input
@@ -137,13 +153,145 @@ class Evs_quota extends MainController_avenxo {
 		$data['year_quota_data'] = $this->mpay->get_by_year();
 
 		   $this->load->model('M_evs_position','mpos');	
-		   $sql_data = 'employee.Company_ID = '.$com_select.' and department.Dep_id '.'='.$dep_sel.' ';
-		   $data['data_Plan']  = sizeof( $this->mpos->get_pos_com_dep($sql_data)->result());
+		   $sql_data = 'employee.Company_ID = '.$com_select.' and department.Dep_id '.'= '.$dep_sel.' and position.Position_ID = "'.$pos_id.'" ';
+		   $data['data_Plan']  = sizeof( $this->mpos->get_pos_com_dep_posiion($sql_data)->result());
 
 		   $this->output('/consent/ev_quota/v_show_hr_report_curve',$data);
 		
 	}
 	// function hr_report_curve()
+
+
+/*
+	* hr_report_curve_report
+	* @input
+	* @output 
+	* @author 	Piyasak Srijan
+	* @Update Date 2564-04-20
+	*/
+	function hr_report_curve_report($data_sent,$com_select,$dep_sel)
+	{
+
+		 $qut_id = substr($data_sent,0,strpos($data_sent,":"));
+		 $pos_id = substr($data_sent,strpos($data_sent,":")+1);
+
+		 $this->load->model('M_evs_quota_actual','mqua');
+		 $this->mqua->qua_qut_id = $qut_id;
+		 $this->mqua->qua_Position_ID = $pos_id;
+		 $data['qua_data'] = $this->mqua->get_id_quota_position_actual()->result();
+		 $check = sizeof($data['qua_data']);
+	
+   
+		   $this->load->model('M_evs_position','mqos');
+		   $this->mqos->Position_ID = $pos_id;
+		   $data['cdp_data'] = $this->mqos->get_com_dep_pos_detail()->result();
+	   
+		   $this->load->model('M_evs_quota','mqut');
+		   $this->mqut->qut_id = $qut_id;
+		   $data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota
+   
+		   $this->load->model('M_evs_department','mdep');
+		   $data['dep_data'] = $this->mdep->get_all(); // show value department all
+   
+		   $this->load->model('M_evs_position','meps');
+		   $data['pos_data'] = $this->meps->get_all()->result(); // show value position all
+   
+		   $this->load->model('M_evs_company','mcpn');
+		   $data['com_data'] = $this->mcpn->get_all(); // show value company all
+   
+		   $this->load->model('M_evs_quota_plan','mqup');
+		   $this->mqup->qup_qut_id = $qut_id;
+		   $this->mqup->qup_Position_ID = $pos_id;
+		   $data['qup_data'] = $this->mqup->get_quota_plan_id()->result(); // show value company all
+		   
+		   $this->load->model('M_evs_quota_actual','mqua');
+		   $this->mqua->qua_qut_id = $qut_id;
+		   $this->mqua->qua_Position_ID = $pos_id;
+		   $data['qua_data'] = $this->mqua->get_id_quota_position_actual()->result();
+
+		   $data['data_dep_pos'] = $data_sent;
+
+		   $this->load->model('M_evs_pattern_and_year','mpay');
+			$data['year_quota_data'] = $this->mpay->get_by_year();
+
+		   $this->load->model('M_evs_position','mpos');	
+		   
+		   $sql_data = 'employee.Company_ID = '.$com_select.' and department.Dep_id '.'= '.$dep_sel.' and position.Position_ID = "'.$pos_id.'" ';
+		   $data['data_Plan']  = sizeof( $this->mpos->get_pos_com_dep_posiion($sql_data)->result());
+
+	
+		   $sql_data = 'employee.Company_ID = '.$com_select.' and department.Dep_id '.'= '.$dep_sel.' and position.Position_ID = "'.$pos_id.'" ';
+		   $data_grade = $this->mpos->get_pos_com_dep_posiion_and_grade($sql_data)->result();
+		   
+		 
+		   $data_grade_rank = [];
+		 
+		   foreach($data_grade as $index => $row ) { 
+					if($row->dgr_grade == "S"){
+						array_push($data_grade_rank,1);
+					}
+					else if($row->dgr_grade == "A"){
+						array_push($data_grade_rank,2);
+					}
+					else if($row->dgr_grade == "B"){
+						array_push($data_grade_rank,3);
+					}
+					else if($row->dgr_grade == "B-"){
+						array_push($data_grade_rank,4);
+					}
+					else if($row->dgr_grade == "C"){
+						array_push($data_grade_rank,5);
+					}else {
+						array_push($data_grade_rank,6);
+					}
+			}// foreach 
+
+			$num_rank_s = 0;
+			$num_rank_a = 0;
+			$num_rank_b = 0;
+			$num_rank_b_n = 0;
+			$num_rank_c = 0;
+			$num_rank_d = 0;
+			foreach($data_grade_rank as $index => $row ) { 
+				if($data_grade_rank[$index] == 1){
+					$num_rank_s += 1;
+				}
+				else if($data_grade_rank[$index] == 2){
+					$num_rank_a += 1;
+				}
+				else if($data_grade_rank[$index] == 3){
+					$num_rank_b += 1;
+				}
+				else if($data_grade_rank[$index] == 4){
+					$num_rank_b_n += 1;
+				}
+				else if($data_grade_rank[$index] == 5){
+					$num_rank_c += 1;
+				}
+				else {
+					$num_rank_d += 1;
+				}
+				
+				
+			}// foreach
+
+
+			$data_grade_rank_sum = [];
+
+			array_push($data_grade_rank_sum,$num_rank_s);
+			array_push($data_grade_rank_sum,$num_rank_a);
+			array_push($data_grade_rank_sum,$num_rank_b);
+			array_push($data_grade_rank_sum,$num_rank_b_n);
+			array_push($data_grade_rank_sum,$num_rank_c);
+			array_push($data_grade_rank_sum,$num_rank_d);
+
+
+			$data['data_actual'] = $data_grade_rank_sum;
+
+			$this->output('/consent/ev_quota/v_show_hr_report_curve_grade',$data);
+		
+	}
+	// function hr_report_curve_report()
 	
 	/*
 	* manage_quota
@@ -175,7 +323,37 @@ class Evs_quota extends MainController_avenxo {
 
 		$this->output('/consent/ev_quota/v_manage_quota',$data);
 	}
-	// function manage_quota(
+	// function manage_quota()
+	/*
+	* manage_quota
+	* @input
+	* @output 
+	* @author jakkarin Pinpaeng
+	* @Create Date 2564-04-06
+	*/
+	function manage_quota_report($qut_id)
+	{
+		$this->load->model('M_evs_department','mdep');
+		$data['dep_data'] = $this->mdep->get_all(); // show value department all
+
+		$this->load->model('M_evs_position_level','mepsl');
+		$data['psl_data'] = $this->mepsl->get_all(); // show value position level all
+
+		$this->load->model('M_evs_company','mcpn');
+		$data['com_data'] = $this->mcpn->get_all(); // show value company all
+
+		$this->load->model('M_evs_quota','mqut');
+		$this->mqut->qut_id = $qut_id;
+		$data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota
+
+		$this->load->model('M_evs_quota_plan','mqup');
+		// $this->mqup->qut_id = $qut_id;
+		// $data['qup_data'] = $this->mqup->get_id_quota_position_plan(); // show value company all
+		$data['qup_data'] = $this->mqup->get_all(); // show value company all
+
+		$this->output('/consent/ev_quota/v_manage_quota_report',$data);
+	}
+	// function manage_quota()
 	
 	/*
 	* detail_quota

@@ -159,7 +159,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text4 text-uppercase mb-1">Menu</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage quota </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Manage Quota </div>
                                     </div>
                                     <!-- col-2 -->
                                 </div>
@@ -183,6 +183,29 @@
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text4 text-uppercase mb-1">Menu</div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">Report Group </div>
+                                    </div>
+                                    <!-- col-2 -->
+                                </div>
+                                <!-- row -->
+                            </div>
+                            <!-- card body -->
+                        </div>
+                        <!-- card -->
+                    </a>
+                    <!-- a href -->
+                </div>
+                <!-- End Menu Manage Report Group  -->
+
+
+                     <!-- Start Menu Manage Report Group -->
+                     <div class="col-xl-4 col-md-6 mb-4">
+                    <a href="<?php echo base_url() ?>ev_quota/Evs_quota/index_report">
+                        <div class="card border4 shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text4 text-uppercase mb-1">Menu</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Report Quota </div>
                                     </div>
                                     <!-- col-2 -->
                                 </div>
