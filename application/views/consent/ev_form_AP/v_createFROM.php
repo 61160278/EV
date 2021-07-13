@@ -2265,7 +2265,7 @@ function update_approve() {
                                                 <label for="1">&nbsp; 1</label>
                                                 &nbsp;
                                                 <input type="radio"
-                                                    name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?> "
+                                                    name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
                                                     value="2" onclick="show_weight_mhrd_edit()"
                                                     <?php echo $checked_weight_2_2 ?>>
                                                 <label for="2">&nbsp; 2</label>
