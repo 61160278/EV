@@ -74,7 +74,7 @@ function insert_quota() {
     var groupPosition = document.getElementById("groupPosition").value;
     if (groupPosition == 0) {
 
-    } 
+    }
     // if 
     else {
 
@@ -149,7 +149,7 @@ function insert_quota() {
 
         $.ajax({
             type: "post",
-            url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_insert",
+            url: "<?php echo base_url(); ?>ev_quota/Evs_quota/quota_insert",
             data: {
 
                 "quotaType": quotaType,
@@ -173,7 +173,7 @@ function insert_quota() {
 
         }); //ajax
     } //end else
-
+    main_quota();
 
 } //insert_quota
 
@@ -215,8 +215,6 @@ function add_alert() {
 }
 
 function confirm_save() {
-    // insert_quota();
-    // $('#warning_save').modal('show');
 
     var quotaType = document.getElementById("quotaType").value; // value of year id
     var groupPosition = document.getElementById("groupPosition").value;
@@ -272,7 +270,6 @@ function confirm_save() {
             });
             // forEach
             if (count == 0) {
-                insert_quota();
                 $('#warning_save').modal('show');
                 return true;
             } else {
@@ -289,7 +286,7 @@ function confirm_save() {
 
 function main_quota() {
 
-    window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/index";
+    window.location.href = "<?php echo base_url();?>ev_quota/Evs_quota/index";
 }
 
 function show_qouta() {
@@ -525,6 +522,7 @@ function show_qouta() {
             <a href="<?php echo base_url();?>/ev_quota/Evs_quota/index">
                 <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
             </a>
+
             <button type="button" class="btn btn-success pull-right" style="background-color:#0000CD;" id="saveData"
                 onclick="confirm_save()">SAVE</button>
         </div>
@@ -556,7 +554,7 @@ function show_qouta() {
                         <div class="col-sm-12">
                             <label for="focusedinput" class="control-label" align="center">
                                 <font size="5px">
-                                    Value is more than 100</font>
+                                    Total quota is more than 100</font>
                             </label>
 
                         </div>
@@ -568,7 +566,7 @@ function show_qouta() {
 
             <div class="modal-footer">
                 <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">Close</button>
                 </div>
 
             </div>
@@ -580,42 +578,51 @@ function show_qouta() {
 </div>
 <!-- End Modal Warning -->
 
+
 <!-- Modal Warning -->
 <div class="modal fade" id="warning_save" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color:#FF9800;">
+            <div class="modal-header" style="background-color:gray;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     <font color="White"><b>&times;</b>
                     </font>
                 </button>
                 <h2 class="modal-title"><b>
-                        <font color="white">Warning</font>
+                        <font color="white">Do you want to save ?</font>
                     </b></h2>
             </div>
             <!-- Modal header -->
 
             <div class="modal-body">
-                <div class="form-horizontal">
-                    <div class="form-group" align="center">
-                        <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" align="center">
-                                <font size="5px">
-                                    Do you want to save ?</font>
-                            </label>
-
-                        </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label for="focusedinput" class="control-label" align="center">
+                            <font size="3px">
+                                Please verify the accuracy of the information.</font>
+                        </label>
                     </div>
+                    <!-- col-12 -->
                 </div>
-                <!-- form-horizontal -->
+                <!-- row  -->
             </div>
             <!-- Modal body -->
 
             <div class="modal-footer">
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-success" data-dismiss="modal"
-                        onclick="main_quota()">Yes</button>
+                <div class="row">
+                    <div class="col-md-6" align="left">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            id="warning_save">Cancel</button>
+                    </div>
+                    <!-- col-6  -->
+                    <div class="col-md-6" align="right">
+                        <button type="button" class="btn btn-success" data-dismiss="modal"
+                            onclick="insert_quota()">Confirm</button>
+
+                    </div>
+                    <!-- col- 6 -->
                 </div>
+                <!-- row  -->
 
             </div>
             <!-- Modal footer -->
@@ -645,12 +652,17 @@ function show_qouta() {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                            <label for="focusedinput" class="control-label" 
                                 align="center">
                                 <font size="3px">
-                                    Already in information!</font>
+                                    Already in quota information. </font>
                             </label>
-
+                            <br>
+                            <label for="focusedinput" class="control-label"
+                                align="center">
+                                <font size="3px">
+                                    Please select new type or select new position. </font>
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -660,11 +672,7 @@ function show_qouta() {
 
             <div class="modal-footer">
                 <div class="btn-group pull-right">
-
-                    <button type="button" class="btn btn-success" data-dismiss="modal"
-                        onclick="main_quota()">Yes</button>
-
-
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">Close</button>
                 </div>
 
             </div>
