@@ -236,7 +236,7 @@ function manage_data(qut_id) {
                     style="color:white;">&times;</button>
                 <h2 class="modal-title">
                     <b>
-                        <font color="white">Warning</font>
+                        <font color="white">Do you want to delete data ?</font>
                     </b>
                 </h2>
             </div>
@@ -246,9 +246,8 @@ function manage_data(qut_id) {
                         <div class="col-sm-12">
                             <label for="focusedinput" class="control-label" align="center">
                                 <font size="5px">
-                                    Do you want
-                                    to delete
-                                    data ?</font>
+                                Please verify the accuracy of the information.
+                                    </font>
                             </label>
 
                         </div>
