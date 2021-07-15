@@ -74,7 +74,7 @@ $(document).ready(function() {
     check_quota_actual()
     show_linebarChart()
     $("#submit").attr("disabled", true);
-    
+
 });
 
 function check_quota_plan() {
@@ -82,15 +82,12 @@ function check_quota_plan() {
     var check = "";
     var value_quotaPlan = 0;
     var quota = 0;
-    //console.log(quota);
 
     check = document.getElementById("quotaPlanToT").innerHTML;
-    //console.log(check);
     for (var i = 1; i <= 6; i++) {
         quota = document.getElementById("quota" + i).innerHTML;
         value_quotaPlan = (parseFloat(check).toFixed(2)) * (parseFloat(quota).toFixed(2)) / 100;
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
-        console.log(value_quotaPlan);
     } //for 
 }
 
@@ -107,7 +104,6 @@ function check_quota_actual() {
     // document.getElementById("submit").disabled = false;
     for (var i = 1; i <= 6; i++) {
         check = document.getElementById("quotaActual" + i).value;
-        console.log(check);
         if (check == "") {
             quotaActual = null;
         }
@@ -118,10 +114,10 @@ function check_quota_actual() {
         // else if
         else {
             valueActual = parseFloat(check);
-            console.log(valueActual);
+            // console.log(valueActual);
             quotaActual = (valueActual * 100) / (parseFloat(quota));
             sumQuotaActual += quotaActual;
-            console.log(quotaActual + "=" + valueActual + "* 100 /" + parseFloat(quota));
+            // console.log(quotaActual + "=" + valueActual + "* 100 /" + parseFloat(quota));
             actual += valueActual;
 
         }
@@ -135,7 +131,7 @@ function check_quota_actual() {
             $("#show_Actual").css("color", "#000000");
         }
         // else if 
-        
+
         document.getElementById("show_quotaActual" + i).innerHTML = quotaActual.toFixed(2);
         document.getElementById("show_Actual").innerHTML = actual;
         document.getElementById("show_sumquotaActual").innerHTML = sumQuotaActual.toFixed(2);
@@ -162,7 +158,7 @@ function get_data() {
         },
         dataType: "JSON",
         success: function(data) {
-            console.log(data)
+            // console.log(data)
         }
     });
 }
@@ -187,9 +183,6 @@ function show_linebarChart() {
         dataActual[a] = arrActual[a] * 1;
 
     } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
-
-    console.log(dataQuota);
-    console.log(dataActual);
 
     var ctx = document.getElementById('myChart').getContext('2d');
 
@@ -244,10 +237,20 @@ function delete_Chart() {
 }
 
 function confirm_save() {
-    insert_quota_actual();
-    check_quota_plan();
-    //window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + <?php echo $data_dep_pos; ?>;
+    var show_sumquotaActual = document.getElementById("show_sumquotaActual").innerHTML;
+    var check = parseInt(show_sumquotaActual);
+
+    if (check == 100) {
+        $("#warning_save").modal('show');
+    }
+    // if
+    else {
+        $("#warning_info").modal('show');
+    }
+    // else
+
 }
+// confirm save 
 
 function insert_quota_actual() {
 
@@ -266,11 +269,24 @@ function insert_quota_actual() {
     pos_id = document.getElementById("position_id").value;
     qut_id = document.getElementById("qut_id").value;
     qup_id = document.getElementById("pup_id").value;
-    quota = document.getElementById("quotaPlanToT").innerHTML;
+    quota = document.getElementById("show_Actual").innerHTML;
 
     console.log(pos_id);
     console.log(qut_id);
-    // document.getElementById("submit").disabled = false;
+
+    var datedata = new Date();
+    var day = datedata.getDate();
+    var month = datedata.getMonth() + 1;
+    var year = datedata.getFullYear();
+    // get date form new date() 
+    var savedate = year + "-" + month + "-" + day;
+    <?php foreach($year_quota_data->result() as $value){ ?>
+    if (year == "<?php echo $value->pay_year;?>") {
+        var year_id = <?php echo $value->pay_id;?>
+    }
+    <?php } ?>
+
+
     for (var i = 1; i <= 6; i++) {
         check = document.getElementById("quotaActual" + i).value;
         if (check == "") {
@@ -294,9 +310,6 @@ function insert_quota_actual() {
 
     }
     // for i  
-    // check = document.getElementById("quotaPlan").value;
-    //console.log(check);
-    //}
 
     grade.shift();
     console.log(grade);
@@ -339,7 +352,10 @@ function insert_quota_actual() {
 
         }
     }); //ajax
-} //insert_quota
+
+    manage_data(qut_id);
+
+} //insert_quota_actual
 
 function insert_quota_plan() {
     var check = "";
@@ -362,7 +378,8 @@ function insert_quota_plan() {
 
     pos_id = document.getElementById("position_id").value;
     qut_id = document.getElementById("qut_id").value;
-    check = document.getElementById("show_quotaPlan").value;
+    check = document.getElementById("quotaPlanToT").innerHTML;
+
     console.log(check);
     console.log(pos_id);
     console.log(qut_id);
@@ -392,6 +409,7 @@ function insert_quota_plan() {
         grade.shift();
         console.log(grade);
         console.log(sum_quota_plan);
+
         qup_gradeS = grade[0];
         qup_gradeA = grade[1];
         qup_gradeB = grade[2];
@@ -431,19 +449,23 @@ function insert_quota_plan() {
 
         }); //ajax
     }
+    //
+    insert_quota_actual();
 
-} //insert_quota
+} //insert_quota_plan
 
 
 function manage_data(qut_id) {
-    console.log(qut_id);
     window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
 } //manage_data
 
 function edit_data(data_sent) {
     window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/edit_quota_actual/" + data_sent;
-} //manage_data
+} //edit_data
 </script>
+
+
+
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
         <div class="panel-heading">
@@ -455,10 +477,15 @@ function edit_data(data_sent) {
         </div>
         <!-- panel-heading -->
 
+        <?php foreach($qup_data as $value){ ?>
+        <input type="text" id="pup_id" value="<?php echo $value->qup_id?>">
+        <?php } ?>
+
         <div class="panel-body">
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-1">
+
                         <?php foreach($qup_data as $value){ ?>
                         <input type="text" id="pup_id" value="<?php echo $value->qup_id?>" hidden>
                         <?php } ?>
@@ -654,8 +681,11 @@ function edit_data(data_sent) {
             <?php foreach($manage_qut_data as $value){ ?>
             <button type="button" class="btn btn-inverse " data-dismiss="modal"
                 onclick=" manage_data(<?php echo $value->qut_id;?>)">CANCEL</button>
-            <?php } ?>
+            <?php }
+            //foreach ?>
 
+            <button type="button" class="btn btn-success pull-right" style="background-color:#0000CD;" id="edit"
+                onclick="confirm_save()">SAVE</button>
         </div>
         <!-- panel-body -->
         <br>
@@ -686,7 +716,7 @@ function edit_data(data_sent) {
                             <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
                                 align="center">
                                 <font size="3px">
-                                    Actual value is more than plan!</font>
+                                    Actual quota value is more than plan!</font>
                             </label>
 
                         </div>
@@ -698,7 +728,7 @@ function edit_data(data_sent) {
 
             <div class="modal-footer">
                 <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">Close</button>
                 </div>
 
             </div>
@@ -710,9 +740,8 @@ function edit_data(data_sent) {
 </div>
 <!-- End Modal Warning -->
 
-
 <!-- Modal Warning -->
-<div class="modal fade" id="warning_save" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="warning_info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color:#FF9800;">
@@ -733,7 +762,7 @@ function edit_data(data_sent) {
                             <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
                                 align="center">
                                 <font size="3px">
-                                    Do you want to save?</font>
+                                    Please complete the information.</font>
                             </label>
 
                         </div>
@@ -745,12 +774,63 @@ function edit_data(data_sent) {
 
             <div class="modal-footer">
                 <div class="btn-group pull-right">
-                    <?php foreach($manage_qut_data as $value){ ?>
-                    <button type="button" class="btn btn-success" data-dismiss="modal"
-                        onclick="manage_data(<?php echo $value->qut_id;?>)">Yes</button>
-                    <?php } ?>
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">Close</button>
                 </div>
 
+            </div>
+            <!-- Modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal Warning -->
+
+
+<!-- Modal Warning  save -->
+<div class="modal fade" id="warning_save" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:gray;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b>
+                    </font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Do you want to save ?</font>
+                    </b></h2>
+            </div>
+            <!-- Modal header -->
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label for="focusedinput" class="control-label" align="center">
+                            <font size="3px">
+                                Please verify the accuracy of the information.</font>
+                        </label>
+                    </div>
+                    <!-- col-12 -->
+                </div>
+                <!-- row  -->
+            </div>
+            <!-- Modal body -->
+
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-6" align="left">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            id="warning_save">Cancel</button>
+                    </div>
+                    <!-- col-6  -->
+                    <div class="col-md-6" align="right">
+                        <button type="button" class="btn btn-success" data-dismiss="modal"
+                            onclick="insert_quota_plan()">Confirm</button>
+
+                    </div>
+                    <!-- col- 6 -->
+                </div>
+                <!-- row  -->
             </div>
             <!-- Modal footer -->
         </div>
