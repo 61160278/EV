@@ -73,7 +73,8 @@ $(document).ready(function() {
     check_quota_plan()
     check_quota_actual()
     show_linebarChart()
-
+    $("#submit").attr("disabled", true);
+    
 });
 
 function check_quota_plan() {
@@ -101,19 +102,21 @@ function check_quota_actual() {
     var quota = "";
     var sumQuotaActual = 0;
 
-
-
     quota = document.getElementById("quotaPlanToT").innerHTML;
-
+    $("#submit").attr("disabled", false);
     // document.getElementById("submit").disabled = false;
     for (var i = 1; i <= 6; i++) {
         check = document.getElementById("quotaActual" + i).value;
         console.log(check);
         if (check == "") {
             quotaActual = null;
-        } else if (check < 0) {
+        }
+        // if
+        else if (check < 0) {
             quotaActual = null;
-        } else {
+        }
+        // else if
+        else {
             valueActual = parseFloat(check);
             console.log(valueActual);
             quotaActual = (valueActual * 100) / (parseFloat(quota));
@@ -122,23 +125,25 @@ function check_quota_actual() {
             actual += valueActual;
 
         }
+        // else
         if (actual > parseFloat(quota)) {
             $("#show_Actual").css("color", "red");
             add_alert();
-
-        } else if (actual == parseFloat(quota)) {
-
+        }
+        // else if
+        else if (actual == parseFloat(quota)) {
             $("#show_Actual").css("color", "#000000");
         }
-        // if 
-        document.getElementById("show_quotaActual" + i).innerHTML = quotaActual;
+        // else if 
+        
+        document.getElementById("show_quotaActual" + i).innerHTML = quotaActual.toFixed(2);
         document.getElementById("show_Actual").innerHTML = actual;
-        document.getElementById("show_sumquotaActual").innerHTML = sumQuotaActual;
+        document.getElementById("show_sumquotaActual").innerHTML = sumQuotaActual.toFixed(2);
         document.getElementById("TOTplan").innerHTML = quota;
 
     }
     // for i  
-    
+
 }
 
 function add_alert() {
@@ -162,9 +167,8 @@ function get_data() {
     });
 }
 mixedChart = null;
+
 function show_linebarChart() {
-
-
     var dataQuota = [];
     var arrQuota = [];
     var dataActual = [];
@@ -188,8 +192,8 @@ function show_linebarChart() {
     console.log(dataActual);
 
     var ctx = document.getElementById('myChart').getContext('2d');
-    
-     mixedChart = new Chart(ctx, {
+
+    mixedChart = new Chart(ctx, {
         type: 'bar',
         data: {
             datasets: [{
@@ -227,22 +231,22 @@ function show_linebarChart() {
             }
         }
     });
-  
-  
+
+
 
 } //show_linebarChart
 
 
 function delete_Chart() {
     //$('#myChart').html("");
-        mixedChart.destroy();
-        show_linebarChart();
+    mixedChart.destroy();
+    show_linebarChart();
 }
 
 function confirm_save() {
     insert_quota_actual();
     check_quota_plan();
-   //window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + <?php echo $data_dep_pos; ?>;
+    //window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + <?php echo $data_dep_pos; ?>;
 }
 
 function insert_quota_actual() {
@@ -444,11 +448,13 @@ function edit_data(data_sent) {
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
         <div class="panel-heading">
             <h2>
-                <font size="6px"><b>Report Curve</b></font>
+                <font size="6px"><b>MANAGE QUOTA</b></font>
             </h2>
             <div class="panel-ctrls" data-actions-container="">
             </div>
         </div>
+        <!-- panel-heading -->
+
         <div class="panel-body">
             <div class="row">
                 <div class="form-group">
@@ -517,10 +523,12 @@ function edit_data(data_sent) {
                     <legend></legend>
 
                 </div>
+                <!-- form-group -->
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                     </div>
-                    <div class="col-md-8">
+                    <!-- col-1  -->
+                    <div class="col-md-10">
                         <div class="panel panel-orange" data-widget='{"draggable": "false"}'>
                             <div class="panel-heading">
                                 <h2>
@@ -625,37 +633,36 @@ function edit_data(data_sent) {
                                 </table>
                                 <br>
                                 <button class="btn-success btn pull-right" id="submit" type="submit"
-                                        onclick="delete_Chart()">SUBMIT</button>
+                                    onclick="delete_Chart()">SUBMIT</button>
                                 <br>
 
                                 <canvas id="myChart" width="100"></canvas>
                             </div>
                         </div>
                     </div>
+                    <!-- col-10  -->
                 </div>
+                <!-- row  -->
                 <div class="col-md-10">
                 </div>
+                <!-- col-10 -->
                 <div class="col-md-2">
-
-
                 </div>
+                <!-- col -2  -->
             </div>
+            <!-- row -->
             <?php foreach($manage_qut_data as $value){ ?>
             <button type="button" class="btn btn-inverse " data-dismiss="modal"
                 onclick=" manage_data(<?php echo $value->qut_id;?>)">CANCEL</button>
             <?php } ?>
 
-
-
-            <!-- <button type="button" class="btn btn-success pull-right" style="background-color:#0000CD;" id="edit"
-                onclick="confirm_save()">SAVE</button> -->
-
         </div>
+        <!-- panel-body -->
         <br>
     </div>
-
+    <!-- panel panel-indigo -->
 </div>
-
+<!-- col-md-12 -->
 
 <!-- Modal Warning -->
 <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

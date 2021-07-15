@@ -127,7 +127,7 @@ function check_quota_actual() {
             add_alert();
             //$("#submit").attr("disabled", true);
             $("#saveData").attr("disabled", true);
-        } else  {            
+        } else {
             $("#show_Actual").css("color", "#000000");
             $("#saveData").attr("disabled", false);
         }
@@ -297,9 +297,9 @@ function show_linebarChart() {
     $('#reset').on('click', function() {
         mixedChart.destroy();
         for (var i = 1; i <= 6; i++) {
-                $("#quotaActual" + i).attr("disabled", false);
-            }
-            //$("#submit").attr("disabled", true);
+            $("#quotaActual" + i).attr("disabled", false);
+        }
+        //$("#submit").attr("disabled", true);
 
     });
 
@@ -424,15 +424,18 @@ function manage_data(qut_id) {
     window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/manage_quota/" + qut_id;
 } //manage_data
 </script>
+
+
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
         <div class="panel-heading">
             <h2>
-                <font size="6px"><b>Report Curve</b></font>
+                <font size="6px"><b>MANAGE QUOTA</b></font>
             </h2>
             <div class="panel-ctrls" data-actions-container="">
             </div>
         </div>
+        <!-- panel-heading -->
         <div class="panel-body">
 
             <div class="row">
@@ -502,10 +505,13 @@ function manage_data(qut_id) {
                     <legend></legend>
 
                 </div>
+                <!-- form-group -->
+
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                     </div>
-                    <div class="col-md-8">
+                    <!-- col-1  -->
+                    <div class="col-md-10">
                         <div class="panel panel-orange" data-widget='{"draggable": "false"}'>
                             <div class="panel-heading">
                                 <h2>
@@ -622,14 +628,16 @@ function manage_data(qut_id) {
                             </div>
                         </div>
                     </div>
+                    <!-- col-10 -->
                 </div>
+                <!-- row  -->
                 <div class="col-md-10">
                 </div>
                 <div class="col-md-2">
-
-
                 </div>
+
             </div>
+            <!-- row  -->
             <?php foreach($manage_qut_data as $value){ ?>
             <button type="button" class="btn btn-inverse " data-dismiss="modal"
                 onclick="manage_data(<?php echo $value->qut_id;?>)">CANCEL</button>
@@ -638,10 +646,12 @@ function manage_data(qut_id) {
             <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;" id="saveData"
                 onclick="confirm_save()">SAVE</button>
         </div>
+        <!-- panel-body -->
         <br>
     </div>
-
+    <!-- panel panel-indigo  -->
 </div>
+<!-- col -12  -->
 
 
 <!-- Modal Warning -->

@@ -396,15 +396,19 @@ function insert_quota_actual() {
 
 } //insert_quota
 </script>
+
+
+
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
         <div class="panel-heading">
             <h2>
-                <font size="6px"><b>Report Curve</b></font>
+                <font size="6px"><b>Manage Quota</b></font>
             </h2>
             <div class="panel-ctrls" data-actions-container="">
             </div>
         </div>
+        <!-- panel-heading -->
         <div class="panel-body">
 
             <div class="row">
@@ -479,9 +483,10 @@ function insert_quota_actual() {
             <br>
             <legend></legend>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-1">
                 </div>
-                <div class="col-md-8">
+                <!-- col -1  -->
+                <div class="col-md-10">
                     <div class="panel panel-orange" data-widget='{"draggable": "false"}'>
                         <div class="panel-heading">
                             <h2>
@@ -490,6 +495,7 @@ function insert_quota_actual() {
                             <div class="panel-ctrls" data-actions-container="">
                             </div>
                         </div>
+                        <!-- panel-heading -->
 
                         <div class="panel-body" style="">
                             <table style="width:100%" class="table table-hover m-n orange">
@@ -529,6 +535,7 @@ function insert_quota_actual() {
                                                 <td id="show_quotaPlan6"></td>
                                                 <td id="quotaPlanToT">8</td>
                                         </div>
+                                        <!-- col -1  -->
                                         </tr>
                                         <div class="col-md-1">
                                             <tr class="orange2">
@@ -560,6 +567,7 @@ function insert_quota_actual() {
                                                 <td id="show_Actual"></td>
                                             </tr>
                                         </div>
+                                        <!-- col-1  -->
                                         <div class="col-md-1">
                                             <tr class="orange2">
                                                 <td><b>Quota Actual</b></td>
@@ -572,84 +580,88 @@ function insert_quota_actual() {
                                                 <td id="show_sumquotaActual"></td>
                                             </tr>
                                         </div>
+                                        <!-- col -1   -->
                                         <tr class="orange2">
                                             <div class="col-md-1">
                                                 <td colspan="7"><b>Total in level</b></td>
                                                 <td id="TOTplan"></td>
                                         </tr>
                                     </div>
+                                    <!-- col -1  -->
                                 </tbody>
                             </table>
+                            <!-- table  -->
                             <br>
                             <div class="col-md-offset-11">
                                 <button class="btn btn-warning" type="reset" id="reset">edit</button>
                             </div>
+                            <!-- col-md-offset-11 -->
                             <br>
 
                             <canvas id="myChart" width="100"></canvas>
-
-
                         </div>
-
-                        <!-- Modal Warning -->
-                        <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color:#FF9800;">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                            <font color="White"><b>&times;</b>
-                                            </font>
-                                        </button>
-                                        <h2 class="modal-title"><b>
-                                                <font color="white">Warning</font>
-                                            </b></h2>
-                                    </div>
-                                    <!-- Modal header -->
-
-                                    <div class="modal-body">
-                                        <div class="form-horizontal">
-                                            <div class="form-group" align="center">
-                                                <div class="col-sm-12">
-                                                    <label for="focusedinput" class="control-label"
-                                                        style="font-family:'Courier New'" align="center">
-                                                        <font size="3px">
-                                                            Actual value is more than plan!</font>
-                                                    </label>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- form-horizontal -->
-                                    </div>
-                                    <!-- Modal body -->
-
-                                    <div class="modal-footer">
-                                        <div class="btn-group pull-right">
-                                            <button type="button" class="btn btn-success"
-                                                data-dismiss="modal">Yes</button>
-                                        </div>
-
-                                    </div>
-                                    <!-- Modal footer -->
-                                </div>
-                                <!-- modal-content -->
-                            </div>
-                            <!-- modal-dialog -->
-                        </div>
-                        <!-- End Modal Warning -->
-
+                        <!-- panel-body -->
                     </div>
-
+                    <!-- panel panel-orange -->
                 </div>
+                <!-- col-md-10 -->
             </div>
         </div>
+
         <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
         <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;"
             onclick="confirm_save()">SAVE</button>
     </div>
+    <!-- panel-body -->
 
 </div>
+
+<!-- Modal Warning -->
+<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#FF9800;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b>
+                    </font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Warning</font>
+                    </b></h2>
+            </div>
+            <!-- Modal header -->
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group" align="center">
+                        <div class="col-sm-12">
+                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
+                                align="center">
+                                <font size="3px">
+                                    Actual value is more than plan!</font>
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- form-horizontal -->
+            </div>
+            <!-- Modal body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+                </div>
+
+            </div>
+            <!-- Modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal Warning -->
+
 
 <!-- Modal Warning -->
 <div class="modal fade" id="warning_save" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
