@@ -11,7 +11,7 @@
 <script>
 $(document).ready(function() {
     // get_department()
-   // show_data()
+    // show_data()
 
 }); //ready
 
@@ -159,7 +159,7 @@ function search_data() {
     var dep_select = document.getElementById("dep_select").value;
     var pos_select = document.getElementById("pos_select").value;
 
-    
+
     console.log(com_select)
     console.log(dep_select)
     console.log(pos_lv_select)
@@ -215,14 +215,15 @@ function search_data() {
                     //     ')"><button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>'
                     // table_data += '&nbsp;'
                     table_data +=
-                        '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i +','+row.Company_ID+','+row.Dep_id+
+                        '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i + ',' + row
+                        .Company_ID + ',' + row.Dep_id +
                         ')" ><button type="submit" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></button></a>'
                     table_data += '<input type="text" id="pos_<?php echo $value->qut_id?>' + i +
                         '" value="' + row.Position_ID + '" hidden>'
-                        table_data += '</td>'
+                    table_data += '</td>'
                     <?php } ?>
                     table_data += '</tr>'
-                    
+
                     i++
                     '</td>'
 
@@ -321,11 +322,12 @@ function manage_data(qut_id, i) {
     window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/detail_quota/" + data_sent;
 } //manage_data
 
-function report_data(qut_id, i,com,dep_id) {
+function report_data(qut_id, i, com, dep_id) {
     var pos_id = document.getElementById("pos_" + qut_id + i).value;
     console.log(pos_id);
     var data_sent = qut_id + ":" + pos_id;
-    window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/hr_report_curve/" + data_sent+"/"+com+"/"+dep_id;
+    window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/hr_report_curve/" + data_sent + "/" + com +
+        "/" + dep_id;
 } //report_data
 function edit_qup_data(qut_id, i) {
 
@@ -381,6 +383,7 @@ h4 {
                 <font size="6px">Manage Quota</font>
             </h2>
         </div>
+        <!--panel-heading  -->
         <div class="panel-body">
 
             <?php foreach($qup_data->result() as $value){ ?>
@@ -413,8 +416,10 @@ h4 {
                 <?php } ?>
 
             </table>
+            <!-- table  -->
             <legend></legend>
-            <div>
+
+            <div class="row">
                 <label class="col-md-3">
                     <select id="com_select" name="example_length" class="form-control" onclick="get_department();">
                         <option value="0">Company</option>
@@ -428,12 +433,13 @@ h4 {
                         <!-- end foreach -->
                     </select>
                 </label>
+                <!-- col-3  -->
                 <label class="col-md-3">
                     <select name="example_length" class="form-control" id="dep_select" onclick="search_data()">
                         <option value="0">Department</option>
                     </select>
                 </label>
-
+                <!-- col-3  -->
                 <label class="col-md-3">
                     <select name="example_length" class="form-control" id="pos_lv_select" onclick="get_position()">
                         <option value="0">Position Level</option>
@@ -471,26 +477,32 @@ h4 {
                         <!-- end foreach -->
                     </select>
                 </label>
+                <!-- col-3  -->
                 <label class="col-md-3">
                     <select name="example_length" class="form-control" id="pos_select" onclick="search_data()">
                         <option value="0">Position</option>
                     </select>
                 </label>
+                <!-- col-3  -->
             </div>
+            <!-- row  -->
             <hr>
-            <div class="col-md-12 ">
+
+            <div class="col-md-12">
                 <div class="panel panel-indigo">
                     <div class="row">
                         <div class="panel-heading">
                             <div class="panel-ctrls">
                             </div>
                         </div>
+                        <!-- panel-heading -->
                         <div class="panel-body no-padding">
                             <div class="dataTables_wrapper form-inline no-footer" id="example_wrapper">
                                 <div class="row">
                                     <div class="col-sm-6"></div>
                                     <div class="col-sm-6"></div>
                                 </div>
+                                <!-- row  -->
                                 <table width="100%" class="table table-striped table-bordered dataTable no-footer"
                                     id="example" role="grid" aria-describedby="example_info" style="width: 100%;"
                                     cellspacing="0">
@@ -506,19 +518,31 @@ h4 {
 
                                     </tbody>
                                 </table>
+                                <!-- table  -->
                             </div>
+                            <!-- dataTables_wrapper -->
                         </div>
+                        <!-- panel-body -->
+
                         <div class="panel-footer">
                         </div>
+                        <!-- panel-footer -->
+
                     </div>
+                    <!-- row -->
                 </div>
+                <!-- panel panel-indigo -->
+
                 <div class="row">
                     <div class="DTTT btn-group pull-left mt-sm">
                         <a href="<?php echo base_url(); ?>/ev_quota/Evs_quota/index">
-                            <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button></a>
+                            <button type="button" class="btn btn-inverse" data-dismiss="modal">BACK</button></a>
                     </div>
+                    <!-- btn-group -->
                 </div>
+                <!-- row  -->
                 <br>
+
                 <div class="row">
                     <legend></legend>
                     <h3>Description</h3>
@@ -555,9 +579,15 @@ h4 {
                             </td>
                         </tr>
                     </table>
+                    <!-- table  -->
                 </div>
+                <!-- row  -->
             </div>
-            <!--panel-body-->
+            <!--col-md-12-->
+            <!-- Description -->
         </div>
+        <!-- panel-body -->
     </div>
+    <!-- panel panel-indigo -->
 </div>
+<!-- col-12  -->
