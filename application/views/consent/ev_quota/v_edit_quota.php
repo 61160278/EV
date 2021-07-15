@@ -126,7 +126,7 @@ function edit_quota() {
         }
 
     }); //ajax
-
+    main_quota()
 
 
 } //insert_quota
@@ -166,14 +166,10 @@ function add_alert() {
 }
 
 function confirm_save() {
-    edit_quota();
     $('#warning_save').modal('show');
-
-
 }
 
 function main_quota() {
-    confirm_save();
     window.location.href = "<?php echo base_url();?>/ev_quota/Evs_quota/index";
 }
 
@@ -279,199 +275,201 @@ $(document).ready(function() {
         </div>
         <!-- panel-heading -->
         <div class="panel-body" style="" id="qut_data">
-            <div class="col-md-12">
-                <label class="control-label">
-                    <strong>
-                        <font size="5px">Edit quota : Please complete the information.</font>
-                    </strong>
-                </label>
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label">
+                        <strong>
+                            <font size="5px">Edit quota : Please complete the information.</font>
+                        </strong>
+                    </label>
+                </div>
+                <!-- col-12  -->
             </div>
-            <!-- col-12  -->
-        </div>
-        <!-- row  -->
-        <br>
+            <!-- row  -->
+            <br>
 
-        <div class="row">
-            <div class="col-md-1">
-                <?php foreach($edit_qut_data as $value){ ?>
-                <input id="idDataQuota" value="<?php echo $value->qut_id;?>" hidden>
-                <?php } ?>
-            </div>
-            <div class="col-md-10">
-                <table style="width:100%" align="center">
-
+            <div class="row">
+                <div class="col-md-1">
                     <?php foreach($edit_qut_data as $value){ ?>
-                    <tr>
-                        <td>
-                            <h4><b>Quota :</b></h4>
-                        </td>
-                        <td class="qut_type">
-                            <?php echo $value->qut_type;?></td>
-                        <td>
-                            <h4><b>Position of Quota :</b></h4>
-                        </td>
-                        <td class="qut_pos"><?php echo $value->qut_pos;?></td>
-
-                    </tr>
+                    <input id="idDataQuota" value="<?php echo $value->qut_id;?>" hidden>
                     <?php } ?>
+                </div>
+                <div class="col-md-10">
+                    <table style="width:100%" align="center">
 
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-9">
-                <table class="table table-hover m-n orange">
-                    <thead>
-                        <tr>
-                            <th>Grade</th>
-                            <th>S</th>
-                            <th>A</th>
-                            <th>B</th>
-                            <th>B-</th>
-                            <th>C</th>
-                            <th>D</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
                         <?php foreach($edit_qut_data as $value){ ?>
-                        <tr class="orange2" id="input">
+                        <tr>
+                            <td>
+                                <h4><b>Quota :</b></h4>
+                            </td>
+                            <td class="qut_type">
+                                <?php echo $value->qut_type;?></td>
+                            <td>
+                                <h4><b>Position of Quota :</b></h4>
+                            </td>
+                            <td class="qut_pos"><?php echo $value->qut_pos;?></td>
 
-                            <td>Quota</td>
-                            <td>
-                                <input type="text" class="form-control" id="quota1" onchange="check_quota()"
-                                    value="<?php echo $value->qut_grad_S;?>">
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" id="quota2" onchange="check_quota()"
-                                    value="<?php echo $value->qut_grad_A;?>">
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" id="quota3" onchange="check_quota()"
-                                    value="<?php echo $value->qut_grad_B;?>">
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" id="quota4" onchange="check_quota()"
-                                    value="<?php echo $value->qut_grad_B_N;?>">
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" id="quota5" onchange="check_quota()"
-                                    value="<?php echo $value->qut_grad_C;?>">
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" id="quota6" onchange="check_quota()"
-                                    value="<?php echo $value->qut_grad_D;?>">
-                            </td>
-                            <td id="show_quota"><?php echo $value->qut_total;?></td>
                         </tr>
                         <?php } ?>
 
-                    </tbody>
-                </table>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-9">
+                    <table class="table table-hover m-n orange">
+                        <thead>
+                            <tr>
+                                <th>Grade</th>
+                                <th>S</th>
+                                <th>A</th>
+                                <th>B</th>
+                                <th>B-</th>
+                                <th>C</th>
+                                <th>D</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($edit_qut_data as $value){ ?>
+                            <tr class="orange2" id="input">
 
-            </div>
-            <div class="col-md-1">
-                <div class="row">
-                    <buuton class="btn btn-success" type="submit" id="submit" onclick="show_qouta()" disabled>SUBMIT
-                    </buuton>
+                                <td>Quota</td>
+                                <td>
+                                    <input type="text" class="form-control" id="quota1" onchange="check_quota()"
+                                        value="<?php echo $value->qut_grad_S;?>">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="quota2" onchange="check_quota()"
+                                        value="<?php echo $value->qut_grad_A;?>">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="quota3" onchange="check_quota()"
+                                        value="<?php echo $value->qut_grad_B;?>">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="quota4" onchange="check_quota()"
+                                        value="<?php echo $value->qut_grad_B_N;?>">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="quota5" onchange="check_quota()"
+                                        value="<?php echo $value->qut_grad_C;?>">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="quota6" onchange="check_quota()"
+                                        value="<?php echo $value->qut_grad_D;?>">
+                                </td>
+                                <td id="show_quota"><?php echo $value->qut_total;?></td>
+                            </tr>
+                            <?php } ?>
+
+                        </tbody>
+                    </table>
+
                 </div>
-                <!-- row  -->
-                <br>
-                <div class="row">
-                    <button class="btn btn-warning" type="reset"
-                        id="reset">&nbsp;&nbsp;&nbsp;&nbsp;EDIT&nbsp;&nbsp;&nbsp;</button>
+                <div class="col-md-1">
+                    <div class="row">
+                        <buuton class="btn btn-success" type="submit" id="submit" onclick="show_qouta()" disabled>SUBMIT
+                        </buuton>
+                    </div>
+                    <!-- row  -->
+                    <br>
+                    <div class="row">
+                        <button class="btn btn-warning" type="reset"
+                            id="reset">&nbsp;&nbsp;&nbsp;&nbsp;EDIT&nbsp;&nbsp;&nbsp;</button>
+                    </div>
+                    <!-- row  -->
                 </div>
-                <!-- row  -->
+                <!-- col-1  -->
             </div>
-            <!-- col-1  -->
+            <!-- row  -->
+
+            <br>
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <!-- col-1  -->
+                <div class="col-md-10">
+                    <div class="panel panel-midnightblue" data-widget='{"draggable": "false"}'>
+                        <div class="panel-heading">
+                            <h2>
+                                <font size="5px"><b>Quota</b></font>
+                            </h2>
+                            <div class="panel-ctrls" data-actions-container="">
+                            </div>
+                        </div>
+                        <!-- panel-heading -->
+                        <div class="panel-body">
+                            <canvas id="myChart" width="1000" height="450" style="position: relative;"></canvas>
+
+                        </div>
+                        <!-- panel-body -->
+                    </div>
+                    <!-- panel panel-midnightblue -->
+                </div>
+                <!-- col-10  -->
+            </div>
+            <!-- row  -->
+
+            <a href="<?php echo base_url();?>/ev_quota/Evs_quota/index">
+                <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
+            </a>
+
+            <button type="button" class="btn btn-success pull-right" style="background-color:#0000CD;" id="saveData"
+                onclick="confirm_save()">SAVE</button>
         </div>
-        <!-- row  -->
+        <!-- panel panel-indigo -->
+    </div>
+    <!-- col-12  -->
 
-        <br>
-        <div class="row">
-            <div class="col-md-1">
-            </div>
-            <!-- col-1  -->
-            <div class="col-md-10">
-                <div class="panel panel-midnightblue" data-widget='{"draggable": "false"}'>
-                    <div class="panel-heading">
-                        <h2>
-                            <font size="5px"><b>Quota</b></font>
-                        </h2>
-                        <div class="panel-ctrls" data-actions-container="">
+
+    <!-- Modal Warning -->
+    <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#FF9800;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <font color="White"><b>&times;</b>
+                        </font>
+                    </button>
+                    <h2 class="modal-title"><b>
+                            <font color="white">Warning</font>
+                        </b></h2>
+                </div>
+                <!-- Modal header -->
+
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group" align="center">
+                            <div class="col-sm-12">
+                                <label for="focusedinput" class="control-label" align="center">
+                                    <font size="5px">
+                                        Total quota is more than 100</font>
+                                </label>
+
+                            </div>
                         </div>
                     </div>
-                    <!-- panel-heading -->
-                    <div class="panel-body">
-                        <canvas id="myChart" width="1000" height="450" style="position: relative;"></canvas>
+                    <!-- form-horizontal -->
+                </div>
+                <!-- Modal body -->
 
+                <div class="modal-footer">
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-inverse" data-dismiss="modal">Close</button>
                     </div>
-                    <!-- panel-body -->
+
                 </div>
-                <!-- panel panel-midnightblue -->
+                <!-- Modal footer -->
             </div>
-            <!-- col-10  -->
+            <!-- modal-content -->
         </div>
-        <!-- row  -->
-
-        <a href="<?php echo base_url();?>/ev_quota/Evs_quota/index">
-            <button type="button" class="btn btn-inverse pull-left" data-dismiss="modal">CANCEL</button>
-        </a>
-        <button type="button" class="btn btn-social pull-right" style="background-color:#0000CD;" id="saveData"
-            onclick="confirm_save()">SAVE</button>
+        <!-- modal-dialog -->
     </div>
-    <!-- panel panel-indigo -->
-</div>
-<!-- col-12  -->
-
-
-<!-- Modal Warning -->
-<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:#FF9800;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b>
-                    </font>
-                </button>
-                <h2 class="modal-title"><b>
-                        <font color="white">Warning</font>
-                    </b></h2>
-            </div>
-            <!-- Modal header -->
-
-            <div class="modal-body">
-                <div class="form-horizontal">
-                    <div class="form-group" align="center">
-                        <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" align="center">
-                                <font size="5px">
-                                    Value is more than 100</font>
-                            </label>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- form-horizontal -->
-            </div>
-            <!-- Modal body -->
-
-            <div class="modal-footer">
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
-                </div>
-
-            </div>
-            <!-- Modal footer -->
-        </div>
-        <!-- modal-content -->
-    </div>
-    <!-- modal-dialog -->
-</div>
-<!-- End Modal Warning -->
+    <!-- End Modal Warning -->
 
 </div>
 
@@ -479,40 +477,46 @@ $(document).ready(function() {
 <div class="modal fade" id="warning_save" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color:#FF9800;">
+            <div class="modal-header" style="background-color:gray;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     <font color="White"><b>&times;</b>
                     </font>
                 </button>
                 <h2 class="modal-title"><b>
-                        <font color="white">Warning</font>
+                        <font color="white">Do you want to save ?</font>
                     </b></h2>
             </div>
             <!-- Modal header -->
 
             <div class="modal-body">
-                <div class="form-horizontal">
-                    <div class="form-group" align="center">
-                        <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" align="center">
-                                <font size="5px">
-                                    Do you want to save?</font>
-                            </label>
-
-                        </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label for="focusedinput" class="control-label" align="center">
+                            <font size="3px">
+                                Please verify the accuracy of the information.</font>
+                        </label>
                     </div>
+                    <!-- col-12 -->
                 </div>
-                <!-- form-horizontal -->
+                <!-- row  -->
             </div>
             <!-- Modal body -->
 
             <div class="modal-footer">
-                <div class="btn-group pull-right">
+                <div class="row">
+                    <div class="col-md-6" align="left">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            id="warning_save">Cancel</button>
+                    </div>
+                    <!-- col-6  -->
+                    <div class="col-md-6" align="right">
+                        <button type="button" class="btn btn-success" data-dismiss="modal"
+                            onclick="edit_quota()">Confirm</button>
 
-                    <button type="button" class="btn btn-success" data-dismiss="modal"
-                        onclick="main_quota()">Yes</button>
-                    </a>
+                    </div>
+                    <!-- col- 6 -->
                 </div>
+                <!-- row  -->
 
             </div>
             <!-- Modal footer -->
