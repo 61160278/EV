@@ -268,23 +268,25 @@ function insert_quota_actual() {
 
     pos_id = document.getElementById("position_id").value;
     qut_id = document.getElementById("qut_id").value;
-    qup_id = document.getElementById("pup_id").value;
     quota = document.getElementById("show_Actual").innerHTML;
 
     console.log(pos_id);
     console.log(qut_id);
 
     var datedata = new Date();
-    var day = datedata.getDate();
-    var month = datedata.getMonth() + 1;
-    var year = datedata.getFullYear();
-    // get date form new date() 
-    var savedate = year + "-" + month + "-" + day;
-    <?php foreach($year_quota_data->result() as $value){ ?>
-    if (year == "<?php echo $value->pay_year;?>") {
-        var year_id = <?php echo $value->pay_id;?>
-    }
-    <?php } ?>
+        var day = datedata.getDate();
+        var month = datedata.getMonth() + 1;
+        var year = datedata.getFullYear();
+        // get date form new date() 
+        var savedate = year + "-" + month + "-" + day;
+
+
+        <?php foreach($year_quota_data->result() as $value){ ?>
+        if (year == "<?php echo $value->pay_year;?>") {
+            var year_id = <?php echo $value->pay_id;?>
+        }
+        <?php } ?>
+        console.log(year_id);
 
 
     for (var i = 1; i <= 6; i++) {
@@ -297,7 +299,7 @@ function insert_quota_actual() {
             valueActual = parseFloat(check).toFixed(2);
 
             grade[i] = valueActual;
-            sum_actual += grade[i];
+            sum_actual += valueActual;
             console.log(valueActual);
             quotaActual = (valueActual * 100) / (parseFloat(quota).toFixed(2));
             // grade[i] =quotaActual;
@@ -343,7 +345,7 @@ function insert_quota_actual() {
             "sum_actual": sum_actual,
             "qut_id": qut_id,
             "pos_id": pos_id,
-            "qup_id": qup_id
+            "year_id":year_id
         },
         dataType: "JSON",
 
@@ -353,7 +355,7 @@ function insert_quota_actual() {
         }
     }); //ajax
 
-    manage_data(qut_id);
+    // manage_data(qut_id);
 
 } //insert_quota_actual
 
@@ -450,6 +452,7 @@ function insert_quota_plan() {
         }); //ajax
     }
     //
+
     insert_quota_actual();
 
 } //insert_quota_plan
@@ -476,19 +479,12 @@ function edit_data(data_sent) {
             </div>
         </div>
         <!-- panel-heading -->
-
-        <?php foreach($qup_data as $value){ ?>
-        <input type="text" id="pup_id" value="<?php echo $value->qup_id?>">
-        <?php } ?>
-
         <div class="panel-body">
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-1">
 
-                        <?php foreach($qup_data as $value){ ?>
-                        <input type="text" id="pup_id" value="<?php echo $value->qup_id?>" hidden>
-                        <?php } ?>
+                        
                     </div>
 
                     <table class="hearData">

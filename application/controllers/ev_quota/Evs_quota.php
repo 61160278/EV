@@ -136,12 +136,7 @@ class Evs_quota extends MainController_avenxo {
    
 		   $this->load->model('M_evs_company','mcpn');
 		   $data['com_data'] = $this->mcpn->get_all(); // show value company all
-   
-		   $this->load->model('M_evs_quota_plan','mqup');
-		   $this->mqup->qup_qut_id = $qut_id;
-		   $this->mqup->qup_Position_ID = $pos_id;
-		   $data['qup_data'] = $this->mqup->get_quota_plan_id()->result(); // show value company all
-		   
+      
 		   $this->load->model('M_evs_quota_actual','mqua');
 		   $this->mqua->qua_qut_id = $qut_id;
 		   $this->mqua->qua_Position_ID = $pos_id;
@@ -150,7 +145,7 @@ class Evs_quota extends MainController_avenxo {
 		   $data['data_dep_pos'] = $data_sent;
 
 		   $this->load->model('M_evs_pattern_and_year','mpay');
-		$data['year_quota_data'] = $this->mpay->get_by_year();
+			$data['year_quota_data'] = $this->mpay->get_by_year();
 
 		   $this->load->model('M_evs_position','mpos');	
 		   $sql_data = 'employee.Company_ID = '.$com_select.' and department.Dep_id '.'= '.$dep_sel.' and position.Position_ID = "'.$pos_id.'" ';
@@ -684,7 +679,17 @@ function quota_actual_insert(){
 	$qua_pay_id = $this->input->post("year_id"); 
 	$qua_qut_id = $this->input->post("qut_id"); 
 	$qua_Position_ID = $this->input->post("pos_id"); 
-	$qua_qup_id = $this->input->post("qup_id"); 
+
+	$this->load->model('M_evs_quota_plan','mqup');
+ 	$this->mqup->qup_qut_id = $qua_qut_id;
+ 	$this->mqup->qup_Position_ID = $qua_Position_ID;
+	$data['qup_data'] = $this->mqup->get_quota_plan_id()->result(); // show value company all
+
+	print_r($data['qup_data']);
+	foreach($data['qup_data'] as $row){
+		$qua_qup_id = $row->qup_id;
+	}
+	// foreach 
 	
 		$this->load->model("Da_evs_quota_actual","dqua");
 		
