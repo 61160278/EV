@@ -278,25 +278,30 @@ function show_qouta() {
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
         <div class="panel-heading">
             <h2>
-                <font size="6px"><b>Edit Quota</b></font>
+                <font size="6px"><b>MANAGE QUOTA</b></font>
             </h2>
-            <div class="col-md-9">
-            </div>
-            <div class="col-md-1">
-                <select class="form-control pull-right margin" aria-controls="example" onChange="select_quota(value)">
-                    <option value="">Select</option>
-                    <option value="1">CA</option>
-                    <option value="2">PA</option>
-                </select>
-            </div>
         </div>
+        <!-- panel-heading -->
         <div class="panel-body" style="" id="qut_data">
 
-            <div class="row">
-                <div class="col-md-2">
+        <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label">
+                        <strong>
+                            <font size="5px">Edit quota : Please complete the information.</font>
+                        </strong>
+                    </label>
                 </div>
-                <div class="col-md-8">
-                    <table style="width:75%" align="center">
+                <!-- col-12  -->
+            </div>
+            <!-- row  -->
+            <br>
+
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-9">
+                    <table style="width:100%" align="center">
 
                         <?php foreach($edit_qut_data as $value){ ?>
                         <tr>
@@ -318,9 +323,9 @@ function show_qouta() {
             </div>
             <br>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-1">
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-9">
                     <table class="table table-hover m-n orange">
                         <thead>
                             <tr>

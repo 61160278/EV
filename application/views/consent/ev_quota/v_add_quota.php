@@ -478,7 +478,7 @@ function show_qouta() {
                     </table>
                     <!-- table  -->
                 </div>
-                <!-- col-8  -->
+                <!-- col-9 -->
                 <div class="col-md-1">
                     <div class="row">
                         <buuton class="btn btn-success" type="submit" id="submit" onclick="show_qouta()" disabled>SUBMIT
@@ -492,6 +492,7 @@ function show_qouta() {
                     </div>
                     <!-- row  -->
                 </div>
+                <!-- col-1  -->
             </div>
             <!-- row -->
             <hr>
