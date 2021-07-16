@@ -311,8 +311,6 @@ class Evs_quota extends MainController_avenxo {
 		$data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota
 
 		$this->load->model('M_evs_quota_plan','mqup');
-		// $this->mqup->qut_id = $qut_id;
-		// $data['qup_data'] = $this->mqup->get_id_quota_position_plan(); // show value company all
 		$data['qup_data'] = $this->mqup->get_all(); // show value company all
 
 
@@ -709,6 +707,34 @@ function quota_actual_insert(){
 		$this->dqua->insert();
 		echo json_encode("Success by insert");
 }//quota_actual_insert()
+
+function quota_actual_update(){
+
+	$qua_grad_S = $this->input->post("qua_gradeS");
+	$qua_grad_A = $this->input->post("qua_gradeA"); 
+	$qua_grad_B = $this->input->post("qua_gradeB"); 
+	$qua_grad_B_N = $this->input->post("qua_gradeB_N");
+	$qua_grad_C = $this->input->post("qua_gradeC"); 
+	$qua_grad_D = $this->input->post("qua_gradeD"); 
+	$qua_total = $this->input->post("sum_actual"); 
+	$qua_id = $this->input->post("qua_id"); 
+
+		$this->load->model("Da_evs_quota_actual","dqua");
+		
+		$this->dqua->qua_grad_S = $qua_grad_S;
+		$this->dqua->qua_grad_A = $qua_grad_A;
+		$this->dqua->qua_grad_B = $qua_grad_B;
+		$this->dqua->qua_grad_B_N = $qua_grad_B_N;
+		$this->dqua->qua_grad_C = $qua_grad_C;
+		$this->dqua->qua_grad_D = $qua_grad_D;
+		$this->dqua->qua_total = $qua_total;
+		$this->dqua->qua_id = $qua_id;
+		$this->dqua->update();
+
+		$data = "Success by update";
+		echo json_encode($data);
+
+}//quota_actual_update
 
 function quota_actual_edit(){
 

@@ -206,14 +206,6 @@ function search_data() {
                     table_data += '</td>'
                     <?php foreach($manage_qut_data as $value){ ?>
                     table_data += '<td>'
-                    // table_data +=
-                    //     '<a onclick ="manage_data(<?php echo $value->qut_id?>,' + i +
-                    //     ')"><button type="submit" class="btn btn-info"><i class="ti ti-info-alt"></i></button></a>'
-                    // table_data += '&nbsp;'
-                    // table_data +=
-                    //     '<a onclick ="edit_qup_data(<?php echo $value->qut_id?>,' + i +
-                    //     ')"><button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>'
-                    // table_data += '&nbsp;'
                     table_data +=
                         '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i + ',' + row
                         .Company_ID + ',' + row.Dep_id +
