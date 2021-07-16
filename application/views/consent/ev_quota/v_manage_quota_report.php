@@ -11,7 +11,7 @@
 <script>
 $(document).ready(function() {
     // get_department()
-   // show_data()
+    // show_data()
 
 }); //ready
 
@@ -159,7 +159,7 @@ function search_data() {
     var dep_select = document.getElementById("dep_select").value;
     var pos_select = document.getElementById("pos_select").value;
 
-    
+
     console.log(com_select)
     console.log(dep_select)
     console.log(pos_lv_select)
@@ -215,14 +215,15 @@ function search_data() {
                     //     ')"><button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></a>'
                     // table_data += '&nbsp;'
                     table_data +=
-                        '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i +','+row.Company_ID+','+row.Dep_id+
+                        '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i + ',' + row
+                        .Company_ID + ',' + row.Dep_id +
                         ')" ><button type="submit" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></button></a>'
                     table_data += '<input type="text" id="pos_<?php echo $value->qut_id?>' + i +
                         '" value="' + row.Position_ID + '" hidden>'
-                        table_data += '</td>'
+                    table_data += '</td>'
                     <?php } ?>
                     table_data += '</tr>'
-                    
+
                     i++
                     '</td>'
 
@@ -321,11 +322,12 @@ function manage_data(qut_id, i) {
     window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/detail_quota/" + data_sent;
 } //manage_data
 
-function report_data(qut_id, i,com,dep_id) {
+function report_data(qut_id, i, com, dep_id) {
     var pos_id = document.getElementById("pos_" + qut_id + i).value;
     console.log(pos_id);
     var data_sent = qut_id + ":" + pos_id;
-    window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/hr_report_curve_report/" + data_sent+"/"+com+"/"+dep_id;
+    window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/hr_report_curve_report/" + data_sent + "/" +
+        com + "/" + dep_id;
 } //report_data
 function edit_qup_data(qut_id, i) {
 
@@ -382,6 +384,19 @@ h4 {
             </h2>
         </div>
         <div class="panel-body">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label">
+                        <strong>
+                            <font size="5px">Report quota : Please select a company</font>
+                        </strong>
+                    </label>
+                </div>
+                <!-- col-12  -->
+            </div>
+            <!-- row  -->
+            <br>
 
             <?php foreach($qup_data->result() as $value){ ?>
             <input type="text" id="qup_id" value="<?php echo $value->qup_id;?>" hidden>
@@ -515,7 +530,7 @@ h4 {
                 <div class="row">
                     <div class="DTTT btn-group pull-left mt-sm">
                         <a href="<?php echo base_url(); ?>/ev_quota/Evs_quota/index">
-                            <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button></a>
+                            <button type="button" class="btn btn-inverse" data-dismiss="modal">BACK</button></a>
                     </div>
                 </div>
                 <br>

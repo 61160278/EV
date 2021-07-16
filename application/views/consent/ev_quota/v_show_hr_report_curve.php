@@ -580,10 +580,21 @@ function edit_data(data_sent) {
         <!-- panel-heading -->
         <div class="panel-body">
             <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label">
+                        <strong>
+                            <font size="5px">Manage quota</font>
+                        </strong>
+                    </label>
+                </div>
+                <!-- col-12  -->
+            </div>
+            <!-- row  -->
+            <br>
+
+            <div class="row">
                 <div class="form-group">
                     <div class="col-md-1">
-
-
                     </div>
 
                     <table class="hearData">

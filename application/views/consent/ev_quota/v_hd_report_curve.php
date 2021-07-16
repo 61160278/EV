@@ -444,24 +444,6 @@ function insert_quota_actual() {
                         </tr>
 
                     </table>
-                    <!-- <div class="col-md-2">
-                        <select class="form-control text" id="">
-                            <option value="yearEndBonus">Quota</option>
-                            <option value="yearEndBonus">Year End Bonus</option>
-                            <option value="salaryIncrement">Salary Increment</option>
-                        </select>
-                    </div> -->
-                    <!-- <div class="col-md-2">
-                        <select class="form-control text" id="">
-                            <option value="yearEndBonus">Quota of position</option>
-                            <option value="yearEndBonus">Team Associate above</option>
-                            <option value="salaryIncrement">Operational Associate</option>
-                        </select>
-                    </div> -->
-                    <!-- <div class="col-md-2">
-                        <select for="pos_select" id="pos_select" class="form-control text">
-                            <option value="select">Select Position</option> -->
-                    <!-- <option value="0">All Position</option> -->
                     <!-- start foreach -->
                     <?php foreach($pos_data as $value){ ?>
                     <!-- <option value="<?php //echo $value->Position_ID;?>"> -->

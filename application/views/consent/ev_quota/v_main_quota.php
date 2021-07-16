@@ -96,10 +96,17 @@ function edit_data(qut_id) {
 //function edit_data
 
 function manage_data(qut_id) {
-
     console.log(qut_id);
     window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + qut_id;
 }
+//manage_data
+
+function manage_data_report(qut_id) {
+    console.log(qut_id);
+    window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota_report/" + qut_id;
+}
+//manage_data_report
+
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo">
@@ -130,7 +137,7 @@ function manage_data(qut_id) {
                         <div class="col-sm-6"></div>
                         <div class="col-sm-6"></div>
                     </div>
-					<!-- row -->
+                    <!-- row -->
                     <table width="100%" class="table table-striped table-bordered dataTable no-footer" id="example"
                         role="grid" aria-describedby="example_info" style="width: 100%;" cellspacing="0">
                         <thead>
@@ -153,9 +160,12 @@ function manage_data(qut_id) {
 
                                     <!-- <a href="<?php //echo base_url();?>/ev_quota/Evs_quota/manage_quota">      -->
 
-                                    <a onclick=" manage_data( <?php echo $value->qut_id;?>)">
+                                    <a onclick="manage_data( <?php echo $value->qut_id;?>)">
                                         <button type="submit" class="btn btn-info"><i
                                                 class="ti ti-info-alt"></i></button></a>
+                                    <a onclick="manage_data_report( <?php echo $value->qut_id;?>)">
+                                        <button type="submit" class="btn btn-success"><i
+                                                class="ti ti-clipboard"></i></button></a>
                                     <a onclick="edit_data(<?php echo $value->qut_id;?>)">
                                         <button type="submit" class="btn btn-warning"><i
                                                 class="ti ti-pencil-alt "></i></button></a>
@@ -168,23 +178,23 @@ function manage_data(qut_id) {
 
                             <?php } ?>
                         </tbody>
-						<!-- tbody -->
+                        <!-- tbody -->
                     </table>
-					<!-- table -->
+                    <!-- table -->
                 </div>
-				<!-- wrapper -->
-				
+                <!-- wrapper -->
+
             </div>
-			<!--body -->
+            <!--body -->
 
             <div class="panel-footer">
 
             </div>
-			<!-- footer -->
+            <!-- footer -->
 
         </div>
-		<!-- col-12 -->
-		
+        <!-- col-12 -->
+
         <legend></legend>
         <h3>Description</h3>
         <table height="150px">
@@ -196,6 +206,15 @@ function manage_data(qut_id) {
                 </td>
                 <td width="150px">
                     <h4>Manage quota</h4>
+                </td>
+            </tr>
+            <tr>
+                <td><button type="submit" class="btn btn-success"><i class="ti ti-clipboard"></i></button></td>
+                <td width="50px">
+                    <h4>:</h4>
+                </td>
+                <td>
+                    <h4>Report quota</h4>
                 </td>
             </tr>
             <tr>
@@ -216,8 +235,9 @@ function manage_data(qut_id) {
                     <h4>Delete quota</h4>
                 </td>
             </tr>
+
         </table>
-		<!-- table -->
+        <!-- table -->
     </div>
     <!--panel-body-->
 </div><!-- panel-indigo -->
@@ -246,8 +266,8 @@ function manage_data(qut_id) {
                         <div class="col-sm-12">
                             <label for="focusedinput" class="control-label" align="center">
                                 <font size="5px">
-                                Please verify the accuracy of the information.
-                                    </font>
+                                    Please verify the accuracy of the information.
+                                </font>
                             </label>
 
                         </div>

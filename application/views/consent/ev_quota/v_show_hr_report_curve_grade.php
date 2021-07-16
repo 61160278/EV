@@ -138,7 +138,7 @@ function check_quota_actual() {
 
     }
     // for i  
-    
+
 }
 
 function add_alert() {
@@ -162,6 +162,7 @@ function get_data() {
     });
 }
 mixedChart = null;
+
 function show_linebarChart() {
 
 
@@ -188,8 +189,8 @@ function show_linebarChart() {
     console.log(dataActual);
 
     var ctx = document.getElementById('myChart').getContext('2d');
-    
-     mixedChart = new Chart(ctx, {
+
+    mixedChart = new Chart(ctx, {
         type: 'bar',
         data: {
             datasets: [{
@@ -227,22 +228,22 @@ function show_linebarChart() {
             }
         }
     });
-  
-  
+
+
 
 } //show_linebarChart
 
 
 function delete_Chart() {
     //$('#myChart').html("");
-        mixedChart.destroy();
-        show_linebarChart();
+    mixedChart.destroy();
+    show_linebarChart();
 }
 
 function confirm_save() {
     insert_quota_actual();
     check_quota_plan();
-   //window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + <?php echo $data_dep_pos; ?>;
+    //window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + <?php echo $data_dep_pos; ?>;
 }
 
 function insert_quota_actual() {
@@ -444,12 +445,28 @@ function edit_data(data_sent) {
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
         <div class="panel-heading">
             <h2>
-                <font size="6px"><b>Report Curve</b></font>
+                <font size="6px"><b>Manage Quota</b></font>
             </h2>
             <div class="panel-ctrls" data-actions-container="">
             </div>
         </div>
+        <!-- panel-heading -->
+
         <div class="panel-body">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label">
+                        <strong>
+                            <font size="5px">Report quota</font>
+                        </strong>
+                    </label>
+                </div>
+                <!-- col-12  -->
+            </div>
+            <!-- row  -->
+            <br>
+
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-1">
@@ -517,10 +534,13 @@ function edit_data(data_sent) {
                     <legend></legend>
 
                 </div>
+                <!-- form-group -->
+
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                     </div>
-                    <div class="col-md-8">
+                    <!-- col- 1 -->
+                    <div class="col-md-10">
                         <div class="panel panel-orange" data-widget='{"draggable": "false"}'>
                             <div class="panel-heading">
                                 <h2>
@@ -529,7 +549,7 @@ function edit_data(data_sent) {
                                 <div class="panel-ctrls" data-actions-container="">
                                 </div>
                             </div>
-
+                            <!-- panel-heading -->
                             <div class="panel-body" style="">
                                 <table style="width:100%" class="table table-hover m-n orange">
                                     <thead>
@@ -576,12 +596,12 @@ function edit_data(data_sent) {
                                             <div class="col-md-1">
                                                 <tr class="orange2">
                                                     <td><b>Actual</b></td>
-                                                <td id="quotaActual1" ><?php echo $data_actual[0] ?></td>
-                                                <td id="quotaActual2" ><?php echo $data_actual[1]?></td>
-                                                <td id="quotaActual3" ><?php echo $data_actual[2]?></td>
-                                                <td id="quotaActual4" ><?php echo $data_actual[3]?></td>
-                                                <td id="quotaActual5" ><?php echo $data_actual[4]?></td>
-                                                <td id="quotaActual6" ><?php echo $data_actual[5]?></td>
+                                                    <td id="quotaActual1"><?php echo $data_actual[0] ?></td>
+                                                    <td id="quotaActual2"><?php echo $data_actual[1]?></td>
+                                                    <td id="quotaActual3"><?php echo $data_actual[2]?></td>
+                                                    <td id="quotaActual4"><?php echo $data_actual[3]?></td>
+                                                    <td id="quotaActual5"><?php echo $data_actual[4]?></td>
+                                                    <td id="quotaActual6"><?php echo $data_actual[5]?></td>
                                                     <td id="show_Actual"></td>
                                                 </tr>
                                             </div>
@@ -606,35 +626,34 @@ function edit_data(data_sent) {
                                     </tbody>
                                 </table>
                                 <br>
-                            
-
                                 <canvas id="myChart" width="100"></canvas>
                             </div>
+                            <!-- panel-body -->
                         </div>
                     </div>
+                    <!-- col-10  -->
                 </div>
+                <!-- row  -->
                 <div class="col-md-10">
                 </div>
+                <!-- col-10  -->
                 <div class="col-md-2">
-
-
                 </div>
+                <!-- col- 2  -->
             </div>
+            <!-- row -->
             <?php foreach($manage_qut_data as $value){ ?>
             <button type="button" class="btn btn-inverse " data-dismiss="modal"
                 onclick=" manage_data(<?php echo $value->qut_id;?>)">CANCEL</button>
             <?php } ?>
 
-
-
-            <!-- <button type="button" class="btn btn-success pull-right" style="background-color:#0000CD;" id="edit"
-                onclick="confirm_save()">SAVE</button> -->
-
         </div>
+        <!-- panel-body -->
         <br>
     </div>
-
+    <!-- panel panel-indig -->
 </div>
+<!-- col-md-12 -->
 
 
 <!-- Modal Warning -->

@@ -378,6 +378,19 @@ h4 {
         <!--panel-heading  -->
         <div class="panel-body">
 
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label">
+                        <strong>
+                            <font size="5px">Manage quota : Please select a company</font>
+                        </strong>
+                    </label>
+                </div>
+                <!-- col-12  -->
+            </div>
+            <!-- row  -->
+            <br>
+
             <?php foreach($qup_data->result() as $value){ ?>
             <input type="text" id="qup_id" value="<?php echo $value->qup_id;?>" hidden>
             <input type="text" id="qup_qut_id" value="<?php echo $value->qup_qut_id;?>" hidden>

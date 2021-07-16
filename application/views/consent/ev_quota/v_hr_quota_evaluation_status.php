@@ -277,12 +277,6 @@ th {
                         <div class="col-md-4">
                             <select class="text form-control pull-right margin text" id="dep_select">
                                 <option value="0">Select Department</option>
-
-                                <!-- <option value="yearEndBonus">Select Department</option>
-                                <option value="yearEndBonus">All Department</option>
-                                <option value="yearEndBonus">ACC</option>
-                                <option value="yearEndBonus">GA</option>
-                                <option value="salaryIncrement">HR</option> -->
                             </select>
                         </div>
                         <div class="col-md-3">
