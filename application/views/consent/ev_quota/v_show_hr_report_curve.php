@@ -590,7 +590,7 @@ function edit_data(data_sent) {
                 <!-- col-12  -->
             </div>
             <!-- row  -->
-            <br>
+            <hr>
 
             <div class="row">
                 <div class="form-group">

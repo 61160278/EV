@@ -81,17 +81,14 @@ function check_quota_plan() {
     var check = "";
     var value_quotaPlan = 0;
     var quota = 0;
-    //console.log(quota);
-
     check = document.getElementById("quotaPlanToT").innerHTML;
-    //console.log(check);
     for (var i = 1; i <= 6; i++) {
         quota = document.getElementById("quota" + i).innerHTML;
         value_quotaPlan = (parseFloat(check).toFixed(2)) * (parseFloat(quota).toFixed(2)) / 100;
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
-        console.log(value_quotaPlan);
     } //for 
 }
+// check_quota_plan
 
 function check_quota_actual() {
     var check = "";
@@ -100,37 +97,37 @@ function check_quota_actual() {
     var quotaActual = 0;
     var quota = "";
     var sumQuotaActual = 0;
-
-
-
     quota = document.getElementById("quotaPlanToT").innerHTML;
 
     // document.getElementById("submit").disabled = false;
     for (var i = 1; i <= 6; i++) {
         check = document.getElementById("quotaActual" + i).innerHTML;
-        console.log(check);
         if (check == "") {
             quotaActual = null;
-        } else if (check < 0) {
+        }
+        // if
+        else if (check < 0) {
             quotaActual = null;
-        } else {
+        }
+        //else if
+        else {
             valueActual = parseFloat(check);
-            console.log(valueActual);
             quotaActual = (valueActual * 100) / (parseFloat(quota));
             sumQuotaActual += quotaActual;
-            console.log(quotaActual + "=" + valueActual + "* 100 /" + parseFloat(quota));
             actual += valueActual;
 
         }
+        // else
         if (actual > parseFloat(quota)) {
             $("#show_Actual").css("color", "red");
             add_alert();
-
-        } else if (actual == parseFloat(quota)) {
-
+        }
+        // else if
+        else if (actual == parseFloat(quota)) {
             $("#show_Actual").css("color", "#000000");
         }
-        // if 
+        // else if 
+
         document.getElementById("show_quotaActual" + i).innerHTML = quotaActual;
         document.getElementById("show_Actual").innerHTML = actual;
         document.getElementById("show_sumquotaActual").innerHTML = sumQuotaActual;
@@ -160,16 +157,19 @@ function get_data() {
             console.log(data)
         }
     });
+    // ajax
 }
+// get_data
+
 mixedChart = null;
 
 function show_linebarChart() {
-
 
     var dataQuota = [];
     var arrQuota = [];
     var dataActual = [];
     var arrActual = [];
+
     for (var i = 1; i <= 6; i++) {
         var show_quota = document.getElementById("quota" + i).innerHTML;
         arrQuota[i] = show_quota;
@@ -184,9 +184,7 @@ function show_linebarChart() {
         dataActual[a] = arrActual[a] * 1;
 
     } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
-
-    console.log(dataQuota);
-    console.log(dataActual);
+    //for 
 
     var ctx = document.getElementById('myChart').getContext('2d');
 
@@ -229,8 +227,6 @@ function show_linebarChart() {
         }
     });
 
-
-
 } //show_linebarChart
 
 
@@ -239,198 +235,7 @@ function delete_Chart() {
     mixedChart.destroy();
     show_linebarChart();
 }
-
-function confirm_save() {
-    insert_quota_actual();
-    check_quota_plan();
-    //window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota/" + <?php echo $data_dep_pos; ?>;
-}
-
-function insert_quota_actual() {
-
-    var grade = [];
-    var check = "";
-    var valueActual = 0;
-    var actual = 0;
-    var quotaActual = 0;
-    var quota = "";
-    var sumQuotaActual = 0;
-    var sum_actual = 0;
-    var pos_id = "";
-    var qut_id = "";
-    var qup_id = "";
-
-    pos_id = document.getElementById("position_id").value;
-    qut_id = document.getElementById("qut_id").value;
-    qup_id = document.getElementById("pup_id").value;
-    quota = document.getElementById("quotaPlanToT").innerHTML;
-
-    console.log(pos_id);
-    console.log(qut_id);
-    // document.getElementById("submit").disabled = false;
-    for (var i = 1; i <= 6; i++) {
-        check = document.getElementById("quotaActual" + i).innerHTML;
-        if (check == "") {
-            quotaActual = null;
-        } else if (check < 0) {
-            quotaActual = null;
-        } else {
-            valueActual = parseFloat(check).toFixed(2);
-
-            grade[i] = valueActual;
-            sum_actual += grade[i];
-            console.log(valueActual);
-            quotaActual = (valueActual * 100) / (parseFloat(quota).toFixed(2));
-            // grade[i] =quotaActual;
-            sumQuotaActual += quotaActual;
-            console.log(quotaActual + "=" + valueActual + "* 100 /" + (parseFloat(quota).toFixed(2)));
-            actual += valueActual;
-
-        } // if 
-
-
-    }
-    // for i  
-    // check = document.getElementById("quotaPlan").value;
-    //console.log(check);
-    //}
-
-    grade.shift();
-    console.log(grade);
-    // console.log(sum_quota_plan);
-    qua_gradeS = grade[0];
-    qua_gradeA = grade[1];
-    qua_gradeB = grade[2];
-    qua_gradeB_N = grade[3];
-    qua_gradeC = grade[4];
-    qua_gradeD = grade[5];
-
-    console.log(qua_gradeS);
-    console.log(qua_gradeA);
-    console.log(qua_gradeB);
-    console.log(qua_gradeB_N);
-    console.log(qua_gradeC);
-    console.log(qua_gradeD);
-    console.log(sum_actual);
-    $.ajax({
-        type: "post",
-        url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_actual_insert",
-
-        data: {
-
-            "qua_gradeS": qua_gradeS,
-            "qua_gradeA": qua_gradeA,
-            "qua_gradeB": qua_gradeB,
-            "qua_gradeB_N": qua_gradeB_N,
-            "qua_gradeC": qua_gradeC,
-            "qua_gradeD": qua_gradeD,
-            "sum_actual": sum_actual,
-            "qut_id": qut_id,
-            "pos_id": pos_id,
-            "qup_id": qup_id
-        },
-        dataType: "JSON",
-
-        success: function(status) {
-            console.log(status);
-
-        }
-    }); //ajax
-} //insert_quota
-
-function insert_quota_plan() {
-    var check = "";
-
-    var sum_quota_plan = 0;
-    var grade = [];
-    var qup_gradeS = 0;
-    var qup_gradeA = 0;
-    var qup_gradeB = 0;
-    var qup_gradeB_N = 0;
-    var qup_gradeC = 0;
-    var qup_gradeD = 0;
-    var qup_gradeTOT = 0;
-
-    var check = "";
-    var value_quotaPlan = 0;
-    var quota = 0;
-    var pos_id = "";
-    var qut_id = "";
-
-    pos_id = document.getElementById("position_id").value;
-    qut_id = document.getElementById("qut_id").value;
-    check = document.getElementById("show_quotaPlan").value;
-    console.log(check);
-    console.log(pos_id);
-    console.log(qut_id);
-    //}
-    if (check == " ") {
-        check = null;
-    } else {
-        var datedata = new Date();
-        var day = datedata.getDate();
-        var month = datedata.getMonth() + 1;
-        var year = datedata.getFullYear();
-        // get date form new date() 
-        var savedate = year + "-" + month + "-" + day;
-
-
-        <?php foreach($year_quota_data->result() as $value){ ?>
-        if (year == "<?php echo $value->pay_year;?>") {
-            var year_id = <?php echo $value->pay_id;?>
-        }
-        <?php } ?>
-        for (var i = 1; i <= 6; i++) {
-            quota = document.getElementById("quota" + i).innerHTML;
-            value_quotaPlan = parseFloat(check) * quota / 100;
-            grade[i] = value_quotaPlan;
-            sum_quota_plan += grade[i];
-        } //for 
-        grade.shift();
-        console.log(grade);
-        console.log(sum_quota_plan);
-        qup_gradeS = grade[0];
-        qup_gradeA = grade[1];
-        qup_gradeB = grade[2];
-        qup_gradeB_N = grade[3];
-        qup_gradeC = grade[4];
-        qup_gradeD = grade[5];
-
-        console.log(qup_gradeS);
-        console.log(qup_gradeA);
-        console.log(qup_gradeB);
-        console.log(qup_gradeB_N);
-        console.log(qup_gradeC);
-        console.log(qup_gradeD);
-        $.ajax({
-            type: "post",
-            url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_plan_insert",
-
-            data: {
-
-                "qup_gradeS": qup_gradeS,
-                "qup_gradeA": qup_gradeA,
-                "qup_gradeB": qup_gradeB,
-                "qup_gradeB_N": qup_gradeB_N,
-                "qup_gradeC": qup_gradeC,
-                "qup_gradeD": qup_gradeD,
-                "sum_quota_plan": sum_quota_plan,
-                "qut_id": qut_id,
-                "pos_id": pos_id,
-                "year_id": year_id
-            },
-            dataType: "JSON",
-
-            success: function(status) {
-                console.log(status);
-
-            }
-
-        }); //ajax
-    }
-
-} //insert_quota
-
+//delete_Chart
 
 function manage_data(qut_id) {
     console.log(qut_id);
@@ -441,6 +246,8 @@ function edit_data(data_sent) {
     window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/edit_quota_actual/" + data_sent;
 } //manage_data
 </script>
+
+
 <div class="col-md-12">
     <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
         <div class="panel-heading">
@@ -465,7 +272,7 @@ function edit_data(data_sent) {
                 <!-- col-12  -->
             </div>
             <!-- row  -->
-            <br>
+            <hr>
 
             <div class="row">
                 <div class="form-group">
@@ -582,7 +389,7 @@ function edit_data(data_sent) {
 
                                             <div class="col-md-1">
                                                 <tr class="orange2">
-                                                    <td><b>Plan</b></td>
+                                                    <td><b>Plan </b></td>
                                                     <td id="show_quotaPlan1"></td>
                                                     <td id="show_quotaPlan2"></td>
                                                     <td id="show_quotaPlan3"></td>
@@ -592,6 +399,7 @@ function edit_data(data_sent) {
                                                     <td id="quotaPlanToT"><?php echo $data_Plan;?></td>
 
                                             </div>
+                                            <!-- col -1  -->
                                             </tr>
                                             <div class="col-md-1">
                                                 <tr class="orange2">
@@ -644,7 +452,7 @@ function edit_data(data_sent) {
             <!-- row -->
             <?php foreach($manage_qut_data as $value){ ?>
             <button type="button" class="btn btn-inverse " data-dismiss="modal"
-                onclick=" manage_data(<?php echo $value->qut_id;?>)">CANCEL</button>
+                onclick=" manage_data(<?php echo $value->qut_id;?>)">BACK</button>
             <?php } ?>
 
         </div>
@@ -654,100 +462,3 @@ function edit_data(data_sent) {
     <!-- panel panel-indig -->
 </div>
 <!-- col-md-12 -->
-
-
-<!-- Modal Warning -->
-<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:#FF9800;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b>
-                    </font>
-                </button>
-                <h2 class="modal-title"><b>
-                        <font color="white">Warning</font>
-                    </b></h2>
-            </div>
-            <!-- Modal header -->
-
-            <div class="modal-body">
-                <div class="form-horizontal">
-                    <div class="form-group" align="center">
-                        <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
-                                align="center">
-                                <font size="3px">
-                                    Actual value is more than plan!</font>
-                            </label>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- form-horizontal -->
-            </div>
-            <!-- Modal body -->
-
-            <div class="modal-footer">
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
-                </div>
-
-            </div>
-            <!-- Modal footer -->
-        </div>
-        <!-- modal-content -->
-    </div>
-    <!-- modal-dialog -->
-</div>
-<!-- End Modal Warning -->
-
-
-<!-- Modal Warning -->
-<div class="modal fade" id="warning_save" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:#FF9800;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <font color="White"><b>&times;</b>
-                    </font>
-                </button>
-                <h2 class="modal-title"><b>
-                        <font color="white">Warning</font>
-                    </b></h2>
-            </div>
-            <!-- Modal header -->
-
-            <div class="modal-body">
-                <div class="form-horizontal">
-                    <div class="form-group" align="center">
-                        <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" style="font-family:'Courier New'"
-                                align="center">
-                                <font size="3px">
-                                    Do you want to save?</font>
-                            </label>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- form-horizontal -->
-            </div>
-            <!-- Modal body -->
-
-            <div class="modal-footer">
-                <div class="btn-group pull-right">
-                    <?php foreach($manage_qut_data as $value){ ?>
-                    <button type="button" class="btn btn-success" data-dismiss="modal"
-                        onclick="manage_data(<?php echo $value->qut_id;?>)">Yes</button>
-                    <?php } ?>
-                </div>
-
-            </div>
-            <!-- Modal footer -->
-        </div>
-        <!-- modal-content -->
-    </div>
-    <!-- modal-dialog -->
-</div>
-<!-- End Modal Warning -->
