@@ -139,10 +139,14 @@ $(document).ready(function() {
                     </div>
                     <!-- col-6  -->
                     <div class="col-md-6" align="right">
-                    <a href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_report/<?php echo $data_hard_dep; ?>/<?php echo $data_focas_group; ?>">
-                        <button id="save" class="btn btn-info" onclick="" >report grad</button>
-
+                    <a href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_reject/<?php echo $data_hard_dep; ?>/<?php echo $data_focas_group; ?>">
+                        <button id="save" class="btn btn-danger" onclick="" >Reject Report</button>
                         </a>
+                        &nbsp;
+                    <a href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_report/<?php echo $data_hard_dep; ?>/<?php echo $data_focas_group; ?>">
+                        <button id="save" class="btn btn-info" onclick="" >Report Grad</button>
+                        </a>
+                       
                     </div>
                     <!-- col -6  -->
                 </div>

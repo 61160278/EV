@@ -51,7 +51,7 @@ function save_group_to_HR() {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/save_group_to_HR",
+        url: "<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/save_group_reject_to_HR",
         data: {
             "Emp_ID": Emp_ID,
             "index": index
@@ -83,7 +83,7 @@ function main_index() {
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
             <div class="panel-heading ">
                 <h2>
-                    <font color="#ffffff" size="6px"><b> Approve Group </b></font>
+                    <font color="#ffffff" size="6px"><b> Approve Group reject</b></font>
                 </h2>
             </div>
             <!-- heading -->
@@ -103,6 +103,9 @@ function main_index() {
                             <th width="15%">
                                 <center>Group</center>
                             </th>
+                            <th width="15%">
+                                <center>Comment</center>
+                            </th>
                             <th width="20%">
                                 <center>Management</center>
                             </th>
@@ -121,16 +124,16 @@ function main_index() {
                                     // foreach 
                                 }
                                 // if
-							
-
+                                $status_index = 0;
                                 $table_index = 0;
-// && $row->emp_employee_id == $status[$index]
                                 if(sizeof($status) != 0){
 
 							    foreach($data_group as $index => $row) {
-                                if($data_emp_id != $row->emp_employee_id ) { ?>
-                        <input name="Emp_ID" id="Emp_ID<?php echo $index; ?>" type="text"
-                            value="<?php echo $row->emp_employee_id ?>" hidden>
+                                   if($status_index >= sizeof($status)){ $status_index = sizeof($status)-1;}
+
+                                if($status[$status_index] == $row->emp_employee_id ) { ?>
+                        <input name="Emp_ID" id="Emp_ID<?php echo $table_index; ?>" type="text"
+                            value="<?php echo $row->emp_id ?>" hidden>
                         <tr>
                             <td>
                                 <center>
@@ -150,6 +153,11 @@ function main_index() {
                             <td>
                                 <center>
                                     <?php echo $row->gru_name ?>
+                                </center>
+                            </td>
+                            <td>
+                                <center>
+                                    <?php echo $data_comment[$status_index] ?>
                                 </center>
                             </td>
                             <td>
@@ -182,6 +190,7 @@ function main_index() {
                             </td>
                         </tr>
                         <?php 
+                            $status_index += 1;
                             $table_index += 1;
                                          }
                                          // if

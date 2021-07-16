@@ -759,7 +759,7 @@ function update_MHRD_edit() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-                            <button class="btn btn-info" > Reject Report </button>
+                           
                             </div>
                             <!-- col-md-6 add_app -->
 
@@ -934,7 +934,7 @@ function update_MHRD_edit() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-									<button class="btn btn-info" >Reject Report</button>
+									
                             </div>
                             <!-- col-md-6  -->
 
@@ -1572,7 +1572,7 @@ function update_MHRD_edit() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-                            <button class="btn btn-info" > Reject Report </button>
+                            
                             </div>
                             <!-- col-md-6 add_app -->
 
@@ -1781,7 +1781,7 @@ function update_MHRD_edit() {
                                 <!-- form  -->
 							</div>
                                 <div class="col-md-6" align="right">
-                                <button class="btn btn-info" > Reject Report </button>
+                                
                                 </div>
                                 <!-- col-md-6 add_app -->
                             

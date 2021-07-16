@@ -52,7 +52,7 @@ console.log(index);
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/save_grade",
+        url: "<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/save_reject_grade",
         data: {
             "Emp_ID": Emp_ID,
             "grade": grade,
@@ -79,7 +79,7 @@ console.log(index);
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
             <div class="panel-heading ">
                 <h2>
-                    <font color="#ffffff" size="6px"><b> Report Grade </b></font>
+                    <font color="#ffffff" size="6px"><b> Reject Grade </b></font>
                 </h2>
             </div>
             <!-- heading -->

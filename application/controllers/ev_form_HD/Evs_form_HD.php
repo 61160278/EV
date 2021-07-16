@@ -37,11 +37,13 @@ class Evs_form_HD extends MainController_avenxo {
 	*/
 	function index()
 	{
+		$comment = [];
 		$status = [];
 		$data_chack_form = [];	
 		$check = 0;
 		$chack_save = 0;
 		$chack_form_save = 0;
+		$reject_ro_report = 0;
 		
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
@@ -96,9 +98,24 @@ class Evs_form_HD extends MainController_avenxo {
 			$temp = $data['st_emp'];
 			if(sizeof($temp) != 0){
 				array_push($status,$temp->emp_employee_id);
+				$reject_ro_report = 0;
 			}
-			// 
 			
+			$this->load->model('M_evs_data_approve','meda');
+			$this->meda->emp_employee_id = $row->emp_employee_id;
+			$this->meda->dma_status = -3;
+			$data['st_emp_reject'] = $this->meda->get_by_emp_and_status()->row();
+			$temp_reject = $data['st_emp_reject'];
+			if(sizeof($temp_reject) != 0){
+				array_push($status,$temp_reject->emp_employee_id);
+
+				$this->load->model('M_evs_reject_form','mrjf');
+				$this->mrjf->rjf_dma_id = $temp_reject->dma_id;
+				$this->mrjf->rjf_status = 3;
+				$data_rj_comment = $this->mrjf->get_all_by_dma_id_and_rjf_status()->row();
+				array_push($comment,$data_rj_comment->rjf_comment);
+				$reject_ro_report = 1;
+			}
 
 			}
 			// if
@@ -126,8 +143,15 @@ class Evs_form_HD extends MainController_avenxo {
 		$data['chack_save'] = $chack_save_button;
 		$data['data_chack_form'] = $data_chack_form;
 		$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
-		
+
+		if($reject_ro_report == 0){
 		$this->output('/consent/ev_form_HD/v_main_form',$data);
+		}
+		else{
+			$data['data_comment'] = $comment;
+			
+			$this->output('/consent/ev_form_HD/v_main_form_reject',$data);
+		}
 	}
 	// function index()
 	
@@ -287,7 +311,7 @@ class Evs_form_HD extends MainController_avenxo {
 		$this->load->model('M_evs_data_approve','mdap');
 
 		for ($i = 0; $i < $index; $i++) {
-			$this->mdap->dma_dtm_emp_id = $Emp_ID[$i];
+			$this->mdap->dma_emp_id = $Emp_ID[$i];
 			$this->mdap->dma_status = 4;
 			$this->mdap->update_status(); 
 		}
@@ -298,6 +322,42 @@ class Evs_form_HD extends MainController_avenxo {
 	
 	}
 	// save_group_to_HR
+
+	function save_group_reject_to_HR(){
+    
+		$Emp_ID = $this->input->post("Emp_ID");
+		$index = $this->input->post("index");
+
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+		$this->load->model('M_evs_data_approve','mdap');
+		$this->load->model('M_evs_reject_form','mrjf');
+
+		for ($i = 0; $i < $index; $i++) {
+			$this->mdap->dma_emp_id = $Emp_ID[$i];
+			$this->mdap->dma_status = 4;
+			$this->mdap->update_status(); 
+
+			$this->mdap->dma_emp_id = $Emp_ID[$i];
+			$data_dma_id = $this->mdap->get_by_id()->row(); 
+			$this->mrjf->rjf_dma_id = $data_dma_id->dma_id;
+			$this->mrjf->rjf_status = 3;
+			$this->mrjf->delete_by_dma_id(); 
+		}
+		// for 
+
+
+		
+		$data = "save_group_to_HR";
+		echo json_encode($data);
+	
+	}
+	// save_group_to_HR
+	
 
 	function save_data_acm_weight(){
 
