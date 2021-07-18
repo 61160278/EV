@@ -282,7 +282,7 @@ function insert_quota_actual() {
 
     pos_id = document.getElementById("position_id").value;
     qut_id = document.getElementById("qut_id").value;
-    quota = document.getElementById("show_Actual").innerHTML;
+    quota = document.getElementById("show_sumquotaActual").innerHTML;
 
     var datedata = new Date();
     var day = datedata.getDate();
@@ -299,7 +299,8 @@ function insert_quota_actual() {
     <?php } ?>
 
     for (var i = 1; i <= 6; i++) {
-        check = document.getElementById("quotaActual" + i).value;
+        check = document.getElementById("show_quotaActual" + i).innerHTML;
+        console.log(check)
         if (check == "") {
             quotaActual = null;
         } else if (check < 0) {
@@ -309,9 +310,6 @@ function insert_quota_actual() {
 
             grade[i] = valueActual;
             sum_actual += valueActual;
-            quotaActual = (valueActual * 100) / (parseFloat(quota).toFixed(2));
-            // grade[i] =quotaActual;
-            sumQuotaActual += quotaActual;
             actual += valueActual;
 
         } // if 
@@ -387,9 +385,6 @@ function insert_quota_plan() {
     qut_id = document.getElementById("qut_id").value;
     check = document.getElementById("quotaPlanToT").innerHTML;
 
-    console.log(check);
-    console.log(pos_id);
-    console.log(qut_id);
     //}
     if (check == " ") {
         check = null;
@@ -414,9 +409,6 @@ function insert_quota_plan() {
             sum_quota_plan += grade[i];
         } //for 
         grade.shift();
-        console.log(grade);
-        console.log(sum_quota_plan);
-
         qup_gradeS = grade[0];
         qup_gradeA = grade[1];
         qup_gradeB = grade[2];
@@ -424,12 +416,6 @@ function insert_quota_plan() {
         qup_gradeC = grade[4];
         qup_gradeD = grade[5];
 
-        console.log(qup_gradeS);
-        console.log(qup_gradeA);
-        console.log(qup_gradeB);
-        console.log(qup_gradeB_N);
-        console.log(qup_gradeC);
-        console.log(qup_gradeD);
         $.ajax({
             type: "post",
             url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_plan_insert",
@@ -494,7 +480,7 @@ function insert_quota_update() {
     }
     <?php } ?>
     for (var i = 1; i <= 6; i++) {
-        check = document.getElementById("quotaActual" + i).value;
+        check = document.getElementById("show_quotaActual" + i).value;
         if (check == "") {
             quotaActual = null;
         } else if (check < 0) {

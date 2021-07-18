@@ -100,8 +100,10 @@ function check_quota_actual() {
     quota = document.getElementById("quotaPlanToT").innerHTML;
 
     // document.getElementById("submit").disabled = false;
+
     for (var i = 1; i <= 6; i++) {
         check = document.getElementById("quotaActual" + i).innerHTML;
+        console.log(check);
         if (check == "") {
             quotaActual = null;
         }
@@ -128,7 +130,7 @@ function check_quota_actual() {
         }
         // else if 
 
-        document.getElementById("show_quotaActual" + i).innerHTML = quotaActual;
+        document.getElementById("show_quotaActual" + i).innerHTML = quotaActual.toFixed(2);
         document.getElementById("show_Actual").innerHTML = actual;
         document.getElementById("show_sumquotaActual").innerHTML = sumQuotaActual;
         document.getElementById("TOTplan").innerHTML = quota;
@@ -141,6 +143,7 @@ function check_quota_actual() {
 function add_alert() {
     $('#warning').modal('show');
 }
+// add_alert
 
 function get_data() {
     var pos_sel = document.getElementById("pos_select").value; // get kay by id
@@ -166,22 +169,31 @@ mixedChart = null;
 function show_linebarChart() {
 
     var dataQuota = [];
-    var arrQuota = [];
     var dataActual = [];
+    var dataActualPlan = [];
+
+    var arrQuota = [];
     var arrActual = [];
+    var arrActualPlan = [];
 
     for (var i = 1; i <= 6; i++) {
         var show_quota = document.getElementById("quota" + i).innerHTML;
         arrQuota[i] = show_quota;
+        <?php if(sizeof($qua_data) != 0){ ?>
+        var show_actual_plan = document.getElementById("quotaActualPlan" + i).innerHTML;
+        arrActualPlan[i] = show_actual_plan;
+        <?php } //if?>
         var show_actual = document.getElementById("show_quotaActual" + i).innerHTML;
         arrActual[i] = show_actual;
     } //for
     arrQuota.shift();
     arrActual.shift();
+    arrActualPlan.shift();
     //console.log(arrQuota); //ส่วนนี้เป็นส่วนที่ดึงมา
     for (var a = 0; a < arrQuota.length; a++) {
         dataQuota[a] = arrQuota[a] * 1;
         dataActual[a] = arrActual[a] * 1;
+        dataActualPlan[a] = arrActualPlan[a] * 1;
 
     } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
     //for 
@@ -208,6 +220,16 @@ function show_linebarChart() {
                 order: 1,
                 borderColor: 'rgb(54, 162, 235)',
                 backgroundColor: 'rgb(54, 162, 235)'
+
+            }, {
+                label: 'Quota Plan Actual',
+                data: dataActualPlan,
+                
+
+                // this dataset is drawn on top
+                order: 1,
+                borderColor: 'rgb(51, 204, 0)',
+                backgroundColor: 'rgb(51, 204, 0)'
 
             }],
             labels: ['S', 'A', 'B', 'B-', 'C', 'D']
@@ -377,12 +399,18 @@ function edit_data(data_sent) {
                                             <tr class="orange2">
                                                 <td><b>Quota</b></td>
                                                 <?php foreach($manage_qut_data as $value){ ?>
-                                                <td id="quota1" value="5"><?php echo $value->qut_grad_S;?></td>
-                                                <td id="quota2" value="25"><?php echo $value->qut_grad_A;?></td>
-                                                <td id="quota3" value="40"><?php echo $value->qut_grad_B;?></td>
-                                                <td id="quota4" value="40"><?php echo $value->qut_grad_B_N;?></td>
-                                                <td id="quota5" value="25"><?php echo $value->qut_grad_C;?></td>
-                                                <td id="quota6" value="5"><?php echo $value->qut_grad_D;?></td>
+                                                <td id="quota1" value="<?php echo $value->qut_grad_S;?>">
+                                                    <?php echo $value->qut_grad_S;?></td>
+                                                <td id="quota2" value="<?php echo $value->qut_grad_A;?>">
+                                                    <?php echo $value->qut_grad_A;?></td>
+                                                <td id="quota3" value="<?php echo $value->qut_grad_B;?>">
+                                                    <?php echo $value->qut_grad_B;?></td>
+                                                <td id="quota4" value="<?php echo $value->qut_grad_B_N;?>">
+                                                    <?php echo $value->qut_grad_B_N;?></td>
+                                                <td id="quota5" value="<?php echo $value->qut_grad_C;?>">
+                                                    <?php echo $value->qut_grad_C;?></td>
+                                                <td id="quota6" value="<?php echo $value->qut_grad_D;?>">
+                                                    <?php echo $value->qut_grad_D;?></td>
                                                 <td><?php echo $value->qut_total;?></td>
                                                 <?php } ?>
                                             </tr>
@@ -397,10 +425,36 @@ function edit_data(data_sent) {
                                                     <td id="show_quotaPlan5"></td>
                                                     <td id="show_quotaPlan6"></td>
                                                     <td id="quotaPlanToT"><?php echo $data_Plan;?></td>
-
+                                                </tr>
                                             </div>
                                             <!-- col -1  -->
-                                            </tr>
+                                            <?php if(sizeof($qua_data) != 0){ ?>
+                                            <div class="col-md-1">
+                                                <tr class="orange2">
+                                                    <td><b>Plan Actual </b></td>
+                                                    <?php foreach($qua_data as $value){ ?>
+                                                    <td id="quotaActualPlan1" value="<?php echo $value->qua_grad_S;?>">
+                                                        <?php echo $value->qua_grad_S;?></td>
+                                                    <td id="quotaActualPlan2" value="<?php echo $value->qua_grad_A;?>">
+                                                        <?php echo $value->qua_grad_A;?></td>
+                                                    <td id="quotaActualPlan3" value="<?php echo $value->qua_grad_B;?>">
+                                                        <?php echo $value->qua_grad_B;?></td>
+                                                    <td id="quotaActualPlan4"
+                                                        value="<?php echo $value->qua_grad_B_N;?>">
+                                                        <?php echo $value->qua_grad_B_N;?></td>
+                                                    <td id="quotaActualPlan5" value="<?php echo $value->qua_grad_C;?>">
+                                                        <?php echo $value->qua_grad_C;?></td>
+                                                    <td id="quotaActualPlan6" value="<?php echo $value->qua_grad_D;?>">
+                                                        <?php echo $value->qua_grad_D;?></td>
+                                                    <td><?php echo $value->qua_total;?></td>
+                                                    <?php } ?>
+                                                </tr>
+                                            </div>
+                                            <!-- col-1  -->
+
+                                            <?php }
+                                            // if ?>
+
                                             <div class="col-md-1">
                                                 <tr class="orange2">
                                                     <td><b>Actual</b></td>
@@ -413,6 +467,7 @@ function edit_data(data_sent) {
                                                     <td id="show_Actual"></td>
                                                 </tr>
                                             </div>
+                                            <!-- col-1  -->
                                             <div class="col-md-1">
                                                 <tr class="orange2">
                                                     <td><b>Quota Actual</b></td>

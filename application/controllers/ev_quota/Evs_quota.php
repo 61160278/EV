@@ -214,31 +214,39 @@ class Evs_quota extends MainController_avenxo {
 		   $sql_data = 'employee.Company_ID = '.$com_select.' and department.Dep_id '.'= '.$dep_sel.' and position.Position_ID = "'.$pos_id.'" ';
 		   $data['data_Plan']  = sizeof( $this->mpos->get_pos_com_dep_posiion($sql_data)->result());
 
-	
 		   $sql_data = 'employee.Company_ID = '.$com_select.' and department.Dep_id '.'= '.$dep_sel.' and position.Position_ID = "'.$pos_id.'" ';
 		   $data_grade = $this->mpos->get_pos_com_dep_posiion_and_grade($sql_data)->result();
 		   
-		 
 		   $data_grade_rank = [];
-		 
 		   foreach($data_grade as $index => $row ) { 
+			
 					if($row->dgr_grade == "S"){
 						array_push($data_grade_rank,1);
 					}
+					// if
 					else if($row->dgr_grade == "A"){
 						array_push($data_grade_rank,2);
 					}
+					// else if
 					else if($row->dgr_grade == "B"){
 						array_push($data_grade_rank,3);
 					}
+					// else if
 					else if($row->dgr_grade == "B-"){
 						array_push($data_grade_rank,4);
 					}
+					// else if
 					else if($row->dgr_grade == "C"){
 						array_push($data_grade_rank,5);
-					}else {
+					}
+					// else if
+					else if($row->dgr_grade == "D"){
 						array_push($data_grade_rank,6);
 					}
+					// else if
+					else {
+						array_push($data_grade_rank,7);
+					}// else
 			}// foreach 
 
 			$num_rank_s = 0;
@@ -247,26 +255,38 @@ class Evs_quota extends MainController_avenxo {
 			$num_rank_b_n = 0;
 			$num_rank_c = 0;
 			$num_rank_d = 0;
+			$num_rank_null = 0;
+
+	
 			foreach($data_grade_rank as $index => $row ) { 
 				if($data_grade_rank[$index] == 1){
 					$num_rank_s += 1;
 				}
+				// else if 
 				else if($data_grade_rank[$index] == 2){
 					$num_rank_a += 1;
 				}
+				// else if
 				else if($data_grade_rank[$index] == 3){
 					$num_rank_b += 1;
 				}
+				// else if
 				else if($data_grade_rank[$index] == 4){
 					$num_rank_b_n += 1;
 				}
+				// else if
 				else if($data_grade_rank[$index] == 5){
 					$num_rank_c += 1;
 				}
-				else {
+				// else if
+				else if($data_grade_rank[$index] == 6){
 					$num_rank_d += 1;
 				}
-				
+				// else if
+				else {
+					$num_rank_null += 1;
+				}
+				// else
 				
 			}// foreach
 
@@ -279,7 +299,7 @@ class Evs_quota extends MainController_avenxo {
 			array_push($data_grade_rank_sum,$num_rank_b_n);
 			array_push($data_grade_rank_sum,$num_rank_c);
 			array_push($data_grade_rank_sum,$num_rank_d);
-
+			array_push($data_grade_rank_sum,$num_rank_null);
 
 			$data['data_actual'] = $data_grade_rank_sum;
 
