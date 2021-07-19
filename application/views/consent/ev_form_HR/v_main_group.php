@@ -97,10 +97,13 @@ $(document).ready(function() {
                             <td>
                                 <center>
                                     <?php if($row->gru_company_id == 1){
-                                            echo "SDM"; } 
-                                            else {
+                                            echo "SDM"; 
+                                        }
+                                        // if
+                                        else {
                                             echo "SKD";  
-                                            }        
+                                        }
+                                        // else        
                                     ?>
                                 </center>
                             </td>
@@ -127,7 +130,7 @@ $(document).ready(function() {
                 <br>
                 <div class="row">
                     <div class="col-md-6">
-                      
+
                     </div>
                     <!-- col-6  -->
                     <div class="col-md-6" align="right">

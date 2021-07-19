@@ -87,12 +87,6 @@
                             style="color:"></i>Import Score MHRD</a>
                 </li>
                 <!-- Manage Report Quota -->
-                <li class="menu-item">
-                    <a href="<?php echo base_url() ?>ev_quota/Evs_quota/index_report"><i class="menu-icon fa fa-upload"
-                            style="color:"></i>Report Quota</a>
-                </li>
-                <!-- Manage Report Quota -->
-
 
             </ul>
             <!-- End tap menu sidebar  -->

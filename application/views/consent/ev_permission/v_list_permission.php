@@ -208,7 +208,7 @@ td {
         <!--  panel-default  -->
         <div class="row">
             <div class="col-sm-8" align="left">
-                <a href="http://localhost/EV/ev_permission/Evs_permission/index">
+                <a href="<?php echo base_url(); ?>EV/ev_permission/Evs_permission/index">
                     <button class="btn btn-inverse"><i class="fa fa-mail-reply"></i> Back</button>
                 </a>
             </div>

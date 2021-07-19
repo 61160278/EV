@@ -147,6 +147,18 @@ td {
                         <!-- table  -->
                     </div>
                     <!-- col-12  -->
+                    
+                </div>
+                <!-- row  -->
+                <hr>
+                <div class="row">
+                    <div class="col-sm-8" align="left">
+                        <a href="<?php echo base_url(); ?>Evs_Controller/index">
+                            <button class="btn btn-inverse"><i class="fa fa-mail-reply"></i> Back</button>
+                        </a>
+                    </div>
+                    <!-- col-8  -->
+
                 </div>
                 <!-- row  -->
 

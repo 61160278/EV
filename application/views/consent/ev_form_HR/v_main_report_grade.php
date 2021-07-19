@@ -29,11 +29,11 @@ $(document).ready(function() {
 
 function save_grade() {
     Emp_ID = [];
-	grade = [];
+    grade = [];
     comment = [];
     var index = document.getElementById("table_index").value;
 
-console.log(index);
+    console.log(index);
 
     for (i = 0; i < index; i++) {
 
@@ -43,11 +43,11 @@ console.log(index);
 
     }
     // for
-	console.log(Emp_ID);
-	console.log(grade);
-	console.log(comment);
-	
-	
+    console.log(Emp_ID);
+    console.log(grade);
+    console.log(comment);
+
+
 
     $.ajax({
         type: "post",
@@ -129,7 +129,7 @@ console.log(index);
                             <td>
                                 <center>
                                     <?php echo  $row->emp_employee_id ?>
-                                   
+
                                 </center>
                             </td>
                             <td>
@@ -140,21 +140,21 @@ console.log(index);
                             <td>
                                 <center>
                                     <?php echo $row->gru_name ?>
-                                   
+
                                 </center>
                             </td>
                             <td>
                                 <center>
                                     <?php echo $data_grade[$index]; ?>
-                                    <input type="text" name="grade" 
-                                        value="<?php echo $data_grade[$index]; ?>" hidden>
+                                    <input type="text" name="grade" value="<?php echo $data_grade[$index]; ?>" hidden>
                                 </center>
                             </td>
                             <td>
                                 <center>
 
-                        
-                                    <textarea type="text" name="comment" placeholder="Enter comment" class="form-control"></textarea>
+
+                                    <textarea type="text" name="comment" placeholder="Enter comment"
+                                        class="form-control"></textarea>
 
                                 </center>
                             </td>
@@ -162,7 +162,9 @@ console.log(index);
                         <?php 
                             $table_index += 1;
                                          }
-                                    } ?>
+                                         // if
+                                    }
+                                    // foreach ?>
 
                         <input type="text" id="table_index" value="<?php echo $table_index; ?>" hidden>
                     </tbody>
@@ -175,7 +177,7 @@ console.log(index);
                         </a>
                     </div>
                     <div class="col-md-6" align="right">
-                        <button class="btn btn-success" onclick="save_grade()" > Save</button>
+                        <button class="btn btn-success" onclick="save_grade()"> Save</button>
                     </div>
                 </div>
             </div>
