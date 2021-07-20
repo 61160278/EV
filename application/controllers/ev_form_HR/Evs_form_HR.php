@@ -243,8 +243,6 @@ class Evs_form_HR extends MainController_avenxo {
 	
 				$data['data_from_pe'] = "MHRD_edit";	
 		
-	
-	
 		}
 
 
@@ -265,9 +263,7 @@ class Evs_form_HR extends MainController_avenxo {
 
 			$data['info_pos_id'] = $tep->Position_ID;
 
-		
 				$data['data_from_ce'] = "ACM_edit";
-			
 	
 		// else	
 		}
@@ -870,10 +866,6 @@ class Evs_form_HR extends MainController_avenxo {
 					$sum_percent_pe = ($sum_all/$sum_max_all)*100;
 			}
 
-
-		
-
-
 			if($chack_form_ce ="ACM"){
 				$this->load->model('M_evs_data_acm_weight','mdtm');
 				$this->mdtm->dta_evs_emp_id = $tep->emp_id;
@@ -970,13 +962,22 @@ class Evs_form_HR extends MainController_avenxo {
 		
 		$this->output('/consent/ev_form_HR/v_main_reject_grade',$data);
 	}
+	
 	function excel(){
-		$this->output('/consent/ev_form_HR/v_main_excel');
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+
+		$this->load->model('M_evs_data_mhrd_weight','mdmw');
+		$this->mdmw->emp_pay_id = $year->pay_id;
+		$data['mhrd'] = $this->mdmw->get_data_show_mhrd()->result();
+
+		$this->output('/consent/ev_form_HR/v_main_excel',$data);
 	}
 
 	function import()
 	{
-
 
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
@@ -984,16 +985,12 @@ class Evs_form_HR extends MainController_avenxo {
 		//end set year now
 		$pay_id = $year->pay_id;
 
-
 		$this->load->model('Da_evs_excel_report','derp');
 
 		$config["upload_path"] = "./excel_report/";
 		$config["allowed_types"] = "xls|xlsx";
 
 		$this->load->library("upload",$config);
-
-		
-
 
 		if($this->upload->do_upload("file")){
 				$upload_data = $this->upload->data();
@@ -1010,7 +1007,6 @@ class Evs_form_HR extends MainController_avenxo {
 		$this->load->model('M_evs_set_form_mhrd','msmd');
 		$this->load->model('Da_evs_data_mhrd_weight','ddmw');
 
-		
 		if(isset($_FILES["file"]["name"]))
 		{
 
@@ -1048,7 +1044,6 @@ class Evs_form_HR extends MainController_avenxo {
 						$this->ddmw->mhw_weight_1 = $mhw_weight_1;
 						$this->ddmw->mhw_weight_2 = $mhw_weight_2;
 						$this->ddmw->mhw_approver = $mhw_approver;
-
 						$this->ddmw->insert();
 					}
 					
@@ -1057,6 +1052,22 @@ class Evs_form_HR extends MainController_avenxo {
 			echo json_encode("import successfully");
 		}	
 	}
+	// import
+
+	function show_mhrd(){
+
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+
+		$this->load->model('M_evs_data_mhrd_weight','mdmw');
+		$this->mdmw->emp_pay_id = $year->pay_id;
+		$data = $this->mdmw->get_data_show_mhrd()->result();
+
+		echo json_encode($data);
+	}
+	// show_mhrd
 
 
 	function save_grade(){
@@ -1125,10 +1136,6 @@ class Evs_form_HR extends MainController_avenxo {
 			$this->mdap->update_status(); 
 		}
 		// for
-
-
-
-
 		
 		$data = "save_data_acm_weight";
 		echo json_encode($data);

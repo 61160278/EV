@@ -98,7 +98,21 @@ class M_evs_data_mhrd_weight extends Da_evs_data_mhrd_weight {
 		$query = $this->db->query($sql, array($this->emp_pay_id));
 		return $query;
 	
-	}//get_all_com
+	}//get_data_by_pay_id
+
+	function get_data_show_mhrd(){	
+		$sql = "SELECT *
+		FROM evs_database.evs_data_mhrd_weight AS dmhrd
+		INNER JOIN evs_database.evs_employee AS evs_emp
+		ON evs_emp.emp_employee_id = dmhrd.mhw_evs_emp_id 
+		INNER JOIN dbmc.employee AS emp
+		ON evs_emp.emp_employee_id = emp.Emp_ID
+		WHERE evs_emp.emp_pay_id = ?
+		ORDER BY 'dmhrd.mhw_id' ASC";
+		$query = $this->db->query($sql, array($this->emp_pay_id));
+		return $query;
+	
+	}//get_data_show_mhrd
 
 } 
 ?>
