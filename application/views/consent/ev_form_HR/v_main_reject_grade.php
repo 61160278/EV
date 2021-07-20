@@ -85,6 +85,18 @@ console.log(index);
             <!-- heading -->
             <div class="panel-body">
 
+            <div class="row">
+                    <div class="col-md-11">
+                        <label class="control-label">
+                            <strong>
+                                <font size="5px">List of employees to reject grade </font>
+                            </strong>
+                        </label>
+                    </div>
+                    <!-- col-12  -->
+                </div>
+                <!-- row  -->
+
 
                 <table class="table table-bordered table-striped m-n">
                     <thead>
