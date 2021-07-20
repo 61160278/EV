@@ -548,45 +548,6 @@ h4 {
                 <!-- row  -->
                 <br>
 
-                <div class="row">
-                    <legend></legend>
-                    <h3>Description</h3>
-                    <table height="150px">
-                        <tr>
-                            <td height="20" width="50px"><button type="submit" class="btn btn-info"><i
-                                        class="ti ti-info-alt"></i></button></td>
-                            <td width="50px">
-                                <h4>:</h4>
-                            </td>
-                            <td width="150px">
-                                <h4>Detail quota</h4>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td> <button type="submit" class="btn btn-warning"><i
-                                        class="ti ti-pencil-alt "></i></button>
-                            </td>
-                            <td width="50px">
-                                <h4>:</h4>
-                            </td>
-                            <td>
-                                <h4>Edit quota plan</h4>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td> <a class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></a>
-                            </td>
-                            <td width="50px">
-                                <h4>:</h4>
-                            </td>
-                            <td>
-                                <h4>HD/HR Report curve</h4>
-                            </td>
-                        </tr>
-                    </table>
-                    <!-- table  -->
-                </div>
-                <!-- row  -->
             </div>
             <!--col-md-12-->
             <!-- Description -->
