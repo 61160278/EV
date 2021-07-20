@@ -63,7 +63,7 @@ $(document).ready(function() {
                     <div class="col-md-11">
                         <label class="control-label">
                             <strong>
-                                <font size="5px">List of employees to import score MHRD </font>
+                                <font size="5px">Import Score MHRD of associate</font>
                             </strong>
                         </label>
                     </div>
@@ -74,8 +74,8 @@ $(document).ready(function() {
 
                 <div class="row">
                     <div class="col-md-7" align="right">
-                        <h3 align="center"><i class="fa fa-upload"></i></h3>
-                        <h3 align="center">Import Score of associate</h3>
+                    <h3 align="center"><i class="fa fa-upload"></i></h3>
+                        <h3 align="center">Import Score MHRD of associatea</h3>
                     </div>
                     <!--col-6 -->
 
@@ -84,7 +84,7 @@ $(document).ready(function() {
                             <div class="row">
                                 <div class="col-md-12">
                                     <p><label>Choose file Excel to Import Data</label>
-                                        <input type="file" name="file" id="file" required accept=".xls, .xlsx" />
+                                        <input type="file" name="file" id="file" class="btn btn-info" required accept=".xls, .xlsx">
                                     </p>
                                 </div>
                                 <!-- col-6 -->

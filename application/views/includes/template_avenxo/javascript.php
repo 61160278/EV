@@ -92,6 +92,9 @@
 <script type="text/javascript" src="<?php echo base_url();?>/avenxo/assets/plugins/fullcalendar/fullcalendar.min.js">
 </script> <!-- Calendar Plugin -->
 
+<script type="text/javascript" src="<?php echo base_url();?>/avenxo/assets/plugins/dropzone/dropzone.min.js"></script>
+<!-- dropzone -->
+
 <!-- End loading page level scripts-->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
