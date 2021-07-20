@@ -284,7 +284,7 @@ function show_qouta() {
         <!-- panel-heading -->
         <div class="panel-body" style="" id="qut_data">
 
-        <div class="row">
+            <div class="row">
                 <div class="col-md-12">
                     <label class="control-label">
                         <strong>

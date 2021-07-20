@@ -224,7 +224,7 @@ function show_linebarChart() {
             }, {
                 label: 'Quota Plan Actual',
                 data: dataActualPlan,
-            
+
                 // this dataset is drawn on top
                 order: 1,
                 borderColor: 'rgb(51, 204, 0)',

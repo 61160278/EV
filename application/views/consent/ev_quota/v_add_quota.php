@@ -653,14 +653,12 @@ function show_qouta() {
                 <div class="form-horizontal">
                     <div class="form-group" align="center">
                         <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" 
-                                align="center">
+                            <label for="focusedinput" class="control-label" align="center">
                                 <font size="3px">
                                     Already in quota information. </font>
                             </label>
                             <br>
-                            <label for="focusedinput" class="control-label"
-                                align="center">
+                            <label for="focusedinput" class="control-label" align="center">
                                 <font size="3px">
                                     Please select new type or select new position. </font>
                             </label>

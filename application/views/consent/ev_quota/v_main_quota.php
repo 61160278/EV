@@ -106,7 +106,6 @@ function manage_data_report(qut_id) {
     window.location.href = "<?php echo base_url(); ?>/ev_quota/Evs_quota/manage_quota_report/" + qut_id;
 }
 //manage_data_report
-
 </script>
 <div class="col-md-12">
     <div class="panel panel-indigo">
