@@ -184,39 +184,6 @@ function manage_data(qut_id) {
         </div>
 		<!-- col-12 -->
 		
-        <legend></legend>
-        <h3>Description</h3>
-        <table height="150px">
-            <tr>
-                <td height="20" width="50px"><button type="submit" class="btn btn-info"><i
-                            class="ti ti-info-alt"></i></button></td>
-                <td width="50px">
-                    <h4>:</h4>
-                </td>
-                <td width="150px">
-                    <h4>Manage quota</h4>
-                </td>
-            </tr>
-            <tr>
-                <td> <button type="submit" class="btn btn-warning"><i class="ti ti-pencil-alt "></i></button></td>
-                <td width="50px">
-                    <h4>:</h4>
-                </td>
-                <td>
-                    <h4>Edit quota</h4>
-                </td>
-            </tr>
-            <tr>
-                <td><button type="submit" class="btn btn-danger"><i class="ti ti-trash"></i></button></td>
-                <td width="50px">
-                    <h4>:</h4>
-                </td>
-                <td>
-                    <h4>Delete quota</h4>
-                </td>
-            </tr>
-        </table>
-		<!-- table -->
     </div>
     <!--panel-body-->
 </div><!-- panel-indigo -->
