@@ -36,17 +36,15 @@ $(document).ready(function() {
             dataType: "JSON",
             success: function(data) {
                 $('#file').val('');
-                alert(data);
             }
-			// success
+            // success
         })
-		// ajax
+        // ajax
     });
-	// onsubmit
+    // onsubmit
 
 });
 // document ready
-
 </script>
 <!-- END script  -->
 
@@ -60,43 +58,60 @@ $(document).ready(function() {
             </div>
             <!-- heading -->
             <div class="panel-body">
-				<div class="row">
-					<div class="col-md-7" align="right">
-						<h3 align="center"><i class="fa fa-upload"></i></h3>
-						<h3 align="center">Import Score of associate</h3>
-					</div>
-					<!--col-6 -->
-					
-					<div class="col-md-5" >
-						<form method="post" id="import_form" enctype="multipart/form-data">
-							<div class="row">
-								<div class="col-md-12">
-									<p><label>Choose file Excel to Import Data</label>
-										<input type="file" name="file" id="file" required accept=".xls, .xlsx" />
-									</p>
-								</div>
-								<!-- col-6 -->
-							</div>
-							<!-- row -->	
-							
-							<div class="row">
-								<div class="col-md-6">
-									<input type="submit" name="import" value="Import" class="btn btn-info" />
-								</div>
-								<!-- col-6 -->
-							</div>
-							<!-- row -->
-							
-							
-						</form>
-					</div>
-					<!--col-6 -->
-				</div>
-				<!-- row -->
+
+                <div class="row">
+                    <div class="col-md-11">
+                        <label class="control-label">
+                            <strong>
+                                <font size="5px">List of employees to import score MHRD </font>
+                            </strong>
+                        </label>
+                    </div>
+                    <!-- col-12  -->
+                </div>
+                <!-- row  -->
                 <hr>
 
+                <div class="row">
+                    <div class="col-md-7" align="right">
+                        <h3 align="center"><i class="fa fa-upload"></i></h3>
+                        <h3 align="center">Import Score of associate</h3>
+                    </div>
+                    <!--col-6 -->
+
+                    <div class="col-md-5">
+                        <form method="post" id="import_form" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p><label>Choose file Excel to Import Data</label>
+                                        <input type="file" name="file" id="file" required accept=".xls, .xlsx" />
+                                    </p>
+                                </div>
+                                <!-- col-6 -->
+                            </div>
+                            <!-- row -->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="submit" name="import" value="Import" class="btn btn-info" />
+                                </div>
+                                <!-- col-6 -->
+                            </div>
+                            <!-- row -->
+
+
+                        </form>
+                    </div>
+                    <!--col-6 -->
+                </div>
+                <!-- row -->
+                <hr>
 
             </div>
+            <!-- panel-body -->
         </div>
+        <!-- panel panel-indigo -->
     </div>
+    <!-- col-md-12 -->
 </div>
+<!-- row -->
