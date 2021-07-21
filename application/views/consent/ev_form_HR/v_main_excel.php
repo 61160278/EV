@@ -55,7 +55,7 @@ function show_data() {
     $.get("<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/show_mhrd", function(data) {
         console.log(data);
         var obj = JSON.parse(data);
-        
+
         obj.forEach((row, index) => {
             console.log(row.Emp_ID);
         })
@@ -79,7 +79,9 @@ function show_data() {
             <!-- heading -->
             <div class="panel-body">
 
-                <?php if(sizeof($mhrd) == 0){ ?>
+                <?php 
+
+                if(sizeof($mhrd) == 0){ ?>
                 <div class="row">
                     <div class="col-md-11">
                         <label class="control-label">
@@ -169,19 +171,36 @@ function show_data() {
                 <?php }
             // if
             else { ?>
+
+                <div class="row">
+                    <div class="col-md-11">
+                        <label class="control-label">
+                            <strong>
+                                <font size="5px">List score MHRD of employees </font>
+                            </strong>
+                        </label>
+                    </div>
+                    <!-- col-12  -->
+                </div>
+                <!-- row  -->
+                <hr>
                 <div class="row">
                     <div class="col-md-12">
                         <table class="table table-bordered table-striped m-n" id="show_data">
                             <thead>
+
                                 <tr>
                                     <th rowspan="2" width="2%">
-                                        <center> No.</center>
+                                        <center>#</center>
                                     </th>
-                                    <th rowspan="2" width="15%">
+                                    <th rowspan="2" width="7%">
                                         <center>Employee id</center>
                                     </th>
                                     <th rowspan="2" width="15%">
                                         <center>Name</center>
+                                    </th>
+                                    <th rowspan="2" width="7%">
+                                        <center>Section code</center>
                                     </th>
                                     <th rowspan="2" width="15%">
                                         <center>Department</center>
@@ -197,9 +216,73 @@ function show_data() {
                                     </th>
 
                                 </tr>
+
                             </thead>
                             <!-- thead -->
                             <tbody id="row_inport_data">
+                                <?php 
+                                $row_index = [];
+                                $row_count = 0;
+                                foreach($mhrd as $index => $row){
+                                    if($index == 0){
+                                        $emp = $row->Emp_ID;
+                                    }
+                                    // if 
+                                }
+                                // foreach 
+
+                                $count = 0;
+                                foreach($mhrd as $index => $row){  
+                                    
+                                    ?>
+                                <tr>
+                                    <?php if($index == 0){
+                                        $emp = $row->Emp_ID; 
+                                        $count++; 
+                                    ?>
+                                    <td align="center" rowspan="2"><?php echo $count; ?></td>
+                                    <td align="center"><?php echo $row->Emp_ID?></td>
+                                    <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
+                                    <td align="center"><?php echo $row->Sectioncode_ID?></td>
+                                    <td><?php echo $row->Department?></td>
+                                    <td align="center"><?php echo $row->mhw_weight_1?></td>
+                                    <td align="center"><?php echo $row->mhw_weight_2?></td>
+                                    <td align="center" rowspan="2"><button class="btn btn btn-danger"><i
+                                                class="ti ti-trash"></i></button></td>
+
+                                    <?php }
+                                    // if
+                                    else if($emp == $row->Emp_ID){ ?>
+
+                                    <td align="center"><?php echo $row->Emp_ID?></td>
+                                    <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
+                                    <td align="center"><?php echo $row->Sectioncode_ID?></td>
+                                    <td><?php echo $row->Department?></td>
+                                    <td align="center"><?php echo $row->mhw_weight_1?></td>
+                                    <td align="center"><?php echo $row->mhw_weight_2?></td>
+
+                                    <?php }
+                                    else if($emp != $row->Emp_ID){
+                                        $count++; 
+                                        $emp = $row->Emp_ID;?>
+
+                                    <td align="center" rowspan="2"><?php echo $count; ?></td>
+                                    <td align="center"><?php echo $row->Emp_ID?></td>
+                                    <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
+                                    <td align="center"><?php echo $row->Sectioncode_ID?></td>
+                                    <td><?php echo $row->Department?></td>
+                                    <td align="center"><?php echo $row->mhw_weight_1?></td>
+                                    <td align="center"><?php echo $row->mhw_weight_2?></td>
+                                    <td align="center"><button class="btn btn btn-danger"><i
+                                                class="ti ti-trash"></i></button></td>
+
+                                    <?php }
+                                    //else if ?>
+                                </tr>
+                                <?php 
+                                   
+                                }
+                            // foreach ?>
                             </tbody>
                         </table>
                     </div>
