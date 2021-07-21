@@ -478,7 +478,6 @@ function show_weight_gcm_edit() {
     document.getElementById("weight_all_gcm_edit").innerHTML = sum;
 }
 
-
 function save_GCM() {
     var arr_radio = [];
     var arr_sgc_id = [];
@@ -910,8 +909,6 @@ function update_approve() {
 // update_approve
 </script>
 <!-- script -->
-
-
 
 <div class="row">
     <div class="col-md-12">
@@ -2212,18 +2209,6 @@ function update_approve() {
                                                     <?php echo $checked_weight_1_3 ?>>
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;
-                                                <input type="radio"
-                                                    name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="4" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_1_4 ?>>
-                                                <label for="4">&nbsp; 4</label>
-                                                &nbsp;
-                                                <input type="radio"
-                                                    name="rd_mhrd_1_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="5" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_1_5 ?>>
-                                                <label for="5">&nbsp; 5</label>
-                                                &nbsp;
                                             </div>
                                             <!-- col-12 -->
                                         </center>
@@ -2234,8 +2219,6 @@ function update_approve() {
                                    $checked_weight_2_1 ="";
                                    $checked_weight_2_2 ="";
                                    $checked_weight_2_3 ="";
-                                   $checked_weight_2_4 ="";
-                                   $checked_weight_2_5 ="";
              
                                     foreach($data_mhrd as $row_data_mhrd){
                                             if($row->sfi_id == $row_data_mhrd->mhw_sfi_id){
@@ -2247,12 +2230,6 @@ function update_approve() {
                                                 }
                                                 else if($row_data_mhrd->mhw_weight_2 == 3){
                                                     $checked_weight_2_3 =  "checked";
-                                                }
-                                                else if($row_data_mhrd->mhw_weight_2 == 4){
-                                                    $checked_weight_2_4 =  "checked";
-                                                }
-                                                else {
-                                                    $checked_weight_2_5 =  "checked";
                                                 }
                                             }
                                         }
@@ -2275,18 +2252,6 @@ function update_approve() {
                                                     value="3" onclick="show_weight_mhrd_edit()"
                                                     <?php echo $checked_weight_2_3 ?>>
                                                 <label for="3">&nbsp; 3</label>
-                                                &nbsp;
-                                                <input type="radio"
-                                                    name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="4" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_2_4 ?>>
-                                                <label for="4">&nbsp; 4</label>
-                                                &nbsp;
-                                                <input type="radio"
-                                                    name="rd_mhrd_2_edit_<?php echo $table_index_radio_mhrd_edit ?>"
-                                                    value="5" onclick="show_weight_mhrd_edit()"
-                                                    <?php echo $checked_weight_2_5 ?>>
-                                                <label for="5">&nbsp; 5</label>
                                                 &nbsp;
                                             </div>
                                             <!-- col-12 -->
