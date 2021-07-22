@@ -194,8 +194,6 @@ function get_Emp() {
     Emp_id = document.getElementById("Emp_id_modol").value;
     var empname = "";
 
-    // console.log(Emp_id)
-    // console.log("1,2,3,4,5")
     $.ajax({
         type: "POST",
         url: "<?php echo base_url(); ?>/ev_group/Evs_group/search_by_employee_id_sdm",
@@ -373,7 +371,7 @@ function check_data_edt(check) {
                         <div class="DTTT btn-group mt-sm">
                             &emsp;
                             <a data-toggle="modal" class="btn btn btn-success" href="#Add">
-                                <i class="fa fa-plus""></i>  &nbsp; ADD
+                                <i class="fa fa-plus"></i>  &nbsp; ADD
                             </a>
                         </div>
                         <!-- add page 1 -->
