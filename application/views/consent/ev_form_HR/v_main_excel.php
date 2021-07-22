@@ -51,15 +51,65 @@ $(document).ready(function() {
 
 function show_data() {
     $("#show_data_import").show();
-
+    $("#insert_data").hide();
+    
     $.get("<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/show_mhrd", function(data) {
         console.log(data);
         var obj = JSON.parse(data);
-
+        var data_table = "";
+        var check = "";
+        var count = 0
         obj.forEach((row, index) => {
-            console.log(row.Emp_ID);
+            data_table += '<tr>'
+            if (index == 0) {
+                check = row.Emp_ID;
+                count++;
+
+                data_table += '<td align="center" rowspan="2">' + count + '</td>'
+                data_table += '<td align="center">' + row.Emp_ID + '</td>'
+                data_table += '<td>' + row.Empname_eng + " " + row.Empsurname_eng + '</td>'
+                data_table += '<td align="center">' + row.Sectioncode_ID + '</td>'
+                data_table += '<td>' + row.Department + '</td>'
+                data_table += '<td align="center">' + row.mhw_weight_1 + '</td>'
+                data_table += '<td align="center">' + row.mhw_weight_2 + '</td>'
+                data_table += '<td align="center" rowspan="2">'
+                data_table +=
+                    '<button class="btn btn btn-danger"><i class="ti ti-trash"></i></button></td>'
+            }
+            // if
+            else if (check == row.Emp_ID) {
+
+                data_table += '<td align="center">' + row.Emp_ID + '</td>'
+                data_table += '<td>' + row.Empname_eng + " " + row.Empsurname_eng + '</td>'
+                data_table += '<td align="center">' + row.Sectioncode_ID + '</td>'
+                data_table += '<td>' + row.Department + '</td>'
+                data_table += '<td align="center">' + row.mhw_weight_1 + '</td>'
+                data_table += '<td align="center">' + row.mhw_weight_2 + '</td>'
+            }
+            // else if
+            else if (check != row.Emp_ID) {
+                check = row.Emp_ID;
+                count++;
+
+                data_table += '<td align="center" rowspan="2">' + count + '</td>'
+                data_table += '<td align="center">' + row.Emp_ID + '</td>'
+                data_table += '<td>' + row.Empname_eng + " " + row.Empsurname_eng + '</td>'
+                data_table += '<td align="center">' + row.Sectioncode_ID + '</td>'
+                data_table += '<td>' + row.Department + '</td>'
+                data_table += '<td align="center">' + row.mhw_weight_1 + '</td>'
+                data_table += '<td align="center">' + row.mhw_weight_2 + '</td>'
+                data_table += '<td align="center" rowspan="2">'
+                data_table +=
+                    '<button class="btn btn btn-danger"><i class="ti ti-trash"></i></button></td>'
+            }
+            // else if
+
+            data_table += '</tr>'
+
         })
         // foreach
+
+        $("#row_inport").html(data_table);
 
     });
     // $.get
@@ -95,7 +145,7 @@ function show_data() {
                 <!-- row  -->
                 <hr>
 
-                <div class="row">
+                <div class="row" id="insert_data">
                     <div class="col-md-6" align="right">
                         <h3 align="center"><i class="fa fa-upload"></i></h3>
                         <h3 align="center">Choose file Excel to Import Data</h3>
@@ -137,13 +187,16 @@ function show_data() {
                             <thead>
                                 <tr>
                                     <th rowspan="2" width="2%">
-                                        <center> No.</center>
+                                        <center>#</center>
                                     </th>
-                                    <th rowspan="2" width="15%">
+                                    <th rowspan="2" width="7%">
                                         <center>Employee id</center>
                                     </th>
                                     <th rowspan="2" width="15%">
                                         <center>Name</center>
+                                    </th>
+                                    <th rowspan="2" width="7%">
+                                        <center>Section code</center>
                                     </th>
                                     <th rowspan="2" width="15%">
                                         <center>Department</center>
@@ -161,7 +214,7 @@ function show_data() {
                                 </tr>
                             </thead>
                             <!-- thead -->
-                            <tbody id="row_inport_data">
+                            <tbody id="row_inport">
                             </tbody>
                         </table>
                     </div>
