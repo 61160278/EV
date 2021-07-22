@@ -196,8 +196,8 @@
                 </div>
                 <!-- End Menu Manage Report Group  -->
 
-                 <!-- Start Menu Manage Form MHRD (Excel) -->
-                 <div class="col-xl-4 col-md-6 mb-4">
+                <!-- Start Menu Manage Form MHRD (Excel) -->
+                <div class="col-xl-4 col-md-6 mb-4">
                     <a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/excel">
                         <div class="card border4 shadow h-100 py-2">
                             <div class="card-body">
@@ -218,10 +218,33 @@
                 </div>
                 <!-- End Menu Manage Form MHRD (Excel)  -->
 
+                <hr>
+
+                <!-- Start User Manual -->
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card border4 shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text4 text-uppercase mb-1">User Manual
+                                    </div>
+                                    <img src='https://online.anyflip.com/hziou/ucwc/files/shot.jpg'
+                                        data-rel='fh5-light-box-demo'
+                                        data-href='https://online.anyflip.com/hziou/ucwc/index.html' data-width='900'
+                                        data-height='600' data-title='EVS - Admin'>
+                                </div>
+                                <!-- col-2 -->
+                            </div>
+                            <!-- row -->
+                        </div>
+                        <!-- card body -->
+                    </div>
+                    <!-- card -->
+                </div>
+                <!-- End User Manual  -->
 
             </div>
             <!-- End card shadow -->
-
         </div>
         <!-- End  col-lg-12 -->
 
