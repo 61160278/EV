@@ -116,6 +116,14 @@ class Da_evs_data_mhrd_weight extends evs_model {
 		
 	 }
 
+	 function delete_emp_id() {
+	 	
+		$sql = "DELETE FROM evs_database.evs_data_mhrd_weight
+				WHERE mhw_evs_emp_id=?";
+		$this->db->query($sql, array($this->mhw_evs_emp_id));
+	   
+	}
+
 	/*
 	* get_by_key
 	* Get Category from database

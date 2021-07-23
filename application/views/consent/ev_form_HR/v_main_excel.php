@@ -51,10 +51,8 @@ $(document).ready(function() {
 
 function show_data() {
     $("#show_data_import").show();
-    $("#insert_data").hide();
-    
+
     $.get("<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/show_mhrd", function(data) {
-        console.log(data);
         var obj = JSON.parse(data);
         var data_table = "";
         var check = "";
@@ -115,6 +113,29 @@ function show_data() {
     // $.get
 }
 // show_data
+
+function del_score(evs_emp_id) {
+
+    // evs_emp_id = document.getElementById("emp_id" + count).value;
+    console.log(evs_emp_id);
+
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>/ev_form_HR/Evs_form_HR/del_score",
+        data: {
+            "evs_emp_id": evs_emp_id
+        },
+        dataType: "JSON",
+        success: function(data) {
+            window.location.href = "<?php echo base_url();?>/ev_form_HR/Evs_form_HR/excel";
+        }
+        // success
+
+    });
+    // ajax
+
+}
+// function del_score
 </script>
 <!-- END script  -->
 
@@ -276,13 +297,6 @@ function show_data() {
                                 <?php 
                                 $row_index = [];
                                 $row_count = 0;
-                                foreach($mhrd as $index => $row){
-                                    if($index == 0){
-                                        $emp = $row->Emp_ID;
-                                    }
-                                    // if 
-                                }
-                                // foreach 
 
                                 $count = 0;
                                 foreach($mhrd as $index => $row){  
@@ -300,9 +314,14 @@ function show_data() {
                                     <td><?php echo $row->Department?></td>
                                     <td align="center"><?php echo $row->mhw_weight_1?></td>
                                     <td align="center"><?php echo $row->mhw_weight_2?></td>
-                                    <td align="center" rowspan="2"><button class="btn btn btn-danger"><i
-                                                class="ti ti-trash"></i></button></td>
-
+                                    <td align="center">
+                                        <button data-toggle="modal" class="btn btn-danger"
+                                            data-target="#Delete<?php echo $row->mhw_evs_emp_id;?>">
+                                            <i class="ti ti-trash"></i>
+                                        </button>
+                                    </td>
+                                    <input type="text" id="emp_id<?php echo $row->mhw_evs_emp_id; ?>"
+                                        value="<?php echo $row->mhw_evs_emp_id?>" hidden>
                                     <?php }
                                     // if
                                     else if($emp == $row->Emp_ID){ ?>
@@ -326,9 +345,14 @@ function show_data() {
                                     <td><?php echo $row->Department?></td>
                                     <td align="center"><?php echo $row->mhw_weight_1?></td>
                                     <td align="center"><?php echo $row->mhw_weight_2?></td>
-                                    <td align="center"><button class="btn btn btn-danger"><i
-                                                class="ti ti-trash"></i></button></td>
-
+                                    <td align="center">
+                                        <button data-toggle="modal" class="btn btn-danger"
+                                            data-target="#Delete<?php echo $row->mhw_evs_emp_id;?>">
+                                            <i class="ti ti-trash"></i>
+                                        </button>
+                                    </td>
+                                    <input type="text" id="emp_id<?php echo $row->mhw_evs_emp_id; ?>"
+                                        value="<?php echo $row->mhw_evs_emp_id?>" hidden>
                                     <?php }
                                     //else if ?>
                                 </tr>
@@ -336,6 +360,7 @@ function show_data() {
                                    
                                 }
                             // foreach ?>
+
                             </tbody>
                         </table>
                     </div>
@@ -344,7 +369,17 @@ function show_data() {
                 <!-- row  -->
                 <?php }
             // else  ?>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-8" align="left">
+                        <a href="<?php echo base_url(); ?>Evs_Controller/index">
+                            <button class="btn btn-inverse"><i class="fa fa-mail-reply"></i> Back</button>
+                        </a>
+                    </div>
+                    <!-- col-8  -->
 
+                </div>
+                <!-- row  -->
             </div>
             <!-- panel-body -->
         </div>
@@ -353,3 +388,124 @@ function show_data() {
     <!-- col-md-12 -->
 </div>
 <!-- row -->
+
+
+<?php 
+$check = "";
+if(sizeof($mhrd) != 0){
+    foreach($mhrd as $index => $row){ 
+        
+        if($index == 0){ 
+           $check = $row->mhw_evs_emp_id; 
+           ?>
+
+<!-- Modal Delete -->
+<div class="modal fade" id="Delete<?php echo $row->mhw_evs_emp_id?>" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:red;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                    style="color:white;">&times;</button>
+                <h2 class="modal-title">
+                    <b>
+                        <font color="white">Warning</font>
+                    </b>
+                </h2>
+            </div>
+            <!-- Modal header -->
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group" align="center">
+                        <div class="col-sm-12">
+                            <label for="focusedinput" class="control-label" align="center">
+                                <font size="5px">
+                                    Do you want
+                                    to delete
+                                    data ?</font>
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- form-horizontal -->
+            </div>
+            <!-- Modal body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-left">
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
+                </div>
+                <button type="button" class="btn btn-success"
+                    onClick="del_score(<?php echo $row->mhw_evs_emp_id; ?>)">YES</button>
+            </div>
+            <!-- Modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal Delete -->
+
+<?php   }
+        // if
+        else if($check != $row->mhw_evs_emp_id){ 
+            $check = $row->mhw_evs_emp_id;
+        ?>
+
+<!-- Modal Delete -->
+<div class="modal fade" id="Delete<?php echo $row->mhw_evs_emp_id?>" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:red;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                    style="color:white;">&times;</button>
+                <h2 class="modal-title">
+                    <b>
+                        <font color="white">Warning</font>
+                    </b>
+                </h2>
+            </div>
+            <!-- Modal header -->
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group" align="center">
+                        <div class="col-sm-12">
+                            <label for="focusedinput" class="control-label" align="center">
+                                <font size="5px">
+                                    Do you want
+                                    to delete
+                                    data ?</font>
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- form-horizontal -->
+            </div>
+            <!-- Modal body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-left">
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
+                </div>
+                <button type="button" class="btn btn-success"
+                    onClick="del_score(<?php echo $row->mhw_evs_emp_id; ?>)">YES</button>
+            </div>
+            <!-- Modal footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal Delete -->
+<?php }
+        // else if 
+    }
+    // if
+}
+// foreach 
+?>

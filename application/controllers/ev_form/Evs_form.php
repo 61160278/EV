@@ -376,6 +376,8 @@ class Evs_form extends MainController_avenxo {
 			$this->dedm->insert();
 		}
 		// for
+		$data = "save";
+		echo json_encode($data);
 	}
 	// function save_mbo_by_emp
 

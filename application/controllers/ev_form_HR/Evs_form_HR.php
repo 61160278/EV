@@ -1457,6 +1457,19 @@ class Evs_form_HR extends MainController_avenxo {
 		// update_mhrd
 
 		
+		function del_score(){
+
+			$evs_emp_id = $this->input->post("evs_emp_id");
+
+			$this->load->model('Da_evs_data_mhrd_weight','demw');
+			$this->demw->mhw_evs_emp_id = $evs_emp_id;
+			$this->demw->delete_emp_id();
+
+			$data = "del_success";
+			echo json_encode($data);
+
+		}
+		// del_score
 
 
 

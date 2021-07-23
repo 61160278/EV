@@ -706,6 +706,8 @@ class Evs_form_HD extends MainController_avenxo {
 			$this->output('/consent/ev_form_HD/v_report_grade',$data);
 
 		}
+		// report_grade
+
 
 }
 ?>

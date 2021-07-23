@@ -141,14 +141,13 @@ $(document).ready(function() {
                 </table>
                 <br>
                 <div class="row">
-                    <div class="col-md-6">
-
+                    <div class="col-sm-8" align="left">
+                        <a href="<?php echo base_url(); ?>Evs_Controller/index">
+                            <button class="btn btn-inverse"><i class="fa fa-mail-reply"></i> Back</button>
+                        </a>
                     </div>
-                    <!-- col-6  -->
-                    <div class="col-md-6" align="right">
+                    <!-- col-8  -->
 
-                    </div>
-                    <!-- col-6  -->
                 </div>
                 <!-- row  -->
             </div>

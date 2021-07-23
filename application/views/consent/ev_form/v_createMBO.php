@@ -92,11 +92,16 @@ function save_dataMBO() {
             "Emp_ID": check_emp_id,
             "evs_emp_id": evs_emp_id,
             "count": count
+        },
+        success: function(data) {
+            console.log(data);
+            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id +
+            "";
         }
+        // success
+
     });
     // ajax
-
-    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id + "";
 
 }
 // function save_dataMBO
