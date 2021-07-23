@@ -38,13 +38,17 @@ $(document).ready(function() {
             dataType: "JSON",
             success: function(data) {
                 $('#file').val('');
-                show_data();
+                console.log(data);
+
             }
             // success
         })
         // ajax
+        window.location.href =
+            "<?php echo base_url();?>/ev_form_HR/Evs_form_HR/excel";
     });
     // onsubmit
+
 
 });
 // document ready
@@ -64,10 +68,11 @@ function show_data() {
                 count++;
 
                 data_table += '<td align="center" rowspan="2">' + count + '</td>'
-                data_table += '<td align="center">' + row.Emp_ID + '</td>'
-                data_table += '<td>' + row.Empname_eng + " " + row.Empsurname_eng + '</td>'
-                data_table += '<td align="center">' + row.Sectioncode_ID + '</td>'
-                data_table += '<td>' + row.Department + '</td>'
+                data_table += '<td align="center" rowspan="2">' + row.Emp_ID + '</td>'
+                data_table += '<td rowspan="2">' + row.Empname_eng + " " + row.Empsurname_eng + '</td>'
+                data_table += '<td align="center" rowspan="2">' + row.Sectioncode_ID + '</td>'
+                data_table += '<td rowspan="2">' + row.Department + '</td>'
+                data_table += '<td align="center" >' + "1" + '</td>'
                 data_table += '<td align="center">' + row.mhw_weight_1 + '</td>'
                 data_table += '<td align="center">' + row.mhw_weight_2 + '</td>'
                 data_table += '<td align="center" rowspan="2">'
@@ -76,11 +81,7 @@ function show_data() {
             }
             // if
             else if (check == row.Emp_ID) {
-
-                data_table += '<td align="center">' + row.Emp_ID + '</td>'
-                data_table += '<td>' + row.Empname_eng + " " + row.Empsurname_eng + '</td>'
-                data_table += '<td align="center">' + row.Sectioncode_ID + '</td>'
-                data_table += '<td>' + row.Department + '</td>'
+                data_table += '<td align="center" >' + "2" + '</td>'
                 data_table += '<td align="center">' + row.mhw_weight_1 + '</td>'
                 data_table += '<td align="center">' + row.mhw_weight_2 + '</td>'
             }
@@ -90,10 +91,11 @@ function show_data() {
                 count++;
 
                 data_table += '<td align="center" rowspan="2">' + count + '</td>'
-                data_table += '<td align="center">' + row.Emp_ID + '</td>'
-                data_table += '<td>' + row.Empname_eng + " " + row.Empsurname_eng + '</td>'
-                data_table += '<td align="center">' + row.Sectioncode_ID + '</td>'
-                data_table += '<td>' + row.Department + '</td>'
+                data_table += '<td align="center" rowspan="2">' + row.Emp_ID + '</td>'
+                data_table += '<td rowspan="2">' + row.Empname_eng + " " + row.Empsurname_eng + '</td>'
+                data_table += '<td align="center" rowspan="2">' + row.Sectioncode_ID + '</td>'
+                data_table += '<td rowspan="2">' + row.Department + '</td>'
+                data_table += '<td align="center" >' + "1" + '</td>'
                 data_table += '<td align="center">' + row.mhw_weight_1 + '</td>'
                 data_table += '<td align="center">' + row.mhw_weight_2 + '</td>'
                 data_table += '<td align="center" rowspan="2">'
@@ -149,10 +151,6 @@ function del_score(evs_emp_id) {
             </div>
             <!-- heading -->
             <div class="panel-body">
-
-                <?php 
-
-                if(sizeof($mhrd) == 0){ ?>
                 <div class="row">
                     <div class="col-md-11">
                         <label class="control-label">
@@ -167,9 +165,9 @@ function del_score(evs_emp_id) {
                 <hr>
 
                 <div class="row" id="insert_data">
-                    <div class="col-md-6" align="right">
+                    <div class="col-md-7" align="right">
                         <h3 align="center"><i class="fa fa-upload"></i></h3>
-                        <h3 align="center">Choose file Excel to Import Data</h3>
+                        <h3 align="center">Select file Excel to Import Data</h3>
                     </div>
                     <!--col-6 -->
 
@@ -201,34 +199,42 @@ function del_score(evs_emp_id) {
                     <!--col-6 -->
                 </div>
                 <!-- row -->
+
+                <?php 
+
+                if(sizeof($mhrd) == 0){ ?>
+
                 <hr>
                 <div class="row">
                     <div class="col-md-12">
                         <table class="table table-bordered table-striped m-n" id="show_data_import">
                             <thead>
                                 <tr>
-                                    <th rowspan="2" width="2%">
+                                    <th width="2%">
                                         <center>#</center>
                                     </th>
-                                    <th rowspan="2" width="7%">
+                                    <th width="7%">
                                         <center>Employee id</center>
                                     </th>
-                                    <th rowspan="2" width="15%">
+                                    <th width="15%">
                                         <center>Name</center>
                                     </th>
-                                    <th rowspan="2" width="7%">
+                                    <th width="7%">
                                         <center>Section code</center>
                                     </th>
-                                    <th rowspan="2" width="15%">
+                                    <th width="15%">
                                         <center>Department</center>
                                     </th>
-                                    <th rowspan="2" width="10%">
+                                    <th width="2%">
+                                        <center>Items</center>
+                                    </th>
+                                    <th width="10%">
                                         <center>Score 1 </center>
                                     </th>
-                                    <th rowspan="2" width="10%">
+                                    <th width="10%">
                                         <center>Score 2 </center>
                                     </th>
-                                    <th rowspan="2" width="10%">
+                                    <th width="10%">
                                         <center>Action</center>
                                     </th>
 
@@ -245,6 +251,7 @@ function del_score(evs_emp_id) {
                 <?php }
             // if
             else { ?>
+                <hr>
 
                 <div class="row">
                     <div class="col-md-11">
@@ -262,35 +269,36 @@ function del_score(evs_emp_id) {
                     <div class="col-md-12">
                         <table class="table table-bordered table-striped m-n" id="show_data">
                             <thead>
-
                                 <tr>
-                                    <th rowspan="2" width="2%">
+                                    <th width="2%">
                                         <center>#</center>
                                     </th>
-                                    <th rowspan="2" width="7%">
+                                    <th width="7%">
                                         <center>Employee id</center>
                                     </th>
-                                    <th rowspan="2" width="15%">
+                                    <th width="15%">
                                         <center>Name</center>
                                     </th>
-                                    <th rowspan="2" width="7%">
+                                    <th width="7%">
                                         <center>Section code</center>
                                     </th>
-                                    <th rowspan="2" width="15%">
+                                    <th width="15%">
                                         <center>Department</center>
                                     </th>
-                                    <th rowspan="2" width="10%">
+                                    <th width="2%">
+                                        <center>Items</center>
+                                    </th>
+                                    <th width="10%">
                                         <center>Score 1 </center>
                                     </th>
-                                    <th rowspan="2" width="10%">
+                                    <th width="10%">
                                         <center>Score 2 </center>
                                     </th>
-                                    <th rowspan="2" width="10%">
+                                    <th width="10%">
                                         <center>Action</center>
                                     </th>
 
                                 </tr>
-
                             </thead>
                             <!-- thead -->
                             <tbody id="row_inport_data">
@@ -308,10 +316,11 @@ function del_score(evs_emp_id) {
                                         $count++; 
                                     ?>
                                     <td align="center" rowspan="2"><?php echo $count; ?></td>
-                                    <td align="center"><?php echo $row->Emp_ID?></td>
-                                    <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
-                                    <td align="center"><?php echo $row->Sectioncode_ID?></td>
-                                    <td><?php echo $row->Department?></td>
+                                    <td align="center" rowspan="2"><?php echo $row->Emp_ID?></td>
+                                    <td rowspan="2"><?php echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
+                                    <td align="center" rowspan="2"><?php echo $row->Sectioncode_ID?></td>
+                                    <td rowspan="2"><?php echo $row->Department?></td>
+                                    <td align="center"><?php echo "1"; ?></td>
                                     <td align="center"><?php echo $row->mhw_weight_1?></td>
                                     <td align="center"><?php echo $row->mhw_weight_2?></td>
                                     <td align="center">
@@ -325,11 +334,7 @@ function del_score(evs_emp_id) {
                                     <?php }
                                     // if
                                     else if($emp == $row->Emp_ID){ ?>
-
-                                    <td align="center"><?php echo $row->Emp_ID?></td>
-                                    <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
-                                    <td align="center"><?php echo $row->Sectioncode_ID?></td>
-                                    <td><?php echo $row->Department?></td>
+                                    <td align="center"><?php echo "2"; ?></td>
                                     <td align="center"><?php echo $row->mhw_weight_1?></td>
                                     <td align="center"><?php echo $row->mhw_weight_2?></td>
 
@@ -339,10 +344,11 @@ function del_score(evs_emp_id) {
                                         $emp = $row->Emp_ID;?>
 
                                     <td align="center" rowspan="2"><?php echo $count; ?></td>
-                                    <td align="center"><?php echo $row->Emp_ID?></td>
-                                    <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
-                                    <td align="center"><?php echo $row->Sectioncode_ID?></td>
-                                    <td><?php echo $row->Department?></td>
+                                    <td align="center" rowspan="2"><?php echo $row->Emp_ID?></td>
+                                    <td rowspan="2"><?php echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
+                                    <td align="center" rowspan="2"><?php echo $row->Sectioncode_ID?></td>
+                                    <td rowspan="2"><?php echo $row->Department?></td>
+                                    <td align="center"><?php echo "1"; ?></td>
                                     <td align="center"><?php echo $row->mhw_weight_1?></td>
                                     <td align="center"><?php echo $row->mhw_weight_2?></td>
                                     <td align="center">
