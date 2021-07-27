@@ -121,7 +121,7 @@ class Evs_Controller extends MainController {
 
 
 	function insert_year_pattern(){
-		$yap_year = $this->input->post('fiscal_year'); //fiscal year
+		$yap_year = $this->input->post('fisical_year'); //fiscal year
 		$yap_pattern = $this->input->post('ptn_grade'); // pattern grade
 
 		$this->load->model('Da_evs_pattern_and_year','depy');
