@@ -39,6 +39,8 @@
 ?>
 
 $(document).ready(function() {
+    $("#def_info").hide();
+    $("#com_info").hide();
     get_data_for_competency_table()
     get_definetion_com()
 });
@@ -344,7 +346,8 @@ function send_id_to_delete(value_key_en) {
     button += '<div class="col-6" align="right">'
     button +=
         '<button  id="success_btn" class="btn btn-success" value = "' +
-        value_key_en + '" onclick="delete_key_component_and_expected(value)" ><i class="fa fa-check">&nbsp;Confirm</i></button></a>'
+        value_key_en +
+        '" onclick="delete_key_component_and_expected(value)" ><i class="fa fa-check">&nbsp;Confirm</i></button></a>'
     button += '</div>'
     $('#modal_delete').html(button)
 }
@@ -603,17 +606,17 @@ input:checked+.slider:before {
             <!-- modal-body -->
             <div class="modal-footer">
 
-                    <div class="col-6" align="left">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel_del">
-                            <i class="fa fa-times">&nbsp;Cancel</i></button>
-                    </div>
-                    <!-- col-6  -->
-                    <div class="col-6" align="right">
-                        <a href="<?php echo base_url();?>/Evs_ability_indicators_form/indicator_ability">
-                            <button id="success_btn" class="btn btn-success" onclick="clear_data_componet()"><i
-                                    class="fa fa-check">&nbsp;Confirm</i></button></a>
-                    </div>
-                    <!-- col-6  -->
+                <div class="col-6" align="left">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel_del">
+                        <i class="fa fa-times">&nbsp;Cancel</i></button>
+                </div>
+                <!-- col-6  -->
+                <div class="col-6" align="right">
+                    <a href="<?php echo base_url();?>/Evs_ability_indicators_form/indicator_ability">
+                        <button id="success_btn" class="btn btn-success" onclick="clear_data_componet()"><i
+                                class="fa fa-check">&nbsp;Confirm</i></button></a>
+                </div>
+                <!-- col-6  -->
             </div>
             <!-- modal-footer -->
             <!-- add button  -->

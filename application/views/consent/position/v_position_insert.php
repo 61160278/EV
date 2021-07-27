@@ -307,7 +307,7 @@
                                     <th width="10%">Status</th>
                                     <th>Tools</th>
                                     <th width="20%">Form</th>
-                                    <th width="15%">ratio (%)</th>
+                                    <th width="15%">weight (%)</th>
                                     <th width="15%">Attendance</th>
                                 </tr>
                             </thead>
