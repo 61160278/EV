@@ -69,7 +69,7 @@
                                 <li><a href="<?php echo base_url()?>Evs_Controller/index"><i
                                             class="fa fa-home"></i><span>HOME</span></span></a></li>
                                 <li class="nav-separator"><span>Menu</span></li>
-                                <li><a href="<?php echo base_url()?>Evs_Controller/index"><i
+                                <li><a href="<?php echo base_url()?>Evs_Controller/main_manage_form"><i
                                             class="fa fa-book"></i><span>Manage form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_permission/Evs_permission/index"><i
                                             class="fa fa-tasks"></i><span>Manage permission</span></span></a></li>
