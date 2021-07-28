@@ -19,9 +19,9 @@
 */ 
 ?>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 
 <?php
     $row = $info_pattern_year->row();
@@ -37,19 +37,10 @@ var sum_weight = 0; // sumary of weight
 var arr_save_index_arr_add_pos = [];
 
 
-
-
-
-
-
-
-
 $(document).ready(function() {
     var table_ready; // table ready
     var button_add; // button for add data
     var table_ready_score = '';
-
-
 
 
     //start get
