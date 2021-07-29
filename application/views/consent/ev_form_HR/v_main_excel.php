@@ -53,68 +53,6 @@ $(document).ready(function() {
 });
 // document ready
 
-function show_data() {
-    $("#show_data_import").show();
-
-    $.get("<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/show_mhrd", function(data) {
-        var obj = JSON.parse(data);
-        var data_table = "";
-        var check = "";
-        var count = 0
-        obj.forEach((row, index) => {
-            data_table += '<tr>'
-            if (index == 0) {
-                check = row.Emp_ID;
-                count++;
-
-                data_table += '<td align="center" rowspan="2">' + count + '</td>'
-                data_table += '<td align="center" rowspan="2">' + row.Emp_ID + '</td>'
-                data_table += '<td rowspan="2">' + row.Empname_eng + " " + row.Empsurname_eng + '</td>'
-                data_table += '<td align="center" rowspan="2">' + row.Sectioncode_ID + '</td>'
-                data_table += '<td rowspan="2">' + row.Department + '</td>'
-                data_table += '<td align="center" >' + "1" + '</td>'
-                data_table += '<td align="center">' + row.mhw_weight_1 + '</td>'
-                data_table += '<td align="center">' + row.mhw_weight_2 + '</td>'
-                data_table += '<td align="center" rowspan="2">'
-                data_table +=
-                    '<button class="btn btn btn-danger"><i class="ti ti-trash"></i></button></td>'
-            }
-            // if
-            else if (check == row.Emp_ID) {
-                data_table += '<td align="center" >' + "2" + '</td>'
-                data_table += '<td align="center">' + row.mhw_weight_1 + '</td>'
-                data_table += '<td align="center">' + row.mhw_weight_2 + '</td>'
-            }
-            // else if
-            else if (check != row.Emp_ID) {
-                check = row.Emp_ID;
-                count++;
-
-                data_table += '<td align="center" rowspan="2">' + count + '</td>'
-                data_table += '<td align="center" rowspan="2">' + row.Emp_ID + '</td>'
-                data_table += '<td rowspan="2">' + row.Empname_eng + " " + row.Empsurname_eng + '</td>'
-                data_table += '<td align="center" rowspan="2">' + row.Sectioncode_ID + '</td>'
-                data_table += '<td rowspan="2">' + row.Department + '</td>'
-                data_table += '<td align="center" >' + "1" + '</td>'
-                data_table += '<td align="center">' + row.mhw_weight_1 + '</td>'
-                data_table += '<td align="center">' + row.mhw_weight_2 + '</td>'
-                data_table += '<td align="center" rowspan="2">'
-                data_table +=
-                    '<button class="btn btn btn-danger"><i class="ti ti-trash"></i></button></td>'
-            }
-            // else if
-
-            data_table += '</tr>'
-
-        })
-        // foreach
-
-        $("#row_inport").html(data_table);
-
-    });
-    // $.get
-}
-// show_data
 
 function del_score(evs_emp_id) {
 
@@ -285,9 +223,6 @@ function del_score(evs_emp_id) {
                                     <th width="15%">
                                         <center>Department</center>
                                     </th>
-                                    <th width="2%">
-                                        <center>Items</center>
-                                    </th>
                                     <th width="10%">
                                         <center>Score 1 </center>
                                     </th>
@@ -305,22 +240,53 @@ function del_score(evs_emp_id) {
                                 <?php 
                                 $row_index = [];
                                 $row_count = 0;
+                                foreach($mhrd as $index => $row){
+
+                                    if($index == 0){
+                                        $emp = $row->Emp_ID;
+                                        $row_count++;
+                                    }
+                                    // if
+                                    else if($emp == $row->Emp_ID){
+                                        $row_count++;
+                                    }
+                                    //
+                                    else if($emp != $row->Emp_ID){
+                                        array_push($row_index,$row_count);
+                                        $emp = $row->Emp_ID;
+                                        $row_count = 0;
+                                        $row_count++;
+                                        
+                                    } 
+                                    // else if 
+
+                                    if(($index+1) == sizeof($mhrd)){
+                                        array_push($row_index,$row_count);
+                                    }
+                                    // if
+                                    
+                                }
+                                // foreach 
 
                                 $count = 0;
-                                foreach($mhrd as $index => $row){  
-                                    
-                                    ?>
+                                $count_index = 0;
+                                foreach($mhrd as $index => $row){  ?>
                                 <tr>
                                     <?php if($index == 0){
                                         $emp = $row->Emp_ID; 
                                         $count++; 
                                     ?>
-                                    <td align="center" rowspan="2"><?php echo $count; ?></td>
-                                    <td align="center" rowspan="2"><?php echo $row->Emp_ID?></td>
-                                    <td rowspan="2"><?php echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
-                                    <td align="center" rowspan="2"><?php echo $row->Sectioncode_ID?></td>
-                                    <td rowspan="2"><?php echo $row->Department?></td>
-                                    <td align="center"><?php echo "1"; ?></td>
+
+                                    <td align="center" rowspan="<?php echo $row_index[$count_index]; ?>">
+                                        <?php echo $count; ?></td>
+                                    <td align="center" rowspan="<?php echo $row_index[$count_index]; ?>">
+                                        <?php echo $row->Emp_ID?></td>
+                                    <td rowspan="<?php echo $row_index[$count_index]; ?>">
+                                        <?php echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
+                                    <td align="center" rowspan="<?php echo $row_index[$count_index]; ?>">
+                                        <?php echo $row->Sectioncode_ID?></td>
+                                    <td rowspan="<?php echo $row_index[$count_index]; ?>"><?php echo $row->Department?>
+                                    </td>
                                     <td align="center"><?php echo $row->mhw_weight_1?></td>
                                     <td align="center"><?php echo $row->mhw_weight_2?></td>
                                     <td align="center">
@@ -329,41 +295,52 @@ function del_score(evs_emp_id) {
                                             <i class="ti ti-trash"></i>
                                         </button>
                                     </td>
+
                                     <input type="text" id="emp_id<?php echo $row->mhw_evs_emp_id; ?>"
                                         value="<?php echo $row->mhw_evs_emp_id?>" hidden>
-                                    <?php }
+                                    <?php 
+                                    $count_index++;       
+                                    }
                                     // if
                                     else if($emp == $row->Emp_ID){ ?>
-                                    <td align="center"><?php echo "2"; ?></td>
                                     <td align="center"><?php echo $row->mhw_weight_1?></td>
                                     <td align="center"><?php echo $row->mhw_weight_2?></td>
 
                                     <?php }
+
                                     else if($emp != $row->Emp_ID){
                                         $count++; 
                                         $emp = $row->Emp_ID;?>
 
-                                    <td align="center" rowspan="2"><?php echo $count; ?></td>
-                                    <td align="center" rowspan="2"><?php echo $row->Emp_ID?></td>
-                                    <td rowspan="2"><?php echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
-                                    <td align="center" rowspan="2"><?php echo $row->Sectioncode_ID?></td>
-                                    <td rowspan="2"><?php echo $row->Department?></td>
-                                    <td align="center"><?php echo "1"; ?></td>
-                                    <td align="center"><?php echo $row->mhw_weight_1?></td>
-                                    <td align="center"><?php echo $row->mhw_weight_2?></td>
-                                    <td align="center">
-                                        <button data-toggle="modal" class="btn btn-danger"
-                                            data-target="#Delete<?php echo $row->mhw_evs_emp_id;?>">
-                                            <i class="ti ti-trash"></i>
-                                        </button>
-                                    </td>
-                                    <input type="text" id="emp_id<?php echo $row->mhw_evs_emp_id; ?>"
-                                        value="<?php echo $row->mhw_evs_emp_id?>" hidden>
-                                    <?php }
+                                    <td align="center" rowspan="<?php echo $row_index[$count_index]; ?>">
+                                        <?php echo $count; ?></td>
+                                        <td align="center" rowspan="<?php echo $row_index[$count_index]; ?>">
+                                            <?php echo $row->Emp_ID?></td>
+                                        <td rowspan="<?php echo $row_index[$count_index]; ?>">
+                                            <?php echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
+                                        <td align="center" rowspan="<?php echo $row_index[$count_index]; ?>">
+                                            <?php echo $row->Sectioncode_ID?></td>
+                                        <td rowspan="<?php echo $row_index[$count_index]; ?>">
+                                            <?php echo $row->Department?>
+                                        </td>
+                                        <td align="center"><?php echo $row->mhw_weight_1?></td>
+                                        <td align="center"><?php echo $row->mhw_weight_2?></td>
+                                        <td align="center">
+                                            <button data-toggle="modal" class="btn btn-danger"
+                                                data-target="#Delete<?php echo $row->mhw_evs_emp_id;?>">
+                                                <i class="ti ti-trash"></i>
+                                            </button>
+                                        </td>
+                                        <input type="text" id="emp_id<?php echo $row->mhw_evs_emp_id; ?>"
+                                            value="<?php echo $row->mhw_evs_emp_id?>" hidden>
+                                        <?php 
+                                    $count_index++;     
+                                    }
                                     //else if ?>
                                 </tr>
                                 <?php 
-                                   
+                                
+                                
                                 }
                             // foreach ?>
 

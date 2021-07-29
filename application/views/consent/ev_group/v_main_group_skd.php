@@ -359,8 +359,8 @@ function clear_css(gru_id) {
 
                                             <tbody>
                                                 <?php 
-								$num = 1;
-								foreach($grp_sdm->result() as $row ) { ?>
+                                        $num = 1;
+                                        foreach($grp_sdm->result() as $row ) { ?>
                                                 <tr class="odd gradeX" align='center'>
                                                     <input type="text" id="groupname<?php echo $row->gru_id?>"
                                                         value="<?php echo $row->gru_name; ?>" hidden>
@@ -392,8 +392,8 @@ function clear_css(gru_id) {
                                                     </td>
                                                 </tr>
                                                 <?php 
-								$num++;
-								} ?>
+                                        $num++;
+                                        } ?>
                                             </tbody>
                                             <!-- tbody -->
                                         </table>
