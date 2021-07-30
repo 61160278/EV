@@ -624,9 +624,11 @@ function check_data_edt(check) {
                             <label for="focusedinput" class="col-sm-3 control-label">Group
                                 Name</label>
                             <div class="col-sm-6">
+                                
                                 <input type="text" class="form-control" value="<?php echo $row->gru_name; ?>"
                                     id="grouptext<?php echo $row->gru_id; ?>" name="grouptext" placeholder="HR AGM"
                                     onkeyup="clear_css(<?php echo $row->gru_id; ?>)">
+
                                 <label class="col-sm-12 control-label"></label>
                                 <p id="alert_text<?php echo $row->gru_id; ?>" hidden>
                                     <font color="red"><b>This data already to used! </b></font>
@@ -649,11 +651,14 @@ function check_data_edt(check) {
                             <label for="focusedinput" class="col-sm-3 control-label">Emp.
                                 ID</label>
                             <div class="col-sm-6">
+
                                 <input type="text" class="form-control" value="<?php echo $row->gru_head_dept; ?>"
                                     name="Emp_id" id="Emp_id<?php echo $row->gru_id; ?>" placeholder="JS000xxx"
                                     onkeyup="get_idemployee('<?php echo $row->gru_id; ?>')">
+
                                 <input type="hidden" class="form-control" value="<?php echo $row->gru_id; ?>"
                                     name="gru_id" id="gru_id">
+                                    
                             </div>
                         </div>
                         <!--Emp. ID -->
