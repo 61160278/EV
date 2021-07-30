@@ -19,8 +19,8 @@
                         <div class="widget-body">
                             <div class="userinfo">
                                 <div class="avatar">
-                                    <!-- <img src="http://10.73.148.5/DBMC/IMG/emp120/<?echo $_SESSION["UsEmp_ID"]?>.jpg"
-                                        class="img-responsive img-circle"> -->
+                                    <img src="http://10.73.148.5/DBMC/IMG/emp120/<?echo $_SESSION["UsEmp_ID"]?>.jpg"
+                                        class="img-responsive img-circle">
                                 </div>
                                 <div class="info">
                                     <span class="username" id="username_en"><?php echo $_SESSION['UsName_EN']; ?></span>
