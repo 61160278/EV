@@ -220,7 +220,7 @@ function get_item(value, index) {
 function form_mhrd_insert() {
     var arr_item = []; //array item data
     var checkbox_ex = []; // array weight data
-    var checkbox_ex = [];
+    
 
 
     for (i = 0; i < arr_save_index_arr_add_pos.length; i++) {

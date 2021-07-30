@@ -196,7 +196,7 @@ class M_evs_position extends Da_evs_position {
 		LEFT JOIN dbmc.department
 		ON sectioncode.dep_id = department.Dep_id
 		LEFT JOIN dbmc.company
-		ON department.Company_ID = company.Company_ID
+		ON employee.Company_ID = company.Company_ID
         LEFT JOIN evs_database.evs_employee
         ON employee.Emp_ID = evs_employee.emp_employee_id
         LEFT JOIN evs_database.evs_data_grade
@@ -218,7 +218,7 @@ class M_evs_position extends Da_evs_position {
 		LEFT JOIN dbmc.department 
 		ON sectioncode.dep_id = department.Dep_id 
 		LEFT JOIN dbmc.company 
-		ON department.Company_ID = company.Company_ID 
+		ON employee.Company_ID = company.Company_ID 
 		
 				";
 		$query = $this->db->query($sql);

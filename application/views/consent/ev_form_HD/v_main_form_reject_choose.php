@@ -36,14 +36,25 @@ $(document).ready(function() {
 // document ready
 
 function save_group_to_HR() {
-
+    var checkbox_ex = [];
     var Emp_ID = [];
+    var comment = [];
     var index = document.getElementById("table_index").value;
 
     for (i = 0; i < index; i++) {
         Emp_ID.push(document.getElementById("Emp_ID" + i).value);
+        comment.push(document.getElementsByName("comment")[i].value);
     }
     // for 
+
+
+    $('input[name = choose_reject]').each(function(index) {
+        if ($(this).prop("checked") == true) {
+            checkbox_ex.push(1);
+        } else {
+            checkbox_ex.push(0);
+        }
+    });
 
     console.log(Emp_ID);
     console.log(index);
@@ -51,10 +62,12 @@ function save_group_to_HR() {
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/save_group_reject_to_HR",
+        url: "<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/reject_group_reject_to_AP",
         data: {
             "Emp_ID": Emp_ID,
-            "index": index
+            "index": index,
+            "checkbox_ex": checkbox_ex,
+            "comment": comment
         },
         success: function(data) {
             console.log(data);
@@ -109,6 +122,9 @@ function main_index() {
                             <th width="20%">
                                 <center>Management</center>
                             </th>
+                            <th  width="20%">
+                                <center>Comment</center>
+                            </th>
                         </tr>
                     </thead>
                     <!-- thead -->
@@ -126,11 +142,9 @@ function main_index() {
                                 // if
                                 $status_index = 0;
                                 $table_index = 0;
-                                $table_index_max = 0;
                                 if(sizeof($status) != 0){
 
 							    foreach($data_group as $index => $row) {
-                                    $table_index_max += 1;
                                    if($status_index >= sizeof($status)){ $status_index = sizeof($status)-1;}
 
                                 if($status[$status_index] == $row->emp_employee_id ) { ?>
@@ -169,26 +183,27 @@ function main_index() {
                                 
                                         ?>
                                 <center>
-                                    <a
-                                        href="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/createFROM/<?php echo $row->emp_employee_id ?>">
-                                        <button class="btn btn-warning">
-                                            <i class="ti ti-search"></i> Edit Information
-                                        </button>
-                                    </a>
+
+                                    <input type="checkbox" name="choose_reject" value="">
+
                                 </center>
                                 <?php 
                                         }
 							            else{
                                         ?>
                                 <center>
-                                    <button class="btn btn-warning" disabled>
-                                        <i class="ti ti-search"></i> Edit Information
-                                    </button>
+                                    <input type="checkbox" name="choose_reject" value="" disabled>
+
                                 </center>
                                 <?php 
                                         }
                                         ?>
 
+                            </td>
+                            <td>
+                                <center>
+                                    <textarea type="text" name="comment" placeholder="Enter comment" class="form-control"></textarea>
+                                </center>
                             </td>
                         </tr>
                         <?php 
@@ -214,21 +229,10 @@ function main_index() {
                 <br>
                 <div class="row">
                     <div class="col-md-6">
-                        <?php if(sizeof($status) != 0){ ?>
-                        <a href="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/reject_choose">
-                            <button id="" class="btn btn-danger" onclick="">Reject Report</button>
-                        </a>
-                        <?php } 
-                    // if
-                    else {?>
-                        <button id="" class="btn btn-danger" onclick="" disabled>Reject Report</button>
-
-                        <?php }
-                    // else ?>
                     </div>
                     <!-- col-6  -->
                     <div class="col-md-6" align="right">
-                        <?php if($table_index_max == $table_index){ ?>
+                        <?php if(sizeof($status) != 0){ ?>
                         <button id="save" class="btn btn-success" onclick="save_group_to_HR()"> Save</button>
                         <?php } 
                     // if

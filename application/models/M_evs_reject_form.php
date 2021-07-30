@@ -50,7 +50,7 @@ class M_evs_reject_form extends Da_evs_reject_form {
 	* @Create Date 2564-04-19
 	*/
 
-	function delete_by_dma_id() {
+	function delete_by_dma_id(){
 	 	
 		$sql = "DELETE FROM evs_database.evs_reject_form 
 	   			WHERE rjf_status = ? AND rjf_dma_id = ?" ;

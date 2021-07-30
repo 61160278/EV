@@ -574,8 +574,9 @@ class Evs_form_AP extends MainController_avenxo {
 		$data = $this->meda->get_by_update()->row();
 		
 		$status = intval($data->dma_status);
-		$status++;
-
+		if($status < 0){ $status = 1+abs($status);}
+		else{$status++;}
+		
 		$this->load->model('Da_evs_data_approve','deda');
 		$this->deda->dma_approve1 = $data->dma_approve1;
 		$this->deda->dma_approve2 = $data->dma_approve2;

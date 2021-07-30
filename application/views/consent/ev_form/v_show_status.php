@@ -140,16 +140,16 @@
                             <div class="col-md-6">
                                 <?php $row = $data_app; 
                                 if(sizeof($row) != 0){
-                                    if($row->dma_status == 1){ ?>
+                                    if($row->dma_status == 1 || $row->dma_status == -1){ ?>
                                 <button class="btn btn-warning" data-toggle="modal" data-target="#show_status">Wait
                                     APPROVER 1 </button>
                                 <?php }
-                                    else if($row->dma_status == 2){ ?>
+                                    else if($row->dma_status == 2 || $row->dma_status == -2){ ?>
                                 <button class="btn btn-warning" data-toggle="modal" data-target="#show_status">Wait
                                     APPROVER 2 </button>
                                 <?php }
                                     // else if
-                                    else if($row->dma_status == 3 || $row->dma_status == 4){ ?>
+                                    else if($row->dma_status == 3 || $row->dma_status == 4 || $row->dma_status == -3 || $row->dma_status == -4){ ?>
                                 <button class="btn btn-warning" data-toggle="modal" data-target="#show_status">Wait HR
                                 </button>
                                 <?php }

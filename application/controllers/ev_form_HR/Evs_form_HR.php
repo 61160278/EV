@@ -1169,6 +1169,8 @@ class Evs_form_HR extends MainController_avenxo {
 
 		$emp_id = $this->input->post("Emp_ID");
 		$arr_roop = count($emp_id);
+		$status_update_or_save = 0;
+		$save_dgr_id = "";
 
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
@@ -1177,16 +1179,40 @@ class Evs_form_HR extends MainController_avenxo {
 		$pay_id = $year->pay_id;
 
 
+
+
+
 		$this->load->model('M_evs_data_approve','mdap');
+		$this->load->model('M_evs_data_grade','mdgr');
 		$this->load->model('Da_evs_data_grade','ddgr');
 		for($i = 0 ; $i < $arr_roop ; $i++){
+
+	
+			$gd_data  = $this->mdgr->get_all()->result();
+			foreach($gd_data as $index => $row_gd) {
+
+				if($this->input->post("Emp_ID[".$i."]") == $row_gd->dgr_emp_id){
+								$status_update_or_save = 1;
+								$save_dgr_id = $row_gd->dgr_id;
+				}
+
+			}
+
+		if($status_update_or_save == 1){
 			$this->ddgr->dgr_grade = $this->input->post("grade[".$i."]");
 			$this->ddgr->dgr_comment = $this->input->post("comment[".$i."]");
 			$this->ddgr->dgr_emp_id = $this->input->post("Emp_ID[".$i."]");
-			$this->ddgr->dgr_satatus = 4;
+			$this->ddgr->dgr_pay_id = $pay_id;
+			$this->ddgr->dgr_id = $save_dgr_id;
+			$this->ddgr->update();
+		}
+		else{
+			$this->ddgr->dgr_grade = $this->input->post("grade[".$i."]");
+			$this->ddgr->dgr_comment = $this->input->post("comment[".$i."]");
+			$this->ddgr->dgr_emp_id = $this->input->post("Emp_ID[".$i."]");
 			$this->ddgr->dgr_pay_id = $pay_id;
 			$this->ddgr->insert();
-			
+		}
 			$this->mdap->dma_emp_id = $this->input->post("Emp_ID[".$i."]");
 			$this->mdap->dma_status = 5;
 			$this->mdap->update_status(); 
@@ -1232,7 +1258,7 @@ class Evs_form_HR extends MainController_avenxo {
 		}
 		// for
 		
-		$data = "save_data_acm_weight";
+		$data = "save_reject_grade";
 		echo json_encode($data);
 
 	}
