@@ -53,7 +53,7 @@ class M_evs_competency extends Da_evs_competency {
 				LEFT JOIN dbmc.position
 				ON Position_ID = ept_pos_id
 				WHERE kcp_cpn_id = ?
-				order by kcp_id,cpn_competency_detail_en,ept_expected_detail_en ASC";
+				order by kcp_id,ept_pos_id ASC";
 				
 		$query = $this->db->query($sql, array($this->kcp_cpn_id));
         return $query;

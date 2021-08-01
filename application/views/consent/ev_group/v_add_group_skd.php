@@ -147,7 +147,7 @@ function change_group_remove() {
     var get_emp = [];
     for (i = 0; i < count_group; i++) {
         if (document.getElementById("old_check_group" + i).checked) {
-            get_emp.push(document.getElementById("emp_new" + i).innerHTML)
+            get_emp.push(document.getElementById("emp_new" + i).value)
             console.log(get_emp)
         }
         // if
@@ -465,8 +465,10 @@ tbody {
                                                                             id="old_check_group<?php echo $index; ?>">
                                                                     </div>
                                                                 </td>
-                                                                <td id="emp_new<?php echo $index; ?>">
+                                                                <td>
                                                                     <?php echo $row->Emp_ID; ?></td>
+                                                                <input type="text" id="emp_new<?php echo $index; ?>"
+                                                                    value="<?php echo $row->Emp_ID; ?>" hidden>
                                                                 <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng; ?>
                                                                 </td>
                                                                 <td><?php echo $row->Sectioncode_ID; ?></td>
