@@ -465,12 +465,10 @@ class Evs_group extends MainController_avenxo {
 	function add_new_group()
 	{
 
-		
 		$group = $this->input->post('group');
 		$get_emp = $this->input->post("get_emp");
 		$count = $this->input->post("count");
 		
-
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
 		$year = $data['patt_year']->row(); // show value year now
@@ -485,9 +483,8 @@ class Evs_group extends MainController_avenxo {
 			$this->egs->update_group();
 		}
 		// for
-
-		$data = "save_edit_sdm";
-		echo json_encode($get_emp);
+		$data = "save_sdm"; 
+		echo json_encode($data);
 	}
 	// function add_new_group
 }

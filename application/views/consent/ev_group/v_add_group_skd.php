@@ -126,12 +126,16 @@ function change_group() {
             "count": count_check
         },
         dataType: "JSON",
+        success: function(status) {
+            manage_group();
+            manage_group_right();
+        },
+        //success 
         error: function(status) {
-            console.log(status)
             manage_group();
             manage_group_right();
         }
-        //error จะไม่มีการส่งค่ากลับมา
+        //error
     });
     //ajax
 }
@@ -161,11 +165,15 @@ function change_group_remove() {
         },
         dataType: "JSON",
         success: function(status) {
-            console.log(status)
+            manage_group();
+            manage_group_right();
+        },
+        //success 
+        error: function(status) {
             manage_group();
             manage_group_right();
         }
-        //error จะไม่มีการส่งค่ากลับมา
+        //error
     });
     //ajax
 }

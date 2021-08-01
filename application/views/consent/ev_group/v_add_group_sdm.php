@@ -88,14 +88,14 @@ function manage_group_right() {
         dataType: "JSON",
         success: function(data, status) {
             console.log(status)
-            console.log(data)
             var count = 0;
             data.forEach((row, index) => {
                 data_row += '<tr>'
                 data_row += '<td>'
                 data_row += '<div align="center" class="checked block">'
                 data_row += '<input id = "old_check_group' + index +
-                    '" name="checkbox2" type="checkbox"> <input type="text" value="'+ row.Emp_ID +'" hidden id="new_group">'
+                    '" name="checkbox2" type="checkbox"> <input type="text" value="' + row.Emp_ID +
+                    '" hidden>'
                 data_row += '</div>'
                 data_row += '</td>'
                 data_row += '<td id="emp_new' + index + '">'
@@ -110,7 +110,6 @@ function manage_group_right() {
                 data_row += '</tr>'
                 count++
             })
-            console.log(data_row)
             $("#table_r").html(data_row)
             $("#count_group").val(count)
         } //success
@@ -139,11 +138,17 @@ function change_group() {
 
         },
         dataType: "JSON",
-        error: function(status) {
-            console.log(status)
+        success: function(data) {
             manage_group();
             manage_group_right();
-        } 
+        },
+        // success
+        error: function(data) {
+            manage_group();
+            manage_group_right();
+
+        }
+        //error
 
     }); //ajax
 
@@ -155,10 +160,11 @@ function change_group() {
 function change_group_remove() {
     var count_group = document.getElementById("count_group").value;
     var old_group = document.getElementById("select").value;
+    console.log(old_group);
     var get_emp = [];
     for (i = 0; i < count_group; i++) {
         if (document.getElementById("old_check_group" + i).checked) {
-            get_emp.push(document.getElementById("emp_new" + i).innerHTML)
+            get_emp.push(document.getElementById("emp_new" + i).value)
             console.log(get_emp)
         }
         // if
@@ -175,12 +181,18 @@ function change_group_remove() {
 
         },
         dataType: "JSON",
-        success: function(status) {
-            console.log(status)
+        success: function(data) {
             manage_group();
             manage_group_right();
+
+        },
+        //success
+        error: function(data) {
+            manage_group();
+            manage_group_right();
+
         }
-        //success จะไม่มีการส่งค่ากลับมา
+        //error
     });
     //ajax
 }
@@ -188,7 +200,7 @@ function change_group_remove() {
 
 function delete_data() {
     var gru_id = document.getElementById("new_group").value;
-    console.log(gru_id)
+    // console.log(gru_id)
 
     var count_group = document.getElementById("count_group").value;
     var old_group = document.getElementById("select").value;
@@ -196,7 +208,7 @@ function delete_data() {
     for (i = 0; i < count_group; i++) {
         if (document.getElementById("old_check_group" + i).checked) {
             get_emp.push(document.getElementById("emp_new" + i).innerHTML)
-            console.log(get_emp)
+            // console.log(get_emp)
         }
         // if
     }
@@ -213,8 +225,6 @@ function delete_data() {
         },
         dataType: "JSON",
         success: function(status) {
-            console.log(status)
-            console.log(gru_id)
             manage_group();
             manage_group_right();
         }
@@ -442,7 +452,10 @@ tbody {
                                                                             id="old_check_group<?php echo $index; ?>">
                                                                     </div>
                                                                 </td>
-                                                                <td id="emp_new<?php echo $index; ?>"><?php echo $row->Emp_ID; ?></td>
+                                                                <td>
+                                                                    <?php echo $row->Emp_ID; ?></td>
+                                                                <input type="text" id="emp_new<?php echo $index; ?>"
+                                                                    value="<?php echo $row->Emp_ID; ?>" hidden>
                                                                 <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng; ?>
                                                                 </td>
                                                                 <td><?php echo $row->Sectioncode_ID; ?></td>
