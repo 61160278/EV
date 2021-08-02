@@ -27,6 +27,7 @@ class Da_evs_quota_plan extends evs_model {
 	public $qup_id; //Quota ID	
 	public $qup_grad_S; //Grade of quota
 	public $qup_grad_A; //Grade of quota
+	public $qup_grad_B_P; //Grade of quota
 	public $qup_grad_B; //Grade of quota
 	public $qup_grad_B_N; //Grade of quota
 	public $qup_grad_C; //Grade of quota
@@ -57,11 +58,11 @@ class Da_evs_quota_plan extends evs_model {
 	*/
 	function insert() {
 	 	$sql = "INSERT INTO evs_database.evs_quota_plan (evs_quota_plan.qup_id, evs_quota_plan.qup_grad_S, evs_quota_plan.qup_grad_A, 
-		 		evs_quota_plan.qup_grad_B, evs_quota_plan.qup_grad_B_N, evs_quota_plan.qup_grad_C, evs_quota_plan.qup_grad_D,
+		 		evs_quota_plan.qup_grad_B_P,evs_quota_plan.qup_grad_B, evs_quota_plan.qup_grad_B_N, evs_quota_plan.qup_grad_C, evs_quota_plan.qup_grad_D,
 				 evs_quota_plan.qup_total,evs_quota_plan.qup_pay_id,evs_quota_plan.qup_qut_id,evs_quota_plan.qup_Position_ID)
 		 		VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		 
-	 	$this->db->query($sql, array($this->qup_id, $this->qup_grad_S, $this->qup_grad_A, $this->qup_grad_B, $this->qup_grad_B_N, $this->qup_grad_C,
+	 	$this->db->query($sql, array($this->qup_id, $this->qup_grad_S, $this->qup_grad_A, $this->qup_grad_B_P, $this->qup_grad_B, $this->qup_grad_B_N, $this->qup_grad_C,
 		$this->qup_grad_D, $this->qup_total, $this->qup_pay_id, $this->qup_qut_id, $this->qup_Position_ID));
 	
 	 }
@@ -77,11 +78,11 @@ class Da_evs_quota_plan extends evs_model {
 	function update() {
 	 	
 	 	$sql = "UPDATE evs_database.evs_quota_plan 
-	 			SET evs_quota_plan.qup_grad_S= ?,evs_quota_plan.qup_grad_A= ?,evs_quota_plan.qup_grad_B= ?,evs_quota_plan.qup_grad_B_N= ?,
+	 			SET evs_quota_plan.qup_grad_S= ?,evs_quota_plan.qup_grad_A= ?, evs_quota_plan.qup_grad_B_P= ?, evs_quota_plan.qup_grad_B= ?,evs_quota_plan.qup_grad_B_N= ?,
 				 evs_quota_plan.qup_grad_C= ?,evs_quota_plan.qup_grad_D= ?,evs_quota_plan.qup_total= ?
 	 			WHERE evs_quota_plan.qup_id=?";
 		
-	 	$this->db->query($sql, array($this->qup_grad_S, $this->qup_grad_A, $this->qup_grad_B, $this->qup_grad_B_N, $this->qup_grad_C, $this->qup_grad_D, $this->qup_total, $this->qup_id));
+	 	$this->db->query($sql, array($this->qup_grad_S, $this->qup_grad_A, $this->qup_grad_B_P, $this->qup_grad_B, $this->qup_grad_B_N, $this->qup_grad_C, $this->qup_grad_D, $this->qup_total, $this->qup_id));
 	 }
 	/*
 	* update

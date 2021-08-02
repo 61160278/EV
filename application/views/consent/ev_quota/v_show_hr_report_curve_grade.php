@@ -82,7 +82,7 @@ function check_quota_plan() {
     var value_quotaPlan = 0;
     var quota = 0;
     check = document.getElementById("quotaPlanToT").innerHTML;
-    for (var i = 1; i <= 6; i++) {
+    for (var i = 1; i <= 7; i++) {
         quota = document.getElementById("quota" + i).innerHTML;
         value_quotaPlan = (parseFloat(check).toFixed(2)) * (parseFloat(quota).toFixed(2)) / 100;
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
@@ -101,7 +101,7 @@ function check_quota_actual() {
 
     // document.getElementById("submit").disabled = false;
 
-    for (var i = 1; i <= 6; i++) {
+    for (var i = 1; i <= 7; i++) {
         check = document.getElementById("quotaActual" + i).innerHTML;
         console.log(check);
         if (check == "") {
@@ -176,7 +176,7 @@ function show_linebarChart() {
     var arrActual = [];
     var arrActualPlan = [];
 
-    for (var i = 1; i <= 6; i++) {
+    for (var i = 1; i <= 7; i++) {
         var show_quota = document.getElementById("quota" + i).innerHTML;
         arrQuota[i] = show_quota;
         <?php if(sizeof($qua_data) != 0){ ?>
@@ -386,6 +386,7 @@ function edit_data(data_sent) {
                                                 <th>Grade</th>
                                                 <th>S</th>
                                                 <th>A</th>
+                                                <th>B+</th>
                                                 <th>B</th>
                                                 <th>B-</th>
                                                 <th>C</th>
@@ -402,13 +403,15 @@ function edit_data(data_sent) {
                                                     <?php echo $value->qut_grad_S;?></td>
                                                 <td id="quota2" value="<?php echo $value->qut_grad_A;?>">
                                                     <?php echo $value->qut_grad_A;?></td>
-                                                <td id="quota3" value="<?php echo $value->qut_grad_B;?>">
+                                                <td id="quota3" value="<?php echo $value->qut_grad_B_P;?>">
                                                     <?php echo $value->qut_grad_B;?></td>
-                                                <td id="quota4" value="<?php echo $value->qut_grad_B_N;?>">
+                                                <td id="quota4" value="<?php echo $value->qut_grad_B;?>">
+                                                    <?php echo $value->qut_grad_B;?></td>
+                                                <td id="quota5" value="<?php echo $value->qut_grad_B_N;?>">
                                                     <?php echo $value->qut_grad_B_N;?></td>
-                                                <td id="quota5" value="<?php echo $value->qut_grad_C;?>">
+                                                <td id="quota6" value="<?php echo $value->qut_grad_C;?>">
                                                     <?php echo $value->qut_grad_C;?></td>
-                                                <td id="quota6" value="<?php echo $value->qut_grad_D;?>">
+                                                <td id="quota7" value="<?php echo $value->qut_grad_D;?>">
                                                     <?php echo $value->qut_grad_D;?></td>
                                                 <td><?php echo $value->qut_total;?></td>
                                                 <?php } ?>
@@ -423,6 +426,7 @@ function edit_data(data_sent) {
                                                     <td id="show_quotaPlan4"></td>
                                                     <td id="show_quotaPlan5"></td>
                                                     <td id="show_quotaPlan6"></td>
+                                                    <td id="show_quotaPlan7"></td>
                                                     <td id="quotaPlanToT"><?php echo $data_Plan;?></td>
                                                 </tr>
                                             </div>
@@ -436,14 +440,16 @@ function edit_data(data_sent) {
                                                         <?php echo $value->qua_grad_S;?></td>
                                                     <td id="quotaActualPlan2" value="<?php echo $value->qua_grad_A;?>">
                                                         <?php echo $value->qua_grad_A;?></td>
-                                                    <td id="quotaActualPlan3" value="<?php echo $value->qua_grad_B;?>">
+                                                    <td id="quotaActualPlan3" value="<?php echo $value->qua_grad_B_P;?>">
                                                         <?php echo $value->qua_grad_B;?></td>
-                                                    <td id="quotaActualPlan4"
+                                                    <td id="quotaActualPlan4" value="<?php echo $value->qua_grad_B;?>">
+                                                        <?php echo $value->qua_grad_B;?></td>
+                                                    <td id="quotaActualPlan5"
                                                         value="<?php echo $value->qua_grad_B_N;?>">
                                                         <?php echo $value->qua_grad_B_N;?></td>
-                                                    <td id="quotaActualPlan5" value="<?php echo $value->qua_grad_C;?>">
+                                                    <td id="quotaActualPlan6" value="<?php echo $value->qua_grad_C;?>">
                                                         <?php echo $value->qua_grad_C;?></td>
-                                                    <td id="quotaActualPlan6" value="<?php echo $value->qua_grad_D;?>">
+                                                    <td id="quotaActualPlan7" value="<?php echo $value->qua_grad_D;?>">
                                                         <?php echo $value->qua_grad_D;?></td>
                                                     <td><?php echo $value->qua_total;?></td>
                                                     <?php } ?>
@@ -463,6 +469,7 @@ function edit_data(data_sent) {
                                                     <td id="quotaActual4"><?php echo $data_actual[3]?></td>
                                                     <td id="quotaActual5"><?php echo $data_actual[4]?></td>
                                                     <td id="quotaActual6"><?php echo $data_actual[5]?></td>
+                                                    <td id="quotaActual7"><?php echo $data_actual[6]?></td>
                                                     <td id="show_Actual"></td>
                                                 </tr>
                                             </div>
@@ -476,6 +483,7 @@ function edit_data(data_sent) {
                                                     <td id="show_quotaActual4"></td>
                                                     <td id="show_quotaActual5"></td>
                                                     <td id="show_quotaActual6"></td>
+                                                    <td id="show_quotaActual7"></td>
                                                     <td id="show_sumquotaActual"></td>
                                                 </tr>
                                             </div>

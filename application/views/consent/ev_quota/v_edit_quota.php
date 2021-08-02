@@ -59,6 +59,7 @@ function edit_quota() {
     var grade = [];
     var gradeS = 0;
     var gradeA = 0;
+    var gradeB_P = 0;
     var gradeB = 0;
     var gradeB_N = 0;
     var gradeC = 0;
@@ -86,14 +87,16 @@ function edit_quota() {
     grade.shift();
     gradeS = grade[0];
     gradeA = grade[1];
-    gradeB = grade[2];
-    gradeB_N = grade[3];
-    gradeC = grade[4];
-    gradeD = grade[5];
+    gradeB_P = grade[2];
+    gradeB = grade[3];
+    gradeB_N = grade[4];
+    gradeC = grade[5];
+    gradeD = grade[6];
 
     console.log(qut_id);
     console.log(gradeS);
     console.log(gradeA);
+    console.log(gradeB_P);
     console.log(gradeB);
     console.log(gradeB_N);
     console.log(gradeC);
@@ -111,6 +114,7 @@ function edit_quota() {
             "qut_id": qut_id,
             "gradeS": gradeS,
             "gradeA": gradeA,
+            "gradeB_P": gradeB_P,
             "gradeB": gradeB,
             "gradeB_N": gradeB_N,
             "gradeC": gradeC,
@@ -136,7 +140,7 @@ function check_quota() {
     var check = "";
     var value_quota = 0;
     document.getElementById("submit").disabled = false;
-    for (i = 1; i <= 6; i++) {
+    for (i = 1; i <= 7; i++) {
         check = document.getElementById("quota" + i).value;
 
         if (check != "") {
@@ -175,17 +179,17 @@ function main_quota() {
 
 function show_qouta() {
 
-    for (var i = 1; i <= 6; i++) {
+    for (var i = 1; i <= 7; i++) {
         $("#quota" + i).attr("disabled", true);
     }
 
     var dataQuota = [];
     var arrQuota = [];
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < 7; i++) {
         dataQuota[i] = 0;
 
     } //for
-    for (var i = 1; i <= 6; i++) {
+    for (var i = 1; i <= 7; i++) {
         //  var show_quota = document.getElementById("quota" + i).innerHTML;
         var show_quota = document.getElementById("quota" + i).value;
         //  var arrQuota = [5, 25, 40, 25, 5];
@@ -203,6 +207,7 @@ function show_qouta() {
     const labels = [
         'S',
         'A',
+        'B+',
         'B',
         'B-',
         'C',
@@ -244,7 +249,7 @@ function show_qouta() {
     var myChart = new Chart(ctx, config);
     $('#reset').on('click', function() {
         myChart.destroy();
-        for (var i = 1; i <= 6; i++) {
+        for (var i = 1; i <= 7; i++) {
             $("#quota" + i).attr("disabled", false);
         }
 
@@ -326,6 +331,7 @@ $(document).ready(function() {
                                 <th>Grade</th>
                                 <th>S</th>
                                 <th>A</th>
+                                <th>B+</th>
                                 <th>B</th>
                                 <th>B-</th>
                                 <th>C</th>
@@ -348,18 +354,22 @@ $(document).ready(function() {
                                 </td>
                                 <td>
                                     <input type="text" class="form-control" id="quota3" onchange="check_quota()"
-                                        value="<?php echo $value->qut_grad_B;?>">
+                                        value="<?php echo $value->qut_grad_B_P;?>">
                                 </td>
                                 <td>
                                     <input type="text" class="form-control" id="quota4" onchange="check_quota()"
-                                        value="<?php echo $value->qut_grad_B_N;?>">
+                                        value="<?php echo $value->qut_grad_B;?>">
                                 </td>
                                 <td>
                                     <input type="text" class="form-control" id="quota5" onchange="check_quota()"
-                                        value="<?php echo $value->qut_grad_C;?>">
+                                        value="<?php echo $value->qut_grad_B_N;?>">
                                 </td>
                                 <td>
                                     <input type="text" class="form-control" id="quota6" onchange="check_quota()"
+                                        value="<?php echo $value->qut_grad_C;?>">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="quota7" onchange="check_quota()"
                                         value="<?php echo $value->qut_grad_D;?>">
                                 </td>
                                 <td id="show_quota"><?php echo $value->qut_total;?></td>

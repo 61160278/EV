@@ -77,7 +77,7 @@ function check_quota_plan() {
     document.getElementById("submit").disabled = false;
     check = document.getElementById("quotaPlanToT").innerHTML;
     //console.log(check);
-    for (var i = 1; i <= 6; i++) {
+    for (var i = 1; i <= 7; i++) {
         quota = document.getElementById("quota" + i).innerHTML;
         value_quotaPlan = parseFloat(check) * parseFloat(quota) / 100;
         document.getElementById("show_quotaPlan" + i).innerHTML = value_quotaPlan;
@@ -95,7 +95,7 @@ function check_quota_actual() {
 
     quota = document.getElementById("quotaPlanToT").innerHTML;
     // document.getElementById("submit").disabled = false;
-    for (var i = 1; i <= 6; i++) {
+    for (var i = 1; i <= 7; i++) {
         check = document.getElementById("quotaActual" + i).value;
         if (check == "") {
             quotaActual = null;
@@ -151,14 +151,14 @@ function get_data() {
 
 function show_linebarChart() {
 
-    for (var i = 1; i <= 6; i++) {
+    for (var i = 1; i <= 7; i++) {
         $("#quotaActual" + i).attr("disabled", true);
     }
     var dataQuota = [];
     var arrQuota = [];
     var dataActual = [];
     var arrActual = [];
-    for (var i = 1; i <= 6; i++) {
+    for (var i = 1; i <= 7; i++) {
         var show_quota = document.getElementById("quota" + i).innerHTML;
         arrQuota[i] = show_quota;
         var show_actual = document.getElementById("show_quotaActual" + i).innerHTML;
@@ -223,7 +223,7 @@ function show_linebarChart() {
 
     $(document).ready(function() {
         $("#reset").click(function() {
-            for (var i = 1; i <= 6; i++) {
+            for (var i = 1; i <= 7; i++) {
                 $("#quotaActual" + i).attr("disabled", false);
             }
 
@@ -237,7 +237,7 @@ function show_quotaplan() {
 
     var dataQuota = [];
     var arrQuota = [];
-    for (var i = 1; i <= 6; i++) {
+    for (var i = 1; i <= 7; i++) {
         //  var show_quota = document.getElementById("quota" + i).innerHTML;
         var show_quota = document.getElementById("quota" + i).innerHTML;
         //  var arrQuota = [5, 25, 40, 25, 5];
@@ -254,6 +254,7 @@ function show_quotaplan() {
     const labels = [
         'S',
         'A',
+        'B+',
         'B',
         'B-',
         'C',
@@ -326,7 +327,7 @@ function insert_quota_actual() {
     var sum_actual = 0;
     quota = document.getElementById("quotaPlanToT").innerHTML;
     // document.getElementById("submit").disabled = false;
-    for (var i = 1; i <= 6; i++) {
+    for (var i = 1; i <= 7; i++) {
         check = document.getElementById("quotaActual" + i).value;
         if (check == "") {
             quotaActual = null;
@@ -358,13 +359,15 @@ function insert_quota_actual() {
     // console.log(sum_quota_plan);
     qua_gradeS = grade[0];
     qua_gradeA = grade[1];
-    qua_gradeB = grade[2];
-    qua_gradeB_N = grade[3];
-    qua_gradeC = grade[4];
-    qua_gradeD = grade[5];
+    qua_gradeB_P = grade[2];
+    qua_gradeB = grade[3];
+    qua_gradeB_N = grade[4];
+    qua_gradeC = grade[5];
+    qua_gradeD = grade[6];
 
     console.log(qua_gradeS);
     console.log(qua_gradeA);
+    console.log(qua_gradeB_P);
     console.log(qua_gradeB);
     console.log(qua_gradeB_N);
     console.log(qua_gradeC);
@@ -378,6 +381,7 @@ function insert_quota_actual() {
 
             "qua_gradeS": qua_gradeS,
             "qua_gradeA": qua_gradeA,
+            "qua_gradeB_P": qua_gradeB_P,
             "qua_gradeB": qua_gradeB,
             "qua_gradeB_N": qua_gradeB_N,
             "qua_gradeC": qua_gradeC,
@@ -487,6 +491,7 @@ function insert_quota_actual() {
                                             <th>Grade</th>
                                             <th>S</th>
                                             <th>A</th>
+                                            <th>B+</th>
                                             <th>B</th>
                                             <th>B-</th>
                                             <th>C</th>
@@ -498,12 +503,12 @@ function insert_quota_actual() {
                                     <div class="col-md-1">
                                         <tr class="orange2">
                                             <td><b>Quota</b></td>
-                                            <td id="quota1" value="5">5</td>
-                                            <td id="quota2" value="25">15</td>
-                                            <td id="quota3" value="40">30</td>
-                                            <td id="quota4" value="40">30</td>
-                                            <td id="quota5" value="25">15</td>
-                                            <td id="quota6" value="5">5</td>
+                                            <td id="quota1" value="0">0</td>
+                                            <td id="quota2" value="0">0</td>
+                                            <td id="quota3" value="0">0</td>
+                                            <td id="quota4" value="0">0</td>
+                                            <td id="quota5" value="0">0</td>
+                                            <td id="quota6" value="0">0</td>
                                             <td>100</td>
                                         </tr>
                                         <div class="col-md-1">
@@ -515,7 +520,8 @@ function insert_quota_actual() {
                                                 <td id="show_quotaPlan4"></td>
                                                 <td id="show_quotaPlan5"></td>
                                                 <td id="show_quotaPlan6"></td>
-                                                <td id="quotaPlanToT">8</td>
+                                                <td id="show_quotaPlan7"></td>
+                                                <td id="quotaPlanToT">0</td>
                                         </div>
                                         <!-- col -1  -->
                                         </tr>
@@ -546,6 +552,10 @@ function insert_quota_actual() {
                                                     <input type="number" class="form-control" id="quotaActual6"
                                                         onchange="check_quota_actual()" min="0">
                                                 </td>
+                                                <td>
+                                                    <input type="number" class="form-control" id="quotaActual7"
+                                                        onchange="check_quota_actual()" min="0">
+                                                </td>
                                                 <td id="show_Actual"></td>
                                             </tr>
                                         </div>
@@ -559,6 +569,7 @@ function insert_quota_actual() {
                                                 <td id="show_quotaActual4"></td>
                                                 <td id="show_quotaActual5"></td>
                                                 <td id="show_quotaActual6"></td>
+                                                <td id="show_quotaActual7"></td>
                                                 <td id="show_sumquotaActual"></td>
                                             </tr>
                                         </div>

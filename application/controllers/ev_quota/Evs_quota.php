@@ -228,29 +228,34 @@ class Evs_quota extends MainController_avenxo {
 						array_push($data_grade_rank,2);
 					}
 					// else if
-					else if($row->dgr_grade == "B"){
+					else if($row->dgr_grade == "B+"){
 						array_push($data_grade_rank,3);
 					}
 					// else if
-					else if($row->dgr_grade == "B-"){
+					else if($row->dgr_grade == "B"){
 						array_push($data_grade_rank,4);
 					}
 					// else if
-					else if($row->dgr_grade == "C"){
+					else if($row->dgr_grade == "B-"){
 						array_push($data_grade_rank,5);
 					}
 					// else if
-					else if($row->dgr_grade == "D"){
+					else if($row->dgr_grade == "C"){
 						array_push($data_grade_rank,6);
 					}
 					// else if
-					else {
+					else if($row->dgr_grade == "D"){
 						array_push($data_grade_rank,7);
+					}
+					// else if
+					else {
+						array_push($data_grade_rank,8);
 					}// else
 			}// foreach 
 
 			$num_rank_s = 0;
 			$num_rank_a = 0;
+			$num_rank_b_p = 0;
 			$num_rank_b = 0;
 			$num_rank_b_n = 0;
 			$num_rank_c = 0;
@@ -268,18 +273,22 @@ class Evs_quota extends MainController_avenxo {
 				}
 				// else if
 				else if($data_grade_rank[$index] == 3){
-					$num_rank_b += 1;
+					$num_rank_b_p += 1;
 				}
 				// else if
 				else if($data_grade_rank[$index] == 4){
-					$num_rank_b_n += 1;
+					$num_rank_b += 1;
 				}
 				// else if
 				else if($data_grade_rank[$index] == 5){
-					$num_rank_c += 1;
+					$num_rank_b_n += 1;
 				}
 				// else if
 				else if($data_grade_rank[$index] == 6){
+					$num_rank_c += 1;
+				}
+				// else if
+				else if($data_grade_rank[$index] == 7){
 					$num_rank_d += 1;
 				}
 				// else if
@@ -295,6 +304,7 @@ class Evs_quota extends MainController_avenxo {
 
 			array_push($data_grade_rank_sum,$num_rank_s);
 			array_push($data_grade_rank_sum,$num_rank_a);
+			array_push($data_grade_rank_sum,$num_rank_b_p);
 			array_push($data_grade_rank_sum,$num_rank_b);
 			array_push($data_grade_rank_sum,$num_rank_b_n);
 			array_push($data_grade_rank_sum,$num_rank_c);
@@ -590,6 +600,7 @@ function quota_insert(){
 	$qut_date = $this->input->post("savedate"); // date save
 	$qut_grad_S = $this->input->post("gradeS"); // date sav
 	$qut_grad_A = $this->input->post("gradeA"); // date sav
+	$qut_grad_B_P = $this->input->post("gradeB_P"); // date sav
 	$qut_grad_B = $this->input->post("gradeB"); // date sav
 	$qut_grad_B_N = $this->input->post("gradeB_N"); // date sav
 	$qut_grad_C = $this->input->post("gradeC"); // date sav
@@ -605,6 +616,7 @@ function quota_insert(){
 		$this->dqut->qut_date = $qut_date;
 		$this->dqut->qut_grad_S = $qut_grad_S;
 		$this->dqut->qut_grad_A = $qut_grad_A;
+		$this->dqut->qut_grad_B_P = $qut_grad_B_P;
 		$this->dqut->qut_grad_B = $qut_grad_B;
 		$this->dqut->qut_grad_B_N = $qut_grad_B_N;
 		$this->dqut->qut_grad_C = $qut_grad_C;
@@ -629,6 +641,7 @@ function quota_plan_insert(){
 
 	$qup_grad_S = $this->input->post("qup_gradeS");
 	$qup_grad_A = $this->input->post("qup_gradeA"); 
+	$qup_grad_B_P = $this->input->post("qup_gradeB_P");
 	$qup_grad_B = $this->input->post("qup_gradeB"); 
 	$qup_grad_B_N = $this->input->post("qup_gradeB_N");
 	$qup_grad_C = $this->input->post("qup_gradeC"); 
@@ -643,6 +656,7 @@ function quota_plan_insert(){
 		$this->dqup->qup_id = $qup_id;
 		$this->dqup->qup_grad_S = $qup_grad_S;
 		$this->dqup->qup_grad_A = $qup_grad_A;
+		$this->dqup->qup_grad_B_P = $qup_grad_B_P;
 		$this->dqup->qup_grad_B = $qup_grad_B;
 		$this->dqup->qup_grad_B_N = $qup_grad_B_N;
 		$this->dqup->qup_grad_C = $qup_grad_C;
@@ -688,7 +702,8 @@ function quota_plan_insert(){
 function quota_actual_insert(){
 
 	$qua_grad_S = $this->input->post("qua_gradeS");
-	$qua_grad_A = $this->input->post("qua_gradeA"); 
+	$qua_grad_A = $this->input->post("qua_gradeA");
+	$qua_grad_B_P = $this->input->post("qua_gradeB_P"); 
 	$qua_grad_B = $this->input->post("qua_gradeB"); 
 	$qua_grad_B_N = $this->input->post("qua_gradeB_N");
 	$qua_grad_C = $this->input->post("qua_gradeC"); 
@@ -714,6 +729,7 @@ function quota_actual_insert(){
 		$this->dqua->qua_id = $qua_id;
 		$this->dqua->qua_grad_S = $qua_grad_S;
 		$this->dqua->qua_grad_A = $qua_grad_A;
+		$this->dqua->qua_grad_B_P = $qua_grad_B_P;
 		$this->dqua->qua_grad_B = $qua_grad_B;
 		$this->dqua->qua_grad_B_N = $qua_grad_B_N;
 		$this->dqua->qua_grad_C = $qua_grad_C;
@@ -732,6 +748,7 @@ function quota_actual_update(){
 
 	$qua_grad_S = $this->input->post("qua_gradeS");
 	$qua_grad_A = $this->input->post("qua_gradeA"); 
+	$qua_grad_B_P = $this->input->post("qua_gradeB_P");	
 	$qua_grad_B = $this->input->post("qua_gradeB"); 
 	$qua_grad_B_N = $this->input->post("qua_gradeB_N");
 	$qua_grad_C = $this->input->post("qua_gradeC"); 
@@ -743,6 +760,7 @@ function quota_actual_update(){
 		
 		$this->dqua->qua_grad_S = $qua_grad_S;
 		$this->dqua->qua_grad_A = $qua_grad_A;
+		$this->dqua->qua_grad_B_P = $qua_grad_B_P;
 		$this->dqua->qua_grad_B = $qua_grad_B;
 		$this->dqua->qua_grad_B_N = $qua_grad_B_N;
 		$this->dqua->qua_grad_C = $qua_grad_C;
@@ -759,7 +777,8 @@ function quota_actual_update(){
 function quota_actual_edit(){
 
 	$qua_grad_S = $this->input->post("qua_gradeS");
-	$qua_grad_A = $this->input->post("qua_gradeA"); 
+	$qua_grad_A = $this->input->post("qua_gradeA");
+	$qua_grad_B_P = $this->input->post("qua_gradeB_P");
 	$qua_grad_B = $this->input->post("qua_gradeB"); 
 	$qua_grad_B_N = $this->input->post("qua_gradeB_N");
 	$qua_grad_C = $this->input->post("qua_gradeC"); 
@@ -772,6 +791,7 @@ function quota_actual_edit(){
 	
 		$this->dqua->qua_grad_S = $qua_grad_S;
 		$this->dqua->qua_grad_A = $qua_grad_A;
+		$this->dqua->qua_grad_B_P = $qua_grad_B_P;
 		$this->dqua->qua_grad_B = $qua_grad_B;
 		$this->dqua->qua_grad_B_N = $qua_grad_B_N;
 		$this->dqua->qua_grad_C = $qua_grad_C;
@@ -797,6 +817,7 @@ function edit_quota(){
 	$qut_date = $this->input->post("savedate");
 	$qut_grad_S = $this->input->post("gradeS"); // date sav
 	$qut_grad_A = $this->input->post("gradeA"); // date sav
+	$qut_grad_B_P = $this->input->post("gradeB_P"); // date sav
 	$qut_grad_B = $this->input->post("gradeB"); // date sav
 	$qut_grad_B_N = $this->input->post("gradeB_N"); // date sav
 	$qut_grad_C = $this->input->post("gradeC"); // date sav
@@ -808,6 +829,7 @@ function edit_quota(){
 		$this->dqut->qut_date = $qut_date;
 		$this->dqut->qut_grad_S = $qut_grad_S;
 		$this->dqut->qut_grad_A = $qut_grad_A;
+		$this->dqut->qut_grad_B_P = $qut_grad_B_P;
 		$this->dqut->qut_grad_B = $qut_grad_B;
 		$this->dqut->qut_grad_B_N = $qut_grad_B_N;
 		$this->dqut->qut_grad_C = $qut_grad_C;
@@ -850,7 +872,8 @@ function quota_plan_edit(){
 
 
 		$qup_grad_S = $this->input->post("qup_gradeS");
-		$qup_grad_A = $this->input->post("qup_gradeA"); 
+		$qup_grad_A = $this->input->post("qup_gradeA");
+		$qup_grad_B_P = $this->input->post("qup_gradeB_P");
 		$qup_grad_B = $this->input->post("qup_gradeB"); 
 		$qup_grad_B_N = $this->input->post("qup_gradeB_N");
 		$qup_grad_C = $this->input->post("qup_gradeC"); 
@@ -864,6 +887,7 @@ function quota_plan_edit(){
 			$this->dqup->qup_id = $qup_id;
 			$this->dqup->qup_grad_S = $qup_grad_S;
 			$this->dqup->qup_grad_A = $qup_grad_A;
+			$this->dqup->qup_grad_B_P = $qup_grad_B_P;
 			$this->dqup->qup_grad_B = $qup_grad_B;
 			$this->dqup->qup_grad_B_N = $qup_grad_B_N;
 			$this->dqup->qup_grad_C = $qup_grad_C;

@@ -29,6 +29,7 @@ class Da_evs_quota extends evs_model {
 	public $qut_date; //Position of quota
 	public $qut_grad_S; //Grade of quota
 	public $qut_grad_A; //Grade of quota
+	public $qut_grad_B_P; //Grade of quota
 	public $qut_grad_B; //Grade of quota
 	public $qut_grad_B_N; //Grade of quota
 	public $qut_grad_C; //Grade of quota
@@ -60,12 +61,12 @@ class Da_evs_quota extends evs_model {
 	*/
 	function insert() {
 	 	$sql = "INSERT INTO evs_database.evs_quota (evs_quota.qut_id, evs_quota.qut_type, evs_quota.qut_pos, evs_quota.qut_date,
-		 		evs_quota.qut_grad_S, evs_quota.qut_grad_A, evs_quota.qut_grad_B, evs_quota.qut_grad_B_N, evs_quota.qut_grad_C,
+		 		evs_quota.qut_grad_S, evs_quota.qut_grad_A, evs_quota.qut_grad_B_P, evs_quota.qut_grad_B, evs_quota.qut_grad_B_N, evs_quota.qut_grad_C,
 				evs_quota.qut_grad_D,evs_quota.qut_total,evs_quota.qut_pay_id)
-		 		VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		 		VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 		 
 	 	$this->db->query($sql, array($this->qut_id, $this->qut_type, $this->qut_pos, $this->qut_date, $this->qut_grad_S,
-						$this->qut_grad_A, $this->qut_grad_B, $this->qut_grad_B_N, $this->qut_grad_C, $this->qut_grad_D, $this->qut_total, $this->qut_pay_id));
+						$this->qut_grad_A,$this->qut_grad_B_P, $this->qut_grad_B, $this->qut_grad_B_N, $this->qut_grad_C, $this->qut_grad_D, $this->qut_total, $this->qut_pay_id));
 	
 	 }
 
@@ -80,10 +81,10 @@ class Da_evs_quota extends evs_model {
 	function update() {
 	 	
 	 	$sql = "UPDATE evs_database.evs_quota 
-		 SET  evs_quota.qut_date= ?,evs_quota.qut_grad_S= ?, evs_quota.qut_grad_A= ?, evs_quota.qut_grad_B= ?, evs_quota.qut_grad_B_N= ?, evs_quota.qut_grad_C= ?, 
+		 SET  evs_quota.qut_date= ?,evs_quota.qut_grad_S= ?, evs_quota.qut_grad_A= ?,evs_quota.qut_grad_B_P= ?, evs_quota.qut_grad_B= ?, evs_quota.qut_grad_B_N= ?, evs_quota.qut_grad_C= ?, 
 		 evs_quota.qut_grad_D= ?, evs_quota.qut_total= ?
 		 WHERE evs_quota.qut_id= ?";
-	 	$this->db->query($sql, array($this->qut_date, $this->qut_grad_S, $this->qut_grad_A, $this->qut_grad_B, $this->qut_grad_B_N,$this->qut_grad_C, $this->qut_grad_D, $this->qut_total,$this->qut_id));
+	 	$this->db->query($sql, array($this->qut_date, $this->qut_grad_S, $this->qut_grad_A, $this->qut_grad_B_P, $this->qut_grad_B, $this->qut_grad_B_N,$this->qut_grad_C, $this->qut_grad_D, $this->qut_total,$this->qut_id));
 		  
 	 }
 	/*

@@ -143,7 +143,7 @@ function check_quota_plan() {
     console.log(check);
     if (check == "") {
         //     // 
-        for (var i = 1; i <= 6; i++) {
+        for (var i = 1; i <= 7; i++) {
 
             console.log("123456 : " + check);
 
@@ -151,7 +151,7 @@ function check_quota_plan() {
         } //for
     } else {
         $("#saveData").attr("disabled", false);
-        for (var i = 1; i <= 6; i++) {
+        for (var i = 1; i <= 7; i++) {
 
             quota = document.getElementById("quota" + i).innerHTML;
             value_quotaPlan = parseFloat(check) * quota / 100;
@@ -167,7 +167,7 @@ function show_quotaplan() {
 
     var dataQuota = [];
     var arrQuota = [];
-    for (var i = 1; i <= 6; i++) {
+    for (var i = 1; i <= 7; i++) {
         //  var show_quota = document.getElementById("quota" + i).innerHTML;
         var show_quota = document.getElementById("quota" + i).innerHTML;
         //  var arrQuota = [5, 25, 40, 25, 5];
@@ -184,6 +184,7 @@ function show_quotaplan() {
     const labels = [
         'S',
         'A',
+        'B+',
         'B',
         'B-',
         'C',
@@ -283,6 +284,7 @@ function insert_quota_plan() {
     var grade = [];
     var qup_gradeS = 0;
     var qup_gradeA = 0;
+    var qup_gradeB_P = 0;
     var qup_gradeB = 0;
     var qup_gradeB_N = 0;
     var qup_gradeC = 0;
@@ -318,7 +320,7 @@ function insert_quota_plan() {
             var year_id = <?php echo $value->pay_id;?>
         }
         <?php } ?>
-        for (var i = 1; i <= 6; i++) {
+        for (var i = 1; i <= 7; i++) {
             quota = document.getElementById("quota" + i).innerHTML;
             value_quotaPlan = parseFloat(check) * quota / 100;
             grade[i] = value_quotaPlan;
@@ -329,13 +331,15 @@ function insert_quota_plan() {
         console.log(sum_quota_plan);
         qup_gradeS = grade[0];
         qup_gradeA = grade[1];
-        qup_gradeB = grade[2];
-        qup_gradeB_N = grade[3];
-        qup_gradeC = grade[4];
-        qup_gradeD = grade[5];
+        qup_gradeB_P = grade[2];
+        qup_gradeB = grade[3];
+        qup_gradeB_N = grade[4];
+        qup_gradeC = grade[5];
+        qup_gradeD = grade[6];
 
         console.log(qup_gradeS);
         console.log(qup_gradeA);
+        console.log(qup_gradeB_P);
         console.log(qup_gradeB);
         console.log(qup_gradeB_N);
         console.log(qup_gradeC);
@@ -348,6 +352,7 @@ function insert_quota_plan() {
 
                 "qup_gradeS": qup_gradeS,
                 "qup_gradeA": qup_gradeA,
+                "qup_gradeB_P": qup_gradeB_P,
                 "qup_gradeB": qup_gradeB,
                 "qup_gradeB_N": qup_gradeB_N,
                 "qup_gradeC": qup_gradeC,
@@ -454,10 +459,11 @@ function manage_data(qut_id) {
                                     <th>Grade</th>
                                     <th style="width: 15%;" id="grad1">S</th>
                                     <th style="width: 15%;" id="grad2">A</th>
-                                    <th style="width: 15%;" id="grad3">B</th>
-                                    <th style="width: 15%;" id="grad4">B-</th>
-                                    <th style="width: 15%;" id="grad5">C</th>
-                                    <th style="width: 15%;" id="grad6">D</th>
+                                    <th style="width: 15%;" id="grad3">B+</th>
+                                    <th style="width: 15%;" id="grad4">B</th>
+                                    <th style="width: 15%;" id="grad5">B-</th>
+                                    <th style="width: 15%;" id="grad6">C</th>
+                                    <th style="width: 15%;" id="grad7">D</th>
                                     <th style="width:15%;">Total</th>
                                 </tr>
                             </div>
@@ -467,12 +473,13 @@ function manage_data(qut_id) {
                                 <tr class="orange2">
                                     <td><b>Quota</b></td>
                                     <?php foreach($manage_qut_data as $value){ ?>
-                                    <td id="quota1" value="5"><?php echo $value->qut_grad_S;?></td>
-                                    <td id="quota2" value="25"><?php echo $value->qut_grad_A;?></td>
-                                    <td id="quota3" value="60"><?php echo $value->qut_grad_B;?></td>
-                                    <td id="quota4" value="25"><?php echo $value->qut_grad_B_N;?></td>
-                                    <td id="quota5" value="25"><?php echo $value->qut_grad_C;?></td>
-                                    <td id="quota6" value="5"><?php echo $value->qut_grad_D;?></td>
+                                    <td id="quota1" value="0"><?php echo $value->qut_grad_S;?></td>
+                                    <td id="quota2" value="0"><?php echo $value->qut_grad_A;?></td>
+                                    <td id="quota3" value="0"><?php echo $value->qut_grad_B_P;?></td>
+                                    <td id="quota4" value="0"><?php echo $value->qut_grad_B;?></td>
+                                    <td id="quota5" value="0"><?php echo $value->qut_grad_B_N;?></td>
+                                    <td id="quota6" value="0"><?php echo $value->qut_grad_C;?></td>
+                                    <td id="quota7" value="0"><?php echo $value->qut_grad_D;?></td>
                                     <td><?php echo $value->qut_total;?></td>
                                     <?php } ?>
                                 </tr>
@@ -485,7 +492,8 @@ function manage_data(qut_id) {
                                     <td id="show_quotaPlan3"></td>
                                     <td id="show_quotaPlan4"></td>
                                     <td id="show_quotaPlan5"></td>
-                                    <td id="show_quotaPlan6"> </td>
+                                    <td id="show_quotaPlan6"></td>
+                                    <td id="show_quotaPlan7"></td>
                                     <td>
                                         <input type="text" class="form-control" id="quotaPlan"
                                             onchange="check_quota_plan()" min="0" max="100" value="">

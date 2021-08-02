@@ -65,6 +65,7 @@ function get_data() {
         }
     });
 } //get_data
+
 function Delete_data(qut_id) {
 
     console.log(qut_id);
