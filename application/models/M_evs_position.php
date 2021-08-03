@@ -139,7 +139,7 @@ class M_evs_position extends Da_evs_position {
 		LEFT JOIN dbmc.department
 		ON sectioncode.dep_id = department.Dep_id
 		LEFT JOIN dbmc.company
-		ON department.Company_ID = company.Company_ID
+		ON employee.Company_ID = company.Company_ID
         WHERE ".$sql_data."
         GROUP BY  position.Position_ID ";
 		$query = $this->db->query($sql);
@@ -167,7 +167,7 @@ class M_evs_position extends Da_evs_position {
 		LEFT JOIN dbmc.department
 		ON sectioncode.dep_id = department.Dep_id
 		LEFT JOIN dbmc.company
-		ON department.Company_ID = company.Company_ID
+		ON employee.Company_ID = company.Company_ID
         WHERE ".$sql_data."";
 		$query = $this->db->query($sql);
 		return $query;
@@ -218,9 +218,7 @@ class M_evs_position extends Da_evs_position {
 		LEFT JOIN dbmc.department 
 		ON sectioncode.dep_id = department.Dep_id 
 		LEFT JOIN dbmc.company 
-		ON employee.Company_ID = company.Company_ID 
-		
-				";
+		ON employee.Company_ID = company.Company_ID";
 		$query = $this->db->query($sql);
 		return $query;
 	}//get_all WHERE NOT pos_psl_id=6

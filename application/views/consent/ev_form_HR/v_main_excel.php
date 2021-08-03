@@ -129,6 +129,11 @@ function del_score(evs_emp_id) {
                                     <input type="submit" name="import" value="Import" class="btn btn-info" />
                                 </div>
                                 <!-- col-6 -->
+                                <div class="col-md-6">
+                                    <a href="<?php echo base_url(); ?>/./excel_template/excel_template.xlsx">
+                                        <button type="button" class="btn btn-success">download template excel</button>
+                                    </a>
+                                </div>
                             </div>
                             <!-- row -->
                         </form>
@@ -314,26 +319,26 @@ function del_score(evs_emp_id) {
 
                                     <td align="center" rowspan="<?php echo $row_index[$count_index]; ?>">
                                         <?php echo $count; ?></td>
-                                        <td align="center" rowspan="<?php echo $row_index[$count_index]; ?>">
-                                            <?php echo $row->Emp_ID?></td>
-                                        <td rowspan="<?php echo $row_index[$count_index]; ?>">
-                                            <?php echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
-                                        <td align="center" rowspan="<?php echo $row_index[$count_index]; ?>">
-                                            <?php echo $row->Sectioncode_ID?></td>
-                                        <td rowspan="<?php echo $row_index[$count_index]; ?>">
-                                            <?php echo $row->Department?>
-                                        </td>
-                                        <td align="center"><?php echo $row->mhw_weight_1?></td>
-                                        <td align="center"><?php echo $row->mhw_weight_2?></td>
-                                        <td align="center">
-                                            <button data-toggle="modal" class="btn btn-danger"
-                                                data-target="#Delete<?php echo $row->mhw_evs_emp_id;?>">
-                                                <i class="ti ti-trash"></i>
-                                            </button>
-                                        </td>
-                                        <input type="text" id="emp_id<?php echo $row->mhw_evs_emp_id; ?>"
-                                            value="<?php echo $row->mhw_evs_emp_id?>" hidden>
-                                        <?php 
+                                    <td align="center" rowspan="<?php echo $row_index[$count_index]; ?>">
+                                        <?php echo $row->Emp_ID?></td>
+                                    <td rowspan="<?php echo $row_index[$count_index]; ?>">
+                                        <?php echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
+                                    <td align="center" rowspan="<?php echo $row_index[$count_index]; ?>">
+                                        <?php echo $row->Sectioncode_ID?></td>
+                                    <td rowspan="<?php echo $row_index[$count_index]; ?>">
+                                        <?php echo $row->Department?>
+                                    </td>
+                                    <td align="center"><?php echo $row->mhw_weight_1?></td>
+                                    <td align="center"><?php echo $row->mhw_weight_2?></td>
+                                    <td align="center">
+                                        <button data-toggle="modal" class="btn btn-danger"
+                                            data-target="#Delete<?php echo $row->mhw_evs_emp_id;?>">
+                                            <i class="ti ti-trash"></i>
+                                        </button>
+                                    </td>
+                                    <input type="text" id="emp_id<?php echo $row->mhw_evs_emp_id; ?>"
+                                        value="<?php echo $row->mhw_evs_emp_id?>" hidden>
+                                    <?php 
                                     $count_index++;     
                                     }
                                     //else if ?>
