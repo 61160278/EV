@@ -142,6 +142,7 @@ class Evs_permission extends MainController_avenxo {
 		$this->deep->emp_gru_id = $tep->ev_group;
 		$this->deep->insert();
 
+
 		}
 		// insert 
 

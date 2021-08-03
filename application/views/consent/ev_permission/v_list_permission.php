@@ -24,6 +24,7 @@ function emp_insert() {
     var Posid = []
     var Sectioncode = []
     var Company = []
+    var check = 0;
 
     console.log(count);
     console.log(loop_count);
@@ -81,14 +82,20 @@ function emp_insert() {
             }
         });
         // ajax
-
+        check++;
     }
     // for 
 
-    window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/" + <?php echo $year; ?> +
-        ""
+    if (check == loop_count) {
+        window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/" +
+            <?php echo $year; ?> +
+            ""
+    }
+    // if 
 
 } //function emp_insert
+
+
 </script>
 <!-- END Script  -->
 
