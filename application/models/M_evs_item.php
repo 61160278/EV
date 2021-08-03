@@ -218,7 +218,6 @@ class M_evs_item extends Da_evs_item {
 				FROM evs_database.evs_item
 				LEFT JOIN evs_database.evs_description
 				ON dep_itm_id = itm_id
-				group by itm_item_detail_en
 				ORDER BY itm_item_detail_en ASC";
         $query = $this->db->query($sql);
 		return $query;
