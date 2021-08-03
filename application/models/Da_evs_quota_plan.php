@@ -57,12 +57,12 @@ class Da_evs_quota_plan extends evs_model {
 	* @Update Date 2564-05-12
 	*/
 	function insert() {
-	 	$sql = "INSERT INTO evs_database.evs_quota_plan (evs_quota_plan.qup_id, evs_quota_plan.qup_grad_S, evs_quota_plan.qup_grad_A, 
+	 	$sql = "INSERT INTO evs_database.evs_quota_plan ( evs_quota_plan.qup_grad_S, evs_quota_plan.qup_grad_A, 
 		 		evs_quota_plan.qup_grad_B_P,evs_quota_plan.qup_grad_B, evs_quota_plan.qup_grad_B_N, evs_quota_plan.qup_grad_C, evs_quota_plan.qup_grad_D,
 				 evs_quota_plan.qup_total,evs_quota_plan.qup_pay_id,evs_quota_plan.qup_qut_id,evs_quota_plan.qup_Position_ID)
 		 		VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		 
-	 	$this->db->query($sql, array($this->qup_id, $this->qup_grad_S, $this->qup_grad_A, $this->qup_grad_B_P, $this->qup_grad_B, $this->qup_grad_B_N, $this->qup_grad_C,
+	 	$this->db->query($sql, array( $this->qup_grad_S, $this->qup_grad_A, $this->qup_grad_B_P, $this->qup_grad_B, $this->qup_grad_B_N, $this->qup_grad_C,
 		$this->qup_grad_D, $this->qup_total, $this->qup_pay_id, $this->qup_qut_id, $this->qup_Position_ID));
 	
 	 }

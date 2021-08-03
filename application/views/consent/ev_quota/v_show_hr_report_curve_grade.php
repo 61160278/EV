@@ -186,6 +186,7 @@ function show_linebarChart() {
         var show_actual = document.getElementById("show_quotaActual" + i).innerHTML;
         arrActual[i] = show_actual;
     } //for
+
     arrQuota.shift();
     arrActual.shift();
     arrActualPlan.shift();
@@ -197,6 +198,9 @@ function show_linebarChart() {
 
     } //ค่าที่รับจากตารางที่เปลี่ยนจากstring เป็น int
     //for 
+
+    // quotaActual = (valueActual * 100) / (parseFloat(quota));
+    // sumQuotaActual += quotaActual;
 
     var ctx = document.getElementById('myChart').getContext('2d');
 
@@ -431,27 +435,83 @@ function edit_data(data_sent) {
                                                 </tr>
                                             </div>
                                             <!-- col -1  -->
+
+                                            <?php if(sizeof($qua_data) != 0){ ?>
+                                            <div class="col-md-1">
+                                                <tr class="orange2">
+                                                    <td><b>Quota Actual </b></td>
+                                                    <?php 
+                                                    foreach($qua_data as $value){ 
+
+                                                        ?>
+                                                    <td id="">
+                                                        <?php echo $value->qua_grad_S;?>
+                                                    </td>
+                                                    <td id="">
+                                                        <?php echo $value->qua_grad_A;?>
+                                                    </td>
+                                                    <td id="">
+                                                        <?php echo $value->qua_grad_B_P;?>
+                                                    </td>
+                                                    <td id="">
+                                                        <?php echo $value->qua_grad_B;?>
+                                                    </td>
+                                                    <td id="">
+                                                        <?php echo $value->qua_grad_B_N;?>
+                                                    </td>
+                                                    <td id="">
+                                                        <?php echo $value->qua_grad_C;?>
+                                                    </td>
+                                                    <td id="">
+                                                        <?php echo $value->qua_grad_D;?>
+                                                    </td>
+                                                    <td><?php echo $value->qua_total;?></td>
+                                                    <?php }
+                                                    // for ?>
+                                                </tr>
+                                            </div>
+                                            <!-- col-1  -->
+                                            <?php }
+                                            // if ?>
+
                                             <?php if(sizeof($qua_data) != 0){ ?>
                                             <div class="col-md-1">
                                                 <tr class="orange2">
                                                     <td><b>Plan Actual </b></td>
-                                                    <?php foreach($qua_data as $value){ ?>
-                                                    <td id="quotaActualPlan1" value="<?php echo $value->qua_grad_S;?>">
-                                                        <?php echo $value->qua_grad_S;?></td>
-                                                    <td id="quotaActualPlan2" value="<?php echo $value->qua_grad_A;?>">
-                                                        <?php echo $value->qua_grad_A;?></td>
-                                                    <td id="quotaActualPlan3" value="<?php echo $value->qua_grad_B_P;?>">
-                                                        <?php echo $value->qua_grad_B;?></td>
-                                                    <td id="quotaActualPlan4" value="<?php echo $value->qua_grad_B;?>">
-                                                        <?php echo $value->qua_grad_B;?></td>
-                                                    <td id="quotaActualPlan5"
-                                                        value="<?php echo $value->qua_grad_B_N;?>">
-                                                        <?php echo $value->qua_grad_B_N;?></td>
-                                                    <td id="quotaActualPlan6" value="<?php echo $value->qua_grad_C;?>">
-                                                        <?php echo $value->qua_grad_C;?></td>
-                                                    <td id="quotaActualPlan7" value="<?php echo $value->qua_grad_D;?>">
-                                                        <?php echo $value->qua_grad_D;?></td>
-                                                    <td><?php echo $value->qua_total;?></td>
+                                                    <?php 
+                                                     $sum = 0;
+                                                    foreach($qua_data as $value){ 
+                                                        $sum += number_format((($value->qua_grad_S * 100) / $value->qua_total), 2, '.', '');
+                                                        $sum += number_format((($value->qua_grad_A * 100) / $value->qua_total), 2, '.', '');
+                                                        $sum += number_format((($value->qua_grad_B_P * 100) / $value->qua_total), 2, '.', '');
+                                                        $sum += number_format((($value->qua_grad_B * 100) / $value->qua_total), 2, '.', '');
+                                                        $sum += number_format((($value->qua_grad_B_N * 100) / $value->qua_total), 2, '.', '');
+                                                        $sum += number_format((($value->qua_grad_C * 100) / $value->qua_total), 2, '.', '');
+                                                        $sum += number_format((($value->qua_grad_D * 100) / $value->qua_total), 2, '.', '');
+
+                                                        ?>
+                                                    <td id="quotaActualPlan1">
+                                                        <?php echo number_format((($value->qua_grad_S * 100) / $value->qua_total), 2, '.', '');?>
+                                                    </td>
+                                                    <td id="quotaActualPlan2">
+                                                        <?php echo number_format((($value->qua_grad_A * 100) / $value->qua_total), 2, '.', '');?>
+                                                    </td>
+                                                    <td id="quotaActualPlan3">
+                                                        <?php echo number_format((($value->qua_grad_B_P * 100) / $value->qua_total), 2, '.', '');?>
+                                                    </td>
+                                                    <td id="quotaActualPlan4">
+                                                        <?php echo number_format((($value->qua_grad_B * 100) / $value->qua_total), 2, '.', '');?>
+                                                    </td>
+                                                    <td id="quotaActualPlan5">
+                                                        <?php echo number_format((($value->qua_grad_B_N * 100) / $value->qua_total), 2, '.', '');?>
+                                                    </td>
+                                                    <td id="quotaActualPlan6">
+                                                        <?php echo number_format((($value->qua_grad_C * 100) / $value->qua_total), 2, '.', '');?>
+                                                    </td>
+                                                    <td id="quotaActualPlan7">
+                                                        <?php echo number_format((($value->qua_grad_D * 100) / $value->qua_total), 2, '.', '');?>
+                                                    </td>
+                                                    <td><?php echo number_format($sum);?></td>
                                                     <?php } ?>
                                                 </tr>
                                             </div>
@@ -489,7 +549,7 @@ function edit_data(data_sent) {
                                             </div>
                                             <tr class="orange2">
                                                 <div class="col-md-1">
-                                                    <td colspan="7"><b>Total in level</b></td>
+                                                    <td colspan="8"><b>Total in level</b></td>
                                                     <td id="TOTplan"></td>
                                             </tr>
                                         </div>

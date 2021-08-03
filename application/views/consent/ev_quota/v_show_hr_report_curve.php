@@ -208,7 +208,9 @@ function show_linebarChart() {
                 backgroundColor: 'rgb(54, 162, 235)'
 
             }],
-            labels: ['S', 'A','B+' 'B', 'B-', 'C', 'D']
+            labels: ['S', 'A', 'B+',
+                'B', 'B-', 'C', 'D'
+            ]
         },
         options: {
             scales: {
@@ -299,8 +301,7 @@ function insert_quota_actual() {
     <?php } ?>
 
     for (var i = 1; i <= 7; i++) {
-        check = document.getElementById("show_quotaActual" + i).innerHTML;
-        console.log(check)
+        check = document.getElementById("quotaActual" + i).value;
         if (check == "") {
             quotaActual = null;
         } else if (check < 0) {
@@ -309,7 +310,7 @@ function insert_quota_actual() {
             valueActual = parseFloat(check).toFixed(2);
 
             grade[i] = valueActual;
-            sum_actual += valueActual;
+            sum_actual += parseInt(valueActual);
             actual += valueActual;
 
         } // if 
@@ -421,32 +422,32 @@ function insert_quota_plan() {
         qup_gradeC = grade[5];
         qup_gradeD = grade[6];
 
-        $.ajax({
-            type: "post",
-            url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_plan_insert",
+            $.ajax({
+                type: "post",
+                url: "<?php echo base_url(); ?>/ev_quota/Evs_quota/quota_plan_insert",
 
-            data: {
+                data: {
 
-                "qup_gradeS": qup_gradeS,
-                "qup_gradeA": qup_gradeA,
-                "qup_gradeB_P": qup_gradeB_P,
-                "qup_gradeB": qup_gradeB,
-                "qup_gradeB_N": qup_gradeB_N,
-                "qup_gradeC": qup_gradeC,
-                "qup_gradeD": qup_gradeD,
-                "sum_quota_plan": sum_quota_plan,
-                "qut_id": qut_id,
-                "pos_id": pos_id,
-                "year_id": year_id
-            },
-            dataType: "JSON",
+                    "qup_gradeS": qup_gradeS,
+                    "qup_gradeA": qup_gradeA,
+                    "qup_gradeB_P": qup_gradeB_P,
+                    "qup_gradeB": qup_gradeB,
+                    "qup_gradeB_N": qup_gradeB_N,
+                    "qup_gradeC": qup_gradeC,
+                    "qup_gradeD": qup_gradeD,
+                    "sum_quota_plan": sum_quota_plan,
+                    "qut_id": qut_id,
+                    "pos_id": pos_id,
+                    "year_id": year_id
+                },
+                dataType: "JSON",
 
-            success: function(status) {
-                console.log(status);
+                success: function(status) {
+                    console.log(status);
 
-            }
+                }
 
-        }); //ajax
+            }); //ajax
     }
     //
 
@@ -809,7 +810,7 @@ function edit_data(data_sent) {
                                             </div>
                                             <tr class="orange2">
                                                 <div class="col-md-1">
-                                                    <td colspan="7"><b>Total in level</b></td>
+                                                    <td colspan="8"><b>Total in level</b></td>
                                                     <td id="TOTplan"></td>
                                             </tr>
                                         </div>
