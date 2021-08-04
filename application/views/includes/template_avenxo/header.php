@@ -59,15 +59,7 @@
     <link type="text/css" href="<?php echo base_url();?>avenxo/assets/plugins/dropzone/css/dropzone.css" rel="stylesheet">
     <!-- dropzone -->
 
-
-
-
-    <!--[if lt IE 10]>
-        <script type="text/javascript" src="assets/js/media.match.min.js"></script>
-        <script type="text/javascript" src="assets/js/respond.min.js"></script>
-        <script type="text/javascript" src="assets/js/placeholder.min.js"></script>
-    <![endif]-->
-    <!-- The following CSS are included as plugins and can be removed if unused-->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>avenxo/DataTables/datatables.min.css"/>
 
 
 </head>
