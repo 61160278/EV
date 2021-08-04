@@ -85,7 +85,7 @@ class Evs_form extends MainController_avenxo {
 					$this->mesf->sfa_pos_id = $tep->Position_ID;
 					$this->mesf->sfa_pay_id = $pay_id;
 					$this->mesf->ept_pos_id = $tep->Position_ID;
-					$data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator();
+					$data['info_ability_form'] = $this->mesf->get_all_competency();
 
 				}
 				// if ACM
@@ -110,7 +110,7 @@ class Evs_form extends MainController_avenxo {
 					$this->mesf->sfa_pos_id = $tep->Position_ID;
 					$this->mesf->sfa_pay_id = $pay_id;
 					$this->mesf->ept_pos_id = $tep->Position_ID;
-					$data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator();
+					$data['info_ability_form'] = $this->mesf->get_all_competency();
 				}
 				// if ACM
 				else if($data['form']->ps_form_ce == "GCM"){
@@ -151,7 +151,7 @@ class Evs_form extends MainController_avenxo {
 					$this->mesf->sfa_pos_id = $tep->Position_ID;
 					$this->mesf->sfa_pay_id = $pay_id;
 					$this->mesf->ept_pos_id = $tep->Position_ID;
-					$data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator();
+					$data['info_ability_form'] = $this->mesf->get_all_competency();
 
 				}
 				// if ACM
@@ -182,7 +182,7 @@ class Evs_form extends MainController_avenxo {
 					$this->mesf->sfa_pos_id = $tep->Position_ID;
 					$this->mesf->sfa_pay_id = $pay_id;
 					$this->mesf->ept_pos_id = $tep->Position_ID;
-					$data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator();
+					$data['info_ability_form'] = $this->mesf->get_all_competency();
 
 				}
 				// if ACM
@@ -214,7 +214,7 @@ class Evs_form extends MainController_avenxo {
 				$this->load->model('M_evs_set_form_ability','mesf');
 				$this->mesf->sfa_pos_id = $tep->Position_ID;
 				$this->mesf->sfa_pay_id = $pay_id;
-				$data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator();
+				$data['info_ability_form'] = $this->mesf->get_all_competency();
 				$this->load->model('M_evs_expected_behavior','mept');
 				$data['info_expected'] = $this->mept->get_all_by_pos();
 				$data['info_pos_id'] = $tep->Position_ID;

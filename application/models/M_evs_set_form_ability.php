@@ -103,6 +103,22 @@ class M_evs_set_form_ability extends Da_evs_set_form_ability {
 			on kcp_cpn_id = com.cpn_id
 			INNER join evs_database.evs_expected_behavior as ex
 			on ex.ept_kcp_id = keyc.kcp_id
+			where form.sfa_pos_id = ? AND form.sfa_pay_id = ?
+			order by com.cpn_id ASC";
+		$query = $this->db->query($sql,array($this->sfa_pos_id, $this->sfa_pay_id));
+		return $query;
+	} 
+	//get_all_competency_by_indicator ,  $this->ept_pos_id
+
+	function get_all_competency() {	
+		$sql = "SELECT * 
+            FROM evs_database.evs_set_form_ability as form
+            INNER join evs_database.evs_competency as com
+			on  com.cpn_id = form.sfa_cpn_id
+			INNER join evs_database.evs_key_component as keyc
+			on kcp_cpn_id = com.cpn_id
+			INNER join evs_database.evs_expected_behavior as ex
+			on ex.ept_kcp_id = keyc.kcp_id
 			where form.sfa_pos_id = ? AND form.sfa_pay_id = ? AND ex.ept_pos_id = ?
 			order by com.cpn_id ASC";
 		$query = $this->db->query($sql,array($this->sfa_pos_id, $this->sfa_pay_id, $this->ept_pos_id));
