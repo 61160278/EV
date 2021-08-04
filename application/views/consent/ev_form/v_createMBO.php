@@ -1707,34 +1707,33 @@ function set_tap() {
                         <!-- show infomation employee -->
                         <hr>
 
-                        <table class="table table-bordered table-striped m-n" id="mbo">
+                        <table class="table table-bordered m-n">
                             <thead id="headmbo">
                                 <tr>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="2%">
                                         <center> No.</center>
                                     </th>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="15%">
                                         <center>Competency</center>
                                     </th>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="15%">
                                         <center>Key component</center>
                                     </th>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="30%">
                                         <center>Expected Behavior</center>
                                     </th>
-                                    <th rowspan="2" width="6%">
+                                    <th rowspan="2" width="8%">
                                         <center>Weight</center>
                                     </th>
-                                    <th colspan="2">
+                                    <th colspan="2" width="15%">
                                         <center>Evaluation</center>
                                     </th>
-
                                 </tr>
                                 <tr>
-                                    <th width="25%">
+                                    <th width="30%">
                                         <center>Result</center>
                                     </th>
-                                    <th width="15%">
+                                    <th width="10%">
                                         <center>Score AxB</center>
                                     </th>
 
@@ -1774,7 +1773,6 @@ function set_tap() {
                                     $row_key++;
                                 }
                                 // else if
-                                
                             }
                             array_push($row_index,$row_key);
                             // foreach?>
@@ -1791,59 +1789,132 @@ function set_tap() {
                                         $com = $row->cpn_competency_detail_en;
                                         $key = $row->kcp_key_component_detail_en;
                                         ?>
-                                    <td align="center" rowspan="<?php echo $row_index[$index]+1 ?>">
+                                    <td align="center" rowspan="<?php echo $row_index[$index] ?>"
+                                        style="vertical-align:middle;" id="dis_color">
                                         <?php echo $count;  ?></td>
-                                    <td rowspan="<?php echo $row_index[$index]+1 ?>">
+                                    <td rowspan="<?php echo $row_index[$index] ?>" style="vertical-align:middle;"
+                                        id="dis_color">
                                         <?php echo $row->cpn_competency_detail_en;  ?><br>
                                         <font color="blue"><?php echo $row->cpn_competency_detail_th;  ?></font>
                                     </td>
-                                    <td>
+                                    <td id="dis_color">
                                         <?php echo $row->kcp_key_component_detail_en;  ?><br>
                                         <font color="blue"><?php echo $row->kcp_key_component_detail_th;  ?></font>
                                     </td>
-                                    <td>
+                                    <td id="dis_color">
                                         <?php echo $row->ept_expected_detail_en;  ?><br>
                                         <font color="blue"><?php echo $row->ept_expected_detail_th;  ?></font>
                                     </td>
+                                    <td align="center" style="vertical-align:middle;" id="dis_color"
+                                        rowspan="<?php echo $row_index[$index] ?>">
+                                        <?php echo $row->sfa_weight; ?><br>
+                                    </td>
+                                    <td id="dis_color" rowspan="<?php echo $row_index[$index] ?>"
+                                        style="vertical-align:middle;">
+                                        <center>
+                                            <div class="col-md-12">
+                                                <form action="">
+                                                    <input type="radio" name="result" value="1" Disabled Unchecked>
+                                                    <label for="1">&nbsp; 1</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="2" Disabled Unchecked>
+                                                    <label for="2">&nbsp; 2</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="3" Disabled Unchecked>
+                                                    <label for="3">&nbsp; 3</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="4" Disabled Unchecked>
+                                                    <label for="4">&nbsp; 4</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="5" Disabled Unchecked>
+                                                    <label for="5">&nbsp; 5</label>
+                                                    &nbsp;&nbsp;
+                                                </form>
+                                            </div>
+                                            <!-- col-12 -->
+                                        </center>
+                                    </td>
+                                    <td id="dis_color"></td>
 
                                     <?php }
-                                // if
+                                // if 
                                 else if($com != $row->cpn_competency_detail_en){
                                     $count++;
                                     $com = $row->cpn_competency_detail_en; 
                                     $key = $row->kcp_key_component_detail_en;?>
 
-                                    <td align="center" rowspan="<?php echo $row_index[$count-1] ?>">
+                                    <td align="center" rowspan="<?php echo $row_index[$count-1] ?>"
+                                        style="vertical-align:middle;" id="dis_color">
                                         <?php echo $count;  ?></td>
-                                    <td rowspan="<?php echo $row_index[$count-1] ?>">
+                                    <td rowspan="<?php echo $row_index[$count-1] ?>" style="vertical-align:middle;"
+                                        id="dis_color">
                                         <?php echo $row->cpn_competency_detail_en;  ?><br>
                                         <font color="blue"><?php echo $row->cpn_competency_detail_th;  ?></font>
                                     </td>
-                                    <td>
+                                    <td id="dis_color">
                                         <?php echo $row->kcp_key_component_detail_en;  ?><br>
                                         <font color="blue"><?php echo $row->kcp_key_component_detail_th;  ?></font>
                                     </td>
-
-                                    <?php }
-                                // else if
-                                else if($com == $row->cpn_competency_detail_en){ 
-                                    if($key != $row->kcp_key_component_detail_en){ 
-                                        $key = $row->kcp_key_component_detail_en; ?>
-                                    <td>
-                                        <?php echo $row->kcp_key_component_detail_en;  ?><br>
-                                        <font color="blue"><?php echo $row->kcp_key_component_detail_th;  ?></font>
-                                    </td>
-                                    <td>
+                                    <td id="dis_color">
                                         <?php echo $row->ept_expected_detail_en;  ?><br>
                                         <font color="blue"><?php echo $row->ept_expected_detail_th;  ?></font>
                                     </td>
+                                    <td align="center" style="vertical-align:middle;" id="dis_color"
+                                        rowspan="<?php echo $row_index[$count-1] ?>">
+                                        <?php echo $row->sfa_weight; ?><br>
+                                    </td>
+                                    <td id="dis_color" rowspan="<?php echo $row_index[$count-1] ?>"
+                                        style="vertical-align:middle;">
+                                        <center>
+                                            <div class="col-md-12">
+                                                <form action="">
+                                                    <input type="radio" name="result" value="1" Disabled Unchecked>
+                                                    <label for="1">&nbsp; 1</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="2" Disabled Unchecked>
+                                                    <label for="2">&nbsp; 2</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="3" Disabled Unchecked>
+                                                    <label for="3">&nbsp; 3</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="4" Disabled Unchecked>
+                                                    <label for="4">&nbsp; 4</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="5" Disabled Unchecked>
+                                                    <label for="5">&nbsp; 5</label>
+                                                    &nbsp;&nbsp;
+                                                </form>
+                                            </div>
+                                            <!-- col-12 -->
+                                        </center>
+                                    </td>
+                                    <td id="dis_color"></td>
+
+                                    <?php }
+                                // else if
+
+                                else if($com == $row->cpn_competency_detail_en){ 
+                                    if($key != $row->kcp_key_component_detail_en){ 
+                                        $key = $row->kcp_key_component_detail_en; ?>
+                                    <td id="dis_color">
+                                        <?php echo $row->kcp_key_component_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->kcp_key_component_detail_th;  ?></font>
+                                    </td>
+                                    <td id="dis_color">
+                                        <?php echo $row->ept_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->ept_expected_detail_th;  ?></font>
+                                    </td>
+                                    <td id="dis_color"></td>
                                     <?php
                                     }
                                     // if
                                     else if($key == $row->kcp_key_component_detail_en){ ?>
                                     <hr>
-                                    <?php echo $row->ept_expected_detail_en;  ?><br>
-                                    <font color="blue"><?php echo $row->ept_expected_detail_th;  ?></font>
+                                    <td id="dis_color">
+                                        <?php echo $row->ept_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->ept_expected_detail_th;  ?></font>
+                                    </td>
+                                    <td id="dis_color"></td>
 
                                     <?php }
                                     // else if 
@@ -1861,13 +1932,13 @@ function set_tap() {
                             <tfoot>
                                 <tr height="5%" id="dis_color">
                                     <td colspan="4">
-                                        <center> Total Weight</center>
+                                        <center></b> Total Weight </b></center>
                                     </td>
                                     <td>
                                         <center> 100</center>
                                     </td>
                                     <td>
-                                        <center> Total Result</center>
+                                        <center><b> Total Result </b></center>
                                     </td>
                                     <td>&nbsp;</td>
                                 </tr>
@@ -1876,7 +1947,6 @@ function set_tap() {
 
                         </table>
                         <!-- table -->
-
                         <br>
                         <hr>
                         <div class="row">
@@ -1974,7 +2044,7 @@ function set_tap() {
                         <!-- show infomation employee -->
                         <hr>
 
-                        <table class="table table-bordered table-striped m-n" id="mbo">
+                        <table class="table table-bordered table-striped m-n" >
                             <thead id="headmbo">
                                 <tr>
                                     <th rowspan="2">

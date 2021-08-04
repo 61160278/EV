@@ -35,8 +35,8 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6" align="center">
-                        <img src="http://10.73.148.5/DBMC/IMG/emp120/<?echo $_SESSION[" UsEmp_ID"]?>.jpg" width="50%"
-                        class="img-responsive img-circle">
+                        <!-- <img src="http://10.73.148.5/DBMC/IMG/emp120/<? echo $_SESSION[" UsEmp_ID"]?>.jpg" width="50%"
+                        class="img-responsive img-circle"> -->
                     </div>
                     <!-- col-6 show img  -->
 
