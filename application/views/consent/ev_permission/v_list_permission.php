@@ -47,10 +47,6 @@ function emp_insert() {
         count_loop = count_send + 199;
         count_insert = 0;
 
-        //console.log(count_send);
-        //console.log(count_loop);
-        //console.log("--------------");
-
         for (i = count_send; i <= count_loop; i++) {
             if (i < count) {
 

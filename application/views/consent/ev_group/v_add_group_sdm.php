@@ -11,7 +11,6 @@
 <script>
 $(document).ready(function() {
     manage_group();
-
 });
 // document ready
 
@@ -417,7 +416,7 @@ tbody {
                                                         <div class="col-sm-6"></div>
                                                     </div>
 
-                                                    <table id="example"
+                                                    <table id="cur_group"
                                                         class="table table-striped table-bordered dataTable no-footer"
                                                         cellspacing="0" width="100%" role="grid"
                                                         aria-describedby="example_info" style="width: 100%;">
