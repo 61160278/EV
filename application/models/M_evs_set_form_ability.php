@@ -108,7 +108,16 @@ class M_evs_set_form_ability extends Da_evs_set_form_ability {
 		$query = $this->db->query($sql,array($this->sfa_pos_id, $this->sfa_pay_id));
 		return $query;
 	} 
-	//get_all_competency_by_indicator ,  $this->ept_pos_id
+	//get_all_competency_by_indicator
+
+	/*
+	* get_all_competency
+	* get all competency key component and expected behavior by acm form  database 
+	* @input position id and patten and year id 
+	* @output competency by gcm form
+	* @author 	Kunanya Singmee
+	* @Create Date 2564-8-4
+	*/
 
 	function get_all_competency() {	
 		$sql = "SELECT * 

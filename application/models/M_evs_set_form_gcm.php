@@ -107,6 +107,31 @@ class M_evs_set_form_gcm extends Da_evs_set_form_gcm {
 	//get_all_competency_by_indicator
 
 	/*
+	* get_all_competency_gcm
+	* get all competency key component and expected behavior by gcm form  database 
+	* @input position id and patten and year id 
+	* @output competency by gcm form
+	* @author 	Kunanya Singmee
+	* @Create Date 2564-8-5 
+	*/
+	function get_all_competency_gcm() {	
+		$sql = "SELECT * 
+            FROM evs_database.evs_set_form_gcm AS form 
+            INNER join evs_database.evs_competency_gcm AS com
+			on com.cpg_id = form.sgc_cpg_id
+			INNER join evs_database.evs_key_component_gcm as keyc
+			on keyc.kcg_cpg_id = com.cpg_id
+			INNER join evs_database.evs_expected_behavior_gcm as ex
+			on ex.epg_kcg_id = keyc.kcg_id
+
+			where form.sgc_pos_id = ? AND form.sgc_pay_id = ? AND ex.epg_pos_id = ?
+			order by com.cpg_id ASC";
+		$query = $this->db->query($sql,array($this->sgc_pos_id,$this->sgc_pay_id,$this->epg_pos_id));
+		return $query;
+	}
+	//get_all_competency
+
+	/*
 	* get_all_key_component_by_indicator
 	* get all key component by gcm form  database 
 	* @input position id and patten and year id
