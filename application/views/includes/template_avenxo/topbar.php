@@ -25,7 +25,7 @@
             </a>
         </span>
         <div>
-            <a class="navbar-brand" href="<?php echo base_url(); ?>/Evs_all_manage/index"></a>
+            <a class="navbar-brand" href=""></a>
         </div>
     </div><!-- logo-area -->
 
