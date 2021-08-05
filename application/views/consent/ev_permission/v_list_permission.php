@@ -10,7 +10,7 @@
 ?>
 <script>
 $(document).ready(function() {
-
+    $('#emp_list').DataTable();
 });
 // document.ready
 
@@ -29,7 +29,9 @@ function emp_insert() {
     console.log(count);
     console.log(loop_count);
 
-    if(loop_count < 1){
+    console.log(document.getElementById("empid1").value);
+
+    if (loop_count < 1) {
         loop_count = 1;
     }
     // if
@@ -92,12 +94,12 @@ function emp_insert() {
     // for 
 
     if (check == loop_count) {
-        window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/" + <?php echo $year; ?> + ""
+        window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/" +
+            <?php echo $year; ?> + ""
     }
     // if 
 
 } //function emp_insert
-
 </script>
 <!-- END Script  -->
 
@@ -148,7 +150,7 @@ td {
                 <div class="row">
                     <div class="col-md-12">
                         <table class="table table-striped table-bordered dataTable no-footer" cellspacing="0"
-                            width="100%">
+                            width="100%" id="emp_list">
                             <thead>
                                 <tr>
                                     <th>
@@ -180,22 +182,13 @@ td {
                                     <td><?php echo $row->Sectioncode_ID?></td>
                                     <td><?php echo $row->Department?></td>
                                     <td><?php echo $row->Position_name ?></td>
-
-                                    <input id="empid<?php echo $index ;?>" name="empid" type="hidden"
-                                        value="<?php echo  $row->Emp_ID ; ?>">
-                                    <input id="Posid<?php echo $index ;?>" name="Posid" type="hidden"
-                                        value="<?php echo  $row->Position_ID ; ?>">
-                                    <input id="Sectioncode<?php echo $index ;?>" name="Sectioncode" type="hidden"
-                                        value="<?php echo  $row->Sectioncode_ID ; ?>">
-                                    <input id="Company<?php echo $index ;?>" name="Company" type="hidden"
-                                        value="<?php echo  $row->Company_ID ; ?>">
-
-
                                 </tr>
+
+
                                 <?php
 								$num++;
 							}
-							
+							// foreach
 							?>
 
 
@@ -203,13 +196,24 @@ td {
 
                         </table>
                         <input id="count" type="hidden" value="<?php echo $num++; ?>">
+
                     </div>
                     <!-- col-12  -->
                 </div>
                 <!-- row  -->
             </div>
             <div class="panel-footer">
-
+                <?php foreach($select->result() as $index => $row ) {  ?>
+                <input id="empid<?php echo $index ;?>" name="empid" type="text" 
+                value="<?php echo  $row->Emp_ID ; ?>" hidden>
+                <input id="Posid<?php echo $index ;?>" name="Posid" type="text"
+                    value="<?php echo  $row->Position_ID ; ?>" hidden>
+                <input id="Sectioncode<?php echo $index ;?>" name="Sectioncode" type="text"
+                    value="<?php echo  $row->Sectioncode_ID ; ?>" hidden>
+                <input id="Company<?php echo $index ;?>" name="Company" type="text"
+                    value="<?php echo  $row->Company_ID ; ?>" hidden>
+                <?php }
+				// foreach ?>
             </div>
             <!-- footer -->
 

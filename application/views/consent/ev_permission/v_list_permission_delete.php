@@ -78,7 +78,7 @@ td {
                 <hr>
                 <div class="row">
                     <div class="col-md-12">
-                        <table id="emp_list" class="table table-striped table-bordered dataTable no-footer"
+                        <table id="emp_list" class="table table-striped table-bordered no-footer"
                             cellspacing="0" width="100%">
                             <thead>
                                 <tr>

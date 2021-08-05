@@ -98,13 +98,6 @@
 <!-- End loading page level scripts-->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- Load page level scripts-->
-<!-- <script type="text/javascript" src="<?php echo base_url();?>avenxo/assets/plugins/datatables/jquery.dataTables.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>avenxo/assets/plugins/jquery-editable/jquery.editable.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>avenxo/assets/plugins/datatables/dataTables.editor.js"></script> 
-<script type="text/javascript" src="<?php echo base_url();?>avenxo/assets/plugins/datatables/dataTables.editor.bootstrap.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>avenxo/assets/plugins/datatables/dataTables.bootstrap.js"></script>  		
-<script type="text/javascript" src="<?php echo base_url();?>avenxo/assets/plugins/datatables/dataTables.bootstrap.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>avenxo/assets/demo/demo-datatables.js"></script> -->
-<!-- End loading page level scripts-->
+<!-- Load datatable scripts-->
 <script type="text/javascript" src="<?php echo base_url();?>DataTables/datatables.min.js"></script>
+<!-- End datatablel scripts-->
