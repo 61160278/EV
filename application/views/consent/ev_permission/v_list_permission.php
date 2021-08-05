@@ -29,6 +29,11 @@ function emp_insert() {
     console.log(count);
     console.log(loop_count);
 
+    if(loop_count < 1){
+        loop_count = 1;
+    }
+    // if
+
     for (j = 0; j < loop_count; j++) {
 
         empid = []
@@ -87,14 +92,11 @@ function emp_insert() {
     // for 
 
     if (check == loop_count) {
-        window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/" +
-            <?php echo $year; ?> +
-            ""
+        window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/" + <?php echo $year; ?> + ""
     }
     // if 
 
 } //function emp_insert
-
 
 </script>
 <!-- END Script  -->
