@@ -107,5 +107,3 @@
 <script type="text/javascript" src="<?php echo base_url();?>avenxo/assets/plugins/datatables/dataTables.bootstrap.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>avenxo/assets/demo/demo-datatables.js"></script>
 <!-- End loading page level scripts-->
-
-<script type="text/javascript" src="<?php echo base_url();?>avenxo/DataTables/datatables.min.js"></script>
