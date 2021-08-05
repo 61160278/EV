@@ -56,9 +56,12 @@
         rel="stylesheet">
     <!-- new-->
 
-    <link type="text/css" href="<?php echo base_url();?>avenxo/assets/plugins/dropzone/css/dropzone.css" rel="stylesheet">
+    <link type="text/css" href="<?php echo base_url();?>avenxo/assets/plugins/dropzone/css/dropzone.css"
+        rel="stylesheet">
     <!-- dropzone -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>DataTables/datatables.min.css" />
 
+    
 </head>
 
 <body class="animated-content">

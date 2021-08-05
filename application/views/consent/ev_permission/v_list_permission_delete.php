@@ -9,6 +9,11 @@
 */  
 ?>
 <script>
+
+$(document).ready( function () {
+    $('#emp_list').DataTable();
+} );
+
 function emp_delete(emp_id) {
     console.log(emp_id);
 
@@ -73,7 +78,7 @@ td {
                 <hr>
                 <div class="row">
                     <div class="col-md-12">
-                        <table id="example" class="table table-striped table-bordered dataTable no-footer"
+                        <table id="emp_list" class="table table-striped table-bordered dataTable no-footer"
                             cellspacing="0" width="100%">
                             <thead>
                                 <tr>
