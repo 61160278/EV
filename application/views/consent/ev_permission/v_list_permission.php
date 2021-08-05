@@ -204,8 +204,8 @@ td {
             </div>
             <div class="panel-footer">
                 <?php foreach($select->result() as $index => $row ) {  ?>
-                <input id="empid<?php echo $index ;?>" name="empid" type="text" 
-                value="<?php echo  $row->Emp_ID ; ?>" hidden>
+                <input id="empid<?php echo $index ;?>" name="empid" type="text" value="<?php echo  $row->Emp_ID ; ?>"
+                    hidden>
                 <input id="Posid<?php echo $index ;?>" name="Posid" type="text"
                     value="<?php echo  $row->Position_ID ; ?>" hidden>
                 <input id="Sectioncode<?php echo $index ;?>" name="Sectioncode" type="text"
