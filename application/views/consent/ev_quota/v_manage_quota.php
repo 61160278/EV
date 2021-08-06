@@ -316,9 +316,8 @@ function manage_data(qut_id, i) {
 
 function report_data(qut_id, i, com, dep_id) {
     var pos_id = document.getElementById("pos_" + qut_id + i).value;
-    console.log(pos_id);
-    var data_sent = qut_id + ":" + pos_id;
-    window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/hr_report_curve/" + data_sent + "/" + com +
+    
+    window.location.href = "<?php echo base_url(); ?>ev_quota/Evs_quota/hr_report_curve/" + qut_id+ "/" + pos_id + "/" + com +
         "/" + dep_id;
 } //report_data
 function edit_qup_data(qut_id, i) {

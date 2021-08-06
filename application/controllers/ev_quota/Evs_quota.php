@@ -107,11 +107,11 @@ class Evs_quota extends MainController_avenxo {
 	* @author 	Piyasak Srijan
 	* @Update Date 2564-04-20
 	*/
-	function hr_report_curve($data_sent,$com_select,$dep_sel)
+	function hr_report_curve($qut_sel,$pos_sel,$com_select,$dep_sel)
 	{
 
-		 $qut_id = substr($data_sent,0,strpos($data_sent,":"));
-		 $pos_id = substr($data_sent,strpos($data_sent,":")+1);
+		 $qut_id = $qut_sel;
+		 $pos_id = $pos_sel;
 
 		 $this->load->model('M_evs_quota_actual','mqua');
 		 $this->mqua->qua_qut_id = $qut_id;
@@ -142,7 +142,6 @@ class Evs_quota extends MainController_avenxo {
 		   $this->mqua->qua_Position_ID = $pos_id;
 		   $data['qua_data'] = $this->mqua->get_id_quota_position_actual()->result();
 
-		   $data['data_dep_pos'] = $data_sent;
 
 		   $this->load->model('M_evs_pattern_and_year','mpay');
 			$data['year_quota_data'] = $this->mpay->get_by_year();
@@ -164,11 +163,11 @@ class Evs_quota extends MainController_avenxo {
 	* @author 	Piyasak Srijan
 	* @Update Date 2564-04-20
 	*/
-	function hr_report_curve_report($data_sent,$com_select,$dep_sel)
+	function hr_report_curve_report($qut_sel,$pos_sel,$com_select,$dep_sel)
 	{
 
-		 $qut_id = substr($data_sent,0,strpos($data_sent,":"));
-		 $pos_id = substr($data_sent,strpos($data_sent,":")+1);
+		 $qut_id = $qut_sel;
+		 $pos_id = $pos_sel;
 
 		 $this->load->model('M_evs_quota_actual','mqua');
 		 $this->mqua->qua_qut_id = $qut_id;
@@ -204,7 +203,7 @@ class Evs_quota extends MainController_avenxo {
 		   $this->mqua->qua_Position_ID = $pos_id;
 		   $data['qua_data'] = $this->mqua->get_id_quota_position_actual()->result();
 
-		   $data['data_dep_pos'] = $data_sent;
+		  
 
 		   $this->load->model('M_evs_pattern_and_year','mpay');
 			$data['year_quota_data'] = $this->mpay->get_by_year();
