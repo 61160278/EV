@@ -603,6 +603,11 @@ class Evs_form_AP extends MainController_avenxo {
 			$year = $data['patt_year']->row(); // show value year now
 			//end set year now
 			$pay_id = $year->pay_id;
+
+			$this->load->model('M_evs_employee','memp');
+			$this->memp->Emp_ID = $_SESSION['UsEmp_ID'];
+			$this->memp->emp_pay_id = $pay_id;
+			$data['emp_info_show'] = $this->memp->get_by_empid();
 	
 			$this->load->model('M_evs_employee','memp');
 			$data['emp_info'] = $this->memp->get_all_by_year()->result();

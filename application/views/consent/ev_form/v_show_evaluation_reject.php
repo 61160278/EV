@@ -30,8 +30,8 @@ $(document).ready(function() {
 function reject_comment(index) {
     var emp_id = "";
     var comment = "";
-    comment = document.getElementById("comment_reject_"+index+"").value;
-    emp_id = document.getElementById("emp_id_"+index+"").value;
+    comment = document.getElementById("comment_reject_" + index + "").value;
+    emp_id = document.getElementById("emp_id_" + index + "").value;
     console.log(comment);
     // console.log(emp_id);
 
@@ -42,7 +42,7 @@ function reject_comment(index) {
         data: {
             "Emp_ID": emp_id,
             "comment": comment
-           
+
         },
         success: function(data) {
             console.log(data);
@@ -111,7 +111,7 @@ function reject_comment(index) {
                                     <th>Department</th>
                                     <th>Position</th>
                                     <th>Comment</th>
-                                   
+
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -129,7 +129,7 @@ function reject_comment(index) {
                                     <td><?php echo $row->Position_name; ?></td>
                                     <td><?php echo $data_comment1[$index]; ?></td>
                                     <td>
-                                   
+
                                         <a
                                             href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/createFROM/<?php echo $row->Emp_ID; ?>">
                                             <button type="button" class="btn btn-info">
@@ -194,10 +194,12 @@ function reject_comment(index) {
                                     <td><?php echo $data_comment2[$index]; ?></td>
                                     <td><textarea type="text" id="comment_reject_<?php echo $index; ?>"
                                             placeholder="Enter comment" class="form-control"></textarea>
-                                            <input type="text" id="emp_id_<?php echo $index; ?>" value="<?php echo $row->emp_id; ?>" hidden>
+                                        <input type="text" id="emp_id_<?php echo $index; ?>"
+                                            value="<?php echo $row->emp_id; ?>" hidden>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-danger" onclick="reject_comment(<?php echo $index; ?>)">
+                                        <button type="button" class="btn btn-danger"
+                                            onclick="reject_comment(<?php echo $index; ?>)">
                                             <i class="fa fa-mail-reply"></i>
                                         </button>
                                         &nbsp;
