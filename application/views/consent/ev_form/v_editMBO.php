@@ -2051,7 +2051,6 @@ function set_tap() {
                         <?php }; ?>
                         <!-- show infomation employee -->
                         <hr>
-
                         <table class="table table-bordered m-n">
                             <thead id="headmbo">
                                 <tr>
@@ -2064,10 +2063,13 @@ function set_tap() {
                                     <th rowspan="2" width="15%">
                                         <center>Key component</center>
                                     </th>
+                                    <th rowspan="2" width="6%">
+                                        <center>Target Level</center>
+                                    </th>
                                     <th rowspan="2" width="30%">
                                         <center>Expected Behavior</center>
                                     </th>
-                                    <th rowspan="2" width="8%">
+                                    <th rowspan="2" width="6%">
                                         <center>Weight</center>
                                     </th>
                                     <th colspan="2" width="15%">
@@ -2092,29 +2094,29 @@ function set_tap() {
                             $key_check = "";
                             $row_key = 0;
                             $row_index = [];
-                            foreach($info_ability_form->result() AS $index => $row){ 
+                            foreach($info_form_gcm->result() AS $index => $row){ 
 
                                 
                                 if($index == 0){
-                                    $com_check = $row->cpn_competency_detail_en;
-                                    $key_check = $row->kcp_key_component_detail_en;
+                                    $com_check = $row->cpg_competency_detail_en;
+                                    $key_check = $row->kcg_key_component_detail_en;
                                     $row_key++;
                                 }
                                 // if
-                                else if($com_check == $row->cpn_competency_detail_en){
-                                   if($key_check != $row->kcp_key_component_detail_en){
+                                else if($com_check == $row->cpg_competency_detail_en){
+                                   if($key_check != $row->kcg_key_component_detail_en){
                                         $row_key++;
-                                        $key_check = $row->kcp_key_component_detail_en;
+                                        $key_check = $row->kcg_key_component_detail_en;
                                     }
                                     // else if
                                 }
                                 // else if
                                 
-                                else if($com_check != $row->cpn_competency_detail_en){
+                                else if($com_check != $row->cpg_competency_detail_en){
                                     array_push($row_index,$row_key);
                                     $row_key = 0;
-                                    $key_check = $row->kcp_key_component_detail_en;
-                                    $com_check = $row->cpn_competency_detail_en;
+                                    $key_check = $row->kcg_key_component_detail_en;
+                                    $com_check = $row->cpg_competency_detail_en;
                                     $row_key++;
                                 }
                                 // else if
@@ -2127,32 +2129,35 @@ function set_tap() {
                                 $com = "";
                                 $key = "";
                                 $ex = ""; 
-                                foreach($info_ability_form->result() AS $index => $row){  ?>
+                                foreach($info_form_gcm->result() AS $index => $row){  ?>
                                 <tr>
                                     <?php if($index == 0){ 
                                         $count++;
-                                        $com = $row->cpn_competency_detail_en;
-                                        $key = $row->kcp_key_component_detail_en;
+                                        $com = $row->cpg_competency_detail_en;
+                                        $key = $row->kcg_key_component_detail_en;
                                         ?>
                                     <td align="center" rowspan="<?php echo $row_index[$index] ?>"
                                         style="vertical-align:middle;" id="dis_color">
                                         <?php echo $count;  ?></td>
                                     <td rowspan="<?php echo $row_index[$index] ?>" style="vertical-align:middle;"
                                         id="dis_color">
-                                        <?php echo $row->cpn_competency_detail_en;  ?><br>
-                                        <font color="blue"><?php echo $row->cpn_competency_detail_th;  ?></font>
+                                        <?php echo $row->cpg_competency_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->cpg_competency_detail_th;  ?></font>
                                     </td>
                                     <td id="dis_color">
-                                        <?php echo $row->kcp_key_component_detail_en;  ?><br>
-                                        <font color="blue"><?php echo $row->kcp_key_component_detail_th;  ?></font>
+                                        <?php echo $row->kcg_key_component_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->kcg_key_component_detail_th;  ?></font>
+                                    </td>
+                                    <td id="dis_color" align="center">
+                                        <?php echo $row->epg_point;  ?><br>
                                     </td>
                                     <td id="dis_color">
-                                        <?php echo $row->ept_expected_detail_en;  ?><br>
-                                        <font color="blue"><?php echo $row->ept_expected_detail_th;  ?></font>
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
                                     </td>
                                     <td align="center" style="vertical-align:middle;" id="dis_color"
                                         rowspan="<?php echo $row_index[$index] ?>">
-                                        <?php echo $row->sfa_weight; ?><br>
+                                        <?php echo $row->sgc_weight; ?><br>
                                     </td>
                                     <td id="dis_color" rowspan="<?php echo $row_index[$index] ?>"
                                         style="vertical-align:middle;">
@@ -2183,30 +2188,33 @@ function set_tap() {
 
                                     <?php }
                                 // if 
-                                else if($com != $row->cpn_competency_detail_en){
+                                else if($com != $row->cpg_competency_detail_en){
                                     $count++;
-                                    $com = $row->cpn_competency_detail_en; 
-                                    $key = $row->kcp_key_component_detail_en;?>
+                                    $com = $row->cpg_competency_detail_en; 
+                                    $key = $row->kcg_key_component_detail_en;?>
 
                                     <td align="center" rowspan="<?php echo $row_index[$count-1] ?>"
                                         style="vertical-align:middle;" id="dis_color">
                                         <?php echo $count;  ?></td>
                                     <td rowspan="<?php echo $row_index[$count-1] ?>" style="vertical-align:middle;"
                                         id="dis_color">
-                                        <?php echo $row->cpn_competency_detail_en;  ?><br>
-                                        <font color="blue"><?php echo $row->cpn_competency_detail_th;  ?></font>
+                                        <?php echo $row->cpg_competency_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->cpg_competency_detail_th;  ?></font>
                                     </td>
                                     <td id="dis_color">
-                                        <?php echo $row->kcp_key_component_detail_en;  ?><br>
-                                        <font color="blue"><?php echo $row->kcp_key_component_detail_th;  ?></font>
+                                        <?php echo $row->kcg_key_component_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->kcg_key_component_detail_th;  ?></font>
+                                    </td>
+                                    <td id="dis_color" align="center">
+                                        <?php echo $row->epg_point;  ?><br>
                                     </td>
                                     <td id="dis_color">
-                                        <?php echo $row->ept_expected_detail_en;  ?><br>
-                                        <font color="blue"><?php echo $row->ept_expected_detail_th;  ?></font>
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
                                     </td>
                                     <td align="center" style="vertical-align:middle;" id="dis_color"
                                         rowspan="<?php echo $row_index[$count-1] ?>">
-                                        <?php echo $row->sfa_weight; ?><br>
+                                        <?php echo $row->sgc_weight; ?><br>
                                     </td>
                                     <td id="dis_color" rowspan="<?php echo $row_index[$count-1] ?>"
                                         style="vertical-align:middle;">
@@ -2238,31 +2246,36 @@ function set_tap() {
                                     <?php }
                                 // else if
 
-                                else if($com == $row->cpn_competency_detail_en){ 
-                                    if($key != $row->kcp_key_component_detail_en){ 
-                                        $key = $row->kcp_key_component_detail_en; ?>
+                                else if($com == $row->cpg_competency_detail_en){ 
+                                    if($key != $row->kcg_key_component_detail_en){ 
+                                        $key = $row->kcg_key_component_detail_en; ?>
                                     <td id="dis_color">
-                                        <?php echo $row->kcp_key_component_detail_en;  ?><br>
-                                        <font color="blue"><?php echo $row->kcp_key_component_detail_th;  ?></font>
+                                        <?php echo $row->kcg_key_component_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->kcg_key_component_detail_th;  ?></font>
+                                    </td>
+                                    <td id="dis_color" align="center">
+                                        <?php echo $row->epg_point;  ?><br>
                                     </td>
                                     <td id="dis_color">
-                                        <?php echo $row->ept_expected_detail_en;  ?><br>
-                                        <font color="blue"><?php echo $row->ept_expected_detail_th;  ?></font>
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
                                     </td>
                                     <td id="dis_color"></td>
                                     <?php
                                     }
                                     // if
-                                    else if($key == $row->kcp_key_component_detail_en){ ?>
-                                    <hr>
+                                    else if($key == $row->kcg_key_component_detail_en){ ?>
                                     <td id="dis_color">
-                                        <?php echo $row->ept_expected_detail_en;  ?><br>
-                                        <font color="blue"><?php echo $row->ept_expected_detail_th;  ?></font>
+                                        <?php echo $row->epg_point;  ?><br>
+                                    </td>
+                                    <td id="dis_color">
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
                                     </td>
                                     <td id="dis_color"></td>
 
                                     <?php }
-                                    // else if 
+                                    // else if  	
                                 }
                                 // else if 
                                 ?>
@@ -2307,7 +2320,7 @@ function set_tap() {
                         <!-- row -->
 
                     </div>
-                    <!-- form 2-1 -->
+                    <!-- form 2-2 -->
 
 
                     <!-- ************************************************************************************ -->
@@ -2551,7 +2564,7 @@ function set_tap() {
                         <!-- row -->
 
                     </div>
-                    <!-- form 2-1 -->
+                    <!-- form 2-2 -->
 
                     <!-- ************************************************************************************ -->
 

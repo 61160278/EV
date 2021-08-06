@@ -1345,9 +1345,11 @@ function set_tap_his() {
                         <hr>
                         <div class="row">
                             <div class="col-md-12">
-                                <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
-                                    <button class="btn btn-inverse" id="btn_cencel_backG_O">BACK</button>
-                                </a>
+                                <form action="<?php echo base_url() ?>ev_form/Evs_form/historyMBO" method="post">
+                                    <input type="text" name="emp_id_his" id="emp_id_his"
+                                        value="<?php echo $emp_id_back; ?>" hidden>
+                                    <input type="submit" class="btn btn-inverse" value="BACK">
+                                </form>
                                 <!-- cancel to back to main  -->
                             </div>
                             <!-- col-md-6 -->
@@ -1438,97 +1440,116 @@ function set_tap_his() {
                         <!-- show infomation employee -->
                         <hr>
 
-                        <table class="table table-bordered table-striped m-n" id="mbo">
+                        <table class="table table-bordered m-n">
                             <thead id="headmbo">
                                 <tr>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="2%">
                                         <center> No.</center>
                                     </th>
-                                    <th rowspan="2" colspan="2">
+                                    <th rowspan="2" width="15%">
                                         <center>Competency</center>
                                     </th>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="15%">
                                         <center>Key component</center>
                                     </th>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="6%">
+                                        <center>Target Level</center>
+                                    </th>
+                                    <th rowspan="2" width="30%">
                                         <center>Expected Behavior</center>
                                     </th>
                                     <th rowspan="2" width="6%">
                                         <center>Weight</center>
                                     </th>
-                                    <th colspan="2">
+                                    <th colspan="2" width="15%">
                                         <center>Evaluation</center>
                                     </th>
-
                                 </tr>
                                 <tr>
-                                    <th width="25%">
+                                    <th width="30%">
                                         <center>Result</center>
                                     </th>
-                                    <th width="15%">
+                                    <th width="10%">
                                         <center>Score AxB</center>
                                     </th>
 
                                 </tr>
                             </thead>
                             <!-- thead -->
-                            <tbody id="dis_color">
-                                <?php if(sizeof($info_form_gcm) != 0) { ?>
+                            <tbody>
+
                                 <?php  
-                                    $index_gcm = 1;
-                                    $temp_keycomponent = "";
-                                    $temp_keycomponents = "";
-                                    $temp_expected = "";
-                                    $sum_max_rating = 0;
-                                    // start foreach
-                                    foreach($info_form_gcm->result() as $row){
-                                ?>
+                            $com_check = "";
+                            $key_check = "";
+                            $row_key = 0;
+                            $row_index = [];
+                            foreach($info_form_gcm->result() AS $index => $row){ 
+
+                                
+                                if($index == 0){
+                                    $com_check = $row->cpg_competency_detail_en;
+                                    $key_check = $row->kcg_key_component_detail_en;
+                                    $row_key++;
+                                }
+                                // if
+                                else if($com_check == $row->cpg_competency_detail_en){
+                                   if($key_check != $row->kcg_key_component_detail_en){
+                                        $row_key++;
+                                        $key_check = $row->kcg_key_component_detail_en;
+                                    }
+                                    // else if
+                                }
+                                // else if
+                                
+                                else if($com_check != $row->cpg_competency_detail_en){
+                                    array_push($row_index,$row_key);
+                                    $row_key = 0;
+                                    $key_check = $row->kcg_key_component_detail_en;
+                                    $com_check = $row->cpg_competency_detail_en;
+                                    $row_key++;
+                                }
+                                // else if
+                            }
+                            array_push($row_index,$row_key);
+                            // foreach?>
+
+                                <?php 
+                                $count = 0;
+                                $com = "";
+                                $key = "";
+                                $ex = ""; 
+                                foreach($info_form_gcm->result() AS $index => $row){  ?>
                                 <tr>
-                                    <td id="dis_color">
-                                        <center><?php echo $index_gcm++; ?></center>
+                                    <?php if($index == 0){ 
+                                        $count++;
+                                        $com = $row->cpg_competency_detail_en;
+                                        $key = $row->kcg_key_component_detail_en;
+                                        ?>
+                                    <td align="center" rowspan="<?php echo $row_index[$index] ?>"
+                                        style="vertical-align:middle;" id="dis_color">
+                                        <?php echo $count;  ?></td>
+                                    <td rowspan="<?php echo $row_index[$index] ?>" style="vertical-align:middle;"
+                                        id="dis_color">
+                                        <?php echo $row->cpg_competency_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->cpg_competency_detail_th;  ?></font>
                                     </td>
                                     <td id="dis_color">
-                                        <?php echo $row->cpg_competency_detail_en . "<br><font color='blue'>" . $row->cpg_competency_detail_th ."</font>"; ?>
+                                        <?php echo $row->kcg_key_component_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->kcg_key_component_detail_th;  ?></font>
                                     </td>
-                                    <!-- show competency  -->
+                                    <td id="dis_color" align="center">
+                                        <?php echo $row->epg_point;  ?><br>
+                                    </td>
                                     <td id="dis_color">
-                                        <?php foreach($info_expected_gcm->result() as $row_ept){ 
-                                            if($row->sgc_cpg_id == $row_ept->kcg_cpg_id && $temp_keycomponents != $row_ept->kcg_key_component_detail_en){
-                                                $temp_keycomponents = $row_ept->kcg_key_component_detail_en;?>
-                                        <?php echo $row_ept->epg_point;?>
-                                        <?php }
-                                            // if
-                                            }
-                                            // foreach ?>
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
                                     </td>
-                                    <!-- show type  -->
-                                    <td id="dis_color">
-                                        <?php foreach($info_expected_gcm->result() as $row_ept){ 
-                                            if($row->sgc_cpg_id == $row_ept->kcg_cpg_id && $temp_keycomponent != $row_ept->kcg_key_component_detail_en){
-                                                $temp_keycomponent = $row_ept->kcg_key_component_detail_en;?>
-                                        <?php echo $row_ept->kcg_key_component_detail_en . "<br><font color='blue'>" . $row_ept->kcg_key_component_detail_th ."</font>"; ?>
-                                        <?php }
-                                            // if
-                                            }
-                                            // foreach ?>
+                                    <td align="center" style="vertical-align:middle;" id="dis_color"
+                                        rowspan="<?php echo $row_index[$index] ?>">
+                                        <?php echo $row->sgc_weight; ?><br>
                                     </td>
-                                    <!-- show key component  -->
-                                    <td id="dis_color">
-                                        <?php foreach($info_expected_gcm->result() as $row_ept){ 
-                                            if($row->sgc_cpg_id == $row_ept->kcg_cpg_id && $temp_expected != $row_ept->epg_expected_detail_en && $row_ept->epg_pos_id == $info_pos_id_gcm){
-                                                $temp_expected = $row_ept->epg_expected_detail_en;?>
-                                        <?php echo $row_ept->epg_expected_detail_en . "<br><font color='blue'>" . $row_ept->epg_expected_detail_th ."</font><hr>"; ?>
-                                        <?php }
-                                        // if
-                                        }
-                                        // foreach ?>
-                                    </td>
-                                    <!-- show expected  -->
-                                    <td id="dis_color">
-                                        <center><?php echo $row->sgc_weight; ?></center>
-                                    </td>
-                                    <!-- show weight  -->
-                                    <td id="dis_color" width="5%">
+                                    <td id="dis_color" rowspan="<?php echo $row_index[$index] ?>"
+                                        style="vertical-align:middle;">
                                         <center>
                                             <div class="col-md-12">
                                                 <form action="">
@@ -1552,29 +1573,119 @@ function set_tap_his() {
                                             <!-- col-12 -->
                                         </center>
                                     </td>
-                                    <td id="dis_color" width="2%"></td>
-                                </tr>
+                                    <td id="dis_color"></td>
 
-                                <?php
+                                    <?php }
+                                // if 
+                                else if($com != $row->cpg_competency_detail_en){
+                                    $count++;
+                                    $com = $row->cpg_competency_detail_en; 
+                                    $key = $row->kcg_key_component_detail_en;?>
+
+                                    <td align="center" rowspan="<?php echo $row_index[$count-1] ?>"
+                                        style="vertical-align:middle;" id="dis_color">
+                                        <?php echo $count;  ?></td>
+                                    <td rowspan="<?php echo $row_index[$count-1] ?>" style="vertical-align:middle;"
+                                        id="dis_color">
+                                        <?php echo $row->cpg_competency_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->cpg_competency_detail_th;  ?></font>
+                                    </td>
+                                    <td id="dis_color">
+                                        <?php echo $row->kcg_key_component_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->kcg_key_component_detail_th;  ?></font>
+                                    </td>
+                                    <td id="dis_color" align="center">
+                                        <?php echo $row->epg_point;  ?><br>
+                                    </td>
+                                    <td id="dis_color">
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
+                                    </td>
+                                    <td align="center" style="vertical-align:middle;" id="dis_color"
+                                        rowspan="<?php echo $row_index[$count-1] ?>">
+                                        <?php echo $row->sgc_weight; ?><br>
+                                    </td>
+                                    <td id="dis_color" rowspan="<?php echo $row_index[$count-1] ?>"
+                                        style="vertical-align:middle;">
+                                        <center>
+                                            <div class="col-md-12">
+                                                <form action="">
+                                                    <input type="radio" name="result" value="1" Disabled Unchecked>
+                                                    <label for="1">&nbsp; 1</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="2" Disabled Unchecked>
+                                                    <label for="2">&nbsp; 2</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="3" Disabled Unchecked>
+                                                    <label for="3">&nbsp; 3</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="4" Disabled Unchecked>
+                                                    <label for="4">&nbsp; 4</label>
+                                                    &nbsp;&nbsp;
+                                                    <input type="radio" name="result" value="5" Disabled Unchecked>
+                                                    <label for="5">&nbsp; 5</label>
+                                                    &nbsp;&nbsp;
+                                                </form>
+                                            </div>
+                                            <!-- col-12 -->
+                                        </center>
+                                    </td>
+                                    <td id="dis_color"></td>
+
+                                    <?php }
+                                // else if
+
+                                else if($com == $row->cpg_competency_detail_en){ 
+                                    if($key != $row->kcg_key_component_detail_en){ 
+                                        $key = $row->kcg_key_component_detail_en; ?>
+                                    <td id="dis_color">
+                                        <?php echo $row->kcg_key_component_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->kcg_key_component_detail_th;  ?></font>
+                                    </td>
+                                    <td id="dis_color" align="center">
+                                        <?php echo $row->epg_point;  ?><br>
+                                    </td>
+                                    <td id="dis_color">
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
+                                    </td>
+                                    <td id="dis_color"></td>
+                                    <?php
                                     }
-                                    // end foreach
+                                    // if
+                                    else if($key == $row->kcg_key_component_detail_en){ ?>
+                                    <td id="dis_color">
+                                        <?php echo $row->epg_point;  ?><br>
+                                    </td>
+                                    <td id="dis_color">
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
+                                    </td>
+                                    <td id="dis_color"></td>
+
+                                    <?php }
+                                    // else if  	
                                 }
-                                // if
+                                // else if 
                                 ?>
+
+
+                                </tr>
+                                <?php } 
+                            // foreach?>
                             </tbody>
-                            <!-- tbody -->
                             <!-- tbody -->
 
                             <tfoot>
                                 <tr height="5%" id="dis_color">
                                     <td colspan="4">
-                                        <center> Total Weight</center>
+                                        <center></b> Total Weight </b></center>
                                     </td>
                                     <td>
                                         <center> 100</center>
                                     </td>
                                     <td>
-                                        <center> Total Result</center>
+                                        <center><b> Total Result </b></center>
                                     </td>
                                     <td>&nbsp;</td>
                                 </tr>
@@ -1601,7 +1712,7 @@ function set_tap_his() {
                         <!-- row -->
 
                     </div>
-                    <!-- form 2-1 -->
+                    <!-- form 2-2 -->
 
                     <!-- ************************************************************************************ -->
 
