@@ -45,6 +45,7 @@ $(document).ready(function() {
 // document ready
 function set_tap() {
     var ps_pos_id = document.getElementById("pos_id").value;
+    console.log(ps_pos_id);
     var data_tap = "";
     console.log("<?php echo $data_from_pe; ?>");
     console.log("<?php echo $data_from_ce; ?>");
@@ -56,7 +57,7 @@ function set_tap() {
             "ps_pos_id": ps_pos_id
         },
         success: function(data) {
-
+            console.log(data);
             data.forEach((row, index) => {
                 if (row.ps_form_pe == "MBO") {
                     if ("<?php echo $data_from_pe; ?>" == "MBO") {
@@ -440,20 +441,23 @@ function show_weight_gcm() {
     var arr_weight = [];
     var sum = 0;
     var index = document.getElementById("table_index_radio_gcm").value;
+    console.log(index);
     for (i = 0; i < index; i++) {
-
         $("[name = rd_gcm_" + i + "]").each(function(index) {
             if ($(this).prop("checked") == true) {
                 arr_weight.push(document.getElementsByName("rd_gcm_" + i + "")[index].value);
             } //if
         });
     }
+    // for 
+    console.log(arr_weight);
+
     for (i = 0; i < index; i++) {
         document.getElementById("weight_gcm_" + i + "").innerHTML = arr_weight[i] * document.getElementsByName(
-            "weing_gcm_" +
-            i + "")[0].value;
+            "weing_gcm_" + i + "")[0].value;
         sum += arr_weight[i] * document.getElementsByName("weing_gcm_" + i + "")[0].value;
     }
+    // for
     document.getElementById("weight_all_gcm").innerHTML = sum;
 }
 
@@ -2739,33 +2743,35 @@ function update_approve() {
 
                     <div class="tab-pane" id="GCM">
                         <table class="table table-bordered table-striped m-n">
-                            <thead>
+                            <thead id="headmbo">
                                 <tr>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="2%">
                                         <center> No.</center>
                                     </th>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="15%">
                                         <center>Competency</center>
                                     </th>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="15%">
                                         <center>Key component</center>
                                     </th>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="6%">
+                                        <center>Target Level</center>
+                                    </th>
+                                    <th rowspan="2" width="30%">
                                         <center>Expected Behavior</center>
                                     </th>
                                     <th rowspan="2" width="6%">
                                         <center>Weight</center>
                                     </th>
-                                    <th colspan="2">
+                                    <th colspan="2" width="15%">
                                         <center>Evaluation</center>
                                     </th>
-
                                 </tr>
                                 <tr>
-                                    <th width="25%">
+                                    <th width="30%">
                                         <center>Result</center>
                                     </th>
-                                    <th width="15%">
+                                    <th width="10%">
                                         <center>Score AxB</center>
                                     </th>
 
@@ -2773,56 +2779,81 @@ function update_approve() {
                             </thead>
                             <!-- thead -->
                             <tbody>
-                                <?php  
-                                    $index_acm = 1;
-                                    $temp_keycomponent = "";
-                                    $temp_expected = "";
-                                    $sum_max_rating = 0;
-                                    $table_index_radio_gcm = 0;
-                                    // start foreach
-                                    foreach($info_gcm_form as $row){
-                                ?>
-                                <input type="text" name="sgc_id" value="<?php echo $row->sgc_id; ?>" hidden>
-                                <!-- save index table_index_radio_gcm-->
 
-                                <tr>
-                                    <td>
-                                        <center><?php echo $index_acm++; ?></center>
-                                    </td>
-                                    <td>
-                                        <?php echo $row->cpg_competency_detail_en . "<br><font color='blue'>" . $row->cpg_competency_detail_th ."</font>"; ?>
-                                    </td>
-                                    <!-- show competency  -->
-                                    <td>
-                                        <?php foreach($info_expected as $row_epg){ 
-                                            if($row->sgc_cpg_id == $row_epg->kcg_cpg_id && $temp_keycomponent != $row_epg->kcg_key_component_detail_en){
-                                                $temp_keycomponent = $row_epg->kcg_key_component_detail_en;?>
-                                        <?php echo $row_epg->kcg_key_component_detail_en . "<br><font color='blue'>" . $row_epg->kcg_key_component_detail_th ."</font>"; ?>
-                                        <?php }
-                                            // if
-                                            }
-                                            // foreach ?>
-                                    </td>
-                                    <!-- show key component  -->
-                                    <td>
-                                        <?php foreach($info_expected as $row_epg){ 
-                                            if($row->sgc_cpg_id == $row_epg->kcg_cpg_id && $temp_expected != $row_epg->epg_expected_detail_en && $row_epg->epg_pos_id == $info_pos_id){
-                                                $temp_expected = $row_epg->epg_expected_detail_en;?>
-                                        <?php echo $row_epg->epg_expected_detail_en . "<br><font color='blue'>" . $row_epg->epg_expected_detail_th ."</font><hr>"; ?>
-                                        <?php }
-                                        // if
+                                <?php  
+                                    $com_check = "";
+                                    $key_check = "";
+                                    $row_key = 0;
+                                    $row_index = [];
+                                    $table_index_radio_gcm = 0;
+                                    foreach($info_form_gcm->result() AS $index => $row){ 
+
+
+                                    if($index == 0){
+                                        $com_check = $row->cpg_competency_detail_en;
+                                        $key_check = $row->kcg_key_component_detail_en;
+                                        $row_key++;
+                                    }
+                                    // if
+                                    else if($com_check == $row->cpg_competency_detail_en){
+                                    if($key_check != $row->kcg_key_component_detail_en){
+                                            $row_key++;
+                                            $key_check = $row->kcg_key_component_detail_en;
                                         }
-                                        // foreach ?>
+                                        // else if
+                                    }
+                                    // else if
+
+                                    else if($com_check != $row->cpg_competency_detail_en){
+                                        array_push($row_index,$row_key);
+                                        $row_key = 0;
+                                        $key_check = $row->kcg_key_component_detail_en;
+                                        $com_check = $row->cpg_competency_detail_en;
+                                        $row_key++;
+                                    }
+                                    // else if
+                                    }
+                                    array_push($row_index,$row_key);
+                                    // foreach?>
+
+                                <?php 
+                                    $count = 0;
+                                    $com = "";
+                                    $key = "";
+                                    $ex = ""; 
+                                    foreach($info_form_gcm->result() AS $index => $row){  ?>
+                                <tr>
+                                    <?php if($index == 0){ 
+                                            $count++;
+                                            $com = $row->cpg_competency_detail_en;
+                                            $key = $row->kcg_key_component_detail_en;
+                                            ?>
+                                    <td align="center" rowspan="<?php echo $row_index[$index] ?>"
+                                        style="vertical-align:middle;">
+                                        <?php echo $count;  ?></td>
+                                    <td rowspan="<?php echo $row_index[$index] ?>" style="vertical-align:middle;">
+                                        <?php echo $row->cpg_competency_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->cpg_competency_detail_th;  ?></font>
                                     </td>
-                                    <!-- show expected  -->
                                     <td>
-                                        <center><?php echo $row->sgc_weight; ?></center>
+                                        <?php echo $row->kcg_key_component_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->kcg_key_component_detail_th;  ?></font>
+                                    </td>
+                                    <td align="center">
+                                        <?php echo $row->epg_point;  ?><br>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
+                                    </td>
+                                    <td align="center" style="vertical-align:middle;"
+                                        rowspan="<?php echo $row_index[$index] ?>">
+                                        <?php echo $row->sgc_weight; ?><br>
                                         <input type="number" name="weing_gcm_<?php echo $table_index_radio_gcm ?>"
                                             value="<?php echo $row->sgc_weight; ?>" hidden>
                                     </td>
-
-                                    <!-- show weight  -->
-                                    <td width="5%">
+                                    <td width="5%" rowspan="<?php echo $row_index[$index] ?>"
+                                        style="vertical-align:middle;">
                                         <center>
                                             <div class="col-md-12">
                                                 <input type="radio" name="rd_gcm_<?php echo $table_index_radio_gcm ?>"
@@ -2857,16 +2888,128 @@ function update_approve() {
                                             <!-- col-12 -->
                                         </center>
                                     </td>
-                                    <td width="2%" align="center">
+                                    <td rowspan="<?php echo $row_index[$index] ?>" style="vertical-align:middle;"
+                                        align="center">
                                         <p id="weight_gcm_<?php echo $table_index_radio_gcm ?>"></p>
                                     </td>
-                                    <?php $table_index_radio_gcm++;  ?>
-                                </tr>
 
-                                <?php
+                                    <?php 
+                                $table_index_radio_gcm++;    
+                                }
+                                    // if 
+                                    else if($com != $row->cpg_competency_detail_en){
+                                        $count++;
+                                        $com = $row->cpg_competency_detail_en; 
+                                        $key = $row->kcg_key_component_detail_en;?>
+
+                                    <td align="center" rowspan="<?php echo $row_index[$count-1] ?>"
+                                        style="vertical-align:middle;">
+                                        <?php echo $count;  ?></td>
+                                    <td rowspan="<?php echo $row_index[$count-1] ?>" style="vertical-align:middle;">
+                                        <?php echo $row->cpg_competency_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->cpg_competency_detail_th;  ?></font>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->kcg_key_component_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->kcg_key_component_detail_th;  ?></font>
+                                    </td>
+                                    <td i align="center">
+                                        <?php echo $row->epg_point;  ?><br>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
+                                    </td>
+                                    <td align="center" style="vertical-align:middle;"
+                                        rowspan="<?php echo $row_index[$count-1] ?>">
+                                        <?php echo $row->sgc_weight; ?><br>
+                                        <input type="number" name="weing_gcm_<?php echo $table_index_radio_gcm ?>"
+                                            value="<?php echo $row->sgc_weight; ?>" hidden>
+                                    </td>
+                                    <td width="5%" rowspan="<?php echo $row_index[$count-1] ?>"
+                                        style="vertical-align:middle;">
+                                        <center>
+                                            <div class="col-md-12">
+                                                <input type="radio" name="rd_gcm_<?php echo $table_index_radio_gcm ?>"
+                                                    id="rd_<?php echo $table_index_radio_gcm ?>" value="0" checked
+                                                    hidden>
+                                                <input type="radio" name="rd_gcm_<?php echo $table_index_radio_gcm ?>"
+                                                    id="rd_<?php echo $table_index_radio_gcm ?>" value="1"
+                                                    onclick="show_weight_gcm()">
+                                                <label for="1">&nbsp; 1</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio" name="rd_gcm_<?php echo $table_index_radio_gcm ?>"
+                                                    id="rd_<?php echo $table_index_radio_gcm ?>" value="2"
+                                                    onclick="show_weight_gcm()">
+                                                <label for="2">&nbsp; 2</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio" name="rd_gcm_<?php echo $table_index_radio_gcm ?>"
+                                                    id="rd_<?php echo $table_index_radio_gcm ?>" value="3"
+                                                    onclick="show_weight_gcm()">
+                                                <label for="3">&nbsp; 3</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio" name="rd_gcm_<?php echo $table_index_radio_gcm ?>"
+                                                    id="rd_<?php echo $table_index_radio_gcm ?>" value="4"
+                                                    onclick="show_weight_gcm()">
+                                                <label for="4">&nbsp; 4</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio" name="rd_gcm_<?php echo $table_index_radio_gcm ?>"
+                                                    id="rd_<?php echo $table_index_radio_gcm ?>" value="5"
+                                                    onclick="show_weight_gcm()">
+                                                <label for="5">&nbsp; 5</label>
+                                                &nbsp;&nbsp;
+                                            </div>
+                                            <!-- col-12 -->
+                                        </center>
+                                    </td>
+                                    <td rowspan="<?php echo $row_index[$count-1] ?>" style="vertical-align:middle;"
+                                        align="center">
+                                        <p id="weight_gcm_<?php echo $table_index_radio_gcm ?>"></p>
+                                    </td>
+
+                                    <?php 
+                                $table_index_radio_gcm++;      
+                                }
+                                    // else if
+
+                                    else if($com == $row->cpg_competency_detail_en){ 
+                                        if($key != $row->kcg_key_component_detail_en){ 
+                                            $key = $row->kcg_key_component_detail_en; ?>
+                                    <td>
+                                        <?php echo $row->kcg_key_component_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->kcg_key_component_detail_th;  ?></font>
+                                    </td>
+                                    <td align="center">
+                                        <?php echo $row->epg_point;  ?><br>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
+                                    </td>
+                                    <?php
                                     }
-                                    // end foreach
+                                    // if
+                                    else if($key == $row->kcg_key_component_detail_en){ ?>
+                                    <td>
+                                        <?php echo $row->epg_point;  ?><br>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
+                                    </td>
+
+                                    <?php }
+                                    // else if  	
+                                }
+                                // else if 
                                 ?>
+
+
+                                </tr>
+                                <input type="text" name="sgc_id" value="<?php echo $row->sgc_id; ?>" hidden>
+                                <?php 
+                                } 
+                                // foreach?>
                             </tbody>
                             <!-- tbody -->
                             <input type="text" id="table_index_radio_gcm" value="<?php echo $table_index_radio_gcm; ?>"
@@ -2875,7 +3018,7 @@ function update_approve() {
 
                             <tfoot>
                                 <tr height="5%">
-                                    <td colspan="4">
+                                    <td colspan="5">
                                         <center> Total Weight</center>
                                     </td>
                                     <td>
@@ -2949,57 +3092,80 @@ function update_approve() {
                             </thead>
                             <!-- thead -->
                             <tbody>
-                                <?php  
-                                    $index_acm = 1;
-                                    $temp_keycomponent = "";
-                                    $temp_expected = "";
-                                    $sum_max_rating = 0;
-                                    $table_index_radio_gcm_edit = 0;
-                                    // start foreach
-                                    foreach($info_gcm_form as $row){
-                                ?>
-                                <input type="text" name="sgc_id" value="<?php echo $row->sgc_id; ?>" hidden>
-                                <!-- save index table_index_radio_gcm-->
 
+                                <?php  
+                                $com_check = "";
+                                $key_check = "";
+                                $row_key = 0;
+                                $row_index = [];
+                                $table_index_radio_gcm_edit = 0;
+                                foreach($info_form_gcm->result() AS $index => $row){ 
+
+
+                                if($index == 0){
+                                    $com_check = $row->cpg_competency_detail_en;
+                                    $key_check = $row->kcg_key_component_detail_en;
+                                    $row_key++;
+                                }
+                                // if
+                                else if($com_check == $row->cpg_competency_detail_en){
+                                if($key_check != $row->kcg_key_component_detail_en){
+                                        $row_key++;
+                                        $key_check = $row->kcg_key_component_detail_en;
+                                    }
+                                    // else if
+                                }
+                                // else if
+
+                                else if($com_check != $row->cpg_competency_detail_en){
+                                    array_push($row_index,$row_key);
+                                    $row_key = 0;
+                                    $key_check = $row->kcg_key_component_detail_en;
+                                    $com_check = $row->cpg_competency_detail_en;
+                                    $row_key++;
+                                }
+                                // else if
+                                }
+                                array_push($row_index,$row_key);
+                                // foreach?>
+
+                                <?php 
+                                $count = 0;
+                                $com = "";
+                                $key = "";
+                                $ex = ""; 
+                                foreach($info_form_gcm->result() AS $index => $row){  ?>
                                 <tr>
-                                    <td>
-                                        <center><?php echo $index_acm++; ?></center>
+                                    <?php if($index == 0){ 
+                                        $count++;
+                                        $com = $row->cpg_competency_detail_en;
+                                        $key = $row->kcg_key_component_detail_en;
+            ?>
+                                    <td align="center" rowspan="<?php echo $row_index[$index] ?>"
+                                        style="vertical-align:middle;">
+                                        <?php echo $count;  ?></td>
+                                    <td rowspan="<?php echo $row_index[$index] ?>" style="vertical-align:middle;">
+                                        <?php echo $row->cpg_competency_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->cpg_competency_detail_th;  ?></font>
                                     </td>
                                     <td>
-                                        <?php echo $row->cpg_competency_detail_en . "<br><font color='blue'>" . $row->cpg_competency_detail_th ."</font>"; ?>
+                                        <?php echo $row->kcg_key_component_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->kcg_key_component_detail_th;  ?></font>
                                     </td>
-                                    <!-- show competency  -->
-                                    <td>
-                                        <?php foreach($info_expected as $row_epg){ 
-                                            if($row->sgc_cpg_id == $row_epg->kcg_cpg_id && $temp_keycomponent != $row_epg->kcg_key_component_detail_en){
-                                                $temp_keycomponent = $row_epg->kcg_key_component_detail_en;?>
-                                        <?php echo $row_epg->kcg_key_component_detail_en . "<br><font color='blue'>" . $row_epg->kcg_key_component_detail_th ."</font>"; ?>
-                                        <?php }
-                                            // if
-                                            }
-                                            // foreach ?>
+                                    <td align="center">
+                                        <?php echo $row->epg_point;  ?><br>
                                     </td>
-                                    <!-- show key component  -->
                                     <td>
-                                        <?php foreach($info_expected as $row_epg){ 
-                                            if($row->sgc_cpg_id == $row_epg->kcg_cpg_id && $temp_expected != $row_epg->epg_expected_detail_en && $row_epg->epg_pos_id == $info_pos_id){
-                                                $temp_expected = $row_epg->epg_expected_detail_en;?>
-                                        <?php echo $row_epg->epg_expected_detail_en . "<br><font color='blue'>" . $row_epg->epg_expected_detail_th ."</font><hr>"; ?>
-                                        <?php }
-                                        // if
-                                        }
-                                        // foreach ?>
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
                                     </td>
-                                    <!-- show expected  -->
-                                    <td>
-                                        <center><?php echo $row->sgc_weight; ?></center>
-                                        <input type="number"
-                                            name="weing_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
+                                    <td align="center" style="vertical-align:middle;"
+                                        rowspan="<?php echo $row_index[$index] ?>">
+                                        <?php echo $row->sgc_weight; ?><br>
+                                        <input type="number" name="weing_gcm_<?php echo $table_index_radio_gcm_edit ?>"
                                             value="<?php echo $row->sgc_weight; ?>" hidden>
                                     </td>
-
-                                    <!-- show weight  -->
-                                    <td width="5%">
+                                    <td width="5%" style="vertical-align:middle;">
                                         <center>
                                             <?php  
                                    $checked_weight_1 ="";
@@ -3065,21 +3231,160 @@ function update_approve() {
 
                                         </center>
                                     </td>
-                                    <td width="2%">
-                                        <p id="weight_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"></p>
+                                    <td rowspan="<?php echo $row_index[$index] ?>" style="vertical-align:middle;"
+                                        align="center">
+                                        <p id="weight_gcm_<?php echo $table_index_radio_gcm_edit ?>"></p>
                                     </td>
-                                    <?php $table_index_radio_gcm_edit++;  ?>
-                                </tr>
 
-                                <?php
+                                    <?php 
+                                    $table_index_radio_gcm_edit++;    
                                     }
-                                    // end foreach
+                                        // if 
+                                        else if($com != $row->cpg_competency_detail_en){
+                                            $count++;
+                                            $com = $row->cpg_competency_detail_en; 
+                                            $key = $row->kcg_key_component_detail_en;?>
+
+                                    <td align="center" rowspan="<?php echo $row_index[$count-1] ?>"
+                                        style="vertical-align:middle;">
+                                        <?php echo $count;  ?></td>
+                                    <td rowspan="<?php echo $row_index[$count-1] ?>" style="vertical-align:middle;">
+                                        <?php echo $row->cpg_competency_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->cpg_competency_detail_th;  ?></font>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->kcg_key_component_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->kcg_key_component_detail_th;  ?></font>
+                                    </td>
+                                    <td i align="center">
+                                        <?php echo $row->epg_point;  ?><br>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
+                                    </td>
+                                    <td align="center" style="vertical-align:middle;"
+                                        rowspan="<?php echo $row_index[$count-1] ?>">
+                                        <?php echo $row->sgc_weight; ?><br>
+                                        <input type="number" name="weing_gcm_<?php echo $table_index_radio_gcm_edit ?>"
+                                            value="<?php echo $row->sgc_weight; ?>" hidden>
+                                    </td>
+                                    <td width="5%" style="vertical-align:middle;">
+                                        <center>
+                                            <?php  
+                                   $checked_weight_1 ="";
+                                   $checked_weight_2 ="";
+                                   $checked_weight_3 ="";
+                                   $checked_weight_4 ="";
+                                   $checked_weight_5 ="";
+              
+
+                                    foreach($data_gcm_weight as $row_data_gcm_weight){
+                                            if($row->sgc_id == $row_data_gcm_weight->dtg_sgc_id){
+                                                if($row_data_gcm_weight->dtg_weight == 1){
+                                                    $checked_weight_1 =  "checked";
+                                                }
+                                                else if($row_data_gcm_weight->dtg_weight == 2){
+                                                    $checked_weight_2 =  "checked";
+                                                }
+                                                else if($row_data_gcm_weight->dtg_weight == 3){
+                                                    $checked_weight_3 =  "checked";
+                                                }
+                                                else if($row_data_gcm_weight->dtg_weight == 4){
+                                                    $checked_weight_4 =  "checked";
+                                                }
+                                                else {
+                                                    $checked_weight_5 =  "checked";
+                                                }
+                                            }
+                                        }
                                 ?>
+                                            <div class="col-md-12">
+                                                <input type="radio"
+                                                    name="rd_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
+                                                    id="rd_<?php echo $table_index_radio_gcm_edit ?>" value="1"
+                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_1 ?>>
+                                                <label for="1">&nbsp; 1</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio"
+                                                    name="rd_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
+                                                    id="rd_<?php echo $table_index_radio_gcm_edit ?>" value="2"
+                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_2 ?>>
+                                                <label for="2">&nbsp; 2</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio"
+                                                    name="rd_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
+                                                    id="rd_<?php echo $table_index_radio_gcm_edit ?>" value="3"
+                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_3 ?>>
+                                                <label for="3">&nbsp; 3</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio"
+                                                    name="rd_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
+                                                    id="rd_<?php echo $table_index_radio_gcm_edit ?> " value="4"
+                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_4 ?>>
+                                                <label for="4">&nbsp; 4</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio"
+                                                    name="rd_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
+                                                    id="rd_<?php echo $table_index_radio_gcm_edit ?>" value="5"
+                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_5 ?>>
+                                                <label for="5">&nbsp; 5</label>
+                                                &nbsp;&nbsp;
+                                            </div>
+                                            <!-- col-12 -->
+
+                                        </center>
+                                    </td>
+                                    <td rowspan="<?php echo $row_index[$count-1] ?>" style="vertical-align:middle;"
+                                        align="center">
+                                        <p id="weight_gcm_<?php echo $table_index_radio_gcm_edit ?>"></p>
+                                    </td>
+
+                                    <?php 
+                                    $table_index_radio_gcm_edit++;      
+                                    }
+                                        // else if
+
+                                        else if($com == $row->cpg_competency_detail_en){ 
+                                            if($key != $row->kcg_key_component_detail_en){ 
+                                                $key = $row->kcg_key_component_detail_en; ?>
+                                    <td>
+                                        <?php echo $row->kcg_key_component_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->kcg_key_component_detail_th;  ?></font>
+                                    </td>
+                                    <td align="center">
+                                        <?php echo $row->epg_point;  ?><br>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
+                                    </td>
+                                    <?php
+                                    }
+                                    // if
+                                    else if($key == $row->kcg_key_component_detail_en){ ?>
+                                    <td>
+                                        <?php echo $row->epg_point;  ?><br>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
+                                    </td>
+
+                                    <?php }
+                                        // else if  	
+                                    }
+                                    // else if 
+                                    ?>
+
+
+                                </tr>
+                                <input type="text" name="sgc_id" value="<?php echo $row->sgc_id; ?>" hidden>
+                                <?php 
+                                } 
+                                // foreach?>
                             </tbody>
                             <!-- tbody -->
-                            <input type="text" id="table_index_radio_gcm_edit"
-                                value="<?php echo $table_index_radio_gcm_edit; ?>" hidden>
-                            <!-- save index table_index_radio_gcm-->
 
                             <tfoot>
                                 <tr height="5%">

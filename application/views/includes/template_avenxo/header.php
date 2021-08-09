@@ -23,6 +23,7 @@
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="description" content="EVS | SDM & SKD">
     <meta name="author" content="KaijuThemes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link type='text/css' href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600'
         rel='stylesheet'>
 

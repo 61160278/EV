@@ -2286,7 +2286,7 @@ function set_tap() {
 
                             <tfoot>
                                 <tr height="5%" id="dis_color">
-                                    <td colspan="4">
+                                    <td colspan="5">
                                         <center></b> Total Weight </b></center>
                                     </td>
                                     <td>

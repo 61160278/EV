@@ -98,6 +98,7 @@
 <!-- End loading page level scripts-->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
 <!-- Load datatable scripts-->
 <script type="text/javascript" src="<?php echo base_url();?>DataTables/datatables.min.js"></script>
 <!-- End datatablel scripts-->
