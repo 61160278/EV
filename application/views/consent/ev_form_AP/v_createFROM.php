@@ -126,7 +126,6 @@ function set_tap() {
                         data_tap += '</a></li>';
                         show_weight_acm_edit();
                     }
-                    show_weight_acm();
                 }
                 // if
                 else if (row.ps_form_ce == "GCM") {
@@ -186,8 +185,9 @@ function show_weight_acm() {
 function show_weight_acm_edit() {
     var arr_weight = [];
     var sum = 0;
-
+    var weight = 0;
     var index = document.getElementById("table_index_radio_acm_edit").value;
+    console.log(index);
     for (i = 0; i < index; i++) {
 
         $("[name = rd_acm_edit_" + i + "]").each(function(index) {
@@ -196,11 +196,15 @@ function show_weight_acm_edit() {
             } //if
         });
     }
+    // for
+    console.log(arr_weight);
     for (i = 0; i < index; i++) {
-        document.getElementById('weight_acm_edit_' + i + '').innerHTML = arr_weight[i] * document.getElementsByName(
-            "weing_acm_edit_" + i + "")[0].value;
-        sum += arr_weight[i] * document.getElementsByName("weing_acm_edit_" + i + "")[0].value;
+        weight = document.getElementById("weigth_acm_edit_" + i).value;
+        console.log(weight)
+        document.getElementById('show_weight_acm_edit_' + i + '').innerHTML = arr_weight[i] * weight;
+        sum += arr_weight[i] * document.getElementById("weigth_acm_edit_" + i).value;
     }
+    // for 
     document.getElementById('weight_all_acm_edit').innerHTML = sum;
 
 }
@@ -214,17 +218,17 @@ function save_ACM() {
     var App = document.getElementById("App_Emp_ID").value;
 
     for (i = 0; i < index; i++) {
-        arr_sfa_id.push(document.getElementsByName("sfa_id")[i].value);
+        arr_sfa_id.push(document.getElementById("sfa_id" + i).value);
         $("[name = rd_acm_" + i + "]").each(function(index) {
             if ($(this).prop("checked") == true) {
                 arr_radio.push(document.getElementsByName("rd_acm_" + i + "")[index].value);
             } //if
         });
     }
-    console.log("index : " + index);
-    console.log("Emp_ID :  " + Emp_ID);
-    console.log("arr_sfa_id : " + arr_sfa_id);
-    console.log("arr_radio : " + arr_radio);
+    console.log("ACM-index : " + index);
+    console.log("ACM-Emp_ID :  " + Emp_ID);
+    console.log("ACM-arr_sfa_id : " + arr_sfa_id);
+    console.log("ACM-arr_radio : " + arr_radio);
 
     $.ajax({
         type: "post",
@@ -260,7 +264,7 @@ function update_ACM_edit() {
     var App = document.getElementById("App_Emp_ID").value;
 
     for (i = 0; i < index; i++) {
-        arr_sfa_id.push(document.getElementsByName("sfa_id")[i].value);
+        arr_sfa_id.push(document.getElementById("sfa_id" + i).value);
         $("[name = rd_acm_edit_" + i + "]").each(function(index) {
             if ($(this).prop("checked") == true) {
                 arr_radio.push(document.getElementsByName("rd_acm_edit_" + i + "")[index].value);
@@ -1022,7 +1026,7 @@ function update_approve() {
                                     <th rowspan="2" width="15%">
                                         <center>SDGs Goals</center>
                                     </th>
-                                    <th rowspan="2" width="45%">
+                                    <th rowspan="2" width="40%">
                                         <center>Management by objective</center>
                                     </th>
                                     <th rowspan="2" width="8%">
@@ -1033,7 +1037,7 @@ function update_approve() {
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th width="20%">
+                                    <th width="30%">
                                         <center>Result</center>
                                     </th>
                                     <th width="8%">
@@ -1045,6 +1049,7 @@ function update_approve() {
 
                             <tbody id="row_mbo">
                                 <?php 
+                            if($data_from_pe == "MBO"){
                             $table_index_radio_mbo = 0;
 							foreach($mbo_emp as $index => $row) {?>
                                 <tr>
@@ -1105,7 +1110,10 @@ function update_approve() {
                                     <?php $table_index_radio_mbo++;  ?>
                                 </tr>
                                 <input type="text" name="dtm_id" value="<?php echo $row->dtm_id; ?>" hidden>
-                                <?php  };?>
+                                <?php  }
+                                // foreach
+                            }
+                            // if ?>
                                 <input type="text" id="table_index_radio_mbo"
                                     value="<?php echo $table_index_radio_mbo; ?>" hidden>
 
@@ -1148,7 +1156,7 @@ function update_approve() {
                         <!-- row -->
 
                     </div>
-                    <!-- form MBO -->
+                    <!--  ----------------------------------form MBO ---------------------------------- -->
 
                     <div class="tab-pane" id="MBO_edit">
                         <table class="table table-bordered table-striped m-n">
@@ -1160,7 +1168,7 @@ function update_approve() {
                                     <th rowspan="2" width="15%">
                                         <center>SDGs Goals</center>
                                     </th>
-                                    <th rowspan="2" width="45%">
+                                    <th rowspan="2" width="40%">
                                         <center>Management by objective</center>
                                     </th>
                                     <th rowspan="2" width="8%">
@@ -1171,7 +1179,7 @@ function update_approve() {
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th width="20%">
+                                    <th width="30%">
                                         <center>Result</center>
                                     </th>
                                     <th width="8%">
@@ -1182,6 +1190,7 @@ function update_approve() {
                             <!-- thead -->
                             <tbody id="row_mbo">
                                 <?php 
+                            if($data_from_pe == "MBO_edit"){
                             $table_index_radio_mbo_edit = 0;
 							foreach($mbo_emp as $index => $row) {?>
                                 <tr>
@@ -1266,18 +1275,18 @@ function update_approve() {
 
                                         </center>
                                     </td>
-                                    <td width="2%">
+                                    <td width="2%" align="center">
                                         <p id="weight_mbo_edit_<?php echo $table_index_radio_mbo_edit ?>"></p>
                                     </td>
                                     <?php $table_index_radio_mbo_edit++;  ?>
                                 </tr>
                                 <input type="text" name="dtm_id" value="<?php echo $row->dtm_id; ?>" hidden>
-                                <?php  };?>
+                                <?php  }
+                                // foreach 
+                                    }
+                                    // if ?>
                                 <input type="text" id="table_index_radio_mbo_edit"
                                     value="<?php echo $table_index_radio_mbo_edit; ?>" hidden>
-
-
-
                             </tbody>
                             <!-- tbody -->
                             <tfoot>
@@ -1285,7 +1294,7 @@ function update_approve() {
                                     <td colspan="3" align="right"><b>Total Weight</b></td>
                                     <td id="show_weight" align="center">100</td>
                                     <td align="center">Total Result</td>
-                                    <td>
+                                    <td align="center">
                                         <p id="weight_all_mbo_edit">
                                     </td>
                                 </tr>
@@ -1313,7 +1322,7 @@ function update_approve() {
 
                         </div>
                     </div>
-                    <!-- form MBO_edit -->
+                    <!-- ---------------------------------- form MBO_edit ---------------------------------- -->
 
                     <div class="tab-pane" id="G_O">
                         <table class="table table-bordered table-striped m-n">
@@ -1364,7 +1373,7 @@ function update_approve() {
                             </thead>
                             <tbody id="G_O_Table">
                                 <?php 
-                                if(sizeof($g_o_emp) != 0){
+                                if($data_from_pe == "G_and_O"){
                                 $num_index = 1;
                                 $temp = "";
                                 $row_level = 0;
@@ -1595,7 +1604,7 @@ function update_approve() {
                         <!-- row -->
 
                     </div>
-                    <!-- form G&O -->
+                    <!-- ---------------------------------- form G&O ---------------------------------- -->
 
                     <div class="tab-pane" id="G_O_edit">
                         <table class="table table-bordered table-striped m-n">
@@ -1645,7 +1654,9 @@ function update_approve() {
                                 </tr>
                             </thead>
                             <tbody id="G_O_Table">
-                                <?php $num_index = 1;
+                                <?php
+                                if($data_from_pe == "G_and_O_edit"){
+                                $num_index = 1;
                                 $temp = "";
                                 $row_level = 0;
                                 $row_ranges = 0;
@@ -1655,7 +1666,7 @@ function update_approve() {
                                 $temps = "";
                                 $table_index_radio_g_o_edit = 0;
                                 // print_r($g_o_emp);
-
+                            
                                 $col = [];
                                 $row_level = $row_index->sfg_index_level;
                                 $row_ranges = $row_index->sfg_index_ranges;
@@ -1907,12 +1918,14 @@ function update_approve() {
 
                                 </tr>
                                 <!-- end tr  -->
-
-                                <?}
-                            // foreach
-                            ?>
                                 <input type="text" id="table_index_radio_g_o_edit"
                                     value="<?php echo $table_index_radio_g_o_edit; ?>" hidden>
+                                <?}
+                            // foreach
+                            }
+                            // if 
+                            ?>
+
                             </tbody>
                             <!-- tbody  -->
 
@@ -1950,7 +1963,7 @@ function update_approve() {
 
                         </div>
                     </div>
-                    <!-- form G_O_edit -->
+                    <!------------------------------------ form G_O_edit ------------------------------------>
 
                     <div class="tab-pane" id="MHRD">
                         <table class="table table-bordered table-striped m-n">
@@ -1991,7 +2004,7 @@ function update_approve() {
                                 <?php 
                             
                             $table_index_radio_mhrd = 0;
-                            if(sizeof($info_mhrd) != 0){
+                            if($data_from_pe == "MHRD"){
                             foreach($info_mhrd as $index => $row){ ?>
                                 <input type="text" name="sfi_id" value="<?php echo $row->sfi_id; ?>" hidden>
                                 <tr>
@@ -2113,7 +2126,7 @@ function update_approve() {
                         </div>
                         <!-- row -->
                     </div>
-                    <!-- form MHRD -->
+                    <!-- ----------------------------------form MHRD ------------------------------------>
 
                     <div class="tab-pane" id="MHRD_edit">
                         <table class="table table-bordered table-striped m-n">
@@ -2154,7 +2167,7 @@ function update_approve() {
                                 <?php 
                             
                             $table_index_radio_mhrd_edit = 0;
-                            if(sizeof($info_mhrd) != 0){
+                            if($data_from_pe == "MHRD_edit"){
                             foreach($info_mhrd as $index => $row){ ?>
                                 <input type="text" name="sfi_id" value="<?php echo $row->sfi_id; ?>" hidden>
                                 <tr>
@@ -2316,7 +2329,7 @@ function update_approve() {
                         </div>
                         <!-- row -->
                     </div>
-                    <!-- form MHRD_edit  -->
+                    <!-- ---------------------------------- form MHRD_edit----------------------------------  -->
 
                     <?php  
                         $onclek_form_pe = "";
@@ -2346,6 +2359,7 @@ function update_approve() {
                             $onclek_form_pe = "update_G_and_O_edit();";
                         }
                         // else if
+                        // ------------------------------------
                         if($data_from_ce == "ACM"){
                             $onclek_form_ce = "save_ACM();";
                         }
@@ -2369,7 +2383,7 @@ function update_approve() {
                     ?>
 
                     <div class="tab-pane" id="ACM">
-                        <table class="table table-bordered table-striped m-n">
+                        <table class="table table-bordered  m-n">
                             <thead id="headmbo">
                                 <tr>
                                     <th rowspan="2" width="2%">
@@ -2395,7 +2409,7 @@ function update_approve() {
                                     <th width="30%">
                                         <center>Result</center>
                                     </th>
-                                    <th width="10%">
+                                    <th width="5%">
                                         <center>Score AxB</center>
                                     </th>
 
@@ -2476,7 +2490,8 @@ function update_approve() {
                                         <input type="number" name="weing_acm_<?php echo $table_index_radio_acm ?>"
                                             value="<?php echo $row->sfa_weight; ?>" hidden>
                                     </td>
-                                    <td width="5%" rowspan="<?php echo $row_index[$index] ?>">
+                                    <td width="5%" rowspan="<?php echo $row_index[$index] ?>"
+                                        style="vertical-align:middle;">
                                         <center>
                                             <div class="col-md-12">
                                                 <input type="radio" name="rd_acm_<?php echo $table_index_radio_acm ?>"
@@ -2547,7 +2562,8 @@ function update_approve() {
                                         <input type="number" name="weing_acm_<?php echo $table_index_radio_acm ?>"
                                             value="<?php echo $row->sfa_weight; ?>" hidden>
                                     </td>
-                                    <td width="5%" rowspan="<?php echo $row_index[$count-1] ?>">
+                                    <td width="5%" rowspan="<?php echo $row_index[$count-1] ?>"
+                                        style="vertical-align:middle;">
                                         <center>
                                             <div class="col-md-12">
                                                 <input type="radio" name="rd_acm_<?php echo $table_index_radio_acm ?>"
@@ -2670,10 +2686,10 @@ function update_approve() {
                         <!-- row -->
 
                     </div>
-                    <!-- form ACM -->
+                    <!-- ----------------------------------- form ACM ---------------------------------- -->
 
                     <div class="tab-pane" id="ACM_edit">
-                        <table class="table table-bordered table-striped m-n">
+                        <table class="table table-bordered m-n">
                             <thead id="headmbo">
                                 <tr>
                                     <th rowspan="2">
@@ -2697,10 +2713,10 @@ function update_approve() {
 
                                 </tr>
                                 <tr>
-                                    <th width="25%">
+                                    <th width="30%">
                                         <center>Result</center>
                                     </th>
-                                    <th width="15%">
+                                    <th width="5%">
                                         <center>Score AxB</center>
                                     </th>
 
@@ -2778,10 +2794,12 @@ function update_approve() {
                                     <td align="center" style="vertical-align:middle;" id="dis_color"
                                         rowspan="<?php echo $row_index[$index] ?>">
                                         <?php echo $row->sfa_weight; ?><br>
-                                        <input type="number" name="weing_acm_<?php echo $table_index_radio_acm ?>"
+                                        <input type="text"
+                                            id="weigth_acm_edit_<?php echo $table_index_radio_acm_edit ?>"
                                             value="<?php echo $row->sfa_weight; ?>" hidden>
                                     </td>
-                                    <td width="5%" rowspan="<?php echo $row_index[$index] ?>" style="vertical-align:middle;">
+                                    <td width="5%" rowspan="<?php echo $row_index[$index] ?>"
+                                        style="vertical-align:middle;" align="center">
                                         <?php  
                                    $checked_weight_1 ="";
                                    $checked_weight_2 ="";
@@ -2846,8 +2864,9 @@ function update_approve() {
 
                                         </center>
                                     </td>
-                                    <td width="2%" rowspan="<?php echo $row_index[$index] ?>">
-                                        <p id="weight_acm_edit_<?php echo $table_index_radio_acm_edit ?>"></p>
+                                    <td width="2%" rowspan="<?php echo $row_index[$index] ?>" align="center"
+                                        style="vertical-align:middle;">
+                                        <p id="show_weight_acm_edit_<?php echo $table_index_radio_acm_edit ?>"></p>
                                     </td>
                                     <input type="text" id="sfa_id<?php echo $table_index_radio_acm ?>"
                                         value="<?php echo $row->sfa_id; ?>" hidden>
@@ -2879,10 +2898,12 @@ function update_approve() {
                                     <td align="center" style="vertical-align:middle;" id="dis_color"
                                         rowspan="<?php echo $row_index[$count-1] ?>">
                                         <?php echo $row->sfa_weight; ?><br>
-                                        <input type="number" name="weing_acm_<?php echo $table_index_radio_acm ?>"
+                                        <input type="text"
+                                            id="weigth_acm_edit_<?php echo $table_index_radio_acm_edit ?>"
                                             value="<?php echo $row->sfa_weight; ?>" hidden>
                                     </td>
-                                    <td width="5%" rowspan="<?php echo $row_index[$index] ?>" style="vertical-align:middle;">
+                                    <td width="5%" rowspan="<?php echo $row_index[$count-1] ?>"
+                                        style="vertical-align:middle;" align="center">
                                         <?php  
                                    $checked_weight_1 ="";
                                    $checked_weight_2 ="";
@@ -2947,8 +2968,9 @@ function update_approve() {
 
                                         </center>
                                     </td>
-                                    <td width="2%" rowspan="<?php echo $row_index[$index] ?>" style="vertical-align:middle;">
-                                        <p id="weight_acm_edit_<?php echo $table_index_radio_acm_edit ?>"></p>
+                                    <td width="2%" rowspan="<?php echo $row_index[$count-1] ?>"
+                                        style="vertical-align:middle;" align="center">
+                                        <p id="show_weight_acm_edit_<?php echo $table_index_radio_acm_edit ?>"></p>
                                     </td>
                                     <input type="text" id="sfa_id<?php echo $table_index_radio_acm ?>"
                                         value="<?php echo $row->sfa_id; ?>" hidden>
@@ -3007,7 +3029,7 @@ function update_approve() {
                                     <td>
                                         <center> Total Result</center>
                                     </td>
-                                    <td>
+                                    <td align="center">
                                         <p id="weight_all_acm_edit">
                                     </td>
                                 </tr>
@@ -3033,7 +3055,7 @@ function update_approve() {
                         </div>
                         <!-- row -->
                     </div>
-                    <!-- form ACM_edit -->
+                    <!-- ---------------------------------- form ACM_edit ---------------------------------- -->
 
                     <div class="tab-pane" id="GCM">
                         <table class="table table-bordered table-striped m-n">
@@ -3080,7 +3102,7 @@ function update_approve() {
                                     $row_key = 0;
                                     $row_index = [];
                                     $table_index_radio_gcm = 0;
-                                    if(sizeof($info_form_gcm) != 0){
+                                    if($data_from_ce == "GCM"){
                                     foreach($info_form_gcm->result() AS $index => $row){ 
 
 
@@ -3355,7 +3377,8 @@ function update_approve() {
                         </div>
                         <!-- row -->
                     </div>
-                    <!-- form GCM -->
+                    <!------------------------------------  form GCM  ---------------------------------- -->
+
                     <div class="tab-pane" id="GCM_edit">
                         <table class="table table-bordered table-striped m-n">
                             <thead id="headmbo">
@@ -3396,6 +3419,7 @@ function update_approve() {
                             <tbody>
 
                                 <?php  
+                                if($data_from_ce == "GCM_edit"){
                                 $com_check = "";
                                 $key_check = "";
                                 $row_key = 0;
@@ -3441,8 +3465,7 @@ function update_approve() {
                                     <?php if($index == 0){ 
                                         $count++;
                                         $com = $row->cpg_competency_detail_en;
-                                        $key = $row->kcg_key_component_detail_en;
-            ?>
+                                        $key = $row->kcg_key_component_detail_en; ?>
                                     <td align="center" rowspan="<?php echo $row_index[$index] ?>"
                                         style="vertical-align:middle;">
                                         <?php echo $count;  ?></td>
@@ -3689,7 +3712,9 @@ function update_approve() {
                                 <input type="text" name="sgc_id" value="<?php echo $row->sgc_id; ?>" hidden>
                                 <?php 
                                 } 
-                                // foreach?>
+                                // foreach
+                            }
+                            // if?>
                             </tbody>
                             <!-- tbody -->
                             <input type="text" id="table_index_radio_gcm_edit"
@@ -3733,13 +3758,13 @@ function update_approve() {
                             </div>
                         </div>
                     </div>
-                    <!-- form ACM_edit -->
+                    <!------------------------------------  form GCM_edit ---------------------------------- -->
+
                 </div>
+                <!-- tab-content -->
             </div>
-            <!-- tab-content -->
+            <!-- body -->
         </div>
-        <!-- body -->
+        <!-- panel-indigo -->
     </div>
-    <!-- panel-indigo -->
-</div>
-<!-- col-12 -->
+    <!-- col-12 -->
