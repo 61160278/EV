@@ -465,6 +465,7 @@ function show_weight_gcm_edit() {
     var arr_weight = [];
     var sum = 0;
     var index = document.getElementById("table_index_radio_gcm_edit").value;
+    console.log(index);
     for (i = 0; i < index; i++) {
 
         $("[name = rd_gcm_edit_" + i + "]").each(function(index) {
@@ -473,12 +474,13 @@ function show_weight_gcm_edit() {
             } //if
         });
     }
+    // for
     for (i = 0; i < index; i++) {
         document.getElementById("weight_gcm_edit_" + i + "").innerHTML = arr_weight[i] * document.getElementsByName(
-            "weing_gcm_edit_" +
-            i + "")[0].value;
+            "weing_gcm_edit_" + i + "")[0].value;
         sum += arr_weight[i] * document.getElementsByName("weing_gcm_edit_" + i + "")[0].value;
     }
+    // for
     document.getElementById("weight_all_gcm_edit").innerHTML = sum;
 }
 
@@ -491,7 +493,7 @@ function save_GCM() {
     var App = document.getElementById("App_Emp_ID").value;
 
     for (i = 0; i < index; i++) {
-        arr_sgc_id.push(document.getElementsByName("sgc_id")[i].value);
+        arr_sgc_id.push(document.getElementById("sgc_id" + i).value);
         $("[name = rd_gcm_" + i + "]").each(function(index) {
             if ($(this).prop("checked") == true) {
                 arr_radio.push(document.getElementsByName("rd_gcm_" + i + "")[index].value);
@@ -2892,9 +2894,11 @@ function update_approve() {
                                         align="center">
                                         <p id="weight_gcm_<?php echo $table_index_radio_gcm ?>"></p>
                                     </td>
-
+                                    <input type="text" id="sgc_id<?php echo $table_index_radio_gcm; ?>"
+                                        value="<?php echo $row->sgc_id; ?>" hidden>
                                     <?php 
-                                $table_index_radio_gcm++;    
+                                $table_index_radio_gcm++;  
+                                  
                                 }
                                     // if 
                                     else if($com != $row->cpg_competency_detail_en){
@@ -2966,7 +2970,8 @@ function update_approve() {
                                         align="center">
                                         <p id="weight_gcm_<?php echo $table_index_radio_gcm ?>"></p>
                                     </td>
-
+                                    <input type="text" id="sgc_id<?php echo $table_index_radio_gcm; ?>"
+                                        value="<?php echo $row->sgc_id; ?>" hidden>
                                     <?php 
                                 $table_index_radio_gcm++;      
                                 }
@@ -3006,7 +3011,7 @@ function update_approve() {
 
 
                                 </tr>
-                                <input type="text" name="sgc_id" value="<?php echo $row->sgc_id; ?>" hidden>
+
                                 <?php 
                                 } 
                                 // foreach?>
@@ -3058,33 +3063,35 @@ function update_approve() {
                     <!-- form GCM -->
                     <div class="tab-pane" id="GCM_edit">
                         <table class="table table-bordered table-striped m-n">
-                            <thead>
+                            <thead id="headmbo">
                                 <tr>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="2%">
                                         <center> No.</center>
                                     </th>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="15%">
                                         <center>Competency</center>
                                     </th>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="15%">
                                         <center>Key component</center>
                                     </th>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="6%">
+                                        <center>Target Level</center>
+                                    </th>
+                                    <th rowspan="2" width="30%">
                                         <center>Expected Behavior</center>
                                     </th>
                                     <th rowspan="2" width="6%">
                                         <center>Weight</center>
                                     </th>
-                                    <th colspan="2">
+                                    <th colspan="2" width="15%">
                                         <center>Evaluation</center>
                                     </th>
-
                                 </tr>
                                 <tr>
-                                    <th width="25%">
+                                    <th width="30%">
                                         <center>Result</center>
                                     </th>
-                                    <th width="15%">
+                                    <th width="10%">
                                         <center>Score AxB</center>
                                     </th>
 
@@ -3162,10 +3169,12 @@ function update_approve() {
                                     <td align="center" style="vertical-align:middle;"
                                         rowspan="<?php echo $row_index[$index] ?>">
                                         <?php echo $row->sgc_weight; ?><br>
-                                        <input type="number" name="weing_gcm_<?php echo $table_index_radio_gcm_edit ?>"
+                                        <input type="number"
+                                            name="weing_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
                                             value="<?php echo $row->sgc_weight; ?>" hidden>
                                     </td>
-                                    <td width="5%" style="vertical-align:middle;">
+                                    <td width="5%" style="vertical-align:middle;"
+                                        rowspan="<?php echo $row_index[$index] ?>">
                                         <center>
                                             <?php  
                                    $checked_weight_1 ="";
@@ -3233,7 +3242,7 @@ function update_approve() {
                                     </td>
                                     <td rowspan="<?php echo $row_index[$index] ?>" style="vertical-align:middle;"
                                         align="center">
-                                        <p id="weight_gcm_<?php echo $table_index_radio_gcm_edit ?>"></p>
+                                        <p id="weight_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"></p>
                                     </td>
 
                                     <?php 
@@ -3266,10 +3275,12 @@ function update_approve() {
                                     <td align="center" style="vertical-align:middle;"
                                         rowspan="<?php echo $row_index[$count-1] ?>">
                                         <?php echo $row->sgc_weight; ?><br>
-                                        <input type="number" name="weing_gcm_<?php echo $table_index_radio_gcm_edit ?>"
+                                        <input type="number"
+                                            name="weing_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
                                             value="<?php echo $row->sgc_weight; ?>" hidden>
                                     </td>
-                                    <td width="5%" style="vertical-align:middle;">
+                                    <td width="5%" style="vertical-align:middle;"
+                                        rowspan="<?php echo $row_index[$count-1] ?>">
                                         <center>
                                             <?php  
                                    $checked_weight_1 ="";
@@ -3298,6 +3309,7 @@ function update_approve() {
                                                 }
                                             }
                                         }
+                                        // foreach 
                                 ?>
                                             <div class="col-md-12">
                                                 <input type="radio"
@@ -3337,11 +3349,11 @@ function update_approve() {
                                     </td>
                                     <td rowspan="<?php echo $row_index[$count-1] ?>" style="vertical-align:middle;"
                                         align="center">
-                                        <p id="weight_gcm_<?php echo $table_index_radio_gcm_edit ?>"></p>
+                                        <p id="weight_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"></p>
                                     </td>
 
                                     <?php 
-                                    $table_index_radio_gcm_edit++;      
+                                    $table_index_radio_gcm_edit++; 
                                     }
                                         // else if
 
@@ -3385,10 +3397,12 @@ function update_approve() {
                                 // foreach?>
                             </tbody>
                             <!-- tbody -->
+                            <input type="text" id="table_index_radio_gcm_edit"
+                                value="<?php echo $table_index_radio_gcm_edit; ?>" hidden>
 
                             <tfoot>
                                 <tr height="5%">
-                                    <td colspan="4">
+                                    <td colspan="5">
                                         <center> Total Weight</center>
                                     </td>
                                     <td>
@@ -3397,7 +3411,7 @@ function update_approve() {
                                     <td>
                                         <center> Total Result</center>
                                     </td>
-                                    <td>
+                                    <td  align="center">
                                         <p id="weight_all_gcm_edit">
                                     </td>
                                 </tr>

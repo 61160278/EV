@@ -2091,6 +2091,8 @@ function set_tap() {
                             $key_check = "";
                             $row_key = 0;
                             $row_index = [];
+                            if(sizeof($info_form_gcm) != 0){
+
                             foreach($info_form_gcm->result() AS $index => $row){ 
 
                                 
@@ -2280,7 +2282,9 @@ function set_tap() {
 
                                 </tr>
                                 <?php } 
-                            // foreach?>
+                            // foreach
+                            }
+                            // if?>
                             </tbody>
                             <!-- tbody -->
 

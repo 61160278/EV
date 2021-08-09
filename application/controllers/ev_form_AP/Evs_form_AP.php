@@ -211,8 +211,8 @@ class Evs_form_AP extends MainController_avenxo {
 				$this->load->model('M_evs_set_form_gcm','mesf');
 				$this->mesf->sgc_pos_id = $tep->Position_ID;
 				$this->mesf->sgc_pay_id = $pay_id;
-				$this->msfg->epg_pos_id = $tep->Position_ID;
-				$data['info_form_gcm'] = $this->msfg->get_all_competency_gcm();
+				$this->mesf->epg_pos_id = $tep->Position_ID;
+				$data['info_form_gcm'] = $this->mesf->get_all_competency_gcm();
 				$data['data_from_ce'] = "GCM_edit";
 				
 			}
