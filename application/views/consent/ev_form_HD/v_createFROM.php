@@ -24,11 +24,13 @@ th {
     background-color: #212121;
 }
 
-#dis_color {
-    background-color: #F5F5F5;
+.panel.panel-indigo .panel-heading {
+    color: #e8eaf6;
+    background-color: #134466;
 }
 </style>
 <!-- END style -->
+
 
 <script>
 var count = 0;
@@ -127,14 +129,15 @@ function show_weight_acm_edit() {
         });
     }
     for (i = 0; i < index; i++) {
-        document.getElementById('weight_acm_edit_' + i + '').innerHTML = arr_weight[i] * document.getElementsByName(
-            "weing_acm_edit_" + i + "")[0].value;
-        sum += arr_weight[i] * document.getElementsByName("weing_acm_edit_" + i + "")[0].value;
+        weight = document.getElementById("weigth_acm_edit_" + i).value;
+        console.log(weight)
+        document.getElementById('weigth_acm_edit_' + i + '').innerHTML = arr_weight[i] *  weight;
+        sum += arr_weight[i] * document.getElementById("weigth_acm_edit_" + i).value;
     }
     document.getElementById('weight_all_acm_edit').innerHTML = sum;
 
 }
-
+// show_weight_acm_edit
 
 
 function update_ACM_edit() {
@@ -181,8 +184,7 @@ function update_ACM_edit() {
     });
 
 }
-
-
+// update_ACM_edit
 
 function show_weight_g_and_o_edit() {
     var arr_weight = [];
@@ -205,7 +207,7 @@ function show_weight_g_and_o_edit() {
     document.getElementById("weight_all_g_o_edit").innerHTML = sum;
 
 }
-
+// show_weight_g_and_o_edit
 
 
 function update_G_and_O_edit() {
@@ -255,7 +257,7 @@ function update_G_and_O_edit() {
     });
     // ajax
 }
-
+// update_G_and_O_edit
 
 
 function show_weight_gcm_edit() {
@@ -278,6 +280,7 @@ function show_weight_gcm_edit() {
     }
     document.getElementById("weight_all_gcm_edit").innerHTML = sum;
 }
+// show_weight_gcm_edit
 
 
 
@@ -327,6 +330,7 @@ function update_GCM_edit() {
 
 
 }
+// update_GCM_edit
 
 function show_weight_mbo_edit() {
     var arr_weight = [];
@@ -351,7 +355,7 @@ function show_weight_mbo_edit() {
     }
     document.getElementById("weight_all_mbo_edit").innerHTML = sum;
 }
-
+// show_weight_mbo_edit
 
 
 function update_MBO_edit() {
@@ -398,7 +402,7 @@ function update_MBO_edit() {
     // ajax
 
 }
-
+// update_MBO_edit
 
 function show_weight_mhrd_edit() {
     var arr_weight_1 = [];
@@ -428,7 +432,7 @@ function show_weight_mhrd_edit() {
     document.getElementById("weight_all_mhrd_1_edit").innerHTML = sum_1;
     document.getElementById("weight_all_mhrd_2_edit").innerHTML = sum_2;
 }
-
+// show_weight_mhrd_edit
 
 function update_MHRD_edit() {
 
@@ -538,8 +542,6 @@ function main_index() {
                             $onclek_form_ce = "update_GCM_edit();";
                         }
                         // else if
-                    
-                
                         $onclek_form_all = "onclick='".$onclek_form_pe." ".$onclek_form_ce."'";
                     
                     ?>
@@ -640,142 +642,8 @@ function main_index() {
                     <!-- show infomation employee -->
                     <hr>
 
-                    <div class="tab-pane" id="MBO">
-                        <table class="table table-bordered table-striped m-n">
-                            <thead id="headmbo">
-                                <tr>
-                                    <th rowspan="2" width="2%">
-                                        <center> No.</center>
-                                    </th>
-                                    <th rowspan="2" width="15%">
-                                        <center>SDGs Goals</center>
-                                    </th>
-                                    <th rowspan="2" width="45%">
-                                        <center>Management by objective</center>
-                                    </th>
-                                    <th rowspan="2" width="8%">
-                                        <center>Weight</center>
-                                    </th>
-                                    <th colspan="2">
-                                        <center>Evaluation</center>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th width="20%">
-                                        <center>Result</center>
-                                    </th>
-                                    <th width="8%">
-                                        <center>Score AxB</center>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <!-- thead -->
-
-                            <tbody id="row_mbo">
-                                <?php 
-                            $table_index_radio_mbo = 0;
-							foreach($mbo_emp as $index => $row) {?>
-                                <tr>
-                                    <td>
-                                        <center><?php echo $index+1; ?></center>
-                                    </td>
-                                    <td id="sdgs_sel<?php echo $index+1; ?>"><?php echo $row->sdg_name_th; ?></td>
-                                    <td id="inp_mbo<?php echo $index+1; ?>">
-                                        <?php echo $row->dtm_mbo; ?>
-                                    </td>
-                                    <td align="center" id="inp_result<?php echo $index+1; ?>">
-                                        <?php echo $row->dtm_weight; 
-                            
-                                        ?>
-                                        <input type="number" name="weing_mbo_<?php echo $table_index_radio_mbo ?>"
-                                            value="<?php echo $row->dtm_weight; ?>" hidden>
-                                    </td>
-                                    <td>
-                                        <center>
-                                            <div class="col-md-12">
-                                                <input type="radio" name="rd_mbo_<?php echo $table_index_radio_mbo ?>"
-                                                    id="rd_<?php echo $table_index_radio_mbo ?>" value="1"
-                                                    onclick="show_weight_mbo()">
-                                                <label for="1">&nbsp; 1</label>
-                                                &nbsp;&nbsp;
-                                                <input type="radio" name="rd_mbo_<?php echo $table_index_radio_mbo ?>"
-                                                    id="rd_<?php echo $table_index_radio_mbo ?>" value="2"
-                                                    onclick="show_weight_mbo()">
-                                                <label for="2">&nbsp; 2</label>
-                                                &nbsp;&nbsp;
-                                                <input type="radio" name="rd_mbo_<?php echo $table_index_radio_mbo ?>"
-                                                    id="rd_<?php echo $table_index_radio_mbo ?>" value="3"
-                                                    onclick="show_weight_mbo()">
-                                                <label for="3">&nbsp; 3</label>
-                                                &nbsp;&nbsp;
-                                                <input type="radio" name="rd_mbo_<?php echo $table_index_radio_mbo ?>"
-                                                    id="rd_<?php echo $table_index_radio_mbo ?>" value="4"
-                                                    onclick="show_weight_mbo()">
-                                                <label for="4">&nbsp; 4</label>
-                                                &nbsp;&nbsp;
-                                                <input type="radio" name="rd_mbo_<?php echo $table_index_radio_mbo ?>"
-                                                    id="rd_<?php echo $table_index_radio_mbo ?>" value="5"
-                                                    onclick="show_weight_mbo()">
-                                                <label for="5">&nbsp; 5</label>
-                                                &nbsp;&nbsp;
-                                            </div>
-
-                                            <!-- col-12 -->
-
-                                        </center>
-                                    </td>
-                                    <td id="dis_color" width="2%" align="center">
-                                        <p id="weight_mbo_<?php echo $table_index_radio_mbo ?>"></p>
-                                    </td>
-                                    <?php $table_index_radio_mbo++;  ?>
-                                </tr>
-                                <input type="text" name="dtm_id" value="<?php echo $row->dtm_id; ?>" hidden>
-                                <?php  };?>
-                                <input type="text" id="table_index_radio_mbo"
-                                    value="<?php echo $table_index_radio_mbo; ?>" hidden>
-
-
-
-                            </tbody>
-                            <!-- tbody -->
-                            <tfoot>
-                                <tr>
-                                    <td colspan="3" align="right"><b>Total Weight</b></td>
-                                    <td id="show_weight" align="center">100</td>
-                                    <td align="center">Total Result</td>
-                                    <td align="center">
-                                        <p id="weight_all_mbo"></p>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                            <!-- tfoot -->
-                        </table>
-                        <!-- table -->
-                        <hr>
-
-                        <br>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <form method="POST" action="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/index">
-                                    <input id="emp_id" name="emp_id" type="text"
-                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
-                                    <input type="submit" class="btn btn-inverse" value="BACK">
-                                </form>
-                                <!-- form  -->
-                            </div>
-                            <!-- col-md-6 -->
-
-                            <div class="col-md-6" align="right">
-                            </div>
-                            <!-- col-md-6 add_app -->
-
-                        </div>
-                        <!-- row -->
-
-                    </div>
-                    <!-- form MBO -->
                     <div class="tab-pane" id="MBO_edit">
-                        <table class="table table-bordered table-striped m-n">
+                        <table class="table table-bordered m-n">
                             <thead id="headmbo">
                                 <tr>
                                     <th rowspan="2" width="2%">
@@ -795,7 +663,7 @@ function main_index() {
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th width="20%">
+                                    <th width="30%">
                                         <center>Result</center>
                                     </th>
                                     <th width="8%">
@@ -905,7 +773,7 @@ function main_index() {
 
                                         </center>
                                     </td>
-                                    <td id="dis_color" width="2%">
+                                    <td id="dis_color" width="2%" align="center">
                                         <p id="weight_mbo_edit_<?php echo $table_index_radio_mbo_edit ?>"></p>
                                     </td>
                                     <?php $table_index_radio_mbo_edit++;  ?>
@@ -926,7 +794,7 @@ function main_index() {
                                     <td>
                                         <center> Total Result</center>
                                     </td>
-                                    <td>
+                                    <td align="center">
                                         <p id="weight_all_mbo_edit">
                                     </td>
                                 </tr>
@@ -949,289 +817,16 @@ function main_index() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-                            
+
                             </div>
                             <!-- col-md-6 add_app -->
 
                         </div>
                     </div>
-                    <!-- form MBO_edit -->
-
-                    <div class="tab-pane" id="G_O">
-                        <table class="table table-bordered table-striped m-n">
-                            <thead>
-                                <tr>
-                                    <th width="5%">
-                                        <center>
-                                            #
-                                        </center>
-                                    </th>
-                                    <th>
-                                        <center width="5%">
-                                            Type of G&O
-                                        </center>
-                                    </th>
-                                    <th>
-                                        <center width="10%">
-                                            SDGs Goal
-                                        </center>
-                                    </th>
-                                    <th width="20%">
-                                        <center>
-                                            Evaluation Item
-                                        </center>
-                                    </th>
-                                    <th width="10%">
-                                        <center>
-                                            Weight (%)
-                                        </center>
-                                    </th>
-                                    <th width="10%">
-                                        <center>
-                                            Possible Outcomes/Their Ratings
-                                        </center>
-                                    </th>
-                                    <th width="20%">
-                                        <center>Self Review</center>
-                                    </th>
-                                    <th width="15%">
-                                        <center>Evaluator Review</center>
-                                    </th>
-                                    <th width="5%">
-                                        <center>
-                                            Result
-                                        </center>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody id="G_O_Table">
-                                <?php $num_index = 1;
-                                $temp = "";
-                                $row_level = 0;
-                                $row_ranges = 0;
-                                $count = 0;
-                                $span = 0;
-                                $spans = 0;
-                                $temps = "";
-                                $table_index_radio_g_o = 0;
-                                // print_r($g_o_emp);
-
-                                $col = [];
-                                $row_level = $row_index->sfg_index_level;
-                                $row_ranges = $row_index->sfg_index_ranges;
-
-                                for($i = 1; $i <= $row_level; $i++){
-                                    array_push($col,5);
-                                }
-                                // for push row_level
-   
-                                for($i = 1; $i <= $row_ranges; $i++){
-                                    array_push($col,2);
-                                }
-                                // for push row_ranges
-
-                            foreach($g_o_emp as $index => $row){ ?>
-                                <tr>
-                                    <?php if($index == 0){ ?>
-                                    <td rowspan="<?php echo $col[$span] ?>"><?php echo $num_index; ?></td>
-                                    <!-- show index  -->
-                                    <input type="text" id="row_level" value="<?php echo $row_level; ?>" hidden>
-                                    <input type="text" id="row_ranges" value="<?php echo $row_ranges; ?>" hidden>
-                                    <?php 
-                                        if($row->dgo_type == "1"){ ?>
-                                    <td rowspan="<?php echo $col[$span] ?>">Company</td>
-                                    <?php }
-                                    // if 
-                                    else{ ?>
-                                    <td rowspan="<?php echo $col[$span] ?>">Department</td>
-                                    <?php }?>
-                                    <!-- show type  -->
-
-                                    <td rowspan="<?php echo $col[$span] ?>"><?php echo $row->sdg_name_th; ?></td>
-                                    <!-- show sdgs  -->
-
-                                    <td rowspan="<?php echo $col[$span] ?>"><?php echo $row->dgo_item; ?></td>
-                                    <td align="center" rowspan="<?php echo $col[$span] ?>">
-                                        <?php echo $row->dgo_weight; ?></td>
-                                    <input type="number" name="weing_g_o_<?php echo $table_index_radio_g_o ?>"
-                                        value="<?php echo $row->dgo_weight; ?>" hidden>
-                                    <!-- show item asd weight  -->
-                                    <?php 
-                                $span++;
-                                $temp = $row->dgo_item;
-                                $num_index++;
-                                }
-                                // if
-                                else if($temp != $row->dgo_item){ ?>
-                                    <td rowspan="<?php echo $col[$span] ?>"><?php echo $num_index; ?></td>
-                                    <!-- show index  -->
-                                    <?php 
-                                        if($row->dgo_type == "1"){ ?>
-                                    <td rowspan="<?php echo $col[$span] ?>">Company</td>
-                                    <?php }
-                                    // if 
-                                    else{ ?>
-                                    <td rowspan="<?php echo $col[$span] ?>">Department</td>
-                                    <?php }?>
-                                    <!-- show type  -->
-
-                                    <td rowspan="<?php echo $col[$span] ?>"><?php echo $row->sdg_name_th; ?></td>
-                                    <!-- show sdgs  -->
-
-                                    <td rowspan="<?php echo $col[$span] ?>"><?php echo $row->dgo_item; ?></td>
-                                    <td align="center" rowspan="<?php echo $col[$span] ?>">
-                                        <?php echo $row->dgo_weight; ?></td>
-                                    <input type="number" name="weing_g_o_<?php echo $table_index_radio_g_o ?>"
-                                        value="<?php echo $row->dgo_weight; ?>" hidden>
-                                    <!-- show item asd weight  -->
-                                    <?php 
-                                $span++;
-                                $num_index++;
-                                $temp = $row->dgo_item;    
-                                }
-                                // else if ?>
-                                    <td><?php echo $row->dgol_level; ?></td>
-                                    <!-- show level  -->
-                                    <?php if($index == 0){ ?>
-                                    <td rowspan="<?php echo $col[$spans] ?>"><?php echo $row->dgo_self_review; ?></td>
-                                    <td rowspan="<?php echo $col[$spans] ?>"><textarea class="form-control" type="text"
-                                            name="Evaluator_Review" placeholder="Enter Evaluator Review"></textarea>
-                                    </td>
-                                    <td rowspan="<?php echo $col[$spans] ?>">
-                                        <center>
-                                            <div class="col-md-12">
-                                                <input type="radio" name="rd_g_o_<?php echo $table_index_radio_g_o ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o ?>" value="1"
-                                                    onclick="show_weight_g_and_o()">
-                                                <label for="1">&nbsp; 1</label>
-                                                &nbsp;
-                                                <input type="radio" name="rd_g_o_<?php echo $table_index_radio_g_o ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o ?>" value="2"
-                                                    onclick="show_weight_g_and_o()">
-                                                <label for="2">&nbsp; 2</label>
-                                                &nbsp;
-                                                <input type="radio" name="rd_g_o_<?php echo $table_index_radio_g_o ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o ?>" value="3"
-                                                    onclick="show_weight_g_and_o()">
-                                                <label for="3">&nbsp; 3</label>
-                                                &nbsp;
-                                                <input type="radio" name="rd_g_o_<?php echo $table_index_radio_g_o ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o ?>" value="4"
-                                                    onclick="show_weight_g_and_o()">
-                                                <label for="4">&nbsp; 4</label>
-                                                &nbsp;
-                                                <input type="radio" name="rd_g_o_<?php echo $table_index_radio_g_o ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o ?>" value="5"
-                                                    onclick="show_weight_g_and_o()">
-                                                <label for="5">&nbsp; 5</label>
-                                                &nbsp;
-                                            </div>
-                                            <!-- col-12 -->
-                                        </center>
-                                    </td>
-                                    <input type="text" name="dgo_id" value="<?php echo $row->dgo_id; ?>" hidden>
-                                    <?php 
-                                $spans++;
-                                $temps = $row->dgo_item;
-                                $table_index_radio_g_o++;  
-                                } 
-                                // if 
-                                else if($temps != $row->dgo_item){ ?>
-                                    <td rowspan="<?php echo $col[$spans] ?>"><?php echo $row->dgo_self_review; ?></td>
-                                    <td rowspan="<?php echo $col[$spans] ?>"><textarea class="form-control" type="text"
-                                            name="Evaluator_Review" placeholder="Enter Evaluator Review"></textarea>
-                                    </td>
-                                    <td rowspan="<?php echo $col[$spans] ?>">
-                                        <center>
-                                            <div class="col-md-12">
-                                                <input type="radio" name="rd_g_o_<?php echo $table_index_radio_g_o ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o ?>" value="1"
-                                                    onclick="show_weight_g_and_o()">
-                                                <label for="1">&nbsp; 1</label>
-                                                &nbsp;
-                                                <input type="radio" name="rd_g_o_<?php echo $table_index_radio_g_o ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o ?>" value="2"
-                                                    onclick="show_weight_g_and_o()">
-                                                <label for="2">&nbsp; 2</label>
-                                                &nbsp;
-                                                <input type="radio" name="rd_g_o_<?php echo $table_index_radio_g_o ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o ?>" value="3"
-                                                    onclick="show_weight_g_and_o()">
-                                                <label for="3">&nbsp; 3</label>
-                                                &nbsp;
-                                                <input type="radio" name="rd_g_o_<?php echo $table_index_radio_g_o ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o ?>" value="4"
-                                                    onclick="show_weight_g_and_o()">
-                                                <label for="4">&nbsp; 4</label>
-                                                &nbsp;
-                                                <input type="radio" name="rd_g_o_<?php echo $table_index_radio_g_o ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o ?>" value="5"
-                                                    onclick="show_weight_g_and_o()">
-                                                <label for="5">&nbsp; 5</label>
-                                                &nbsp;
-                                            </div>
-                                            <!-- col-12 -->
-                                        </center>
-                                    </td>
-                                    <input type="text" name="dgo_id" value="<?php echo $row->dgo_id; ?>" hidden>
-                                    <?php
-                                $spans++;
-                                $temps = $row->dgo_item;
-                                $table_index_radio_g_o++;
-                                } 
-                                // else if
-                                ?>
-
-                                </tr>
-                                <!-- end tr  -->
-
-                                <?}
-                            // foreach
-                            ?>
-                                <input type="text" id="table_index_radio_g_o"
-                                    value="<?php echo $table_index_radio_g_o; ?>" hidden>
-                            </tbody>
-                            <!-- tbody  -->
-
-                            <tfoot>
-                                <td colspan="4">
-                                </td>
-                                <td>
-                                    <p id="weight_all_g_o">
-                                </td>
-                                <td colspan="3"></td>
-                            </tfoot>
-                            <!-- tfoot -->
-                        </table>
-                        <!-- End table level -->
-
-                        <br>
-                        <!-- show_approver G_O-->
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <form method="POST" action="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/index">
-                                    <input id="emp_id" name="emp_id" type="text"
-                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
-                                    <input type="submit" class="btn btn-inverse" value="BACK">
-                                </form>
-                                <!-- form  -->
-
-                            </div>
-                            <!-- col-md-6 -->
-
-                            <div class="col-md-6" align="right">
-                            
-                            </div>
-                            <!-- col-md-6 add_app -->
-                        </div>
-                        <!-- row -->
-
-                    </div>
-                    <!-- form G&O -->
+                    <!------------------------------- form MBO_edit ------------------------------->
 
                     <div class="tab-pane" id="G_O_edit">
-                        <table class="table table-bordered table-striped m-n">
+                        <table class="table table-bordered m-n">
                             <thead>
                                 <tr>
                                     <th width="5%">
@@ -1278,7 +873,9 @@ function main_index() {
                                 </tr>
                             </thead>
                             <tbody id="G_O_Table">
-                                <?php $num_index = 1;
+                                <?php 
+                                if($data_from_pe == "G_and_O_edit"){
+                                $num_index = 1;
                                 $temp = "";
                                 $row_level = 0;
                                 $row_ranges = 0;
@@ -1552,11 +1149,14 @@ function main_index() {
                                 </tr>
                                 <!-- end tr  -->
 
-                                <?}
-                            // foreach
-                            ?>
                                 <input type="text" id="table_index_radio_g_o_edit"
                                     value="<?php echo $table_index_radio_g_o_edit; ?>" hidden>
+                                <?}
+                            // foreach
+                            }
+                            // if
+                            ?>
+
                             </tbody>
                             <!-- tbody  -->
 
@@ -1588,15 +1188,17 @@ function main_index() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-                           
+
                             </div>
                             <!-- col-md-6 add_app -->
 
                         </div>
                     </div>
-                    <!-- form G_O_edit -->
+                    <!-- ---------------------------- form G_O_edit ------------------------------>
+
+
                     <div class="tab-pane" id="MHRD_edit">
-                        <table class="table table-bordered table-striped m-n">
+                        <table class="table table-bordered m-n">
                             <thead>
                                 <tr>
                                     <th width="2%" rowspan="2">
@@ -1632,6 +1234,7 @@ function main_index() {
                             <tbody id="mhrd_Table">
 
                                 <?php 
+                                if($data_from_pe == "MHRD_edit"){
                             
                             $table_index_radio_mhrd_edit = 0;
 
@@ -1685,7 +1288,9 @@ function main_index() {
                                             $checked_weight_1_5 =  "checked";
                                         }
                                     }
+                                    // foreach
                                 }
+                                // foreach 
                                    
                                 ?>
                                             <div class="col-md-12">
@@ -1743,6 +1348,7 @@ function main_index() {
                                                 }
                                             }
                                         }
+                                        // foreach
                                 ?>
                                             <div class="col-md-12">
                                                 <input type="radio"
@@ -1768,13 +1374,16 @@ function main_index() {
                                     </td>
                                 </tr>
 
-                                <?php 
-                        $table_index_radio_mhrd_edit++;    
-                        }
-                        // for 
-                                 ?>
                                 <input type="text" id="table_index_radio_mhrd_edit"
                                     value="<?php echo $table_index_radio_mhrd_edit; ?>" hidden>
+                                <?php 
+                            $table_index_radio_mhrd_edit++;    
+                            }
+                            // foreach 
+                        }
+                        // if
+                                 ?>
+
 
                             </tbody>
                             <!-- tbody  -->
@@ -1810,183 +1419,11 @@ function main_index() {
                         </div>
                         <!-- row -->
                     </div>
-
-                    <div class="tab-pane" id="ACM">
-                        <table class="table table-bordered table-striped m-n">
-                            <thead id="headmbo">
-                                <tr>
-                                    <th rowspan="2">
-                                        <center> No.</center>
-                                    </th>
-                                    <th rowspan="2">
-                                        <center>Competency</center>
-                                    </th>
-                                    <th rowspan="2">
-                                        <center>Key component</center>
-                                    </th>
-                                    <th rowspan="2">
-                                        <center>Expected Behavior</center>
-                                    </th>
-                                    <th rowspan="2" width="6%">
-                                        <center>Weight</center>
-                                    </th>
-                                    <th colspan="2">
-                                        <center>Evaluation</center>
-                                    </th>
-
-                                </tr>
-                                <tr>
-                                    <th width="25%">
-                                        <center>Result</center>
-                                    </th>
-                                    <th width="15%">
-                                        <center>Score AxB</center>
-                                    </th>
-
-                                </tr>
-                            </thead>
-                            <!-- thead -->
-                            <tbody id="dis_color">
-                                <?php  
-                                    $index_acm = 1;
-                                    $temp_keycomponent = "";
-                                    $temp_expected = "";
-                                    $sum_max_rating = 0;
-                                    $table_index_radio_acm = 0;
-                                    // start foreach
-                                    foreach($info_ability_form as $row){
-                                ?>
-                                <input type="text" name="sfa_id" value="<?php echo $row->sfa_id; ?>" hidden>
+                    <!-- ---------------------------- form MHRD_edit ------------------------------>
 
 
-                                <tr>
-                                    <td id="dis_color">
-                                        <center><?php echo $index_acm++; ?></center>
-                                    </td>
-                                    <td id="dis_color">
-                                        <?php echo $row->cpn_competency_detail_en . "<br><font color='blue'>" . $row->cpn_competency_detail_th ."</font>"; ?>
-                                    </td>
-                                    <!-- show competency  -->
-                                    <td id="dis_color">
-                                        <?php foreach($info_expected as $row_ept){ 
-                                            if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_keycomponent != $row_ept->kcp_key_component_detail_en){
-                                                $temp_keycomponent = $row_ept->kcp_key_component_detail_en;?>
-                                        <?php echo $row_ept->kcp_key_component_detail_en . "<br><font color='blue'>" . $row_ept->kcp_key_component_detail_th ."</font>"; ?>
-                                        <?php }
-                                            // if
-                                            }
-                                            // foreach ?>
-                                    </td>
-                                    <!-- show key component  -->
-                                    <td id="dis_color">
-                                        <?php foreach($info_expected as $row_ept){ 
-                                            if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_expected != $row_ept->ept_expected_detail_en && $row_ept->ept_pos_id == $info_pos_id){
-                                                $temp_expected = $row_ept->ept_expected_detail_en;?>
-                                        <?php echo $row_ept->ept_expected_detail_en . "<br><font color='blue'>" . $row_ept->ept_expected_detail_th ."</font><hr>"; ?>
-                                        <?php }
-                                        // if
-                                        }
-                                        // foreach ?>
-                                    </td>
-                                    <!-- show expected  -->
-                                    <td id="dis_color">
-                                        <center><?php echo $row->sfa_weight; ?></center>
-                                        <input type="number" name="weing_acm_<?php echo $table_index_radio_acm ?>"
-                                            value="<?php echo $row->sfa_weight; ?>" hidden>
-                                    </td>
-
-                                    <!-- show weight  -->
-                                    <td id="dis_color" width="5%">
-                                        <center>
-                                            <div class="col-md-12">
-                                                <input type="radio" name="rd_acm_<?php echo $table_index_radio_acm ?>"
-                                                    id="rd_acm_<?php echo $table_index_radio_acm ?>" value="1"
-                                                    onclick="show_weight_acm()">
-                                                <label for="1">&nbsp; 1</label>
-                                                &nbsp;&nbsp;
-                                                <input type="radio" name="rd_acm_<?php echo $table_index_radio_acm ?>"
-                                                    id="rd_acm_<?php echo $table_index_radio_acm ?>" value="2"
-                                                    onclick="show_weight_acm()">
-                                                <label for="2">&nbsp; 2</label>
-                                                &nbsp;&nbsp;
-                                                <input type="radio" name="rd_acm_<?php echo $table_index_radio_acm ?>"
-                                                    id="rd_acm_<?php echo $table_index_radio_acm ?>" value="3"
-                                                    onclick="show_weight_acm()">
-                                                <label for="3">&nbsp; 3</label>
-                                                &nbsp;&nbsp;
-                                                <input type="radio" name="rd_acm_<?php echo $table_index_radio_acm ?>"
-                                                    id="rd_acm_<?php echo $table_index_radio_acm ?>" value="4"
-                                                    onclick="show_weight_acm()">
-                                                <label for="4">&nbsp; 4</label>
-                                                &nbsp;&nbsp;
-                                                <input type="radio" name="rd_acm_<?php echo $table_index_radio_acm ?>"
-                                                    id="rd_acm_<?php echo $table_index_radio_acm ?>" value="5"
-                                                    onclick="show_weight_acm()">
-                                                <label for="5">&nbsp; 5</label>
-                                                &nbsp;&nbsp;
-                                            </div>
-                                            <!-- col-12 -->
-                                        </center>
-                                    </td>
-                                    <td id="dis_color" width="2%">
-                                        <p id="weight_acm_<?php echo $table_index_radio_acm ?>"></p>
-                                    </td>
-                                    <?php $table_index_radio_acm++;  ?>
-                                </tr>
-
-                                <?php
-                                    }
-                                    // end foreach
-                                ?>
-                            </tbody>
-                            <!-- tbody -->
-                            <input type="text" id="table_index_radio_acm" value="<?php echo $table_index_radio_acm; ?>"
-                                hidden>
-                            <!-- save index table_index_radio_acm-->
-
-                            <tfoot>
-                                <tr height="5%" id="dis_color">
-                                    <td colspan="4">
-                                        <center> Total Weight</center>
-                                    </td>
-                                    <td>
-                                        <center> 100</center>
-                                    </td>
-                                    <td>
-                                        <center> Total Result</center>
-                                    </td>
-                                    <td>
-                                        <p id="weight_all_acm">
-                                    </td>
-                                </tr>
-                            </tfoot>
-                            <!-- tfoot -->
-
-                        </table>
-                        <!-- table -->
-
-                        <br>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <form method="POST" action="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/index">
-                                    <input id="emp_id" name="emp_id" type="text"
-                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
-                                    <input type="submit" class="btn btn-inverse" value="BACK">
-                                </form>
-                                <!-- form  -->
-                            </div>
-                            <!-- col-md-6 -->
-                            <div class="col-md-6" align="right">
-                                <button class="btn btn-success" <?php echo $onclek_form_all  ?>> Save</button>
-                            </div>
-                        </div>
-                        <!-- row -->
-
-                    </div>
-                    <!-- form ACM -->
                     <div class="tab-pane" id="ACM_edit">
-                        <table class="table table-bordered table-striped m-n">
+                    <table class="table table-bordered m-n">
                             <thead id="headmbo">
                                 <tr>
                                     <th rowspan="2">
@@ -2010,108 +1447,121 @@ function main_index() {
 
                                 </tr>
                                 <tr>
-                                    <th width="25%">
+                                    <th width="30%">
                                         <center>Result</center>
                                     </th>
-                                    <th width="15%">
+                                    <th width="5%">
                                         <center>Score AxB</center>
                                     </th>
 
                                 </tr>
                             </thead>
                             <!-- thead -->
-                            <tbody id="dis_color">
+                            <tbody>
+
                                 <?php  
-                                    $index_acm = 1;
-                                    $temp_keycomponent = "";
-                                    $temp_expected = "";
-                                    $sum_max_rating = 0;
-                                    $table_index_radio_acm_edit = 0;
-                                    // start foreach
-                                    foreach($info_ability_form as $row){
-                                ?>
-                                <input type="text" name="sfa_id" value="<?php echo $row->sfa_id; ?>" hidden>
+                            if(sizeof($info_ability_form) != 0){
+                            $com_check = "";
+                            $key_check = "";
+                            $row_key = 0;
+                            $row_index = [];
+                            $table_index_radio_acm_edit = 0;
+                            foreach($info_ability_form->result() AS $index => $row){ 
 
+                                
+                                if($index == 0){
+                                    $com_check = $row->cpn_competency_detail_en;
+                                    $key_check = $row->kcp_key_component_detail_en;
+                                    $row_key++;
+                                }
+                                // if
+                                else if($com_check == $row->cpn_competency_detail_en){
+                                   if($key_check != $row->kcp_key_component_detail_en){
+                                        $row_key++;
+                                        $key_check = $row->kcp_key_component_detail_en;
+                                    }
+                                    // else if
+                                }
+                                // else if
+                                
+                                else if($com_check != $row->cpn_competency_detail_en){
+                                    array_push($row_index,$row_key);
+                                    $row_key = 0;
+                                    $key_check = $row->kcp_key_component_detail_en;
+                                    $com_check = $row->cpn_competency_detail_en;
+                                    $row_key++;
+                                }
+                                // else if
+                            }
+                            array_push($row_index,$row_key);
+                            // foreach?>
 
+                                <?php 
+                                $count = 0;
+                                $com = "";
+                                $key = "";
+                                $ex = ""; 
+                                foreach($info_ability_form->result() AS $index => $row){  ?>
                                 <tr>
-                                    <td id="dis_color">
-                                        <center><?php echo $index_acm++; ?></center>
+                                    <?php if($index == 0){ 
+                                        $count++;
+                                        $com = $row->cpn_competency_detail_en;
+                                        $key = $row->kcp_key_component_detail_en;
+                                        ?>
+                                    <td align="center" rowspan="<?php echo $row_index[$index] ?>"
+                                        style="vertical-align:middle;" id="dis_color">
+                                        <?php echo $count;  ?></td>
+                                    <td rowspan="<?php echo $row_index[$index] ?>" style="vertical-align:middle;"
+                                        id="dis_color">
+                                        <?php echo $row->cpn_competency_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->cpn_competency_detail_th;  ?></font>
                                     </td>
                                     <td id="dis_color">
-                                        <?php echo $row->cpn_competency_detail_en . "<br><font color='blue'>" . $row->cpn_competency_detail_th ."</font>"; ?>
+                                        <?php echo $row->kcp_key_component_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->kcp_key_component_detail_th;  ?></font>
                                     </td>
-                                    <!-- show competency  -->
                                     <td id="dis_color">
-                                        <?php foreach($info_expected as $row_ept){ 
-                                            if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_keycomponent != $row_ept->kcp_key_component_detail_en){
-                                                $temp_keycomponent = $row_ept->kcp_key_component_detail_en;?>
-                                        <?php echo $row_ept->kcp_key_component_detail_en . "<br><font color='blue'>" . $row_ept->kcp_key_component_detail_th ."</font>"; ?>
-                                        <?php }
-                                            // if
-                                            }
-                                            // foreach ?>
+                                        <?php echo $row->ept_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->ept_expected_detail_th;  ?></font>
                                     </td>
-                                    <!-- show key component  -->
-                                    <td id="dis_color">
-                                        <?php foreach($info_expected as $row_ept){ 
-                                            if($row->sfa_cpn_id == $row_ept->kcp_cpn_id && $temp_expected != $row_ept->ept_expected_detail_en && $row_ept->ept_pos_id == $info_pos_id){
-                                                $temp_expected = $row_ept->ept_expected_detail_en;?>
-                                        <?php echo $row_ept->ept_expected_detail_en . "<br><font color='blue'>" . $row_ept->ept_expected_detail_th ."</font><hr>"; ?>
-                                        <?php }
-                                        // if
-                                        }
-                                        // foreach ?>
-                                    </td>
-                                    <!-- show expected  -->
-                                    <td id="dis_color">
-                                        <center><?php echo $row->sfa_weight; ?></center>
-                                        <input type="number"
-                                            name="weing_acm_edit_<?php echo $table_index_radio_acm_edit ?>"
+                                    <td align="center" style="vertical-align:middle;" id="dis_color"
+                                        rowspan="<?php echo $row_index[$index] ?>">
+                                        <?php echo $row->sfa_weight; ?><br>
+                                        <input type="text"
+                                            id="weigth_acm_edit_<?php echo $table_index_radio_acm_edit ?>"
                                             value="<?php echo $row->sfa_weight; ?>" hidden>
                                     </td>
-
-                                    <!-- show weight  -->
-                                    <td id="dis_color" width="5%">
+                                    <td width="5%" rowspan="<?php echo $row_index[$index] ?>"
+                                        style="vertical-align:middle;" align="center">
                                         <?php  
                                    $checked_weight_1 ="";
                                    $checked_weight_2 ="";
                                    $checked_weight_3 ="";
                                    $checked_weight_4 ="";
                                    $checked_weight_5 ="";
+
+                                   
               
 
                                     foreach($data_acm_weight as $row_data_acm_weight){
                                             if($row->sfa_id == $row_data_acm_weight->dta_sfa_id){
-                                                $checked_weight_1 ="";
-                                                $checked_weight_2 ="";
-                                                $checked_weight_3 ="";
-                                                $checked_weight_4 ="";
-                                                $checked_weight_5 ="";
-
                                                 if($row_data_acm_weight->dta_weight == 1){
                                                     $checked_weight_1 =  "checked";
                                                 }
-                                                // if
                                                 else if($row_data_acm_weight->dta_weight == 2){
                                                     $checked_weight_2 =  "checked";
                                                 }
-                                                // else if
                                                 else if($row_data_acm_weight->dta_weight == 3){
                                                     $checked_weight_3 =  "checked";
                                                 }
-                                                // else if 
                                                 else if($row_data_acm_weight->dta_weight == 4){
                                                     $checked_weight_4 =  "checked";
                                                 }
-                                                // else if 
                                                 else {
                                                     $checked_weight_5 =  "checked";
                                                 }
-                                                // else
                                             }
-                                            // if
                                         }
-                                        // foreach
                                 ?>
                                         <div class="col-md-12">
                                             <input type="radio"
@@ -2149,16 +1599,154 @@ function main_index() {
 
                                         </center>
                                     </td>
-                                    <td id="dis_color" width="2%">
-                                        <p id="weight_acm_edit_<?php echo $table_index_radio_acm_edit ?>"></p>
+                                    <td width="2%" rowspan="<?php echo $row_index[$index] ?>" align="center"
+                                        style="vertical-align:middle;">
+                                        <p id="show_weight_acm_edit_<?php echo $table_index_radio_acm_edit ?>"></p>
                                     </td>
-                                    <?php $table_index_radio_acm_edit++;  ?>
-                                </tr>
+                                    <input type="text" id="sfa_id<?php echo $table_index_radio_acm_edit ?>"
+                                        value="<?php echo $row->sfa_id; ?>" hidden>
+                                    <?php 
+                                $table_index_radio_acm_edit++;    
+                                }
+                                // if 
+                                else if($com != $row->cpn_competency_detail_en){
+                                    $count++;
+                                    $com = $row->cpn_competency_detail_en; 
+                                    $key = $row->kcp_key_component_detail_en;?>
 
-                                <?php
-                                    }
-                                    // end foreach
+                                    <td align="center" rowspan="<?php echo $row_index[$count-1] ?>"
+                                        style="vertical-align:middle;" id="dis_color">
+                                        <?php echo $count;  ?></td>
+                                    <td rowspan="<?php echo $row_index[$count-1] ?>" style="vertical-align:middle;"
+                                        id="dis_color">
+                                        <?php echo $row->cpn_competency_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->cpn_competency_detail_th;  ?></font>
+                                    </td>
+                                    <td id="dis_color">
+                                        <?php echo $row->kcp_key_component_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->kcp_key_component_detail_th;  ?></font>
+                                    </td>
+                                    <td id="dis_color">
+                                        <?php echo $row->ept_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->ept_expected_detail_th;  ?></font>
+                                    </td>
+                                    <td align="center" style="vertical-align:middle;" id="dis_color"
+                                        rowspan="<?php echo $row_index[$count-1] ?>">
+                                        <?php echo $row->sfa_weight; ?><br>
+                                        <input type="text"
+                                            id="weigth_acm_edit_<?php echo $table_index_radio_acm_edit ?>"
+                                            value="<?php echo $row->sfa_weight; ?>" hidden>
+                                    </td>
+                                    <td width="5%" rowspan="<?php echo $row_index[$count-1] ?>"
+                                        style="vertical-align:middle;" align="center">
+                                        <?php  
+                                   $checked_weight_1 ="";
+                                   $checked_weight_2 ="";
+                                   $checked_weight_3 ="";
+                                   $checked_weight_4 ="";
+                                   $checked_weight_5 ="";
+              
+
+                                    foreach($data_acm_weight as $row_data_acm_weight){
+                                            if($row->sfa_id == $row_data_acm_weight->dta_sfa_id){
+                                                if($row_data_acm_weight->dta_weight == 1){
+                                                    $checked_weight_1 =  "checked";
+                                                }
+                                                else if($row_data_acm_weight->dta_weight == 2){
+                                                    $checked_weight_2 =  "checked";
+                                                }
+                                                else if($row_data_acm_weight->dta_weight == 3){
+                                                    $checked_weight_3 =  "checked";
+                                                }
+                                                else if($row_data_acm_weight->dta_weight == 4){
+                                                    $checked_weight_4 =  "checked";
+                                                }
+                                                else {
+                                                    $checked_weight_5 =  "checked";
+                                                }
+                                            }
+                                        }
                                 ?>
+                                        <div class="col-md-12">
+                                            <input type="radio"
+                                                name="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?>"
+                                                id="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?>" value="1"
+                                                onclick="show_weight_acm_edit()" <?php echo $checked_weight_1 ?>>
+                                            <label for="1">&nbsp; 1</label>
+                                            &nbsp;&nbsp;
+                                            <input type="radio"
+                                                name="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?>"
+                                                id="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?>" value="2"
+                                                onclick="show_weight_acm_edit()" <?php echo $checked_weight_2 ?>>
+                                            <label for="2">&nbsp; 2</label>
+                                            &nbsp;&nbsp;
+                                            <input type="radio"
+                                                name="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?>"
+                                                id="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?>" value="3"
+                                                onclick="show_weight_acm_edit()" <?php echo $checked_weight_3 ?>>
+                                            <label for="3">&nbsp; 3</label>
+                                            &nbsp;&nbsp;
+                                            <input type="radio"
+                                                name="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?>"
+                                                id="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?> " value="4"
+                                                onclick="show_weight_acm_edit()" <?php echo $checked_weight_4 ?>>
+                                            <label for="4">&nbsp; 4</label>
+                                            &nbsp;&nbsp;
+                                            <input type="radio"
+                                                name="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?>"
+                                                id="rd_acm_edit_<?php echo $table_index_radio_acm_edit ?>" value="5"
+                                                onclick="show_weight_acm_edit()" <?php echo $checked_weight_5 ?>>
+                                            <label for="5">&nbsp; 5</label>
+                                            &nbsp;&nbsp;
+                                        </div>
+                                        <!-- col-12 -->
+
+                                        </center>
+                                    </td>
+                                    <td width="2%" rowspan="<?php echo $row_index[$count-1] ?>"
+                                        style="vertical-align:middle;" align="center">
+                                        <p id="show_weight_acm_edit_<?php echo $table_index_radio_acm_edit ?>"></p>
+                                    </td>
+                                    <input type="text" id="sfa_id<?php echo $table_index_radio_acm_edit ?>"
+                                        value="<?php echo $row->sfa_id; ?>" hidden>
+                                    <?php 
+                                $table_index_radio_acm_edit++;    
+                                }
+                                // else if
+
+                                else if($com == $row->cpn_competency_detail_en){ 
+                                    if($key != $row->kcp_key_component_detail_en){ 
+                                        $key = $row->kcp_key_component_detail_en; ?>
+                                    <td id="dis_color">
+                                        <?php echo $row->kcp_key_component_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->kcp_key_component_detail_th;  ?></font>
+                                    </td>
+                                    <td id="dis_color">
+                                        <?php echo $row->ept_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->ept_expected_detail_th;  ?></font>
+                                    </td>
+                                    <?php
+                                    }
+                                    // if
+                                    else if($key == $row->kcp_key_component_detail_en){ ?>
+                                    <hr>
+                                    <td id="dis_color">
+                                        <?php echo $row->ept_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->ept_expected_detail_th;  ?></font>
+                                    </td>
+
+                                    <?php }
+                                    // else if 
+                                }
+                                // else if 
+                                ?>
+
+
+                                </tr>
+                                <?php } 
+                            // foreach
+                            }
+                            // if?>
                             </tbody>
                             <!-- tbody -->
                             <input type="text" id="table_index_radio_acm_edit"
@@ -2166,7 +1754,7 @@ function main_index() {
                             <!-- save index table_index_radio_acm-->
 
                             <tfoot>
-                                <tr height="5%" id="dis_color">
+                                <tr height="5%">
                                     <td colspan="4">
                                         <center> Total Weight</center>
                                     </td>
@@ -2176,7 +1764,7 @@ function main_index() {
                                     <td>
                                         <center> Total Result</center>
                                     </td>
-                                    <td>
+                                    <td align="center">
                                         <p id="weight_all_acm_edit">
                                     </td>
                                 </tr>
@@ -2190,11 +1778,10 @@ function main_index() {
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <form method="POST" action="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/index">
-                                    <input id="emp_id" name="emp_id" type="text"
-                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
-                                    <input type="submit" class="btn btn-inverse" value="BACK">
-                                </form>
+                                <a href="<?php echo base_url(); ?>/ev_form_AP/Evs_form_AP/index">
+                                    <button type="button" class="btn btn-inverse"><i
+                                            class="fa fa-mail-reply"></i>Back</button>
+                                </a>
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
@@ -2203,269 +1790,123 @@ function main_index() {
                         </div>
                         <!-- row -->
                     </div>
-                    <!-- form ACM_edit -->
+                    <!-- ---------------------------------- form ACM_edit ---------------------------------- -->
 
-                    <div class="tab-pane" id="GCM">
-                        <table class="table table-bordered table-striped m-n">
-                            <thead>
-                                <tr>
-                                    <th rowspan="2">
-                                        <center> No.</center>
-                                    </th>
-                                    <th rowspan="2">
-                                        <center>Competency</center>
-                                    </th>
-                                    <th rowspan="2">
-                                        <center>Key component</center>
-                                    </th>
-                                    <th rowspan="2">
-                                        <center>Expected Behavior</center>
-                                    </th>
-                                    <th rowspan="2" width="6%">
-                                        <center>Weight</center>
-                                    </th>
-                                    <th colspan="2">
-                                        <center>Evaluation</center>
-                                    </th>
-
-                                </tr>
-                                <tr>
-                                    <th width="25%">
-                                        <center>Result</center>
-                                    </th>
-                                    <th width="15%">
-                                        <center>Score AxB</center>
-                                    </th>
-
-                                </tr>
-                            </thead>
-                            <!-- thead -->
-                            <tbody id="dis_color">
-                                <?php  
-                                    $index_acm = 1;
-                                    $temp_keycomponent = "";
-                                    $temp_expected = "";
-                                    $sum_max_rating = 0;
-                                    $table_index_radio_gcm = 0;
-                                    // start foreach
-                                    foreach($info_gcm_form as $row){
-                                ?>
-                                <input type="text" name="sgc_id" value="<?php echo $row->sgc_id; ?>" hidden>
-                                <!-- save index table_index_radio_gcm-->
-
-                                <tr>
-                                    <td id="dis_color">
-                                        <center><?php echo $index_acm++; ?></center>
-                                    </td>
-                                    <td id="dis_color">
-                                        <?php echo $row->cpg_competency_detail_en . "<br><font color='blue'>" . $row->cpg_competency_detail_th ."</font>"; ?>
-                                    </td>
-                                    <!-- show competency  -->
-                                    <td id="dis_color">
-                                        <?php foreach($info_expected as $row_epg){ 
-                                            if($row->sgc_cpg_id == $row_epg->kcg_cpg_id && $temp_keycomponent != $row_epg->kcg_key_component_detail_en){
-                                                $temp_keycomponent = $row_epg->kcg_key_component_detail_en;?>
-                                        <?php echo $row_epg->kcg_key_component_detail_en . "<br><font color='blue'>" . $row_epg->kcg_key_component_detail_th ."</font>"; ?>
-                                        <?php }
-                                            // if
-                                            }
-                                            // foreach ?>
-                                    </td>
-                                    <!-- show key component  -->
-                                    <td id="dis_color">
-                                        <?php foreach($info_expected as $row_epg){ 
-                                            if($row->sgc_cpg_id == $row_epg->kcg_cpg_id && $temp_expected != $row_epg->epg_expected_detail_en && $row_epg->epg_pos_id == $info_pos_id){
-                                                $temp_expected = $row_epg->epg_expected_detail_en;?>
-                                        <?php echo $row_epg->epg_expected_detail_en . "<br><font color='blue'>" . $row_epg->epg_expected_detail_th ."</font><hr>"; ?>
-                                        <?php }
-                                        // if
-                                        }
-                                        // foreach ?>
-                                    </td>
-                                    <!-- show expected  -->
-                                    <td id="dis_color">
-                                        <center><?php echo $row->sgc_weight; ?></center>
-                                        <input type="number" name="weing_gcm_<?php echo $table_index_radio_gcm ?>"
-                                            value="<?php echo $row->sgc_weight; ?>" hidden>
-                                    </td>
-
-                                    <!-- show weight  -->
-                                    <td id="dis_color" width="5%">
-                                        <center>
-                                            <div class="col-md-12">
-                                                <input type="radio" name="rd_gcm_<?php echo $table_index_radio_gcm ?>"
-                                                    id="rd_<?php echo $table_index_radio_gcm ?>" value="1"
-                                                    onclick="show_weight_gcm()">
-                                                <label for="1">&nbsp; 1</label>
-                                                &nbsp;&nbsp;
-                                                <input type="radio" name="rd_gcm_<?php echo $table_index_radio_gcm ?>"
-                                                    id="rd_<?php echo $table_index_radio_gcm ?>" value="2"
-                                                    onclick="show_weight_gcm()">
-                                                <label for="2">&nbsp; 2</label>
-                                                &nbsp;&nbsp;
-                                                <input type="radio" name="rd_gcm_<?php echo $table_index_radio_gcm ?>"
-                                                    id="rd_<?php echo $table_index_radio_gcm ?>" value="3"
-                                                    onclick="show_weight_gcm()">
-                                                <label for="3">&nbsp; 3</label>
-                                                &nbsp;&nbsp;
-                                                <input type="radio" name="rd_gcm_<?php echo $table_index_radio_gcm ?>"
-                                                    id="rd_<?php echo $table_index_radio_gcm ?>" value="4"
-                                                    onclick="show_weight_gcm()">
-                                                <label for="4">&nbsp; 4</label>
-                                                &nbsp;&nbsp;
-                                                <input type="radio" name="rd_gcm_<?php echo $table_index_radio_gcm ?>"
-                                                    id="rd_<?php echo $table_index_radio_gcm ?>" value="5"
-                                                    onclick="show_weight_gcm()">
-                                                <label for="5">&nbsp; 5</label>
-                                                &nbsp;&nbsp;
-                                            </div>
-                                            <!-- col-12 -->
-                                        </center>
-                                    </td>
-                                    <td id="dis_color" width="2%">
-                                        <p id="weight_gcm_<?php echo $table_index_radio_gcm ?>"></p>
-                                    </td>
-                                    <?php $table_index_radio_gcm++;  ?>
-                                </tr>
-
-                                <?php
-                                    }
-                                    // end foreach
-                                ?>
-                            </tbody>
-                            <!-- tbody -->
-                            <input type="text" id="table_index_radio_gcm" value="<?php echo $table_index_radio_gcm; ?>"
-                                hidden>
-                            <!-- save index table_index_radio_gcm-->
-
-                            <tfoot>
-                                <tr height="5%" id="dis_color">
-                                    <td colspan="4">
-                                        <center> Total Weight</center>
-                                    </td>
-                                    <td>
-                                        <center> 100</center>
-                                    </td>
-                                    <td>
-                                        <center> Total Result</center>
-                                    </td>
-                                    <td>
-                                        <p id="weight_all_gcm">
-                                    </td>
-                                </tr>
-                            </tfoot>
-                            <!-- tfoot -->
-
-                        </table>
-                        <!-- table -->
-
-                        <br>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <form method="POST" action="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/index">
-                                    <input id="emp_id" name="emp_id" type="text"
-                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
-                                    <input type="submit" class="btn btn-inverse" value="BACK">
-                                </form>
-                                <!-- form  -->
-                            </div>
-                            <!-- col-md-6 -->
-                            <div class="col-md-6" align="right">
-                                <button class="btn btn-success" <?php echo $onclek_form_all  ?>> Save</button>
-                            </div>
-                        </div>
-                        <!-- row -->
-                    </div>
-                    <!-- form GCM -->
 
                     <div class="tab-pane" id="GCM_edit">
-                        <table class="table table-bordered table-striped m-n">
-                            <thead>
+                        <table class="table table-bordered m-n">
+                            <thead id="headmbo">
                                 <tr>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="2%">
                                         <center> No.</center>
                                     </th>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="15%">
                                         <center>Competency</center>
                                     </th>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="15%">
                                         <center>Key component</center>
                                     </th>
-                                    <th rowspan="2">
+                                    <th rowspan="2" width="6%">
+                                        <center>Target Level</center>
+                                    </th>
+                                    <th rowspan="2" width="30%">
                                         <center>Expected Behavior</center>
                                     </th>
                                     <th rowspan="2" width="6%">
                                         <center>Weight</center>
                                     </th>
-                                    <th colspan="2">
+                                    <th colspan="2" width="15%">
                                         <center>Evaluation</center>
                                     </th>
-
                                 </tr>
                                 <tr>
-                                    <th width="25%">
+                                    <th width="30%">
                                         <center>Result</center>
                                     </th>
-                                    <th width="15%">
+                                    <th width="10%">
                                         <center>Score AxB</center>
                                     </th>
 
                                 </tr>
                             </thead>
                             <!-- thead -->
-                            <tbody id="dis_color">
-                                <?php  
-                                    $index_acm = 1;
-                                    $temp_keycomponent = "";
-                                    $temp_expected = "";
-                                    $sum_max_rating = 0;
-                                    $table_index_radio_gcm_edit = 0;
-                                    // start foreach
-                                    foreach($info_gcm_form as $row){
-                                ?>
-                                <input type="text" name="sgc_id" value="<?php echo $row->sgc_id; ?>" hidden>
-                                <!-- save index table_index_radio_gcm-->
+                            <tbody>
 
+                                <?php  
+                                if($data_from_ce == "GCM_edit"){
+                                $com_check = "";
+                                $key_check = "";
+                                $row_key = 0;
+                                $row_index = [];
+                                $table_index_radio_gcm_edit = 0;
+                                foreach($info_form_gcm->result() AS $index => $row){ 
+
+
+                                if($index == 0){
+                                    $com_check = $row->cpg_competency_detail_en;
+                                    $key_check = $row->kcg_key_component_detail_en;
+                                    $row_key++;
+                                }
+                                // if
+                                else if($com_check == $row->cpg_competency_detail_en){
+                                if($key_check != $row->kcg_key_component_detail_en){
+                                        $row_key++;
+                                        $key_check = $row->kcg_key_component_detail_en;
+                                    }
+                                    // else if
+                                }
+                                // else if
+
+                                else if($com_check != $row->cpg_competency_detail_en){
+                                    array_push($row_index,$row_key);
+                                    $row_key = 0;
+                                    $key_check = $row->kcg_key_component_detail_en;
+                                    $com_check = $row->cpg_competency_detail_en;
+                                    $row_key++;
+                                }
+                                // else if
+                                }
+                                array_push($row_index,$row_key);
+                                // foreach?>
+
+                                <?php 
+                                $count = 0;
+                                $com = "";
+                                $key = "";
+                                $ex = ""; 
+                                foreach($info_form_gcm->result() AS $index => $row){  ?>
                                 <tr>
-                                    <td id="dis_color">
-                                        <center><?php echo $index_acm++; ?></center>
+                                    <?php if($index == 0){ 
+                                        $count++;
+                                        $com = $row->cpg_competency_detail_en;
+                                        $key = $row->kcg_key_component_detail_en; ?>
+                                    <td align="center" rowspan="<?php echo $row_index[$index] ?>"
+                                        style="vertical-align:middle;">
+                                        <?php echo $count;  ?></td>
+                                    <td rowspan="<?php echo $row_index[$index] ?>" style="vertical-align:middle;">
+                                        <?php echo $row->cpg_competency_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->cpg_competency_detail_th;  ?></font>
                                     </td>
-                                    <td id="dis_color">
-                                        <?php echo $row->cpg_competency_detail_en . "<br><font color='blue'>" . $row->cpg_competency_detail_th ."</font>"; ?>
-                                    </td>
-                                    <!-- show competency  -->
-                                    <td id="dis_color">
-                                        <?php foreach($info_expected as $row_epg){ 
-                                            if($row->sgc_cpg_id == $row_epg->kcg_cpg_id && $temp_keycomponent != $row_epg->kcg_key_component_detail_en){
-                                                $temp_keycomponent = $row_epg->kcg_key_component_detail_en;?>
-                                        <?php echo $row_epg->kcg_key_component_detail_en . "<br><font color='blue'>" . $row_epg->kcg_key_component_detail_th ."</font>"; ?>
-                                        <?php }
-                                            // if
-                                            }
-                                            // foreach ?>
-                                    </td>
-                                    <!-- show key component  -->
-                                    <td id="dis_color">
-                                        <?php foreach($info_expected as $row_epg){ 
-                                            if($row->sgc_cpg_id == $row_epg->kcg_cpg_id && $temp_expected != $row_epg->epg_expected_detail_en && $row_epg->epg_pos_id == $info_pos_id){
-                                                $temp_expected = $row_epg->epg_expected_detail_en;?>
-                                        <?php echo $row_epg->epg_expected_detail_en . "<br><font color='blue'>" . $row_epg->epg_expected_detail_th ."</font><hr>"; ?>
-                                        <?php }
-                                        // if
-                                        }
-                                        // foreach ?>
-                                    </td>
-                                    <!-- show expected  -->
                                     <td>
-                                        <center><?php echo $row->sgc_weight; ?></center>
+                                        <?php echo $row->kcg_key_component_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->kcg_key_component_detail_th;  ?></font>
+                                    </td>
+                                    <td align="center">
+                                        <?php echo $row->epg_point;  ?><br>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
+                                    </td>
+                                    <td align="center" style="vertical-align:middle;"
+                                        rowspan="<?php echo $row_index[$index] ?>">
+                                        <?php echo $row->sgc_weight; ?><br>
                                         <input type="number"
                                             name="weing_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
                                             value="<?php echo $row->sgc_weight; ?>" hidden>
                                     </td>
-
-                                    <!-- show weight  -->
-                                    <td width="5%">
+                                    <td width="5%" style="vertical-align:middle;"
+                                        rowspan="<?php echo $row_index[$index] ?>">
                                         <center>
                                             <?php  
                                    $checked_weight_1 ="";
@@ -2476,39 +1917,24 @@ function main_index() {
               
 
                                     foreach($data_gcm_weight as $row_data_gcm_weight){
- 
                                             if($row->sgc_id == $row_data_gcm_weight->dtg_sgc_id){
-                                                $checked_weight_1 ="";
-                                                $checked_weight_2 ="";
-                                                $checked_weight_3 ="";
-                                                $checked_weight_4 ="";
-                                                $checked_weight_5 ="";
-                                                
                                                 if($row_data_gcm_weight->dtg_weight == 1){
                                                     $checked_weight_1 =  "checked";
                                                 }
-                                                // if
                                                 else if($row_data_gcm_weight->dtg_weight == 2){
                                                     $checked_weight_2 =  "checked";
                                                 }
-                                                // else if 
                                                 else if($row_data_gcm_weight->dtg_weight == 3){
                                                     $checked_weight_3 =  "checked";
                                                 }
-                                                // else if
                                                 else if($row_data_gcm_weight->dtg_weight == 4){
                                                     $checked_weight_4 =  "checked";
                                                 }
-                                                // else if
                                                 else {
                                                     $checked_weight_5 =  "checked";
                                                 }
-                                                // else 
-                                                
                                             }
-                                            // if
                                         }
-                                        // foreach
                                 ?>
                                             <div class="col-md-12">
                                                 <input type="radio"
@@ -2546,25 +1972,171 @@ function main_index() {
 
                                         </center>
                                     </td>
-                                    <td id="dis_color" width="2%">
+                                    <td rowspan="<?php echo $row_index[$index] ?>" style="vertical-align:middle;"
+                                        align="center">
                                         <p id="weight_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"></p>
                                     </td>
-                                    <?php $table_index_radio_gcm_edit++;  ?>
-                                </tr>
 
-                                <?php
+                                    <?php 
+                                    $table_index_radio_gcm_edit++;    
                                     }
-                                    // end foreach
+                                        // if 
+                                        else if($com != $row->cpg_competency_detail_en){
+                                            $count++;
+                                            $com = $row->cpg_competency_detail_en; 
+                                            $key = $row->kcg_key_component_detail_en;?>
+
+                                    <td align="center" rowspan="<?php echo $row_index[$count-1] ?>"
+                                        style="vertical-align:middle;">
+                                        <?php echo $count;  ?></td>
+                                    <td rowspan="<?php echo $row_index[$count-1] ?>" style="vertical-align:middle;">
+                                        <?php echo $row->cpg_competency_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->cpg_competency_detail_th;  ?></font>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->kcg_key_component_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->kcg_key_component_detail_th;  ?></font>
+                                    </td>
+                                    <td i align="center">
+                                        <?php echo $row->epg_point;  ?><br>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
+                                    </td>
+                                    <td align="center" style="vertical-align:middle;"
+                                        rowspan="<?php echo $row_index[$count-1] ?>">
+                                        <?php echo $row->sgc_weight; ?><br>
+                                        <input type="number"
+                                            name="weing_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
+                                            value="<?php echo $row->sgc_weight; ?>" hidden>
+                                    </td>
+                                    <td width="5%" style="vertical-align:middle;"
+                                        rowspan="<?php echo $row_index[$count-1] ?>">
+                                        <center>
+                                            <?php  
+                                   $checked_weight_1 ="";
+                                   $checked_weight_2 ="";
+                                   $checked_weight_3 ="";
+                                   $checked_weight_4 ="";
+                                   $checked_weight_5 ="";
+              
+
+                                    foreach($data_gcm_weight as $row_data_gcm_weight){
+                                            if($row->sgc_id == $row_data_gcm_weight->dtg_sgc_id){
+                                                if($row_data_gcm_weight->dtg_weight == 1){
+                                                    $checked_weight_1 =  "checked";
+                                                }
+                                                else if($row_data_gcm_weight->dtg_weight == 2){
+                                                    $checked_weight_2 =  "checked";
+                                                }
+                                                else if($row_data_gcm_weight->dtg_weight == 3){
+                                                    $checked_weight_3 =  "checked";
+                                                }
+                                                else if($row_data_gcm_weight->dtg_weight == 4){
+                                                    $checked_weight_4 =  "checked";
+                                                }
+                                                else {
+                                                    $checked_weight_5 =  "checked";
+                                                }
+                                            }
+                                        }
+                                        // foreach 
                                 ?>
+                                            <div class="col-md-12">
+                                                <input type="radio"
+                                                    name="rd_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
+                                                    id="rd_<?php echo $table_index_radio_gcm_edit ?>" value="1"
+                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_1 ?>>
+                                                <label for="1">&nbsp; 1</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio"
+                                                    name="rd_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
+                                                    id="rd_<?php echo $table_index_radio_gcm_edit ?>" value="2"
+                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_2 ?>>
+                                                <label for="2">&nbsp; 2</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio"
+                                                    name="rd_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
+                                                    id="rd_<?php echo $table_index_radio_gcm_edit ?>" value="3"
+                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_3 ?>>
+                                                <label for="3">&nbsp; 3</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio"
+                                                    name="rd_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
+                                                    id="rd_<?php echo $table_index_radio_gcm_edit ?> " value="4"
+                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_4 ?>>
+                                                <label for="4">&nbsp; 4</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio"
+                                                    name="rd_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"
+                                                    id="rd_<?php echo $table_index_radio_gcm_edit ?>" value="5"
+                                                    onclick="show_weight_gcm_edit()" <?php echo $checked_weight_5 ?>>
+                                                <label for="5">&nbsp; 5</label>
+                                                &nbsp;&nbsp;
+                                            </div>
+                                            <!-- col-12 -->
+
+                                        </center>
+                                    </td>
+                                    <td rowspan="<?php echo $row_index[$count-1] ?>" style="vertical-align:middle;"
+                                        align="center">
+                                        <p id="weight_gcm_edit_<?php echo $table_index_radio_gcm_edit ?>"></p>
+                                    </td>
+
+                                    <?php 
+                                    $table_index_radio_gcm_edit++; 
+                                    }
+                                        // else if
+
+                                        else if($com == $row->cpg_competency_detail_en){ 
+                                            if($key != $row->kcg_key_component_detail_en){ 
+                                                $key = $row->kcg_key_component_detail_en; ?>
+                                    <td>
+                                        <?php echo $row->kcg_key_component_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->kcg_key_component_detail_th;  ?></font>
+                                    </td>
+                                    <td align="center">
+                                        <?php echo $row->epg_point;  ?><br>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
+                                    </td>
+                                    <?php
+                                    }
+                                    // if
+                                    else if($key == $row->kcg_key_component_detail_en){ ?>
+                                    <td>
+                                        <?php echo $row->epg_point;  ?><br>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->epg_expected_detail_en;  ?><br>
+                                        <font color="blue"><?php echo $row->epg_expected_detail_th;  ?></font>
+                                    </td>
+
+                                    <?php }
+                                        // else if  	
+                                    }
+                                    // else if 
+                                    ?>
+
+
+                                </tr>
+                                <input type="text" name="sgc_id" value="<?php echo $row->sgc_id; ?>" hidden>
+                                <?php 
+                                } 
+                                // foreach
+                            }
+                            // if?>
                             </tbody>
                             <!-- tbody -->
                             <input type="text" id="table_index_radio_gcm_edit"
                                 value="<?php echo $table_index_radio_gcm_edit; ?>" hidden>
-                            <!-- save index table_index_radio_gcm-->
 
                             <tfoot>
-                                <tr height="5%" id="dis_color">
-                                    <td colspan="4">
+                                <tr height="5%">
+                                    <td colspan="5">
                                         <center> Total Weight</center>
                                     </td>
                                     <td>
@@ -2573,7 +2145,7 @@ function main_index() {
                                     <td>
                                         <center> Total Result</center>
                                     </td>
-                                    <td>
+                                    <td align="center">
                                         <p id="weight_all_gcm_edit">
                                     </td>
                                 </tr>

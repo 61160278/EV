@@ -325,6 +325,8 @@ class Evs_form extends MainController_avenxo {
 			// for k
 		}
 		// for j
+		$data = "go_save";
+		echo json_encode($data);
 		
 	}
 	// function save_G_O_level_by_emp

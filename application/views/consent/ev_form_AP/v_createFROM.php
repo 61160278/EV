@@ -187,7 +187,6 @@ function show_weight_acm_edit() {
     var sum = 0;
     var weight = 0;
     var index = document.getElementById("table_index_radio_acm_edit").value;
-    console.log(index);
     for (i = 0; i < index; i++) {
 
         $("[name = rd_acm_edit_" + i + "]").each(function(index) {
@@ -197,10 +196,8 @@ function show_weight_acm_edit() {
         });
     }
     // for
-    console.log(arr_weight);
     for (i = 0; i < index; i++) {
         weight = document.getElementById("weigth_acm_edit_" + i).value;
-        console.log(weight)
         document.getElementById('show_weight_acm_edit_' + i + '').innerHTML = arr_weight[i] * weight;
         sum += arr_weight[i] * document.getElementById("weigth_acm_edit_" + i).value;
     }
@@ -289,6 +286,7 @@ function update_ACM_edit() {
         },
         success: function(data) {
             console.log(data);
+            update_approve();
         },
         // success
         error: function(data) {
@@ -298,7 +296,7 @@ function update_ACM_edit() {
     });
     // ajax
 
-    update_approve();
+
 
 }
 
@@ -311,6 +309,7 @@ function show_weight_g_and_o() {
         $("[name = rd_g_o_" + i + "]").each(function(index) {
             if ($(this).prop("checked") == true) {
                 arr_weight.push(document.getElementsByName("rd_g_o_" + i + "")[index].value);
+                
             } //if
         });
     }
@@ -326,22 +325,35 @@ function show_weight_g_and_o() {
 function show_weight_g_and_o_edit() {
     var arr_weight = [];
     var sum = 0;
+    var sum_w = 0;
     var index = document.getElementById("table_index_radio_g_o_edit").value;
-    console.log(index);
     for (i = 0; i < index; i++) {
-
-        $("[name = rd_g_o_edit_" + i + "]").each(function(index) {
-            if ($(this).prop("checked") == true) {
-                arr_weight.push(document.getElementsByName("rd_g_o_edit_" + i + "")[index].value);
-            } //if
-        });
+        if(i == 0){
+            $("[name = rd_g_o_edit_" + i + "]").each(function(index) {
+                if ($(this).prop("checked") == true) {
+                    arr_weight.push(document.getElementsByName("rd_g_o_edit_" + i + "")[index].value);
+                } //if
+            });
+            // each 
+        }
+        // if
+        else {
+            $("[name = rd_g_o_edit_" + (i+1) + "]").each(function(index) {
+                if ($(this).prop("checked") == true) {
+                    arr_weight.push(document.getElementsByName("rd_g_o_edit_" + (i+1) + "")[index].value);
+                } //if
+            });
+            // each
+        }
+        // else 
     }
-
+    // for 
     for (i = 0; i < index; i++) {
-
-        sum += arr_weight[i] * document.getElementsByName("weing_g_o_edit_" + i + "")[0].value;
+        sum += arr_weight[i] * document.getElementById("weing_g_o_edit_" + i).value;
+        sum_w += parseInt(document.getElementById("weing_g_o_edit_" + i).value);
     }
-    document.getElementById("weight_all_g_o_edit").innerHTML = sum;
+    document.getElementById("weight_all_g_o_edit").innerHTML = sum_w;
+    document.getElementById("weight_g_o_edit").innerHTML = sum;
 
 }
 
@@ -402,21 +414,34 @@ function update_G_and_O_edit() {
     var index = document.getElementById("table_index_radio_g_o_edit").value;
     var Emp_ID = document.getElementById("Emp_ID").value;
     var App = document.getElementById("App_Emp_ID").value;
-
     for (i = 0; i < index; i++) {
-        arr_dgo_id.push(document.getElementsByName("dgo_id")[i].value);
+        arr_dgo_id.push(document.getElementsByName("dgo_id_edit")[i].value);
         arr_Evaluator_Review_edit.push(document.getElementsByName("Evaluator_Review_edit")[i].value);
-        $("[name = rd_g_o_edit_" + i + "]").each(function(index) {
-            if ($(this).prop("checked") == true) {
-                arr_radio.push(document.getElementsByName("rd_g_o_edit_" + i + "")[index].value);
-            } //if
-        });
+
+        if(i == 0){
+            $("[name = rd_g_o_edit_" + i + "]").each(function(index) {
+                if ($(this).prop("checked") == true) {
+                    arr_radio.push(document.getElementsByName("rd_g_o_edit_" + i + "")[index].value);
+                } //if
+            });
+            // each 
+        }
+        // if
+        else {
+            $("[name = rd_g_o_edit_" + (i+1) + "]").each(function(index) {
+                if ($(this).prop("checked") == true) {
+                    arr_radio.push(document.getElementsByName("rd_g_o_edit_" + (i+1) + "")[index].value);
+                } //if
+            });
+            // each
+        }
+        // else 
     }
-    console.log("index : " + index);
-    console.log("Emp_ID :  " + Emp_ID);
-    console.log("arr_dgo_id : " + arr_dgo_id);
-    console.log("arr_radio : " + arr_radio);
-    console.log("arr_Evaluator_Review : " + arr_Evaluator_Review_edit);
+    console.log("G_O-index : " + index);
+    console.log("G_O-Emp_ID :  " + Emp_ID);
+    console.log("G_O-arr_dgo_id : " + arr_dgo_id);
+    console.log("G_O-arr_radio : " + arr_radio);
+    console.log("G_O-arr_Evaluator_Review : " + arr_Evaluator_Review_edit);
 
 
     $.ajax({
@@ -1017,7 +1042,7 @@ function update_approve() {
                     <hr>
 
                     <div class="tab-pane" id="MBO">
-                        <table class="table table-bordered table-striped m-n">
+                        <table class="table table-bordered m-n">
                             <thead id="headmbo">
                                 <tr>
                                     <th rowspan="2" width="2%">
@@ -1111,11 +1136,13 @@ function update_approve() {
                                 </tr>
                                 <input type="text" name="dtm_id" value="<?php echo $row->dtm_id; ?>" hidden>
                                 <?php  }
-                                // foreach
-                            }
-                            // if ?>
+                                // foreach ?>
                                 <input type="text" id="table_index_radio_mbo"
                                     value="<?php echo $table_index_radio_mbo; ?>" hidden>
+                                <?php 
+                            }
+                            // if ?>
+
 
 
 
@@ -1159,7 +1186,7 @@ function update_approve() {
                     <!--  ----------------------------------form MBO ---------------------------------- -->
 
                     <div class="tab-pane" id="MBO_edit">
-                        <table class="table table-bordered table-striped m-n">
+                        <table class="table table-bordered m-n">
                             <thead id="headmbo">
                                 <tr>
                                     <th rowspan="2" width="2%">
@@ -1282,11 +1309,12 @@ function update_approve() {
                                 </tr>
                                 <input type="text" name="dtm_id" value="<?php echo $row->dtm_id; ?>" hidden>
                                 <?php  }
-                                // foreach 
-                                    }
-                                    // if ?>
+                                // foreach ?>
                                 <input type="text" id="table_index_radio_mbo_edit"
                                     value="<?php echo $table_index_radio_mbo_edit; ?>" hidden>
+                                <?php    }
+                                    // if ?>
+
                             </tbody>
                             <!-- tbody -->
                             <tfoot>
@@ -1325,7 +1353,7 @@ function update_approve() {
                     <!-- ---------------------------------- form MBO_edit ---------------------------------- -->
 
                     <div class="tab-pane" id="G_O">
-                        <table class="table table-bordered table-striped m-n">
+                        <table class="table table-bordered m-n">
                             <thead>
                                 <tr>
                                     <th width="5%">
@@ -1607,7 +1635,7 @@ function update_approve() {
                     <!-- ---------------------------------- form G&O ---------------------------------- -->
 
                     <div class="tab-pane" id="G_O_edit">
-                        <table class="table table-bordered table-striped m-n">
+                        <table class="table table-bordered m-n">
                             <thead>
                                 <tr>
                                     <th width="5%">
@@ -1704,7 +1732,7 @@ function update_approve() {
                                     <td rowspan="<?php echo $col[$span] ?>"><?php echo $row->dgo_item; ?></td>
                                     <td align="center" rowspan="<?php echo $col[$span] ?>">
                                         <?php echo $row->dgo_weight; ?></td>
-                                    <input type="number" name="weing_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
+                                    <input type="number" id="weing_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
                                         value="<?php echo $row->dgo_weight; ?>" hidden>
                                     <!-- show item asd weight  -->
                                     <?php 
@@ -1732,13 +1760,14 @@ function update_approve() {
                                     <td rowspan="<?php echo $col[$span] ?>"><?php echo $row->dgo_item; ?></td>
                                     <td align="center" rowspan="<?php echo $col[$span] ?>">
                                         <?php echo $row->dgo_weight; ?></td>
-                                    <input type="number" name="weing_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
+                                    <input type="number" id="weing_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
                                         value="<?php echo $row->dgo_weight; ?>" hidden>
                                     <!-- show item asd weight  -->
                                     <?php 
                                 $span++;
                                 $num_index++;
                                 $temp = $row->dgo_item;    
+                                $table_index_radio_g_o_edit++;
                                 }
                                 // else if ?>
                                     <td><?php echo $row->dgol_level; ?></td>
@@ -1783,34 +1812,34 @@ function update_approve() {
                                             <div class="col-md-12">
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o_edit ?>" value="1"
+                                                    id="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>" value="1"
                                                     onclick="show_weight_g_and_o()" <?php echo $checked_weight_1 ?>>
                                                 <label for="1">&nbsp; 1</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o_edit ?>" value="2"
+                                                    id="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>" value="2"
                                                     onclick="show_weight_g_and_o_edit()"
                                                     <?php echo $checked_weight_2 ?>>
                                                 <label for="2">&nbsp; 2</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o_edit ?>" value="3"
+                                                    id="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>" value="3"
                                                     onclick="show_weight_g_and_o_edit()"
                                                     <?php echo $checked_weight_3 ?>>
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o_edit ?> " value="4"
-                                                    onclick="show_weight_g_and_o_edit()"
+                                                    id="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?> "
+                                                    value="4" onclick="show_weight_g_and_o_edit()"
                                                     <?php echo $checked_weight_4 ?>>
                                                 <label for="4">&nbsp; 4</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o_edit ?>" value="5"
+                                                    id="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>" value="5"
                                                     onclick="show_weight_g_and_o_edit()"
                                                     <?php echo $checked_weight_5 ?>>
                                                 <label for="5">&nbsp; 5</label>
@@ -1820,13 +1849,14 @@ function update_approve() {
 
                                         </center>
                                     </td>
-                                    <input type="text" name="dgo_id" value="<?php echo $row->dgo_id; ?>" hidden>
+                                    <input type="text" name="dgo_id_edit" value="<?php echo $row->dgo_id; ?>" hidden>
                                     <?php 
                                 $spans++;
                                 $temps = $row->dgo_item;
-                                $table_index_radio_g_o_edit++;  
+                                $table_index_radio_g_o_edit++;
                                 } 
                                 // if 
+
                                 else if($temps != $row->dgo_item){ ?>
 
                                     <td rowspan="<?php echo $col[$spans] ?>"><?php echo $row->dgo_self_review; ?></td>
@@ -1869,35 +1899,35 @@ function update_approve() {
                                             <div class="col-md-12">
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o_edit ?>" value="1"
+                                                    id="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>" value="1"
                                                     onclick="show_weight_g_and_o_edit()"
                                                     <?php echo $checked_weight_1 ?>>
                                                 <label for="1">&nbsp; 1</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o_edit ?>" value="2"
+                                                    id="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>" value="2"
                                                     onclick="show_weight_g_and_o_edit()"
                                                     <?php echo $checked_weight_2 ?>>
                                                 <label for="2">&nbsp; 2</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o_edit ?>" value="3"
+                                                    id="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>" value="3"
                                                     onclick="show_weight_g_and_o_edit()"
                                                     <?php echo $checked_weight_3 ?>>
                                                 <label for="3">&nbsp; 3</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o_edit ?> " value="4"
-                                                    onclick="show_weight_g_and_o_edit()"
+                                                    id="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?> "
+                                                    value="4" onclick="show_weight_g_and_o_edit()"
                                                     <?php echo $checked_weight_4 ?>>
                                                 <label for="4">&nbsp; 4</label>
                                                 &nbsp;&nbsp;
                                                 <input type="radio"
                                                     name="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>"
-                                                    id="rd_<?php echo $table_index_radio_g_o_edit ?>" value="5"
+                                                    id="rd_g_o_edit_<?php echo $table_index_radio_g_o_edit ?>" value="5"
                                                     onclick="show_weight_g_and_o_edit()"
                                                     <?php echo $checked_weight_5 ?>>
                                                 <label for="5">&nbsp; 5</label>
@@ -1907,22 +1937,22 @@ function update_approve() {
 
                                         </center>
                                     </td>
-                                    <input type="text" name="dgo_id" value="<?php echo $row->dgo_id; ?>" hidden>
+                                    <input type="text" name="dgo_id_edit" value="<?php echo $row->dgo_id; ?>" hidden>
                                     <?php
                                 $spans++;
                                 $temps = $row->dgo_item;
-                                $table_index_radio_g_o_edit++;
                                 } 
                                 // else if
                                 ?>
 
                                 </tr>
                                 <!-- end tr  -->
+
+                                <?}
+                            // foreach ?>
                                 <input type="text" id="table_index_radio_g_o_edit"
                                     value="<?php echo $table_index_radio_g_o_edit; ?>" hidden>
-                                <?}
-                            // foreach
-                            }
+                                <?php }
                             // if 
                             ?>
 
@@ -1934,10 +1964,13 @@ function update_approve() {
                                     <input type="text" id="row_count" value="0" hidden>
                                     <input type="text" id="row_count_level" value="0" hidden>
                                 </td>
-                                <td>
+                                <td align="center">
                                     <p id="weight_all_g_o_edit">
                                 </td>
                                 <td colspan="3"></td>
+                                <td align="center">
+                                <p id="weight_g_o_edit">
+                                </td>
                             </tfoot>
                             <!-- tfoot -->
                         </table>
@@ -1966,7 +1999,7 @@ function update_approve() {
                     <!------------------------------------ form G_O_edit ------------------------------------>
 
                     <div class="tab-pane" id="MHRD">
-                        <table class="table table-bordered table-striped m-n">
+                        <table class="table table-bordered m-n">
                             <thead>
                                 <tr>
                                     <th width="2%" rowspan="2">
@@ -2129,7 +2162,7 @@ function update_approve() {
                     <!-- ----------------------------------form MHRD ------------------------------------>
 
                     <div class="tab-pane" id="MHRD_edit">
-                        <table class="table table-bordered table-striped m-n">
+                        <table class="table table-bordered m-n">
                             <thead>
                                 <tr>
                                     <th width="2%" rowspan="2">
@@ -2526,7 +2559,8 @@ function update_approve() {
                                             <!-- col-12 -->
                                         </center>
                                     </td>
-                                    <td id="dis_color" rowspan="<?php echo $row_index[$index] ?>">
+                                    <td id="dis_color" rowspan="<?php echo $row_index[$index] ?>"
+                                        style="vertical-align:middle;" align="center">
                                         <p id="weight_acm_<?php echo $table_index_radio_acm ?>"></p>
                                     </td>
                                     <input type="text" id="sfa_id<?php echo $table_index_radio_acm ?>"
@@ -2598,7 +2632,8 @@ function update_approve() {
                                             <!-- col-12 -->
                                         </center>
                                     </td>
-                                    <td id="dis_color" rowspan="<?php echo $row_index[$count-1] ?>">
+                                    <td id="dis_color" rowspan="<?php echo $row_index[$count-1] ?>"
+                                        style="vertical-align:middle;" align="center">
                                         <p id="weight_acm_<?php echo $table_index_radio_acm ?>"></p>
                                     </td>
                                     <input type="text" id="sfa_id<?php echo $table_index_radio_acm ?>"
@@ -2868,7 +2903,7 @@ function update_approve() {
                                         style="vertical-align:middle;">
                                         <p id="show_weight_acm_edit_<?php echo $table_index_radio_acm_edit ?>"></p>
                                     </td>
-                                    <input type="text" id="sfa_id<?php echo $table_index_radio_acm ?>"
+                                    <input type="text" id="sfa_id<?php echo $table_index_radio_acm_edit ?>"
                                         value="<?php echo $row->sfa_id; ?>" hidden>
                                     <?php 
                                 $table_index_radio_acm_edit++;    
@@ -2972,7 +3007,7 @@ function update_approve() {
                                         style="vertical-align:middle;" align="center">
                                         <p id="show_weight_acm_edit_<?php echo $table_index_radio_acm_edit ?>"></p>
                                     </td>
-                                    <input type="text" id="sfa_id<?php echo $table_index_radio_acm ?>"
+                                    <input type="text" id="sfa_id<?php echo $table_index_radio_acm_edit ?>"
                                         value="<?php echo $row->sfa_id; ?>" hidden>
                                     <?php 
                                 $table_index_radio_acm_edit++;    
@@ -3058,7 +3093,7 @@ function update_approve() {
                     <!-- ---------------------------------- form ACM_edit ---------------------------------- -->
 
                     <div class="tab-pane" id="GCM">
-                        <table class="table table-bordered table-striped m-n">
+                        <table class="table table-bordered m-n">
                             <thead id="headmbo">
                                 <tr>
                                     <th rowspan="2" width="2%">
@@ -3380,7 +3415,7 @@ function update_approve() {
                     <!------------------------------------  form GCM  ---------------------------------- -->
 
                     <div class="tab-pane" id="GCM_edit">
-                        <table class="table table-bordered table-striped m-n">
+                        <table class="table table-bordered m-n">
                             <thead id="headmbo">
                                 <tr>
                                     <th rowspan="2" width="2%">

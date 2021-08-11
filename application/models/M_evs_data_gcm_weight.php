@@ -55,13 +55,26 @@ class M_evs_data_gcm_weight extends Da_evs_data_gcm_weight {
 	*/
 	function get_by_empID(){	
 		$sql = "SELECT *
-		FROM evs_database.evs_data_gcm_weight
+		FROM evs_database.evs_data_gcm_weight AS gcm
 		WHERE dtg_evs_emp_id = ?
-		ORDER BY `evs_data_gcm_weight`.`dtg_id` ASC";
+		ORDER BY gcm.dtg_id ASC";
 		$query = $this->db->query($sql, array($this->dtg_evs_emp_id));
 		return $query;
 	
-	}//get_all_com
+	}//get_by_empID
+
+
+	function get_by_empID_app2(){	
+		$sql = "SELECT *
+		FROM evs_database.evs_data_gcm_weight AS gcm
+		INNER JOIN evs_database.evs_data_approve AS app
+        ON app.dma_emp_id = gcm.dtg_evs_emp_id
+		WHERE dtg_evs_emp_id = ? AND gcm.dtg_approver = ?
+		ORDER BY gcm.dtg_id ASC";
+		$query = $this->db->query($sql, array($this->dtg_evs_emp_id,$this->dtg_approver));
+		return $query;
+	
+	}//get_by_empID_app2
 	/*
 	* update
 	* Update Category into database

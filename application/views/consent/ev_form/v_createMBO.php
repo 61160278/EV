@@ -617,9 +617,8 @@ function saveG_O() {
             });
             // foreach 
 
-            saveG_O_level(dgo_data);
-            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_g_o/" + check_emp_id +
-                "";
+            saveG_O_level(dgo_data,check_emp_id);
+            
 
         }
         // success
@@ -629,7 +628,7 @@ function saveG_O() {
 }
 // function saveG_O
 
-function saveG_O_level(dgo_data) {
+function saveG_O_level(dgo_data,check_emp_id) {
     var level_tmp = [];
     var data_level = [];
     var ranges = [];
@@ -667,7 +666,10 @@ function saveG_O_level(dgo_data) {
             "dgo_data": dgo_data,
             "data_level": data_level
         },
-        success: function(data) {}
+        success: function(data) {
+            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_g_o/" + check_emp_id +
+                "";
+        }
         // success
     });
     // ajax
@@ -1235,7 +1237,7 @@ function set_tap() {
 
                         <hr>
 
-                        <table class="table table-bordered table-striped m-n" id="mbo">
+                        <table class="table table-bordered m-n" id="mbo">
                             <thead id="headmbo">
                                 <tr>
                                     <th rowspan="2" width="2%">
@@ -1377,7 +1379,7 @@ function set_tap() {
                         <!-- show infomation employee -->
 
                         <hr>
-                        <table class="table table-bordered table-striped m-n">
+                        <table class="table table-bordered m-n">
                             <thead>
                                 <tr>
                                     <th width="2%">
@@ -1532,7 +1534,7 @@ function set_tap() {
                         <!-- show infomation employee -->
 
                         <hr>
-                        <table class="table table-bordered table-striped m-n">
+                        <table class="table table-bordered m-n">
                             <thead>
                                 <tr>
                                     <th width="2%" rowspan="2">

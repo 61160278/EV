@@ -53,6 +53,7 @@ class M_evs_data_g_and_o_weight extends Da_evs_data_g_and_o_weight {
 	* @author 	Tippawan Aiemsaad
 	* @Create Date 2564-04-08
 	*/
+
 	function get_by_empID(){	
 		$sql = "SELECT *
 		FROM evs_database.evs_data_g_and_o_weight
@@ -61,7 +62,19 @@ class M_evs_data_g_and_o_weight extends Da_evs_data_g_and_o_weight {
 		$query = $this->db->query($sql, array($this->dgw_evs_emp_id));
 		return $query;
 	
-	}//get_all_com
+	}//get_by_empID
+
+	function get_by_empID_app2(){	
+		$sql = "SELECT *
+		FROM evs_database.evs_data_g_and_o_weight AS g_o
+		INNER JOIN evs_database.evs_data_approve  AS app
+        ON app.dma_emp_id = g_o.dgw_evs_emp_id
+		WHERE g_o.dgw_evs_emp_id = ? AND g_o.dgw_approver = ?
+		ORDER BY g_o.dgw_id ASC";
+		$query = $this->db->query($sql, array($this->dgw_evs_emp_id,$this->dgw_approver));
+		return $query;
+	
+	}//get_by_empID_app2
 	/*
 	* update
 	* Update Category into database

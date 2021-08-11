@@ -61,7 +61,19 @@ class M_evs_data_mhrd_weight extends Da_evs_data_mhrd_weight {
 		$query = $this->db->query($sql, array($this->mhw_evs_emp_id));
 		return $query;
 	
-	}//get_all_com
+	}//get_by_empID
+
+	function get_by_empID_app2(){	
+		$sql = "SELECT *
+		FROM evs_database.evs_data_mhrd_weight AS mhrd
+		INNER JOIN evs_database.evs_data_approve  AS app
+        ON app.dma_emp_id = mhrd.mhw_evs_emp_id
+		WHERE mhrd.mhw_evs_emp_id = ? AND mhrd.mhw_approver = ?
+		ORDER BY mhrd.mhw_id ASC";
+		$query = $this->db->query($sql, array($this->mhw_evs_emp_id,$this->mhw_approver));
+		return $query;
+	
+	}//get_by_empID_app2
 	/*
 	* update
 	* Update Category into database

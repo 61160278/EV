@@ -55,13 +55,25 @@ class M_evs_data_acm_weight extends Da_evs_data_acm_weight {
 	*/
 	function get_by_empID(){	
 		$sql = "SELECT *
-		FROM evs_database.evs_data_acm_weight
-		WHERE dta_evs_emp_id = ?
-		ORDER BY `evs_data_acm_weight`.`dta_id` ASC";
+		FROM evs_database.evs_data_acm_weight AS acm
+		WHERE acm.dta_evs_emp_id = ?
+		ORDER BY acm.dta_id ASC";
 		$query = $this->db->query($sql, array($this->dta_evs_emp_id));
 		return $query;
 	
-	}//get_all_com
+	}//get_by_empID
+
+	function get_by_empID_app2(){	
+		$sql = "SELECT *
+		FROM evs_database.evs_data_acm_weight AS acm
+        INNER JOIN evs_database.evs_data_approve  AS app
+        ON app.dma_emp_id = acm.dta_evs_emp_id
+		WHERE acm.dta_evs_emp_id = ? AND acm.dta_approver = ?
+		ORDER BY acm.dta_id ASC";
+		$query = $this->db->query($sql, array($this->dta_evs_emp_id,$this->dta_approver));
+		return $query;
+	
+	}//get_by_empID_app2
 	/*
 	* update
 	* Update Category into database
