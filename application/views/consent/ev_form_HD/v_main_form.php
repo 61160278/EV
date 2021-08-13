@@ -88,29 +88,46 @@ function main_index() {
             </div>
             <!-- heading -->
             <div class="panel-body">
-                <table class="table table-bordered table-striped m-n">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>List of employees to approve </h3>
+                    </div>
+                    <!-- col-12  -->
+                </div>
+                <!-- row  -->
+                <hr>
+                <table class="table table-bordered m-n">
                     <thead>
                         <tr>
-                            <th width="2%">
-                                <center> No.</center>
+                            <th>
+                                <center>#</center>
                             </th>
-                            <th width="15%">
-                                <center>Employee id</center>
+                            <th>
+                                <center>Employee ID</center>
                             </th>
-                            <th width="15%">
-                                <center>Name-Surname</center>
+                            <th>
+                                <center>Name - surname</center>
                             </th>
-                            <th width="15%">
+                            <th>
+                                <center>Section Code</center>
+                            </th>
+                            <th>
+                                <center>Department</center>
+                            </th>
+                            <th>
+                                <center>Position</center>
+                            </th>
+                            <th>
                                 <center>Group</center>
                             </th>
-                            <th width="20%">
-                                <center>Management</center>
+                            <th>
+                                <center>Action</center>
                             </th>
                         </tr>
                     </thead>
                     <!-- thead -->
 
-                    <tbody id="row_mbo">
+                    <tbody>
                         <?php 
                                 $status = [];
 
@@ -122,9 +139,7 @@ function main_index() {
                                 }
                                 // if
 							
-
                                 $table_index = 0;
-// && $row->emp_employee_id == $status[$index]
                                 if(sizeof($status) != 0){
 
 							    foreach($data_group as $index => $row) {
@@ -148,39 +163,42 @@ function main_index() {
                                 </center>
                             </td>
                             <td>
+                                <center><?php echo $row->Sectioncode_ID; ?></center>
+                            </td>
+                            <td>
+                                <center><?php echo $row->Department; ?></center>
+                            </td>
+                            <td>
+                                <center><?php echo $row->Position_name; ?></center>
+                            </td>
+                            <td>
                                 <center>
                                     <?php echo $row->gru_name ?>
                                 </center>
                             </td>
                             <td>
-                                <?php 
-                            
-							            if($data_chack_form[$index]  != 0){
-                                
-                                        ?>
+                                <?php if($data_chack_form[$index]  != 0){ ?>
                                 <center>
                                     <a
                                         href="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/createFROM/<?php echo $row->emp_employee_id ?>">
-                                        <button class="btn btn-warning">
-                                            <i class="ti ti-search"></i> Edit Information
+                                        <button class="btn btn-info">
+                                            <i class="fa fa-info-circle"></i>
                                         </button>
                                     </a>
                                 </center>
-                                <?php 
-                                        }
-							            else{
-                                        ?>
+                                <?php }
+                                // if
+                                else{ ?>
                                 <center>
                                     <button class="btn btn-warning" disabled>
-                                        <i class="ti ti-search"></i> Edit Information
+                                        <i class="fa fa-info-circle"></i>
                                     </button>
                                 </center>
-                                <?php 
-                                        }
-                                        ?>
-
+                                <?php }
+                                        // else ?>
                             </td>
                         </tr>
+                        
                         <?php 
                             $table_index += 1;
                                          }

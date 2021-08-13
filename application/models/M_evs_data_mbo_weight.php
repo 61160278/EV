@@ -74,6 +74,16 @@ class M_evs_data_mbo_weight extends Da_evs_data_mbo_weight {
 		return $query;
 	
 	}//get_by_empID
+
+	function get_by_empID_app(){	
+		$sql = "SELECT *
+		FROM evs_database.evs_data_mbo_weight AS mbo
+		WHERE mbo.dmw_evs_emp_id = ? AND mbo.dmw_approver = ?
+		ORDER BY mbo.dmw_id ASC";
+		$query = $this->db->query($sql, array($this->dmw_evs_emp_id,$this->dmw_approver));
+		return $query;
+	
+	}//get_by_empID
 	/*
 	* update
 	* Update Category into database

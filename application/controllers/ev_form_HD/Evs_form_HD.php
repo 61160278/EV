@@ -39,9 +39,12 @@ class Evs_form_HD extends MainController_avenxo {
 	{
 		$comment = [];
 		$status = [];
-		$data_chack_form = [];	
+		$data_chack_form = [];
+		$data_chack_form_com = [];	
 		$check = 0;
 		$chack_save = 0;
+		$check_com = 0;
+		$chack_save_com = 0;
 		$chack_form_save = 0;
 		$reject_ro_report = 0;
 		
@@ -90,6 +93,38 @@ class Evs_form_HD extends MainController_avenxo {
 			$this->mdtg->dtg_evs_emp_id = $tep->emp_id;
 			$data['check'] = $data['data_gcm_weight'] = $this->mdtg->get_by_empID()->result();
 			$check += sizeof($data['check']);
+			// -----------------------------------------------
+
+			$this->load->model('M_evs_data_mbo_weight','medw');
+			$this->medw->dmw_evs_emp_id = $tep->emp_id;
+			$this->medw->dmw_approver = $_SESSION['UsEmp_ID'];
+			$data['check_com'] = $data['data_mbo'] = $this->medw->get_by_empID_app()->result();
+			$check_com += sizeof($data['check_com']);
+	
+			$this->load->model('M_evs_data_g_and_o_weight','megw');
+			$this->megw->dgw_evs_emp_id = $tep->emp_id;
+			$this->megw->dgw_approver = $_SESSION['UsEmp_ID'];
+			$data['check_com'] = $data['data_g_and_o'] = $this->megw->get_by_empID_app()->result();
+			$check_com += sizeof($data['check_com']);
+
+			$this->load->model('M_evs_data_mhrd_weight','memw');
+			$this->memw->mhw_evs_emp_id = $tep->emp_id;
+			$this->memw->mhw_approver = $_SESSION['UsEmp_ID'];
+			$data['check_com'] = $data['data_mhrd'] = $this->memw->get_by_empID_app()->result();
+			$check_com += sizeof($data['check_com']);
+	
+			$this->load->model('M_evs_data_acm_weight','mdtm');
+			$this->mdtm->dta_evs_emp_id = $tep->emp_id;
+			$this->mdtm->dta_approver = $_SESSION['UsEmp_ID'];
+			$data['check_com'] = $data['data_acm_weight'] = $this->mdtm->get_by_empID_app()->result();
+			$check_com += sizeof($data['check_com']);
+
+			$this->load->model('M_evs_data_gcm_weight','mdtg');
+			$this->mdtg->dtg_evs_emp_id = $tep->emp_id;
+			$this->mdtg->dtg_approver = $_SESSION['UsEmp_ID'];
+			$data['check_com'] = $data['data_gcm_weight'] = $this->mdtg->get_by_empID_app()->result();
+			$check_com += sizeof($data['check_com']);
+			// -----------------------------------------------
 
 			$this->load->model('M_evs_data_approve','meda');
 			$this->meda->emp_employee_id = $row->emp_employee_id;
@@ -122,9 +157,8 @@ class Evs_form_HD extends MainController_avenxo {
 
 			}
 			// if
-
 			array_push($data_chack_form,$check);
-
+			array_push($data_chack_form_com,$check_com);
 		}
 		// foreach
 
@@ -143,19 +177,22 @@ class Evs_form_HD extends MainController_avenxo {
 		// if 
 		else{$chack_save_button = "Un_Chack";}
 		// else 
+
 		$data['data_status'] = $status;
 		$data['chack_save'] = $chack_save_button;
 		$data['data_chack_form'] = $data_chack_form;
+		$data['data_chack_form_com'] = $data_chack_form_com;
 		$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
 
 		if($reject_ro_report == 0){
-		$this->output('/consent/ev_form_HD/v_main_form',$data);
+			$this->output('/consent/ev_form_HD/v_main_form',$data);
 		}
 		else{
 			$data['data_comment'] = $comment;
 			
 			$this->output('/consent/ev_form_HD/v_main_form_reject',$data);
 		}
+		// else 
 	}
 	// function index()
 

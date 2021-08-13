@@ -124,6 +124,10 @@ class M_evs_group extends Da_evs_group {
 				ON pay.pay_id = eem.emp_pay_id
 				INNER JOIN dbmc.employee as dem
 				ON eem.emp_employee_id =  dem.Emp_ID
+				INNER JOIN dbmc.group_secname AS gsec 
+				ON gsec.Sectioncode = dem.Sectioncode_ID
+				INNER JOIN dbmc.position AS pos
+				ON pos.Position_ID = dem.Position_ID
 				WHERE emp_pay_id = ? AND gru_head_dept = ?
 				ORDER BY `dem`.`Emp_ID` ASC";
 		$query = $this->db->query($sql, array($this->emp_pay_id, $this->gru_head_dept));

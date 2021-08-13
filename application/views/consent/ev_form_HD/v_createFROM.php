@@ -131,7 +131,7 @@ function show_weight_acm_edit() {
     for (i = 0; i < index; i++) {
         weight = document.getElementById("weigth_acm_edit_" + i).value;
         console.log(weight)
-        document.getElementById('weigth_acm_edit_' + i + '').innerHTML = arr_weight[i] *  weight;
+        document.getElementById('show_weight_acm_edit_' + i + '').innerHTML = arr_weight[i] *  weight;
         sum += arr_weight[i] * document.getElementById("weigth_acm_edit_" + i).value;
     }
     document.getElementById('weight_all_acm_edit').innerHTML = sum;
@@ -149,7 +149,7 @@ function update_ACM_edit() {
     var App = document.getElementById("App_Emp_ID").value;
 
     for (i = 0; i < index; i++) {
-        arr_sfa_id.push(document.getElementsByName("sfa_id")[i].value);
+        arr_sfa_id.push(document.getElementsByName("sfa_id"+i).value);
         $("[name = rd_acm_edit_" + i + "]").each(function(index) {
             if ($(this).prop("checked") == true) {
                 arr_radio.push(document.getElementsByName("rd_acm_edit_" + i + "")[index].value);
@@ -1148,12 +1148,11 @@ function main_index() {
 
                                 </tr>
                                 <!-- end tr  -->
-
-                                <input type="text" id="table_index_radio_g_o_edit"
-                                    value="<?php echo $table_index_radio_g_o_edit; ?>" hidden>
                                 <?}
-                            // foreach
-                            }
+                            // foreach ?>
+                            <input type="text" id="table_index_radio_g_o_edit"
+                                    value="<?php echo $table_index_radio_g_o_edit; ?>" hidden>
+                            <?php }
                             // if
                             ?>
 
