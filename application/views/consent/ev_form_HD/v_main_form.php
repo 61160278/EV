@@ -202,7 +202,7 @@ function main_index() {
                                 // if
                                 else{ ?>
                                 <center>
-                                    <button class="btn btn-warning" disabled>
+                                    <button class="btn btn-info" disabled>
                                         <i class="fa fa-info-circle"></i>
                                     </button>
                                 </center>
@@ -210,7 +210,7 @@ function main_index() {
                                         // else ?>
                             </td>
                         </tr>
-                        
+
                         <?php 
                             $table_index += 1;
                                          }
@@ -233,6 +233,12 @@ function main_index() {
                 <br>
                 <div class="row">
                     <div class="col-md-6">
+                    <a href="<?php echo base_url(); ?>Evs_all_manage/index_a">
+                            <button class="btn btn-inverse" >BACK</button>
+                        </a>
+                    </div>
+                    <!-- col-6  -->
+                    <div class="col-md-6" align="right">
                         <?php if(sizeof($status) != 0){ ?>
                         <a href="">
                             <button id="" class="btn btn-danger" onclick="">Reject Report</button>
@@ -244,9 +250,6 @@ function main_index() {
 
                         <?php }
                     // else ?>
-                    </div>
-                    <!-- col-6  -->
-                    <div class="col-md-6" align="right">
                         <?php if(sizeof($status) != 0){ ?>
                         <button id="save" class="btn btn-success" onclick="save_group_to_HR()"> Save</button>
                         <?php } 

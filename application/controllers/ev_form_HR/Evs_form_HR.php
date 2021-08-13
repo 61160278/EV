@@ -59,13 +59,13 @@ class Evs_form_HR extends MainController_avenxo {
 	* @author 	Kunanya Singmee
 	* @Create Date 2564-04-05
 	*/
-	function table_uesr_goup()
-	{
-		$data_chack_form = [];	
+	function table_uesr_goup(){
+		$data_chack_form = [];
+		$data_chack_form_com = [];	
 		$check = 0;
+		$check_com = 0;
 		$chack_save = 0;
 		$chack_form_save = 0;
-		
 		
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
@@ -73,12 +73,10 @@ class Evs_form_HR extends MainController_avenxo {
 		//end set year now
 		$pay_id = $year->pay_id;
 
-
 		$this->load->model('M_evs_group','megu');
 		$this->megu->emp_pay_id = $pay_id;
 		$this->megu->gru_head_dept = $_SESSION['UsEmp_ID'];
 		$emp_data = $data['data_group'] = $this->megu->get_group_by_head_dept()->result();
-
 
 		foreach ($emp_data as $row) {
 			if($row->emp_employee_id != $_SESSION['UsEmp_ID']){
@@ -88,68 +86,97 @@ class Evs_form_HR extends MainController_avenxo {
 			$data['emp_info'] = $this->memp->get_by_empid();
 
 			$tep = $data['emp_info']->row();
-
 			$check = 0;
+			$check_com = 0;
 
 			$this->load->model('M_evs_data_mbo_weight','medw');
 			$this->medw->dmw_evs_emp_id = $tep->emp_id;
 			$data['check'] = $data['data_mbo'] = $this->medw->get_by_empID()->result();
 			$check += sizeof($data['check']);
-	
 
 			$this->load->model('M_evs_data_g_and_o_weight','megw');
 			$this->megw->dgw_evs_emp_id = $tep->emp_id;
 			$data['check'] = $data['data_g_and_o'] = $this->megw->get_by_empID()->result();
 			$check += sizeof($data['check']);
 
-
-	
 			$this->load->model('M_evs_data_mhrd_weight','memw');
 			$this->memw->mhw_evs_emp_id = $tep->emp_id;
 			$data['check'] = $data['data_mhrd'] = $this->memw->get_by_empID()->result();
 			$check += sizeof($data['check']);
-
-
 	
 			$this->load->model('M_evs_data_acm_weight','mdtm');
 			$this->mdtm->dta_evs_emp_id = $tep->emp_id;
 			$data['check'] = $data['data_acm_weight'] = $this->mdtm->get_by_empID()->result();
 			$check += sizeof($data['check']);
 
-
-	
 			$this->load->model('M_evs_data_gcm_weight','mdtg');
 			$this->mdtg->dtg_evs_emp_id = $tep->emp_id;
 			$data['check'] = $data['data_gcm_weight'] = $this->mdtg->get_by_empID()->result();
 			$check += sizeof($data['check']);
+			// ------------------------------------------
 
+			$this->load->model('M_evs_data_mbo_weight','medw');
+			$this->medw->dmw_evs_emp_id = $tep->emp_id;
+			$this->medw->dmw_approver = $_SESSION['UsEmp_ID'];
+			$data['check_com'] = $data['data_mbo'] = $this->medw->get_by_empID_app()->result();
+			$check_com += sizeof($data['check_com']);
+	
+			$this->load->model('M_evs_data_g_and_o_weight','megw');
+			$this->megw->dgw_evs_emp_id = $tep->emp_id;
+			$this->megw->dgw_approver = $_SESSION['UsEmp_ID'];
+			$data['check_com'] = $data['data_g_and_o'] = $this->megw->get_by_empID_app()->result();
+			$check_com += sizeof($data['check_com']);
+
+			$this->load->model('M_evs_data_mhrd_weight','memw');
+			$this->memw->mhw_evs_emp_id = $tep->emp_id;
+			$this->memw->mhw_approver = $_SESSION['UsEmp_ID'];
+			$data['check_com'] = $data['data_mhrd'] = $this->memw->get_by_empID_app()->result();
+			$check_com += sizeof($data['check_com']);
+	
+			$this->load->model('M_evs_data_acm_weight','mdtm');
+			$this->mdtm->dta_evs_emp_id = $tep->emp_id;
+			$this->mdtm->dta_approver = $_SESSION['UsEmp_ID'];
+			$data['check_com'] = $data['data_acm_weight'] = $this->mdtm->get_by_empID_app()->result();
+			$check_com += sizeof($data['check_com']);
+
+			$this->load->model('M_evs_data_gcm_weight','mdtg');
+			$this->mdtg->dtg_evs_emp_id = $tep->emp_id;
+			$this->mdtg->dtg_approver = $_SESSION['UsEmp_ID'];
+			$data['check_com'] = $data['data_gcm_weight'] = $this->mdtg->get_by_empID_app()->result();
+			$check_com += sizeof($data['check_com']);
+			// -----------------------------------------------
 			}
+			// if 
 			array_push($data_chack_form,$check);
-
+			array_push($data_chack_form_com,$check_com);
 		} 
+		// foreach
 
 
 		foreach($emp_data as $index => $row) {
 			if($data_chack_form[$index]  != 0){
 				$chack_form_save += 1; 
 			}
+			// if 
 			$chack_save += 1;
 		}
+		// foreach 
 		
 		if($chack_form_save == $chack_save){ 
 			$chack_save_button = "Chack";
 		}
+		// if 
 		else{$chack_save_button = "Un_Chack";}
+		// else
 
 		$data['chack_save'] = $chack_save_button;
-
 		$data['data_chack_form'] = $data_chack_form;
-
+		$data['data_chack_form_com'] = $data_chack_form_com;
 		$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
 		
 		$this->output('/consent/ev_form_HR/v_main_form',$data);
 	}
-	// function index()
+	// function table_uesr_goup
 	
 	/*
 	* createACM
@@ -158,8 +185,7 @@ class Evs_form_HR extends MainController_avenxo {
 	* @author 	Kunanya Singmee
 	* @Create Date 2564-04-07
 	*/
-	function createFROM($EMP_ID,$Hard_Dep,$group)
-	{
+	function createFROM($EMP_ID,$Hard_Dep,$group){
 		$data['data_from_pe'] = "";
 		$data['data_from_ce'] = "";
 		$this->load->model('M_evs_pattern_and_year','myear');
@@ -256,14 +282,9 @@ class Evs_form_HR extends MainController_avenxo {
 			$this->load->model('M_evs_set_form_ability','mesf');
 			$this->mesf->sfa_pos_id = $tep->Position_ID;
 			$this->mesf->sfa_pay_id = $pay_id;
-			$data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator()->result();
-
-			$this->load->model('M_evs_expected_behavior','mept');
-			$data['info_expected'] = $this->mept->get_all_by_pos()->result();
-
-			$data['info_pos_id'] = $tep->Position_ID;
-
-				$data['data_from_ce'] = "ACM_edit";
+			$this->mesf->ept_pos_id = $tep->Position_ID;
+			$data['info_ability_form'] = $this->mesf->get_all_competency();
+			$data['data_from_ce'] = "ACM_edit";
 	
 		// else	
 		}
@@ -295,10 +316,11 @@ class Evs_form_HR extends MainController_avenxo {
 	}
 	// function createACM
 	
-	function table_goup($Emp_ID,$group)
-	{
-		$data_chack_form = [];	
+	function table_goup($Emp_ID,$group){
+		$data_chack_form = [];
+		$data_chack_form_com = [];
 		$check = 0;
+		$check_com = 0;
 		$chack_save = 0;
 		$chack_form_save = 0;
 		
@@ -313,84 +335,110 @@ class Evs_form_HR extends MainController_avenxo {
 		$this->load->model('M_evs_group','megu');
 		$this->megu->emp_pay_id = $pay_id;
 		$this->megu->gru_head_dept = $Emp_ID;
-		$this->megu->gru_name = $group;
+		$this->megu->gru_id = $group;
 		$emp_data = $data['data_group'] = $this->megu->get_group_by_group_head_dept()->result();
 
-
 		foreach ($emp_data as $row) {
-			if($row->emp_employee_id != $Emp_ID){
+			if($row->emp_employee_id != $_SESSION['UsEmp_ID']){
 			$this->load->model('M_evs_employee','memp');
 			$this->memp->Emp_ID = $row->emp_employee_id;
 			$this->memp->emp_pay_id = $pay_id;
 			$data['emp_info'] = $this->memp->get_by_empid();
 
 			$tep = $data['emp_info']->row();
-
 			$check = 0;
+			$check_com = 0;
 
 			$this->load->model('M_evs_data_mbo_weight','medw');
 			$this->medw->dmw_evs_emp_id = $tep->emp_id;
 			$data['check'] = $data['data_mbo'] = $this->medw->get_by_empID()->result();
 			$check += sizeof($data['check']);
-	
 
 			$this->load->model('M_evs_data_g_and_o_weight','megw');
 			$this->megw->dgw_evs_emp_id = $tep->emp_id;
 			$data['check'] = $data['data_g_and_o'] = $this->megw->get_by_empID()->result();
 			$check += sizeof($data['check']);
 
-
-	
 			$this->load->model('M_evs_data_mhrd_weight','memw');
 			$this->memw->mhw_evs_emp_id = $tep->emp_id;
 			$data['check'] = $data['data_mhrd'] = $this->memw->get_by_empID()->result();
 			$check += sizeof($data['check']);
-
-
 	
 			$this->load->model('M_evs_data_acm_weight','mdtm');
 			$this->mdtm->dta_evs_emp_id = $tep->emp_id;
 			$data['check'] = $data['data_acm_weight'] = $this->mdtm->get_by_empID()->result();
 			$check += sizeof($data['check']);
 
-
-	
 			$this->load->model('M_evs_data_gcm_weight','mdtg');
 			$this->mdtg->dtg_evs_emp_id = $tep->emp_id;
 			$data['check'] = $data['data_gcm_weight'] = $this->mdtg->get_by_empID()->result();
 			$check += sizeof($data['check']);
+			// ------------------------------------------
 
+			$this->load->model('M_evs_data_mbo_weight','medw');
+			$this->medw->dmw_evs_emp_id = $tep->emp_id;
+			$this->medw->dmw_approver = $_SESSION['UsEmp_ID'];
+			$data['check_com'] = $data['data_mbo'] = $this->medw->get_by_empID_app()->result();
+			$check_com += sizeof($data['check_com']);
+	
+			$this->load->model('M_evs_data_g_and_o_weight','megw');
+			$this->megw->dgw_evs_emp_id = $tep->emp_id;
+			$this->megw->dgw_approver = $_SESSION['UsEmp_ID'];
+			$data['check_com'] = $data['data_g_and_o'] = $this->megw->get_by_empID_app()->result();
+			$check_com += sizeof($data['check_com']);
+
+			$this->load->model('M_evs_data_mhrd_weight','memw');
+			$this->memw->mhw_evs_emp_id = $tep->emp_id;
+			$this->memw->mhw_approver = $_SESSION['UsEmp_ID'];
+			$data['check_com'] = $data['data_mhrd'] = $this->memw->get_by_empID_app()->result();
+			$check_com += sizeof($data['check_com']);
+	
+			$this->load->model('M_evs_data_acm_weight','mdtm');
+			$this->mdtm->dta_evs_emp_id = $tep->emp_id;
+			$this->mdtm->dta_approver = $_SESSION['UsEmp_ID'];
+			$data['check_com'] = $data['data_acm_weight'] = $this->mdtm->get_by_empID_app()->result();
+			$check_com += sizeof($data['check_com']);
+
+			$this->load->model('M_evs_data_gcm_weight','mdtg');
+			$this->mdtg->dtg_evs_emp_id = $tep->emp_id;
+			$this->mdtg->dtg_approver = $_SESSION['UsEmp_ID'];
+			$data['check_com'] = $data['data_gcm_weight'] = $this->mdtg->get_by_empID_app()->result();
+			$check_com += sizeof($data['check_com']);
+			// -----------------------------------------------
 			}
+			// if 
 			array_push($data_chack_form,$check);
-
+			array_push($data_chack_form_com,$check_com);
 		} 
-
+		// foreach
 
 		foreach($emp_data as $index => $row) {
 			if($data_chack_form[$index]  != 0){
 				$chack_form_save += 1; 
 			}
+			// if
 			$chack_save += 1;
 		}
+		// foreach
 		
 		if($chack_form_save == $chack_save){ 
 			$chack_save_button = "Chack";
 		}
+		// if
 		else{$chack_save_button = "Un_Chack";}
-
+		// else 
 		$data['chack_save'] = $chack_save_button;
-
 		$data['data_chack_form'] = $data_chack_form;
-
+		$data['data_chack_form_com'] = $data_chack_form_com;
 		$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
 		$data['data_hard_dep'] = $Emp_ID;
 		$data['data_focas_group'] = $group;
 		
 		$this->output('/consent/ev_form_HR/v_main_form',$data);
 	}
+	// table_goup
 
-	function table_report($Emp_ID,$group)
-	{
+	function table_report($Emp_ID,$group){
 		$data_chack_form = [];	
 		$data_grade = [];
 		$check = 0;
@@ -677,8 +725,9 @@ class Evs_form_HR extends MainController_avenxo {
 		
 		$this->output('/consent/ev_form_HR/v_main_report_grade',$data);
 	}
-	function table_reject($Emp_ID,$group)
-	{
+	// table_report
+
+	function table_reject($Emp_ID,$group){
 		$data_chack_form = [];	
 		$data_grade = [];
 		$check = 0;
@@ -962,6 +1011,7 @@ class Evs_form_HR extends MainController_avenxo {
 		
 		$this->output('/consent/ev_form_HR/v_main_reject_grade',$data);
 	}
+	// table_reject
 	
 	function excel(){
 		$this->load->model('M_evs_pattern_and_year','myear');
@@ -975,9 +1025,9 @@ class Evs_form_HR extends MainController_avenxo {
 
 		$this->output('/consent/ev_form_HR/v_main_excel',$data);
 	}
+	// excel
 
-	function import()
-	{
+	function import(){
 
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
@@ -1164,7 +1214,6 @@ class Evs_form_HR extends MainController_avenxo {
 	}
 	// show_mhrd
 
-
 	function save_grade(){
 
 		$emp_id = $this->input->post("Emp_ID");
@@ -1223,6 +1272,7 @@ class Evs_form_HR extends MainController_avenxo {
 		echo json_encode($data);
 
 	}
+	// save_grade
 
 	function save_reject_grade(){
 
@@ -1262,9 +1312,8 @@ class Evs_form_HR extends MainController_avenxo {
 		echo json_encode($data);
 
 	}
+	// save_reject_grade
 
-
-	
 	function save_data_acm_weight(){
 
 		$ps_pos_id = $this->input->post("Emp_ID");
@@ -1321,6 +1370,7 @@ class Evs_form_HR extends MainController_avenxo {
 		$data = "update_data_acm_weight";
 		echo json_encode($data);		
 	}
+	// update_data_acm_weight
 
 //-------------------------------------------------
 	function save_data_gcm_weight(){

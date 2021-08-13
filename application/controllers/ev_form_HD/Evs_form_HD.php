@@ -35,8 +35,7 @@ class Evs_form_HD extends MainController_avenxo {
 	* @author 	Kunanya Singmee
 	* @Create Date 2564-04-05
 	*/
-	function index()
-	{
+	function index(){
 		$comment = [];
 		$status = [];
 		$data_chack_form = [];
@@ -68,6 +67,7 @@ class Evs_form_HD extends MainController_avenxo {
 
 			$tep = $data['emp_info']->row();
 			$check = 0;
+			$check_com = 0;
 
 			$this->load->model('M_evs_data_mbo_weight','medw');
 			$this->medw->dmw_evs_emp_id = $tep->emp_id;
@@ -196,8 +196,7 @@ class Evs_form_HD extends MainController_avenxo {
 	}
 	// function index()
 
-	function reject_choose()
-	{
+	function reject_choose(){
 		$comment = [];
 		$status = [];
 		$data_chack_form = [];	
@@ -226,6 +225,7 @@ class Evs_form_HD extends MainController_avenxo {
 
 			$tep = $data['emp_info']->row();
 			$check = 0;
+			
 
 			$this->load->model('M_evs_data_mbo_weight','medw');
 			$this->medw->dmw_evs_emp_id = $tep->emp_id;
@@ -310,8 +310,7 @@ class Evs_form_HD extends MainController_avenxo {
 	* @author 	Kunanya Singmee
 	* @Create Date 2564-04-07
 	*/
-	function createFROM($EMP_ID)
-	{
+	function createFROM($EMP_ID){
 		$data['data_from_pe'] = "";
 		$data['data_from_ce'] = "";
 		$this->load->model('M_evs_pattern_and_year','myear');

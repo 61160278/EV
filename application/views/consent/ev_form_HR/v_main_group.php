@@ -51,7 +51,7 @@ $(document).ready(function() {
                     <div class="col-md-11">
                         <label class="control-label">
                             <strong>
-                                <font size="5px">List of employees to report grade </font>
+                                <font size="5px">List of employees group to report grade </font>
                             </strong>
                         </label>
                     </div>
@@ -67,13 +67,13 @@ $(document).ready(function() {
                                 <center> No.</center>
                             </th>
                             <th rowspan="2" width="15%">
-                                <center>Employee id</center>
-                            </th>
-                            <th rowspan="2" width="15%">
-                                <center>Name</center>
+                                <center>Company</center>
                             </th>
                             <th rowspan="2" width="15%">
                                 <center>Group</center>
+                            </th>
+                            <th rowspan="2" width="15%">
+                                <center>Head dap.</center>
                             </th>
                             <th rowspan="2" width="20%">
                                 <center>Management</center>
@@ -97,16 +97,6 @@ $(document).ready(function() {
                             </td>
                             <td>
                                 <center>
-                                    <?php echo  $row->gru_name; ?>
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-                                    <?php echo $row->Empname_engTitle." ".$row->Empname_eng." ".$row->Empsurname_eng; ?>
-                                </center>
-                            </td>
-                            <td>
-                                <center>
                                     <?php if($row->gru_company_id == 1){
                                             echo "SDM"; 
                                         }
@@ -120,8 +110,19 @@ $(document).ready(function() {
                             </td>
                             <td>
                                 <center>
+                                    <?php echo  $row->gru_name; ?>
+                                </center>
+                            </td>
+                            <td>
+                                <center>
+                                    <?php echo $row->Empname_engTitle." ".$row->Empname_eng." ".$row->Empsurname_eng; ?>
+                                </center>
+                            </td>
+
+                            <td>
+                                <center>
                                     <a
-                                        href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $row->Emp_ID ?>/<?php echo $row->gru_name ?>">
+                                        href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $row->Emp_ID ?>/<?php echo $row->gru_id ?>">
                                         <button class="btn btn-info">
                                             <i class="ti ti-search"></i> View goroup
                                         </button>
@@ -143,7 +144,7 @@ $(document).ready(function() {
                 <div class="row">
                     <div class="col-sm-8" align="left">
                         <a href="<?php echo base_url(); ?>Evs_Controller/index">
-                            <button class="btn btn-inverse"><i class="fa fa-mail-reply"></i> Back</button>
+                            <button class="btn btn-inverse"></i> Back</button>
                         </a>
                     </div>
                     <!-- col-8  -->
