@@ -130,7 +130,8 @@ function main_index() {
                     <tbody>
                         <?php 
                                 $status = [];
-
+                                // print_r($data_chack_form_com);
+                                // print_r($data_chack_form);
                                 if(sizeof($data_status) != 0){
                                     foreach($data_status as $row){
                                         array_push($status,$row);
@@ -179,12 +180,23 @@ function main_index() {
                             <td>
                                 <?php if($data_chack_form[$index]  != 0){ ?>
                                 <center>
+                                    <?php if($data_chack_form_com[$index] == 0){ ?>
                                     <a
                                         href="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/createFROM/<?php echo $row->emp_employee_id ?>">
                                         <button class="btn btn-info">
                                             <i class="fa fa-info-circle"></i>
                                         </button>
                                     </a>
+                                    <?php }
+                                    //if
+                                    else { ?>
+                                    <a
+                                        href="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/createFROM/<?php echo $row->emp_employee_id ?>">
+                                        <button class="btn btn-success">
+                                            <i class="fa fa-check-circle"></i>
+                                        </button>
+                                    </a>
+                                    <?php } // else ?>
                                 </center>
                                 <?php }
                                 // if
