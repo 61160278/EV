@@ -489,16 +489,10 @@ class Evs_form_HD extends MainController_avenxo {
 		$Emp_ID = $this->input->post("Emp_ID");
 		$index = $this->input->post("index");
 
-		$this->load->model('M_evs_pattern_and_year','myear');
-		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
-		$year = $data['patt_year']->row(); // show value year now
-		//end set year now
-		$pay_id = $year->pay_id;
-
 		$this->load->model('M_evs_data_approve','mdap');
 
 		for ($i = 0; $i < $index; $i++) {
-			$this->mdap->dma_emp_id = $Emp_ID[$i];
+			$this->mdap->dma_dtm_emp_id = $Emp_ID[$i];
 			$this->mdap->dma_status = 4;
 			$this->mdap->update_status(); 
 		}
