@@ -143,6 +143,7 @@ class Evs_form_HD extends MainController_avenxo {
 			$this->meda->dma_status = -3;
 			$data['st_emp_reject'] = $this->meda->get_by_emp_and_status()->row();
 			$temp_reject = $data['st_emp_reject'];
+			if(sizeof($temp_reject) == 0){array_push($comment,"Edit Success");}
 			if(sizeof($temp_reject) != 0){
 				array_push($status,$temp_reject->emp_employee_id);
 
@@ -257,6 +258,7 @@ class Evs_form_HD extends MainController_avenxo {
 			$this->meda->dma_status = -3;
 			$data['st_emp_reject'] = $this->meda->get_by_emp_and_status()->row();
 			$temp_reject = $data['st_emp_reject'];
+			if(sizeof($temp_reject) == 0){array_push($status,$row->emp_employee_id); array_push($comment,"Edit Success"); }
 			if(sizeof($temp_reject) != 0){
 				array_push($status,$temp_reject->emp_employee_id);
 
@@ -264,6 +266,7 @@ class Evs_form_HD extends MainController_avenxo {
 				$this->mrjf->rjf_dma_id = $temp_reject->dma_id;
 				$this->mrjf->rjf_status = 3;
 				$data_rj_comment = $this->mrjf->get_all_by_dma_id_and_rjf_status()->row();
+			
 				array_push($comment,$data_rj_comment->rjf_comment);
 				$reject_ro_report = 1;
 			}
@@ -536,7 +539,7 @@ class Evs_form_HD extends MainController_avenxo {
 		echo json_encode($data);
 	
 	}
-	// save_group_to_HR
+	
 	
 
 	function save_data_acm_weight(){

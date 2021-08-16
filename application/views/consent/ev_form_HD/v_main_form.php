@@ -72,7 +72,7 @@ function save_group_to_HR() {
 // save_group_to_HR
 
 function main_index() {
-    window.location.href = "<?php echo base_url();?>/ev_form_HD/Evs_form_HD/index";
+   window.location.href = "<?php echo base_url();?>/ev_form_HD/Evs_form_HD/index";
 }
 // main_index 
 </script>
@@ -146,7 +146,7 @@ function main_index() {
 							    foreach($data_group as $index => $row) {
                                 if($data_emp_id != $row->emp_employee_id ) { ?>
                         <input name="Emp_ID" id="Emp_ID<?php echo $index; ?>" type="text"
-                            value="<?php echo $row->emp_employee_id ?>" hidden>
+                            value="<?php echo $row->emp_id ?>" hidden>
                         <tr>
                             <td>
                                 <center>
@@ -233,6 +233,7 @@ function main_index() {
                 <br>
                 <div class="row">
                     <div class="col-md-6">
+<<<<<<< Updated upstream
                     <a href="<?php echo base_url(); ?>Evs_all_manage/index_a">
                             <button class="btn btn-inverse" >BACK</button>
                         </a>
@@ -250,6 +251,11 @@ function main_index() {
 
                         <?php }
                     // else ?>
+=======
+                    </div>
+                    <!-- col-6  -->
+                    <div class="col-md-6" align="right">
+>>>>>>> Stashed changes
                         <?php if(sizeof($status) != 0){ ?>
                         <button id="save" class="btn btn-success" onclick="save_group_to_HR()"> Save</button>
                         <?php } 
