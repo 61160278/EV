@@ -23,6 +23,7 @@
 
 <script>
 $(document).ready(function() {
+    $('#show_emp').DataTable();
 
     if ("<?php echo $chack_save ?>" == "Chack") {
         document.getElementById("save").disabled = false;
@@ -72,7 +73,7 @@ function save_group_to_HR() {
 // save_group_to_HR
 
 function main_index() {
-   window.location.href = "<?php echo base_url();?>/ev_form_HD/Evs_form_HD/index";
+    window.location.href = "<?php echo base_url();?>/ev_form_HD/Evs_form_HD/index";
 }
 // main_index 
 </script>
@@ -96,7 +97,7 @@ function main_index() {
                 </div>
                 <!-- row  -->
                 <hr>
-                <table class="table table-bordered m-n">
+                <table class="table table-bordered m-n" id="show_emp">
                     <thead>
                         <tr>
                             <th>
@@ -130,8 +131,7 @@ function main_index() {
                     <tbody>
                         <?php 
                                 $status = [];
-                                // print_r($data_chack_form_com);
-                                // print_r($data_chack_form);
+                                $status_check = [];
                                 if(sizeof($data_status) != 0){
                                     foreach($data_status as $row){
                                         array_push($status,$row);
@@ -139,7 +139,6 @@ function main_index() {
                                     // foreach 
                                 }
                                 // if
-							
                                 $table_index = 0;
                                 if(sizeof($status) != 0){
 
@@ -189,7 +188,9 @@ function main_index() {
                                     </a>
                                     <?php }
                                     //if
-                                    else { ?>
+                                    else { 
+                                        array_push($status_check,$data_chack_form_com[$index]);
+                                        ?>
                                     <a
                                         href="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/createFROM/<?php echo $row->emp_employee_id ?>">
                                         <button class="btn btn-success">
@@ -218,12 +219,7 @@ function main_index() {
                                     }
                                     // foreach 
                                 }
-                                // if
-                                else { ?>
-                        <td colspan="7">No list of approved employees.</td>
-                        <?php }
-                                    // else  ?>
-
+                                // if ?>
                         <input type="text" id="table_index" value="<?php echo $table_index; ?>" hidden>
                     </tbody>
                     <!-- tbody  -->
@@ -233,14 +229,23 @@ function main_index() {
                 <br>
                 <div class="row">
                     <div class="col-md-6">
-<<<<<<< Updated upstream
-                    <a href="<?php echo base_url(); ?>Evs_all_manage/index_a">
-                            <button class="btn btn-inverse" >BACK</button>
+                        <a href="<?php echo base_url(); ?>Evs_all_manage/index_a">
+                            <button class="btn btn-inverse">BACK</button>
                         </a>
                     </div>
                     <!-- col-6  -->
                     <div class="col-md-6" align="right">
-                        <?php if(sizeof($status) != 0){ ?>
+                        <?php                         
+                        $check_btn = 0;
+                        foreach($data_chack_form_com as $index => $row){
+                                if(intval($row) > 0){
+                                    $check_btn++;
+                                }
+                                // if
+                        }
+                        // foreach
+                        
+                        if(sizeof($status) != 0){ ?>
                         <a href="">
                             <button id="" class="btn btn-danger" onclick="">Reject Report</button>
                         </a>
@@ -251,12 +256,8 @@ function main_index() {
 
                         <?php }
                     // else ?>
-=======
-                    </div>
-                    <!-- col-6  -->
-                    <div class="col-md-6" align="right">
->>>>>>> Stashed changes
-                        <?php if(sizeof($status) != 0){ ?>
+                        <?php 
+                        if(sizeof($status) == $check_btn){ ?>
                         <button id="save" class="btn btn-success" onclick="save_group_to_HR()"> Save</button>
                         <?php } 
                     // if

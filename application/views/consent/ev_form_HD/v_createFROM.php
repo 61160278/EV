@@ -149,7 +149,8 @@ function update_ACM_edit() {
     var App = document.getElementById("App_Emp_ID").value;
 
     for (i = 0; i < index; i++) {
-        arr_sfa_id.push(document.getElementsByName("sfa_id"+i).value);
+        arr_sfa_id.push(document.getElementById("sfa_id"+i).value);
+
         $("[name = rd_acm_edit_" + i + "]").each(function(index) {
             if ($(this).prop("checked") == true) {
                 arr_radio.push(document.getElementsByName("rd_acm_edit_" + i + "")[index].value);

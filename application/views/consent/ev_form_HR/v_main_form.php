@@ -23,7 +23,7 @@
 
 <script>
 $(document).ready(function() {
-
+    $('#show_emp').DataTable();
 });
 // document ready
 </script>
@@ -48,7 +48,7 @@ $(document).ready(function() {
                 <!-- row  -->
                 <hr>
 
-                <table class="table table-bordered table-striped m-n">
+                <table class="table table-bordered table-striped m-n" id="show_emp">
                     <thead>
                         <tr>
                             <th>

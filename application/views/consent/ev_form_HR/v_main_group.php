@@ -23,16 +23,10 @@
 
 <script>
 $(document).ready(function() {
-    if (<?php echo $chack_save ?> = "Chack") {
-        document.getElementById("save").disabled = true;
-    }
-    // if
-    else {
-        document.getElementById("save").disabled = false;
-    }
-    // else
+    $("#show_group").DataTable();
 });
 // document ready
+
 </script>
 <!-- END script  -->
 
@@ -44,6 +38,7 @@ $(document).ready(function() {
                 <h2>
                     <font color="#ffffff" size="6px"><b> Report Group </b></font>
                 </h2>
+                
             </div>
             <!-- heading -->
             <div class="panel-body">
@@ -60,36 +55,38 @@ $(document).ready(function() {
                 <!-- row  -->
                 <hr>
 
-                <table class="table table-bordered table-striped m-n">
+                <table class="table table-bordered m-n" id="show_group">
                     <thead>
                         <tr>
-                            <th rowspan="2" width="2%">
+                            <th width="2%">
                                 <center> No.</center>
                             </th>
-                            <th rowspan="2" width="15%">
+                            <th width="15%">
                                 <center>Company</center>
                             </th>
-                            <th rowspan="2" width="15%">
+                            <th width="15%">
                                 <center>Group</center>
                             </th>
-                            <th rowspan="2" width="15%">
+                            <th width="15%">
                                 <center>Head dap.</center>
                             </th>
-                            <th rowspan="2" width="20%">
+                            <th width="20%">
                                 <center>Management</center>
                             </th>
 
                         </tr>
                     </thead>
                     <!-- thead -->
-                    <tbody id="row_mbo">
+
+                    <tbody>
                         <?php 
                                 $table_index = 0;
+                                if($data_group != 0){
 							    foreach($data_group as $index => $row) {
                                 
                                 ?>
-                        <input name="Emp_ID" type="text" value="<?php echo $row->Emp_ID; ?>" hidden>
                         <tr>
+                            <input name="Emp_ID" type="text" value="<?php echo $row->Emp_ID; ?>" hidden>
                             <td>
                                 <center>
                                     <?php echo $index+1; ?>
@@ -124,22 +121,26 @@ $(document).ready(function() {
                                     <a
                                         href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $row->Emp_ID ?>/<?php echo $row->gru_id ?>">
                                         <button class="btn btn-info">
-                                            <i class="ti ti-search"></i> View goroup
+                                            <i class="ti ti-search"></i> View group
                                         </button>
                                     </a>
                                 </center>
                             </td>
-
                         </tr>
                         <?php 
                             $table_index += 1;
-                
                                     }
-                                    // foreach  ?>
+                                    // foreach  
+                                }
+                                // if ?>
 
                         <input type="text" id="table_index" value="<?php echo $table_index; ?>" hidden>
                     </tbody>
+                    <!-- tbody  -->
+
                 </table>
+                <!-- table  -->
+
                 <br>
                 <div class="row">
                     <div class="col-sm-8" align="left">
