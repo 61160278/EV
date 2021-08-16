@@ -23,7 +23,7 @@
 
 <script>
 $(document).ready(function() {
-
+    $('#show_report').DataTable();
 });
 // document ready
 
@@ -97,25 +97,25 @@ function save_grade() {
                 </div>
                 <!-- row  -->
 
-                <table class="table table-bordered table-striped m-n">
+                <table class="table table-bordered table-striped m-n" id="show_report">
                     <thead>
                         <tr>
-                            <th rowspan="2" width="2%">
+                            <th width="2%">
                                 <center> No.</center>
                             </th>
-                            <th rowspan="2" width="15%">
+                            <th  width="15%">
                                 <center>Employee id</center>
                             </th>
-                            <th rowspan="2" width="15%">
+                            <th width="15%">
                                 <center>Name-Surname</center>
                             </th>
-                            <th rowspan="2" width="15%">
+                            <th width="15%">
                                 <center>Group</center>
                             </th>
-                            <th rowspan="2" width="20%">
+                            <th  width="20%">
                                 <center>Grade</center>
                             </th>
-                            <th rowspan="2" width="20%">
+                            <th width="20%">
                                 <center>Comment</center>
                             </th>
 
@@ -124,6 +124,7 @@ function save_grade() {
                     <!-- thead -->
                     <tbody>
                         <?php 
+                        		print_r($data_group);
                                 $table_index = 0;
                             
 							    foreach($data_group as $index => $row) {

@@ -435,6 +435,8 @@ class Evs_form_HR extends MainController_avenxo {
 	// table_goup
 
 	function table_report($Emp_ID,$group){
+		echo $Emp_ID;
+		echo $group;
 		$data_chack_form = [];	
 		$data_grade = [];
 		$check = 0;
@@ -455,16 +457,16 @@ class Evs_form_HR extends MainController_avenxo {
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
 		$year = $data['patt_year']->row(); // show value year now
-		//end set year now
 		$pay_id = $year->pay_id;
+		//end set year now
 
 
 		$this->load->model('M_evs_group','megu');
 		$this->megu->emp_pay_id = $pay_id;
 		$this->megu->gru_head_dept = $Emp_ID;
 		$this->megu->gru_name = $group;
-		$emp_data = $data['data_group'] = $this->megu->get_group_by_group_head_dept()->result();
-
+		$data['data_group'] = $this->megu->get_group_by_group_head_dept()->result();
+		$emp_data = $data['data_group'];
 
 		foreach ($emp_data as $row) {
 			if($row->emp_employee_id != $Emp_ID){
@@ -686,35 +688,39 @@ class Evs_form_HR extends MainController_avenxo {
 			}
 
 		}
+		// foreach 
+
 		if((($sum_percent_pe+$sum_percent_ce/100)) >= 90) {array_push($data_grade,"S");}
 		else if((($sum_percent_pe+$sum_percent_ce/100)) >= 80) {array_push($data_grade,"A");}
-		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 75){array_push($data_grade,"B");}
-		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 70){array_push($data_grade,"B-");}
+		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 75){array_push($data_grade,"B+");}
+		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 70){array_push($data_grade,"B");}
+		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 65){array_push($data_grade,"B-");}
 		else if ((($sum_percent_pe+$sum_percent_ce/200)) >= 60){array_push($data_grade,"C");}
 		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 50){array_push($data_grade,"D");}
 		else{array_push($data_grade,"F");}
-
 			array_push($data_chack_form,$check);
-
 		}
+		// else 
 
 		foreach($emp_data as $index => $row) {
 			if($data_chack_form[$index]  != 0){
 				$chack_form_save += 1; 
 			}
+			//if
 			$chack_save += 1;
 		}
+		// foreach
 		
 		if($chack_form_save == $chack_save){ 
 			$chack_save_button = "Chack";
 		}
+		// if
 		else{$chack_save_button = "Un_Chack";}
+		// else 
 
 		$data['chack_save'] = $chack_save_button;
-
 		$data['data_chack_form'] = $data_chack_form;
 		$data['data_grade'] = $data_grade;
-
 		$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
 		$data['data_hard_dep'] = $Emp_ID;
 		$data['data_focas_group'] = $group;

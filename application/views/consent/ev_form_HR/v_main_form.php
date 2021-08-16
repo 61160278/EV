@@ -176,7 +176,7 @@ $(document).ready(function() {
                         &nbsp;
                         <a
                             href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_report/<?php echo $data_hard_dep; ?>/<?php echo $data_focas_group; ?>">
-                            <button id="save" class="btn btn-info" onclick="">Report Grad</button>
+                            <button id="save" class="btn btn-info" onclick="">Report Grade</button>
                         </a>
 
                     </div>
