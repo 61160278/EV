@@ -313,8 +313,8 @@ foreach($emp_info as $index => $row) {
                 <br>
                 <div class="row">
                     <div class="col-md-6" align="center">
-                        <img src="http://10.73.148.5/DBMC/IMG/emp120/<?echo $_SESSION[" UsEmp_ID"]?>.jpg" width="30%"
-                        class="img-responsive img-circle">
+                        <!-- <img src="http://10.73.148.5/DBMC/IMG/emp120/<?echo $_SESSION[" UsEmp_ID"]?>.jpg" width="30%"
+                        class="img-responsive img-circle"> -->
                     </div>
                     <!-- col-6  -->
                     <div class="col-md-6" align="center">

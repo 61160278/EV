@@ -188,316 +188,316 @@ function update_ACM_edit() {
     });
     // ajax
 }
-    // update_ACM_edit
+// update_ACM_edit
 
 
-    function show_weight_g_and_o_edit() {
-        var arr_weight = [];
-        var sum = 0;
-        var index = document.getElementById("table_index_radio_g_o_edit").value;
-        console.log(index);
-        for (i = 0; i < index; i++) {
+function show_weight_g_and_o_edit() {
+    var arr_weight = [];
+    var sum = 0;
+    var index = document.getElementById("table_index_radio_g_o_edit").value;
+    console.log(index);
+    for (i = 0; i < index; i++) {
 
-            $("[name = rd_g_o_edit_" + i + "]").each(function(index) {
-                if ($(this).prop("checked") == true) {
-                    arr_weight.push(document.getElementsByName("rd_g_o_edit_" + i + "")[index].value);
-                } //if
-            });
-        }
-
-        for (i = 0; i < index; i++) {
-
-            sum += arr_weight[i] * document.getElementsByName("weing_g_o_edit_" + i + "")[0].value;
-        }
-        document.getElementById("weight_all_g_o_edit").innerHTML = sum;
-
-    }
-    // show_weight_g_and_o_edit
-
-
-    function update_G_and_O_edit() {
-        var arr_radio = [];
-        var arr_dgo_id = [];
-        var arr_Evaluator_Review_edit = [];
-        var get_arr_dgo_id = "";
-        var index = document.getElementById("table_index_radio_g_o_edit").value;
-        var Emp_ID = document.getElementById("Emp_ID").value;
-        var App = document.getElementById("App_Emp_ID").value;
-
-        for (i = 0; i < index; i++) {
-            arr_dgo_id.push(document.getElementsByName("dgo_id")[i].value);
-            arr_Evaluator_Review_edit.push(document.getElementsByName("Evaluator_Review_edit")[i].value);
-            $("[name = rd_g_o_edit_" + i + "]").each(function(index) {
-                if ($(this).prop("checked") == true) {
-                    arr_radio.push(document.getElementsByName("rd_g_o_edit_" + i + "")[index].value);
-                } //if
-            });
-        }
-        console.log("index : " + index);
-        console.log("Emp_ID :  " + Emp_ID);
-        console.log("arr_dgo_id : " + arr_dgo_id);
-        console.log("arr_radio : " + arr_radio);
-        console.log("arr_Evaluator_Review : " + arr_Evaluator_Review_edit);
-
-
-        $.ajax({
-            type: "post",
-            dataType: "json",
-            url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_g_and_o",
-            data: {
-                "Emp_ID": Emp_ID,
-                "arr_dgo_id": arr_dgo_id,
-                "arr_radio": arr_radio,
-                "arr_Evaluator_Review": arr_Evaluator_Review_edit,
-                "App": App
-            },
-            success: function(data) {
-                console.log(data);
-            },
-            // success
-            error: function(data) {
-                console.log("9999 : error");
-            }
-            // error
+        $("[name = rd_g_o_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_weight.push(document.getElementsByName("rd_g_o_edit_" + i + "")[index].value);
+            } //if
         });
-        // ajax
     }
-    // update_G_and_O_edit
 
+    for (i = 0; i < index; i++) {
 
-    function show_weight_gcm_edit() {
-        var arr_weight = [];
-        var sum = 0;
-        var index = document.getElementById("table_index_radio_gcm_edit").value;
-        for (i = 0; i < index; i++) {
-
-            $("[name = rd_gcm_edit_" + i + "]").each(function(index) {
-                if ($(this).prop("checked") == true) {
-                    arr_weight.push(document.getElementsByName("rd_gcm_edit_" + i + "")[index].value);
-                } //if
-            });
-        }
-        for (i = 0; i < index; i++) {
-            document.getElementById("weight_gcm_edit_" + i + "").innerHTML = arr_weight[i] * document.getElementsByName(
-                "weing_gcm_edit_" +
-                i + "")[0].value;
-            sum += arr_weight[i] * document.getElementsByName("weing_gcm_edit_" + i + "")[0].value;
-        }
-        document.getElementById("weight_all_gcm_edit").innerHTML = sum;
+        sum += arr_weight[i] * document.getElementsByName("weing_g_o_edit_" + i + "")[0].value;
     }
-    // show_weight_gcm_edit
+    document.getElementById("weight_all_g_o_edit").innerHTML = sum;
+
+}
+// show_weight_g_and_o_edit
 
 
-    function update_GCM_edit() {
-        var arr_radio = [];
-        var arr_sgc_id = [];
-        var get_arr_sgc_id = "";
-        var index = document.getElementById("table_index_radio_gcm_edit").value;
-        var Emp_ID = document.getElementById("Emp_ID").value;
-        var App = document.getElementById("App_Emp_ID").value;
+function update_G_and_O_edit() {
+    var arr_radio = [];
+    var arr_dgo_id = [];
+    var arr_Evaluator_Review_edit = [];
+    var get_arr_dgo_id = "";
+    var index = document.getElementById("table_index_radio_g_o_edit").value;
+    var Emp_ID = document.getElementById("Emp_ID").value;
+    var App = document.getElementById("App_Emp_ID").value;
 
-        for (i = 0; i < index; i++) {
-            arr_sgc_id.push(document.getElementsByName("sgc_id")[i].value);
-            $("[name = rd_gcm_edit_" + i + "]").each(function(index) {
-                if ($(this).prop("checked") == true) {
-                    arr_radio.push(document.getElementsByName("rd_gcm_edit_" + i + "")[index].value);
-                } //if
-            });
-        }
-        console.log("index : " + index);
-        console.log("Emp_ID :  " + Emp_ID);
-        console.log("arr_sgc_id : " + arr_sgc_id);
-        console.log("arr_radio : " + arr_radio);
-
-        $.ajax({
-            type: "post",
-            dataType: "json",
-            url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_gcm_weight",
-            data: {
-                "Emp_ID": Emp_ID,
-                "arr_sgc_id": arr_sgc_id,
-                "arr_radio": arr_radio,
-                "App": App
-
-            },
-            success: function(data) {
-                console.log(data);
-                var hard_dep = document.getElementById("hard_dep").value;
-                var focas_group = document.getElementById("focas_group").value;
-                window.location.href =
-                    "<?php echo base_url();?>ev_form_HR/Evs_form_HR/table_goup/" + hard_dep + "/" +
-                    focas_group + "/";
-            },
-            // success
-            error: function(data) {
-                console.log("9999 : error");
-            }
-            // error
+    for (i = 0; i < index; i++) {
+        arr_dgo_id.push(document.getElementsByName("dgo_id")[i].value);
+        arr_Evaluator_Review_edit.push(document.getElementsByName("Evaluator_Review_edit")[i].value);
+        $("[name = rd_g_o_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_radio.push(document.getElementsByName("rd_g_o_edit_" + i + "")[index].value);
+            } //if
         });
-        // ajax
-
-
     }
-    // update_GCM_edit
+    console.log("index : " + index);
+    console.log("Emp_ID :  " + Emp_ID);
+    console.log("arr_dgo_id : " + arr_dgo_id);
+    console.log("arr_radio : " + arr_radio);
+    console.log("arr_Evaluator_Review : " + arr_Evaluator_Review_edit);
 
-    function show_weight_mbo_edit() {
-        var arr_weight = [];
-        var sum = 0;
-        var index = document.getElementById("table_index_radio_mbo_edit").value;
-        for (i = 0; i < index; i++) {
 
-            $("[name = rd_mbo_edit_" + i + "]").each(function(index) {
-                if ($(this).prop("checked") == true) {
-                    arr_weight.push(document.getElementsByName("rd_mbo_edit_" + i + "")[index].value);
-                }
-                //if
-            });
-            // each 
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_g_and_o",
+        data: {
+            "Emp_ID": Emp_ID,
+            "arr_dgo_id": arr_dgo_id,
+            "arr_radio": arr_radio,
+            "arr_Evaluator_Review": arr_Evaluator_Review_edit,
+            "App": App
+        },
+        success: function(data) {
+            console.log(data);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
         }
-        // for 
-        for (i = 0; i < index; i++) {
-            document.getElementById("weight_mbo_edit_" + i + "").innerHTML = arr_weight[i] * document.getElementsByName(
-                "weing_mbo_edit_" +
-                i + "")[0].value;
-            sum += arr_weight[i] * document.getElementsByName("weing_mbo_edit_" + i + "")[0].value;
-        }
-        document.getElementById("weight_all_mbo_edit").innerHTML = sum;
-    }
-    // show_weight_mbo_edit
+        // error
+    });
+    // ajax
+}
+// update_G_and_O_edit
 
 
-    function update_MBO_edit() {
-        var arr_radio = [];
-        var arr_dtm_id = [];
-        var get_arr_dtm_id = "";
-        var index = document.getElementById("table_index_radio_mbo_edit").value;
-        var Emp_ID = document.getElementById("Emp_ID").value;
-        var App = document.getElementById("App_Emp_ID").value;
+function show_weight_gcm_edit() {
+    var arr_weight = [];
+    var sum = 0;
+    var index = document.getElementById("table_index_radio_gcm_edit").value;
+    for (i = 0; i < index; i++) {
 
-        for (i = 0; i < index; i++) {
-            arr_dtm_id.push(document.getElementsByName("dtm_id")[i].value);
-            $("[name = rd_mbo_edit_" + i + "]").each(function(index) {
-                if ($(this).prop("checked") == true) {
-                    arr_radio.push(document.getElementsByName("rd_mbo_edit_" + i + "")[index].value);
-                } //if
-            });
-        }
-        console.log("index : " + index);
-        console.log("Emp_ID :  " + Emp_ID);
-        console.log("arr_dtm_id : " + arr_dtm_id);
-        console.log("arr_radio : " + arr_radio);
-
-        $.ajax({
-            type: "post",
-            dataType: "json",
-            url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_mbo",
-            data: {
-                "Emp_ID": Emp_ID,
-                "arr_dtm_id": arr_dtm_id,
-                "arr_radio": arr_radio,
-                "App": App
-
-            },
-            success: function(data) {
-                console.log(data);
-            },
-            // success
-            error: function(data) {
-                console.log("9999 : error");
-            }
-            // error
+        $("[name = rd_gcm_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_weight.push(document.getElementsByName("rd_gcm_edit_" + i + "")[index].value);
+            } //if
         });
-        // ajax
-
     }
-    // update_MBO_edit
-
-    function show_weight_mhrd_edit() {
-        var arr_weight_1 = [];
-        var arr_weight_2 = [];
-        var sum_1 = 0;
-        var sum_2 = 0;
-        var index = document.getElementById("table_index_radio_mhrd_edit").value;
-        for (i = 0; i < index; i++) {
-
-            $("[name = rd_mhrd_1_edit_" + i + "]").each(function(index) {
-                if ($(this).prop("checked") == true) {
-                    arr_weight_1.push(document.getElementsByName("rd_mhrd_1_edit_" + i + "")[index].value);
-                } //if
-            });
-
-            $("[name = rd_mhrd_2_edit_" + i + "]").each(function(index) {
-                if ($(this).prop("checked") == true) {
-                    arr_weight_2.push(document.getElementsByName("rd_mhrd_2_edit_" + i + "")[index].value);
-                } //if
-            });
-        }
-
-        for (i = 0; i < index; i++) {
-            sum_1 += parseInt(arr_weight_1[i]);
-            sum_2 += parseInt(arr_weight_2[i]);
-        }
-        document.getElementById("weight_all_mhrd_1_edit").innerHTML = sum_1;
-        document.getElementById("weight_all_mhrd_2_edit").innerHTML = sum_2;
+    for (i = 0; i < index; i++) {
+        document.getElementById("weight_gcm_edit_" + i + "").innerHTML = arr_weight[i] * document.getElementsByName(
+            "weing_gcm_edit_" +
+            i + "")[0].value;
+        sum += arr_weight[i] * document.getElementsByName("weing_gcm_edit_" + i + "")[0].value;
     }
-    // show_weight_mhrd_edit
+    document.getElementById("weight_all_gcm_edit").innerHTML = sum;
+}
+// show_weight_gcm_edit
 
 
-    function update_MHRD_edit() {
+function update_GCM_edit() {
+    var arr_radio = [];
+    var arr_sgc_id = [];
+    var get_arr_sgc_id = "";
+    var index = document.getElementById("table_index_radio_gcm_edit").value;
+    var Emp_ID = document.getElementById("Emp_ID").value;
+    var App = document.getElementById("App_Emp_ID").value;
 
-        var arr_sfi_id = [];
-        var arr_weight_1 = [];
-        var arr_weight_2 = [];
-        var get_arr_sfi_id = "";
-        var Emp_ID = document.getElementById("Emp_ID").value;
-        var App = document.getElementById("App_Emp_ID").value;
-
-        var index = document.getElementById("table_index_radio_mhrd_edit").value;
-        for (i = 0; i < index; i++) {
-            arr_sfi_id.push(document.getElementsByName("sfi_id")[i].value);
-            $("[name = rd_mhrd_1_edit_" + i + "]").each(function(index) {
-                if ($(this).prop("checked") == true) {
-                    arr_weight_1.push(document.getElementsByName("rd_mhrd_1_edit_" + i + "")[index].value);
-                } //if
-            });
-
-            $("[name = rd_mhrd_2_edit_" + i + "]").each(function(index) {
-                if ($(this).prop("checked") == true) {
-                    arr_weight_2.push(document.getElementsByName("rd_mhrd_2_edit_" + i + "")[index].value);
-                } //if
-            });
-        }
-        console.log("index : " + index);
-        console.log("Emp_ID :  " + Emp_ID);
-        console.log("arr_sfi_id : " + arr_sfi_id);
-        console.log("arr_radio_1 : " + arr_weight_1);
-        console.log("arr_radio_2 : " + arr_weight_2);
-
-
-        $.ajax({
-            type: "post",
-            dataType: "json",
-            url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_mhrd",
-            data: {
-                "Emp_ID": Emp_ID,
-                "arr_sfi_id": arr_sfi_id,
-                "arr_radio_1": arr_weight_1,
-                "arr_radio_2": arr_weight_2,
-                "App": App
-            },
-            success: function(data) {
-                console.log(data);
-            },
-            // success
-            error: function(data) {
-                console.log("9999 : error");
-            }
-            // error
+    for (i = 0; i < index; i++) {
+        arr_sgc_id.push(document.getElementsByName("sgc_id")[i].value);
+        $("[name = rd_gcm_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_radio.push(document.getElementsByName("rd_gcm_edit_" + i + "")[index].value);
+            } //if
         });
-        // ajax
-
     }
-    // update_MHRD_edit
+    console.log("index : " + index);
+    console.log("Emp_ID :  " + Emp_ID);
+    console.log("arr_sgc_id : " + arr_sgc_id);
+    console.log("arr_radio : " + arr_radio);
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_gcm_weight",
+        data: {
+            "Emp_ID": Emp_ID,
+            "arr_sgc_id": arr_sgc_id,
+            "arr_radio": arr_radio,
+            "App": App
+
+        },
+        success: function(data) {
+            console.log(data);
+            var hard_dep = document.getElementById("hard_dep").value;
+            var focas_group = document.getElementById("focas_group").value;
+            window.location.href =
+                "<?php echo base_url();?>ev_form_HR/Evs_form_HR/table_goup/" + hard_dep + "/" +
+                focas_group + "/";
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+
+
+}
+// update_GCM_edit
+
+function show_weight_mbo_edit() {
+    var arr_weight = [];
+    var sum = 0;
+    var index = document.getElementById("table_index_radio_mbo_edit").value;
+    for (i = 0; i < index; i++) {
+
+        $("[name = rd_mbo_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_weight.push(document.getElementsByName("rd_mbo_edit_" + i + "")[index].value);
+            }
+            //if
+        });
+        // each 
+    }
+    // for 
+    for (i = 0; i < index; i++) {
+        document.getElementById("weight_mbo_edit_" + i + "").innerHTML = arr_weight[i] * document.getElementsByName(
+            "weing_mbo_edit_" +
+            i + "")[0].value;
+        sum += arr_weight[i] * document.getElementsByName("weing_mbo_edit_" + i + "")[0].value;
+    }
+    document.getElementById("weight_all_mbo_edit").innerHTML = sum;
+}
+// show_weight_mbo_edit
+
+
+function update_MBO_edit() {
+    var arr_radio = [];
+    var arr_dtm_id = [];
+    var get_arr_dtm_id = "";
+    var index = document.getElementById("table_index_radio_mbo_edit").value;
+    var Emp_ID = document.getElementById("Emp_ID").value;
+    var App = document.getElementById("App_Emp_ID").value;
+
+    for (i = 0; i < index; i++) {
+        arr_dtm_id.push(document.getElementsByName("dtm_id")[i].value);
+        $("[name = rd_mbo_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_radio.push(document.getElementsByName("rd_mbo_edit_" + i + "")[index].value);
+            } //if
+        });
+    }
+    console.log("index : " + index);
+    console.log("Emp_ID :  " + Emp_ID);
+    console.log("arr_dtm_id : " + arr_dtm_id);
+    console.log("arr_radio : " + arr_radio);
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_data_mbo",
+        data: {
+            "Emp_ID": Emp_ID,
+            "arr_dtm_id": arr_dtm_id,
+            "arr_radio": arr_radio,
+            "App": App
+
+        },
+        success: function(data) {
+            console.log(data);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+
+}
+// update_MBO_edit
+
+function show_weight_mhrd_edit() {
+    var arr_weight_1 = [];
+    var arr_weight_2 = [];
+    var sum_1 = 0;
+    var sum_2 = 0;
+    var index = document.getElementById("table_index_radio_mhrd_edit").value;
+    for (i = 0; i < index; i++) {
+
+        $("[name = rd_mhrd_1_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_weight_1.push(document.getElementsByName("rd_mhrd_1_edit_" + i + "")[index].value);
+            } //if
+        });
+
+        $("[name = rd_mhrd_2_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_weight_2.push(document.getElementsByName("rd_mhrd_2_edit_" + i + "")[index].value);
+            } //if
+        });
+    }
+
+    for (i = 0; i < index; i++) {
+        sum_1 += parseInt(arr_weight_1[i]);
+        sum_2 += parseInt(arr_weight_2[i]);
+    }
+    document.getElementById("weight_all_mhrd_1_edit").innerHTML = sum_1;
+    document.getElementById("weight_all_mhrd_2_edit").innerHTML = sum_2;
+}
+// show_weight_mhrd_edit
+
+
+function update_MHRD_edit() {
+
+    var arr_sfi_id = [];
+    var arr_weight_1 = [];
+    var arr_weight_2 = [];
+    var get_arr_sfi_id = "";
+    var Emp_ID = document.getElementById("Emp_ID").value;
+    var App = document.getElementById("App_Emp_ID").value;
+
+    var index = document.getElementById("table_index_radio_mhrd_edit").value;
+    for (i = 0; i < index; i++) {
+        arr_sfi_id.push(document.getElementsByName("sfi_id")[i].value);
+        $("[name = rd_mhrd_1_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_weight_1.push(document.getElementsByName("rd_mhrd_1_edit_" + i + "")[index].value);
+            } //if
+        });
+
+        $("[name = rd_mhrd_2_edit_" + i + "]").each(function(index) {
+            if ($(this).prop("checked") == true) {
+                arr_weight_2.push(document.getElementsByName("rd_mhrd_2_edit_" + i + "")[index].value);
+            } //if
+        });
+    }
+    console.log("index : " + index);
+    console.log("Emp_ID :  " + Emp_ID);
+    console.log("arr_sfi_id : " + arr_sfi_id);
+    console.log("arr_radio_1 : " + arr_weight_1);
+    console.log("arr_radio_2 : " + arr_weight_2);
+
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/update_mhrd",
+        data: {
+            "Emp_ID": Emp_ID,
+            "arr_sfi_id": arr_sfi_id,
+            "arr_radio_1": arr_weight_1,
+            "arr_radio_2": arr_weight_2,
+            "App": App
+        },
+        success: function(data) {
+            console.log(data);
+        },
+        // success
+        error: function(data) {
+            console.log("9999 : error");
+        }
+        // error
+    });
+    // ajax
+
+}
+// update_MHRD_edit
 </script>
 <!-- script -->
 <?php  
@@ -2121,7 +2121,8 @@ function update_ACM_edit() {
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <form method="POST" action="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/index">
+                                <form method="POST"
+                                    action="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $data_hard_dep;?>/<?php echo $data_focas_group; ?>">
                                     <input id="emp_id" name="emp_id" type="text"
                                         value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
                                     <input type="submit" class="btn btn-inverse" value="BACK">

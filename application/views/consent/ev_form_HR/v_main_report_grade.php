@@ -47,8 +47,6 @@ function save_grade() {
     console.log(grade);
     console.log(comment);
 
-
-
     $.ajax({
         type: "post",
         dataType: "json",
@@ -60,6 +58,7 @@ function save_grade() {
         },
         success: function(data) {
             console.log(data);
+            window.location.href = "<?php echo base_url();?>ev_form_HR/Evs_form_HR/index";
         },
         // success
         error: function(data) {
@@ -69,7 +68,7 @@ function save_grade() {
     });
     // ajax
 
-    window.location.href = "<?php echo base_url();?>ev_form_HR/Evs_form_HR/index";
+    
 }
 </script>
 <!-- END script  -->
@@ -124,7 +123,6 @@ function save_grade() {
                     <!-- thead -->
                     <tbody>
                         <?php 
-                        		print_r($data_group);
                                 $table_index = 0;
                             
 							    foreach($data_group as $index => $row) {

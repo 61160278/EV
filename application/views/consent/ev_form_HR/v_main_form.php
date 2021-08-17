@@ -131,7 +131,7 @@ $(document).ready(function() {
                                     //if
                                     else { ?>
                                     <a
-                                        href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/createFROM/<?php echo $row->emp_employee_id; ?>/<?php echo $data_hard_dep; ?>/<?php echo $data_focas_group; ?>">
+                                        href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/editFROM/<?php echo $row->emp_employee_id; ?>/<?php echo $data_hard_dep; ?>/<?php echo $data_focas_group; ?>">
                                         <button class="btn btn-success">
                                             <i class="fa fa-check-circle"></i>
                                         </button>
