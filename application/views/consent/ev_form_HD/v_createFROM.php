@@ -131,7 +131,7 @@ function show_weight_acm_edit() {
     for (i = 0; i < index; i++) {
         weight = document.getElementById("weigth_acm_edit_" + i).value;
         console.log(weight)
-        document.getElementById('show_weight_acm_edit_' + i + '').innerHTML = arr_weight[i] *  weight;
+        document.getElementById('show_weight_acm_edit_' + i + '').innerHTML = arr_weight[i] * weight;
         sum += arr_weight[i] * document.getElementById("weigth_acm_edit_" + i).value;
     }
     document.getElementById('weight_all_acm_edit').innerHTML = sum;
@@ -149,7 +149,7 @@ function update_ACM_edit() {
     var App = document.getElementById("App_Emp_ID").value;
 
     for (i = 0; i < index; i++) {
-        arr_sfa_id.push(document.getElementById("sfa_id"+i).value);
+        arr_sfa_id.push(document.getElementById("sfa_id" + i).value);
 
         $("[name = rd_acm_edit_" + i + "]").each(function(index) {
             if ($(this).prop("checked") == true) {
@@ -1151,9 +1151,9 @@ function main_index() {
                                 <!-- end tr  -->
                                 <?}
                             // foreach ?>
-                            <input type="text" id="table_index_radio_g_o_edit"
+                                <input type="text" id="table_index_radio_g_o_edit"
                                     value="<?php echo $table_index_radio_g_o_edit; ?>" hidden>
-                            <?php }
+                                <?php }
                             // if
                             ?>
 
@@ -1423,7 +1423,7 @@ function main_index() {
 
 
                     <div class="tab-pane" id="ACM_edit">
-                    <table class="table table-bordered m-n">
+                        <table class="table table-bordered m-n">
                             <thead id="headmbo">
                                 <tr>
                                     <th rowspan="2">
@@ -1785,7 +1785,8 @@ function main_index() {
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-success" <?php echo $onclek_form_all  ?>> Save</button>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#save_data">
+                                    Save</button>
                             </div>
                         </div>
                         <!-- row -->
@@ -2168,7 +2169,8 @@ function main_index() {
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-success" <?php echo $onclek_form_all  ?>> Save</button>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#save_data">
+                                    Save</button>
                             </div>
                         </div>
                     </div>
@@ -2182,3 +2184,42 @@ function main_index() {
     <!-- panel-indigo -->
 </div>
 <!-- col-12 -->
+
+<!-- Modal save -->
+<div class="modal fade" id="save_data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:gray;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b></font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Do you want to Save Data YES or NO ?</font>
+                    </b></h2>
+            </div>
+            <!-- modal header -->
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="focusedinput" class="col-sm-12 control-label" align="center">Please verify the
+                        accuracy
+                        of the information.</label>
+                </div>
+                <!-- Group Name -->
+            </div>
+            <!-- modal-body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-left">
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                </div>
+                <button type="button" class="btn btn-success" id="btnsaveadd"
+                    <?php echo $onclek_form_all ?>>SAVE</button>
+            </div>
+            <!-- modal-footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal save-->

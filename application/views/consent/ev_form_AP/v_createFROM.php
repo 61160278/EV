@@ -309,7 +309,7 @@ function show_weight_g_and_o() {
         $("[name = rd_g_o_" + i + "]").each(function(index) {
             if ($(this).prop("checked") == true) {
                 arr_weight.push(document.getElementsByName("rd_g_o_" + i + "")[index].value);
-                
+
             } //if
         });
     }
@@ -328,7 +328,7 @@ function show_weight_g_and_o_edit() {
     var sum_w = 0;
     var index = document.getElementById("table_index_radio_g_o_edit").value;
     for (i = 0; i < index; i++) {
-        if(i == 0){
+        if (i == 0) {
             $("[name = rd_g_o_edit_" + i + "]").each(function(index) {
                 if ($(this).prop("checked") == true) {
                     arr_weight.push(document.getElementsByName("rd_g_o_edit_" + i + "")[index].value);
@@ -338,9 +338,9 @@ function show_weight_g_and_o_edit() {
         }
         // if
         else {
-            $("[name = rd_g_o_edit_" + (i+1) + "]").each(function(index) {
+            $("[name = rd_g_o_edit_" + (i + 1) + "]").each(function(index) {
                 if ($(this).prop("checked") == true) {
-                    arr_weight.push(document.getElementsByName("rd_g_o_edit_" + (i+1) + "")[index].value);
+                    arr_weight.push(document.getElementsByName("rd_g_o_edit_" + (i + 1) + "")[index].value);
                 } //if
             });
             // each
@@ -418,7 +418,7 @@ function update_G_and_O_edit() {
         arr_dgo_id.push(document.getElementsByName("dgo_id_edit")[i].value);
         arr_Evaluator_Review_edit.push(document.getElementsByName("Evaluator_Review_edit")[i].value);
 
-        if(i == 0){
+        if (i == 0) {
             $("[name = rd_g_o_edit_" + i + "]").each(function(index) {
                 if ($(this).prop("checked") == true) {
                     arr_radio.push(document.getElementsByName("rd_g_o_edit_" + i + "")[index].value);
@@ -428,9 +428,9 @@ function update_G_and_O_edit() {
         }
         // if
         else {
-            $("[name = rd_g_o_edit_" + (i+1) + "]").each(function(index) {
+            $("[name = rd_g_o_edit_" + (i + 1) + "]").each(function(index) {
                 if ($(this).prop("checked") == true) {
-                    arr_radio.push(document.getElementsByName("rd_g_o_edit_" + (i+1) + "")[index].value);
+                    arr_radio.push(document.getElementsByName("rd_g_o_edit_" + (i + 1) + "")[index].value);
                 } //if
             });
             // each
@@ -1969,7 +1969,7 @@ function update_approve() {
                                 </td>
                                 <td colspan="3"></td>
                                 <td align="center">
-                                <p id="weight_g_o_edit">
+                                    <p id="weight_g_o_edit">
                                 </td>
                             </tfoot>
                             <!-- tfoot -->
@@ -2715,7 +2715,7 @@ function update_approve() {
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-success" <?php echo $onclek_form_all  ?>> Save</button>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#save_data"> Save</button>
                             </div>
                         </div>
                         <!-- row -->
@@ -3085,7 +3085,7 @@ function update_approve() {
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-success" <?php echo $onclek_form_all  ?>> Save</button>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#save_data"> Save</button>
                             </div>
                         </div>
                         <!-- row -->
@@ -3407,7 +3407,7 @@ function update_approve() {
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-success" <?php echo $onclek_form_all  ?>> Save</button>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#save_data"> Save</button>
                             </div>
                         </div>
                         <!-- row -->
@@ -3789,7 +3789,8 @@ function update_approve() {
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-success" <?php echo $onclek_form_all  ?>> Save</button>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#save_data">
+                                    Save</button>
                             </div>
                         </div>
                     </div>
@@ -3803,3 +3804,43 @@ function update_approve() {
         <!-- panel-indigo -->
     </div>
     <!-- col-12 -->
+
+    <!-- Modal save -->
+    <div class="modal fade" id="save_data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:gray;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <font color="White"><b>&times;</b></font>
+                    </button>
+                    <h2 class="modal-title"><b>
+                            <font color="white">Do you want to Save Data YES or NO ?</font>
+                        </b></h2>
+                </div>
+                <!-- modal header -->
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="focusedinput" class="col-sm-12 control-label" align="center">Please verify the
+                            accuracy
+                            of the information.</label>
+                    </div>
+                    <!-- Group Name -->
+                </div>
+                <!-- modal-body -->
+
+                <div class="modal-footer">
+                    <div class="btn-group pull-left">
+                        <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                    </div>
+                    <button type="button" class="btn btn-success" id="btnsaveadd"
+                        <?php echo $onclek_form_all ?>>SAVE</button>
+                </div>
+                <!-- modal-footer -->
+            </div>
+            <!-- modal-content -->
+        </div>
+        <!-- modal-dialog -->
+    </div>
+    <!-- End Modal save-->
