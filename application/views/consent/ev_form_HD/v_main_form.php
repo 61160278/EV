@@ -67,7 +67,7 @@ function save_group_to_HR() {
         }
         // error
     });
-    // ajax
+    // ajax 
 
 }
 // save_group_to_HR
@@ -181,7 +181,7 @@ function main_index() {
                                 </center>
                             </td>
                             <td>
-                                <center><?php echo "A" ?></center>
+                                <center><?php echo $data_grade[$index] ?></center>
                             </td>
                             <td>
                                 <?php if($data_chack_form[$index]  != 0){ ?>
