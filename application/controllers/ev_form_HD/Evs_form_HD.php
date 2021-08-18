@@ -230,18 +230,19 @@ class Evs_form_HD extends MainController_avenxo {
 					foreach($data_mbo as $row_data_mbo){  
 						if($row->dtm_id == $row_data_mbo->dmw_dtm_id){
 							$sum = $row->dtm_weight * $row_data_mbo->dmw_weight;
-							$sum_max = $row->dtm_weight*5;
 							$sum_all += $sum;
-							$sum_max_all += $sum_max;
+							$sum_max_all += 1;
 						}
 						// if
 					}
 					// foreach 
 				}
 				// foreach 
-				$sum_percent_pe = ($sum_all/$sum_max_all)*100;
+				$sum_percent_pe = ($sum_all/$sum_max_all);
+				
 			}
 			// if
+			
 			else if($chack_form_pe =="G_and_O"){
 				$this->load->model('M_evs_data_g_and_o_weight','megw');
 				$this->megw->dgw_evs_emp_id = $tep->emp_id;
@@ -355,10 +356,10 @@ class Evs_form_HD extends MainController_avenxo {
 
 
 			$sum_total = floatval($sum_percent_pe) + floatval($sum_percent_ce);
-			echo $sum_percent_pe."--*--".$sum_percent_ce."<br>";
-			echo ($sum_total)."<br>";
-			echo ($sum_total/10)."<br>";
-			echo "<br>";
+			// echo $sum_percent_pe."--*--".$sum_percent_ce."<br>";
+			// echo ($sum_total)."<br>";
+			// echo ($sum_total/10)."<br>";
+			// echo "<br>";
 			if((($sum_total/10)) >= 90) {array_push($data_grade,"S");}
 			else if((($sum_total/10)) >= 80) {array_push($data_grade,"A");}
 			else if ((($sum_total/10)) >= 75){array_push($data_grade,"B+");}
@@ -374,7 +375,7 @@ class Evs_form_HD extends MainController_avenxo {
 			array_push($data_chack_form_com,$check_com);
 		}
 		// foreach
-		print_r($data_grade);
+		// print_r($data_grade);
 		foreach($emp_data as $index => $row) {
 			if($data_chack_form[$index]  != 0){
 				$chack_form_save += 1; 
@@ -398,15 +399,15 @@ class Evs_form_HD extends MainController_avenxo {
 		$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
 		$data['data_grade'] = $data_grade;
 
-		// if($reject_ro_report == 0){
-		// 	$this->output('/consent/ev_form_HD/v_main_form',$data);
-		// }
-		// else{
-		// 	$data['data_comment'] = $comment;
+		if($reject_ro_report == 0){
+			$this->output('/consent/ev_form_HD/v_main_form',$data);
+		}
+		else{
+			$data['data_comment'] = $comment;
 			
-		// 	$this->output('/consent/ev_form_HD/v_main_form_reject',$data);
-		// }
-		// // else 
+			$this->output('/consent/ev_form_HD/v_main_form_reject',$data);
+		}
+		// else 
 	}
 	// function index()
 
