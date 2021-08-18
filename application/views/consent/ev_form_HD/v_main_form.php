@@ -92,6 +92,7 @@ function main_index() {
                 <div class="row">
                     <div class="col-md-12">
                         <h3>List of employees to approve </h3>
+                        <?php print_r($data_grade); ?>
                     </div>
                     <!-- col-12  -->
                 </div>
@@ -120,6 +121,9 @@ function main_index() {
                             </th>
                             <th>
                                 <center>Group</center>
+                            </th>
+                            <th>
+                                <center>Grade</center>
                             </th>
                             <th>
                                 <center>Action</center>
@@ -175,6 +179,9 @@ function main_index() {
                                 <center>
                                     <?php echo $row->gru_name ?>
                                 </center>
+                            </td>
+                            <td>
+                                <center><?php echo "A" ?></center>
                             </td>
                             <td>
                                 <?php if($data_chack_form[$index]  != 0){ ?>
