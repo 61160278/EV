@@ -92,7 +92,6 @@ function main_index() {
                 <div class="row">
                     <div class="col-md-12">
                         <h3>List of employees to approve </h3>
-                        <?php print_r($data_grade); ?>
                     </div>
                     <!-- col-12  -->
                 </div>
@@ -145,7 +144,6 @@ function main_index() {
                                 // if
                                 $table_index = 0;
                                 if(sizeof($status) != 0){
-
 							    foreach($data_group as $index => $row) {
                                 if($data_emp_id != $row->emp_employee_id ) { ?>
                         <input name="Emp_ID" id="Emp_ID<?php echo $index; ?>" type="text"
