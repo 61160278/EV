@@ -603,9 +603,13 @@ class Evs_form_AP extends MainController_avenxo {
 			$this->load->model('M_evs_data_grade','mdgd');
 			$this->mdgd->dgr_pay_id = $pay_id;
 			$data['data_grade'] = $this->mdgd->get_all_by_year()->result();
-
-		
 			$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
+
+			$this->load->model('M_evs_data_approve','mda');
+			$this->mda->dma_emp_id = $_SESSION['UsEmp_ID'];
+			$data['app'] = $this->mda->get_by_id()->row();
+			$temp_app = $data['app'];
+			$data['status'] = $temp_app->dma_status;
 			
 			$this->output('/consent/ev_form_AP/v_main_report_grade',$data);
 

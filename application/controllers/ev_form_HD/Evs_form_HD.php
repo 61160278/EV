@@ -1254,6 +1254,8 @@ class Evs_form_HD extends MainController_avenxo {
 		$data = "save_data_g_and_o";
 		echo json_encode($data);		
 	}
+	// save_data_g_and_o
+
 	function update_data_g_and_o(){
 
 		$ps_pos_id = $this->input->post("Emp_ID");
@@ -1348,8 +1350,8 @@ class Evs_form_HD extends MainController_avenxo {
 			echo json_encode($data);		
 		}
 		// update_mhrd
-		function report_grade()
-		{
+
+		function report_grade(){
 			$status = [];
 			$data_chack_form = [];	
 			$check = 0;
@@ -1385,6 +1387,36 @@ class Evs_form_HD extends MainController_avenxo {
 
 		}
 		// report_grade
+function feedback(){
+	$this->load->model('M_evs_data_grade','mdg');
+	$this->mdg->gru_head_dept = $_SESSION['UsEmp_ID'];
+	$this->mdg->dma_status = 5;
+	$data['data_group'] = $this->mdg->get_by_gorup()->result();
+
+	$this->output('/consent/ev_form_HD/v_main_form_feedback',$data);
+}
+// if
+
+function save_feedback(){
+    
+	$Emp_ID = $this->input->post("Emp_ID");
+	$index = $this->input->post("index");
+	$status_us = $this->input->post("status_us");
+
+	$this->load->model('M_evs_data_approve','mdap');
+
+	for ($i = 0; $i < $index; $i++) {
+		$this->mdap->dma_emp_id = $Emp_ID[$i];
+		$this->mdap->dma_status = $status_us;
+		$this->mdap->update_status(); 
+	}
+	// for 
+	
+	$data = "save_feedback";
+	echo json_encode($data);
+
+}
+// save_feedback
 
 
 }

@@ -66,7 +66,7 @@ th {
                 <!-- row  -->
                 <div class="row">
                     <a href="<?php echo base_url() ?>ev_form/Evs_form/index">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="info-tile tile-indigo">
                                 <div class="tile-icon"><i class="fa fa-pencil-square"></i></div>
                                 <div class="tile-heading"><span>MENU</span></div>
@@ -82,7 +82,7 @@ th {
                     <!-- create form  -->
 
                     <a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/index">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="info-tile tile-indigo">
                                 <div class="tile-icon"><i class="fa fa-tachometer"></i></div>
                                 <div class="tile-heading"><span>MENU</span></div>
@@ -96,6 +96,23 @@ th {
                         <!-- col-4  -->
                     </a>
                     <!-- status form  -->
+
+                    <a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/feedback">
+                        <div class="col-md-4">
+                            <div class="info-tile tile-indigo">
+                                <div class="tile-icon"><i class="fa fa-tachometer"></i></div>
+                                <div class="tile-heading"><span>MENU</span></div>
+                                <div class="tile-body">
+                                    <span>Feedback group</span>
+                                </div>
+                                <!-- body  -->
+                            </div>
+                            <!-- title  -->
+                        </div>
+                        <!-- col-4  -->
+                    </a>
+                    <!-- status form  -->
+					
 					
                 </div>
                 <!-- row  -->

@@ -357,7 +357,7 @@ function save_ACM() {
                         </div>
                         <!-- col-md-6 -->
                         <div class="col-md-6" align="right">
-                            <button class="btn btn-success" onclick="save_ACM()"> Save</button>
+                            <button class="btn btn-success" onclick="save_ACM()"> Submit</button>
                         </div>
                     </div>
                     <!-- row -->

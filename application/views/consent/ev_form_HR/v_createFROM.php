@@ -1749,7 +1749,7 @@ function update_MHRD_edit() {
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
                                 <button class="btn btn-success" data-toggle="modal" data-target="#save_data">
-                                    Save</button>
+                                Submit</button>
                             </div>
                         </div>
                         <!-- row -->
@@ -2133,7 +2133,7 @@ function update_MHRD_edit() {
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
                                 <button class="btn btn-success" data-toggle="modal" data-target="#save_data">
-                                    Save</button>
+                                Submit</button>
                             </div>
                         </div>
                     </div>
@@ -2179,7 +2179,7 @@ function update_MHRD_edit() {
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
                 </div>
                 <button type="button" class="btn btn-success" id="btnsaveadd"
-                    <?php echo $onclek_form_all ?>>SAVE</button>
+                    <?php echo $onclek_form_all ?>>Submit</button>
             </div>
             <!-- modal-footer -->
         </div>

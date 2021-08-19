@@ -207,8 +207,9 @@ function main_index() {
                             <td>
                                 <font size="5px">
                                     <center>
-                                        <?php 
-        
+                                        <?php
+                                        print_r($status);
+                                    if($status == 8){
                                    foreach($data_grade as $index => $row_grade) {
                                        if($row_grade->dgr_emp_id == $row->emp_id){
                                             echo $row_grade->dgr_grade;
@@ -216,16 +217,20 @@ function main_index() {
 									   // if
                                    }
 								   // foreach 
+                                }
+                                // if
                                 ?>
                                         <center>
                                 </font>
                             </td>
 
                             <td align="center">
-                                <?php if(sizeof($data_grade) != 0){ 
-								foreach($data_grade as $index => $row_grade) {
-									if($row_grade->dgr_emp_id == $row->emp_id){
-									?>
+                                <?php 
+                            if($status == 8){
+                                if(sizeof($data_grade) != 0){ 
+                                    foreach($data_grade as $index => $row_grade) {
+                                        if($row_grade->dgr_emp_id == $row->emp_id){
+                                        ?>
 
                                 <button class="btn btn-info" data-toggle="modal"
                                     data-target="#detail_<?php echo $row_grade->dgr_id; ?>">
@@ -233,12 +238,14 @@ function main_index() {
                                 </button>
 
                                 <?php
-							        }
-									// if
+                                        }
+                                        // if
+                                    }
+                                    // foreach
                                 }
-								// foreach
-							}
-							// if
+                                // if
+                            }
+                            // if
 							else { ?>
                                 <button class="btn btn-info" disabled>
                                     <i class="ti ti-info-alt"></i>

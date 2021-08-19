@@ -1289,7 +1289,7 @@ function set_tap() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-success" id="btn_save" onclick="return check_mbo()">SAVE</button>
+                                <button class="btn btn-success" id="btn_save" onclick="return check_mbo()">Submit</button>
                             </div>
                             <!-- col-md-6 add_app -->
 
@@ -1444,7 +1444,7 @@ function set_tap() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-success" onclick="checkG_O()" id="btn_saveG_O">SAVE</button>
+                                <button class="btn btn-success" onclick="checkG_O()" id="btn_saveG_O">Submit</button>
                             </div>
                             <!-- col-md-6 add_app -->
 
@@ -2369,7 +2369,7 @@ function set_tap() {
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
                 </div>
                 <!--<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_sdm">-->
-                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="save_dataMBO()">SAVE</button>
+                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="save_dataMBO()">Submit</button>
                 <!--</a>-->
             </div>
             <!-- modal-footer -->
@@ -2481,7 +2481,7 @@ function set_tap() {
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
                 </div>
                 <!--<a href ="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_sdm">-->
-                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="saveG_O()">SAVE</button>
+                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="saveG_O()">Submit</button>
                 <!--</a>-->
             </div>
             <!-- modal-footer -->
@@ -2558,7 +2558,7 @@ function set_tap() {
 
                     <div class="col-md-6" align="rigth">
                         <button type="button" class="btn btn-success"
-                            onclick="return check_approve_mhrd()">SAVE</button>
+                            onclick="return check_approve_mhrd()">Submit</button>
                     </div>
                     <!-- col-6 -->
 
@@ -2639,7 +2639,7 @@ function set_tap() {
 
                     <div class="col-md-6" align="rigth">
                         <button type="button" class="btn btn-success"
-                            onclick="return check_approve_edt_mhrd()">SAVE</button>
+                            onclick="return check_approve_edt_mhrd()">Submit</button>
                     </div>
                     <!-- col-6 -->
 

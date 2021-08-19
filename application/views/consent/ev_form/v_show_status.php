@@ -327,14 +327,26 @@
                     <!-- col-md-6 -->
                     <?php }
                     // if
-                    else if($data_app->dma_status > 4){?>
+                    else if($data_app->dma_status == 5 ){?>
                     <div class="col-md-6" align="center">
                         <div class="alert alert-dismissable alert-success">
-                            <strong> Approve </strong>
+                            <strong> HR Approve  wait feedback form apporver </strong>
                         </div>
                     </div>
                     <!-- col-md-6 -->
-
+                    <?php }
+                    // else if 
+                    else if($data_app->dma_status == 8 ){?>
+                    <div class="col-md-6" align="center">
+                        <div class="alert alert-dismissable alert-success">
+                            <strong>Approve</strong>
+                        </div>
+                    </div>
+                    <!-- col-md-6 -->
+                    <?php }
+                    // else if ?>
+                    
+                    <?php if($data_app->dma_status == 8 ){?>
                     <div class="row">
                         <div class="col-md-10" align="right">
                             <a href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/report_grade">
@@ -344,8 +356,8 @@
                         <!-- col-11 -->
                     </div>
                     <!-- row -->
-                    <?php }
-                    // else if ?>
+                    <?php } // if?>
+
                 </div>
                 <!-- row  -->
             </div>

@@ -23,42 +23,34 @@
 
 <script>
 $(document).ready(function() {
-    $('#show_report').DataTable();
+    $('#show_emp').DataTable();
 });
 // document ready
 
-function save_grade() {
-    Emp_ID = [];
-    grade = [];
-    comment = [];
+function save_group_to_HR() {
+
+    var Emp_ID = [];
+    var comment = [];
     var index = document.getElementById("table_index").value;
 
-    console.log(index);
-
     for (i = 0; i < index; i++) {
-
-        Emp_ID.push(document.getElementsByName("Emp_ID")[i].value);
-        grade.push(document.getElementsByName("grade")[i].value);
-        comment.push(document.getElementsByName("comment")[i].value);
-
+        Emp_ID.push(document.getElementById("Emp_ID" + i).value);
+        comment.push(document.getElementById("comment" + i).value);
     }
-    // for
-    console.log(Emp_ID);
-    console.log(grade);
-    console.log(comment);
+    // for 
 
     $.ajax({
         type: "post",
         dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/save_grade",
+        url: "<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/save_feedback",
         data: {
             "Emp_ID": Emp_ID,
-            "grade": grade,
-            "comment": comment
+            "index": index,
+            "status_us" : "6"
         },
         success: function(data) {
             console.log(data);
-            window.location.href = "<?php echo base_url();?>ev_form_HR/Evs_form_HR/index";
+            main_index();
         },
         // success
         error: function(data) {
@@ -66,68 +58,76 @@ function save_grade() {
         }
         // error
     });
-    // ajax
-
+    // ajax 
 
 }
+// save_group_to_HR
+
+function main_index() {
+    window.location.href = "<?php echo base_url();?>/ev_form_HD/Evs_form_HD/feedback";
+}
+// main_index 
 </script>
-<!-- END script  -->
+<!-- END script -->
 
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
             <div class="panel-heading ">
                 <h2>
-                    <font color="#ffffff" size="6px"><b> Report Grade </b></font>
+                    <font color="#ffffff" size="6px"><b> Approve Group </b></font>
                 </h2>
             </div>
             <!-- heading -->
             <div class="panel-body">
-
                 <div class="row">
-                    <div class="col-md-11">
-                        <label class="control-label">
-                            <strong>
-                                <font size="5px">List of employees to report grade </font>
-                            </strong>
-                        </label>
+                    <div class="col-md-12">
+                        <h3>List of employees to approve </h3>
                     </div>
                     <!-- col-12  -->
                 </div>
                 <!-- row  -->
-
-                <table class="table table-bordered table-striped m-n" id="show_report">
+                <hr>
+                <table class="table table-bordered m-n" id="show_emp">
                     <thead>
                         <tr>
-                            <th width="2%">
-                                <center> No.</center>
+                            <th>
+                                <center>#</center>
                             </th>
-                            <th width="15%">
-                                <center>Employee id</center>
+                            <th>
+                                <center>Employee ID</center>
                             </th>
-                            <th width="15%">
-                                <center>Name-Surname</center>
+                            <th>
+                                <center>Name - surname</center>
                             </th>
-                            <th width="15%">
+                            <th>
+                                <center>Section Code</center>
+                            </th>
+                            <th>
+                                <center>Department</center>
+                            </th>
+                            <th>
+                                <center>Position</center>
+                            </th>
+                            <th>
                                 <center>Group</center>
                             </th>
-                            <th width="20%">
+                            <th>
                                 <center>Grade</center>
                             </th>
-                            <th width="20%">
-                                <center>Comment</center>
+                            <th>
+                                <center>Action</center>
                             </th>
-
                         </tr>
                     </thead>
                     <!-- thead -->
+
                     <tbody>
                         <?php 
-                                $table_index = 0;
-                            
-							    foreach($data_group as $index => $row) {
-                                if($data_emp_id != $row->emp_employee_id) { ?>
-                        <input name="Emp_ID" type="text" value="<?php echo $row->emp_id ?>" hidden>
+                            $table_index = 0;
+							    foreach($data_group as $index => $row) {?>
+                        <input name="Emp_ID" id="Emp_ID<?php echo $index; ?>" type="text"
+                            value="<?php echo $row->emp_id ?>" hidden>
                         <tr>
                             <td>
                                 <center>
@@ -137,7 +137,6 @@ function save_grade() {
                             <td>
                                 <center>
                                     <?php echo  $row->emp_employee_id ?>
-
                                 </center>
                             </td>
                             <td>
@@ -146,50 +145,71 @@ function save_grade() {
                                 </center>
                             </td>
                             <td>
+                                <center><?php echo $row->Sectioncode_ID; ?></center>
+                            </td>
+                            <td>
+                                <center><?php echo $row->Department; ?></center>
+                            </td>
+                            <td>
+                                <center><?php echo $row->Position_name; ?></center>
+                            </td>
+                            <td>
                                 <center>
                                     <?php echo $row->gru_name ?>
-
                                 </center>
                             </td>
                             <td>
-                                <center>
-                                    <?php echo $data_grade[$index]; ?>
-                                    <input type="text" name="grade" value="<?php echo $data_grade[$index]; ?>" hidden>
-                                </center>
+                                <center><?php echo $row->dgr_grade ?></center>
                             </td>
                             <td>
                                 <center>
-                                    <textarea type="text" name="comment" placeholder="Enter comment"
+                                    <textarea type="text" id="comment<?php echo $index; ?>" placeholder="Enter comment"
                                         class="form-control"></textarea>
                                 </center>
                             </td>
                         </tr>
+
                         <?php 
                             $table_index += 1;
-                                         }
-                                         // if
                                     }
-                                    // foreach ?>
-
+                                    // foreach  ?>
                         <input type="text" id="table_index" value="<?php echo $table_index; ?>" hidden>
                     </tbody>
+                    <!-- tbody  -->
                 </table>
+                <!-- table  -->
+
                 <br>
                 <div class="row">
                     <div class="col-md-6">
-                        <a
-                            href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $data_hard_dep ?>/<?php echo $data_focas_group ?>">
-                            <button type="button" class="btn btn-inverse">Back</button>
+                        <a href="<?php echo base_url(); ?>Evs_all_manage/index_a">
+                            <button class="btn btn-inverse">BACK</button>
                         </a>
                     </div>
+                    <!-- col-6  -->
                     <div class="col-md-6" align="right">
-                        <button class="btn btn-success" data-toggle="modal" data-target="#save_data"> Submit</button>
+                        <?php if(sizeof($data_group) != 0){?>
+                        <button id="save" class="btn btn-success" data-toggle="modal" data-target="#save_data">
+                        Accept</button>
+                        <?php }
+                        // if
+                        else {?>
+                        <button id="save" class="btn btn-success" disabled>
+                        Accept</button>
+                        <?php }
+                        // else ?>
                     </div>
+                    <!-- col-6  -->
                 </div>
+                <!-- row  -->
             </div>
+            <!-- body -->
         </div>
+        <!-- panel -->
     </div>
+    <!-- col-12  -->
 </div>
+<!-- row  -->
 
 <!-- Modal save -->
 <div class="modal fade" id="save_data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -219,7 +239,7 @@ function save_grade() {
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
                 </div>
-                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="save_grade()">Submit</button>
+                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="save_group_to_HR()">Submit</button>
             </div>
             <!-- modal-footer -->
         </div>
