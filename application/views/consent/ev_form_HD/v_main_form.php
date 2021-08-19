@@ -197,7 +197,7 @@ function main_index() {
                                         array_push($status_check,$data_chack_form_com[$index]);
                                         ?>
                                     <a
-                                        href="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/createFROM/<?php echo $row->emp_employee_id ?>">
+                                        href="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/editFROM/<?php echo $row->emp_employee_id ?>">
                                         <button class="btn btn-success">
                                             <i class="fa fa-check-circle"></i>
                                         </button>

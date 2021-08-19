@@ -247,7 +247,6 @@ class Evs_form_HD extends MainController_avenxo {
 						$this->mdgo->dgo_emp_id = $row->emp_employee_id;
 						$this->mdgo->dgo_evs_emp_id = $tep->emp_id;
 						$g_o_emp = $data['g_o_emp'] = $this->mdgo->get_by_empID()->result();
-						print_r($data_g_and_o);
 						foreach($g_o_emp as $index => $row){
 							foreach($data_g_and_o as $row_data_g_and_o){
 								if($row->dgo_id == $row_data_g_and_o->dgw_dgo_id){
@@ -380,7 +379,6 @@ class Evs_form_HD extends MainController_avenxo {
 						$this->medm->dtm_emp_id = $row->emp_employee_id;
 						$this->medm->dtm_evs_emp_id = $tep->emp_id;
 						$mbo_emp = $data['mbo_emp'] = $this->medm->get_by_empID()->result();
-						print_r($data_mbo);
 						foreach($mbo_emp as $index => $row) {
 							foreach($data_mbo as $row_data_mbo){  
 								if($row->dtm_id == $row_data_mbo->dmw_dtm_id){
@@ -819,6 +817,126 @@ class Evs_form_HD extends MainController_avenxo {
 	}
 	// function createACM
 
+	function editFROM($EMP_ID){
+		$data['data_from_pe'] = "";
+		$data['data_from_ce'] = "";
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+		$emp_id = $EMP_ID;
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $emp_id;
+		$this->memp->emp_pay_id = $pay_id;
+		$data['emp_info'] = $this->memp->get_by_empid();
+
+		$tep = $data['emp_info']->row();
+
+		//$emp_id = $this->input->post("emp_id");
+		
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->emp_employee_id = $emp_id;
+		$this->memp->emp_pay_id = $pay_id;
+		$employee_data = $data["employee_data"] = $this->memp->get_by_evs_emp_id()->row();
+
+		$this->load->model('M_evs_position_from','mpf');
+		$this->mpf->ps_pos_id = $tep->Position_ID;
+		$this->mpf->ps_pay_id = $pay_id;
+		$data['form'] = $this->mpf->get_all_by_key_by_year()->row();
+
+		if($data['form']->ps_form_pe == "MBO"){
+			$this->load->model('M_evs_data_mbo_weight','medw');
+			$this->medw->dmw_evs_emp_id = $tep->emp_id;
+			$this->medw->dmw_approver = $_SESSION['UsEmp_ID'];
+			$data['data_mbo'] = $this->medw->get_by_empID_app()->result();
+		
+			$this->load->model('M_evs_data_mbo','medm');
+			$this->medm->dtm_emp_id = $emp_id;
+			$this->medm->dtm_evs_emp_id = $tep->emp_id;
+			$data['mbo_emp'] = $this->medm->get_by_empID()->result();
+			$data['info_pos_id'] = $tep->Position_ID;
+
+			$data['data_from_pe'] = "MBO_edit";		
+		
+		}
+		// if
+
+		else if($data['form']->ps_form_pe == "G&O"){
+
+		$this->load->model('M_evs_data_g_and_o_weight','megw');
+		$this->megw->dgw_evs_emp_id = $tep->emp_id;
+		$this->megw->dgw_approver = $_SESSION['UsEmp_ID'];
+		$data['data_g_and_o'] = $this->megw->get_by_empID_app()->result();
+
+		$this->load->model('M_evs_data_g_and_o','mdgo');
+		$this->mdgo->dgo_emp_id = $emp_id;
+		$this->mdgo->dgo_evs_emp_id = $tep->emp_id;
+		$data['g_o_emp'] = $this->mdgo->get_by_empID()->result();
+		$data['info_pos_id'] = $tep->Position_ID;
+		
+		$this->load->model('M_evs_set_form_g_and_o','mesg');
+		$this->mesg->sfg_pay_id = $pay_id;
+		$this->mesg->sfg_pos_id = $tep->Position_ID;
+		$data['row_index'] = $this->mesg->get_all_by_key_by_year()->row();
+		
+		$data['data_from_pe'] = "G_and_O_edit";
+	
+		}
+		/// else if 
+
+		else if($data['form']->ps_form_pe == "MHRD"){
+			$this->load->model('M_evs_data_mhrd_weight','memw');
+			$this->memw->mhw_evs_emp_id = $tep->emp_id;
+			$this->memw->dta_approver = $_SESSION['UsEmp_ID'];
+			$data['data_mhrd'] = $this->memw->get_by_empID_app()->result();
+	
+			$this->load->model('M_evs_set_form_mhrd','msfm');
+			$this->msfm->sfi_pos_id = $tep->Position_ID;
+			$data['info_mhrd'] = $this->msfm->get_item_description_by_position()->result();
+	
+			$data['data_from_pe'] = "MHRD_edit";	
+		}
+		// else if
+
+
+		if($data['form']->ps_form_ce == "ACM"){
+	
+			$this->load->model('M_evs_data_acm_weight','mdtm');
+			$this->mdtm->dta_evs_emp_id = $tep->emp_id;
+			$this->mdtm->dta_approver = $_SESSION['UsEmp_ID'];
+			$data['data_acm_weight'] = $this->mdtm->get_by_empID_app()->result();
+			
+			$this->load->model('M_evs_set_form_ability','mesf');
+			$this->mesf->sfa_pos_id = $tep->Position_ID;
+			$this->mesf->sfa_pay_id = $pay_id;
+			$this->mesf->ept_pos_id = $tep->Position_ID;
+			$data['info_ability_form'] = $this->mesf->get_all_competency();
+			$data['data_from_ce'] = "ACM_edit";
+		}
+		// if
+
+		else if($data['form']->ps_form_ce == "GCM"){
+			$this->load->model('M_evs_data_gcm_weight','mdtm');
+			$this->mdtm->dtg_evs_emp_id = $employee_data->emp_id;
+			$this->mdtm->dtg_approver = $_SESSION['UsEmp_ID'];
+			$data['data_gcm_weight'] = $this->mdtm->get_by_empID_app()->result();
+			
+			$tep = $data['emp_info']->row();
+			$this->load->model('M_evs_set_form_gcm','mesf');
+			$this->mesf->sgc_pos_id = $tep->Position_ID;
+			$this->mesf->sgc_pay_id = $pay_id;
+			$this->mesf->epg_pos_id = $tep->Position_ID;
+			$data['info_form_gcm'] = $this->mesf->get_all_competency_gcm();
+			$data['data_from_ce'] = "GCM_edit";	
+
+		}
+		// else if 
+		$this->output('/consent/ev_form_HD/v_createFROM',$data);
+
+	}
+	// function editform
 
 
 	function reject_group_reject_to_AP(){
