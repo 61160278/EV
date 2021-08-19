@@ -73,6 +73,9 @@ $(document).ready(function() {
                                 <center>Group</center>
                             </th>
                             <th>
+                                <center>Grade</center>
+                            </th>
+                            <th>
                                 <center>Action</center>
                             </th>
                         </tr>
@@ -116,6 +119,9 @@ $(document).ready(function() {
                                 <center>
                                     <?php echo $row->gru_name ?>
                                 </center>
+                            </td>
+                            <td>
+                                <center><?php echo $data_grade[$index] ?></center>
                             </td>
                             <td>
                                 <?php if($data_chack_form[$index]  != 0){ ?>
@@ -168,16 +174,31 @@ $(document).ready(function() {
                         </a>
                     </div>
                     <!-- col-6  -->
+                    <?php $check_btn = 0;
+                        foreach($data_chack_form_com as $index => $row){
+                                if(intval($row) > 0){
+                                    $check_btn++;
+                                }
+                                // if
+                        }
+                        // foreach?>
                     <div class="col-md-6" align="right">
                         <a
                             href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_reject/<?php echo $data_hard_dep; ?>/<?php echo $data_focas_group; ?>">
                             <button id="save" class="btn btn-danger" onclick="">Reject Report</button>
                         </a>
                         &nbsp;
+                        <?php if(sizeof($status) == $check_btn){?>
                         <a
                             href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_report/<?php echo $data_hard_dep; ?>/<?php echo $data_focas_group; ?>">
                             <button id="save" class="btn btn-info" onclick="">Report Grade</button>
                         </a>
+                        <?php }
+                        // if
+                        else { ?>
+                            <button class="btn btn-info" disabled>Report Grade</button>
+                        <?php }
+                         // else ?>
 
                     </div>
                     <!-- col -6  -->

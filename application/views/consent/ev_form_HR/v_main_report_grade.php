@@ -182,7 +182,8 @@ function save_grade() {
                 <br>
                 <div class="row">
                     <div class="col-md-6">
-                        <a href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/index">
+                        <a
+                            href="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $data_hard_dep ?>/<?php echo $data_focas_group ?>">
                             <button type="button" class="btn btn-inverse">Back</button>
                         </a>
                     </div>

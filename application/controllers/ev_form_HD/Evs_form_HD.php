@@ -518,12 +518,9 @@ class Evs_form_HD extends MainController_avenxo {
 				// else if
 	
 			}
-			// else check_com
-
-			
+			// else check_com	
 		}
 		// if 
-		// echo $sum_percent_pe."----".$sum_percent_ce."<br>";
 
 		if((($sum_percent_pe+$sum_percent_ce/100)) >= 90) {array_push($data_grade,"S");}
 		else if((($sum_percent_pe+$sum_percent_ce/100)) >= 80) {array_push($data_grade,"A");}
@@ -537,7 +534,7 @@ class Evs_form_HD extends MainController_avenxo {
 			array_push($data_chack_form_com,$check_com);
 		}
 		// foreach 
-		// print_r($data_grade);
+
 		foreach($emp_data as $index => $row) {
 			if($data_chack_form[$index]  != 0){
 				$chack_form_save += 1; 
