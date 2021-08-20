@@ -46,7 +46,8 @@ function save_group_to_HR() {
         data: {
             "Emp_ID": Emp_ID,
             "index": index,
-            "status_us" : "6"
+            "status_us" : "6",
+            "comment",comment
         },
         success: function(data) {
             console.log(data);

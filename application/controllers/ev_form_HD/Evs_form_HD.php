@@ -1402,6 +1402,8 @@ function save_feedback(){
 	$Emp_ID = $this->input->post("Emp_ID");
 	$index = $this->input->post("index");
 	$status_us = $this->input->post("status_us");
+	$comment = $this->input->post("comment");
+	
 
 	$this->load->model('M_evs_data_approve','mdap');
 
