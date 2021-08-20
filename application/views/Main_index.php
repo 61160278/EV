@@ -80,11 +80,8 @@
             </div>
             <!-- End header  -->
 
-
-
             <!-- Start content  -->
             <div class="card-body row">
-
                 <!-- Start Menu Manage Form -->
                 <div class="col-xl-4 col-md-6 mb-4">
                     <a href="<?php echo base_url() ?>/Evs_Controller/main_manage_form">
@@ -219,7 +216,7 @@
                 <!-- End Menu Manage Form MHRD (Excel)  -->
 
                 <!-- Start Menu Manage grade auto (Excel) -->
-                 <div class="col-xl-4 col-md-6 mb-4">
+                <div class="col-xl-4 col-md-6 mb-4">
                     <a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/grade_auto">
                         <div class="card border4 shadow h-100 py-2">
                             <div class="card-body">
@@ -239,9 +236,11 @@
                     <!-- a href -->
                 </div>
                 <!-- End Menu Manage grade auto (Excel)  -->
-                <hr>
-
-                <hr>
+            </div>
+            <!-- End card shadow -->
+            
+            <!-- Start content  -->
+            <div class="card-body row">
 
                 <!-- Start User Manual -->
                 <div class="col-xl-4 col-md-6 mb-4">
@@ -249,7 +248,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text4 text-uppercase mb-1">User Manual
+                                    <div class="text-xs font-weight-bold text4 text-uppercase mb-1">User Manual ADMIN
                                     </div>
                                     <img src='https://online.anyflip.com/hziou/ucwc/files/shot.jpg'
                                         data-rel='fh5-light-box-demo'
@@ -265,9 +264,9 @@
                     <!-- card -->
                 </div>
                 <!-- End User Manual  -->
-
             </div>
             <!-- End card shadow -->
+
         </div>
         <!-- End  col-lg-12 -->
 

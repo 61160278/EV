@@ -103,7 +103,7 @@ th {
                                 <div class="tile-icon"><i class="fa fa-comments"></i></div>
                                 <div class="tile-heading"><span>MENU</span></div>
                                 <div class="tile-body">
-                                    <span>Feedback group</span>
+                                    <span>Feedback</span>
                                 </div>
                                 <!-- body  -->
                             </div>

@@ -1363,35 +1363,73 @@ class Evs_form_HD extends MainController_avenxo {
 			$year = $data['patt_year']->row(); // show value year now
 			//end set year now
 			$pay_id = $year->pay_id;
-	
-			$this->load->model('M_evs_group','megu');
-			$this->megu->emp_pay_id = $pay_id;
-			$this->megu->gru_head_dept = $_SESSION['UsEmp_ID'];
-			$data['data_group'] = $this->megu->get_group_by_head_dept()->result();
-			
-			$this->load->model('M_evs_data_grade','mdgd');
-			$this->mdgd->dgr_pay_id = $pay_id;
-			$data['data_grade'] = $this->mdgd->get_all_by_year()->result();
 
+			$this->load->model('M_evs_employee','memp');
+			$this->memp->Emp_ID = $_SESSION['UsEmp_ID'];
+			$this->memp->emp_pay_id = $pay_id;
+			$data['emp_info_show'] = $this->memp->get_by_empid();
+	
 			$this->load->model('M_evs_employee','memp');
 			$data['emp_info'] = $this->memp->get_all_by_year()->result();
 
 			$this->load->model('M_evs_data_grade','mdgd');
 			$this->mdgd->dgr_pay_id = $pay_id;
-			$data['data_grades'] = $this->mdgd->get_all_by_year()->result();
+			$data['data_grade'] = $this->mdgd->get_all_by_year()->result();
+			$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
+
+			$this->load->model('M_evs_data_approve','mda');
+			$this->mda->dma_dtm_emp_id = $_SESSION['UsEmp_ID'];
+			$data['app'] = $this->mda->get_status_by_emp()->result();
+			if(sizeof($data['app']) != 0){
+				foreach($data['app'] as $row){
+					array_push($status,$row->dma_status);
+				}
+				// foreach
+				$data['status'] = $status;
+			}
+			// if
+			else {
+				$data['status'] = [];
+			}
+			// else 
 
 			
-			$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
+
 			
 			$this->output('/consent/ev_form_HD/v_report_grade',$data);
 
 		}
 		// report_grade
 function feedback(){
+	$comment = [];
+	$app_com = [];
+
 	$this->load->model('M_evs_data_grade','mdg');
 	$this->mdg->gru_head_dept = $_SESSION['UsEmp_ID'];
 	$this->mdg->dma_status = 5;
 	$data['data_group'] = $this->mdg->get_by_gorup()->result();
+
+	$this->load->model('M_evs_data_comment','mdcm');
+	foreach($data['data_group'] as $row){
+		$this->mdcm->dcm_emp_id = $row->emp_id;
+		$data['com_temp'] =  $this->mdcm->get_by_emp()->row();
+		if(sizeof($data['com_temp']) != 0){
+				$temp = $data['com_temp'];
+				array_push($comment,$temp->dcm_comment);
+				$name = $temp->Empname_eng." ".$temp->Empsurname_eng;
+				array_push($app_com,$name);
+		}
+		// if
+		else{
+			array_push($comment,"-");
+			array_push($app_com,"-");
+		}
+		// else 
+
+	}
+	// foreach
+	$data['comment'] = $comment;
+	$data['app_com'] = $app_com;
 
 	$this->output('/consent/ev_form_HD/v_main_form_feedback',$data);
 }

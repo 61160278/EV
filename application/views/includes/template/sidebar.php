@@ -35,7 +35,7 @@
                 </li>
                 <!-- Home page  -->
 
-                <li class="menu-title">Menu</li>
+                <li class="menu-title">Menu Management</li>
                 <!-- /.menu-title -->
 
                 <li class="menu-item-has-children dropdown">
@@ -76,11 +76,17 @@
                 </li>
                 <!-- Manage quota  -->
 
+                <li class="menu-title">Menu approve</li>
+                <!-- /.menu-title -->
+
                 <li class="menu-item">
                     <a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/index"><i class="menu-icon fa fa-signal"
                             style="color:"></i>Report Group </a>
                 </li>
                 <!-- Manage Report Group -->
+
+                <li class="menu-title">Menu Import</li>
+                <!-- /.menu-title -->
 
                 <li class="menu-item">
                     <a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/excel"><i class="menu-icon fa fa-upload"

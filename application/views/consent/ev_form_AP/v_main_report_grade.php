@@ -208,15 +208,17 @@ function main_index() {
                                 <font size="5px">
                                     <center>
                                         <?php
-                                        print_r($status);
-                                    if($status == 8){
+                                if(sizeof($status) != 0){
+                                    if($status[$table_index] == 8){
                                    foreach($data_grade as $index => $row_grade) {
                                        if($row_grade->dgr_emp_id == $row->emp_id){
                                             echo $row_grade->dgr_grade;
                                        }
 									   // if
-                                   }
-								   // foreach 
+                                    }
+                                    // foreach 
+                                    }
+                                    // if
                                 }
                                 // if
                                 ?>
@@ -226,11 +228,12 @@ function main_index() {
 
                             <td align="center">
                                 <?php 
-                            if($status == 8){
-                                if(sizeof($data_grade) != 0){ 
-                                    foreach($data_grade as $index => $row_grade) {
-                                        if($row_grade->dgr_emp_id == $row->emp_id){
-                                        ?>
+                            if(sizeof($status) != 0){
+                                if($status[$table_index] == 8){
+                                    if(sizeof($data_grade) != 0){ 
+                                        foreach($data_grade as $index => $row_grade) {
+                                            if($row_grade->dgr_emp_id == $row->emp_id){
+                                            ?>
 
                                 <button class="btn btn-info" data-toggle="modal"
                                     data-target="#detail_<?php echo $row_grade->dgr_id; ?>">
@@ -238,22 +241,23 @@ function main_index() {
                                 </button>
 
                                 <?php
+                                            }
+                                            // if
                                         }
-                                        // if
+                                        // foreach
                                     }
-                                    // foreach
+                                    // if
                                 }
                                 // if
                             }
                             // if
-							else { ?>
+                                else { ?>
                                 <button class="btn btn-info" disabled>
                                     <i class="ti ti-info-alt"></i>
                                 </button>
                                 <?php }
-							// else 
+                                // else 
 							?>
-
                             </td>
                         </tr>
                         <?php 

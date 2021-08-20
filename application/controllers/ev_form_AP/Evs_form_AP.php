@@ -616,11 +616,20 @@ class Evs_form_AP extends MainController_avenxo {
 			$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
 
 			$this->load->model('M_evs_data_approve','mda');
-			$this->mda->dma_emp_id = $_SESSION['UsEmp_ID'];
-			$data['app'] = $this->mda->get_by_id()->row();
-			$temp_app = $data['app'];
-			$data['status'] = $temp_app->dma_status;
-			
+			$this->mda->dma_dtm_emp_id = $_SESSION['UsEmp_ID'];
+			$data['app'] = $this->mda->get_status_by_emp()->result();
+			if(sizeof($data['app']) != 0){
+				foreach($data['app'] as $row){
+					array_push($status,$row->dma_status);
+				}
+				// foreach
+				$data['status'] = $status;
+			}
+			// if
+			else {
+				$data['status'] = [];
+			}
+			// else 
 			$this->output('/consent/ev_form_AP/v_main_report_grade',$data);
 
 		}

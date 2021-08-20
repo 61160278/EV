@@ -164,6 +164,9 @@ function main_index() {
                             </td>
                             <td>
                                 <center>
+                                    <p><?php echo "Approver : ".$app_com[$index]; ?></p>
+                                    <p><?php echo "Comment : ".$comment[$index]; ?></p>
+                                    <hr>
                                     <textarea type="text" id="comment<?php echo $index; ?>" placeholder="Enter comment"
                                         class="form-control"></textarea>
                                 </center>

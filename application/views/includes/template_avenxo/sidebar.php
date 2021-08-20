@@ -48,12 +48,13 @@
                                             class="fa fa-book"></i><span>Status Form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/report_grade"><i
                                             class="fa fa-bar-chart-o"></i><span>Report Grade</span></span></a></li>
-
+                                <!-- associate  -->
                                 <?php }
                                 // if
                                 else if($_SESSION['UsRole'] == 2) { ?>
                                 <li><a href="<?php echo base_url() ?>Evs_all_manage/index_a"><i
                                             class="fa fa-home"></i><span>HOME</span></span></a></li>
+                                <!-- home  -->
                                 <li class="nav-separator"><span>Menu</span></li>
                                 <li><a href="<?php echo base_url() ?>ev_form/Evs_form/index"><i
                                             class="fa fa-pencil-square"></i><span>Create Form</span></span></a></li>
@@ -65,12 +66,14 @@
                                             class="fa fa-book"></i><span>Status Form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/report_grade"><i
                                             class="fa fa-bar-chart-o"></i><span>Report Grade</span></span></a></li>
+                                <!-- head dap.  -->
                                 <?php }
                                 //else if 
                                 else if($_SESSION['UsRole'] == 3) { ?>
                                 <li><a href="<?php echo base_url()?>Evs_Controller/index"><i
                                             class="fa fa-home"></i><span>HOME</span></span></a></li>
-                                <li class="nav-separator"><span>Menu</span></li>
+                                <!-- home  -->
+                                <li class="nav-separator"><span>Menu management</span></li>
                                 <li><a href="<?php echo base_url()?>Evs_Controller/main_manage_form"><i
                                             class="fa fa-book"></i><span>Manage form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_permission/Evs_permission/index"><i
@@ -79,12 +82,17 @@
                                             class="fa fa-users"></i><span>Manage group</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_quota/Evs_quota/index"><i
                                             class="fa fa-bar-chart-o"></i><span>Manage quota</span></span></a></li>
+                                <!-- manage  -->
+                                <li class="nav-separator"><span>Menu approve</span></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/index"><i
                                             class="fa fa-signal"></i><span>Report group</span></span></a></li>
+                                <!-- approve  -->
+                                <li class="nav-separator"><span>Menu import</span></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/excel"><i
                                             class="fa fa-upload"></i><span>Import Score MHRD</span></span></a></li>
-                                            <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/grade_auto"><i
+                                <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/grade_auto"><i
                                             class="fa fa-upload"></i><span>Import Grade Auto</span></span></a></li>
+                                <!-- import  -->
                                 <?php }
                                 //else if ?>
 
