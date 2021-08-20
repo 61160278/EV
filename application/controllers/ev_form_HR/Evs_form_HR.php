@@ -1724,7 +1724,8 @@ class Evs_form_HR extends MainController_avenxo {
 		$this->load->model('M_evs_data_approve','mdap');
 		$this->load->model('M_evs_data_grade','mdgr');
 		$this->load->model('Da_evs_data_grade','ddgr');
-
+		$this->load->model('Da_evs_data_comment','ddcm');
+		
 		for($i = 0 ; $i < $arr_roop ; $i++){
 			
 			$gd_data  = $this->mdgr->get_all()->result();
@@ -1739,7 +1740,6 @@ class Evs_form_HR extends MainController_avenxo {
 
 		if($status_update_or_save == 1){
 			$this->ddgr->dgr_grade = $this->input->post("grade[".$i."]");
-			$this->ddgr->dgr_comment = $this->input->post("comment[".$i."]");
 			$this->ddgr->dgr_emp_id = $this->input->post("Emp_ID[".$i."]");
 			$this->ddgr->dgr_pay_id = $pay_id;
 			$this->ddgr->dgr_id = $save_dgr_id;
@@ -1748,12 +1748,16 @@ class Evs_form_HR extends MainController_avenxo {
 		// if
 		else{
 			$this->ddgr->dgr_grade = $this->input->post("grade[".$i."]");
-			$this->ddgr->dgr_comment = $this->input->post("comment[".$i."]");
 			$this->ddgr->dgr_emp_id = $this->input->post("Emp_ID[".$i."]");
 			$this->ddgr->dgr_pay_id = $pay_id;
 			$this->ddgr->insert();
 		}
 		// else 
+			$this->ddcm->dcm_comment = $this->input->post("comment[".$i."]");
+			$this->ddcm->dcm_emp_id = $this->input->post("Emp_ID[".$i."]");
+			$this->ddcm->dcm_aprprover = $_SESSION['UsEmp_ID'];
+			$this->ddcm->insert();
+
 			$this->mdap->dma_emp_id = $this->input->post("Emp_ID[".$i."]");
 			$this->mdap->dma_status = 5;
 			$this->mdap->update_status(); 
