@@ -268,7 +268,7 @@ function main_index() {
                         <?php } 
                     // if
                     else {?>
-                        <button class="btn btn-success" disabled> Save</button>
+                        <button class="btn btn-success" disabled> Submit</button>
                         <?php }
                     // else ?>
                     </div>
@@ -312,7 +312,7 @@ function main_index() {
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
                 </div>
-                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="save_group_to_HR()">SAVE</button>
+                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="save_group_to_HR()">Sumbit</button>
             </div>
             <!-- modal-footer -->
         </div>

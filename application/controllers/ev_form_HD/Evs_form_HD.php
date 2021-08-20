@@ -1413,8 +1413,8 @@ function save_feedback(){
 		$this->mdap->dma_status = $status_us;
 		$this->mdap->update_status();
 		
-		$this->ddcm->dcm_comment = $this->input->post("comment[".$i."]");
-		$this->ddcm->dcm_emp_id = $this->input->post("Emp_ID[".$i."]");
+		$this->ddcm->dcm_comment = $comment[$i];
+		$this->ddcm->dcm_emp_id = $Emp_ID[$i];
 		$this->ddcm->dcm_aprprover = $_SESSION['UsEmp_ID'];
 		$this->ddcm->insert();
 	}

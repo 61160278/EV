@@ -47,7 +47,7 @@ function save_group_to_HR() {
             "Emp_ID": Emp_ID,
             "index": index,
             "status_us" : "6",
-            "comment",comment
+            "comment":comment
         },
         success: function(data) {
             console.log(data);
@@ -76,14 +76,14 @@ function main_index() {
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
             <div class="panel-heading ">
                 <h2>
-                    <font color="#ffffff" size="6px"><b> Approve Group </b></font>
+                    <font color="#ffffff" size="6px"><b> Feedback Group </b></font>
                 </h2>
             </div>
             <!-- heading -->
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <h3>List of employees to approve </h3>
+                        <h3>List of employees to feedback group </h3>
                     </div>
                     <!-- col-12  -->
                 </div>
@@ -114,7 +114,7 @@ function main_index() {
                                 <center>Group</center>
                             </th>
                             <th>
-                                <center>Grade</center>
+                                <center>Comment</center>
                             </th>
                             <th>
                                 <center>Action</center>

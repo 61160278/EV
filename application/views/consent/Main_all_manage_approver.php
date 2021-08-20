@@ -100,7 +100,7 @@ th {
                     <a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/feedback">
                         <div class="col-md-4">
                             <div class="info-tile tile-indigo">
-                                <div class="tile-icon"><i class="fa fa-tachometer"></i></div>
+                                <div class="tile-icon"><i class="fa fa-comments"></i></div>
                                 <div class="tile-heading"><span>MENU</span></div>
                                 <div class="tile-body">
                                     <span>Feedback group</span>

@@ -434,7 +434,7 @@ class Evs_form_HR extends MainController_avenxo {
 		$data['data_hard_dep'] = $Hard_Dep;
 		$data['data_focas_group'] = $group;
 
-		$this->output('/consent/ev_form_HR/v_createFROM',$data);
+		$this->output('/consent/ev_form_HR/v_editFROM',$data);
 
 	}
 	// function editFROM
@@ -1996,7 +1996,7 @@ class Evs_form_HR extends MainController_avenxo {
 		$data = "save_data_acm_weight";
 		echo json_encode($data);		
 	}
-	// function get_tap_form
+	// function save_data_acm_weight
 
 	function update_data_acm_weight(){
 
@@ -2026,6 +2026,37 @@ class Evs_form_HR extends MainController_avenxo {
 		echo json_encode($data);		
 	}
 	// update_data_acm_weight
+
+	function update_data_acm_weight_edit(){
+
+		$ps_pos_id = $this->input->post("Emp_ID");
+		$arr_sfa_id = $this->input->post("arr_sfa_id");
+		$arr_radio = $this->input->post("arr_radio");
+		$arr_dta_id = $this->input->post("arr_dta_id");
+		$App = $this->input->post("App");
+		$arr_roop = count($arr_sfa_id);
+		//string set year now
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+		$this->load->model('Da_evs_data_acm_weight','deda');
+		for($i = 0 ; $i < $arr_roop ; $i++){
+		$this->deda->dta_evs_emp_id = $ps_pos_id;
+		$this->deda->dta_sfa_id = $arr_sfa_id[$i];
+		$this->deda->dta_weight = $arr_radio[$i];
+		$this->deda->dta_approver = $App;
+		$this->deda->arr_dta_id = $arr_dta_id[$i];
+		$this->deda->update();
+		}
+		// for
+
+		$data = "update_data_acm_weight_edit";
+		echo json_encode($data);		
+	}
+	// update_data_acm_weight_edit
 
 //-------------------------------------------------
 	function save_data_gcm_weight(){
@@ -2084,21 +2115,38 @@ class Evs_form_HR extends MainController_avenxo {
 		$data = "update_data_gcm_weight";
 		echo json_encode($data);		
 	}
-	//-------------------------------------------------------------------------------------------------------
 
-	function get_tap_form(){
+	function update_data_gcm_weight_edit(){
 
-		$ps_pos_id = $this->input->post("ps_pos_id");
-		$pay_id = 2;
+		$ps_pos_id = $this->input->post("Emp_ID");
+		$arr_sgc_id = $this->input->post("arr_sgc_id");
+		$arr_radio = $this->input->post("arr_radio");
+		$App = $this->input->post("App");
+		$arr_dtg_id = $this->input->post("arr_dtg_id");
+		$arr_roop = count($arr_sgc_id);
 
-		$this->load->model('M_evs_position_from','mpf');
-		$this->mpf->ps_pos_id = $ps_pos_id;
-		$this->mpf->ps_pay_id = $pay_id;
-		$data = $this->mpf->get_all_by_key_by_year()->result();
+		//string set year now
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
 
+		$this->load->model('Da_evs_data_gcm_weight','dedg');
+		for($i = 0 ; $i < $arr_roop ; $i++){
+			$this->dedg->dtg_evs_emp_id = $ps_pos_id;
+			$this->dedg->dtg_sgc_id = $arr_sgc_id[$i];
+			$this->dedg->dtg_weight = $arr_radio[$i];
+			$this->dedg->dtg_approver = $App;
+			$this->dedg->dtg_id = $arr_dtg_id[$i];
+			$this->dedg->update();
+		}
+		// for
+
+		$data = "update_data_gcm_weight";
 		echo json_encode($data);		
 	}
-	// function get_tap_form
+	//-------------------------------------------------------------------------------------------------------
 	function save_data_mbo(){
 
 		$ps_pos_id = $this->input->post("Emp_ID");
@@ -2126,7 +2174,7 @@ class Evs_form_HR extends MainController_avenxo {
 		$data = "save_data_mbo";
 		echo json_encode($data);		
 	}
-	// function get_tap_form
+	// function save_data_mbo
 
 	function update_data_mbo(){
 
@@ -2155,6 +2203,38 @@ class Evs_form_HR extends MainController_avenxo {
 		$data = "update_data_mbo";
 		echo json_encode($data);		
 	}
+	// update_data_mbo
+
+	function update_data_mbo_edit(){
+
+		$ps_pos_id = $this->input->post("Emp_ID");
+		$arr_dtm_id = $this->input->post("arr_dtm_id");
+		$arr_radio = $this->input->post("arr_radio");
+		$arr_dmw_id = $this->input->post("arr_dmw_id");
+		$App = $this->input->post("App");
+		$arr_roop = count($arr_dtm_id);
+		//string set year now
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+		$this->load->model('Da_evs_data_mbo_weight','dedw');
+		for($i = 0 ; $i < $arr_roop ; $i++){
+			$this->dedw->dmw_evs_emp_id = $ps_pos_id;
+			$this->dedw->dmw_dtm_id = $arr_dtm_id[$i];
+			$this->dedw->dmw_weight = $arr_radio[$i];
+			$this->dedw->dmw_approver = $App;
+			$this->dedw->dmw_id = $arr_dmw_id[$i];
+			$this->dedw->update();
+		}
+		// for 
+
+		$data = "update_data_mbo";
+		echo json_encode($data);		
+	}
+	// update_data_mbo_edit
 
 	//---------------------------------------------------------------------------------------------------------------------
 
@@ -2216,6 +2296,40 @@ class Evs_form_HR extends MainController_avenxo {
 		$data = "update_data_g_and_o";
 		echo json_encode($data);		
 	}
+	// update_data_g_and_o
+
+	function update_data_g_and_o_edit(){
+
+		$ps_pos_id = $this->input->post("Emp_ID");
+		$arr_dgo_id = $this->input->post("arr_dgo_id");
+		$arr_dgw_id = $this->input->post("arr_dgw_id");
+		$arr_radio = $this->input->post("arr_radio");
+		$App = $this->input->post("App");
+		$arr_Evaluator_Review = $this->input->post("arr_Evaluator_Review");
+		$arr_roop = count($arr_dgo_id);
+		//string set year now
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+		$this->load->model('Da_evs_data_g_and_o_weight','degw');
+		for($i = 0 ; $i < $arr_roop ; $i++){
+			$this->degw->dgw_evs_emp_id = $ps_pos_id;
+			$this->degw->dgw_dgo_id = $arr_dgo_id[$i];
+			$this->degw->dgw_evaluator_review = $arr_Evaluator_Review[$i];
+			$this->degw->dgw_weight = $arr_radio[$i];
+			$this->degw->dgw_approver = $App;
+			$this->degw->dgw_id = $arr_dgw_id[$i];
+			$this->degw->update();
+		}
+		// for
+
+		$data = "update_data_g_and_o";
+		echo json_encode($data);		
+	}
+	// update_data_g_and_o_edit
 		//------------------------------------------------------------------------------------------------------------
 	
 		function save_mhrd(){
