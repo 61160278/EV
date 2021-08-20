@@ -172,16 +172,13 @@ function update_ACM_edit() {
             "arr_sfa_id": arr_sfa_id,
             "arr_radio": arr_radio,
             "arr_dta_id": arr_dta_id,
-            "App": App
+            "App": App,
+            "index":index
 
         },
         success: function(data) {
             console.log(data);
-            var hard_dep = document.getElementById("hard_dep").value;
-            var focas_group = document.getElementById("focas_group").value;
-            window.location.href =
-                "<?php echo base_url();?>ev_form_HR/Evs_form_HR/table_goup/" + hard_dep + "/" +
-                focas_group + "/";
+            window.location.href = "<?php echo base_url();?>ev_form_HD/Evs_form_HD/index";
         },
         // success
         error: function(data) {
@@ -331,11 +328,7 @@ function update_GCM_edit() {
         },
         success: function(data) {
             console.log(data);
-            var hard_dep = document.getElementById("hard_dep").value;
-            var focas_group = document.getElementById("focas_group").value;
-            window.location.href =
-                "<?php echo base_url();?>ev_form_HR/Evs_form_HR/table_goup/" + hard_dep + "/" +
-                focas_group + "/";
+            window.location.href = "<?php echo base_url();?>ev_form_HD/Evs_form_HD/index";
         },
         // success
         error: function(data) {
@@ -558,8 +551,6 @@ function update_MHRD_edit() {
                     </ul>
                 </div>
                 <input type="text" id="App_Emp_ID" value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
-                <input type="text" id="hard_dep" value="<?php echo $data_hard_dep ?>" hidden>
-                <input type="text" id="focas_group" value="<?php echo $data_focas_group ?>" hidden>
             </div>
             <!-- heading -->
 
@@ -803,13 +794,9 @@ function update_MHRD_edit() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <form method="POST"
-                                    action="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $data_hard_dep;?>/<?php echo $data_focas_group; ?>">
-                                    <input id="emp_id" name="emp_id" type="text"
-                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
-                                    <input type="submit" class="btn btn-inverse" value="BACK">
-                                </form>
-                                <!-- form  -->
+                                <a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/index">
+                                    <button class="btn btn-inverse">BACK</button>
+                                </a>
                             </div>
                             <!-- col-md-6 -->
 
@@ -1178,13 +1165,9 @@ function update_MHRD_edit() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <form method="POST"
-                                    action="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $data_hard_dep;?>/<?php echo $data_focas_group; ?>">
-                                    <input id="emp_id" name="emp_id" type="text"
-                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
-                                    <input type="submit" class="btn btn-inverse" value="BACK">
-                                </form>
-                                <!-- form  -->
+                                <a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/index">
+                                    <button class="btn btn-inverse">BACK</button>
+                                </a>
 
                             </div>
                             <!-- col-md-6 -->
@@ -1394,13 +1377,9 @@ function update_MHRD_edit() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <form method="POST"
-                                    action="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $data_hard_dep;?>/<?php echo $data_focas_group; ?>">
-                                    <input id="emp_id" name="emp_id" type="text"
-                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
-                                    <input type="submit" class="btn btn-inverse" value="BACK">
-                                </form>
-                                <!-- form  -->
+                                <a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/index">
+                                    <button class="btn btn-inverse">BACK</button>
+                                </a>
                             </div>
                             <div class="col-md-6" align="right">
 
@@ -1774,13 +1753,9 @@ function update_MHRD_edit() {
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <form method="POST"
-                                    action="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $data_hard_dep;?>/<?php echo $data_focas_group; ?>">
-                                    <input id="emp_id" name="emp_id" type="text"
-                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
-                                    <input type="submit" class="btn btn-inverse" value="BACK">
-                                </form>
-                                <!-- form  -->
+                                <a href="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/index">
+                                    <button type="button" class="btn btn-inverse">Back</button>
+                                </a>
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
@@ -2165,13 +2140,9 @@ function update_MHRD_edit() {
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <form method="POST"
-                                    action="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $data_hard_dep;?>/<?php echo $data_focas_group; ?>">
-                                    <input id="emp_id" name="emp_id" type="text"
-                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
-                                    <input type="submit" class="btn btn-inverse" value="BACK">
-                                </form>
-                                <!-- form  -->
+                                <a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/index">
+                                    <button class="btn btn-inverse">BACK</button>
+                                </a>
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">

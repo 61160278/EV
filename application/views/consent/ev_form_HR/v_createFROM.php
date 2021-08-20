@@ -1742,14 +1742,18 @@ function update_MHRD_edit() {
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url(); ?>/ev_form_AP/Evs_form_AP/index">
-                                    <button type="button" class="btn btn-inverse">Back</button>
-                                </a>
+                                <form method="POST"
+                                    action="<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/table_goup/<?php echo $data_hard_dep;?>/<?php echo $data_focas_group; ?>">
+                                    <input id="emp_id" name="emp_id" type="text"
+                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
+                                    <input type="submit" class="btn btn-inverse" value="BACK">
+                                </form>
+                                <!-- form  -->
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
                                 <button class="btn btn-success" data-toggle="modal" data-target="#save_data">
-                                Submit</button>
+                                    Submit</button>
                             </div>
                         </div>
                         <!-- row -->
@@ -2133,7 +2137,7 @@ function update_MHRD_edit() {
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
                                 <button class="btn btn-success" data-toggle="modal" data-target="#save_data">
-                                Submit</button>
+                                    Submit</button>
                             </div>
                         </div>
                     </div>

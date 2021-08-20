@@ -861,7 +861,6 @@ class Evs_form_HD extends MainController_avenxo {
 		// if
 
 		else if($data['form']->ps_form_pe == "G&O"){
-
 		$this->load->model('M_evs_data_g_and_o_weight','megw');
 		$this->megw->dgw_evs_emp_id = $tep->emp_id;
 		$this->megw->dgw_approver = $_SESSION['UsEmp_ID'];
@@ -930,7 +929,7 @@ class Evs_form_HD extends MainController_avenxo {
 
 		}
 		// else if 
-		$this->output('/consent/ev_form_HD/v_createFROM',$data);
+		$this->output('/consent/ev_form_HD/v_editFROM',$data);
 
 	}
 	// function editform

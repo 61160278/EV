@@ -808,12 +808,9 @@ function main_index() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <form method="POST" action="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/index">
-                                    <input id="emp_id" name="emp_id" type="text"
-                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
-                                    <input type="submit" class="btn btn-inverse" value="BACK">
-                                </form>
-                                <!-- form  -->
+                                <a href="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/index">
+                                    <button type="button" class="btn btn-inverse">Back</button>
+                                </a>
                             </div>
                             <!-- col-md-6 -->
 
@@ -1177,12 +1174,9 @@ function main_index() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <form method="POST" action="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/index">
-                                    <input id="emp_id" name="emp_id" type="text"
-                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
-                                    <input type="submit" class="btn btn-inverse" value="BACK">
-                                </form>
-                                <!-- form  -->
+                                <a href="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/index">
+                                    <button type="button" class="btn btn-inverse">Back</button>
+                                </a>
 
                             </div>
                             <!-- col-md-6 -->
@@ -1406,12 +1400,9 @@ function main_index() {
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <form method="POST" action="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/index">
-                                    <input id="emp_id" name="emp_id" type="text"
-                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
-                                    <input type="submit" class="btn btn-inverse" value="BACK">
-                                </form>
-                                <!-- form  -->
+                                <a href="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/index">
+                                    <button type="button" class="btn btn-inverse">Back</button>
+                                </a>
                                 <div class="col-md-6" align="right">
                                 </div>
                                 <!-- col-md-6 add_app -->
@@ -1778,9 +1769,8 @@ function main_index() {
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="<?php echo base_url(); ?>/ev_form_AP/Evs_form_AP/index">
-                                    <button type="button" class="btn btn-inverse"><i
-                                            class="fa fa-mail-reply"></i>Back</button>
+                                <a href="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/index">
+                                    <button type="button" class="btn btn-inverse">Back</button>
                                 </a>
                             </div>
                             <!-- col-md-6 -->
@@ -2160,12 +2150,9 @@ function main_index() {
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <form method="POST" action="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/index">
-                                    <input id="emp_id" name="emp_id" type="text"
-                                        value="<?php echo $_SESSION['UsEmp_ID'] ?>" hidden>
-                                    <input type="submit" class="btn btn-inverse" value="BACK">
-                                </form>
-                                <!-- form  -->
+                                <a href="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/index">
+                                    <button type="button" class="btn btn-inverse">Back</button>
+                                </a>
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">

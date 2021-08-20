@@ -2034,22 +2034,16 @@ class Evs_form_HR extends MainController_avenxo {
 		$arr_radio = $this->input->post("arr_radio");
 		$arr_dta_id = $this->input->post("arr_dta_id");
 		$App = $this->input->post("App");
-		$arr_roop = count($arr_sfa_id);
-		//string set year now
-		$this->load->model('M_evs_pattern_and_year','myear');
-		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
-		$year = $data['patt_year']->row(); // show value year now
-		//end set year now
-		$pay_id = $year->pay_id;
+		$index = $this->input->post("index");
 
 		$this->load->model('Da_evs_data_acm_weight','deda');
-		for($i = 0 ; $i < $arr_roop ; $i++){
-		$this->deda->dta_evs_emp_id = $ps_pos_id;
-		$this->deda->dta_sfa_id = $arr_sfa_id[$i];
-		$this->deda->dta_weight = $arr_radio[$i];
-		$this->deda->dta_approver = $App;
-		$this->deda->arr_dta_id = $arr_dta_id[$i];
-		$this->deda->update();
+			for($i = 0 ; $i < $index ; $i++){
+			$this->deda->dta_evs_emp_id = $ps_pos_id;
+			$this->deda->dta_sfa_id = $arr_sfa_id[$i];
+			$this->deda->dta_weight = $arr_radio[$i];
+			$this->deda->dta_approver = $App;
+			$this->deda->dta_id = $arr_dta_id[$i];
+			$this->deda->update();
 		}
 		// for
 
