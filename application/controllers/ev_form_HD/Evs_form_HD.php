@@ -1406,11 +1406,17 @@ function save_feedback(){
 	
 
 	$this->load->model('M_evs_data_approve','mdap');
+	$this->load->model('Da_evs_data_comment','ddcm');
 
 	for ($i = 0; $i < $index; $i++) {
 		$this->mdap->dma_emp_id = $Emp_ID[$i];
 		$this->mdap->dma_status = $status_us;
-		$this->mdap->update_status(); 
+		$this->mdap->update_status();
+		
+		$this->ddcm->dcm_comment = $this->input->post("comment[".$i."]");
+		$this->ddcm->dcm_emp_id = $this->input->post("Emp_ID[".$i."]");
+		$this->ddcm->dcm_aprprover = $_SESSION['UsEmp_ID'];
+		$this->ddcm->insert();
 	}
 	// for 
 	
