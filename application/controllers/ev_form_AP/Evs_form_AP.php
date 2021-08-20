@@ -562,6 +562,13 @@ class Evs_form_AP extends MainController_avenxo {
 		$data = $this->meda->get_by_update()->row();
 		
 		$status = intval($data->dma_status);
+
+		$this->load->model('M_evs_reject_form','mrjf');
+		$this->mrjf->rjf_dma_id = $data->dma_id;
+		$this->mrjf->rjf_status = abs($status);
+		$this->mrjf->delete_by_dma_id();
+
+
 		if($status < 0){ $status = 1+abs($status);}
 		else{$status++;}
 		
@@ -572,6 +579,9 @@ class Evs_form_AP extends MainController_avenxo {
 		$this->deda->dma_dtm_emp_id = $data->dma_dtm_emp_id;
 		$this->deda->dma_emp_id = $data->dma_emp_id;
 		$this->deda->update();
+
+		
+
 		
 		echo json_encode($data);
 

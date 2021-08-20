@@ -86,7 +86,13 @@
                     <a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/excel"><i class="menu-icon fa fa-upload"
                             style="color:"></i>Import Score MHRD</a>
                 </li>
-                <!-- Manage Report Quota -->
+                <!-- Manage Import Score MHRD -->
+
+                <li class="menu-item">
+                    <a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/grade_auto"><i class="menu-icon fa fa-upload"
+                            style="color:"></i>Import Grade Auto </a>
+                </li>
+                <!-- Manage Report Group -->
 
             </ul>
             <!-- End tap menu sidebar  -->

@@ -1249,7 +1249,7 @@ class Evs_form_HR extends MainController_avenxo {
 		$this->load->model('M_evs_group','megu');
 		$this->megu->emp_pay_id = $pay_id;
 		$this->megu->gru_head_dept = $Emp_ID;
-		$this->megu->gru_name = $group;
+		$this->megu->gru_id = $group;
 		$emp_data = $data['data_group'] = $this->megu->get_group_by_group_head_dept()->result();
 
 
@@ -1472,12 +1472,12 @@ class Evs_form_HR extends MainController_avenxo {
 
 		if((($sum_percent_pe+$sum_percent_ce/100)) >= 90) {array_push($data_grade,"S");}
 		else if((($sum_percent_pe+$sum_percent_ce/100)) >= 80) {array_push($data_grade,"A");}
-		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 75){array_push($data_grade,"B");}
-		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 70){array_push($data_grade,"B-");}
+		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 75){array_push($data_grade,"B+");}
+		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 70){array_push($data_grade,"B");}
+		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 65){array_push($data_grade,"B-");}
 		else if ((($sum_percent_pe+$sum_percent_ce/200)) >= 60){array_push($data_grade,"C");}
 		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 50){array_push($data_grade,"D");}
 		else{array_push($data_grade,"F");}
-
 			array_push($data_chack_form,$check);
 
 		}
@@ -1520,6 +1520,7 @@ class Evs_form_HR extends MainController_avenxo {
 		$this->output('/consent/ev_form_HR/v_main_excel',$data);
 	}
 	// excel
+	
 
 	function import(){
 
@@ -1707,6 +1708,164 @@ class Evs_form_HR extends MainController_avenxo {
 		echo json_encode($data);
 	}
 	// show_mhrd
+
+
+	
+	function grade_auto(){
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+
+		$this->load->model('M_evs_grade_auto','mgat');
+		$this->mgat->emp_pay_id = $year->pay_id;
+		$data['garde'] = $this->mgat->get_data_by_pay_id()->result();
+
+		$this->output('/consent/ev_form_HR/v_main_grade_auto',$data);
+	}
+	function import_garde_auto(){
+	
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+		$this->load->model('M_evs_grade_auto','mgat');
+		$this->mgat->emp_pay_id = $year->pay_id;
+		$data['garde'] = $this->mgat->get_data_by_pay_id()->result();
+
+		if(sizeof($data['garde']) != 0){
+			$this->load->model('Da_evs_grade_auto','dgrat');
+			foreach($data['garde'] as $row){
+				$this->dgrat->grd_id = $row->grd_id;
+				$this->dgrat->delete();
+			}
+			// foreach 
+
+			$this->load->model('Da_evs_grade_auto_excel_report','dgae');
+			$config["upload_path"] = "./excel_grade_auto/";
+			$config["allowed_types"] = "xls|xlsx";
+	
+			$this->load->library("upload",$config);
+	
+			if($this->upload->do_upload("file")){
+					$upload_data = $this->upload->data();
+					$this->dgae->ger_excel_name = $upload_data["file_name"];
+					$this->dgae->ger_pay_id = $pay_id;
+					$this->dgae->insert();
+			}
+			//if
+			else{
+					print_r($this->upload->display_errors());
+			}
+			// else 
+	
+			$this->load->model('M_evs_employee','memp');
+			$this->load->model('Da_evs_grade_auto','dgrat');
+	
+			if(isset($_FILES["file"]["name"]))
+			{
+	
+				$path = $_FILES["file"]["tmp_name"];
+				$object = PHPExcel_IOFactory::load($path);
+				foreach($object->getWorksheetIterator() as $worksheet)
+				{
+					$highestRow = $worksheet->getHighestRow();
+					$highestColumn = $worksheet->getHighestColumn();
+					
+					for($row=2; $row<=$highestRow; $row++)
+					{
+						
+						$this->memp->Emp_ID = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+						$this->memp->emp_pay_id = $pay_id;
+						$data['emp_info'] = $this->memp->get_by_empid();
+				
+						$tep = $data['emp_info']->row();
+	
+						$grd_emp_id = $tep->emp_id;
+						
+						$grade = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+								
+						$this->dgrat->grd_emp_id = $grd_emp_id;
+						$this->dgrat->grd_grade = $grade;
+						$this->dgrat->insert();
+					
+						// foreach 
+					}
+					// for
+				}
+				// foreach 
+				$data = "import_new";
+				echo json_encode($data);
+			}
+			// if isset		
+
+		}
+		// if size of 
+		else if(sizeof($data['garde']) == 0){
+
+			$this->load->model('Da_evs_grade_auto_excel_report','dgae');
+			$config["upload_path"] = "./excel_grade_auto/";
+			$config["allowed_types"] = "xls|xlsx";
+	
+			$this->load->library("upload",$config);
+	
+			if($this->upload->do_upload("file")){
+					$upload_data = $this->upload->data();
+					$this->dgae->ger_excel_name = $upload_data["file_name"];
+					$this->dgae->ger_pay_id = $pay_id;
+					$this->dgae->insert();
+			}
+			//if
+			else{
+					print_r($this->upload->display_errors());
+			}
+			// else 
+	
+			$this->load->model('M_evs_employee','memp');
+			$this->load->model('Da_evs_grade_auto','dgrat');
+	
+			if(isset($_FILES["file"]["name"]))
+			{
+	
+				$path = $_FILES["file"]["tmp_name"];
+				$object = PHPExcel_IOFactory::load($path);
+				foreach($object->getWorksheetIterator() as $worksheet)
+				{
+					$highestRow = $worksheet->getHighestRow();
+					$highestColumn = $worksheet->getHighestColumn();
+					
+					for($row=2; $row<=$highestRow; $row++)
+					{
+						
+						$this->memp->Emp_ID = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+						$this->memp->emp_pay_id = $pay_id;
+						$data['emp_info'] = $this->memp->get_by_empid();
+				
+						$tep = $data['emp_info']->row();
+	
+						$grd_emp_id = $tep->emp_id;
+						
+						$grade = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+								
+						$this->dgrat->grd_emp_id = $grd_emp_id;
+						$this->dgrat->grd_grade = $grade;
+						$this->dgrat->insert();
+					
+						// foreach 
+					}
+					// for
+				}
+				// foreach 
+				$data = "import_new";
+				echo json_encode($data);
+			}
+			// if isset	
+		}
+		// else if
+	
+	}
 
 	function save_grade(){
 
@@ -2131,6 +2290,21 @@ class Evs_form_HR extends MainController_avenxo {
 			$this->load->model('Da_evs_data_mhrd_weight','demw');
 			$this->demw->mhw_evs_emp_id = $evs_emp_id;
 			$this->demw->delete_emp_id();
+
+			$data = "del_success";
+			echo json_encode($data);
+
+		}
+		// del_score
+
+
+		function del_grade_auto(){
+
+			$evs_emp_id = $this->input->post("evs_emp_id");
+
+			$this->load->model('M_evs_grade_auto','mgrat');
+			$this->mgrat->grd_emp_id = $evs_emp_id;
+			$this->mgrat->delete_emp_id();
 
 			$data = "del_success";
 			echo json_encode($data);
