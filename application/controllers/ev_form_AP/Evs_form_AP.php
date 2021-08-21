@@ -43,11 +43,9 @@ class Evs_form_AP extends MainController_avenxo {
 		//end set year now
 		$pay_id = $year->pay_id;
 
-
 		$this->load->model('M_evs_group','megu');
 		$this->megu->emp_pay_id = $pay_id;
 		$data['data_group'] = $this->megu->get_group_by_head_dept()->result();
-
 		$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
 		
 		$this->output('/consent/ev_form_AP/v_main_form',$data);

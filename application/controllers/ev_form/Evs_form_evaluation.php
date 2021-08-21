@@ -85,10 +85,11 @@ class Evs_form_evaluation extends MainController_avenxo {
 			$data['data_comment2'] = $comment2;	
 		$this->output('/consent/ev_form/v_show_evaluation_reject',$data);
 	 }
-	 else
-	 {
+	 // if
+	 else if(sizeof($data['data_app1']) != 0 || sizeof($data['data_app2']) != 0 ){
 		$this->output('/consent/ev_form/v_show_evaluation',$data);
 	 }
+	 // else 
 	}
 	// function index()
 

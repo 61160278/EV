@@ -46,8 +46,8 @@ function save_group_to_HR() {
         data: {
             "Emp_ID": Emp_ID,
             "index": index,
-            "status_us" : "6",
-            "comment":comment
+            "status_us": "6",
+            "comment": comment
         },
         success: function(data) {
             console.log(data);
@@ -92,32 +92,32 @@ function main_index() {
                 <table class="table table-bordered m-n" id="show_emp">
                     <thead>
                         <tr>
-                            <th>
+                            <th width="2%">
                                 <center>#</center>
                             </th>
-                            <th>
+                            <th width="8%">
                                 <center>Employee ID</center>
                             </th>
-                            <th>
+                            <th width="15%">
                                 <center>Name - surname</center>
                             </th>
-                            <th>
+                            <th width="10%">
                                 <center>Section Code</center>
                             </th>
-                            <th>
+                            <th width="15%">
                                 <center>Department</center>
                             </th>
-                            <th>
+                            <th width="15%">
                                 <center>Position</center>
                             </th>
-                            <th>
+                            <th width="10%">
                                 <center>Group</center>
                             </th>
-                            <th>
-                                <center>Comment</center>
+                            <th width="5%">
+                                <center>Grade</center>
                             </th>
-                            <th>
-                                <center>Action</center>
+                            <th width="20%">
+                                <center>Comment</center>
                             </th>
                         </tr>
                     </thead>
@@ -160,13 +160,20 @@ function main_index() {
                                 </center>
                             </td>
                             <td>
-                                <center><?php echo $row->dgr_grade ?></center>
+                                <center>
+                                    <h3>
+                                        <b>
+                                            <?php echo $row->dgr_grade ?>
+                                        </b>
+                                    </h3>
+                                </center>
                             </td>
                             <td>
+
+                                <p><?php echo "Approver : ".$app_com[$index]; ?></p>
+                                <p><?php echo "Comment : ".$comment[$index]; ?></p>
+                                <hr>
                                 <center>
-                                    <p><?php echo "Approver : ".$app_com[$index]; ?></p>
-                                    <p><?php echo "Comment : ".$comment[$index]; ?></p>
-                                    <hr>
                                     <textarea type="text" id="comment<?php echo $index; ?>" placeholder="Enter comment"
                                         class="form-control"></textarea>
                                 </center>
@@ -194,12 +201,12 @@ function main_index() {
                     <div class="col-md-6" align="right">
                         <?php if(sizeof($data_group) != 0){?>
                         <button id="save" class="btn btn-success" data-toggle="modal" data-target="#save_data">
-                        Accept</button>
+                            Accept</button>
                         <?php }
                         // if
                         else {?>
                         <button id="save" class="btn btn-success" disabled>
-                        Accept</button>
+                            Accept</button>
                         <?php }
                         // else ?>
                     </div>
@@ -243,7 +250,8 @@ function main_index() {
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
                 </div>
-                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="save_group_to_HR()">Submit</button>
+                <button type="button" class="btn btn-success" id="btnsaveadd"
+                    onclick="save_group_to_HR()">Submit</button>
             </div>
             <!-- modal-footer -->
         </div>

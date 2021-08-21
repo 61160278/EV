@@ -67,7 +67,7 @@ class M_evs_data_approve extends Da_evs_data_approve {
 				ON gsec.Sectioncode = dbmc_emp.Sectioncode_ID
 				INNER JOIN dbmc.position AS pos
 				ON pos.Position_ID = dbmc_emp.Position_ID
-				WHERE dma_approve1 = ? AND evs_emp.emp_pay_id = ? AND evs_app.dma_status = 1" ;
+				WHERE dma_approve1 = ? AND evs_emp.emp_pay_id = ? AND evs_app.dma_status = 1 OR evs_app.dma_status = 7" ;
 				
 		$query = $this->db->query($sql, array($this->dma_approve1, $this->emp_pay_id));
 		return $query;
@@ -84,7 +84,7 @@ class M_evs_data_approve extends Da_evs_data_approve {
 				ON gsec.Sectioncode = dbmc_emp.Sectioncode_ID
 				INNER JOIN dbmc.position AS pos
 				ON pos.Position_ID = dbmc_emp.Position_ID
-				WHERE dma_approve2 = ? AND evs_emp.emp_pay_id = ? AND evs_app.dma_status = 2" ;
+				WHERE dma_approve2 = ? AND evs_emp.emp_pay_id = ? AND evs_app.dma_status = 2 OR evs_app.dma_status = 6" ;
 				
 		$query = $this->db->query($sql, array($this->dma_approve1, $this->emp_pay_id));
 		return $query;
