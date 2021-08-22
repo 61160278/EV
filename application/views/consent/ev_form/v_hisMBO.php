@@ -717,6 +717,8 @@ function set_tap_his() {
                                 $spans = 0;
                                 // print_r($g_o_emp);
 
+                                if(sizeof($g_o_emp) != 0){
+
                                 $col = [];
                                 $row_level = $row_index->sfg_index_level;
                                 $row_ranges = $row_index->sfg_index_ranges;
@@ -812,6 +814,8 @@ function set_tap_his() {
                                 <!-- end tr  -->
                                 <?}
                             // foreach
+                            }
+                            // if
                             ?>
                             </tbody>
                             <!-- tbody  -->
@@ -1137,6 +1141,8 @@ function set_tap_his() {
                             <tbody>
 
                                 <?php  
+
+                            if(sizeof($info_ability_form) != 0){
                             $com_check = "";
                             $key_check = "";
                             $row_key = 0;
@@ -1319,7 +1325,9 @@ function set_tap_his() {
 
                                 </tr>
                                 <?php } 
-                            // foreach?>
+                            // foreach
+                            }
+                            // if?>
                             </tbody>
                             <!-- tbody -->
 
@@ -1479,6 +1487,7 @@ function set_tap_his() {
                             <tbody>
 
                                 <?php  
+                            if(sizeof($info_form_gcm) != 0){
                             $com_check = "";
                             $key_check = "";
                             $row_key = 0;
@@ -1672,7 +1681,9 @@ function set_tap_his() {
 
                                 </tr>
                                 <?php } 
-                            // foreach?>
+                            // foreach
+                            }
+                            // if?>
                             </tbody>
                             <!-- tbody -->
 
