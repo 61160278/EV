@@ -249,14 +249,15 @@ function main_index() {
                                     // if
                                 }
                                 // if
+                                else { ?>
+                                    <button class="btn btn-info" disabled>
+                                        <i class="ti ti-info-alt"></i>
+                                    </button>
+                                    <?php }
+                                    // else 
                             }
                             // if
-                                else { ?>
-                                <button class="btn btn-info" disabled>
-                                    <i class="ti ti-info-alt"></i>
-                                </button>
-                                <?php }
-                                // else 
+                                
 							?>
                             </td>
                         </tr>
