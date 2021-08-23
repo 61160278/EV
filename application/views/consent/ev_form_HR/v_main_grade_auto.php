@@ -175,6 +175,9 @@ function del_score(evs_emp_id) {
                                         <center>Grade </center>
                                     </th>
                                     <th width="10%">
+                                        <center>reasoning </center>
+                                    </th>
+                                    <th width="10%">
                                         <center>Action</center>
                                     </th>
 
@@ -227,6 +230,9 @@ function del_score(evs_emp_id) {
                                     </th>
                                     <th width="10%">
                                         <center>Grade </center>
+                                    </th>
+                                    <th width="10%">
+                                        <center>reasoning </center>
                                     </th>
                                     <th width="10%">
                                         <center>Action</center>
@@ -287,12 +293,16 @@ function del_score(evs_emp_id) {
                                     <td rowspan="<?php echo $row_index[$count_index]; ?>"><?php echo $row->Department?>
                                     </td>
                                     <td align="center"><?php echo $row->grd_grade?></td>
+                                    <td align="center"><?php if( $row->grd_status == 1 ){echo "pregnant";} 
+                                                            else if($row->grd_status == 2 ){echo "overdue absenteeism";} 
+                                                             else if($row->grd_status == 3 ){echo "go to work abroad";} ?></td>
                                     <td align="center">
                                         <button data-toggle="modal" class="btn btn-danger"
                                             data-target="#Delete<?php echo $row->grd_emp_id;?>">
                                             <i class="ti ti-trash"></i>
                                         </button>
                                     </td>
+                                    
 
                                     <input type="text" id="emp_id<?php echo $row->grd_emp_id; ?>"
                                         value="<?php echo $row->grd_emp_id?>" hidden>
@@ -302,7 +312,9 @@ function del_score(evs_emp_id) {
                                     // if
                                     else if($emp == $row->Emp_ID){ ?>
                                     <td align="center"><?php echo $row->grd_grade?></td>
-                                    
+                                    <td align="center"><?php if( $row->grd_status == 1 ){echo "pregnant";} 
+                                                            else if($row->grd_status == 2 ){echo "overdue absenteeism";} 
+                                                             else if($row->grd_status == 3 ){echo "go to work abroad";} ?></td>
 
                                     <?php }
 
@@ -322,7 +334,9 @@ function del_score(evs_emp_id) {
                                         <?php echo $row->Department?>
                                     </td>
                                     <td align="center"><?php echo $row->grd_grade?></td>
-                                    
+                                    <td align="center"><?php if( $row->grd_status == 1 ){echo "pregnant";} 
+                                                            else if($row->grd_status == 2 ){echo "overdue absenteeism";} 
+                                                             else if($row->grd_status == 3 ){echo "go to work abroad";} ?></td>
                                     <td align="center">
                                         <button data-toggle="modal" class="btn btn-danger"
                                             data-target="#Delete<?php echo $row->grd_emp_id;?>">

@@ -32,7 +32,7 @@ class Da_evs_grade_auto extends evs_model {
 	public $grd_id; 
 	public $grd_emp_id; 
 	public $grd_grade; 
-
+	public $grd_status;
 
 	function __construct() {
 		parent::__construct();
@@ -57,10 +57,10 @@ class Da_evs_grade_auto extends evs_model {
 	*/
 	function insert() {
 	 
-	 	$sql = "INSERT INTO evs_database.evs_grade_auto (grd_emp_id,grd_grade)
-	 			VALUES(?, ?)";
+	 	$sql = "INSERT INTO evs_database.evs_grade_auto (grd_emp_id,grd_grade,grd_status)
+	 			VALUES(?, ?, ?)";
 		 
-	 	$this->db->query($sql, array($this->grd_emp_id, $this->grd_grade));
+	 	$this->db->query($sql, array($this->grd_emp_id, $this->grd_grade,$this->grd_status));
 	
 	 }
 	 
@@ -83,10 +83,10 @@ class Da_evs_grade_auto extends evs_model {
 	function update() {
 	
 	 	$sql = "UPDATE evs_database.evs_grade_auto 
-	 			SET	grd_emp_id=?, grd_grade=?
+	 			SET	grd_emp_id=?, grd_grade=? grd_status=?
 	 			WHERE grd_id=?";
 		
-		$this->db->query($sql, array($this->grd_emp_id, $this->grd_grade, $this->grd_id));
+		$this->db->query($sql, array($this->grd_emp_id, $this->grd_grade, $this->grd_id ,$this->grd_status));
 		 
 	 }
 

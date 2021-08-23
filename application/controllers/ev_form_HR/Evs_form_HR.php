@@ -1182,6 +1182,17 @@ class Evs_form_HR extends MainController_avenxo {
 		}
 		// if 
 
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+
+		$this->load->model('M_evs_grade_auto','mgat');
+		$this->mgat->emp_pay_id = $year->pay_id;
+		$data['garde'] = $this->mgat->get_data_by_pay_id()->result();
+
+		
+
 		if((($sum_percent_pe+$sum_percent_ce/100)) >= 90) {array_push($data_grade,"S");}
 		else if((($sum_percent_pe+$sum_percent_ce/100)) >= 80) {array_push($data_grade,"A");}
 		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 75){array_push($data_grade,"B+");}
@@ -1190,6 +1201,7 @@ class Evs_form_HR extends MainController_avenxo {
 		else if ((($sum_percent_pe+$sum_percent_ce/200)) >= 60){array_push($data_grade,"C");}
 		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 50){array_push($data_grade,"D");}
 		else{array_push($data_grade,"F");}
+
 			array_push($data_chack_form,$check);
 		}
 		// foreach 
@@ -1786,9 +1798,11 @@ class Evs_form_HR extends MainController_avenxo {
 						$grd_emp_id = $tep->emp_id;
 						
 						$grade = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+						$reasoning = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
 								
 						$this->dgrat->grd_emp_id = $grd_emp_id;
 						$this->dgrat->grd_grade = $grade;
+						$this->dgrat->grd_status = $reasoning;
 						$this->dgrat->insert();
 					
 						// foreach 
@@ -1848,9 +1862,11 @@ class Evs_form_HR extends MainController_avenxo {
 						$grd_emp_id = $tep->emp_id;
 						
 						$grade = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+						$reasoning = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
 								
 						$this->dgrat->grd_emp_id = $grd_emp_id;
 						$this->dgrat->grd_grade = $grade;
+						$this->dgrat->grd_status = $reasoning;
 						$this->dgrat->insert();
 					
 						// foreach 
