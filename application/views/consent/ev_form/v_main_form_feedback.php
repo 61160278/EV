@@ -142,7 +142,7 @@ function main_index() {
                     <div class="tab-pane" id="App1">
                         <div class="row">
                             <div class="col-md-12">
-                                <h3>List of employees to feedback group </h3>
+                                <h3>List of employees to feedback group : Approver 1</h3>
                             </div>
                             <!-- col-12  -->
                         </div>
@@ -280,7 +280,7 @@ function main_index() {
                     <div class="tab-pane" id="App2">
                         <div class="row">
                             <div class="col-md-12">
-                                <h3>List of employees to feedback group </h3>
+                                <h3>List of employees to feedback group : Approver 2</h3>
                             </div>
                             <!-- col-12  -->
                         </div>
