@@ -113,35 +113,81 @@ class Evs_form_evaluation extends MainController_avenxo {
 	// function Main()
 
 	function feedback(){
-		$comment = [];
-		$app_com = [];
+		$comment1 = [];
+		$app_com1 = [];
+		$comment2 = [];
+		$app_com2 = [];
+		$comment_temp1 = [];
+		$app_com_temp1 = [];
+		$comment_temp2 = [];
+		$app_com_temp2 = [];
+
+		$this->load->model('M_evs_data_grade','mdg');
+		$this->mdg->dma_approve1 = $_SESSION['UsEmp_ID'];
+		$this->mdg->dma_status = 7;
+		$data['data_group1'] = $this->mdg->get_by_approver1()->result();
+
+		if(sizeof($data['data_group1']) != 0){
+		$this->load->model('M_evs_data_comment','mdcm');
+		foreach($data['data_group1'] as $row){
+			$this->mdcm->dcm_emp_id = $row->emp_id;
+			$data['com_temp'] =  $this->mdcm->get_by_emp()->result();
+			if(sizeof($data['com_temp']) != 0){
+				$tmp = $data['com_temp'];
+				foreach($tmp as $row){
+					array_push($comment_temp1,$row->dcm_comment);
+					$name = $row->Empname_eng." ".$row->Empsurname_eng;
+					array_push($app_com_temp1,$name);
+				}
+				// foreach
+				array_push($comment1,$comment_temp1);
+				array_push($app_com1,$app_com_temp1);
+			}
+			// if	
+		}
+		// foreach
+		$data['comment1'] = $comment1;
+		$data['app_com1'] = $app_com1;
+		}
+		// if
+		else{
+			$data['data_group1'] = [];
+		}
+		// else 
+		
 	
 		$this->load->model('M_evs_data_grade','mdg');
 		$this->mdg->dma_approve2 = $_SESSION['UsEmp_ID'];
 		$this->mdg->dma_status = 6;
-		$data['data_group'] = $this->mdg->get_by_approver2()->result();
-	
+		$data['data_group2'] = $this->mdg->get_by_approver2()->result();
+
+		if(sizeof($data['data_group2']) != 0){
 		$this->load->model('M_evs_data_comment','mdcm');
-		foreach($data['data_group'] as $row){
+		foreach($data['data_group2'] as $row){
 			$this->mdcm->dcm_emp_id = $row->emp_id;
-			$data['com_temp'] =  $this->mdcm->get_by_emp()->row();
+			$data['com_temp'] =  $this->mdcm->get_by_emp()->result();
 			if(sizeof($data['com_temp']) != 0){
-					$temp = $data['com_temp'];
-					array_push($comment,$temp->dcm_comment);
-					$name = $temp->Empname_eng." ".$temp->Empsurname_eng;
-					array_push($app_com,$name);
+				$tmp = $data['com_temp'];
+				foreach($tmp as $row){
+					array_push($comment_temp2,$row->dcm_comment);
+					$name = $row->Empname_eng." ".$row->Empsurname_eng;
+					array_push($app_com_temp2,$name);
+				}
+				// foreach
+				array_push($comment2,$comment_temp2);
+				array_push($app_com2,$app_com_temp2);
 			}
-			// if
-			else{
-				array_push($comment,"-");
-				array_push($app_com,"-");
-			}
-			// else 
-	
+			// if	
 		}
 		// foreach
-		$data['comment'] = $comment;
-		$data['app_com'] = $app_com;
+		$data['comment2'] = $comment2;
+		$data['app_com2'] = $app_com2;
+		}
+		// if
+		else{
+			$data['data_group2'] = [];
+		}
+		// else 
 	
 		$this->output('/consent/ev_form/v_main_form_feedback',$data);
 	}
