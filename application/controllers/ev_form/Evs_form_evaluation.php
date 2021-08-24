@@ -112,6 +112,42 @@ class Evs_form_evaluation extends MainController_avenxo {
 	}
 	// function Main()
 
+	function feedback(){
+		$comment = [];
+		$app_com = [];
+	
+		$this->load->model('M_evs_data_grade','mdg');
+		$this->mdg->dma_approve2 = $_SESSION['UsEmp_ID'];
+		$this->mdg->dma_status = 6;
+		$data['data_group'] = $this->mdg->get_by_approver2()->result();
+	
+		$this->load->model('M_evs_data_comment','mdcm');
+		foreach($data['data_group'] as $row){
+			$this->mdcm->dcm_emp_id = $row->emp_id;
+			$data['com_temp'] =  $this->mdcm->get_by_emp()->row();
+			if(sizeof($data['com_temp']) != 0){
+					$temp = $data['com_temp'];
+					array_push($comment,$temp->dcm_comment);
+					$name = $temp->Empname_eng." ".$temp->Empsurname_eng;
+					array_push($app_com,$name);
+			}
+			// if
+			else{
+				array_push($comment,"-");
+				array_push($app_com,"-");
+			}
+			// else 
+	
+		}
+		// foreach
+		$data['comment'] = $comment;
+		$data['app_com'] = $app_com;
+	
+		$this->output('/consent/ev_form/v_main_form_feedback',$data);
+	}
+	// feedback
+
+
 	function form_rejacet()
 	{
 		

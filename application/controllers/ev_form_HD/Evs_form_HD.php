@@ -1432,7 +1432,7 @@ function feedback(){
 
 	$this->output('/consent/ev_form_HD/v_main_form_feedback',$data);
 }
-// if
+// feedback
 
 function save_feedback(){
     

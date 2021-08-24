@@ -44,6 +44,10 @@
                                 <li class="nav-separator"><span>Menu</span></li>
                                 <li><a href="<?php echo base_url() ?>ev_form/Evs_form/index"><i
                                             class="fa fa-pencil-square"></i><span>Create Form</span></span></a></li>
+                                <li><a href="<?php echo base_url() ?>ev_form/Evs_form_evaluation/index"><i
+                                            class="fa fa-tachometer"></i><span>Evaluation Form</span></span></a></li>
+                                <li><a href="<?php echo base_url() ?>ev_form/Evs_form_evaluation/feedback"><i
+                                            class="fa fa-comments"></i><span>Feedback Form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form/Evs_form/show_ststus"><i
                                             class="fa fa-book"></i><span>Status Form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/report_grade"><i

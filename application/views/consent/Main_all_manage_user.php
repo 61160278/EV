@@ -81,6 +81,39 @@ th {
                     </a>
                     <!-- create form  -->
 
+                    <a href="<?php echo base_url() ?>ev_form/Evs_form_evaluation/index">
+                        <div class="col-md-4">
+                            <div class="info-tile tile-indigo">
+                                <div class="tile-icon "><i class="fa fa-tachometer"></i></div>
+                                <div class="tile-heading"><span>MENU</span></div>
+                                <div class="tile-body">
+                                    <span>Evaluation Form</span>
+                                </div>
+                                <!-- body  -->
+                            </div>
+                            <!-- title  -->
+                        </div>
+                        <!-- col-4  -->
+                    </a>
+                    <!-- create form  -->
+
+                    
+                    <a href="<?php echo base_url() ?>ev_form/Evs_form_evaluation/feedback">
+                        <div class="col-md-4">
+                            <div class="info-tile tile-indigo">
+                                <div class="tile-icon "><i class="fa fa-comments"></i></div>
+                                <div class="tile-heading"><span>MENU</span></div>
+                                <div class="tile-body">
+                                    <span>Feedback Form</span>
+                                </div>
+                                <!-- body  -->
+                            </div>
+                            <!-- title  -->
+                        </div>
+                        <!-- col-4  -->
+                    </a>
+                    <!-- create form  -->
+
                     <a href="<?php echo base_url() ?>ev_form/Evs_form/show_ststus">
                         <div class="col-md-4">
                             <div class="info-tile tile-indigo">

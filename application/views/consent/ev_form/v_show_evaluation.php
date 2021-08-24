@@ -145,19 +145,9 @@ $(document).ready(function() {
                             <!-- col-12  -->
                         </div>
                         <!-- row  -->
-                        <?php   
-                        $status_app2 = 0;
-                        if(sizeof($data_app2) != 0){
-                                    foreach($data_app2 as $index => $row){ 
-                                        $status_app2 = $row->dma_status;
-                                    }
-                                    // foreach
-                                }// if
-                        ?>
                         <hr>
                         <table class="table table-bordered table-striped m-n" id="show_app2">
                             <thead>
-                                <?php if($status_app2 == "2"){ ?>
                                 <tr>
                                     <th>
                                         <center>#</center>
@@ -181,42 +171,12 @@ $(document).ready(function() {
                                         <center>Action</center>
                                     </th>
                                 </tr>
-                                <?php }
-                                // if
-                                else if($status_app2 == "6"){ ?>
-                                <tr>
-                                    <th width="2%">
-                                        <center>#</center>
-                                    </th>
-                                    <th width="8%">
-                                        <center>Employee ID</center>
-                                    </th>
-                                    <th width="15%">
-                                        <center>Name - surname</center>
-                                    </th>
-                                    <th width="10%">
-                                        <center>Section Code</center>
-                                    </th>
-                                    <th width="15%">
-                                        <center>Department</center>
-                                    </th>
-                                    <th width="15%">
-                                        <center>Position</center>
-                                    </th>
-                                    <th width="5%">
-                                        <center>Grade</center>
-                                    </th>
-                                    <th width="20%">
-                                        <center>Comment</center>
-                                    </th>
-                                </tr>
-                                <?php }
-                                // else?>
                             </thead>
                             <!-- thead  -->
                             <tbody>
                                 <?php 
                                 if(sizeof($data_app2) != 0){
+                                $count = 0;
                                 foreach($data_app2 as $index => $row){ 
                                     if($row->dma_status == 2){?>
                                 <tr>
@@ -245,61 +205,11 @@ $(document).ready(function() {
                                 <?php 
                                     }
                                     // if
-                                    else if($row->dma_status == 6){ ?>
-                                <tr>
-                                    <td>
-                                        <center>
-                                            <?php echo $index+1 ?>
-                                        </center>
-                                    </td>
-                                    <td>
-                                        <center>
-                                            <?php echo  $row->emp_employee_id ?>
-                                        </center>
-                                    </td>
-                                    <td>
-                                        <center>
-                                            <?php echo $row->Empname_engTitle." ".$row->Empname_eng." ".$row->Empsurname_eng ?>
-                                        </center>
-                                    </td>
-                                    <td>
-                                        <center><?php echo $row->Sectioncode_ID; ?></center>
-                                    </td>
-                                    <td>
-                                        <center><?php echo $row->Department; ?></center>
-                                    </td>
-                                    <td>
-                                        <center><?php echo $row->Position_name; ?></center>
-                                    </td>
-                                    <td>
-                                        <center>
-                                            <h3>
-                                                <b>
-                                                    <!-- <?php echo $grade[$index] ?> -->
-                                                </b>
-                                            </h3>
-                                        </center>
-                                    </td>
-                                    <td>
-                                        <hr>
-                                        <center>
-                                            <textarea type="text" id="comment<?php echo $index; ?>"
-                                                placeholder="Enter comment" class="form-control"></textarea>
-                                        </center>
-                                    </td>
-                                </tr>
-
-                                <?php }
-                                    // if
                                 }
-                                // for  
-                                }
-                                // if ?>
+                                // foreach    
+                            }
+                        // if  ?>
 
-                            </tbody>
-                            <!-- tbody  -->
-                        </table>
-                        <!-- table  -->
                     </div>
                     <!-- ****************************************** App2 ****************************************** -->
 
