@@ -55,7 +55,8 @@
                                 <!-- associate  -->
                                 <?php }
                                 // if
-                                else if($_SESSION['UsRole'] == 2) { ?>
+                                else if($_SESSION['UsRole'] == 2) { 
+                                    print_r($data_group);?>
                                 <li><a href="<?php echo base_url() ?>Evs_all_manage/index_a"><i
                                             class="fa fa-home"></i><span>HOME</span></span></a></li>
                                 <!-- home  -->
@@ -63,7 +64,7 @@
                                 <li><a href="<?php echo base_url() ?>ev_form/Evs_form/index"><i
                                             class="fa fa-pencil-square"></i><span>Create Form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/index"><i
-                                            class="fa fa-tachometer"></i><span>Approve group</span></span></a></li>
+                                            class="fa fa-tachometer"></i><span>Approve group <span class="w3-badge">9</span></span></span></a></li>
                                 <li><a href="<?php echo base_url();?>/ev_form_HD/Evs_form_HD/feedback"><i
                                             class="fa fa-comments"></i><span>Feedback group</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form/Evs_form/show_ststus"><i
