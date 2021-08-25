@@ -81,6 +81,16 @@ class M_evs_data_grade extends Da_evs_data_grade {
 	}
 	//get_data_grade_all
 
+	function get_all_by_emp() {	
+		$sql = "SELECT * 
+				FROM evs_database.evs_data_grade
+				WHERE dgr_emp_id = ?
+				";
+        $query = $this->db->query($sql, array($this->dgr_emp_id));
+		return $query;
+	}
+	//get_all_by_emp
+
 
 	function get_by_gorup(){	
 		$sql = "SELECT *
@@ -147,6 +157,8 @@ class M_evs_data_grade extends Da_evs_data_grade {
 		return $query;
 	
 	}//get_by_approver2
+
+
 
 } 
 ?>

@@ -21,9 +21,9 @@ class M_evs_data_approve extends Da_evs_data_approve {
 	function get_status_by_emp(){	
 		$sql = "SELECT * 
 				FROM evs_database.evs_data_approve
-				WHERE dma_dtm_emp_id = ?" ;
+				WHERE dma_emp_id = ?" ;
 				
-		$query = $this->db->query($sql, array($this->dma_dtm_emp_id));
+		$query = $this->db->query($sql, array($this->dma_emp_id));
 		return $query;
 	}//get_by_id
 

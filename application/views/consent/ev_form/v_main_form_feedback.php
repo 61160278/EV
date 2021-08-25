@@ -228,9 +228,11 @@ function main_index() {
                                         </center>
                                     </td>
                                     <td>
-                                        <?php for($i=0;$i < 3;$i++){ ?>
-                                        <p><?php echo "Approver : ".$app_com1[$index][$i]; ?></p>
-                                        <p><?php echo "Comment : ".$comment1[$index][$i]; ?></p>
+                                        <?php 
+                                        
+                                        for($j=0;$j < 3;$j++){ ?>
+                                        <p><?php echo "Approver : ".$app_com1[$index][$j]; ?></p>
+                                        <p><?php echo "Comment : ".$comment1[$index][$j]; ?></p>
                                         <hr>
                                         <?php } ?>
                                         <center>

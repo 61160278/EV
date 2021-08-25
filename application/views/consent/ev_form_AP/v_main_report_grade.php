@@ -210,13 +210,7 @@ function main_index() {
                                         <?php
                                 if(sizeof($status) != 0){
                                     if($status[$table_index] == 8){
-                                   foreach($data_grade as $index => $row_grade) {
-                                       if($row_grade->dgr_emp_id == $row->emp_id){
-                                            echo $row_grade->dgr_grade;
-                                       }
-									   // if
-                                    }
-                                    // foreach 
+                                        echo $grade[$table_index];
                                     }
                                     // if
                                 }
@@ -229,26 +223,15 @@ function main_index() {
                             <td align="center">
                                 <?php 
                             if(sizeof($status) != 0){
-                                if($status[$table_index] == 8){
-                                    if(sizeof($data_grade) != 0){ 
-                                        foreach($data_grade as $index => $row_grade) {
-                                            if($row_grade->dgr_emp_id == $row->emp_id){
-                                            ?>
-
+                                if($status[$table_index] == 8){?>
                                 <button class="btn btn-info" data-toggle="modal"
-                                    data-target="#detail_<?php echo $row_grade->dgr_id; ?>">
+                                    data-target="#detail_<?php echo $index; ?>">
                                     <i class="ti ti-info-alt"></i>
                                 </button>
 
                                 <?php
-                                            }
-                                            // if
-                                        }
-                                        // foreach
                                     }
                                     // if
-                                }
-                                // if
                                 else { ?>
                                     <button class="btn btn-info" disabled>
                                         <i class="ti ti-info-alt"></i>
@@ -299,13 +282,10 @@ function main_index() {
 
 <?php
 foreach($emp_info as $index => $row) {
-    if($row->emp_employee_id == $data_emp_id){
-		foreach($data_grade as $index => $row_grade) {
-			if($row_grade->dgr_emp_id == $row->emp_id){
 			?>
 
 <!-- Modal show detail -->
-<div class="modal fade" id="detail_<?php echo $row_grade->dgr_id; ?>" tabindex="-1" role="dialog"
+<div class="modal fade" id="detail_<?php echo $index; ?>" tabindex="-1" role="dialog"
     aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -345,7 +325,7 @@ foreach($emp_info as $index => $row) {
                     <div class="col-md-6" align="center">
                         <div class="alert alert-dismissable alert-success">
                             <font color="Black">
-                                <h2>Grade : <?php echo $row_grade->dgr_grade; ?> </h2>
+                                <h2>Grade : <?php echo $grade[$index]; ?> </h2>
                             </font>
                         </div>
                         <!-- alert -->
@@ -357,7 +337,12 @@ foreach($emp_info as $index => $row) {
                             <h5>Comment</h5>
                         </center>
                         <hr>
-                        <p><?php echo $row_grade->dgr_comment; ?></p>
+                        <?php 
+                        for($j=0;$j < 4;$j++){ ?>
+                        <p><?php echo "Approver : ".$app_com[$index][$j]; ?></p>
+                        <p><?php echo "Comment : ".$comment[$index][$j]; ?></p>
+                        <hr>
+                        <?php } ?>
                     </div>
                     <!-- col-6  -->
                 </div>
@@ -376,12 +361,4 @@ foreach($emp_info as $index => $row) {
 </div>
 <!-- End Modal show detail-->
 
-<?php }
-				// if
-			}
-			// foreach
-		}
-		// if
-	}
-	// foreach 
-		?>
+<?php }// foreach ?>

@@ -143,7 +143,10 @@ class Evs_form_evaluation extends MainController_avenxo {
 				array_push($comment1,$comment_temp1);
 				array_push($app_com1,$app_com_temp1);
 			}
-			// if	
+			// if
+			$comment_temp1 = [];
+			$app_com_temp1 = [];
+
 		}
 		// foreach
 		$data['comment1'] = $comment1;
@@ -177,7 +180,9 @@ class Evs_form_evaluation extends MainController_avenxo {
 				array_push($comment2,$comment_temp2);
 				array_push($app_com2,$app_com_temp2);
 			}
-			// if	
+			// if
+			$comment_temp2 = [];
+			$app_com_temp2 = [];	
 		}
 		// foreach
 		$data['comment2'] = $comment2;

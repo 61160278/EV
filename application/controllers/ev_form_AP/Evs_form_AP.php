@@ -589,10 +589,16 @@ class Evs_form_AP extends MainController_avenxo {
 		function report_grade()
 		{
 			$status = [];
+			$grade = [];
 			$data_chack_form = [];	
 			$check = 0;
 			$chack_save = 0;
 			$chack_form_save = 0;
+
+			$comment = [];
+			$app_com = [];
+			$comment_temp = [];
+			$app_com_temp = [];
 			
 			$this->load->model('M_evs_pattern_and_year','myear');
 			$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
@@ -606,28 +612,82 @@ class Evs_form_AP extends MainController_avenxo {
 			$data['emp_info_show'] = $this->memp->get_by_empid();
 	
 			$this->load->model('M_evs_employee','memp');
-			$data['emp_info'] = $this->memp->get_all_by_year()->result();
+			$this->memp->emp_employee_id = $_SESSION['UsEmp_ID'];
+			$data['emp_info'] = $this->memp->get_all_by_year_by_emp()->result();
 
-			$this->load->model('M_evs_data_grade','mdgd');
-			$this->mdgd->dgr_pay_id = $pay_id;
-			$data['data_grade'] = $this->mdgd->get_all_by_year()->result();
+
+
+
 			$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
 
-			$this->load->model('M_evs_data_approve','mda');
-			$this->mda->dma_dtm_emp_id = $_SESSION['UsEmp_ID'];
-			$data['app'] = $this->mda->get_status_by_emp()->result();
-			if(sizeof($data['app']) != 0){
-				foreach($data['app'] as $row){
-					array_push($status,$row->dma_status);
+			if(sizeof($data['emp_info']) != 0){
+			foreach($data['emp_info'] as $row){
+				$this->load->model('M_evs_data_approve','mda');
+				$this->mda->dma_emp_id = $row->emp_id;
+				$data['app'] = $this->mda->get_status_by_emp()->result();
+				if(sizeof($data['app']) != 0){
+					foreach($data['app'] as $row){
+						array_push($status,$row->dma_status);
+					}
+					// foreach
 				}
-				// foreach
-				$data['status'] = $status;
+				// if
+				else {
+					array_push($status,0);
+				}
+				// else
+			}
+			// foreach
+			foreach($data['emp_info'] as $row){
+			$this->load->model('M_evs_data_grade','mdgd');
+				$this->mdgd->dgr_emp_id = $row->emp_id;
+				$data['data_grade'] = $this->mdgd->get_all_by_emp()->result();
+				if(sizeof($data['data_grade']) != 0){
+					foreach($data['data_grade'] as $row){
+						array_push($grade,$row->dgr_grade);
+					}
+					// foreach
+				}
+				// if
+				else {
+					array_push($grade,0);
+				}
+				// else
+			}
+			// foreach
+			
+			foreach($data['emp_info'] as $row){
+				$this->load->model('M_evs_data_comment','mdcm');
+				$this->mdcm->dcm_emp_id = $row->emp_id;
+				$data['com_temp'] =  $this->mdcm->get_by_emp()->result();
+				if(sizeof($data['com_temp']) != 0){
+					$tmp = $data['com_temp'];
+					foreach($tmp as $row){
+						array_push($comment_temp,$row->dcm_comment);
+						$name = $row->Empname_eng." ".$row->Empsurname_eng;
+						array_push($app_com_temp,$name);
+					}
+					// foreach
+					array_push($comment,$comment_temp);
+					array_push($app_com,$app_com_temp);
+
+				}
+				// if
+				$comment_temp = [];
+				$app_com_temp = [];
+			}
+			// foreach
 			}
 			// if
-			else {
-				$data['status'] = [];
-			}
-			// else 
+
+			$data['comment'] = $comment;
+			$data['app_com'] = $app_com;
+			$data['status'] = $status;
+			$data['grade'] = $grade;
+
+			// print_r($data['status']);
+			// print_r($data['grade']);
+
 			$this->output('/consent/ev_form_AP/v_main_report_grade',$data);
 
 		}

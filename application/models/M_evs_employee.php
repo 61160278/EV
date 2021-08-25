@@ -239,15 +239,27 @@ class M_evs_employee extends Da_evs_employee {
 		left join evs_database.evs_group			
 		on evs_group.gru_id = evs_employee.emp_gru_id
 		left join evs_database.evs_pattern_and_year			
-		on evs_pattern_and_year.pay_id = evs_employee.emp_pay_id
-		";
-		
-	
+		on evs_pattern_and_year.pay_id = evs_employee.emp_pay_id";
 		$query = $this->db->query($sql);
 	
+		return $query;
+	}//get_all_by_year
+	
+	function get_all_by_year_by_emp(){	
+
+		$sql = "SELECT *	
+		FROM evs_database.evs_employee as emp 	
+		left join dbmc.employee as dbmc
+		on dbmc.Emp_ID = emp.emp_employee_id 
+		left join evs_database.evs_group as grp			
+		on grp.gru_id = emp.emp_gru_id
+		left join evs_database.evs_pattern_and_year as yar
+		on yar.pay_id = emp.emp_pay_id
+		WHERE emp.emp_employee_id= ?";
+		$query = $this->db->query($sql,$this->emp_employee_id);
 	
 		return $query;
-		}//get_all_emp 
+	}//get_all_by_year 
 
 	
 }
