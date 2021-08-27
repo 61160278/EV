@@ -54,9 +54,30 @@ class M_evs_grade_auto extends Da_evs_grade_auto {
 		ON evs_emp.emp_employee_id = emp.Emp_ID
 		INNER JOIN dbmc.sectioncode AS sec
 		ON sec.Sectioncode = emp.Sectioncode_ID
+		INNER JOIN evs_database.evs_reasoning_master AS  rms
+		ON grat.grd_status = rms.rms_id
 		WHERE evs_emp.emp_pay_id = ?
 		ORDER BY evs_emp.emp_employee_id ASC";
 		$query = $this->db->query($sql, array($this->emp_pay_id));
+		return $query;
+	
+	}//get_data_show_mhrd
+
+
+	function get_data_by_pay_id_and_emp_id(){	
+		$sql = "SELECT *
+		FROM evs_database.evs_grade_auto AS grat
+		INNER JOIN evs_database.evs_employee AS evs_emp
+		ON evs_emp.emp_id = grat.grd_emp_id 
+		INNER JOIN dbmc.employee AS emp
+		ON evs_emp.emp_employee_id = emp.Emp_ID
+		INNER JOIN dbmc.sectioncode AS sec
+		ON sec.Sectioncode = emp.Sectioncode_ID
+		INNER JOIN evs_database.evs_reasoning_master AS  rms
+		ON grat.grd_status = rms.rms_id
+		WHERE evs_emp.emp_pay_id = ? AND grd_emp_id = ?
+		ORDER BY evs_emp.emp_employee_id ASC";
+		$query = $this->db->query($sql, array($this->emp_pay_id,$this->grd_emp_id));
 		return $query;
 	
 	}//get_data_show_mhrd

@@ -937,6 +937,8 @@ class Evs_form_HR extends MainController_avenxo {
 	function table_report($Emp_ID,$group){
 		$data_chack_form = [];	
 		$data_grade = [];
+		$data_grade_auto = [];
+		$data_reasoning = [];
 		$check = 0;
 		$chack_save = 0;
 		$chack_form_save = 0;
@@ -1189,9 +1191,14 @@ class Evs_form_HR extends MainController_avenxo {
 
 		$this->load->model('M_evs_grade_auto','mgat');
 		$this->mgat->emp_pay_id = $year->pay_id;
-		$data['garde'] = $this->mgat->get_data_by_pay_id()->result();
+		$this->mgat->grd_emp_id = $tep->emp_id;
+		$save_data_grade_auto = $this->mgat->get_data_by_pay_id_and_emp_id()->row();
 
-		
+		if(sizeof($save_data_grade_auto) != 0){
+		array_push($data_grade_auto,$save_data_grade_auto->grd_grade);
+		array_push($data_reasoning,$save_data_grade_auto->rms_name);
+		}else{ array_push($data_grade_auto," - ");
+			array_push($data_reasoning," - ");}
 
 		if((($sum_percent_pe+$sum_percent_ce/100)) >= 90) {array_push($data_grade,"S");}
 		else if((($sum_percent_pe+$sum_percent_ce/100)) >= 80) {array_push($data_grade,"A");}
@@ -1225,6 +1232,8 @@ class Evs_form_HR extends MainController_avenxo {
 		$data['chack_save'] = $chack_save_button;
 		$data['data_chack_form'] = $data_chack_form;
 		$data['data_grade'] = $data_grade;
+		$data['garde_auto'] = $data_grade_auto;
+		$data['data_reasoning'] = $data_reasoning;
 		$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
 		$data['data_hard_dep'] = $Emp_ID;
 		$data['data_focas_group'] = $group;
@@ -1774,7 +1783,10 @@ class Evs_form_HR extends MainController_avenxo {
 			// else 
 	
 			$this->load->model('M_evs_employee','memp');
+			$this->load->model('M_evs_grad_master','mgms');
+			$this->load->model('M_evs_reasoning_master','mrsm');
 			$this->load->model('Da_evs_grade_auto','dgrat');
+			
 	
 			if(isset($_FILES["file"]["name"]))
 			{
@@ -1799,13 +1811,33 @@ class Evs_form_HR extends MainController_avenxo {
 						
 						$grade = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
 						$reasoning = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+
+						$chack_grade = "0";
+						$chack_reasoning = "0";
 								
-						$this->dgrat->grd_emp_id = $grd_emp_id;
-						$this->dgrat->grd_grade = $grade;
-						$this->dgrat->grd_status = $reasoning;
-						$this->dgrat->insert();
-					
+						$data['garde_master'] = $this->mgms->get_all()->result();
+						foreach($data['garde_master'] as $row_g){
+							
+							if($grade == $row_g->gms_grade){ $chack_grade = "1"; }
+							
+						}
 						// foreach 
+						
+
+						$data['reasoning_master'] = $this->mrsm->get_all()->result();
+						foreach($data['reasoning_master'] as $row_r){
+							
+							if($reasoning == $row_r->rms_id){ $chack_reasoning = "1"; }
+							
+						}
+						// foreach
+						
+						if($chack_grade == "1" && $chack_reasoning == "1"){
+							$this->dgrat->grd_emp_id = $grd_emp_id;
+							$this->dgrat->grd_grade = $grade;
+							$this->dgrat->grd_status = $reasoning;
+							$this->dgrat->insert();
+						}
 					}
 					// for
 				}

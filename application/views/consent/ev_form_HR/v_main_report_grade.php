@@ -112,8 +112,12 @@ function save_grade() {
                                 <center>Group</center>
                             </th>
                             <th width="20%">
-                                <center>Grade</center>
+                                <center>Grade Evaluation / Grade Auto</center>
                             </th>
+                            <th width="20%">
+                                <center>Reasoning</center>
+                            </th>
+                           
                             <th width="20%">
                                 <center>Comment</center>
                             </th>
@@ -153,8 +157,16 @@ function save_grade() {
                             </td>
                             <td>
                                 <center>
-                                    <?php echo $data_grade[$index]; ?>
-                                    <input type="text" name="grade" value="<?php echo $data_grade[$index]; ?>" hidden>
+                                    <?php echo $data_grade[$index]." / ".$garde_auto[$index] ?>
+                                    <input type="text" name="grade" value="<?php 
+                                    if($garde_auto[$index] == " - "){ echo $data_grade[$index]; }
+                                    else{ echo $garde_auto[$index]; } 
+                                    ?>" hidden>
+                                </center>
+                            </td>
+                            <td>
+                                <center>
+                                    <?php echo $data_reasoning[$index] ?>
                                 </center>
                             </td>
                             <td>

@@ -293,9 +293,7 @@ function del_score(evs_emp_id) {
                                     <td rowspan="<?php echo $row_index[$count_index]; ?>"><?php echo $row->Department?>
                                     </td>
                                     <td align="center"><?php echo $row->grd_grade?></td>
-                                    <td align="center"><?php if( $row->grd_status == 1 ){echo "pregnant";} 
-                                                            else if($row->grd_status == 2 ){echo "overdue absenteeism";} 
-                                                             else if($row->grd_status == 3 ){echo "go to work abroad";} ?></td>
+                                    <td align="center"><?php echo $row->rms_name ?></td>
                                     <td align="center">
                                         <button data-toggle="modal" class="btn btn-danger"
                                             data-target="#Delete<?php echo $row->grd_emp_id;?>">
@@ -312,10 +310,7 @@ function del_score(evs_emp_id) {
                                     // if
                                     else if($emp == $row->Emp_ID){ ?>
                                     <td align="center"><?php echo $row->grd_grade?></td>
-                                    <td align="center"><?php if( $row->grd_status == 1 ){echo "pregnant";} 
-                                                            else if($row->grd_status == 2 ){echo "overdue absenteeism";} 
-                                                             else if($row->grd_status == 3 ){echo "go to work abroad";} ?></td>
-
+                                    <td align="center"><?php echo $row->rms_name ?></td>
                                     <?php }
 
                                     else if($emp != $row->Emp_ID){
@@ -334,9 +329,7 @@ function del_score(evs_emp_id) {
                                         <?php echo $row->Department?>
                                     </td>
                                     <td align="center"><?php echo $row->grd_grade?></td>
-                                    <td align="center"><?php if( $row->grd_status == 1 ){echo "pregnant";} 
-                                                            else if($row->grd_status == 2 ){echo "overdue absenteeism";} 
-                                                             else if($row->grd_status == 3 ){echo "go to work abroad";} ?></td>
+                                    <td align="center"><?php echo $row->rms_name ?></td>
                                     <td align="center">
                                         <button data-toggle="modal" class="btn btn-danger"
                                             data-target="#Delete<?php echo $row->grd_emp_id;?>">
