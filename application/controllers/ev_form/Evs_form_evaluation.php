@@ -41,7 +41,7 @@ class Evs_form_evaluation extends MainController_avenxo {
 		$comment1 = [];
 		$comment2 = [];
 
-		$emp_id = $this->input->post("emp_id");
+		$emp_id = $_SESSION['UsEmp_ID'];
 		$pay_id = $_SESSION['Uspay_id'];
 
 		$this->load->model('M_evs_data_approve','meda');
@@ -61,6 +61,7 @@ class Evs_form_evaluation extends MainController_avenxo {
 		$this->meda->emp_pay_id = $pay_id;
 		$emp_data4 = $data['data_app4'] = $this->meda->get_by_approver4()->result();
 
+
 	 if(sizeof($data['data_app1']) == 0 && sizeof($data['data_app2']) == 0 && sizeof($data['data_app3']) != 0 || sizeof($data['data_app4']) != 0)
 	 {
 		
@@ -71,7 +72,6 @@ class Evs_form_evaluation extends MainController_avenxo {
 				$data_rj_comment1 = $this->mrjf->get_all_by_dma_id_and_rjf_status()->row();
 			array_push($comment1,$data_rj_comment1->rjf_comment);
 		}
-
 
 		foreach ($emp_data4 as $row) {	
 		$this->load->model('M_evs_reject_form','mrjf');
@@ -87,6 +87,10 @@ class Evs_form_evaluation extends MainController_avenxo {
 	 }
 	 // if
 	 else if(sizeof($data['data_app1']) != 0 || sizeof($data['data_app2']) != 0 ){
+		$this->output('/consent/ev_form/v_show_evaluation',$data);
+	 }
+	 // else
+	 else {
 		$this->output('/consent/ev_form/v_show_evaluation',$data);
 	 }
 	 // else 
