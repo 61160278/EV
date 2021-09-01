@@ -44,8 +44,7 @@ $(document).ready(function() {
             // success
         })
         // ajax
-        window.location.href =
-            "<?php echo base_url();?>/ev_form_HR/Evs_form_HR/excel";
+        window.location.href ="<?php echo base_url();?>/ev_form_HR/Evs_form_HR/excel";
     });
     // onsubmit
 
