@@ -27,6 +27,7 @@ $(document).ready(function() {
     $("#show_data_import").hide();
 
     $('#import_form').on('submit', function(form_submit) {
+        console.log(form_submit);
         form_submit.preventDefault();
         $.ajax({
             url: "<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/import",
