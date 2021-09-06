@@ -179,7 +179,7 @@ class Evs_form_HD extends MainController_avenxo {
 			$this->meda->dma_status = -3;
 			$data['st_emp_reject'] = $this->meda->get_by_emp_and_status()->row();
 			$temp_reject = $data['st_emp_reject'];
-			if(sizeof($temp_reject) == 0){array_push($comment,"Edit Success");}
+			if(sizeof($temp_reject) == 0 && sizeof($temp) != 0){array_push($comment,"Edit Success");}
 			if(sizeof($temp_reject) != 0){
 				array_push($status,$temp_reject->emp_employee_id);
 

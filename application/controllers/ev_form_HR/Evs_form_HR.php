@@ -1536,7 +1536,7 @@ class Evs_form_HR extends MainController_avenxo {
 
 		$this->load->model('M_evs_data_mhrd_weight','mdmw');
 		$this->mdmw->emp_pay_id = $year->pay_id;
-		$data['mhrd'] = $this->mdmw->get_data_show_mhrd()->result();
+		$data['mhrd'] = $this->mdmw->get_data_show_mhrd_excel()->result();
 
 		$this->output('/consent/ev_form_HR/v_main_excel',$data);
 	}

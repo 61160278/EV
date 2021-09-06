@@ -138,5 +138,29 @@ class M_evs_data_mhrd_weight extends Da_evs_data_mhrd_weight {
 	
 	}//get_data_show_mhrd
 
+
+	function get_data_show_mhrd_excel(){	
+		$sql = "SELECT *
+		FROM evs_database.evs_data_mhrd_weight AS dmhrd
+		INNER JOIN evs_database.evs_employee AS evs_emp
+		ON evs_emp.emp_id = dmhrd.mhw_evs_emp_id 
+		INNER JOIN dbmc.employee AS emp
+		ON evs_emp.emp_employee_id = emp.Emp_ID
+		INNER JOIN dbmc.sectioncode AS sec
+		ON sec.Sectioncode = emp.Sectioncode_ID
+        
+        INNER JOIN evs_database.evs_set_form_mhrd AS sfm
+		ON dmhrd.mhw_sfi_id = sfm.sfi_id
+        
+		WHERE evs_emp.emp_pay_id = ? and sfm.sfi_excel_import = 1
+		ORDER BY `sfm`.`sfi_excel_import` ASC";
+		$query = $this->db->query($sql, array($this->emp_pay_id));
+		return $query;
+	
+	}//get_data_show_mhrd
+
+
+	
+
 } 
 ?>
