@@ -142,10 +142,17 @@ function main_index() {
                                     // foreach 
                                 }
                                 // if
+                                $status_index = 0;
                                 $table_index = 0;
+                                $table_index_max = 0;
                                 if(sizeof($status) != 0){
 							    foreach($data_group as $index => $row) {
-                                if($data_emp_id != $row->emp_employee_id ) { ?>
+
+                                    $table_index_max += 1;
+                                    if($status_index >= sizeof($status)){ $status_index = sizeof($status)-1;}
+
+
+                                    if($status[$status_index] == $row->emp_employee_id ) { ?>
                         <input name="Emp_ID" id="Emp_ID<?php echo $index; ?>" type="text"
                             value="<?php echo $row->emp_id ?>" hidden>
                         <tr>
@@ -218,14 +225,21 @@ function main_index() {
                         </tr>
 
                         <?php 
+                        $status_index += 1;
                             $table_index += 1;
                                          }
                                          // if
                                     }
                                     // foreach 
                                 }
-                                // if ?>
+                                // if 
+                                else { ?>
+                        <td colspan="7">No list of approved employees.</td>
+                        <?php }
+                                    // else  ?>
                         <input type="text" id="table_index" value="<?php echo $table_index; ?>" hidden>
+
+
                     </tbody>
                     <!-- tbody  -->
                 </table>
@@ -251,7 +265,7 @@ function main_index() {
                         // foreach
                         
                         if(sizeof($status) != 0){ ?>
-                        <a href="">
+                        <a href="<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/reject_choose">
                             <button id="" class="btn btn-danger" onclick="">Reject Report</button>
                         </a>
                         <?php } 
@@ -262,7 +276,7 @@ function main_index() {
                         <?php }
                     // else ?>
                         <?php 
-                        if(sizeof($status) == $check_btn){ ?>
+                        if(sizeof($data_grade) == $check_btn &&  sizeof($status_check) == $check_btn ){ ?>
                         <button id="save" class="btn btn-success" data-toggle="modal" data-target="#save_data">
                             Save</button>
                         <?php } 
@@ -312,7 +326,8 @@ function main_index() {
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
                 </div>
-                <button type="button" class="btn btn-success" id="btnsaveadd" onclick="save_group_to_HR()">Sumbit</button>
+                <button type="button" class="btn btn-success" id="btnsaveadd"
+                    onclick="save_group_to_HR()">Sumbit</button>
             </div>
             <!-- modal-footer -->
         </div>
