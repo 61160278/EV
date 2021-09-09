@@ -198,10 +198,16 @@ function reject_comment(index) {
                                             value="<?php echo $row->emp_id; ?>" hidden>
                                     </td>
                                     <td>
+                                    <?php 
+                                    if($row->dma_approve1 != ""){
+                                     ?>
                                         <button type="button" class="btn btn-danger"
                                             onclick="reject_comment(<?php echo $index; ?>)">
                                             <i class="fa fa-mail-reply"></i>
                                         </button>
+                                        <?php 
+                                           }
+                                     ?>
                                         &nbsp;
                                         <a
                                             href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/createFROM/<?php echo $row->Emp_ID; ?>">
