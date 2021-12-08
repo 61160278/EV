@@ -58,7 +58,7 @@ class M_evs_employee extends Da_evs_employee {
 	}//get_by_empid
 	
 		/*
-	* get_by_empid
+	* get_by_Empid_group
 	* Get employee by Emp_ID
 	* @input  Emp_ID
 	* @output Employee by Emp_ID
