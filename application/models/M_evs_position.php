@@ -135,7 +135,7 @@ class M_evs_position extends Da_evs_position {
 		LEFT JOIN dbmc.position_level
 		ON position.position_level_id = position_level.psl_id
 		LEFT JOIN dbmc.sectioncode
-		ON employee.Sectioncode_ID = sectioncode.Sectioncode
+		ON employee.CostCenter_ID = sectioncode.Sectioncode
 		LEFT JOIN dbmc.department
 		ON sectioncode.dep_id = department.Dep_id
 		LEFT JOIN dbmc.company
@@ -163,7 +163,7 @@ class M_evs_position extends Da_evs_position {
 		LEFT JOIN dbmc.position_level
 		ON position.position_level_id = position_level.psl_id
 		LEFT JOIN dbmc.sectioncode
-		ON employee.Sectioncode_ID = sectioncode.Sectioncode
+		ON employee.CostCenter_ID = sectioncode.Sectioncode
 		LEFT JOIN dbmc.department
 		ON sectioncode.dep_id = department.Dep_id
 		LEFT JOIN dbmc.company
@@ -192,7 +192,7 @@ class M_evs_position extends Da_evs_position {
 		LEFT JOIN dbmc.position_level
 		ON position.position_level_id = position_level.psl_id
 		LEFT JOIN dbmc.sectioncode
-		ON employee.Sectioncode_ID = sectioncode.Sectioncode
+		ON employee.CostCenter_ID = sectioncode.Sectioncode
 		LEFT JOIN dbmc.department
 		ON sectioncode.dep_id = department.Dep_id
 		LEFT JOIN dbmc.company
@@ -214,7 +214,7 @@ class M_evs_position extends Da_evs_position {
 		LEFT JOIN dbmc.position_level 
 		ON position.position_level_id = position_level.psl_id 
 		LEFT JOIN dbmc.sectioncode 
-		ON employee.Sectioncode_ID = sectioncode.Sectioncode 
+		ON employee.v = sectioncode.Sectioncode 
 		LEFT JOIN dbmc.department 
 		ON sectioncode.dep_id = department.Dep_id 
 		LEFT JOIN dbmc.company 

@@ -114,7 +114,7 @@ td {
                                 <tr class="odd gradeX" align='center'>
                                     <td><?php echo $row->Emp_ID?></td>
                                     <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
-                                    <td><?php echo $row->Sectioncode_ID?></td>
+                                    <td><?php echo $row->CostCenter_ID?></td>
                                     <td><?php echo $row->Department?></td>
                                     <td><?php echo $row->Position_name ?></td>
                                     <td>
@@ -133,7 +133,7 @@ td {
                                     <input id="Posid<?php echo $index ;?>" name="Posid" type="hidden"
                                         value="<?php echo  $row->Position_ID ; ?>">
                                     <input id="Sectioncode<?php echo $index ;?>" name="Sectioncode" type="hidden"
-                                        value="<?php echo  $row->Sectioncode_ID ; ?>">
+                                        value="<?php echo  $row->CostCenter_ID ; ?>">
                                     <input id="Company<?php echo $index ;?>" name="Company" type="hidden"
                                         value="<?php echo  $row->Company_ID ; ?>">
 

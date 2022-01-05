@@ -179,8 +179,8 @@ class M_evs_employee extends Da_evs_employee {
 
 		$sql = "SELECT *	
 		FROM dbmc.employee	
-		left join dbmc.group_secname		
-		on group_secname.Sectioncode = employee.Sectioncode_ID
+		left join dbmc.Sectioncode		
+		on Sectioncode.Sectioncode = employee.CostCenter_ID
 		left join dbmc.position		
 		on position.Position_ID = employee.Position_ID
 		WHERE Emptype_ID = 5	
@@ -199,8 +199,8 @@ class M_evs_employee extends Da_evs_employee {
 			FROM evs_database.evs_employee	
 			left join dbmc.employee
 			on employee.Emp_ID=evs_employee.emp_employee_id 
-			left join dbmc.group_secname		
-			on group_secname.Sectioncode = evs_employee.emp_section_code_ID
+			left join dbmc.Sectioncode		
+			on Sectioncode.Sectioncode = evs_employee.emp_section_code_ID
 			left join dbmc.position
 			on position.Position_ID = evs_employee.emp_position_id
 			WHERE emp_pay_id = ?";
