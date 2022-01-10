@@ -30,9 +30,7 @@ function emp_delete(emp_id) {
         }
 
     });
-
-    var pay_id = 2;
-    window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/" + pay_id + ""
+    window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/" + <?php echo $year; ?> + ""
 } //function emp_insert
 </script>
 <style>
@@ -86,7 +84,7 @@ td {
                                         <center>Emp. ID </center>
                                     </th>
                                     <th>
-                                        <center> Name – Surname </center>
+                                        <center> Name - Surname </center>
                                     </th>
                                     <th>
                                         <center> Section Code </center>
@@ -100,7 +98,9 @@ td {
                                     <th>
                                         <center> Action </center>
                                     </th>
-
+                                    <th>
+                                        <center> Personal Grade </center>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody id="show_emp">
@@ -114,9 +114,10 @@ td {
                                 <tr class="odd gradeX" align='center'>
                                     <td><?php echo $row->Emp_ID?></td>
                                     <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
-                                    <td><?php echo $row->CostCenter_ID?></td>
+                                    <td><?php echo $row->Sectioncode_ID?></td>
                                     <td><?php echo $row->Department?></td>
                                     <td><?php echo $row->Position_name ?></td>
+                                    <td><?php echo $row->Personal_grade ?></td>
                                     <td>
                                         <div class="demo-btns">
                                             <a data-toggle="modal" class="btn btn btn-danger"
@@ -133,7 +134,7 @@ td {
                                     <input id="Posid<?php echo $index ;?>" name="Posid" type="hidden"
                                         value="<?php echo  $row->Position_ID ; ?>">
                                     <input id="Sectioncode<?php echo $index ;?>" name="Sectioncode" type="hidden"
-                                        value="<?php echo  $row->CostCenter_ID ; ?>">
+                                        value="<?php echo  $row->Sectioncode_ID ; ?>">
                                     <input id="Company<?php echo $index ;?>" name="Company" type="hidden"
                                         value="<?php echo  $row->Company_ID ; ?>">
 

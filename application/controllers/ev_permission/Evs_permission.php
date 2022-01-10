@@ -42,13 +42,13 @@ class Evs_permission extends MainController_avenxo {
 		$year = $data['patt_year']->row(); // show value year now
 		//end set year now
 		$pay_id = $year->pay_id;
-
+		
 		$this->load->model('M_evs_employee','mevg');
 		$this->mevg->emp_pay_id= $pay_id;
 		$data['select'] = $this->mevg->get_all_emp_delete();
 
 		$check = sizeof($data['select']->result());
-
+		$data['year'] = $pay_id;
 		if($check != 0){
 			$this->output('/consent/ev_permission/v_list_permission_delete',$data);
 		}
@@ -176,7 +176,7 @@ class Evs_permission extends MainController_avenxo {
 		$this->load->model('M_evs_employee','mevg');
 		$this->mevg->emp_pay_id= $pay_id;
 		$data['select'] = $this->mevg->get_all_emp_delete();
-
+		$data['year'] = $pay_id;
 		$this->output('/consent/ev_permission/v_list_permission_delete',$data);
 	}
 	// delete_emp()

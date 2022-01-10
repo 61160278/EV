@@ -88,10 +88,10 @@ function emp_insert() {
         check++;
     }
     // for 
-
-    if (check == loop_count) {
-        window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/" +
-            <?php echo $year; ?> + ""
+    console.log("chack : "+check);
+    console.log("loop_count : "+Math.ceil(loop_count));
+    if (check == Math.ceil(loop_count)) {
+        window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/" + <?php echo $year; ?> + ""
     }
     // if 
 
@@ -164,6 +164,9 @@ td {
                                     <th>
                                         <center> Position </center>
                                     </th>
+                                    <th>
+                                        <center> Personal Grade </center>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody id="show_emp">
@@ -175,9 +178,10 @@ td {
                                 <tr align='center'>
                                     <td><?php echo $row->Emp_ID?></td>
                                     <td><?php echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
-                                    <td><?php echo $row->CostCenter_ID?></td>
+                                    <td><?php echo $row->Sectioncode_ID?></td>
                                     <td><?php echo $row->Department?></td>
                                     <td><?php echo $row->Position_name ?></td>
+                                    <td><?php echo $row->Personal_grade ?></td>
                                 </tr>
 
 
@@ -205,7 +209,7 @@ td {
                 <input id="Posid<?php echo $index ;?>" name="Posid" type="text"
                     value="<?php echo  $row->Position_ID ; ?>" hidden>
                 <input id="Sectioncode<?php echo $index ;?>" name="Sectioncode" type="text"
-                    value="<?php echo  $row->CostCenter_ID ; ?>" hidden>
+                    value="<?php echo  $row->Sectioncode_ID ; ?>" hidden>
                 <input id="Company<?php echo $index ;?>" name="Company" type="text"
                     value="<?php echo  $row->Company_ID ; ?>" hidden>
                 <?php }
