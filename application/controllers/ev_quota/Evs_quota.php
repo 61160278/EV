@@ -74,9 +74,14 @@ class Evs_quota extends MainController_avenxo {
 	*/
 	function add_quota_ca()
 	{
-		
-		$this->load->model('M_evs_pattern_and_year','mpay');
-		$data['year_quota_data'] = $this->mpay->get_by_year(); 
+
+
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+		$data['year_quota_data'] = $pay_id ;
 
 		$this->output('/consent/ev_quota/v_add_quota',$data);
 	}
@@ -842,10 +847,18 @@ function get_id_qut_pos()
 	{
 		$qut_type = $this->input->post("quotaType");
 		$qut_pos = $this->input->post("groupPosition");
-		
+	
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+
 		$this->load->model('M_evs_quota','mqut');
 		$this->mqut->qut_type = $qut_type;
 		$this->mqut->qut_pos = $qut_pos;
+		$this->mqut->qut_pay_id = $pay_id;
 		
 		$data = $this->mqut->get_qut_pos_id()->result();
 		echo json_encode($data);

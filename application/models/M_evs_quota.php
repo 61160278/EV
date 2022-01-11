@@ -56,8 +56,8 @@ class M_evs_quota extends Da_evs_quota {
 
 	function get_qut_pos_id(){	
 		$sql = "SELECT * FROM evs_database.evs_quota
-		WHERE qut_type = ? AND qut_pos = ?";
-		$query = $this->db->query($sql, array($this->qut_type,$this->qut_pos));
+		WHERE qut_type = ? AND qut_pos = ? ANd qut_pay_id = ?";
+		$query = $this->db->query($sql, array($this->qut_type,$this->qut_pos,$this->qut_pay_id));
 		return $query;
 	}//get_quota_plan_id 
 

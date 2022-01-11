@@ -115,13 +115,9 @@ function insert_quota() {
         var year = datedata.getFullYear();
         // get date form new date() 
         var savedate = year + "-" + month + "-" + day;
-
-
-        <?php foreach($year_quota_data->result() as $value){ ?>
-        if (year == "<?php echo $value->pay_year;?>") {
-            var year_id = <?php echo $value->pay_id;?>
-        }
-        <?php } ?>
+        
+         var year_id = <?php echo $year_quota_data;?>
+    
         // document.getElementById("submit").disabled = false;
         for (i = 1; i <= 7; i++) {
             check = document.getElementById("quota" + i).value;
@@ -177,7 +173,7 @@ function insert_quota() {
 
         }); //ajax
     } //end else
-    main_quota();
+   main_quota();
 
 } //insert_quota
 
