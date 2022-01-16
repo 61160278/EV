@@ -96,10 +96,10 @@ td {
                                         <center> Position </center>
                                     </th>
                                     <th>
-                                        <center> Action </center>
+                                        <center> Personal Grade </center>
                                     </th>
                                     <th>
-                                        <center> Personal Grade </center>
+                                        <center> Action </center>
                                     </th>
                                 </tr>
                             </thead>
@@ -204,8 +204,6 @@ td {
 	$num = 0;
 		foreach($select->result() as $index => $row ) { 
 ?>
-
-
 
 <!-- Modal Delete -->
 <div class="modal fade" id="Delete<?php echo $row->emp_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

@@ -46,8 +46,8 @@ class M_evs_employee extends Da_evs_employee {
 	function get_by_empid(){	
 		$sql = "SELECT * 
 				FROM dbmc.employee AS emp
-				INNER JOIN dbmc.group_secname AS gsec 
-				ON gsec.Sectioncode = emp.Sectioncode_ID
+				INNER JOIN dbmc.master_mapping AS map 
+				ON map.Section_id = emp.Sectioncode_ID
 				INNER JOIN dbmc.position AS pos
 				ON pos.Position_ID = emp.Position_ID
 				INNER JOIN evs_database.evs_employee AS evs_emp
@@ -185,7 +185,8 @@ class M_evs_employee extends Da_evs_employee {
 		on position.Position_ID = employee.Position_ID
 		WHERE Emptype_ID = 5	
 		AND Statuswork_ID = 1
-		AND Emp_startingdate <= ?" ;
+		AND Emp_startingdate <= ?
+		ORDER BY dbmc.employee.Emp_ID ASC" ;
 	
 		$query = $this->db->query($sql, array($this->Emp_startingdate));
 	

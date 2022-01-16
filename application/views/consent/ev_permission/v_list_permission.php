@@ -26,10 +26,8 @@ function emp_insert() {
     var Company = []
     var check = 0;
 
-    console.log(count);
-    console.log(loop_count);
-
-    console.log(document.getElementById("empid1").value);
+    console.log("count : " + count);
+    console.log("loop coint : " + loop_count);
 
     if (loop_count < 1) {
         loop_count = 1;
@@ -38,10 +36,12 @@ function emp_insert() {
 
     for (j = 0; j < loop_count; j++) {
 
-        empid = []
-        Posid = []
-        Sectioncode = []
-        Company = []
+        
+        empid = [];
+        Posid = [];
+        Sectioncode = [];
+        Company = [];
+        console.log("length : " + empid.length);
 
         count_send = 0 + (200 * j);
         count_loop = count_send + 199;
@@ -67,7 +67,8 @@ function emp_insert() {
 
         } // for
 
-        console.log(count_insert);
+        console.log("count insert : " + count_insert);
+        console.log("length 2 : " + empid.length);
 
         $.ajax({
             type: "post",
@@ -88,10 +89,11 @@ function emp_insert() {
         check++;
     }
     // for 
-    console.log("chack : "+check);
-    console.log("loop_count : "+Math.ceil(loop_count));
+    console.log("chack : " + check);
+    console.log("loop_count : " + Math.ceil(loop_count));
     if (check == Math.ceil(loop_count)) {
-        window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/" + <?php echo $year; ?> + ""
+        window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/" +
+            <?php echo $year; ?> + ""
     }
     // if 
 
@@ -171,9 +173,9 @@ td {
                             </thead>
                             <tbody id="show_emp">
                                 <?php 
-								
+  
 								$num = 0;
-								foreach($select->result() as $index => $row ) { 
+								foreach($select as $index => $row ) { 
 							?>
                                 <tr align='center'>
                                     <td><?php echo $row->Emp_ID?></td>
@@ -183,8 +185,6 @@ td {
                                     <td><?php echo $row->Position_name ?></td>
                                     <td><?php echo $row->Personal_grade ?></td>
                                 </tr>
-
-
                                 <?php
 								$num++;
 							}
@@ -203,9 +203,9 @@ td {
                 <!-- row  -->
             </div>
             <div class="panel-footer">
-                <?php foreach($select->result() as $index => $row ) {  ?>
+                <?php foreach($select as $index => $row ) {  ?>
                 <input id="empid<?php echo $index ;?>" name="empid" type="text" value="<?php echo  $row->Emp_ID ; ?>"
-                    hidden>
+                hidden>
                 <input id="Posid<?php echo $index ;?>" name="Posid" type="text"
                     value="<?php echo  $row->Position_ID ; ?>" hidden>
                 <input id="Sectioncode<?php echo $index ;?>" name="Sectioncode" type="text"

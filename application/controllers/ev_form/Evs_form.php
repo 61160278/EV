@@ -59,6 +59,7 @@ class Evs_form extends MainController_avenxo {
 		$data['emp_info'] = $this->memp->get_by_empid();
 
 		$tep = $data['emp_info']->row();
+		print_r($tep);
 
 		$this->load->model('M_evs_position_from','mpf');
 		$this->mpf->ps_pos_id = $tep->Position_ID;
@@ -228,12 +229,13 @@ class Evs_form extends MainController_avenxo {
 		}
 		// else if MHRD
 
-	}
-	// if main
-	else{
-		$this->output('/consent/ev_form/v_main_form');
-	}
-	// else main 
+		}
+		// if main
+		else{
+			redirect('ev_form/Evs_form/index');
+			// $this->output('/consent/ev_form/v_main_form');
+		}
+		// else main 
 
 	}
 	// function createMBO
