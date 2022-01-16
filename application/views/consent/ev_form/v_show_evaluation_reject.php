@@ -125,7 +125,7 @@ function reject_comment(index) {
                                     <td><?php echo $row->Emp_ID; ?></td>
                                     <td><?php echo $row->Empname_eng . " " . $row->Empsurname_eng ?></td>
                                     <td><?php echo $row->Sectioncode_ID; ?></td>
-                                    <td><?php echo $row->Department; ?></td>
+                                    <td><?php echo $dep3[$index]->Department; ?></td>
                                     <td><?php echo $row->Position_name; ?></td>
                                     <td><?php echo $data_comment1[$index]; ?></td>
                                     <td>
@@ -189,7 +189,7 @@ function reject_comment(index) {
                                     <td><?php echo $row->Emp_ID; ?></td>
                                     <td><?php echo $row->Empname_eng . " " . $row->Empsurname_eng ?></td>
                                     <td><?php echo $row->Sectioncode_ID; ?></td>
-                                    <td><?php echo $row->Department; ?></td>
+                                    <td><?php echo $dep4[$index]->Department; ?></td>
                                     <td><?php echo $row->Position_name; ?></td>
                                     <td><?php echo $data_comment2[$index]; ?></td>
                                     <td><textarea type="text" id="comment_reject_<?php echo $index; ?>"

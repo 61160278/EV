@@ -931,11 +931,11 @@ function update_approve() {
             "App": App
         },
         success: function(data) {
-            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form_evaluation/Main/" + App;
+            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form_evaluation/index/";
         },
         // success
         error: function(data) {
-            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form_evaluation/Main/" + App;
+            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form_evaluation/index/";
         }
         // error
     });
@@ -1022,7 +1022,7 @@ function update_approve() {
                         </div>
                         <!-- col-md-2 -->
                         <div class="col-md-2">
-                            <p id="emp_dep"><?php echo $row->Department; ?></p>
+                            <p id="emp_dep"><?php echo $dep_info->Department; ?></p>
                         </div>
                         <!-- col-md-2 -->
                         <div class="col-md-2">
@@ -2715,7 +2715,8 @@ function update_approve() {
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-success" data-toggle="modal" data-target="#save_data"> Submit</button>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#save_data">
+                                    Submit</button>
                             </div>
                         </div>
                         <!-- row -->
@@ -3085,7 +3086,8 @@ function update_approve() {
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-success" data-toggle="modal" data-target="#save_data"> Submit</button>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#save_data">
+                                    Submit</button>
                             </div>
                         </div>
                         <!-- row -->
@@ -3407,7 +3409,8 @@ function update_approve() {
                             </div>
                             <!-- col-md-6 -->
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-success" data-toggle="modal" data-target="#save_data"> Submit</button>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#save_data">
+                                    Submit</button>
                             </div>
                         </div>
                         <!-- row -->
@@ -3804,43 +3807,44 @@ function update_approve() {
         <!-- panel-indigo -->
     </div>
     <!-- col-12 -->
+</div>
+<!-- row  -->
 
-    <!-- Modal save -->
-    <div class="modal fade" id="save_data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color:gray;">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        <font color="White"><b>&times;</b></font>
-                    </button>
-                    <h2 class="modal-title"><b>
-                            <font color="white">Do you want to Save Data YES or NO ?</font>
-                        </b></h2>
-                </div>
-                <!-- modal header -->
-
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="focusedinput" class="col-sm-12 control-label" align="center">Please verify the
-                            accuracy
-                            of the information.</label>
-                    </div>
-                    <!-- Group Name -->
-                </div>
-                <!-- modal-body -->
-
-                <div class="modal-footer">
-                    <div class="btn-group pull-left">
-                        <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
-                    </div>
-                    <button type="button" class="btn btn-success" id="btnsaveadd"
-                        <?php echo $onclek_form_all ?>>Submit</button>
-                </div>
-                <!-- modal-footer -->
+<!-- Modal save -->
+<div class="modal fade" id="save_data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:gray;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <font color="White"><b>&times;</b></font>
+                </button>
+                <h2 class="modal-title"><b>
+                        <font color="white">Do you want to Save Data YES or NO ?</font>
+                    </b></h2>
             </div>
-            <!-- modal-content -->
+            <!-- modal header -->
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="focusedinput" class="col-sm-12 control-label" align="center">Please verify the
+                        accuracy
+                        of the information.</label>
+                </div>
+                <!-- Group Name -->
+            </div>
+            <!-- modal-body -->
+
+            <div class="modal-footer">
+                <div class="btn-group pull-left">
+                    <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
+                </div>
+                <button type="button" class="btn btn-success" id="btnsaveadd"
+                    <?php echo $onclek_form_all ?>>Submit</button>
+            </div>
+            <!-- modal-footer -->
         </div>
-        <!-- modal-dialog -->
+        <!-- modal-content -->
     </div>
-    <!-- End Modal save-->
+    <!-- modal-dialog -->
+</div>
+<!-- End Modal save-->

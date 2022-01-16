@@ -59,125 +59,159 @@ class Evs_form extends MainController_avenxo {
 		$data['emp_info'] = $this->memp->get_by_empid();
 
 		$tep = $data['emp_info']->row();
-		print_r($tep);
-
-		$this->load->model('M_evs_position_from','mpf');
-		$this->mpf->ps_pos_id = $tep->Position_ID;
-		$this->mpf->ps_pay_id = $pay_id;
-		$data['form'] = $this->mpf->get_all_by_key_by_year()->row();
-		
-		if(sizeof($data['form']) != 0){
-		
-		if($data['form']->ps_form_pe == "MBO"){
-			$this->load->model('M_evs_data_mbo','medm');
-			$this->medm->dtm_emp_id = $emp_id;
-			$this->medm->dtm_evs_emp_id = $tep->emp_id;
-			$data['check'] = $this->medm->get_by_empID()->result();
-			$check = sizeof($data['check']);
+		if(sizeof($tep) != 0){
+			$data['dept_info'] = $this->memp->get_dpartment($tep->Sectioncode_ID)->row();
 			
-			if($check != 0){
+			$this->load->model('M_evs_position_from','mpf');
+			$this->mpf->ps_pos_id = $tep->Position_ID;
+			$this->mpf->ps_pay_id = $pay_id;
+			$data['form'] = $this->mpf->get_all_by_key_by_year()->row();
+			
+			if(sizeof($data['form']) != 0){
+			
+			if($data['form']->ps_form_pe == "MBO"){
 				$this->load->model('M_evs_data_mbo','medm');
 				$this->medm->dtm_emp_id = $emp_id;
 				$this->medm->dtm_evs_emp_id = $tep->emp_id;
-				$data['mbo_emp'] = $this->medm->get_by_empID()->result();
+				$data['check'] = $this->medm->get_by_empID()->result();
+				$check = sizeof($data['check']);
+				
+				if($check != 0){
+					$this->load->model('M_evs_data_mbo','medm');
+					$this->medm->dtm_emp_id = $emp_id;
+					$this->medm->dtm_evs_emp_id = $tep->emp_id;
+					$data['mbo_emp'] = $this->medm->get_by_empID()->result();
 
-				if($data['form']->ps_form_ce == "ACM"){
-					$this->load->model('M_evs_set_form_ability','mesf');
-					$this->mesf->sfa_pos_id = $tep->Position_ID;
-					$this->mesf->sfa_pay_id = $pay_id;
-					$this->mesf->ept_pos_id = $tep->Position_ID;
-					$data['info_ability_form'] = $this->mesf->get_all_competency();
+					if($data['form']->ps_form_ce == "ACM"){
+						$this->load->model('M_evs_set_form_ability','mesf');
+						$this->mesf->sfa_pos_id = $tep->Position_ID;
+						$this->mesf->sfa_pay_id = $pay_id;
+						$this->mesf->ept_pos_id = $tep->Position_ID;
+						$data['info_ability_form'] = $this->mesf->get_all_competency();
 
-				}
-				// if ACM
-				else if($data['form']->ps_form_ce == "GCM"){
-					$this->load->model('M_evs_set_form_gcm','msfg');
-					$this->msfg->sgc_pos_id = $tep->Position_ID;
-					$this->msfg->sgc_pay_id = $pay_id;
-					$this->msfg->epg_pos_id = $tep->Position_ID;
-					$data['info_form_gcm'] = $this->msfg->get_all_competency_gcm();
-	
-				}
-				// else if GCM
-				$this->output('/consent/ev_form/v_editMBO',$data);
-			}
-			// if
-
-			else{
-				if($data['form']->ps_form_ce == "ACM"){
-					$this->load->model('M_evs_set_form_ability','mesf');
-					$this->mesf->sfa_pos_id = $tep->Position_ID;
-					$this->mesf->sfa_pay_id = $pay_id;
-					$this->mesf->ept_pos_id = $tep->Position_ID;
-					$data['info_ability_form'] = $this->mesf->get_all_competency();
-				}
-				// if ACM
-				else if($data['form']->ps_form_ce == "GCM"){
-					$this->load->model('M_evs_set_form_gcm','msfg');
-					$this->msfg->sgc_pos_id = $tep->Position_ID;
-					$this->msfg->sgc_pay_id = $pay_id;
-					$this->msfg->epg_pos_id = $tep->Position_ID;
-					$data['info_form_gcm'] = $this->msfg->get_all_competency_gcm();
-	
-				}
-				// else if GCM
-
-				$this->output('/consent/ev_form/v_createMBO',$data);
-			}
-			// else	
-		}
-		// if mbo 
+					}
+					// if ACM
+					else if($data['form']->ps_form_ce == "GCM"){
+						$this->load->model('M_evs_set_form_gcm','msfg');
+						$this->msfg->sgc_pos_id = $tep->Position_ID;
+						$this->msfg->sgc_pay_id = $pay_id;
+						$this->msfg->epg_pos_id = $tep->Position_ID;
+						$data['info_form_gcm'] = $this->msfg->get_all_competency_gcm();
 		
-		else if($data['form']->ps_form_pe == "G&O"){
-			$this->load->model('M_evs_data_g_and_o','mdgo');
-			$this->mdgo->dgo_emp_id = $emp_id;
-			$this->mdgo->dgo_evs_emp_id = $tep->emp_id;
-			$data['check'] = $this->mdgo->get_by_empID()->result();
+					}
+					// else if GCM
+					$this->output('/consent/ev_form/v_editMBO',$data);
+				}
+				// if
 
-			$check = sizeof($data['check']);
+				else{
+					if($data['form']->ps_form_ce == "ACM"){
+						$this->load->model('M_evs_set_form_ability','mesf');
+						$this->mesf->sfa_pos_id = $tep->Position_ID;
+						$this->mesf->sfa_pay_id = $pay_id;
+						$this->mesf->ept_pos_id = $tep->Position_ID;
+						$data['info_ability_form'] = $this->mesf->get_all_competency();
+					}
+					// if ACM
+					else if($data['form']->ps_form_ce == "GCM"){
+						$this->load->model('M_evs_set_form_gcm','msfg');
+						$this->msfg->sgc_pos_id = $tep->Position_ID;
+						$this->msfg->sgc_pay_id = $pay_id;
+						$this->msfg->epg_pos_id = $tep->Position_ID;
+						$data['info_form_gcm'] = $this->msfg->get_all_competency_gcm();
+		
+					}
+					// else if GCM
 
-			if($check != 0){
-
+					$this->output('/consent/ev_form/v_createMBO',$data);
+				}
+				// else	
+			}
+			// if mbo 
+			
+			else if($data['form']->ps_form_pe == "G&O"){
 				$this->load->model('M_evs_data_g_and_o','mdgo');
 				$this->mdgo->dgo_emp_id = $emp_id;
 				$this->mdgo->dgo_evs_emp_id = $tep->emp_id;
-				$data['g_o_emp'] = $this->mdgo->get_by_empID()->result();
+				$data['check'] = $this->mdgo->get_by_empID()->result();
 
-				if($data['form']->ps_form_ce == "ACM"){
-					$this->load->model('M_evs_set_form_ability','mesf');
-					$this->mesf->sfa_pos_id = $tep->Position_ID;
-					$this->mesf->sfa_pay_id = $pay_id;
-					$this->mesf->ept_pos_id = $tep->Position_ID;
-					$data['info_ability_form'] = $this->mesf->get_all_competency();
+				$check = sizeof($data['check']);
 
+				if($check != 0){
+
+					$this->load->model('M_evs_data_g_and_o','mdgo');
+					$this->mdgo->dgo_emp_id = $emp_id;
+					$this->mdgo->dgo_evs_emp_id = $tep->emp_id;
+					$data['g_o_emp'] = $this->mdgo->get_by_empID()->result();
+
+					if($data['form']->ps_form_ce == "ACM"){
+						$this->load->model('M_evs_set_form_ability','mesf');
+						$this->mesf->sfa_pos_id = $tep->Position_ID;
+						$this->mesf->sfa_pay_id = $pay_id;
+						$this->mesf->ept_pos_id = $tep->Position_ID;
+						$data['info_ability_form'] = $this->mesf->get_all_competency();
+
+					}
+					// if ACM
+					else if($data['form']->ps_form_ce == "GCM"){
+						$this->load->model('M_evs_set_form_gcm','msfg');
+						$this->msfg->sgc_pos_id = $tep->Position_ID;
+						$this->msfg->sgc_pay_id = $pay_id;
+						$this->msfg->epg_pos_id = $tep->Position_ID;
+						$data['info_form_gcm'] = $this->msfg->get_all_competency_gcm();
+
+					}
+					// else if GCM
+					
+					$this->load->model('M_evs_set_form_g_and_o','mesg');
+					$this->mesg->sfg_pay_id = $pay_id;
+					$this->mesg->sfg_pos_id = $tep->Position_ID;
+					$data['row_index'] = $this->mesg->get_all_by_key_by_year()->row();
+
+					$this->output('/consent/ev_form/v_editMBO',$data);
 				}
-				// if ACM
-				else if($data['form']->ps_form_ce == "GCM"){
-					$this->load->model('M_evs_set_form_gcm','msfg');
-					$this->msfg->sgc_pos_id = $tep->Position_ID;
-					$this->msfg->sgc_pay_id = $pay_id;
-					$this->msfg->epg_pos_id = $tep->Position_ID;
-					$data['info_form_gcm'] = $this->msfg->get_all_competency_gcm();
+				// if
 
+				else{
+					if($data['form']->ps_form_ce == "ACM"){
+						$this->load->model('M_evs_set_form_ability','mesf');
+						$this->mesf->sfa_pos_id = $tep->Position_ID;
+						$this->mesf->sfa_pay_id = $pay_id;
+						$this->mesf->ept_pos_id = $tep->Position_ID;
+						$data['info_ability_form'] = $this->mesf->get_all_competency();
+
+					}
+					// if ACM
+					else if($data['form']->ps_form_ce == "GCM"){
+						$this->load->model('M_evs_set_form_gcm','msfg');
+						$this->msfg->sgc_pos_id = $tep->Position_ID;
+						$this->msfg->sgc_pay_id = $pay_id;
+						$this->msfg->epg_pos_id = $tep->Position_ID;
+						$data['info_form_gcm'] = $this->msfg->get_all_competency_gcm();
+		
+					}
+					// else if GCM
+					$this->output('/consent/ev_form/v_createMBO',$data);
 				}
-				// else if GCM
+				// else	
 				
-				$this->load->model('M_evs_set_form_g_and_o','mesg');
-				$this->mesg->sfg_pay_id = $pay_id;
-				$this->mesg->sfg_pos_id = $tep->Position_ID;
-				$data['row_index'] = $this->mesg->get_all_by_key_by_year()->row();
 
-				$this->output('/consent/ev_form/v_editMBO',$data);
 			}
-			// if
+			// else if G&O
 
-			else{
+			else if($data['form']->ps_form_pe == "MHRD"){
+				$this->load->model('M_evs_set_form_mhrd','msfm');
+				$this->msfm->sfi_pos_id = $tep->Position_ID;
+				$data['info_mhrd'] = $this->msfm->get_item_description_by_position();
+
 				if($data['form']->ps_form_ce == "ACM"){
 					$this->load->model('M_evs_set_form_ability','mesf');
 					$this->mesf->sfa_pos_id = $tep->Position_ID;
 					$this->mesf->sfa_pay_id = $pay_id;
-					$this->mesf->ept_pos_id = $tep->Position_ID;
 					$data['info_ability_form'] = $this->mesf->get_all_competency();
+					$this->load->model('M_evs_expected_behavior','mept');
+					$data['info_expected'] = $this->mept->get_all_by_pos();
+					$data['info_pos_id'] = $tep->Position_ID;
 
 				}
 				// if ACM
@@ -187,55 +221,28 @@ class Evs_form extends MainController_avenxo {
 					$this->msfg->sgc_pay_id = $pay_id;
 					$this->msfg->epg_pos_id = $tep->Position_ID;
 					$data['info_form_gcm'] = $this->msfg->get_all_competency_gcm();
-	
+
 				}
 				// else if GCM
+
 				$this->output('/consent/ev_form/v_createMBO',$data);
+				
 			}
-			// else	
-			
-
-		}
-		// else if G&O
-
-		else if($data['form']->ps_form_pe == "MHRD"){
-			$this->load->model('M_evs_set_form_mhrd','msfm');
-			$this->msfm->sfi_pos_id = $tep->Position_ID;
-			$data['info_mhrd'] = $this->msfm->get_item_description_by_position();
-
-			if($data['form']->ps_form_ce == "ACM"){
-				$this->load->model('M_evs_set_form_ability','mesf');
-				$this->mesf->sfa_pos_id = $tep->Position_ID;
-				$this->mesf->sfa_pay_id = $pay_id;
-				$data['info_ability_form'] = $this->mesf->get_all_competency();
-				$this->load->model('M_evs_expected_behavior','mept');
-				$data['info_expected'] = $this->mept->get_all_by_pos();
-				$data['info_pos_id'] = $tep->Position_ID;
+			// else if MHRD
 
 			}
-			// if ACM
-			else if($data['form']->ps_form_ce == "GCM"){
-				$this->load->model('M_evs_set_form_gcm','msfg');
-				$this->msfg->sgc_pos_id = $tep->Position_ID;
-				$this->msfg->sgc_pay_id = $pay_id;
-				$this->msfg->epg_pos_id = $tep->Position_ID;
-				$data['info_form_gcm'] = $this->msfg->get_all_competency_gcm();
-
+			// if main
+			else{
+				redirect('ev_form/Evs_form/index');
+				// $this->output('/consent/ev_form/v_main_form');
 			}
-			// else if GCM
-
-			$this->output('/consent/ev_form/v_createMBO',$data);
-			
+			// else main
 		}
-		// else if MHRD
-
-		}
-		// if main
+		// if
 		else{
 			redirect('ev_form/Evs_form/index');
-			// $this->output('/consent/ev_form/v_main_form');
 		}
-		// else main 
+		// else 
 
 	}
 	// function createMBO
@@ -484,6 +491,7 @@ class Evs_form extends MainController_avenxo {
 		$this->memp->emp_pay_id = $pay_id;
 		$data['emp_info'] = $this->memp->get_by_empid();
 		$tep = $data['emp_info']->row();
+		$data['dept_info'] = $this->memp->get_dpartment($tep->Sectioncode_ID)->row();
 
 		$this->load->model('M_evs_data_mbo','medm');
 		$this->medm->dtm_emp_id = $emp_id_edit;
@@ -547,6 +555,7 @@ class Evs_form extends MainController_avenxo {
 		$this->memp->emp_pay_id = $pay_id;
 		$data['emp_info'] = $this->memp->get_by_empid();
 		$tep = $data['emp_info']->row();
+		$data['dept_info'] = $this->memp->get_dpartment($tep->Sectioncode_ID)->row();
 
 		$this->load->model('M_evs_data_g_and_o','mdgo');
 		$this->mdgo->dgo_emp_id = $emp_id_edit;
@@ -762,6 +771,7 @@ class Evs_form extends MainController_avenxo {
 		$this->memp->emp_pay_id = $pay_id;
 		$data['emp_info'] = $this->memp->get_by_empid();
 		$tep = $data['emp_info']->row();
+		$data['dept_info'] = $this->memp->get_dpartment($tep->Sectioncode_ID)->row();
 
 		foreach($data['get_form'] as $row){
 			if($row->ps_form_pe == "MBO"){
@@ -848,6 +858,7 @@ class Evs_form extends MainController_avenxo {
 		$this->memp->emp_pay_id = $pay_id;
 		$data['emp_info'] = $this->memp->get_by_empid();
 		$tep = $data['emp_info']->row();
+		$data['dept_info'] = $this->memp->get_dpartment($tep->Sectioncode_ID)->row();
 
 		$this->load->model('M_evs_position_from','mpf');
 		$this->mpf->ps_pos_id = $tep->Position_ID;
@@ -985,6 +996,7 @@ class Evs_form extends MainController_avenxo {
 		$data['emp_info'] = $this->memp->get_by_empid();
 
 		$temp = $data['emp_info']->row();
+		$data['dept_info'] = $this->memp->get_dpartment($temp->Sectioncode_ID)->row();
 
 		$this->load->model('M_evs_data_approve','meda');
 		$this->meda->dma_emp_id = $temp->emp_id;

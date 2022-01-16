@@ -57,6 +57,7 @@ class Evs_form_HD extends MainController_avenxo {
 		$sum_percent_pe = 0;
 		$sum_percent_ce = 0;
 		$sum_percent_all = 0;
+		$dep = [];
 		
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
@@ -67,489 +68,496 @@ class Evs_form_HD extends MainController_avenxo {
 		$this->load->model('M_evs_group','megu');
 		$this->megu->emp_pay_id = $pay_id;
 		$this->megu->gru_head_dept = $_SESSION['UsEmp_ID'];
-		$emp_data = $data['data_group'] = $this->megu->get_group_by_head_dept()->result();
+		$data['data_group'] = $this->megu->get_group_by_head_dept()->result();
+		$emp_data = $data['data_group'];
 
-		foreach ($emp_data as $row) {
-			if($row->emp_employee_id != $_SESSION['UsEmp_ID']){
-			$this->load->model('M_evs_employee','memp');
-			$this->memp->Emp_ID = $row->emp_employee_id;
-			$this->memp->emp_pay_id = $pay_id;
-			$data['emp_info'] = $this->memp->get_by_empid();
+		if(sizeof($emp_data) != 0){
+			foreach ($emp_data as $row) {
+				if($row->emp_employee_id != $_SESSION['UsEmp_ID']){
+				$this->load->model('M_evs_employee','memp');
+				$this->memp->Emp_ID = $row->emp_employee_id;
+				$this->memp->emp_pay_id = $pay_id;
+				$data['emp_info'] = $this->memp->get_by_empid();
 
-			$tep = $data['emp_info']->row();
+				$tep = $data['emp_info']->row();
+				$data[$row->Emp_ID."_dep"] = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
+				array_push($dep,$data[$row->Emp_ID."_dep"]);
 
-			$check = 0;
-			$check_com = 0;
-			$chack_form_pe ="";
-			$chack_form_ce ="";
+				$check = 0;
+				$check_com = 0;
+				$chack_form_pe ="";
+				$chack_form_ce ="";
 
-			$this->load->model('M_evs_data_mbo_weight','medw');
-			$this->medw->dmw_evs_emp_id = $tep->emp_id;
-			$data['check'] = $data['data_mbo'] = $this->medw->get_by_empID()->result();
-			$check += sizeof($data['check']);
+				$this->load->model('M_evs_data_mbo_weight','medw');
+				$this->medw->dmw_evs_emp_id = $tep->emp_id;
+				$data['check'] = $data['data_mbo'] = $this->medw->get_by_empID()->result();
+				$check += sizeof($data['check']);
+			
+				if($check  != 0 && $chack_form_pe==""){
+					$chack_form_pe ="MBO";
+				}
+
+				$this->load->model('M_evs_data_g_and_o_weight','megw');
+				$this->megw->dgw_evs_emp_id = $tep->emp_id;
+				$data['check'] = $data['data_g_and_o'] = $this->megw->get_by_empID()->result();
+				$check += sizeof($data['check']);
+
+				if($check  != 0 && $chack_form_pe==""){
+					$chack_form_pe ="G_and_O";
+				}
 		
-			if($check  != 0 && $chack_form_pe==""){
-				$chack_form_pe ="MBO";
-			}
+				$this->load->model('M_evs_data_mhrd_weight','memw');
+				$this->memw->mhw_evs_emp_id = $tep->emp_id;
+				$data['check'] = $data['data_mhrd'] = $this->memw->get_by_empID()->result();
+				$check += sizeof($data['check']);
 
-			$this->load->model('M_evs_data_g_and_o_weight','megw');
-			$this->megw->dgw_evs_emp_id = $tep->emp_id;
-			$data['check'] = $data['data_g_and_o'] = $this->megw->get_by_empID()->result();
-			$check += sizeof($data['check']);
+				if($check  != 0 && $chack_form_pe==""){
+					$chack_form_pe ="MHRD";
+				}
+		
+				$this->load->model('M_evs_data_acm_weight','mdtm');
+				$this->mdtm->dta_evs_emp_id = $tep->emp_id;
+				$data['check'] = $data['data_acm_weight'] = $this->mdtm->get_by_empID()->result();
+				$check += sizeof($data['check']);
 
-			if($check  != 0 && $chack_form_pe==""){
-				$chack_form_pe ="G_and_O";
-			}
-	
-			$this->load->model('M_evs_data_mhrd_weight','memw');
-			$this->memw->mhw_evs_emp_id = $tep->emp_id;
-			$data['check'] = $data['data_mhrd'] = $this->memw->get_by_empID()->result();
-			$check += sizeof($data['check']);
-
-			if($check  != 0 && $chack_form_pe==""){
-				$chack_form_pe ="MHRD";
-			}
-	
-			$this->load->model('M_evs_data_acm_weight','mdtm');
-			$this->mdtm->dta_evs_emp_id = $tep->emp_id;
-			$data['check'] = $data['data_acm_weight'] = $this->mdtm->get_by_empID()->result();
-			$check += sizeof($data['check']);
-
-			if($check  != 0 && $chack_form_ce==""){
-				$chack_form_ce ="ACM";
-			}
-	
-			$this->load->model('M_evs_data_gcm_weight','mdtg');
-			$this->mdtg->dtg_evs_emp_id = $tep->emp_id;
-			$data['check'] = $data['data_gcm_weight'] = $this->mdtg->get_by_empID()->result();
-			$check += sizeof($data['check']);
+				if($check  != 0 && $chack_form_ce==""){
+					$chack_form_ce ="ACM";
+				}
+		
+				$this->load->model('M_evs_data_gcm_weight','mdtg');
+				$this->mdtg->dtg_evs_emp_id = $tep->emp_id;
+				$data['check'] = $data['data_gcm_weight'] = $this->mdtg->get_by_empID()->result();
+				$check += sizeof($data['check']);
 
 
-			if($check  != 0 && $chack_form_ce==""){
-				$chack_form_ce ="GCM";
-			}
+				if($check  != 0 && $chack_form_ce==""){
+					$chack_form_ce ="GCM";
+				}
 
-			//-----------------------------------------------------------------------------------
+				//-----------------------------------------------------------------------------------
 
-			$this->load->model('M_evs_data_mbo_weight','medw');
-			$this->medw->dmw_evs_emp_id = $tep->emp_id;
-			$this->medw->dmw_approver = $_SESSION['UsEmp_ID'];
-			$data['check_com'] = $data['data_mbo'] = $this->medw->get_by_empID_app()->result();
-			$check_com += sizeof($data['check_com']);
-	
-			$this->load->model('M_evs_data_g_and_o_weight','megw');
-			$this->megw->dgw_evs_emp_id = $tep->emp_id;
-			$this->megw->dgw_approver = $_SESSION['UsEmp_ID'];
-			$data['check_com'] = $data['data_g_and_o'] = $this->megw->get_by_empID_app()->result();
-			$check_com += sizeof($data['check_com']);
+				$this->load->model('M_evs_data_mbo_weight','medw');
+				$this->medw->dmw_evs_emp_id = $tep->emp_id;
+				$this->medw->dmw_approver = $_SESSION['UsEmp_ID'];
+				$data['check_com'] = $data['data_mbo'] = $this->medw->get_by_empID_app()->result();
+				$check_com += sizeof($data['check_com']);
+		
+				$this->load->model('M_evs_data_g_and_o_weight','megw');
+				$this->megw->dgw_evs_emp_id = $tep->emp_id;
+				$this->megw->dgw_approver = $_SESSION['UsEmp_ID'];
+				$data['check_com'] = $data['data_g_and_o'] = $this->megw->get_by_empID_app()->result();
+				$check_com += sizeof($data['check_com']);
 
-			$this->load->model('M_evs_data_mhrd_weight','memw');
-			$this->memw->mhw_evs_emp_id = $tep->emp_id;
-			$this->memw->mhw_approver = $_SESSION['UsEmp_ID'];
-			$data['check_com'] = $data['data_mhrd'] = $this->memw->get_by_empID_app()->result();
-			$check_com += sizeof($data['check_com']);
-	
-			$this->load->model('M_evs_data_acm_weight','mdtm');
-			$this->mdtm->dta_evs_emp_id = $tep->emp_id;
-			$this->mdtm->dta_approver = $_SESSION['UsEmp_ID'];
-			$data['check_com'] = $data['data_acm_weight'] = $this->mdtm->get_by_empID_app()->result();
-			$check_com += sizeof($data['check_com']);
+				$this->load->model('M_evs_data_mhrd_weight','memw');
+				$this->memw->mhw_evs_emp_id = $tep->emp_id;
+				$this->memw->mhw_approver = $_SESSION['UsEmp_ID'];
+				$data['check_com'] = $data['data_mhrd'] = $this->memw->get_by_empID_app()->result();
+				$check_com += sizeof($data['check_com']);
+		
+				$this->load->model('M_evs_data_acm_weight','mdtm');
+				$this->mdtm->dta_evs_emp_id = $tep->emp_id;
+				$this->mdtm->dta_approver = $_SESSION['UsEmp_ID'];
+				$data['check_com'] = $data['data_acm_weight'] = $this->mdtm->get_by_empID_app()->result();
+				$check_com += sizeof($data['check_com']);
 
-			$this->load->model('M_evs_data_gcm_weight','mdtg');
-			$this->mdtg->dtg_evs_emp_id = $tep->emp_id;
-			$this->mdtg->dtg_approver = $_SESSION['UsEmp_ID'];
-			$data['check_com'] = $data['data_gcm_weight'] = $this->mdtg->get_by_empID_app()->result();
-			$check_com += sizeof($data['check_com']);
-			// -----------------------------------------------
+				$this->load->model('M_evs_data_gcm_weight','mdtg');
+				$this->mdtg->dtg_evs_emp_id = $tep->emp_id;
+				$this->mdtg->dtg_approver = $_SESSION['UsEmp_ID'];
+				$data['check_com'] = $data['data_gcm_weight'] = $this->mdtg->get_by_empID_app()->result();
+				$check_com += sizeof($data['check_com']);
+				// -----------------------------------------------
+				
+				$this->load->model('M_evs_data_approve','meda');
+				$this->meda->emp_employee_id = $row->emp_employee_id;
+				$this->meda->dma_status = 3;
+				$data['st_emp'] = $this->meda->get_by_emp_and_status()->row();
+				$temp = $data['st_emp'];
+
+				if(sizeof($temp) != 0){
+					array_push($status,$temp->emp_employee_id);
+					$reject_ro_report = 0;
+				}
+				// if
+				
+				$this->load->model('M_evs_data_approve','meda');
+				$this->meda->emp_employee_id = $row->emp_employee_id;
+				$this->meda->dma_status = -3;
+				$data['st_emp_reject'] = $this->meda->get_by_emp_and_status()->row();
+				$temp_reject = $data['st_emp_reject'];
+				if(sizeof($temp_reject) == 0 && sizeof($temp) != 0){array_push($comment,"Edit Success");}
+				if(sizeof($temp_reject) != 0){
+					array_push($status,$temp_reject->emp_employee_id);
+
+					$this->load->model('M_evs_reject_form','mrjf');
+					$this->mrjf->rjf_dma_id = $temp_reject->dma_id;
+					$this->mrjf->rjf_status = 3;
+					$data_rj_comment = $this->mrjf->get_all_by_dma_id_and_rjf_status()->row();
+					array_push($comment,$data_rj_comment->rjf_comment);
+					$reject_ro_report = 1;
+				}
+				// if 
+				// ------------------------------------------------------------------------
+
+				$this->load->model('M_evs_data_approve','mda');
+				$this->mda->dma_emp_id = $tep->emp_id;
+				$data['app'] = $this->mda->get_by_id()->row();
+				$temp_app = $data['app'];
+
+				if($check_com != 0){
+
+					$sum = 0;
+					$sum_all = 0;
+					$sum_max = 0;
+					$sum_max_all = 0;
+					$sum_percent_pe = 0;
+					$sum_percent_ce = 0;
+
+					if($chack_form_pe == "MBO"){
+						$this->load->model('M_evs_data_mbo_weight','medw');
+						$this->medw->dmw_evs_emp_id = $tep->emp_id;
+						$this->medw->dmw_approver = $_SESSION['UsEmp_ID'];
+						$data_mbo = $data['data_mbo'] = $this->medw->get_by_empID_app()->result();
+				
+						if(sizeof($data_mbo) != 0){
+							$this->load->model('M_evs_data_mbo','medm');
+							$this->medm->dtm_emp_id = $row->emp_employee_id;
+							$this->medm->dtm_evs_emp_id = $tep->emp_id;
+							$mbo_emp = $data['mbo_emp'] = $this->medm->get_by_empID()->result();
 			
-			$this->load->model('M_evs_data_approve','meda');
-			$this->meda->emp_employee_id = $row->emp_employee_id;
-			$this->meda->dma_status = 3;
-			$data['st_emp'] = $this->meda->get_by_emp_and_status()->row();
-			$temp = $data['st_emp'];
-
-			if(sizeof($temp) != 0){
-				array_push($status,$temp->emp_employee_id);
-				$reject_ro_report = 0;
-			}
-			// if
+							foreach($mbo_emp as $index => $row) {
+								foreach($data_mbo as $row_data_mbo){  
+									if($row->dtm_id == $row_data_mbo->dmw_dtm_id){
+										$sum = $row->dtm_weight*$row_data_mbo->dmw_weight;
+										$sum_max = $row->dtm_weight*5;
+										$sum_all += $sum;
+										$sum_max_all += $sum_max;
+									}
+									// if
+								}
+								// foreach 
+							}
+							// foreach 
+							$sum_percent_pe = ($sum_all/$sum_max_all)*100;
+						}
+						// if
+					}
+					// if
+					else if($chack_form_pe == "G_and_O"){
+						$this->load->model('M_evs_data_g_and_o_weight','megw');
+						$this->megw->dgw_evs_emp_id = $tep->emp_id;
+						$this->megw->dgw_approver = $_SESSION['UsEmp_ID'];
+						$data_g_and_o = $data['data_g_and_o'] = $this->megw->get_by_empID_app()->result();
+						if(sizeof($data_g_and_o) != 0){
+							$this->load->model('M_evs_data_g_and_o','mdgo');
+							$this->mdgo->dgo_emp_id = $row->emp_employee_id;
+							$this->mdgo->dgo_evs_emp_id = $tep->emp_id;
+							$g_o_emp = $data['g_o_emp'] = $this->mdgo->get_by_empID()->result();
+							foreach($g_o_emp as $index => $row){
+								foreach($data_g_and_o as $row_data_g_and_o){
+									if($row->dgo_id == $row_data_g_and_o->dgw_dgo_id){
+										$sum = $row->dgo_weight*$row_data_g_and_o->dgw_dgo_id;
+										$sum_max = $row->dgo_weight*5;
+										$sum_all += $sum;
+										$sum_max_all += $sum_max;
+									}
+									// if
+								}
+								// foreach
+							}
+							// foreach
+							$sum_percent_pe = ($sum_all/$sum_max_all)*100;
+						}
+						// if
+					}
+					// else if 
+					else if($chack_form_pe == "MHRD"){
 			
-			$this->load->model('M_evs_data_approve','meda');
-			$this->meda->emp_employee_id = $row->emp_employee_id;
-			$this->meda->dma_status = -3;
-			$data['st_emp_reject'] = $this->meda->get_by_emp_and_status()->row();
-			$temp_reject = $data['st_emp_reject'];
-			if(sizeof($temp_reject) == 0 && sizeof($temp) != 0){array_push($comment,"Edit Success");}
-			if(sizeof($temp_reject) != 0){
-				array_push($status,$temp_reject->emp_employee_id);
+						$this->load->model('M_evs_data_mhrd_weight','memw');
+						$this->memw->mhw_evs_emp_id = $tep->emp_id;
+						$this->memw->mhw_approver = $_SESSION['UsEmp_ID'];
+						$data_mhrd  = $data['data_mhrd'] = $this->memw->get_by_empID_app()->result();
+						if(sizeof($data_mhrd) != 0){
+							$this->load->model('M_evs_set_form_mhrd','msfm');
+							$this->msfm->sfi_pos_id = $tep->Position_ID;
+							$info_mhrd = $data['info_mhrd'] = $this->msfm->get_item_description_by_position()->result();
+			
+							foreach($info_mhrd as $index => $row){ 
+								foreach($data_mhrd as $row_data_mhrd){                                       
+									if($row->sfi_id == $row_data_mhrd->mhw_sfi_id){
+										$sum = $row_data_mhrd->mhw_weight_1+$row_data_mhrd->mhw_weight_2;
+										$sum_max = 3+3;
+										$sum_all += $sum;
+										$sum_max_all += $sum_max;
+									}
+									// if
+								}
+								// foreach
+							}
+							// foreach
+							$sum_percent_pe = ($sum_all/$sum_max_all)*100;
+						}
+						// if
+					}
+					// else if 
+		
+					if($chack_form_ce == "ACM"){
+						$this->load->model('M_evs_data_acm_weight','mdtm');
+						$this->mdtm->dta_evs_emp_id = $tep->emp_id;
+						$this->mdtm->dta_approver = $_SESSION['UsEmp_ID'];
+						$data_acm_weight = $data['data_acm_weight'] = $this->mdtm->get_by_empID_app()->result();
+						if(sizeof($data_acm_weight) != 0){
+							$this->load->model('M_evs_set_form_ability','mesf');
+							$this->mesf->sfa_pos_id = $tep->Position_ID;
+							$this->mesf->sfa_pay_id = $pay_id;
+							$info_ability_form = $data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator()->result();
+			
+							foreach($info_ability_form as $row){
+								foreach($data_acm_weight as $row_data_acm_weight){
+									if($row->sfa_id == $row_data_acm_weight->dta_sfa_id){
+										$sum = $row->sfa_weight*$row_data_acm_weight->dta_weight;
+										$sum_max = $row->sfa_weight*5;
+										$sum_all += $sum;
+										$sum_max_all += $sum_max;
+									}
+									// if
+								}
+								// foreach
+							}
+							// foreach
+							$sum_percent_ce = ($sum_all/$sum_max_all)*100;
+						}
+						// if
+					}
+					// if 
+					else if($chack_form_ce == "GCM"){
+			
+						$this->load->model('M_evs_data_gcm_weight','mdtm');
+						$this->mdtm->dtg_evs_emp_id = $tep->emp_id;
+						$this->mdtm->dtg_approver = $_SESSION['UsEmp_ID'];
+						$data_gcm_weight = $data['data_gcm_weight'] = $this->mdtm->get_by_empID_app()->result();
+						if(sizeof($data_gcm_weight) != 0){
+							$tep = $data['emp_info']->row();
+							$this->load->model('M_evs_set_form_gcm','mesf');
+							$this->mesf->sgc_pos_id = $tep->Position_ID;
+							$this->mesf->sgc_pay_id = $pay_id;
+							$info_gcm_form = $data['info_gcm_form'] = $this->mesf->get_all_competency_by_indicator()->result();
+			
+							foreach($info_gcm_form as $row){
+								foreach($data_gcm_weight as $row_data_gcm_weight){
+									if($row->sgc_id == $row_data_gcm_weight->dtg_sgc_id){
+										$sum = $row->sgc_weight*$row_data_acm_weight->dta_weight;
+										$sum_max = $row->sgc_weight*5;
+										$sum_all += $sum;
+										$sum_max_all += $sum_max;
+									}
+									// if
+								}
+								// foreach
+							}
+							// foreach
+							$sum_percent_ce = ($sum_all/$sum_max_all)*100;
+						}
+						// if
+					}
+					// else if
 
-				$this->load->model('M_evs_reject_form','mrjf');
-				$this->mrjf->rjf_dma_id = $temp_reject->dma_id;
-				$this->mrjf->rjf_status = 3;
-				$data_rj_comment = $this->mrjf->get_all_by_dma_id_and_rjf_status()->row();
-				array_push($comment,$data_rj_comment->rjf_comment);
-				$reject_ro_report = 1;
+				}
+				// if check_com
+
+				else if($check_com == 0){
+
+					$sum = 0;
+					$sum_all = 0;
+					$sum_max = 0;
+					$sum_max_all = 0;
+					$sum_percent_pe = 0;
+					$sum_percent_ce = 0;
+
+					if($chack_form_pe == "MBO"){
+						$this->load->model('M_evs_data_mbo_weight','medw');
+						$this->medw->dmw_evs_emp_id = $tep->emp_id;
+						$this->medw->dmw_approver = $temp_app->dma_approve2;
+						$data_mbo = $data['data_mbo'] = $this->medw->get_by_empID_app2()->result();
+				
+						if(sizeof($data_mbo) != 0){
+							$this->load->model('M_evs_data_mbo','medm');
+							$this->medm->dtm_emp_id = $row->emp_employee_id;
+							$this->medm->dtm_evs_emp_id = $tep->emp_id;
+							$mbo_emp = $data['mbo_emp'] = $this->medm->get_by_empID()->result();
+							foreach($mbo_emp as $index => $row) {
+								foreach($data_mbo as $row_data_mbo){  
+									if($row->dtm_id == $row_data_mbo->dmw_dtm_id){
+										$sum = $row->dtm_weight*$row_data_mbo->dmw_weight;
+										$sum_max = $row->dtm_weight*5;
+										$sum_all += $sum;
+										$sum_max_all += $sum_max;
+									}
+									// if
+								}
+								// foreach 
+							}
+							// foreach 
+							$sum_percent_pe = ($sum_all/$sum_max_all)*100;
+						}
+						// if
+					}
+					// if
+					else if($chack_form_pe == "G_and_O"){
+						$this->load->model('M_evs_data_g_and_o_weight','megw');
+						$this->megw->dgw_evs_emp_id = $tep->emp_id;
+						$this->megw->dgw_approver = $temp_app->dma_approve2;
+						$data_g_and_o = $data['data_g_and_o'] = $this->megw->get_by_empID_app2()->result();
+						if(sizeof($data_g_and_o) != 0){
+							$this->load->model('M_evs_data_g_and_o','mdgo');
+							$this->mdgo->dgo_emp_id = $row->emp_employee_id;
+							$this->mdgo->dgo_evs_emp_id = $tep->emp_id;
+							$g_o_emp = $data['g_o_emp'] = $this->mdgo->get_by_empID()->result();
+			
+							foreach($g_o_emp as $index => $row){
+								foreach($data_g_and_o as $row_data_g_and_o){
+									if($row->dgo_id == $row_data_g_and_o->dgw_dgo_id){
+										$sum = $row->dgo_weight*$row_data_g_and_o->dgw_dgo_id;
+										$sum_max = $row->dgo_weight*5;
+										$sum_all += $sum;
+										$sum_max_all += $sum_max;
+									}
+									// if
+								}
+								// foreach
+							}
+							// foreach
+							$sum_percent_pe = ($sum_all/$sum_max_all)*100;
+						}
+						// if
+					}
+					// else if 
+					else if($chack_form_pe == "MHRD"){
+			
+						$this->load->model('M_evs_data_mhrd_weight','memw');
+						$this->memw->mhw_evs_emp_id = $tep->emp_id;
+						$this->memw->mhw_approver = $temp_app->dma_approve2;
+						$data_mhrd  = $data['data_mhrd'] = $this->memw->get_by_empID_app2()->result();
+						if(sizeof($data_mhrd) != 0){
+							$this->load->model('M_evs_set_form_mhrd','msfm');
+							$this->msfm->sfi_pos_id = $tep->Position_ID;
+							$info_mhrd = $data['info_mhrd'] = $this->msfm->get_item_description_by_position()->result();
+			
+							foreach($info_mhrd as $index => $row){ 
+								foreach($data_mhrd as $row_data_mhrd){                                       
+									if($row->sfi_id == $row_data_mhrd->mhw_sfi_id){
+										$sum = $row_data_mhrd->mhw_weight_1+$row_data_mhrd->mhw_weight_2;
+										$sum_max = 3+3;
+										$sum_all += $sum;
+										$sum_max_all += $sum_max;
+									}
+									// if
+								}
+								// foreach
+							}
+							// foreach
+							$sum_percent_pe = ($sum_all/$sum_max_all)*100;
+						}
+						// if
+					}
+					// else if 
+		
+					if($chack_form_ce == "ACM"){
+						$this->load->model('M_evs_data_acm_weight','mdtm');
+						$this->mdtm->dta_evs_emp_id = $tep->emp_id;
+						$this->mdtm->dta_approver = $temp_app->dma_approve2;
+						$data_acm_weight = $data['data_acm_weight'] = $this->mdtm->get_by_empID_app2()->result();
+						if(sizeof($data_acm_weight) != 0){
+							$this->load->model('M_evs_set_form_ability','mesf');
+							$this->mesf->sfa_pos_id = $tep->Position_ID;
+							$this->mesf->sfa_pay_id = $pay_id;
+							$info_ability_form = $data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator()->result();
+			
+							foreach($info_ability_form as $row){
+								foreach($data_acm_weight as $row_data_acm_weight){
+									if($row->sfa_id == $row_data_acm_weight->dta_sfa_id){
+										$sum = $row->sfa_weight*$row_data_acm_weight->dta_weight;
+										$sum_max = $row->sfa_weight*5;
+										$sum_all += $sum;
+										$sum_max_all += $sum_max;
+									}
+									// if
+								}
+								// foreach
+							}
+							// foreach
+							$sum_percent_ce = ($sum_all/$sum_max_all)*100;
+						}
+						// if
+					}
+					// if 
+					else if($chack_form_ce == "GCM"){
+			
+						$this->load->model('M_evs_data_gcm_weight','mdtm');
+						$this->mdtm->dtg_evs_emp_id = $tep->emp_id;
+						$this->mdtm->dtg_approver = $temp_app->dma_approve2;
+						$data_gcm_weight = $data['data_gcm_weight'] = $this->mdtm->get_by_empID_app2()->result();
+						if(sizeof($data_gcm_weight) != 0){
+							$tep = $data['emp_info']->row();
+							$this->load->model('M_evs_set_form_gcm','mesf');
+							$this->mesf->sgc_pos_id = $tep->Position_ID;
+							$this->mesf->sgc_pay_id = $pay_id;
+							$info_gcm_form = $data['info_gcm_form'] = $this->mesf->get_all_competency_by_indicator()->result();
+			
+							foreach($info_gcm_form as $row){
+								foreach($data_gcm_weight as $row_data_gcm_weight){
+									if($row->sgc_id == $row_data_gcm_weight->dtg_sgc_id){
+										$sum = $row->sgc_weight*$row_data_acm_weight->dta_weight;
+										$sum_max = $row->sgc_weight*5;
+										$sum_all += $sum;
+										$sum_max_all += $sum_max;
+									}
+									// if
+								}
+								// foreach
+							}
+							// foreach
+							$sum_percent_ce = ($sum_all/$sum_max_all)*100;
+						}
+						// if
+					}
+					// else if
+		
+				}
+				// else check_com	
 			}
 			// if 
-			// ------------------------------------------------------------------------
 
-			$this->load->model('M_evs_data_approve','mda');
-			$this->mda->dma_emp_id = $tep->emp_id;
-			$data['app'] = $this->mda->get_by_id()->row();
-			$temp_app = $data['app'];
+			if((($sum_percent_pe+$sum_percent_ce/100)) >= 90) {array_push($data_grade,"S");}
+			else if((($sum_percent_pe+$sum_percent_ce/100)) >= 80) {array_push($data_grade,"A");}
+			else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 75){array_push($data_grade,"B+");}
+			else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 70){array_push($data_grade,"B");}
+			else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 65){array_push($data_grade,"B-");}
+			else if ((($sum_percent_pe+$sum_percent_ce/200)) >= 60){array_push($data_grade,"C");}
+			else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 50){array_push($data_grade,"D");}
+			else{array_push($data_grade,"F");}
+				array_push($data_chack_form,$check);
+				array_push($data_chack_form_com,$check_com);
+			}
+			// foreach 
 
-			if($check_com != 0){
-
-				$sum = 0;
-				$sum_all = 0;
-				$sum_max = 0;
-				$sum_max_all = 0;
-				$sum_percent_pe = 0;
-				$sum_percent_ce = 0;
-
-				if($chack_form_pe == "MBO"){
-					$this->load->model('M_evs_data_mbo_weight','medw');
-					$this->medw->dmw_evs_emp_id = $tep->emp_id;
-					$this->medw->dmw_approver = $_SESSION['UsEmp_ID'];
-					$data_mbo = $data['data_mbo'] = $this->medw->get_by_empID_app()->result();
-			
-					if(sizeof($data_mbo) != 0){
-						$this->load->model('M_evs_data_mbo','medm');
-						$this->medm->dtm_emp_id = $row->emp_employee_id;
-						$this->medm->dtm_evs_emp_id = $tep->emp_id;
-						$mbo_emp = $data['mbo_emp'] = $this->medm->get_by_empID()->result();
-		
-						foreach($mbo_emp as $index => $row) {
-							foreach($data_mbo as $row_data_mbo){  
-								if($row->dtm_id == $row_data_mbo->dmw_dtm_id){
-									$sum = $row->dtm_weight*$row_data_mbo->dmw_weight;
-									$sum_max = $row->dtm_weight*5;
-									$sum_all += $sum;
-									$sum_max_all += $sum_max;
-								}
-								// if
-							}
-							// foreach 
-						}
-						// foreach 
-						$sum_percent_pe = ($sum_all/$sum_max_all)*100;
-					}
-					// if
+			foreach($emp_data as $index => $row) {
+				if($data_chack_form[$index]  != 0){
+					$chack_form_save += 1; 
 				}
 				// if
-				else if($chack_form_pe == "G_and_O"){
-					$this->load->model('M_evs_data_g_and_o_weight','megw');
-					$this->megw->dgw_evs_emp_id = $tep->emp_id;
-					$this->megw->dgw_approver = $_SESSION['UsEmp_ID'];
-					$data_g_and_o = $data['data_g_and_o'] = $this->megw->get_by_empID_app()->result();
-					if(sizeof($data_g_and_o) != 0){
-						$this->load->model('M_evs_data_g_and_o','mdgo');
-						$this->mdgo->dgo_emp_id = $row->emp_employee_id;
-						$this->mdgo->dgo_evs_emp_id = $tep->emp_id;
-						$g_o_emp = $data['g_o_emp'] = $this->mdgo->get_by_empID()->result();
-						foreach($g_o_emp as $index => $row){
-							foreach($data_g_and_o as $row_data_g_and_o){
-								if($row->dgo_id == $row_data_g_and_o->dgw_dgo_id){
-									$sum = $row->dgo_weight*$row_data_g_and_o->dgw_dgo_id;
-									$sum_max = $row->dgo_weight*5;
-									$sum_all += $sum;
-									$sum_max_all += $sum_max;
-								}
-								// if
-							}
-							// foreach
-						}
-						// foreach
-						$sum_percent_pe = ($sum_all/$sum_max_all)*100;
-					}
-					// if
-				}
-				// else if 
-				else if($chack_form_pe == "MHRD"){
-		
-					$this->load->model('M_evs_data_mhrd_weight','memw');
-					$this->memw->mhw_evs_emp_id = $tep->emp_id;
-					$this->memw->mhw_approver = $_SESSION['UsEmp_ID'];
-					$data_mhrd  = $data['data_mhrd'] = $this->memw->get_by_empID_app()->result();
-					if(sizeof($data_mhrd) != 0){
-						$this->load->model('M_evs_set_form_mhrd','msfm');
-						$this->msfm->sfi_pos_id = $tep->Position_ID;
-						$info_mhrd = $data['info_mhrd'] = $this->msfm->get_item_description_by_position()->result();
-		
-						foreach($info_mhrd as $index => $row){ 
-							foreach($data_mhrd as $row_data_mhrd){                                       
-								if($row->sfi_id == $row_data_mhrd->mhw_sfi_id){
-									$sum = $row_data_mhrd->mhw_weight_1+$row_data_mhrd->mhw_weight_2;
-									$sum_max = 3+3;
-									$sum_all += $sum;
-									$sum_max_all += $sum_max;
-								}
-								// if
-							}
-							// foreach
-						}
-						// foreach
-						$sum_percent_pe = ($sum_all/$sum_max_all)*100;
-					}
-					// if
-				}
-				// else if 
-	
-				if($chack_form_ce == "ACM"){
-					$this->load->model('M_evs_data_acm_weight','mdtm');
-					$this->mdtm->dta_evs_emp_id = $tep->emp_id;
-					$this->mdtm->dta_approver = $_SESSION['UsEmp_ID'];
-					$data_acm_weight = $data['data_acm_weight'] = $this->mdtm->get_by_empID_app()->result();
-					if(sizeof($data_acm_weight) != 0){
-						$this->load->model('M_evs_set_form_ability','mesf');
-						$this->mesf->sfa_pos_id = $tep->Position_ID;
-						$this->mesf->sfa_pay_id = $pay_id;
-						$info_ability_form = $data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator()->result();
-		
-						foreach($info_ability_form as $row){
-							foreach($data_acm_weight as $row_data_acm_weight){
-								if($row->sfa_id == $row_data_acm_weight->dta_sfa_id){
-									$sum = $row->sfa_weight*$row_data_acm_weight->dta_weight;
-									$sum_max = $row->sfa_weight*5;
-									$sum_all += $sum;
-									$sum_max_all += $sum_max;
-								}
-								// if
-							}
-							// foreach
-						}
-						// foreach
-						$sum_percent_ce = ($sum_all/$sum_max_all)*100;
-					}
-					// if
-				}
-				// if 
-				else if($chack_form_ce == "GCM"){
-		
-					$this->load->model('M_evs_data_gcm_weight','mdtm');
-					$this->mdtm->dtg_evs_emp_id = $tep->emp_id;
-					$this->mdtm->dtg_approver = $_SESSION['UsEmp_ID'];
-					$data_gcm_weight = $data['data_gcm_weight'] = $this->mdtm->get_by_empID_app()->result();
-					if(sizeof($data_gcm_weight) != 0){
-						$tep = $data['emp_info']->row();
-						$this->load->model('M_evs_set_form_gcm','mesf');
-						$this->mesf->sgc_pos_id = $tep->Position_ID;
-						$this->mesf->sgc_pay_id = $pay_id;
-						$info_gcm_form = $data['info_gcm_form'] = $this->mesf->get_all_competency_by_indicator()->result();
-		
-						foreach($info_gcm_form as $row){
-							foreach($data_gcm_weight as $row_data_gcm_weight){
-								if($row->sgc_id == $row_data_gcm_weight->dtg_sgc_id){
-									$sum = $row->sgc_weight*$row_data_acm_weight->dta_weight;
-									$sum_max = $row->sgc_weight*5;
-									$sum_all += $sum;
-									$sum_max_all += $sum_max;
-								}
-								// if
-							}
-							// foreach
-						}
-						// foreach
-						$sum_percent_ce = ($sum_all/$sum_max_all)*100;
-					}
-					// if
-				}
-				// else if
-
+				$chack_save += 1;
 			}
-			// if check_com
-
-			else if($check_com == 0){
-
-				$sum = 0;
-				$sum_all = 0;
-				$sum_max = 0;
-				$sum_max_all = 0;
-				$sum_percent_pe = 0;
-				$sum_percent_ce = 0;
-
-				if($chack_form_pe == "MBO"){
-					$this->load->model('M_evs_data_mbo_weight','medw');
-					$this->medw->dmw_evs_emp_id = $tep->emp_id;
-					$this->medw->dmw_approver = $temp_app->dma_approve2;
-					$data_mbo = $data['data_mbo'] = $this->medw->get_by_empID_app2()->result();
+			// foreach
 			
-					if(sizeof($data_mbo) != 0){
-						$this->load->model('M_evs_data_mbo','medm');
-						$this->medm->dtm_emp_id = $row->emp_employee_id;
-						$this->medm->dtm_evs_emp_id = $tep->emp_id;
-						$mbo_emp = $data['mbo_emp'] = $this->medm->get_by_empID()->result();
-						foreach($mbo_emp as $index => $row) {
-							foreach($data_mbo as $row_data_mbo){  
-								if($row->dtm_id == $row_data_mbo->dmw_dtm_id){
-									$sum = $row->dtm_weight*$row_data_mbo->dmw_weight;
-									$sum_max = $row->dtm_weight*5;
-									$sum_all += $sum;
-									$sum_max_all += $sum_max;
-								}
-								// if
-							}
-							// foreach 
-						}
-						// foreach 
-						$sum_percent_pe = ($sum_all/$sum_max_all)*100;
-					}
-					// if
-				}
-				// if
-				else if($chack_form_pe == "G_and_O"){
-					$this->load->model('M_evs_data_g_and_o_weight','megw');
-					$this->megw->dgw_evs_emp_id = $tep->emp_id;
-					$this->megw->dgw_approver = $temp_app->dma_approve2;
-					$data_g_and_o = $data['data_g_and_o'] = $this->megw->get_by_empID_app2()->result();
-					if(sizeof($data_g_and_o) != 0){
-						$this->load->model('M_evs_data_g_and_o','mdgo');
-						$this->mdgo->dgo_emp_id = $row->emp_employee_id;
-						$this->mdgo->dgo_evs_emp_id = $tep->emp_id;
-						$g_o_emp = $data['g_o_emp'] = $this->mdgo->get_by_empID()->result();
-		
-						foreach($g_o_emp as $index => $row){
-							foreach($data_g_and_o as $row_data_g_and_o){
-								if($row->dgo_id == $row_data_g_and_o->dgw_dgo_id){
-									$sum = $row->dgo_weight*$row_data_g_and_o->dgw_dgo_id;
-									$sum_max = $row->dgo_weight*5;
-									$sum_all += $sum;
-									$sum_max_all += $sum_max;
-								}
-								// if
-							}
-							// foreach
-						}
-						// foreach
-						$sum_percent_pe = ($sum_all/$sum_max_all)*100;
-					}
-					// if
-				}
-				// else if 
-				else if($chack_form_pe == "MHRD"){
-		
-					$this->load->model('M_evs_data_mhrd_weight','memw');
-					$this->memw->mhw_evs_emp_id = $tep->emp_id;
-					$this->memw->mhw_approver = $temp_app->dma_approve2;
-					$data_mhrd  = $data['data_mhrd'] = $this->memw->get_by_empID_app2()->result();
-					if(sizeof($data_mhrd) != 0){
-						$this->load->model('M_evs_set_form_mhrd','msfm');
-						$this->msfm->sfi_pos_id = $tep->Position_ID;
-						$info_mhrd = $data['info_mhrd'] = $this->msfm->get_item_description_by_position()->result();
-		
-						foreach($info_mhrd as $index => $row){ 
-							foreach($data_mhrd as $row_data_mhrd){                                       
-								if($row->sfi_id == $row_data_mhrd->mhw_sfi_id){
-									$sum = $row_data_mhrd->mhw_weight_1+$row_data_mhrd->mhw_weight_2;
-									$sum_max = 3+3;
-									$sum_all += $sum;
-									$sum_max_all += $sum_max;
-								}
-								// if
-							}
-							// foreach
-						}
-						// foreach
-						$sum_percent_pe = ($sum_all/$sum_max_all)*100;
-					}
-					// if
-				}
-				// else if 
-	
-				if($chack_form_ce == "ACM"){
-					$this->load->model('M_evs_data_acm_weight','mdtm');
-					$this->mdtm->dta_evs_emp_id = $tep->emp_id;
-					$this->mdtm->dta_approver = $temp_app->dma_approve2;
-					$data_acm_weight = $data['data_acm_weight'] = $this->mdtm->get_by_empID_app2()->result();
-					if(sizeof($data_acm_weight) != 0){
-						$this->load->model('M_evs_set_form_ability','mesf');
-						$this->mesf->sfa_pos_id = $tep->Position_ID;
-						$this->mesf->sfa_pay_id = $pay_id;
-						$info_ability_form = $data['info_ability_form'] = $this->mesf->get_all_competency_by_indicator()->result();
-		
-						foreach($info_ability_form as $row){
-							foreach($data_acm_weight as $row_data_acm_weight){
-								if($row->sfa_id == $row_data_acm_weight->dta_sfa_id){
-									$sum = $row->sfa_weight*$row_data_acm_weight->dta_weight;
-									$sum_max = $row->sfa_weight*5;
-									$sum_all += $sum;
-									$sum_max_all += $sum_max;
-								}
-								// if
-							}
-							// foreach
-						}
-						// foreach
-						$sum_percent_ce = ($sum_all/$sum_max_all)*100;
-					}
-					// if
-				}
-				// if 
-				else if($chack_form_ce == "GCM"){
-		
-					$this->load->model('M_evs_data_gcm_weight','mdtm');
-					$this->mdtm->dtg_evs_emp_id = $tep->emp_id;
-					$this->mdtm->dtg_approver = $temp_app->dma_approve2;
-					$data_gcm_weight = $data['data_gcm_weight'] = $this->mdtm->get_by_empID_app2()->result();
-					if(sizeof($data_gcm_weight) != 0){
-						$tep = $data['emp_info']->row();
-						$this->load->model('M_evs_set_form_gcm','mesf');
-						$this->mesf->sgc_pos_id = $tep->Position_ID;
-						$this->mesf->sgc_pay_id = $pay_id;
-						$info_gcm_form = $data['info_gcm_form'] = $this->mesf->get_all_competency_by_indicator()->result();
-		
-						foreach($info_gcm_form as $row){
-							foreach($data_gcm_weight as $row_data_gcm_weight){
-								if($row->sgc_id == $row_data_gcm_weight->dtg_sgc_id){
-									$sum = $row->sgc_weight*$row_data_acm_weight->dta_weight;
-									$sum_max = $row->sgc_weight*5;
-									$sum_all += $sum;
-									$sum_max_all += $sum_max;
-								}
-								// if
-							}
-							// foreach
-						}
-						// foreach
-						$sum_percent_ce = ($sum_all/$sum_max_all)*100;
-					}
-					// if
-				}
-				// else if
-	
+			if($chack_form_save == $chack_save){ 
+				$chack_save_button = "Chack";
 			}
-			// else check_com	
-		}
-		// if 
+			// if 
+			else{$chack_save_button = "Un_Chack";}
+			// else 
 
-		if((($sum_percent_pe+$sum_percent_ce/100)) >= 90) {array_push($data_grade,"S");}
-		else if((($sum_percent_pe+$sum_percent_ce/100)) >= 80) {array_push($data_grade,"A");}
-		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 75){array_push($data_grade,"B+");}
-		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 70){array_push($data_grade,"B");}
-		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 65){array_push($data_grade,"B-");}
-		else if ((($sum_percent_pe+$sum_percent_ce/200)) >= 60){array_push($data_grade,"C");}
-		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 50){array_push($data_grade,"D");}
-		else{array_push($data_grade,"F");}
-			array_push($data_chack_form,$check);
-			array_push($data_chack_form_com,$check_com);
 		}
-		// foreach 
-
-		foreach($emp_data as $index => $row) {
-			if($data_chack_form[$index]  != 0){
-				$chack_form_save += 1; 
-			}
-			// if
-			$chack_save += 1;
-		}
-		// foreach
-		
-		if($chack_form_save == $chack_save){ 
-			$chack_save_button = "Chack";
-		}
-		// if 
-		else{$chack_save_button = "Un_Chack";}
-		// else 
+		// if
 
 		$data['data_status'] = $status;
 		$data['chack_save'] = $chack_save_button;
@@ -558,6 +566,7 @@ class Evs_form_HD extends MainController_avenxo {
 		$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
 		$data['data_grade'] = $data_grade;
 		$data['data_group'] = $data['data_group'];
+		$data["dep_info"] = $dep;
 
 		if($reject_ro_report == 0){
 			$this->output('/consent/ev_form_HD/v_main_form',$data);

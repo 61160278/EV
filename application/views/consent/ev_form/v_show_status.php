@@ -101,7 +101,7 @@
                             <!-- col-md-5 -->
                             <div class="col-md-5">
                                 <p id="emp_id">
-                                    <font size="4px"><?php echo $row->Department; ?> </font>
+                                    <font size="4px"><?php echo $dept_info->Department; ?> </font>
                                 </p>
                             </div>
                             <!-- col-md-5 -->

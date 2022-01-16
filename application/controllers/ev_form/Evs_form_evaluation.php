@@ -40,6 +40,7 @@ class Evs_form_evaluation extends MainController_avenxo {
 
 		$comment1 = [];
 		$comment2 = [];
+		$dep = [];
 
 		$emp_id = $_SESSION['UsEmp_ID'];
 		$pay_id = $_SESSION['Uspay_id'];
@@ -48,19 +49,60 @@ class Evs_form_evaluation extends MainController_avenxo {
 		$this->meda->dma_approve1 = $emp_id;
 		$this->meda->emp_pay_id = $pay_id;
 		$data['data_app1'] = $this->meda->get_by_approver1()->result();
+		if(sizeof($data['data_app1']) != 0){
+			$this->load->model('M_evs_employee','memp');
+			foreach($data['data_app1'] as $row){
+				$data[$row->Emp_ID."_dep"] = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
+				array_push($dep,$data[$row->Emp_ID."_dep"]);
+			}
+			// foreach 
+			$data["dep1"] = $dep;
+		}
+		// if 
 
 		$this->meda->dma_approve1 = $emp_id;
 		$this->meda->emp_pay_id = $pay_id;
 		$data['data_app2'] = $this->meda->get_by_approver2()->result();
+		if(sizeof($data['data_app2']) != 0){
+			$this->load->model('M_evs_employee','memp');
+			foreach($data['data_app2'] as $row){
+				$data[$row->Emp_ID."_dep"] = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
+				array_push($dep,$data[$row->Emp_ID."_dep"]);
+			}
+			// foreach 
+			$data["dep2"] = $dep;
+		}
+		// if 
 
 		$this->meda->dma_approve1 = $emp_id;
 		$this->meda->emp_pay_id = $pay_id;
 		$emp_data3 = $data['data_app3'] = $this->meda->get_by_approver3()->result();
+		if(sizeof($data['data_app3']) != 0){
+			$this->load->model('M_evs_employee','memp');
+			foreach($data['data_app3'] as $row){
+				$data[$row->Emp_ID."_dep"] = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
+				array_push($dep,$data[$row->Emp_ID."_dep"]);
+			}
+			// foreach 
+			$data["dep3"] = $dep;
+		}
+		// if
 
 		$this->meda->dma_approve2 = $emp_id;
 		$this->meda->emp_pay_id = $pay_id;
 		$emp_data4 = $data['data_app4'] = $this->meda->get_by_approver4()->result();
+		if(sizeof($data['data_app4']) != 0){
+			$this->load->model('M_evs_employee','memp');
+			foreach($data['data_app4'] as $row){
+				$data[$row->Emp_ID."_dep"] = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
+				array_push($dep,$data[$row->Emp_ID."_dep"]);
+			}
+			// foreach 
+			$data["dep4"] = $dep;
+		}
+		// if
 
+		
 
 	 if(sizeof($data['data_app1']) == 0 && sizeof($data['data_app2']) == 0 && sizeof($data['data_app3']) != 0 || sizeof($data['data_app4']) != 0)
 	 {
@@ -99,20 +141,7 @@ class Evs_form_evaluation extends MainController_avenxo {
 
 	function Main($Emp_ID)
 	{
-		$emp_id = $Emp_ID;
-		$pay_id = $_SESSION['Uspay_id'];
-
-		$this->load->model('M_evs_data_approve','meda');
-		$this->meda->dma_approve1 = $emp_id;
-		$this->meda->emp_pay_id = $pay_id;
-		$data['data_app1'] = $this->meda->get_by_approver1()->result();
-
-		$this->meda->dma_approve1 = $emp_id;
-		$this->meda->emp_pay_id = $pay_id;
-		$data['data_app2'] = $this->meda->get_by_approver2()->result();
-
-
-		$this->output('/consent/ev_form/v_show_evaluation',$data);
+		redirect('ev_form/Evs_form_evaluation/index');
 	}
 	// function Main()
 

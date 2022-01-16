@@ -63,8 +63,6 @@ class M_evs_data_approve extends Da_evs_data_approve {
 				ON evs_emp.emp_employee_id = evs_app.dma_dtm_emp_id
 				INNER JOIN dbmc.employee AS dbmc_emp
 				ON dbmc_emp.Emp_ID = evs_app.dma_dtm_emp_id
-				INNER JOIN dbmc.group_secname AS gsec 
-				ON gsec.Sectioncode = dbmc_emp.Sectioncode_ID
 				INNER JOIN dbmc.position AS pos
 				ON pos.Position_ID = dbmc_emp.Position_ID
 				WHERE dma_approve1 = ? AND evs_emp.emp_pay_id = ? AND evs_app.dma_status = 1 OR evs_app.dma_status = 7" ;
@@ -80,8 +78,6 @@ class M_evs_data_approve extends Da_evs_data_approve {
 				ON evs_emp.emp_employee_id = evs_app.dma_dtm_emp_id
 				INNER JOIN dbmc.employee AS dbmc_emp
 				ON dbmc_emp.Emp_ID = evs_app.dma_dtm_emp_id
-				INNER JOIN dbmc.group_secname AS gsec 
-				ON gsec.Sectioncode = dbmc_emp.Sectioncode_ID
 				INNER JOIN dbmc.position AS pos
 				ON pos.Position_ID = dbmc_emp.Position_ID
 				WHERE dma_approve2 = ? AND evs_emp.emp_pay_id = ? AND evs_app.dma_status = 2 OR evs_app.dma_status = 6" ;
@@ -97,8 +93,6 @@ class M_evs_data_approve extends Da_evs_data_approve {
 				ON evs_emp.emp_employee_id = evs_app.dma_dtm_emp_id
 				INNER JOIN dbmc.employee AS dbmc_emp
 				ON dbmc_emp.Emp_ID = evs_app.dma_dtm_emp_id
-				INNER JOIN dbmc.group_secname AS gsec 
-				ON gsec.Sectioncode = dbmc_emp.Sectioncode_ID
 				INNER JOIN dbmc.position AS pos
 				ON pos.Position_ID = dbmc_emp.Position_ID
 				WHERE dma_approve1 = ? AND evs_emp.emp_pay_id = ? AND evs_app.dma_status = -1" ;
@@ -114,8 +108,6 @@ class M_evs_data_approve extends Da_evs_data_approve {
 				ON evs_emp.emp_employee_id = evs_app.dma_dtm_emp_id
 				INNER JOIN dbmc.employee AS dbmc_emp
 				ON dbmc_emp.Emp_ID = evs_app.dma_dtm_emp_id
-				INNER JOIN dbmc.group_secname AS gsec 
-				ON gsec.Sectioncode = dbmc_emp.Sectioncode_ID
 				INNER JOIN dbmc.position AS pos
 				ON pos.Position_ID = dbmc_emp.Position_ID
 				WHERE dma_approve2 = ? AND evs_emp.emp_pay_id = ? AND evs_app.dma_status = -2" ;
