@@ -192,8 +192,83 @@ class M_evs_employee extends Da_evs_employee {
 	
 	
 		return $query;
-		}//get_all_emp 
+		}//get_all_emp
+		function get_all_emp_1(){	
 
+			$sql = "SELECT *	
+			FROM dbmc.employee	
+			left join dbmc.master_mapping		
+			on master_mapping.Section_id = employee.Sectioncode_ID
+			left join dbmc.position		
+			on position.Position_ID = employee.Position_ID
+			WHERE Emptype_ID = 5	
+			AND Statuswork_ID = 1
+   			AND SUBSTRING(Sectioncode_ID , 5, 2) = 'SC'
+			AND Emp_startingdate <= ?
+            GROUP BY Section_id
+			ORDER BY dbmc.employee.Emp_ID ASC" ;
+		
+			$query = $this->db->query($sql, array($this->Emp_startingdate));
+		
+		
+			return $query;
+			}//get_all_emp  
+			function get_all_emp_2(){	
+
+				$sql = "SELECT *	
+				FROM dbmc.employee	
+				left join dbmc.master_mapping		
+				on master_mapping.Department_id = employee.Sectioncode_ID
+				left join dbmc.position		
+				on position.Position_ID = employee.Position_ID
+				WHERE Emptype_ID = 5	
+			AND Statuswork_ID = 1
+   			AND SUBSTRING(Sectioncode_ID , 5, 2) = 'DP'
+			AND Emp_startingdate <= ?
+            GROUP BY Section_id
+			ORDER BY dbmc.employee.Emp_ID ASC" ;
+			
+				$query = $this->db->query($sql, array($this->Emp_startingdate));
+			
+			
+				return $query;
+				}//get_all_emp 
+				function get_all_emp_3(){	
+
+					$sql = "SELECT *	
+					FROM dbmc.employee	
+					left join dbmc.master_mapping		
+					on master_mapping.Group_id = employee.Sectioncode_ID
+					left join dbmc.position		
+					on position.Position_ID = employee.Position_ID
+					WHERE Emptype_ID = 5	
+					AND Statuswork_ID = 1
+					AND Emp_startingdate <= ?
+					ORDER BY dbmc.employee.Emp_ID ASC" ;
+				
+					$query = $this->db->query($sql, array($this->Emp_startingdate));
+				
+				
+					return $query;
+					}//get_all_emp 
+					function get_all_emp_4(){	
+
+						$sql = "SELECT *	
+						FROM dbmc.employee	
+						left join dbmc.master_mapping		
+						on master_mapping.Line_id = employee.Sectioncode_ID
+						left join dbmc.position		
+						on position.Position_ID = employee.Position_ID
+						WHERE Emptype_ID = 5	
+						AND Statuswork_ID = 1
+						AND Emp_startingdate <= ?
+						ORDER BY dbmc.employee.Emp_ID ASC" ;
+					
+						$query = $this->db->query($sql, array($this->Emp_startingdate));
+					
+					
+						return $query;
+						}//get_all_emp 
 		function get_all_emp_delete(){	
 
 			$sql = "SELECT *	

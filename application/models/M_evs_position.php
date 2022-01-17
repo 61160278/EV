@@ -129,17 +129,7 @@ class M_evs_position extends Da_evs_position {
 
 	function get_pos_com_dep($sql_data){	
 		$sql = " SELECT *
-		FROM dbmc.employee
-		LEFT JOIN dbmc.position
-		ON employee.Position_ID = position.Position_ID
-		LEFT JOIN dbmc.position_level
-		ON position.position_level_id = position_level.psl_id
-		LEFT JOIN dbmc.sectioncode
-		ON employee.CostCenter_ID = sectioncode.Sectioncode
-		LEFT JOIN dbmc.department
-		ON sectioncode.dep_id = department.Dep_id
-		LEFT JOIN dbmc.company
-		ON employee.Company_ID = company.Company_ID
+		FROM dbmc.master_mapping
         WHERE ".$sql_data."
         GROUP BY  position.Position_ID ";
 		$query = $this->db->query($sql);

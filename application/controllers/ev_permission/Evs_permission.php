@@ -101,10 +101,28 @@ class Evs_permission extends MainController_avenxo {
 
 		$data['year'] = $year->pay_id;
 		$date = $this->input->post("Date");
+
+
 		$this->load->model('M_evs_employee','mevg');
 		$this->mevg->Emp_startingdate = $date;
 
-		$data['select'] = $this->mevg->get_all_emp()->result();
+
+		$arr_all = [];
+		$arr_2 = [];
+		$arr_3 = [];
+		$arr_4 = [];
+
+		$arr_all = $this->mevg->get_all_employee()->result();
+		$check = sizeof($data['check']);
+
+
+		// foreach($arr_all as $index => $row ) {
+		// 	if( == $row->Section_id)
+
+
+		// }
+
+		$data['select'] = 0;
 		$this->output('/consent/ev_permission/v_list_permission',$data);
 
 	}

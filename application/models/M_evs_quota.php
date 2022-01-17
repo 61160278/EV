@@ -61,5 +61,23 @@ class M_evs_quota extends Da_evs_quota {
 		return $query;
 	}//get_quota_plan_id 
 
+	function get_company(){	
+		$sql = "SELECT * 
+		FROM dbmc.master_mapping 
+		GROUP BY Company_id";
+		$query = $this->db->query($sql);
+		return $query;
+	}//get_quota_plan_id 
+
+	function get_department(){	
+		$sql = "SELECT * 
+		FROM dbmc.master_mapping 
+		GROUP BY Department_id";
+		$query = $this->db->query($sql);
+		return $query;
+	}//get_quota_plan_id 
+
+	
+
 } //end class
 ?>
