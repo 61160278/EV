@@ -212,21 +212,14 @@ class M_evs_employee extends Da_evs_employee {
 
 		$sql = "SELECT *	
 		FROM dbmc.employee	
-		left join dbmc.master_mapping		
-		on master_mapping.Section_id = employee.Sectioncode_ID
-		left join dbmc.position		
-		on position.Position_ID = employee.Position_ID
 		WHERE Emptype_ID = 5	
 		AND Statuswork_ID = 1
 		AND Emp_startingdate <= ?
 		ORDER BY dbmc.employee.Emp_ID ASC" ;
-	
 		$query = $this->db->query($sql, array($this->Emp_startingdate));
-	
-	
 		return $query;
 		}//get_all_emp
-		function get_all_emp_1(){	
+		function get_all_emp_SC(){	
 
 			$sql = "SELECT *	
 			FROM dbmc.employee	
@@ -237,16 +230,16 @@ class M_evs_employee extends Da_evs_employee {
 			WHERE Emptype_ID = 5	
 			AND Statuswork_ID = 1
    			AND SUBSTRING(Sectioncode_ID , 5, 2) = 'SC'
-			AND Emp_startingdate <= ?
+			AND Emp_ID = ?
             GROUP BY Section_id
 			ORDER BY dbmc.employee.Emp_ID ASC" ;
 		
-			$query = $this->db->query($sql, array($this->Emp_startingdate));
+			$query = $this->db->query($sql, array($this->Emp_ID));
 		
 		
 			return $query;
 			}//get_all_emp  
-			function get_all_emp_2(){	
+			function get_all_emp_DP(){	
 
 				$sql = "SELECT *	
 				FROM dbmc.employee	
@@ -257,16 +250,16 @@ class M_evs_employee extends Da_evs_employee {
 				WHERE Emptype_ID = 5	
 			AND Statuswork_ID = 1
    			AND SUBSTRING(Sectioncode_ID , 5, 2) = 'DP'
-			AND Emp_startingdate <= ?
+			AND Emp_ID = ?
             GROUP BY Section_id
 			ORDER BY dbmc.employee.Emp_ID ASC" ;
 			
-				$query = $this->db->query($sql, array($this->Emp_startingdate));
+				$query = $this->db->query($sql, array($this->Emp_ID));
 			
 			
 				return $query;
 				}//get_all_emp 
-				function get_all_emp_3(){	
+				function get_all_emp_GR(){	
 
 					$sql = "SELECT *	
 					FROM dbmc.employee	
@@ -275,16 +268,18 @@ class M_evs_employee extends Da_evs_employee {
 					left join dbmc.position		
 					on position.Position_ID = employee.Position_ID
 					WHERE Emptype_ID = 5	
-					AND Statuswork_ID = 1
-					AND Emp_startingdate <= ?
-					ORDER BY dbmc.employee.Emp_ID ASC" ;
+			AND Statuswork_ID = 1
+   			AND SUBSTRING(Sectioncode_ID , 5, 2) = 'GR'
+			AND Emp_ID = ?
+            GROUP BY Section_id
+			ORDER BY dbmc.employee.Emp_ID ASC" ;
 				
-					$query = $this->db->query($sql, array($this->Emp_startingdate));
+					$query = $this->db->query($sql, array($this->Emp_ID));
 				
 				
 					return $query;
 					}//get_all_emp 
-					function get_all_emp_4(){	
+					function get_all_emp_LN(){	
 
 						$sql = "SELECT *	
 						FROM dbmc.employee	
@@ -293,36 +288,71 @@ class M_evs_employee extends Da_evs_employee {
 						left join dbmc.position		
 						on position.Position_ID = employee.Position_ID
 						WHERE Emptype_ID = 5	
-						AND Statuswork_ID = 1
-						AND Emp_startingdate <= ?
-						ORDER BY dbmc.employee.Emp_ID ASC" ;
+			AND Statuswork_ID = 1
+   			AND SUBSTRING(Sectioncode_ID , 5, 2) = 'LN'
+			AND Emp_ID = ?
+            GROUP BY Section_id
+			ORDER BY dbmc.employee.Emp_ID ASC" ;
 					
-						$query = $this->db->query($sql, array($this->Emp_startingdate));
+						$query = $this->db->query($sql, array($this->Emp_ID));
 					
 					
 						return $query;
 						}//get_all_emp 
+						function get_all_emp_DV(){	
+
+							$sql = "SELECT *	
+							FROM dbmc.employee	
+							left join dbmc.master_mapping		
+							on master_mapping.Division_id = employee.Sectioncode_ID
+							left join dbmc.position		
+							on position.Position_ID = employee.Position_ID
+							WHERE Emptype_ID = 5	
+			AND Statuswork_ID = 1
+   			AND SUBSTRING(Sectioncode_ID , 5, 2) = 'DV'
+			AND Emp_ID = ?
+            GROUP BY Section_id
+			ORDER BY dbmc.employee.Emp_ID ASC" ;
+						
+							$query = $this->db->query($sql, array($this->Emp_ID));
+						
+						
+							return $query;
+							}//get_all_emp
+							function get_all_emp_SB(){	
+
+								$sql = "SELECT *	
+								FROM dbmc.employee	
+								left join dbmc.master_mapping		
+								on master_mapping.SubSection_id = employee.Sectioncode_ID
+								left join dbmc.position		
+								on position.Position_ID = employee.Position_ID
+								WHERE Emptype_ID = 5	
+				AND Statuswork_ID = 1
+				   AND SUBSTRING(Sectioncode_ID , 5, 2) = 'SB'
+				AND Emp_ID = ?
+				GROUP BY Section_id
+				ORDER BY dbmc.employee.Emp_ID ASC" ;
+							
+								$query = $this->db->query($sql, array($this->Emp_ID));
+							
+							
+								return $query;
+								}//get_all_emp
 		function get_all_emp_delete(){	
 
 			$sql = "SELECT *	
 			FROM evs_database.evs_employee	
 			left join dbmc.employee
 			on employee.Emp_ID=evs_employee.emp_employee_id 
-			left join dbmc.master_mapping		
-			on master_mapping.Section_id = employee.Sectioncode_ID
-			left join dbmc.position
-			on position.Position_ID = evs_employee.emp_position_id
 			WHERE emp_pay_id = ?";
 			
-		
 			$query = $this->db->query($sql, array($this->emp_pay_id));
-		
 		
 			return $query;
 			}//get_all_emp 
-		
-
-		/*
+			
+	/*
 	* get_by_evs_emp_id
 	* 
 	* @input dta_id

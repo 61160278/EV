@@ -50,6 +50,7 @@ td {
     background-color: #134466;
 }
 </style>
+
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
@@ -109,7 +110,7 @@ td {
                                 <?php 
 								
 								$num = 0;
-								foreach($select->result() as $index => $row ) { 
+								foreach($select as $index => $row ) { 
 							?>
                                 <tr class="odd gradeX" align='center'>
                                     <td><?php echo $row->Emp_ID?></td>
@@ -121,7 +122,7 @@ td {
                                     <td>
                                         <div class="demo-btns">
                                             <a data-toggle="modal" class="btn btn btn-danger"
-                                                href="#Delete<?php echo $row->emp_id?>">
+                                                href="#Delete<?php echo $arr_emp_id[$index]?>">
                                                 <i class="ti ti-trash"></i>
 
                                             </a>
@@ -202,11 +203,11 @@ td {
 <?php 
 								
 	$num = 0;
-		foreach($select->result() as $index => $row ) { 
+		foreach($select as $index => $row ) { 
 ?>
 
 <!-- Modal Delete -->
-<div class="modal fade" id="Delete<?php echo $row->emp_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="Delete<?php echo $arr_emp_id[$index]?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -240,7 +241,7 @@ td {
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
                 </div>
                 <button type="button" class="btn btn-success"
-                    onclick="emp_delete('<?php echo $row->emp_id;?>')">YES</button>
+                    onclick="emp_delete('<?php echo $arr_emp_id[$index];?>')">YES</button>
 
 
             </div>

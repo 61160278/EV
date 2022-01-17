@@ -45,9 +45,50 @@ class Evs_permission extends MainController_avenxo {
 		
 		$this->load->model('M_evs_employee','mevg');
 		$this->mevg->emp_pay_id= $pay_id;
-		$data['select'] = $this->mevg->get_all_emp_delete();
+		
+		$arr_all = [];
+		$arr_use = [];
+		$arr_emp_id = [];
 
-		$check = sizeof($data['select']->result());
+
+		$arr_all = $this->mevg->get_all_emp_delete()->result();
+		foreach($arr_all as $index => $row ) {
+			if( substr($row->Sectioncode_ID,4,2) == "SC"){
+				$this->mevg->Emp_ID = $row->Emp_ID;
+				$arr_use[$index] = $this->mevg->get_all_emp_SC()->row();
+			}
+			else if(substr($row->Sectioncode_ID,4,2) == "DP"){
+				$this->mevg->Emp_ID = $row->Emp_ID;
+				$arr_use[$index] = $this->mevg->get_all_emp_DP()->row();
+				
+			}
+			else if(substr($row->Sectioncode_ID,4,2) == "GR"){
+				$this->mevg->Emp_ID = $row->Emp_ID;
+				$arr_use[$index] = $this->mevg->get_all_emp_GR()->row();
+				
+			}
+			else if(substr($row->Sectioncode_ID,4,2) == "LN"){
+				$this->mevg->Emp_ID = $row->Emp_ID;
+				$arr_use[$index] = $this->mevg->get_all_emp_LN()->row();
+				
+			}
+			else if(substr($row->Sectioncode_ID,4,2) == "DV"){
+				$this->mevg->Emp_ID = $row->Emp_ID;
+				$arr_use[$index] = $this->mevg->get_all_emp_DV()->row();
+				
+			}
+			else if(substr($row->Sectioncode_ID,4,2) == "SB"){
+				$this->mevg->Emp_ID = $row->Emp_ID;
+				$arr_use[$index] = $this->mevg->get_all_emp_SB()->row();
+				
+			}
+			$arr_emp_id[$index] = $row->emp_id;
+			
+		}
+		$data['arr_emp_id'] = $arr_emp_id;
+		$data['select'] = $arr_use;
+
+		$check = sizeof($data['select']);
 		$data['year'] = $pay_id;
 		if($check != 0){
 			$this->output('/consent/ev_permission/v_list_permission_delete',$data);
@@ -108,21 +149,39 @@ class Evs_permission extends MainController_avenxo {
 
 
 		$arr_all = [];
-		$arr_2 = [];
-		$arr_3 = [];
-		$arr_4 = [];
+		$arr_use = [];
+	
 
-		$arr_all = $this->mevg->get_all_employee()->result();
-		$check = sizeof($data['check']);
-
-
-		// foreach($arr_all as $index => $row ) {
-		// 	if( == $row->Section_id)
-
-
-		// }
-
-		$data['select'] = 0;
+		$arr_all = $this->mevg->get_all_emp()->result();
+		foreach($arr_all as $index => $row ) {
+			if( substr($row->Sectioncode_ID,4,2) == "SC"){
+				$this->mevg->Emp_ID = $row->Emp_ID;
+				$arr_use[$index] = $this->mevg->get_all_emp_SC()->row();
+			}
+			else if(substr($row->Sectioncode_ID,4,2) == "DP"){
+				$this->mevg->Emp_ID = $row->Emp_ID;
+				$arr_use[$index] = $this->mevg->get_all_emp_DP()->row();
+			}
+			else if(substr($row->Sectioncode_ID,4,2) == "GR"){
+				$this->mevg->Emp_ID = $row->Emp_ID;
+				$arr_use[$index] = $this->mevg->get_all_emp_GR()->row();
+			}
+			else if(substr($row->Sectioncode_ID,4,2) == "LN"){
+				$this->mevg->Emp_ID = $row->Emp_ID;
+				$arr_use[$index] = $this->mevg->get_all_emp_LN()->row();
+			}
+			else if(substr($row->Sectioncode_ID,4,2) == "DV"){
+				$this->mevg->Emp_ID = $row->Emp_ID;
+				$arr_use[$index] = $this->mevg->get_all_emp_DV()->row();
+			}
+			else if(substr($row->Sectioncode_ID,4,2) == "SB"){
+				$this->mevg->Emp_ID = $row->Emp_ID;
+				$arr_use[$index] = $this->mevg->get_all_emp_SB()->row();
+			}
+	
+		}
+		
+		$data['select'] = $arr_use;
 		$this->output('/consent/ev_permission/v_list_permission',$data);
 
 	}
@@ -197,7 +256,49 @@ class Evs_permission extends MainController_avenxo {
       
 		$this->load->model('M_evs_employee','mevg');
 		$this->mevg->emp_pay_id= $pay_id;
-		$data['select'] = $this->mevg->get_all_emp_delete();
+		$this->mevg->emp_pay_id= $pay_id;
+		
+		$arr_all = [];
+		$arr_use = [];
+		$arr_emp_id = [];
+
+
+		$arr_all = $this->mevg->get_all_emp_delete()->result();
+		foreach($arr_all as $index => $row ) {
+			if( substr($row->Sectioncode_ID,4,2) == "SC"){
+				$this->mevg->Emp_ID = $row->Emp_ID;
+				$arr_use[$index] = $this->mevg->get_all_emp_SC()->row();
+			}
+			else if(substr($row->Sectioncode_ID,4,2) == "DP"){
+				$this->mevg->Emp_ID = $row->Emp_ID;
+				$arr_use[$index] = $this->mevg->get_all_emp_DP()->row();
+				
+			}
+			else if(substr($row->Sectioncode_ID,4,2) == "GR"){
+				$this->mevg->Emp_ID = $row->Emp_ID;
+				$arr_use[$index] = $this->mevg->get_all_emp_GR()->row();
+				
+			}
+			else if(substr($row->Sectioncode_ID,4,2) == "LN"){
+				$this->mevg->Emp_ID = $row->Emp_ID;
+				$arr_use[$index] = $this->mevg->get_all_emp_LN()->row();
+				
+			}
+			else if(substr($row->Sectioncode_ID,4,2) == "DV"){
+				$this->mevg->Emp_ID = $row->Emp_ID;
+				$arr_use[$index] = $this->mevg->get_all_emp_DV()->row();
+				
+			}
+			else if(substr($row->Sectioncode_ID,4,2) == "SB"){
+				$this->mevg->Emp_ID = $row->Emp_ID;
+				$arr_use[$index] = $this->mevg->get_all_emp_SB()->row();
+				
+			}
+			$arr_emp_id[$index] = $row->emp_id;
+			
+		}
+		$data['arr_emp_id'] = $arr_emp_id;
+		$data['select'] = $arr_use;
 		$data['year'] = $pay_id;
 		$this->output('/consent/ev_permission/v_list_permission_delete',$data);
 	}
@@ -209,6 +310,9 @@ class Evs_permission extends MainController_avenxo {
 		$this->deemp->emp_id = $emp_id;
 		$this->deemp->delete();
 
+
+
+		
 		echo json_encode($status);
 
 		

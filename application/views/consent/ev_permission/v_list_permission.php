@@ -119,6 +119,7 @@ td {
     background-color: #134466;
 }
 </style>
+
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
