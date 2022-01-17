@@ -44,10 +44,9 @@ class M_evs_employee extends Da_evs_employee {
 	* @Create Date 2564-04-07
 	*/
 	function get_by_empid(){	
+
 		$sql = "SELECT * 
 				FROM dbmc.employee AS emp
-				INNER JOIN dbmc.master_mapping AS map 
-				ON map.Section_id = emp.Sectioncode_ID
 				INNER JOIN dbmc.position AS pos
 				ON pos.Position_ID = emp.Position_ID
 				INNER JOIN evs_database.evs_employee AS evs_emp
@@ -56,6 +55,44 @@ class M_evs_employee extends Da_evs_employee {
 		$query = $this->db->query($sql,array($this->Emp_ID, $this->emp_pay_id));
 		return $query;
 	}//get_by_empid
+
+	function get_dpartment($sec_id){
+
+		$temp = substr($sec_id,4);
+		$temp_sec = substr($temp,0,2);
+		$sec = "";
+		if($temp_sec == "DP"){
+			$sec = "Department_id";
+		}
+		// if 
+		else if($temp_sec == "SC"){
+			$sec = "Section_id";
+		}
+		// else if
+		else if($temp_sec == "SB"){
+			$sec = "SubSection_id";
+		}
+		// else if 
+		else if($temp_sec == "LN"){
+			$sec = "Line_id";
+		}
+		// else if
+		else if($temp_sec == "DV"){
+			$sec = "Division_id";
+		}
+		// else if
+		else if($temp_sec == "GR"){
+			$sec = "Group_id";
+		}
+		// else if 
+
+		$sql = "SELECT * 
+				FROM dbmc.master_mapping AS map
+				WHERE map.".$sec."='".$sec_id."'";
+		$query = $this->db->query($sql);
+		return $query;
+	}
+	// get_dpartment
 	
 		/*
 	* get_by_Empid_group
@@ -90,10 +127,6 @@ class M_evs_employee extends Da_evs_employee {
 	function get_by_appid(){	
 		$sql = "SELECT * 
 				FROM dbmc.employee AS emp
-				INNER JOIN dbmc.group_secname AS gsec 
-				ON gsec.Sectioncode = emp.Sectioncode_ID
-				INNER JOIN dbmc.position AS pos
-				ON pos.Position_ID = emp.Position_ID
 				WHERE emp.Emp_ID=?" ;
 		$query = $this->db->query($sql,array($this->Emp_ID));
 		return $query;

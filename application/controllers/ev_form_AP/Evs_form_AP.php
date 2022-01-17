@@ -74,8 +74,8 @@ class Evs_form_AP extends MainController_avenxo {
 		$this->memp->Emp_ID = $emp_id;
 		$this->memp->emp_pay_id = $pay_id;
 		$data['emp_info'] = $this->memp->get_by_empid();
-
 		$tep = $data['emp_info']->row();
+		$data["dep_info"] = $this->memp->get_dpartment($tep->Sectioncode_ID)->row();
 
 		//$emp_id = $this->input->post("emp_id");
 		
@@ -112,8 +112,6 @@ class Evs_form_AP extends MainController_avenxo {
 			// else
 		}
 		// if
-
-
 		else if($data['form']->ps_form_pe == "G&O"){
 
 		$this->load->model('M_evs_data_g_and_o_weight','megw');

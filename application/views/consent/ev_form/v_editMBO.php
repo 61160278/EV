@@ -146,6 +146,7 @@ function editmbo() {
             $("#btn_clear").attr("disabled", false);
             $("#btn_cencel_clear").show();
             $("#btn_cencel_back").hide();
+            $("#btn_send_insert").hide();
 
 
         },
@@ -468,8 +469,6 @@ function save_approve() {
     var evs_emp_id = document.getElementById("evs_emp_id").value;
     var dma_emp_id = document.getElementById("emp_id").innerHTML;
 
-    console.log(approve1);
-    console.log(approve2);
     var data_show = "";
 
     $.ajax({
@@ -484,7 +483,7 @@ function save_approve() {
 
         },
         success: function(data) {
-            console.log(data);
+            // console.log(data);
             show_approve()
 
         },
@@ -505,10 +504,10 @@ function update_approve() {
     var evs_emp_id = document.getElementById("evs_emp_id").value;
     var dma_emp_id = document.getElementById("emp_id").innerHTML;
 
-    console.log(approve1);
-    console.log(approve2);
-    console.log(evs_emp_id);
-    console.log(dma_emp_id);
+    // console.log(approve1);
+    // console.log(approve2);
+    // console.log(evs_emp_id);
+    // console.log(dma_emp_id);
     var data_show = "";
 
     $.ajax({
@@ -543,6 +542,7 @@ function show_approve() {
 
     var evs_emp_id = document.getElementById("evs_emp_id").value;
     var data_show = "";
+    console.log(evs_emp_id);
 
     $.ajax({
         type: "post",
@@ -553,7 +553,7 @@ function show_approve() {
 
         },
         success: function(data) {
-            // console.log(data);
+            console.log(data);
             var app1 = "";
             var app2 = "";
             var id_app1 = "";
@@ -1552,7 +1552,7 @@ function set_tap() {
                             </div>
                             <!-- col-md-2 -->
                             <div class="col-md-2">
-                                <p id="emp_dep"><?php echo $row->Department; ?></p>
+                                <p id="emp_dep"><?php echo $dept_info->Department; ?></p>
                             </div>
                             <!-- col-md-2 -->
                             <div class="col-md-2">
@@ -1767,7 +1767,7 @@ function set_tap() {
                             </div>
                             <!-- col-md-2 -->
                             <div class="col-md-2">
-                                <p id="emp_dep"><?php echo $row->Department; ?></p>
+                                <p id="emp_dep"><?php echo $dept_info->Department; ?></p>
                             </div>
                             <!-- col-md-2 -->
                             <div class="col-md-2">
@@ -2045,7 +2045,7 @@ function set_tap() {
                             </div>
                             <!-- col-md-2 -->
                             <div class="col-md-2">
-                                <p id="emp_dep"><?php echo $row->Department; ?></p>
+                                <p id="emp_dep"><?php echo $dept_info->Department; ?></p>
                             </div>
                             <!-- col-md-2 -->
                             <div class="col-md-2">
@@ -2386,7 +2386,7 @@ function set_tap() {
                             </div>
                             <!-- col-md-2 -->
                             <div class="col-md-2">
-                                <p id="emp_dep"><?php echo $row->Department; ?></p>
+                                <p id="emp_dep"><?php echo $dept_info->Department; ?></p>
                             </div>
                             <!-- col-md-2 -->
                             <div class="col-md-2">

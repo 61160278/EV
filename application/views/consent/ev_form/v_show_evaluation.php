@@ -31,7 +31,6 @@ $(document).ready(function() {
 </script>
 
 <!-- END script  -->
-
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
@@ -113,7 +112,7 @@ $(document).ready(function() {
                                     <td>
                                         <center><?php echo $row->Sectioncode_ID; ?></center>
                                     </td>
-                                    <td><?php echo $row->Department; ?></td>
+                                    <td><?php echo $dep1[$index]->Department; ?></td>
                                     <td><?php echo $row->Position_name; ?></td>
                                     <td>
                                         <a
@@ -190,7 +189,7 @@ $(document).ready(function() {
                                     <td>
                                         <center><?php echo $row->Sectioncode_ID; ?></center>
                                     </td>
-                                    <td><?php echo $row->Department; ?></td>
+                                    <td><?php echo $dep2[$index]->Department; ?></td>
                                     <td><?php echo $row->Position_name; ?></td>
                                     <td>
                                         <a
