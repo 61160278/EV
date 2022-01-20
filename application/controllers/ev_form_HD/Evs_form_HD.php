@@ -1376,6 +1376,9 @@ class Evs_form_HD extends MainController_avenxo {
 			$this->memp->Emp_ID = $_SESSION['UsEmp_ID'];
 			$this->memp->emp_pay_id = $pay_id;
 			$data['emp_info_show'] = $this->memp->get_by_empid();
+
+			$temp = $data['emp_info_show']->row();
+			$data['dept_info'] = $this->memp->get_dpartment($temp->Sectioncode_ID)->row();
 	
 			$this->load->model('M_evs_employee','memp');
 			$data['emp_info'] = $this->memp->get_all_by_year()->result();
@@ -1386,7 +1389,7 @@ class Evs_form_HD extends MainController_avenxo {
 			$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
 
 			$this->load->model('M_evs_data_approve','mda');
-			$this->mda->dma_dtm_emp_id = $_SESSION['UsEmp_ID'];
+			$this->mda->dma_emp_id = $_SESSION['UsEmp_ID'];
 			$data['app'] = $this->mda->get_status_by_emp()->result();
 			if(sizeof($data['app']) != 0){
 				foreach($data['app'] as $row){

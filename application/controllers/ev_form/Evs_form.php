@@ -1054,13 +1054,14 @@ class Evs_form extends MainController_avenxo {
 		$this->memp->Emp_ID = $emp_id;
 		$this->memp->emp_pay_id = $pay_id;
 		$data['emp_info'] = $this->memp->get_by_empid();
-
+		
 		$temp = $data['emp_info']->row();
 		$data['dept_info'] = $this->memp->get_dpartment($temp->Sectioncode_ID)->row();
 
 		$this->load->model('M_evs_data_approve','meda');
 		$this->meda->dma_emp_id = $temp->emp_id;
 		$data['data_app'] = $this->meda->get_by_id()->row();
+		
 		if(sizeof($data['data_app']) != 0){
 			$this->load->model('M_evs_employee','memp');
 			$this->memp->Emp_ID = $data['data_app']->dma_approve1;
@@ -1071,7 +1072,8 @@ class Evs_form extends MainController_avenxo {
 			$data['app2'] = $this->memp->get_by_appid()->row();
 	
 		}
-		// if 		
+		// if 	
+
 		$this->output('/consent/ev_form/v_show_status',$data);
 
 	}
