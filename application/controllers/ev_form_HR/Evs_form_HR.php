@@ -201,6 +201,7 @@ class Evs_form_HR extends MainController_avenxo {
 		$data['emp_info'] = $this->memp->get_by_empid();
 
 		$tep = $data['emp_info']->row();
+		$data["dep_info"] = $this->memp->get_dpartment($tep->Sectioncode_ID)->row();
 
 		//$emp_id = $this->input->post("emp_id");
 		
@@ -328,6 +329,7 @@ class Evs_form_HR extends MainController_avenxo {
 		$data['emp_info'] = $this->memp->get_by_empid();
 
 		$tep = $data['emp_info']->row();
+		$data["dep_info"] = $this->memp->get_dpartment($tep->Sectioncode_ID)->row();
 
 		//$emp_id = $this->input->post("emp_id");
 		
@@ -459,6 +461,7 @@ class Evs_form_HR extends MainController_avenxo {
 		$sum_percent_pe = 0;
 		$sum_percent_ce = 0;
 		$sum_percent_all = 0;
+		$dep = [];
 		
 		
 		$this->load->model('M_evs_pattern_and_year','myear');
@@ -482,6 +485,8 @@ class Evs_form_HR extends MainController_avenxo {
 			$data['emp_info'] = $this->memp->get_by_empid();
 
 			$tep = $data['emp_info']->row();
+			$data[$row->Emp_ID."_dep"] = $this->memp->get_dpartment($tep->Sectioncode_ID)->row();
+			array_push($dep,$data[$row->Emp_ID."_dep"]);
 			$check = 0;
 			$check_com = 0;
 			$chack_form_pe ="";
@@ -929,6 +934,7 @@ class Evs_form_HR extends MainController_avenxo {
 		$data['data_focas_group'] = $group;
 		$data['data_grade'] = $data_grade;
 		$data['status'] = $status;
+		$data["dep_info"] = $dep;
 		
 		$this->output('/consent/ev_form_HR/v_main_form',$data);
 	}

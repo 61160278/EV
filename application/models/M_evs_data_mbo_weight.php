@@ -63,6 +63,20 @@ class M_evs_data_mbo_weight extends Da_evs_data_mbo_weight {
 	
 	}//get_by_empID
 
+	
+	function get_by_emp_app(){	
+		$sql = "SELECT dmw_approver,log_role
+				FROM evs_database.evs_data_mbo_weight as mbo
+				INNER JOIN evs_database.evs_login as evslog
+				ON evslog.log_user_id = mbo.dmw_approver
+				WHERE mbo.dmw_evs_emp_id = ?
+				GROUP BY mbo.dmw_approver
+				ORDER BY mbo.dmw_id ASC";
+		$query = $this->db->query($sql, array($this->dmw_evs_emp_id));
+		return $query;
+	
+	}//get_by_emp_app 				
+
 	function get_by_empID_app2(){	
 		$sql = "SELECT *
 		FROM evs_database.evs_data_mbo_weight AS mbo

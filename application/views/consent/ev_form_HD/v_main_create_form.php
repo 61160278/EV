@@ -22,52 +22,8 @@
 <!-- END style -->
 
 <script>
-$(document).ready(function() {
-    $('#show_emp').DataTable();
-});
+$(document).ready(function() {});
 // document ready
-
-function save_group_to_HR() {
-
-    var Emp_ID = [];
-    var comment = [];
-    var index = document.getElementById("table_index").value;
-
-    for (i = 0; i < index; i++) {
-        Emp_ID.push(document.getElementById("Emp_ID" + i).value);
-        comment.push(document.getElementById("comment" + i).value);
-    }
-    // for 
-
-    $.ajax({
-        type: "post",
-        dataType: "json",
-        url: "<?php echo base_url(); ?>ev_form_HD/Evs_form_HD/save_feedback",
-        data: {
-            "Emp_ID": Emp_ID,
-            "index": index,
-            "status_us": "6",
-            "comment": comment
-        },
-        success: function(data) {
-            console.log(data);
-            main_index();
-        },
-        // success
-        error: function(data) {
-            console.log("9999 : error");
-        }
-        // error
-    });
-    // ajax 
-
-}
-// save_group_to_HR
-
-function main_index() {
-    window.location.href = "<?php echo base_url();?>/ev_form_HD/Evs_form_HD/feedback";
-}
-// main_index 
 </script>
 <!-- END script -->
 
@@ -76,14 +32,14 @@ function main_index() {
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
             <div class="panel-heading ">
                 <h2>
-                    <font color="#ffffff" size="6px"><b> Feedback Group </b></font>
+                    <font color="#ffffff" size="6px"><b> Create form group </b></font>
                 </h2>
             </div>
             <!-- heading -->
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <h3>List of employees to feedback group </h3>
+                        <h3>List of employees to create form </h3>
                     </div>
                     <!-- col-12  -->
                 </div>
@@ -92,41 +48,35 @@ function main_index() {
                 <table class="table table-bordered m-n" id="show_emp">
                     <thead>
                         <tr>
-                            <th width="2%">
+                            <th>
                                 <center>#</center>
                             </th>
-                            <th width="8%">
+                            <th>
                                 <center>Employee ID</center>
                             </th>
-                            <th width="15%">
+                            <th>
                                 <center>Name - surname</center>
                             </th>
-                            <th width="10%">
+                            <th>
                                 <center>Section Code</center>
                             </th>
-                            <th width="15%">
+                            <th>
                                 <center>Department</center>
                             </th>
-                            <th width="15%">
+                            <th>
                                 <center>Position</center>
                             </th>
-                            <th width="10%">
-                                <center>Group</center>
-                            </th>
-                            <th width="5%">
-                                <center>Grade</center>
-                            </th>
-                            <th width="20%">
-                                <center>Comment</center>
+                            <th>
+                                <center>Action</center>
                             </th>
                         </tr>
                     </thead>
                     <!-- thead -->
 
                     <tbody>
-                        <?php 
-                            $table_index = 0;
-							    foreach($data_group as $index => $row) {?>
+                    <?php     
+                    if(sizeof($data_group) != 0){
+                    foreach($data_group as $index => $row){ ?>
                         <input name="Emp_ID" id="Emp_ID<?php echo $index; ?>" type="text"
                             value="<?php echo $row->emp_id ?>" hidden>
                         <tr>
@@ -154,37 +104,20 @@ function main_index() {
                             <td>
                                 <center><?php echo $row->Position_name; ?></center>
                             </td>
-                            <td>
-                                <center>
-                                    <?php echo $row->gru_name ?>
-                                </center>
-                            </td>
-                            <td>
-                                <center>
-                                    <h3>
-                                        <b>
-                                            <?php echo $row->dgr_grade ?>
-                                        </b>
-                                    </h3>
-                                </center>
-                            </td>
-                            <td>
 
-                                <p><?php echo "Approver : ".$app_com[$index]; ?></p>
-                                <p><?php echo "Comment : ".$comment[$index]; ?></p>
-                                <hr>
+                            <td>
                                 <center>
-                                    <textarea type="text" id="comment<?php echo $index; ?>" placeholder="Enter comment"
-                                        class="form-control"></textarea>
+                                    <button class="btn btn-info" disabled>
+                                        <i class="fa fa-info-circle"></i>
+                                    </button>
                                 </center>
                             </td>
                         </tr>
+                        <?php }
+                        // foreach
+                        }
+                        // if?>
 
-                        <?php 
-                            $table_index += 1;
-                                    }
-                                    // foreach  ?>
-                        <input type="text" id="table_index" value="<?php echo $table_index; ?>" hidden>
                     </tbody>
                     <!-- tbody  -->
                 </table>
@@ -199,16 +132,6 @@ function main_index() {
                     </div>
                     <!-- col-6  -->
                     <div class="col-md-6" align="right">
-                        <?php if(sizeof($data_group) != 0){?>
-                        <button id="save" class="btn btn-success" data-toggle="modal" data-target="#save_data">
-                            Accept</button>
-                        <?php }
-                        // if
-                        else {?>
-                        <button id="save" class="btn btn-success" disabled>
-                            Accept</button>
-                        <?php }
-                        // else ?>
                     </div>
                     <!-- col-6  -->
                 </div>
@@ -251,7 +174,7 @@ function main_index() {
                     <button type="button" class="btn btn-inverse" data-dismiss="modal">CANCEL</button>
                 </div>
                 <button type="button" class="btn btn-success" id="btnsaveadd"
-                    onclick="save_group_to_HR()">Submit</button>
+                    onclick="save_group_to_HR()">Sumbit</button>
             </div>
             <!-- modal-footer -->
         </div>

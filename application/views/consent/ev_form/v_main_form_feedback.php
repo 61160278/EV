@@ -208,7 +208,7 @@ function main_index() {
                                         <center><?php echo $row->Sectioncode_ID; ?></center>
                                     </td>
                                     <td>
-                                        <center><?php echo $row->Department; ?></center>
+                                        <center><?php echo $dep_info1[$index]->Department; ?></center>
                                     </td>
                                     <td>
                                         <center><?php echo $row->Position_name; ?></center>
@@ -348,7 +348,7 @@ function main_index() {
                                         <center><?php echo $row->Sectioncode_ID; ?></center>
                                     </td>
                                     <td>
-                                        <center><?php echo $row->Department; ?></center>
+                                        <center><?php echo $dep_info2[$index]->Department; ?></center>
                                     </td>
                                     <td>
                                         <center><?php echo $row->Position_name; ?></center>

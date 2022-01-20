@@ -613,12 +613,16 @@ class Evs_form_AP extends MainController_avenxo {
 			$this->memp->emp_employee_id = $_SESSION['UsEmp_ID'];
 			$data['emp_info'] = $this->memp->get_all_by_year_by_emp()->result();
 
-
-
-
 			$data['data_emp_id'] = $_SESSION['UsEmp_ID'];
 
 			if(sizeof($data['emp_info']) != 0){
+
+			foreach($data['emp_info'] as $row){
+				echo $row->Sectioncode_ID;
+				$data["dep_info"] = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
+			}
+			// foreach 
+
 			foreach($data['emp_info'] as $row){
 				$this->load->model('M_evs_data_approve','mda');
 				$this->mda->dma_emp_id = $row->emp_id;

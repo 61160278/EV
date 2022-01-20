@@ -63,6 +63,19 @@ class M_evs_data_acm_weight extends Da_evs_data_acm_weight {
 	
 	}//get_by_empID
 
+	function get_by_emp_app(){	
+		$sql = "SELECT dta_approver,log_role
+				FROM evs_database.evs_data_acm_weight as acm
+				INNER JOIN evs_database.evs_login as evslog
+				ON evslog.log_user_id = acm.dta_approver
+				WHERE acm.dta_evs_emp_id = ?
+				GROUP BY acm.dta_approver
+				ORDER BY acm.dta_id ASC";
+		$query = $this->db->query($sql, array($this->dta_evs_emp_id));
+		return $query;
+	
+	}//get_by_emp_app 	
+
 	function get_by_empID_app2(){	
 		$sql = "SELECT *
 		FROM evs_database.evs_data_acm_weight AS acm

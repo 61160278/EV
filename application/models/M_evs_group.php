@@ -154,8 +154,6 @@ class M_evs_group extends Da_evs_group {
 				ON gru.gru_id =  eem.emp_gru_id
 				INNER JOIN dbmc.employee as dem
 				ON eem.emp_employee_id =  dem.Emp_ID
-				INNER JOIN dbmc.group_secname AS gsec 
-				ON gsec.Sectioncode = dem.Sectioncode_ID
 				INNER JOIN dbmc.position AS pos
 				ON pos.Position_ID = dem.Position_ID
 				WHERE eem.emp_pay_id = ? AND gru.gru_head_dept = ? AND gru.gru_id = ?

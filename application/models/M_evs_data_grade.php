@@ -103,8 +103,6 @@ class M_evs_data_grade extends Da_evs_data_grade {
 		on emp.Emp_ID = evs_emp.emp_employee_id
 		INNER JOIN evs_database.evs_group as grp		
 		on grp.gru_id = evs_emp.emp_gru_id
-		INNER JOIN dbmc.group_secname AS gsec 
-		ON gsec.Sectioncode = emp.Sectioncode_ID
 		INNER JOIN dbmc.position AS pos
 		ON pos.Position_ID = emp.Position_ID
 		WHERE grp.gru_head_dept = ? AND app.dma_status = ?
@@ -125,8 +123,6 @@ class M_evs_data_grade extends Da_evs_data_grade {
 		on emp.Emp_ID = evs_emp.emp_employee_id
 		INNER JOIN evs_database.evs_group as grp		
 		on grp.gru_id = evs_emp.emp_gru_id
-		INNER JOIN dbmc.group_secname AS gsec 
-		ON gsec.Sectioncode = emp.Sectioncode_ID
 		INNER JOIN dbmc.position AS pos
 		ON pos.Position_ID = emp.Position_ID
 		WHERE app.dma_approve1 = ? AND app.dma_status = ?
@@ -147,8 +143,6 @@ class M_evs_data_grade extends Da_evs_data_grade {
 		on emp.Emp_ID = evs_emp.emp_employee_id
 		INNER JOIN evs_database.evs_group as grp		
 		on grp.gru_id = evs_emp.emp_gru_id
-		INNER JOIN dbmc.group_secname AS gsec 
-		ON gsec.Sectioncode = emp.Sectioncode_ID
 		INNER JOIN dbmc.position AS pos
 		ON pos.Position_ID = emp.Position_ID
 		WHERE app.dma_approve2 = ? AND app.dma_status = ?

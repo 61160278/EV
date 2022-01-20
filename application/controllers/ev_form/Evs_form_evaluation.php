@@ -154,6 +154,8 @@ class Evs_form_evaluation extends MainController_avenxo {
 		$app_com_temp1 = [];
 		$comment_temp2 = [];
 		$app_com_temp2 = [];
+		$dep1 = [];
+		$dep2 = [];
 
 		$this->load->model('M_evs_data_grade','mdg');
 		$this->mdg->dma_approve1 = $_SESSION['UsEmp_ID'];
@@ -165,6 +167,10 @@ class Evs_form_evaluation extends MainController_avenxo {
 		foreach($data['data_group1'] as $row){
 			$this->mdcm->dcm_emp_id = $row->emp_id;
 			$data['com_temp'] =  $this->mdcm->get_by_emp()->result();
+			$this->load->model('M_evs_employee','memp');
+			$data[$row->Emp_ID."_dep"] = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
+			array_push($dep1,$data[$row->Emp_ID."_dep"]);
+
 			if(sizeof($data['com_temp']) != 0){
 				$tmp = $data['com_temp'];
 				foreach($tmp as $row){
@@ -184,6 +190,7 @@ class Evs_form_evaluation extends MainController_avenxo {
 		// foreach
 		$data['comment1'] = $comment1;
 		$data['app_com1'] = $app_com1;
+		$data["dep_info1"] = $dep1;
 		}
 		// if
 		else{
@@ -202,6 +209,11 @@ class Evs_form_evaluation extends MainController_avenxo {
 		foreach($data['data_group2'] as $row){
 			$this->mdcm->dcm_emp_id = $row->emp_id;
 			$data['com_temp'] =  $this->mdcm->get_by_emp()->result();
+
+			$this->load->model('M_evs_employee','memp');
+			$data[$row->Emp_ID."_dep"] = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
+			array_push($dep2,$data[$row->Emp_ID."_dep"]);
+
 			if(sizeof($data['com_temp']) != 0){
 				$tmp = $data['com_temp'];
 				foreach($tmp as $row){
@@ -220,6 +232,7 @@ class Evs_form_evaluation extends MainController_avenxo {
 		// foreach
 		$data['comment2'] = $comment2;
 		$data['app_com2'] = $app_com2;
+		$data["dep_info2"] = $dep2;
 		}
 		// if
 		else{

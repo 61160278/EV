@@ -615,7 +615,7 @@ function update_MHRD_edit() {
                         </div>
                         <!-- col-md-2 -->
                         <div class="col-md-2">
-                            <p id="emp_dep"><?php echo $row->Department; ?></p>
+                            <p id="emp_dep"><?php echo $dept_info->Department; ?></p>
                         </div>
                         <!-- col-md-2 -->
                         <div class="col-md-2">

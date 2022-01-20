@@ -712,6 +712,7 @@ class Evs_form_HD extends MainController_avenxo {
 		$data['emp_info'] = $this->memp->get_by_empid();
 
 		$tep = $data['emp_info']->row();
+		$data['dept_info'] = $this->memp->get_dpartment($tep->Sectioncode_ID)->row();
 
 		//$emp_id = $this->input->post("emp_id");
 		
@@ -839,6 +840,7 @@ class Evs_form_HD extends MainController_avenxo {
 		$data['emp_info'] = $this->memp->get_by_empid();
 
 		$tep = $data['emp_info']->row();
+		$data['dept_info'] = $this->memp->get_dpartment($tep->Sectioncode_ID)->row();
 
 		//$emp_id = $this->input->post("emp_id");
 		
@@ -986,8 +988,6 @@ class Evs_form_HD extends MainController_avenxo {
 
 
 	}
-
-
 
 	function save_group_to_HR(){
     
@@ -1411,6 +1411,7 @@ class Evs_form_HD extends MainController_avenxo {
 function feedback(){
 	$comment = [];
 	$app_com = [];
+	$dep = [];
 
 	$this->load->model('M_evs_data_grade','mdg');
 	$this->mdg->gru_head_dept = $_SESSION['UsEmp_ID'];
@@ -1421,6 +1422,11 @@ function feedback(){
 	foreach($data['data_group'] as $row){
 		$this->mdcm->dcm_emp_id = $row->emp_id;
 		$data['com_temp'] =  $this->mdcm->get_by_emp()->row();
+		
+		$this->load->model('M_evs_employee','memp');
+		$data[$row->Emp_ID."_dep"] = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
+		array_push($dep,$data[$row->Emp_ID."_dep"]);
+
 		if(sizeof($data['com_temp']) != 0){
 				$temp = $data['com_temp'];
 				array_push($comment,$temp->dcm_comment);
@@ -1438,6 +1444,7 @@ function feedback(){
 	// foreach
 	$data['comment'] = $comment;
 	$data['app_com'] = $app_com;
+	$data["dep_info"] = $dep;
 
 	$this->output('/consent/ev_form_HD/v_main_form_feedback',$data);
 }
@@ -1472,6 +1479,97 @@ function save_feedback(){
 }
 // save_feedback
 
+
+function create_form_group(){
+
+	$dep = [];
+	$status = [];
+
+	$this->load->model('M_evs_pattern_and_year','myear');
+	$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+	$year = $data['patt_year']->row(); // show value year now
+	//end set year now
+	$pay_id = $year->pay_id;
+
+	$this->load->model('M_evs_group','megu');
+	$this->megu->emp_pay_id = $pay_id;
+	$this->megu->gru_head_dept = $_SESSION['UsEmp_ID'];
+	$data['data_group'] = $this->megu->get_group_by_head_dept()->result();
+	$emp_data = $data['data_group'];
+
+	if(sizeof($emp_data) != 0){
+		foreach ($emp_data as $row) {
+			$this->load->model('M_evs_employee','memp');
+			$data[$row->Emp_ID."_dep"] = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
+			array_push($dep,$data[$row->Emp_ID."_dep"]);
+
+			$this->load->model('M_evs_position_from','mpf');
+			$this->mpf->ps_pos_id = $row->Position_ID;
+			$this->mpf->ps_pay_id = $pay_id;
+			$data[$row->Emp_ID.'form'] = $this->mpf->get_all_by_key_by_year()->row();
+
+			$tmp_form = $data[$row->Emp_ID.'form'];
+
+			if($tmp_form->ps_form_pe == "MBO"){
+				$this->load->model('M_evs_data_mbo','medm');
+				$this->medm->dtm_evs_emp_id = $row->emp_id;
+				$this->medm->dtm_emp_id = $row->Emp_ID;
+				$data['data_mbo'] = $this->medm->get_by_empID()->result();
+				if(sizeof($data['data_mbo']) != 0){
+					array_push($status,0);
+				}
+				// if
+				else{
+					array_push($status,1);
+				} 
+				// else
+			}
+			// if 
+			else if($tmp_form->ps_form_pe == "G&O"){
+				$this->load->model('M_evs_data_g_and_o','mego');
+				$this->mego->dgo_evs_emp_id = $row->emp_id;
+				$this->mego->dgo_emp_id = $row->Emp_ID;
+				$data['data_go'] = $this->mego->get_by_empID()->result();
+				if(sizeof($data['data_go']) != 0){
+					array_push($status,0);
+				}
+				// if
+				else{
+					array_push($status,1);
+				} 
+				// else
+
+			}
+			// else if
+			else if($tmp_form->ps_form_pe == "MHRD"){
+				$this->load->model('M_evs_data_mbo','medm');
+				$this->medm->dtm_emp_id = $row->emp_id;
+				$this->medm->dtm_evs_emp_id = $row->Emp_ID;
+				$data['data_mhrd'] = $this->medm->get_by_empID()->result();
+				if(sizeof($data['data_mhrd']) != 0){
+					array_push($status,0);
+				}
+				// if
+				else{
+					array_push($status,1);
+				} 
+				// else
+			}
+			// else if
+
+
+
+		}
+		// foreach
+	}
+	// if
+
+	$data["dep_info"] = $dep;
+	$data["status_form"] = $status;
+
+	$this->output('/consent/ev_form_HD/v_main_create_form',$data);
+}
+// function index()
 
 }
 ?>

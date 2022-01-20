@@ -495,6 +495,8 @@ function set_tap_his() {
                                 <?php 
 							$num = 0;
                             $sum = 0;
+                            $sum_w = 0;
+
 							foreach($mbo_emp as $index => $row) {?>
                                 <tr>
                                     <td>
@@ -512,30 +514,70 @@ function set_tap_his() {
                                     <td id="dis_color">
                                         <center>
                                             <div class="col-md-12">
-                                                <form action="">
-                                                    <input type="radio" name="result" value="1" Disabled Unchecked>
-                                                    <label for="1">&nbsp; 1</label>
-                                                    &nbsp;&nbsp;
-                                                    <input type="radio" name="result" value="2" Disabled Unchecked>
-                                                    <label for="2">&nbsp; 2</label>
-                                                    &nbsp;&nbsp;
-                                                    <input type="radio" name="result" value="3" Disabled Unchecked>
-                                                    <label for="3">&nbsp; 3</label>
-                                                    &nbsp;&nbsp;
-                                                    <input type="radio" name="result" value="4" Disabled Unchecked>
-                                                    <label for="4">&nbsp; 4</label>
-                                                    &nbsp;&nbsp;
-                                                    <input type="radio" name="result" value="5" Disabled Unchecked>
-                                                    <label for="5">&nbsp; 5</label>
-                                                    &nbsp;&nbsp;
-                                                </form>
+                                                <?php 
+                                                $mbo_1 = "Unchecked";
+                                                $mbo_2 = "Unchecked";
+                                                $mbo_3 = "Unchecked";
+                                                $mbo_4 = "Unchecked";
+                                                $mbo_5 = "Unchecked";
+
+                                                if($data_mbo[$index]->dmw_weight == 1){ 
+                                                    $mbo_1 = "checked";
+                                                }
+                                                // if 
+                                                else if($data_mbo[$index]->dmw_weight == 2){
+                                                    $mbo_2 = "checked";
+                                                }
+                                                // else if
+                                                else if($data_mbo[$index]->dmw_weight == 3){
+                                                    $mbo_3 = "checked";
+                                                }
+                                                // else if
+                                                else if($data_mbo[$index]->dmw_weight == 4){
+                                                    $mbo_4 = "checked";
+                                                }
+                                                // else if
+                                                else if($data_mbo[$index]->dmw_weight == 5){
+                                                    $mbo_5 = "checked";
+                                                }
+                                                // else if
+                                                ?>
+
+                                                <input type="radio" name="result<?php echo $index; ?>" value="1"
+                                                    Disabled <?php echo $mbo_1; ?>>
+                                                <label for="1">&nbsp; 1</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio" name="result<?php echo $index; ?>" value="2"
+                                                    Disabled <?php echo $mbo_2; ?>>
+                                                <label for="2">&nbsp; 2</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio" name="result<?php echo $index; ?>" value="3"
+                                                    Disabled <?php echo $mbo_3; ?>>
+                                                <label for="3">&nbsp; 3</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio" name="result<?php echo $index; ?>" value="4"
+                                                    Disabled <?php echo $mbo_4; ?>>
+                                                <label for="4">&nbsp; 4</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio" name="result<?php echo $index; ?>" value="5"
+                                                    Disabled <?php echo $mbo_5; ?>>
+                                                <label for="5">&nbsp; 5</label>
+                                                &nbsp;&nbsp;
                                             </div>
 
                                             <!-- col-12 -->
 
                                         </center>
                                     </td>
-                                    <td id="dis_color"></td>
+                                    <td id="dis_color">
+                                        <center>
+                                            <?php 
+                                            
+                                            echo intval($data_mbo[$index]->dmw_weight)*$row->dtm_weight; 
+                                            $sum_w += intval($data_mbo[$index]->dmw_weight)*$row->dtm_weight; 
+                                            ?>
+                                        </center>
+                                    </td>
                                 </tr>
                                 <?php 
 								$num++;
@@ -550,9 +592,10 @@ function set_tap_his() {
                                 <tr>
                                     <td colspan="3" align="right"><b>Total Weight</b></td>
                                     <td id="show_weight" align="center"><?php echo $sum; ?></td>
-                                    <td colspan="2">
+                                    <td>
                                         <font color="#e60000"></font>
                                     </td>
+                                    <td align="center"><?php echo $sum_w; ?></td>
                                 </tr>
                             </tfoot>
                             <!-- tfoot -->
@@ -646,7 +689,7 @@ function set_tap_his() {
                             </div>
                             <!-- col-md-2 -->
                             <div class="col-md-2">
-                                <p id="emp_dep"><?php echo $row->Department; ?></p>
+                                <p id="emp_dep"><?php echo $dept_info->Department; ?></p>
                             </div>
                             <!-- col-md-2 -->
                             <div class="col-md-2">
@@ -915,7 +958,7 @@ function set_tap_his() {
                             </div>
                             <!-- col-md-2 -->
                             <div class="col-md-2">
-                                <p id="emp_dep"><?php echo $row->Department; ?></p>
+                                <p id="emp_dep"><?php echo $dept_info->Department; ?></p>
                             </div>
                             <!-- col-md-2 -->
                             <div class="col-md-2">
@@ -1086,7 +1129,7 @@ function set_tap_his() {
                             </div>
                             <!-- col-md-2 -->
                             <div class="col-md-2">
-                                <p id="emp_dep"><?php echo $row->Department; ?></p>
+                                <p id="emp_dep"><?php echo $dept_info->Department; ?></p>
                             </div>
                             <!-- col-md-2 -->
                             <div class="col-md-2">
@@ -1147,6 +1190,7 @@ function set_tap_his() {
                             $key_check = "";
                             $row_key = 0;
                             $row_index = [];
+                            $sum_acm = 0;
                             foreach($info_ability_form->result() AS $index => $row){ 
 
                                 
@@ -1213,30 +1257,68 @@ function set_tap_his() {
                                         style="vertical-align:middle;">
                                         <center>
                                             <div class="col-md-12">
-                                                <form action="">
-                                                    <input type="radio" name="result" value="1" Disabled Unchecked>
-                                                    <label for="1">&nbsp; 1</label>
-                                                    &nbsp;&nbsp;
-                                                    <input type="radio" name="result" value="2" Disabled Unchecked>
-                                                    <label for="2">&nbsp; 2</label>
-                                                    &nbsp;&nbsp;
-                                                    <input type="radio" name="result" value="3" Disabled Unchecked>
-                                                    <label for="3">&nbsp; 3</label>
-                                                    &nbsp;&nbsp;
-                                                    <input type="radio" name="result" value="4" Disabled Unchecked>
-                                                    <label for="4">&nbsp; 4</label>
-                                                    &nbsp;&nbsp;
-                                                    <input type="radio" name="result" value="5" Disabled Unchecked>
-                                                    <label for="5">&nbsp; 5</label>
-                                                    &nbsp;&nbsp;
-                                                </form>
+                                                <?php 
+                                                $acm_1 = "Unchecked";
+                                                $acm_2 = "Unchecked";
+                                                $acm_3 = "Unchecked";
+                                                $acm_4 = "Unchecked";
+                                                $acm_5 = "Unchecked";
+
+                                                if($data_acm[$count-1]->dta_weight == 1){ 
+                                                    $acm_1 = "checked";
+                                                }
+                                                // if 
+                                                else if($data_acm[$count-1]->dta_weight == 2){
+                                                    $acm_2 = "checked";
+                                                }
+                                                // else if
+                                                else if($data_acm[$count-1]->dta_weight == 3){
+                                                    $acm_3 = "checked";
+                                                }
+                                                // else if
+                                                else if($data_acm[$count-1]->dta_weight == 4){
+                                                    $acm_4 = "checked";
+                                                }
+                                                // else if
+                                                else if($data_acm[$count-1]->dta_weight == 5){
+                                                    $acm_5 = "checked";
+                                                }
+                                                // else if
+                                                ?>
+                                                <input type="radio" name="result<?php echo $index; ?>" value="1"
+                                                    Disabled <?php echo $acm_1; ?>>
+                                                <label for="1">&nbsp; 1</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio" name="result<?php echo $index; ?>" value="2"
+                                                    Disabled <?php echo $acm_2; ?>>
+                                                <label for="2">&nbsp; 2</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio" name="result<?php echo $index; ?>" value="3"
+                                                    Disabled <?php echo $acm_3; ?>>
+                                                <label for="3">&nbsp; 3</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio" name="result<?php echo $index; ?>" value="4"
+                                                    Disabled <?php echo $acm_4; ?>>
+                                                <label for="4">&nbsp; 4</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio" name="result<?php echo $index; ?>" value="5"
+                                                    Disabled <?php echo $acm_5; ?>>
+                                                <label for="5">&nbsp; 5</label>
+                                                &nbsp;&nbsp;
                                             </div>
                                             <!-- col-12 -->
                                         </center>
                                     </td>
-                                    <td id="dis_color"></td>
+                                    <td id="dis_color" rowspan="<?php echo $row_index[$index] ?>"
+                                        style="vertical-align:middle;">
+                                        <center>
+                                            <?php echo intval($data_acm[$index]->dta_weight)*$row->sfa_weight;  ?>
+                                        </center>
+                                    </td>
 
-                                    <?php }
+                                    <?php 
+                                    $sum_acm += intval($data_acm[$index]->dta_weight)*$row->sfa_weight;
+                                }
                                 // if 
                                 else if($com != $row->cpn_competency_detail_en){
                                     $count++;
@@ -1267,30 +1349,68 @@ function set_tap_his() {
                                         style="vertical-align:middle;">
                                         <center>
                                             <div class="col-md-12">
-                                                <form action="">
-                                                    <input type="radio" name="result" value="1" Disabled Unchecked>
-                                                    <label for="1">&nbsp; 1</label>
-                                                    &nbsp;&nbsp;
-                                                    <input type="radio" name="result" value="2" Disabled Unchecked>
-                                                    <label for="2">&nbsp; 2</label>
-                                                    &nbsp;&nbsp;
-                                                    <input type="radio" name="result" value="3" Disabled Unchecked>
-                                                    <label for="3">&nbsp; 3</label>
-                                                    &nbsp;&nbsp;
-                                                    <input type="radio" name="result" value="4" Disabled Unchecked>
-                                                    <label for="4">&nbsp; 4</label>
-                                                    &nbsp;&nbsp;
-                                                    <input type="radio" name="result" value="5" Disabled Unchecked>
-                                                    <label for="5">&nbsp; 5</label>
-                                                    &nbsp;&nbsp;
-                                                </form>
+                                                <?php 
+                                                $acm_1 = "Unchecked";
+                                                $acm_2 = "Unchecked";
+                                                $acm_3 = "Unchecked";
+                                                $acm_4 = "Unchecked";
+                                                $acm_5 = "Unchecked";
+
+                                                if($data_acm[$count-1]->dta_weight == 1){ 
+                                                    $acm_1 = "checked";
+                                                }
+                                                // if 
+                                                else if($data_acm[$count-1]->dta_weight == 2){
+                                                    $acm_2 = "checked";
+                                                }
+                                                // else if
+                                                else if($data_acm[$count-1]->dta_weight == 3){
+                                                    $acm_3 = "checked";
+                                                }
+                                                // else if
+                                                else if($data_acm[$count-1]->dta_weight == 4){
+                                                    $acm_4 = "checked";
+                                                }
+                                                // else if
+                                                else if($data_acm[$count-1]->dta_weight == 5){
+                                                    $acm_5 = "checked";
+                                                }
+                                                // else if
+                                                ?>
+                                                <input type="radio" name="result<?php echo ($count-1); ?>" value="1"
+                                                    Disabled <?php echo $acm_1; ?>>
+                                                <label for="1">&nbsp; 1</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio" name="result<?php echo ($count-1); ?>" value="2"
+                                                    Disabled <?php echo $acm_2; ?>>
+                                                <label for="2">&nbsp; 2</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio" name="result<?php echo ($count-1); ?>" value="3"
+                                                    Disabled <?php echo $acm_3; ?>>
+                                                <label for="3">&nbsp; 3</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio" name="result<?php echo ($count-1); ?>" value="4"
+                                                    Disabled <?php echo $acm_4; ?>>
+                                                <label for="4">&nbsp; 4</label>
+                                                &nbsp;&nbsp;
+                                                <input type="radio" name="result<?php echo ($count-1); ?>" value="5"
+                                                    Disabled <?php echo $acm_5; ?>>
+                                                <label for="5">&nbsp; 5</label>
+                                                &nbsp;&nbsp;
                                             </div>
                                             <!-- col-12 -->
                                         </center>
                                     </td>
-                                    <td id="dis_color"></td>
+                                    <td id="dis_color" rowspan="<?php echo $row_index[$count-1] ?>"
+                                        style="vertical-align:middle;">
+                                        <center>
+                                            <?php echo intval($data_acm[$count-1]->dta_weight)*$row->sfa_weight;  ?>
+                                        </center>
+                                    </td>
 
-                                    <?php }
+                                    <?php 
+                                    $sum_acm += intval($data_acm[$count-1]->dta_weight)*$row->sfa_weight;
+                                }
                                 // else if
 
                                 else if($com == $row->cpn_competency_detail_en){ 
@@ -1304,7 +1424,6 @@ function set_tap_his() {
                                         <?php echo $row->ept_expected_detail_en;  ?><br>
                                         <font color="blue"><?php echo $row->ept_expected_detail_th;  ?></font>
                                     </td>
-                                    <td id="dis_color"></td>
                                     <?php
                                     }
                                     // if
@@ -1314,8 +1433,6 @@ function set_tap_his() {
                                         <?php echo $row->ept_expected_detail_en;  ?><br>
                                         <font color="blue"><?php echo $row->ept_expected_detail_th;  ?></font>
                                     </td>
-                                    <td id="dis_color"></td>
-
                                     <?php }
                                     // else if 
                                 }
@@ -1342,7 +1459,9 @@ function set_tap_his() {
                                     <td>
                                         <center><b> Total Result </b></center>
                                     </td>
-                                    <td>&nbsp;</td>
+                                    <td>
+                                        <center><?php echo $sum_acm; ?></center>
+                                    </td>
                                 </tr>
                             </tfoot>
                             <!-- tfoot -->
@@ -1429,7 +1548,7 @@ function set_tap_his() {
                             </div>
                             <!-- col-md-2 -->
                             <div class="col-md-2">
-                                <p id="emp_dep"><?php echo $row->Department; ?></p>
+                                <p id="emp_dep"><?php echo $dept_info->Department; ?></p>
                             </div>
                             <!-- col-md-2 -->
                             <div class="col-md-2">

@@ -43,6 +43,8 @@ class M_evs_data_mbo extends Da_evs_data_mbo {
 		$query = $this->db->query($sql, array($this->dtm_emp_id, $this->dtm_evs_emp_id));
 		return $query;
 	
-	}//get_all_com
+	}//get_by_empID
+
+	
 } 
 ?>
