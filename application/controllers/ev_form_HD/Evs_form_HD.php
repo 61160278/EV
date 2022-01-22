@@ -1574,10 +1574,73 @@ function createFROM_emp($EMP_ID){
 	$this->mpf->ps_pay_id = $pay_id;
 	$data['form'] = $this->mpf->get_all_by_key_by_year()->row();
 
-	
+	if(sizeof($data['form']) != 0){
 
-	$this->output('/consent/ev_form_HD/v_createFROM',$data);
+		if($data['form']->ps_form_pe == "MBO"){
+			$this->load->model('M_evs_data_mbo','medm');
+			$this->medm->dtm_emp_id = $emp_id;
+			$this->medm->dtm_evs_emp_id = $tep->emp_id;
+			$data['check'] = $this->medm->get_by_empID()->result();
+			$check = sizeof($data['check']);
+			
+			if($check != 0){
+				$this->load->model('M_evs_data_mbo','medm');
+				$this->medm->dtm_emp_id = $emp_id;
+				$this->medm->dtm_evs_emp_id = $tep->emp_id;
+				$data['mbo_emp'] = $this->medm->get_by_empID()->result();
 
+				if($data['form']->ps_form_ce == "ACM"){
+					$this->load->model('M_evs_set_form_ability','mesf');
+					$this->mesf->sfa_pos_id = $tep->Position_ID;
+					$this->mesf->sfa_pay_id = $pay_id;
+					$this->mesf->ept_pos_id = $tep->Position_ID;
+					$data['info_ability_form'] = $this->mesf->get_all_competency();
+
+				}
+				// if ACM
+				else if($data['form']->ps_form_ce == "GCM"){
+					$this->load->model('M_evs_set_form_gcm','msfg');
+					$this->msfg->sgc_pos_id = $tep->Position_ID;
+					$this->msfg->sgc_pay_id = $pay_id;
+					$this->msfg->epg_pos_id = $tep->Position_ID;
+					$data['info_form_gcm'] = $this->msfg->get_all_competency_gcm();
+
+				}
+				// else if GCM
+				$this->output('/consent/ev_form_HD/v_editMBO',$data);
+			}
+			// if
+
+			else{
+				if($data['form']->ps_form_ce == "ACM"){
+					$this->load->model('M_evs_set_form_ability','mesf');
+					$this->mesf->sfa_pos_id = $tep->Position_ID;
+					$this->mesf->sfa_pay_id = $pay_id;
+					$this->mesf->ept_pos_id = $tep->Position_ID;
+					$data['info_ability_form'] = $this->mesf->get_all_competency();
+				}
+				// if ACM
+				else if($data['form']->ps_form_ce == "GCM"){
+					$this->load->model('M_evs_set_form_gcm','msfg');
+					$this->msfg->sgc_pos_id = $tep->Position_ID;
+					$this->msfg->sgc_pay_id = $pay_id;
+					$this->msfg->epg_pos_id = $tep->Position_ID;
+					$data['info_form_gcm'] = $this->msfg->get_all_competency_gcm();
+
+				}
+				// else if GCM
+
+				$this->output('/consent/ev_form_HD/v_createMBO',$data);
+			}
+			// else	
+		}
+		// if mbo 
+	}
+	// if main
+	else{
+		redirect('ev_form_HD/Evs_form_HD/create_form_group');
+	}
+	// else main
 }
 // function createFROM_emp
 

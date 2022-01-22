@@ -109,7 +109,7 @@ $(document).ready(function() {});
                                 <center>
                                     <?php 
                                     if($status_form[$index] == 0){ ?>
-                                    <button class="btn btn-info" disabled>
+                                    <button class="btn btn-warning">
                                         <i class="fa fa-info-circle"></i>
                                     </button>
                                     <?php }
