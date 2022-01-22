@@ -1487,6 +1487,7 @@ function create_form_group(){
 
 	$dep = [];
 	$status = [];
+	$emp = [];
 
 	$this->load->model('M_evs_pattern_and_year','myear');
 	$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
@@ -1501,7 +1502,7 @@ function create_form_group(){
 	$emp_data = $data['data_group'];
 
 	if(sizeof($emp_data) != 0){
-		foreach ($emp_data as $row) {
+		foreach ($emp_data as $index => $row) {
 			$this->load->model('M_evs_employee','memp');
 			$data[$row->Emp_ID."_dep"] = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
 			array_push($dep,$data[$row->Emp_ID."_dep"]);
@@ -1518,6 +1519,9 @@ function create_form_group(){
 				$this->medm->dtm_evs_emp_id = $row->emp_id;
 				$this->medm->dtm_emp_id = $row->Emp_ID;
 				$data['data_mbo'] = $this->medm->get_by_empID()->result();
+
+				array_push($emp,$emp_data[$index]);
+
 				if(sizeof($data['data_mbo']) != 0){
 					array_push($status,0);
 				}
@@ -1528,51 +1532,54 @@ function create_form_group(){
 				// else
 			}
 			// if 
-			else if($tmp_form->ps_form_pe == "G&O"){
-				$this->load->model('M_evs_data_g_and_o','mego');
-				$this->mego->dgo_evs_emp_id = $row->emp_id;
-				$this->mego->dgo_emp_id = $row->Emp_ID;
-				$data['data_go'] = $this->mego->get_by_empID()->result();
-				if(sizeof($data['data_go']) != 0){
-					array_push($status,0);
-				}
-				// if
-				else{
-					array_push($status,1);
-				} 
-				// else
-
-			}
-			// else if
-			else if($tmp_form->ps_form_pe == "MHRD"){
-				$this->load->model('M_evs_data_mbo','medm');
-				$this->medm->dtm_emp_id = $row->emp_id;
-				$this->medm->dtm_evs_emp_id = $row->Emp_ID;
-				$data['data_mhrd'] = $this->medm->get_by_empID()->result();
-				if(sizeof($data['data_mhrd']) != 0){
-					array_push($status,0);
-				}
-				// if
-				else{
-					array_push($status,1);
-				} 
-				// else
-			}
-			// else if
-
-
-
 		}
 		// foreach
 	}
 	// if
 
+	$data["emp_info"] = $emp;
 	$data["dep_info"] = $dep;
 	$data["status_form"] = $status;
 
 	$this->output('/consent/ev_form_HD/v_main_create_form',$data);
 }
-// function index()
+// function create_form_group()
+
+function createFROM_emp($EMP_ID){
+	$data['data_from_pe'] = "";
+	$data['data_from_ce'] = "";
+
+	$this->load->model('M_evs_pattern_and_year','myear');
+	$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+	$year = $data['patt_year']->row(); // show value year now
+	//end set year now
+	$pay_id = $year->pay_id;
+	$emp_id = $EMP_ID;
+
+	$this->load->model('M_evs_employee','memp');
+	$this->memp->Emp_ID = $emp_id;
+	$this->memp->emp_pay_id = $pay_id;
+	$data['emp_info'] = $this->memp->get_by_empid();
+
+	$tep = $data['emp_info']->row();
+	$data['dept_info'] = $this->memp->get_dpartment($tep->Sectioncode_ID)->row();
+	
+	$this->load->model('M_evs_employee','memp');
+	$this->memp->emp_employee_id = $emp_id;
+	$this->memp->emp_pay_id = $pay_id;
+	$employee_data = $data["employee_data"] = $this->memp->get_by_evs_emp_id()->row();
+
+	$this->load->model('M_evs_position_from','mpf');
+	$this->mpf->ps_pos_id = $tep->Position_ID;
+	$this->mpf->ps_pay_id = $pay_id;
+	$data['form'] = $this->mpf->get_all_by_key_by_year()->row();
+
+	
+
+	$this->output('/consent/ev_form_HD/v_createFROM',$data);
+
+}
+// function createFROM_emp
 
 }
 ?>

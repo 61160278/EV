@@ -74,9 +74,9 @@ $(document).ready(function() {});
                     <!-- thead -->
 
                     <tbody>
-                    <?php     
-                    if(sizeof($data_group) != 0){
-                    foreach($data_group as $index => $row){ ?>
+                        <?php     
+                    if(sizeof($emp_info) != 0){
+                    foreach($emp_info as $index => $row){ ?>
                         <input name="Emp_ID" id="Emp_ID<?php echo $index; ?>" type="text"
                             value="<?php echo $row->emp_id ?>" hidden>
                         <tr>
@@ -107,9 +107,21 @@ $(document).ready(function() {});
 
                             <td>
                                 <center>
+                                    <?php 
+                                    if($status_form[$index] == 0){ ?>
                                     <button class="btn btn-info" disabled>
                                         <i class="fa fa-info-circle"></i>
                                     </button>
+                                    <?php }
+                                    // if
+                                    else{ ?>
+                                    <a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/createFROM_emp/<?php echo $row->Emp_ID; ?>">
+                                        <button class="btn btn-info">
+                                            <i class="fa fa-info-circle"></i>
+                                        </button>
+                                    </a>
+                                    <?php }
+                                    // else  ?>
                                 </center>
                             </td>
                         </tr>
