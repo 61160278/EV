@@ -1644,5 +1644,54 @@ function createFROM_emp($EMP_ID){
 }
 // function createFROM_emp
 
+function edit_mbo_emp($emp_id_edit){
+	$this->load->model('M_evs_pattern_and_year','myear');
+	$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+	$year = $data['patt_year']->row(); // show value year now
+	//end set year now
+	$pay_id = $year->pay_id;
+
+	$this->load->model('M_evs_employee','memp');
+	$this->memp->Emp_ID = $emp_id_edit;
+	$this->memp->emp_pay_id = $pay_id;
+	$data['emp_info'] = $this->memp->get_by_empid();
+	$tep = $data['emp_info']->row();
+	$data['dept_info'] = $this->memp->get_dpartment($tep->Sectioncode_ID)->row();
+
+	$this->load->model('M_evs_data_mbo','medm');
+	$this->medm->dtm_emp_id = $emp_id_edit;
+	$this->medm->dtm_evs_emp_id = $tep->emp_id;
+	$data['mbo_emp'] = $this->medm->get_by_empID()->result();
+
+	$this->load->model('M_evs_position_from','mpf');
+	$this->mpf->ps_pos_id = $tep->Position_ID;
+	$this->mpf->ps_pay_id = $pay_id;
+	$data['form'] = $this->mpf->get_all_by_key_by_year()->row();
+
+	if($data['form']->ps_form_ce == "ACM"){
+		$this->load->model('M_evs_set_form_ability','mesf');
+		$this->mesf->sfa_pos_id = $tep->Position_ID;
+		$this->mesf->sfa_pay_id = $pay_id;
+		$this->mesf->ept_pos_id = $tep->Position_ID;
+		$data['info_ability_form'] = $this->mesf->get_all_competency();
+
+	}
+	// if ACM
+	else if($data['form']->ps_form_ce == "GCM"){
+		$this->load->model('M_evs_set_form_gcm','msfg');
+		$this->msfg->sgc_pos_id = $tep->Position_ID;
+		$this->msfg->sgc_pay_id = $pay_id;
+		$this->msfg->epg_pos_id = $tep->Position_ID;
+		$data['info_form_gcm'] = $this->msfg->get_all_competency_gcm();
+
+
+	}
+	// else if GCM	
+	
+	$this->output('/consent/ev_form/v_editMBO',$data);
+
+}
+// function edit_mbo_emp
+
 }
 ?>

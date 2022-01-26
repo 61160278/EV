@@ -95,7 +95,7 @@ function save_dataMBO() {
         },
         success: function(data) {
             console.log(data);
-            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/edit_mbo/" + check_emp_id +
+            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form_HD/edit_mbo_emp/" + check_emp_id +
                 "";
         }
         // success
