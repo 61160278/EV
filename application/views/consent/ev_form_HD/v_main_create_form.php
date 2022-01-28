@@ -109,13 +109,17 @@ $(document).ready(function() {});
                                 <center>
                                     <?php 
                                     if($status_form[$index] == 0){ ?>
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-info-circle"></i>
-                                    </button>
+                                    <a
+                                        href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/createFROM_emp/<?php echo $row->Emp_ID; ?>">
+                                        <button class="btn btn-warning">
+                                            <i class="fa fa-info-circle"></i>
+                                        </button>
+                                    </a>
                                     <?php }
                                     // if
                                     else{ ?>
-                                    <a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/createFROM_emp/<?php echo $row->Emp_ID; ?>">
+                                    <a
+                                        href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/createFROM_emp/<?php echo $row->Emp_ID; ?>">
                                         <button class="btn btn-info">
                                             <i class="fa fa-info-circle"></i>
                                         </button>
