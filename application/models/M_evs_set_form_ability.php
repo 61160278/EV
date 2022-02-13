@@ -133,7 +133,7 @@ class M_evs_set_form_ability extends Da_evs_set_form_ability {
 		$query = $this->db->query($sql,array($this->sfa_pos_id, $this->sfa_pay_id, $this->ept_pos_id));
 		return $query;
 	} 
-	//get_all_competency_by_indicator ,  $this->ept_pos_id
+	//get_all_competency 
 
 	/*
 	* get_all_key_component_by_indicator

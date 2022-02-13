@@ -208,6 +208,7 @@ class Evs_form extends MainController_avenxo {
 					$this->load->model('M_evs_set_form_ability','mesf');
 					$this->mesf->sfa_pos_id = $tep->Position_ID;
 					$this->mesf->sfa_pay_id = $pay_id;
+					$this->mesf->ept_pos_id = $tep->Position_ID;
 					$data['info_ability_form'] = $this->mesf->get_all_competency();
 					$this->load->model('M_evs_expected_behavior','mept');
 					$data['info_expected'] = $this->mept->get_all_by_pos();
@@ -904,15 +905,22 @@ class Evs_form extends MainController_avenxo {
 					$this->load->model('M_evs_data_acm_weight','meaw');
 					$this->meaw->dta_evs_emp_id = $tep->emp_id;
 					$data['data_acm_app'] = $this->meaw->get_by_emp_app()->result();
-					foreach($data['data_acm_app'] as $row){
-						if($row->log_role == 3){
-							$this->meaw->dta_evs_emp_id = $tep->emp_id;
-							$this->meaw->dta_approver = $row->dta_approver;
-							$data['data_acm'] = $this->meaw->get_by_empID_app()->result();
+					if(sizeof($data['data_acm_app']) != 0){
+						foreach($data['data_acm_app'] as $row){
+							if($row->log_role == 3){
+								$this->meaw->dta_evs_emp_id = $tep->emp_id;
+								$this->meaw->dta_approver = $row->dta_approver;
+								$data['data_acm'] = $this->meaw->get_by_empID_app()->result();
+							}
+							// if
 						}
-						// if
+						// foreach 
 					}
-					// foreach 
+					// if 
+					else{
+						$data['data_acm'] = [];
+					}
+					// else 
 					// get value ACM 
 
 				}
@@ -960,15 +968,22 @@ class Evs_form extends MainController_avenxo {
 					$this->load->model('M_evs_data_acm_weight','meaw');
 					$this->meaw->dta_evs_emp_id = $tep->emp_id;
 					$data['data_acm_app'] = $this->meaw->get_by_emp_app()->result();
-					foreach($data['data_acm_app'] as $row){
-						if($row->log_role == 3){
-							$this->meaw->dta_evs_emp_id = $tep->emp_id;
-							$this->meaw->dta_approver = $row->dta_approver;
-							$data['data_acm'] = $this->meaw->get_by_empID_app()->result();
+					if(sizeof($data['data_acm_app']) != 0){
+						foreach($data['data_acm_app'] as $row){
+							if($row->log_role == 3){
+								$this->meaw->dta_evs_emp_id = $tep->emp_id;
+								$this->meaw->dta_approver = $row->dta_approver;
+								$data['data_acm'] = $this->meaw->get_by_empID_app()->result();
+							}
+							// if
 						}
-						// if
+						// foreach 
 					}
-					// foreach 
+					// if 
+					else{
+						$data['data_acm'] = [];
+					}
+					// else 
 					// get value ACM 
 
 				}
@@ -994,6 +1009,7 @@ class Evs_form extends MainController_avenxo {
 			// if
 		}
 		// else if G&O
+
 		else if($data['form']->ps_form_pe == "MHRD"){
 			$this->load->model('M_evs_set_form_mhrd','msfm');
 			$this->msfm->sfi_pos_id = $tep->Position_ID;
@@ -1001,39 +1017,45 @@ class Evs_form extends MainController_avenxo {
 
 			$check = sizeof($data['info_mhrd']);
 			if($check != 0){
-			if($data['form']->ps_form_ce == "ACM"){
-				$this->load->model('M_evs_set_form_ability','mesf');
-				$this->mesf->sfa_pos_id = $tep->Position_ID;
-				$this->mesf->sfa_pay_id = $pay_id;
-				$this->mesf->ept_pos_id = $tep->Position_ID;
-				$data['info_ability_form'] = $this->mesf->get_all_competency();
+				if($data['form']->ps_form_ce == "ACM"){
+					$this->load->model('M_evs_set_form_ability','mesf');
+					$this->mesf->sfa_pos_id = $tep->Position_ID;
+					$this->mesf->sfa_pay_id = $pay_id;
+					$this->mesf->ept_pos_id = $tep->Position_ID;
+					$data['info_ability_form'] = $this->mesf->get_all_competency();
 
-				// get value ACM 
-				$this->load->model('M_evs_data_acm_weight','meaw');
-				$this->meaw->dta_evs_emp_id = $tep->emp_id;
-				$data['data_acm_app'] = $this->meaw->get_by_emp_app()->result();
-				foreach($data['data_acm_app'] as $row){
-					if($row->log_role == 3){
-						$this->meaw->dta_evs_emp_id = $tep->emp_id;
-						$this->meaw->dta_approver = $row->dta_approver;
-						$data['data_acm'] = $this->meaw->get_by_empID_app()->result();
+					// get value ACM 
+					$this->load->model('M_evs_data_acm_weight','meaw');
+					$this->meaw->dta_evs_emp_id = $tep->emp_id;
+					$data['data_acm_app'] = $this->meaw->get_by_emp_app()->result();
+					if(sizeof($data['data_acm_app']) != 0){
+						foreach($data['data_acm_app'] as $row){
+							if($row->log_role == 3){
+								$this->meaw->dta_evs_emp_id = $tep->emp_id;
+								$this->meaw->dta_approver = $row->dta_approver;
+								$data['data_acm'] = $this->meaw->get_by_empID_app()->result();
+							}
+							// if
+						}
+						// foreach 
 					}
-					// if
+					// if 
+					else{
+						$data['data_acm'] = [];
+					}
+					// else 
+					// get value ACM 
 				}
-				// foreach 
-				// get value ACM 
+				// if ACM
+				else if($data['form']->ps_form_ce == "GCM"){
+					$this->load->model('M_evs_set_form_gcm','msfg');
+					$this->msfg->sgc_pos_id = $tep->Position_ID;
+					$this->msfg->sgc_pay_id = $pay_id;
+					$this->msfg->epg_pos_id = $tep->Position_ID;
+					$data['info_form_gcm'] = $this->msfg->get_all_competency_gcm();
 
-			}
-			// if ACM
-			else if($data['form']->ps_form_ce == "GCM"){
-				$this->load->model('M_evs_set_form_gcm','msfg');
-				$this->msfg->sgc_pos_id = $tep->Position_ID;
-				$this->msfg->sgc_pay_id = $pay_id;
-				$this->msfg->epg_pos_id = $tep->Position_ID;
-				$data['info_form_gcm'] = $this->msfg->get_all_competency_gcm();
-
-			}
-			// else if GCM
+				}
+				// else if GCM
 
 			$this->output('/consent/ev_form/v_hisMBO',$data);
 		}

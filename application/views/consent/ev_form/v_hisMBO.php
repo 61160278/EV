@@ -1186,11 +1186,11 @@ function set_tap_his() {
                                 <?php  
 
                             if(sizeof($info_ability_form) != 0){
-                            $com_check = "";
-                            $key_check = "";
-                            $row_key = 0;
-                            $row_index = [];
-                            $sum_acm = 0;
+                                $com_check = "";
+                                $key_check = "";
+                                $row_key = 0;
+                                $row_index = [];
+                                $sum_acm = 0;
                             foreach($info_ability_form->result() AS $index => $row){ 
 
                                 
@@ -1263,27 +1263,29 @@ function set_tap_his() {
                                                 $acm_3 = "Unchecked";
                                                 $acm_4 = "Unchecked";
                                                 $acm_5 = "Unchecked";
-
-                                                if($data_acm[$count-1]->dta_weight == 1){ 
-                                                    $acm_1 = "checked";
+                                                if(sizeof($data_acm) != 0){
+                                                    if($data_acm[$count-1]->dta_weight == 1){ 
+                                                        $acm_1 = "checked";
+                                                    }
+                                                    // if 
+                                                    else if($data_acm[$count-1]->dta_weight == 2){
+                                                        $acm_2 = "checked";
+                                                    }
+                                                    // else if
+                                                    else if($data_acm[$count-1]->dta_weight == 3){
+                                                        $acm_3 = "checked";
+                                                    }
+                                                    // else if
+                                                    else if($data_acm[$count-1]->dta_weight == 4){
+                                                        $acm_4 = "checked";
+                                                    }
+                                                    // else if
+                                                    else if($data_acm[$count-1]->dta_weight == 5){
+                                                        $acm_5 = "checked";
+                                                    }
+                                                    // else if
                                                 }
-                                                // if 
-                                                else if($data_acm[$count-1]->dta_weight == 2){
-                                                    $acm_2 = "checked";
-                                                }
-                                                // else if
-                                                else if($data_acm[$count-1]->dta_weight == 3){
-                                                    $acm_3 = "checked";
-                                                }
-                                                // else if
-                                                else if($data_acm[$count-1]->dta_weight == 4){
-                                                    $acm_4 = "checked";
-                                                }
-                                                // else if
-                                                else if($data_acm[$count-1]->dta_weight == 5){
-                                                    $acm_5 = "checked";
-                                                }
-                                                // else if
+                                                // if
                                                 ?>
                                                 <input type="radio" name="result<?php echo $index; ?>" value="1"
                                                     Disabled <?php echo $acm_1; ?>>
@@ -1312,12 +1314,20 @@ function set_tap_his() {
                                     <td id="dis_color" rowspan="<?php echo $row_index[$index] ?>"
                                         style="vertical-align:middle;">
                                         <center>
-                                            <?php echo intval($data_acm[$index]->dta_weight)*$row->sfa_weight;  ?>
+                                            <?php 
+                                            if(sizeof($data_acm) != 0){
+                                                echo intval($data_acm[$index]->dta_weight)*$row->sfa_weight;
+                                            }
+                                            // if 
+                                              ?>
                                         </center>
                                     </td>
 
                                     <?php 
-                                    $sum_acm += intval($data_acm[$index]->dta_weight)*$row->sfa_weight;
+                                    if(sizeof($data_acm) != 0){
+                                        $sum_acm += intval($data_acm[$index]->dta_weight)*$row->sfa_weight;
+                                    }
+                                    // if 
                                 }
                                 // if 
                                 else if($com != $row->cpn_competency_detail_en){
@@ -1356,26 +1366,29 @@ function set_tap_his() {
                                                 $acm_4 = "Unchecked";
                                                 $acm_5 = "Unchecked";
 
-                                                if($data_acm[$count-1]->dta_weight == 1){ 
-                                                    $acm_1 = "checked";
+                                                if(sizeof($data_acm) != 0){
+                                                    if($data_acm[$count-1]->dta_weight == 1){ 
+                                                        $acm_1 = "checked";
+                                                    }
+                                                    // if 
+                                                    else if($data_acm[$count-1]->dta_weight == 2){
+                                                        $acm_2 = "checked";
+                                                    }
+                                                    // else if
+                                                    else if($data_acm[$count-1]->dta_weight == 3){
+                                                        $acm_3 = "checked";
+                                                    }
+                                                    // else if
+                                                    else if($data_acm[$count-1]->dta_weight == 4){
+                                                        $acm_4 = "checked";
+                                                    }
+                                                    // else if
+                                                    else if($data_acm[$count-1]->dta_weight == 5){
+                                                        $acm_5 = "checked";
+                                                    }
+                                                    // else if
                                                 }
-                                                // if 
-                                                else if($data_acm[$count-1]->dta_weight == 2){
-                                                    $acm_2 = "checked";
-                                                }
-                                                // else if
-                                                else if($data_acm[$count-1]->dta_weight == 3){
-                                                    $acm_3 = "checked";
-                                                }
-                                                // else if
-                                                else if($data_acm[$count-1]->dta_weight == 4){
-                                                    $acm_4 = "checked";
-                                                }
-                                                // else if
-                                                else if($data_acm[$count-1]->dta_weight == 5){
-                                                    $acm_5 = "checked";
-                                                }
-                                                // else if
+                                                // if
                                                 ?>
                                                 <input type="radio" name="result<?php echo ($count-1); ?>" value="1"
                                                     Disabled <?php echo $acm_1; ?>>
@@ -1404,12 +1417,19 @@ function set_tap_his() {
                                     <td id="dis_color" rowspan="<?php echo $row_index[$count-1] ?>"
                                         style="vertical-align:middle;">
                                         <center>
-                                            <?php echo intval($data_acm[$count-1]->dta_weight)*$row->sfa_weight;  ?>
+                                            <?php 
+                                            if(sizeof($data_acm) != 0){
+                                                echo intval($data_acm[$count-1]->dta_weight)*$row->sfa_weight;  
+                                            }
+                                            // if ?>
                                         </center>
                                     </td>
 
                                     <?php 
-                                    $sum_acm += intval($data_acm[$count-1]->dta_weight)*$row->sfa_weight;
+                                    if(sizeof($data_acm) != 0){
+                                        $sum_acm += intval($data_acm[$count-1]->dta_weight)*$row->sfa_weight;
+                                    }
+                                    // if
                                 }
                                 // else if
 
