@@ -932,8 +932,6 @@ class Evs_form extends MainController_avenxo {
 					$this->msfg->epg_pos_id = $tep->Position_ID;
 					$data['info_form_gcm'] = $this->msfg->get_all_competency_gcm();
 	
-
-	
 				}
 				// else if GCM
 				$this->output('/consent/ev_form/v_hisMBO',$data);
