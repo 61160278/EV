@@ -93,6 +93,28 @@ class M_evs_employee extends Da_evs_employee {
 		return $query;
 	}
 	// get_dpartment
+
+	function get_all_department(){
+
+		$sql = "SELECT * 
+				FROM dbmc.master_mapping AS map
+				WHERE Department != ''
+				GROUP BY Department_id
+				ORDER BY Department_id";
+		$query = $this->db->query($sql);
+		return $query;
+	}
+	// get_dpartment_depid
+
+	function get_department_by_id(){
+
+		$sql = "SELECT * 
+				FROM dbmc.master_mapping AS map
+				WHERE map.Department_id = ?";
+		$query = $this->db->query($sql,array($this->Department_id));
+		return $query;
+	}
+	// get_dpartment_depid
 	
 		/*
 	* get_by_Empid_group

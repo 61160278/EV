@@ -37,9 +37,23 @@ class Evs_Report extends MainController_avenxo {
 	*/
 	function report_payroll()
 	{
-		$this->output('/consent/ev_report/v_main_report_payroll');
+		$this->load->model('M_evs_employee','memp');
+		$data['dep_info'] = $this->memp->get_all_department()->result(); 
+
+		$this->output('/consent/ev_report/v_main_report_payroll',$data);
 	}
 	// function report_payroll
+
+	function report_payroll_employee()
+	{
+		$this->load->model('M_evs_employee','memp');
+		$data['dep_info'] = $this->memp->get_all_department()->result(); 
+
+		$this->output('/consent/ev_report/v_main_report_payroll',$data);
+	}
+	// function report_payroll
+
+	
 
 }
 ?>

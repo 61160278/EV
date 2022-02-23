@@ -89,6 +89,24 @@ $(document).ready(function() {
                             </thead>
                             <!-- thead -->
                             <tbody>
+                                <?php if(sizeof($dep_info) != 0){ 
+                                    foreach($dep_info as $index => $row){?>
+                                <tr>
+                                    <td><?php echo $index+1; ?></td>
+                                    <td><?php echo $row->Company." (" . $row->Company_id . ")";?></td>
+                                    <td><?php echo $row->Department; ?></td>
+                                    <td>
+                                        <a href="<?php echo base_url(); ?>ev_report/Evs_Report/report_payroll_employee/<?php echo $row->Department_id; ?>">
+                                            <button type="button" class="btn btn-info"><i
+                                                    class="fa fa-info-circle"></i></button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <?php
+                                    }
+                                    // foreach 
+                                }
+                                // if  ?>
 
 
                             </tbody>
