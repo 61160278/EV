@@ -89,10 +89,12 @@
                                 <li><a href="<?php echo base_url() ?>ev_quota/Evs_quota/index"><i
                                             class="fa fa-bar-chart-o"></i><span>Manage quota</span></span></a></li>
                                 <!-- manage  -->
+
                                 <li class="nav-separator"><span>Menu approve</span></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/index"><i
                                             class="fa fa-signal"></i><span>Report group</span></span></a></li>
                                 <!-- approve  -->
+
                                 <li class="nav-separator"><span>Menu import</span></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/excel"><i
                                             class="fa fa-upload"></i><span>Import Score MHRD</span></span></a></li>
@@ -101,6 +103,13 @@
                                 <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/work_attendance"><i
                                             class="fa fa-upload"></i><span>Import Work Attendance</span></span></a></li>
                                 <!-- import  -->
+
+                                <li class="nav-separator"><span>Menu Report</span></li>
+                                <li><a href="<?php echo base_url() ?>ev_report/Evs_Report/report_payroll"><i
+                                            class="fa fa-bar-chart-o"></i><span>Report for Payroll</span></span></a>
+                                </li>
+
+                                <!-- report -->
                                 <?php }
                                 //else if ?>
 
