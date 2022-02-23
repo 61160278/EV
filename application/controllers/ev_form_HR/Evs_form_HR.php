@@ -1921,6 +1921,22 @@ class Evs_form_HR extends MainController_avenxo {
 	
 	}
 
+	function work_attendance(){
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+
+		// $this->load->model('M_evs_grade_auto','mgat');
+		// $this->mgat->emp_pay_id = $year->pay_id;
+		// $data['garde'] = $this->mgat->get_data_by_pay_id()->result();
+
+		$this->output('/consent/ev_form_HR/v_main_work_attendance',$data);
+	}
+
+
+
+
 	function save_grade(){
 
 		$emp_id = $this->input->post("Emp_ID");

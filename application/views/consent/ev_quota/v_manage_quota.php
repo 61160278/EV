@@ -14,21 +14,108 @@ $(document).ready(function() {
 }); //ready
 
 
+function get_position() {
+    var qut_pos = document.getElementById("qut_pos").innerHTML;
+    var pos_sel = document.getElementById("pos_lv_select").value; // get kay by id
+    // console.log(pos_sel);
+    // console.log(qut_pos);
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>ev_quota/Evs_quota/get_position_level",
+        data: {
+            "position_level_id": pos_sel
+        },
+
+        success: function(data) {
+
+            data = JSON.parse(data)
+            // console.log(data)
+            var table_data = ""
+
+            table_data += '<option value="0">Position</option>'
+
+            data.forEach((row, i) => {
+                if (qut_pos == 'Operational Associate above') {
+                    if (row.Position_Level >= 1 && row.Position_Level <= 2) {
+                        table_data += '<option value="' + row.Position_ID + '">' + row
+                            .Position_name + '</option>'
+                    }
+                } else if (qut_pos == 'Staff above') {
+                    if (row.Position_Level > 2) {
+                        table_data += '<option value="' + row.Position_ID + '">' + row
+                            .Position_name + '</option>'
+                    }
+                } else if (qut_pos == 'All Position') {
+                    if (row.Position_Level > 0) {
+                        table_data += '<option value="' + row.Position_ID + '">' + row
+                            .Position_name + '</option>'
+                    }
+                }
+
+            });
+            $('#pos_select').html(table_data);
+
+        }
+    });
+
+} //get_position
+function get_department() {
+    var dep_sel = document.getElementById("com_select").value; // get kay by id
+    // console.log(dep_sel);
+
+    $.ajax({
+        type: "post",
+        url: "<?php echo base_url(); ?>ev_quota/Evs_quota/get_depamant",
+        data: {
+            "dep_id": dep_sel
+        },
+
+        success: function(data) {
+            data = JSON.parse(data)
+            // console.log(data)
+            var table_data = ""
+            table_data += '<option value="0">Depamant</option>'
+
+
+            data.forEach((row, i) => {
+
+                table_data += '<option value="' + row.Department_id + '">' + row.Department + '</option>'
+
+            });
+
+            $('#dep_select').html(table_data);
+
+
+        }
+    });
+    
+} //get_department()
+
+
+
 function search_data() {
 
     
     var com_select = document.getElementById("com_select").value;
     var dep_select = document.getElementById("dep_select").value;
-    
+    var pos_lv_select = document.getElementById("pos_lv_select").value;;
+	var pos_select = document.getElementById("pos_select").value;;
+
+
+
     console.log(com_select)
     console.log(dep_select)
+    console.log(pos_lv_select)
+    console.log(pos_select)
     
     $.ajax({
         type: "post",
         url: "<?php echo base_url(); ?>ev_quota/Evs_quota/get_search_data",
         data: {
             "com_select": com_select,
-            "dep_sel": dep_select
+            "dep_sel": dep_select,
+            "pos_lv_select": pos_lv_select,
+            "pos_select": pos_select
         },
         datatype: "JSON",
         success: function(data) {
@@ -52,10 +139,10 @@ function search_data() {
 
                     table_data += '<tr>'
                     table_data += '<td>'
-                    table_data += row.Company_shortname
+                    table_data += com_select
                     table_data += '</td>'
                     table_data += '<td>'
-                    table_data += row.Dep_Name
+                    table_data += dep_select
                     table_data += '</td>'
                     table_data += '<td>'
 
@@ -64,8 +151,7 @@ function search_data() {
                     <?php foreach($manage_qut_data as $value){ ?>
                     table_data += '<td>'
                     table_data +=
-                        '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i + ',' + row
-                        .Company_ID + ',' + row.Dep_id +
+                        '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i + ',' + "'"+com_select+"'" + ',' + "'"+dep_select+"'" +
                         ')" ><button type="submit" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></button></a>'
                     table_data += '<input type="text" id="pos_<?php echo $value->qut_id?>' + i +
                         '" value="' + row.Position_ID + '" hidden>'
@@ -172,11 +258,7 @@ h4 {
             <!-- row  -->
             <br>
 
-            <?php foreach($qup_data->result() as $value){ ?>
-            <input type="text" id="qup_id" value="<?php echo $value->qup_id;?>" hidden>
-            <input type="text" id="qup_qut_id" value="<?php echo $value->qup_qut_id;?>" hidden>
-            <input type="text" id="qup_Position_ID" value="<?php echo $value->qup_Position_ID;?>" hidden>
-            <?php } ?>
+            
 
             <table>
                 <?php foreach($manage_qut_data as $value){ ?>
@@ -207,7 +289,7 @@ h4 {
 
             <div class="row">
                 <label class="col-md-3">
-                    <select id="com_select" name="example_length" class="form-control" onclick="search_data();">
+                    <select id="com_select" name="example_length" class="form-control" onclick="get_department();">
                         <option value="0">Company</option>
                         <!-- start foreach -->
                         <?php foreach($com_data->result() as $value){ ?>
@@ -220,15 +302,53 @@ h4 {
                 </label>
                 <!-- col-3  -->
                 <label class="col-md-3">
-                    <select name="example_length" class="form-control" id="dep_select">
+                <select id="dep_select" name="example_length" class="form-control" >
                         <option value="0">Department</option>
                     </select>
                 </label>
                 <!-- col-3  -->
                 <label class="col-md-3">
+                <select name="example_length" class="form-control" id="pos_lv_select" onclick="get_position()">
+                        <option value="0">Position Level</option>
+                        <?php foreach($manage_qut_data as $value){ ?>
+                        <?php  if ($value->qut_pos == 'Operational Associate above') {?>
+                        <!-- start foreach -->
+                        <?php foreach($psl_data->result() as $value){ ?>
+                        <?php if ($value->psl_id == "5" ) { ?>
+                        <option value="<?php echo $value->psl_id;?>"><?php echo $value->psl_position_level;?></option>
+                        <?php } //if Position_Level == 1?>
+                        <?php } //foreach qut_data?>
+                        <?php } //if qut_pos == 'Operational Associate'?>
+                        <?php } //foreach manage_qut_data?>
+
+                        <?php foreach($manage_qut_data as $value){ ?>
+                        <?php  if ($value->qut_pos == 'Staff above') {?>
+                        <!-- start foreach -->
+                        <?php foreach($psl_data->result() as $value){ ?>
+                        <?php if ($value->psl_id < "5") { ?>
+                        <option value="<?php echo $value->psl_id;?>"><?php echo $value->psl_position_level;?></option>
+                        <?php } //if Position_Level == 1?>
+                        <?php } //foreach qut_data?>
+                        <?php } //if qut_pos == 'Operational Associate'?>
+                        <?php } //foreach manage_qut_data?>
+                        <?php foreach($manage_qut_data as $value){ ?>
+                        <?php  if ($value->qut_pos == 'All Position') {?>
+                        <!-- start foreach -->
+                        <?php foreach($psl_data->result() as $value){ ?>
+                        <?php if ($value->psl_id <= "5") { ?>
+                        <option value="<?php echo $value->psl_id;?>"><?php echo $value->psl_position_level;?></option>
+                        <?php } //if Position_Level == 1?>
+                        <?php } //foreach qut_data?>
+                        <?php } //if qut_pos == 'Operational Associate'?>
+                        <?php } //foreach manage_qut_data?>
+                        <!-- end foreach -->
+                        </select>
                 </label>
                 <!-- col-3  -->
                 <label class="col-md-3">
+                <select name="example_length" class="form-control" id="pos_select" onclick="search_data()">
+                        <option value="0">Position</option>
+                </select>
                 </label>
                 <!-- col-3  -->
             </div>
@@ -256,7 +376,7 @@ h4 {
                                     <thead>
                                         <tr role="row">
                                             <th>Company</th>
-                                            <th>Department</th>
+                                            <th>Department ID</th>
                                             <th>position</th>
                                             <th colspan="2">Action</th>
                                         </tr>

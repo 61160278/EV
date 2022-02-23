@@ -98,6 +98,8 @@
                                             class="fa fa-upload"></i><span>Import Score MHRD</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/grade_auto"><i
                                             class="fa fa-upload"></i><span>Import Grade Auto</span></span></a></li>
+                                <li><a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/work_attendance"><i
+                                            class="fa fa-upload"></i><span>Import Work Attendance</span></span></a></li>
                                 <!-- import  -->
                                 <?php }
                                 //else if ?>
