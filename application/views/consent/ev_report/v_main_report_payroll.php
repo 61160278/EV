@@ -15,21 +15,17 @@ thead {
     text-align: center;
     font-size: 20px;
 }
-
 tbody {
     text-align: center;
     font-size: 15px;
 }
-
 .panel.panel-indigo .panel-heading {
     color: #e8eaf6;
     background-color: #134466;
 }
-
 .margin {
     margin-top: 10px;
 }
-
 #color_head {
     background-color: #3f51b5;
 }
