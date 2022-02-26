@@ -44,12 +44,32 @@ class Evs_Report extends MainController_avenxo {
 	}
 	// function report_payroll
 
-	function report_payroll_employee()
+	function report_payroll_employee($dep_id)
 	{
 		$this->load->model('M_evs_employee','memp');
-		$data['dep_info'] = $this->memp->get_all_department()->result(); 
+		$this->memp->Department_id = $dep_id;
+		$data['dep_temp'] = $this->memp->get_department_by_id()->result(); 
+		$temp = $data['dep_temp'];
+		foreach($temp as $index => $row){
+			$dp = $row->Department_id;
+			$sc = $row->Section_id;
+			$sb = $row->SubSection_id;
+			$gr = $row->Group_id;
+			$ln = $row->Line_id;
+			$emp = $this->memp->get_emp_by_dep($dp,$sc,$sb,$gr,$ln)->result();
+		}
+		// foreach 
+		$dep_temp = [];
+		foreach($emp as $row){
+			// echo $row->Sectioncode_ID."<br>";
+			$dep = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
+			array_push($dep_temp,$dep);
+		}
+		// foreach 
 
-		$this->output('/consent/ev_report/v_main_report_payroll',$data);
+		$data["emp_info"] = $emp;
+		$data["dep_info"] = $dep_temp;
+		$this->output('/consent/ev_report/v_export_payroll',$data);
 	}
 	// function report_payroll
 

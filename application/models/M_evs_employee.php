@@ -115,6 +115,16 @@ class M_evs_employee extends Da_evs_employee {
 		return $query;
 	}
 	// get_dpartment_depid
+
+	function get_emp_by_dep($dp,$sc,$sb,$gr,$ln){	
+		$sql = "SELECT * 
+				FROM dbmc.employee AS emp
+				INNER JOIN dbmc.position AS pos
+				ON pos.Position_ID = emp.Position_ID
+				WHERE emp.Sectioncode_ID = '".$dp."' OR emp.Sectioncode_ID = '".$sc."' OR emp.Sectioncode_ID = '".$sb."' OR emp.Sectioncode_ID = '".$gr."' OR emp.Sectioncode_ID = '".$ln."'";
+		$query = $this->db->query($sql);
+		return $query;
+	}//get_emp_by_dep
 	
 		/*
 	* get_by_Empid_group
