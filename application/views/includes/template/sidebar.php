@@ -100,6 +100,12 @@
                 </li>
                 <!-- Import Grade Auto -->
 
+                <li class="menu-item">
+                    <a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/work_attendance"><i
+                            class="menu-icon fa fa-upload" style="color:"></i>Import Work Attendance </a>
+                </li>
+                <!-- Import Work Attendance -->
+
                 <li class="menu-title">Menu Report</li>
                 <!-- /.menu-title -->
 
@@ -108,12 +114,6 @@
                             class="menu-icon fa fa-bar-chart-o"></i>Report for Payroll</a>
                 </li>
                 <!-- Report for payroll -->
-
-                <li class="menu-item">
-                    <a href="<?php echo base_url() ?>ev_form_HR/Evs_form_HR/work_attendance"><i class="menu-icon fa fa-upload"
-                            style="color:"></i>Import Work Attendance </a>
-                </li>
-                <!-- Manage Report Group -->
 
             </ul>
             <!-- End tap menu sidebar  -->
