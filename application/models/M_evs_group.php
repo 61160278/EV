@@ -98,7 +98,8 @@ class M_evs_group extends Da_evs_group {
 				FROM evs_database.evs_employee as evg
 				LEFT JOIN dbmc.employee as em
 				ON em.Emp_ID = evg.emp_employee_id
-				WHERE evg.emp_gru_id = ? AND emp_pay_id = ?";
+				WHERE evg.emp_gru_id = ? AND emp_pay_id = ?
+				ORDER BY evg.emp_employee_id";
 		$query = $this->db->query($sql, array($this->emp_gru_id,$this->emp_pay_id));
 		return $query;
 	

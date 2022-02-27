@@ -59,7 +59,7 @@ $(document).ready(function() {
                 <div class="row">
                     <div class="col-sm-12">
                         <h3>
-                            List of department to report grade
+                            List of employee to report grade
                         </h3>
                     </div>
 
@@ -112,7 +112,7 @@ $(document).ready(function() {
                                 <tr>
                                     <td><?php echo $index+1; ?></td>
                                     <td><?php echo $row->Emp_ID;?></td>
-                                    <td><?php echo $row->Empname_engTitle.$row->Empname_eng." ".$row->Empsurname_eng ;?>
+                                    <td><?php echo $row->Empname_engTitle." ".$row->Empname_eng." ".$row->Empsurname_eng ;?>
                                     </td>
                                     <td><?php echo $row->Position_name;?></td>
                                     <td><?php echo $dep_info[$index]->Department;?></td>
@@ -163,9 +163,13 @@ $(document).ready(function() {
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-sm-6">
-                            <div class="dataTables_info" id="example_info" role="status" aria-live="polite">
-                            </div>
-                            <!-- dataTables_info -->
+                            <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_payroll">
+                                <button class="btn btn-inverse">BACK</button>
+                            </a>
+                        </div>
+                        <!-- col-6  -->
+                        <div class="col-sm-6" align="right">
+                            <button class="btn btn-success"><i class="fa fa-download"></i> Export</button>
                         </div>
                         <!-- col-6  -->
                     </div>

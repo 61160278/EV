@@ -216,20 +216,21 @@ function main_index() {
                                 }
                                 // if
                                 ?>
-                                        <center>
+                                    </center>
                                 </font>
                             </td>
 
-                            <td align="center">
-                                <?php 
+                            <td>
+                                <center>
+                                    <?php 
                             if(sizeof($status) != 0){
                                 if($status[$table_index] == 8){?>
-                                <button class="btn btn-info" data-toggle="modal"
-                                    data-target="#detail_<?php echo $index; ?>">
-                                    <i class="ti ti-info-alt"></i>
-                                </button>
+                                    <button class="btn btn-info" data-toggle="modal"
+                                        data-target="#detail_<?php echo $index; ?>">
+                                        <i class="ti ti-info-alt"></i>
+                                    </button>
 
-                                <?php
+                                    <?php
                                     }
                                     // if
                                 else { ?>
@@ -242,6 +243,7 @@ function main_index() {
                             // if
                                 
 							?>
+                                </center>
                             </td>
                         </tr>
                         <?php 
@@ -285,8 +287,8 @@ foreach($emp_info as $index => $row) {
 			?>
 
 <!-- Modal show detail -->
-<div class="modal fade" id="detail_<?php echo $index; ?>" tabindex="-1" role="dialog"
-    aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="detail_<?php echo $index; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color:gray;">

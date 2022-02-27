@@ -173,7 +173,7 @@ function update_ACM_edit() {
             "arr_radio": arr_radio,
             "arr_dta_id": arr_dta_id,
             "App": App,
-            "index":index
+            "index": index
 
         },
         success: function(data) {
@@ -984,7 +984,7 @@ function update_MHRD_edit() {
                                     <?php }
                                             //if
                                         }
-                                        // else
+                                        // foreach
                                 ?>
                                     <td rowspan="<?php echo $col[$spans] ?>"><textarea class="form-control" type="text"
                                             name="Evaluator_Review_edit"
@@ -1073,9 +1073,13 @@ function update_MHRD_edit() {
                                                     $checked_weight_5 =  "checked";
                                                 }
 
-                                                $evaluator_review = $row_data_g_and_o->dgw_evaluator_review;
-                                            }
+                                                $evaluator_review = $row_data_g_and_o->dgw_evaluator_review; ?>
+                                    <input type="text" id="dgw_<?php echo $table_index_radio_g_o_edit?>"
+                                        value="<?php echo $row_data_g_and_o->dgw_id?>" hidden>
+                                    <?php }
+                                            //if
                                         }
+                                        // foreacg 
                                 ?>
                                     <td rowspan="<?php echo $col[$spans] ?>"><textarea class="form-control" type="text"
                                             name="Evaluator_Review_edit"
@@ -1154,9 +1158,12 @@ function update_MHRD_edit() {
                                     <input type="text" id="row_count_level" value="0" hidden>
                                 </td>
                                 <td>
-                                    <p id="weight_all_g_o_edit">
+                                    <p id="">100%</p>
                                 </td>
                                 <td colspan="3"></td>
+                                <td>
+                                    <p id="weight_all_g_o_edit"></p>
+                                </td>
                             </tfoot>
                             <!-- tfoot -->
                         </table>

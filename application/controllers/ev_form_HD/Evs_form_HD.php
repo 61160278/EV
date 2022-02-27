@@ -50,6 +50,7 @@ class Evs_form_HD extends MainController_avenxo {
 		$chack_form_pe ="";
 		$chack_form_ce ="";
 		$Save_Grade = "";
+		$chack_save_button = "";
 		$sum = 0;
 		$sum_all = 0;
 		$sum_max = 0;
@@ -254,8 +255,8 @@ class Evs_form_HD extends MainController_avenxo {
 							$g_o_emp = $data['g_o_emp'] = $this->mdgo->get_by_empID()->result();
 							foreach($g_o_emp as $index => $row){
 								foreach($data_g_and_o as $row_data_g_and_o){
-									if($row->dgo_id == $row_data_g_and_o->dgw_dgo_id){
-										$sum = $row->dgo_weight*$row_data_g_and_o->dgw_dgo_id;
+									if($row->dgo_id == $row_data_g_and_o->dgw_dgo_id ){
+										$sum = $row->dgo_weight*$row_data_g_and_o->dgw_weight;
 										$sum_max = $row->dgo_weight*5;
 										$sum_all += $sum;
 										$sum_max_all += $sum_max;
@@ -386,7 +387,7 @@ class Evs_form_HD extends MainController_avenxo {
 							$mbo_emp = $data['mbo_emp'] = $this->medm->get_by_empID()->result();
 							foreach($mbo_emp as $index => $row) {
 								foreach($data_mbo as $row_data_mbo){  
-									if($row->dtm_id == $row_data_mbo->dmw_dtm_id){
+									if($row->dtm_id == $row_data_mbo->dmw_dtm_id && $row_data_mbo->dmw_approver == $temp_app->dma_approve2){
 										$sum = $row->dtm_weight*$row_data_mbo->dmw_weight;
 										$sum_max = $row->dtm_weight*5;
 										$sum_all += $sum;
@@ -412,11 +413,11 @@ class Evs_form_HD extends MainController_avenxo {
 							$this->mdgo->dgo_emp_id = $row->emp_employee_id;
 							$this->mdgo->dgo_evs_emp_id = $tep->emp_id;
 							$g_o_emp = $data['g_o_emp'] = $this->mdgo->get_by_empID()->result();
-			
+							
 							foreach($g_o_emp as $index => $row){
 								foreach($data_g_and_o as $row_data_g_and_o){
-									if($row->dgo_id == $row_data_g_and_o->dgw_dgo_id){
-										$sum = $row->dgo_weight*$row_data_g_and_o->dgw_dgo_id;
+									if($row->dgo_id == $row_data_g_and_o->dgw_dgo_id && $row_data_g_and_o->dgw_approver == $temp_app->dma_approve2){
+										$sum = $row->dgo_weight*$row_data_g_and_o->dgw_weight;
 										$sum_max = $row->dgo_weight*5;
 										$sum_all += $sum;
 										$sum_max_all += $sum_max;
@@ -444,7 +445,7 @@ class Evs_form_HD extends MainController_avenxo {
 			
 							foreach($info_mhrd as $index => $row){ 
 								foreach($data_mhrd as $row_data_mhrd){                                       
-									if($row->sfi_id == $row_data_mhrd->mhw_sfi_id){
+									if($row->sfi_id == $row_data_mhrd->mhw_sfi_id && $row_data_mhrd->mhw_approver == $temp_app->dma_approve2){
 										$sum = $row_data_mhrd->mhw_weight_1+$row_data_mhrd->mhw_weight_2;
 										$sum_max = 3+3;
 										$sum_all += $sum;
@@ -474,7 +475,7 @@ class Evs_form_HD extends MainController_avenxo {
 			
 							foreach($info_ability_form as $row){
 								foreach($data_acm_weight as $row_data_acm_weight){
-									if($row->sfa_id == $row_data_acm_weight->dta_sfa_id){
+									if($row->sfa_id == $row_data_acm_weight->dta_sfa_id && $row_data_acm_weight->dta_approver == $temp_app->dma_approve2){
 										$sum = $row->sfa_weight*$row_data_acm_weight->dta_weight;
 										$sum_max = $row->sfa_weight*5;
 										$sum_all += $sum;
@@ -505,7 +506,7 @@ class Evs_form_HD extends MainController_avenxo {
 			
 							foreach($info_gcm_form as $row){
 								foreach($data_gcm_weight as $row_data_gcm_weight){
-									if($row->sgc_id == $row_data_gcm_weight->dtg_sgc_id){
+									if($row->sgc_id == $row_data_gcm_weight->dtg_sgc_id && $row_data_gcm_weight->dtg_approver == $temp_app->dma_approve2){
 										$sum = $row->sgc_weight*$row_data_acm_weight->dta_weight;
 										$sum_max = $row->sgc_weight*5;
 										$sum_all += $sum;
@@ -526,7 +527,7 @@ class Evs_form_HD extends MainController_avenxo {
 				// else check_com	
 			}
 			// if 
-
+			// echo $sum_percent_pe . "+" . $sum_percent_ce ."<br>";
 			if((($sum_percent_pe+$sum_percent_ce/100)) >= 90) {array_push($data_grade,"S");}
 			else if((($sum_percent_pe+$sum_percent_ce/100)) >= 80) {array_push($data_grade,"A");}
 			else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 75){array_push($data_grade,"B+");}

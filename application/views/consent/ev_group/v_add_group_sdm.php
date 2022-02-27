@@ -68,9 +68,9 @@ function manage_group() {
                 data_row += '</tr>'
                 count++
             })
-            // console.log(data_row)
-            $("#select_data").html(data_row)
-            $("#count_check").val(count)
+            console.log(count);
+            $("#select_data").html(data_row);
+            $("#count_check").val(count);
         } //success
     });
 }
@@ -107,10 +107,10 @@ function manage_group_right() {
                 data_row += row.emp_section_code_ID
                 data_row += '</td>'
                 data_row += '</tr>'
-                count++
+                count++;
             })
-            $("#table_r").html(data_row)
-            $("#count_group").val(count)
+            $("#table_r").html(data_row);
+            $("#count_group").val(count);
         } //success
     });
 }
@@ -120,6 +120,7 @@ function change_group() {
     var new_group = document.getElementById("new_group").value;
     var old_group = document.getElementById("select").value;
     var get_emp = [];
+    console.log(count_check);
     for (i = 0; i < count_check; i++) {
         if (document.getElementById("check_group" + i).checked) {
             get_emp.push(document.getElementById("emp_" + i).innerHTML)
@@ -409,15 +410,14 @@ tbody {
                                             <!-- panel-heading -->
 
                                             <div class="panel-body no-padding">
-                                                <div id="example_wrapper"
-                                                    class="dataTables_wrapper form-inline no-footer">
+                                                <div id="example_wrapper" class="form-inline no-footer">
                                                     <div class="row">
                                                         <div class="col-sm-6"></div>
                                                         <div class="col-sm-6"></div>
                                                     </div>
 
                                                     <table id="cur_group"
-                                                        class="table table-striped table-bordered dataTable no-footer"
+                                                        class="table table-striped table-bordered no-footer"
                                                         cellspacing="0" width="100%" role="grid"
                                                         aria-describedby="example_info" style="width: 100%;">
                                                         <thead>
@@ -507,25 +507,29 @@ tbody {
                                     </div>
                                     <!-- panel-body -->
                         </div>
-                        <!-- table right -->
-
-                        <div class="col-md-12">
-                            <div class="panel-body">
-                                <div class="DTTT btn-group pull-left mt-sm">
-                                    <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_sdm">
-                                        <button type="button" class="btn btn-inverse" data-dismiss="modal">BACK</button>
-                                    </a>
-                                </div>
-                                <!-- BACK -->
-                            </div>
-                            <!--   panelbody -->
-                        </div>
-                        <!--   col-md-12 -->
                     </div>
-                    <!-- head panel -->
+                    <!-- table right -->
+
+
+                    <div class="col-md-12">
+                        <div class="panel-body">
+                            <div class="DTTT btn-group pull-left mt-sm">
+                                <a href="<?php echo base_url(); ?>/ev_group/Evs_group/select_company_sdm">
+                                    <button type="button" class="btn btn-inverse" data-dismiss="modal">BACK</button>
+                                </a>
+                            </div>
+                            <!-- BACK -->
+                        </div>
+                        <!--   panelbody -->
+                    </div>
+                    <!--   col-md-12 -->
+
                 </div>
-                <!-- head outside -->
-                </body>
+                <!-- head panel -->
+            </div>
+            <!-- head outside -->
+
+            </body>
 
 </html>
 

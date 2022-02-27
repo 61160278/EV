@@ -115,13 +115,15 @@ $(document).ready(function() {
                                     <td><?php echo $dep1[$index]->Department; ?></td>
                                     <td><?php echo $row->Position_name; ?></td>
                                     <td>
-                                        <a
-                                            href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/createFROM/<?php echo $row->Emp_ID; ?>">
-                                            <button type="button" class="btn btn-info">
-                                                <i class="fa fa-info-circle"></i>
-                                            </button>
-                                        </a>
-                                        <!-- a href  -->
+                                        <center>
+                                            <a
+                                                href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/createFROM/<?php echo $row->Emp_ID; ?>">
+                                                <button type="button" class="btn btn-info">
+                                                    <i class="fa fa-info-circle"></i>
+                                                </button>
+                                            </a>
+                                            <!-- a href  -->
+                                        </center>
                                     </td>
                                 </tr>
                                 <?php }
@@ -192,13 +194,15 @@ $(document).ready(function() {
                                     <td><?php echo $dep2[$index]->Department; ?></td>
                                     <td><?php echo $row->Position_name; ?></td>
                                     <td>
-                                        <a
-                                            href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/createFROM/<?php echo $row->Emp_ID; ?>">
-                                            <button type="button" class="btn btn-info">
-                                                <i class="fa fa-info-circle"></i>
-                                            </button>
-                                        </a>
-                                        <!-- a href  -->
+                                        <center>
+                                            <a
+                                                href="<?php echo base_url(); ?>ev_form_AP/Evs_form_AP/createFROM/<?php echo $row->Emp_ID; ?>">
+                                                <button type="button" class="btn btn-info">
+                                                    <i class="fa fa-info-circle"></i>
+                                                </button>
+                                            </a>
+                                            <!-- a href  -->
+                                        </center>
                                     </td>
                                 </tr>
                                 <?php 

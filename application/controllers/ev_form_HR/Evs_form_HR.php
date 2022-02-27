@@ -623,7 +623,7 @@ class Evs_form_HR extends MainController_avenxo {
 						foreach($g_o_emp as $index => $row){
 							foreach($data_g_and_o as $row_data_g_and_o){
 								if($row->dgo_id == $row_data_g_and_o->dgw_dgo_id){
-									$sum = $row->dgo_weight*$row_data_g_and_o->dgw_dgo_id;
+									$sum = $row->dgo_weight*$row_data_g_and_o->dgw_weight;
 									$sum_max = $row->dgo_weight*5;
 									$sum_all += $sum;
 									$sum_max_all += $sum_max;
@@ -784,7 +784,7 @@ class Evs_form_HR extends MainController_avenxo {
 						foreach($g_o_emp as $index => $row){
 							foreach($data_g_and_o as $row_data_g_and_o){
 								if($row->dgo_id == $row_data_g_and_o->dgw_dgo_id){
-									$sum = $row->dgo_weight*$row_data_g_and_o->dgw_dgo_id;
+									$sum = $row->dgo_weight*$row_data_g_and_o->dgw_weight;
 									$sum_max = $row->dgo_weight*5;
 									$sum_all += $sum;
 									$sum_max_all += $sum_max;
@@ -1089,7 +1089,7 @@ class Evs_form_HR extends MainController_avenxo {
 				foreach($g_o_emp as $index => $row){
 					foreach($data_g_and_o as $row_data_g_and_o){
 						if($row->dgo_id == $row_data_g_and_o->dgw_dgo_id){
-							$sum = $row->dgo_weight*$row_data_g_and_o->dgw_dgo_id;
+							$sum = $row->dgo_weight*$row_data_g_and_o->dgw_weight;
 							$sum_max = $row->dgo_weight*5;
 							$sum_all += $sum;
 							$sum_max_all += $sum_max;
@@ -1394,7 +1394,7 @@ class Evs_form_HR extends MainController_avenxo {
 				foreach($g_o_emp as $index => $row){
 					foreach($data_g_and_o as $row_data_g_and_o){
 						if($row->dgo_id == $row_data_g_and_o->dgw_dgo_id){
-							$sum = $row->dgo_weight*$row_data_g_and_o->dgw_dgo_id;
+							$sum = $row->dgo_weight*$row_data_g_and_o->dgw_weight;
 							$sum_max = $row->dgo_weight*5;
 
 							$sum_all += $sum;
@@ -1496,7 +1496,6 @@ class Evs_form_HR extends MainController_avenxo {
 			}
 
 		}
-
 		if((($sum_percent_pe+$sum_percent_ce/100)) >= 90) {array_push($data_grade,"S");}
 		else if((($sum_percent_pe+$sum_percent_ce/100)) >= 80) {array_push($data_grade,"A");}
 		else if ((($sum_percent_pe+$sum_percent_ce/100)) >= 75){array_push($data_grade,"B+");}

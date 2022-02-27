@@ -63,7 +63,7 @@
                                 <li><a href="<?php echo base_url() ?>ev_form/Evs_form/index"><i
                                             class="fa fa-pencil-square"></i><span>Create Form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/create_form_group"><i
-                                            class="fa fa-tachometer"></i><span>Create form group</span></span></a></li>
+                                            class="fa fa-plus"></i><span>Create form group</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/index"><i
                                             class="fa fa-tachometer"></i><span>Approve group</span></span></a></li>
                                 <li><a href="<?php echo base_url();?>/ev_form_HD/Evs_form_HD/feedback"><i

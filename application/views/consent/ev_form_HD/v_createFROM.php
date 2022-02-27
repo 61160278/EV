@@ -1163,9 +1163,12 @@ function main_index() {
                                     <input type="text" id="row_count_level" value="0" hidden>
                                 </td>
                                 <td>
-                                    <p id="weight_all_g_o_edit">
+                                    <p id="">100%</p>
                                 </td>
                                 <td colspan="3"></td>
+                                <td>
+                                    <p id="weight_all_g_o_edit"></p>
+                                </td>
                             </tfoot>
                             <!-- tfoot -->
                         </table>

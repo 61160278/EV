@@ -110,18 +110,22 @@ class M_evs_employee extends Da_evs_employee {
 
 		$sql = "SELECT * 
 				FROM dbmc.master_mapping AS map
-				WHERE map.Department_id = ?";
+				WHERE map.Department_id = ?
+				ORDER BY map.Department_id";
 		$query = $this->db->query($sql,array($this->Department_id));
 		return $query;
 	}
 	// get_dpartment_depid
 
-	function get_emp_by_dep($dp,$sc,$sb,$gr,$ln){	
+	function get_emp_by_dep($pay_id,$dp,$sc,$sb,$gr,$ln){	
 		$sql = "SELECT * 
 				FROM dbmc.employee AS emp
 				INNER JOIN dbmc.position AS pos
 				ON pos.Position_ID = emp.Position_ID
-				WHERE emp.Sectioncode_ID = '".$dp."' OR emp.Sectioncode_ID = '".$sc."' OR emp.Sectioncode_ID = '".$sb."' OR emp.Sectioncode_ID = '".$gr."' OR emp.Sectioncode_ID = '".$ln."'";
+				INNER JOIN evs_database.evs_employee AS evs_emp
+				ON evs_emp.emp_employee_id = emp.Emp_ID
+				WHERE evs_emp.emp_pay_id = '".$pay_id."' AND emp.Sectioncode_ID = '".$dp."' OR emp.Sectioncode_ID = '".$sc."' OR emp.Sectioncode_ID = '".$sb."' OR emp.Sectioncode_ID = '".$gr."' OR emp.Sectioncode_ID = '".$ln."'
+				ORDER BY emp.Emp_ID";
 		$query = $this->db->query($sql);
 		return $query;
 	}//get_emp_by_dep
