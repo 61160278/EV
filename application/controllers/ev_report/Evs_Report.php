@@ -50,6 +50,7 @@ class Evs_Report extends MainController_avenxo {
 		$this->memp->Department_id = $dep_id;
 		$data['dep_temp'] = $this->memp->get_department_by_id()->result(); 
 		$temp = $data['dep_temp'];
+		$emp_temp = [];
 		foreach($temp as $index => $row){
 			$dp = $row->Department_id;
 			$sc = $row->Section_id;
@@ -57,17 +58,24 @@ class Evs_Report extends MainController_avenxo {
 			$gr = $row->Group_id;
 			$ln = $row->Line_id;
 			$emp = $this->memp->get_emp_by_dep($dp,$sc,$sb,$gr,$ln)->result();
+				
+			foreach($emp as $index => $row){
+					// print_r($row);
+					array_push($emp_temp,$row);
+				}
+				// foreach
+
 		}
 		// foreach 
 		$dep_temp = [];
-		foreach($emp as $row){
+		foreach($emp_temp as $row){
 			// echo $row->Sectioncode_ID."<br>";
 			$dep = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
 			array_push($dep_temp,$dep);
 		}
 		// foreach 
 
-		$data["emp_info"] = $emp;
+		$data["emp_info"] = $emp_temp;
 		$data["dep_info"] = $dep_temp;
 		$this->output('/consent/ev_report/v_export_payroll',$data);
 	}
