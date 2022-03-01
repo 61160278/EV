@@ -61,6 +61,12 @@ class Evs_Report extends MainController_avenxo {
 		$emp_check = [];
 
 		foreach($temp as $index => $row){
+			if($index == 0){
+				$data["com_info"] = $row->Company." (" . $row->Company_id . ")";
+				$data["dep_id"] = $row->Department_id;
+			}
+			// if
+
 			$dp = $row->Department_id;
 			$sc = $row->Section_id;
 			$sb = $row->SubSection_id;
@@ -92,16 +98,22 @@ class Evs_Report extends MainController_avenxo {
 			$dep = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
 			array_push($dep_temp,$dep);
 
-			$this->load->model('M_evs_position_from','mpf');
-			$this->mpf->ps_pos_id = $row->Position_ID;
-			$this->mpf->ps_pay_id = $pay_id;
-			$form = $this->mpf->get_all_by_key_by_year()->row();
-			array_push($grade_temp,$form);
+			$this->load->model('M_evs_data_grade','mdtg');
+			$this->mdtg->dgr_emp_id = $row->emp_id;
+			$this->mdtg->dgr_pay_id = $pay_id;
+			$grade = $this->mdtg->get_by_emp()->result();
+			foreach($grade as $row){
+				array_push($grade_temp,$row->dgr_grade);
+			}
+			// foreach 
+			
 		}
 		// foreach 
 
 		$data["emp_info"] = $emp_temp;
 		$data["dep_info"] = $dep_temp;
+		$data["grade_info"] = $grade_temp;
+		$data["year_info"] = $year;
 		$this->output('/consent/ev_report/v_export_payroll',$data);
 	}
 	// function report_payroll

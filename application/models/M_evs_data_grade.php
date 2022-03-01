@@ -62,6 +62,15 @@ class M_evs_data_grade extends Da_evs_data_grade {
 		return $query;
 	
 	}//get_by_empID
+
+	function get_by_emp(){	
+		$sql = "SELECT *
+		FROM evs_database.evs_data_grade
+		WHERE dgr_emp_id = ? AND dgr_pay_id = ?";
+		$query = $this->db->query($sql, array($this->dgr_emp_id,$this->dgr_pay_id));
+		return $query;
+	
+	}//get_by_emp
 	
 	/*
 	* get_data_grade_all

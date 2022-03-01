@@ -102,3 +102,10 @@
 <!-- Load datatable scripts-->
 <script type="text/javascript" src="<?php echo base_url();?>DataTables/datatables.min.js"></script>
 <!-- End datatablel scripts-->
+
+<!-- End loading page level scripts-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+<script src="https://unpkg.com/file-saver@1.3.3/FileSaver.js"></script>
+<script lang="javascript" src="dist/xlsx.bundle.js"></script>
+<script src="<?php echo base_url(); ?>argon/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>

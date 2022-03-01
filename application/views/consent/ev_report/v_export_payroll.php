@@ -41,6 +41,69 @@ $(document).ready(function() {
 
 });
 // document ready
+
+function exportfile() {
+
+    var name = document.getElementById("name_file").innerHTML;
+    var name_dep = document.getElementById("dep_id").value;
+
+    var sheet_name = name_dep;
+    var file_name = "Report for payroll " + name_dep;
+
+    var wb = {
+        SheetNames: [],
+        Sheets: {}
+    };
+
+    var objectMaxLength = [3, 10, 30, 15, 25, 25, 15, 15, 20];
+
+    var wscols = [{
+            width: objectMaxLength[0],
+        },
+        {
+            width: objectMaxLength[1]
+        },
+        {
+            width: objectMaxLength[2]
+        }, //...
+        {
+            width: objectMaxLength[3]
+        },
+        {
+            width: objectMaxLength[4]
+        },
+        {
+            width: objectMaxLength[5]
+        },
+        {
+            width: objectMaxLength[6]
+        },
+        {
+            width: objectMaxLength[7]
+        },
+        {
+            width: objectMaxLength[8]
+        },
+        {
+            width: objectMaxLength[9]
+        }
+    ];
+
+    var ws9 = XLSX.utils.table_to_sheet(document.getElementById('export_for_payroll'), {
+        raw: true
+    });
+
+    ws9["!cols"] = wscols;
+
+
+    wb.SheetNames.push(sheet_name);
+    wb.Sheets[sheet_name] = ws9;
+    XLSX.writeFile(wb, file_name + ".xlsx", {
+        cellStyles: true
+    });
+
+}
+// exportfile
 </script>
 
 <!DOCTYPE html>
@@ -67,10 +130,25 @@ $(document).ready(function() {
                 <!--div row for manage size of head panel -->
                 <div class="row">
                     <div class="col-md-12">
-                        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%"
-                            role="grid" style="width: 100%;">
+                        <?php $name = $year_info->pay_year." Salary Increment" ?>
+                        <table class="table table-striped table-bordered" id="export_for_payroll" width="100%"
+                            style="width: 100%;">
                             <thead>
-                                <tr">
+                                <tr>
+                                    <th colspan="9">
+                                        <h2><b><?php echo $com_info;?></b></h2>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="9">
+                                        <h3>
+                                            <b id="name_file">
+                                                <?php echo $name; ?>
+                                            </b>
+                                        </h3>
+                                    </th>
+                                </tr>
+                                <tr>
                                     <th>
                                         <center>No.</center>
                                     </th>
@@ -99,8 +177,8 @@ $(document).ready(function() {
                                     <th>
                                         <center>Salary Increment</center>
                                     </th>
-                                    </tr>
-                                    <!-- tr -->
+                                </tr>
+                                <!-- tr -->
                             </thead>
                             <!-- thead -->
                             <tbody>
@@ -108,7 +186,7 @@ $(document).ready(function() {
                                 // print_r($dep_info);
                                 
                                 if(sizeof($emp_info) != 0){ 
-                                    foreach($emp_info as $index => $row){?>
+                                    foreach($emp_info as $index => $row){ ?>
                                 <tr>
                                     <td><?php echo $index+1; ?></td>
                                     <td><?php echo $row->Emp_ID;?></td>
@@ -141,7 +219,7 @@ $(document).ready(function() {
                                         ?>
                                     </td>
                                     <td><?php echo $row->Sectioncode_ID; ?></td>
-                                    <td><?php echo "Grade"; ?></td>
+                                    <td><?php echo $grade_info[$index]; ?></td>
                                 </tr>
                                 <?php
                                     }
@@ -154,6 +232,7 @@ $(document).ready(function() {
                             <!-- tbody  -->
                         </table>
                         <!-- table -->
+                        <input type="text" id="dep_id" value="<?php echo $dep_id; ?>" hidden>
                     </div>
                     <!-- col-12  -->
                 </div>
@@ -169,7 +248,8 @@ $(document).ready(function() {
                         </div>
                         <!-- col-6  -->
                         <div class="col-sm-6" align="right">
-                            <button class="btn btn-success"><i class="fa fa-download"></i> Export</button>
+                            <button class="btn btn-success" onclick="exportfile()"><i
+                                    class="fa fa-download"></i>  Export</button>
                         </div>
                         <!-- col-6  -->
                     </div>
