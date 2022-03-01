@@ -45,6 +45,26 @@ class M_evs_excel_report extends Da_evs_excel_report {
 	}
 	//get_all
 
+	function get_by_pay() {	
+		$sql = "SELECT * 
+				FROM evs_database.evs_excel_report
+				WHERE erp_pay_id = ?
+				ORDER BY erp_id";
+        $query = $this->db->query($sql,array($this->erp_pay_id));
+		return $query;
+	}
+	//get_by_pay
+
+	function get_by_pay_name() {	
+		$sql = "SELECT * 
+				FROM evs_database.evs_excel_report
+				WHERE erp_pay_id = ? AND erp_excel_name = ? 
+				ORDER BY erp_id";
+        $query = $this->db->query($sql,array($this->erp_pay_id, $this->erp_excel_name));
+		return $query;
+	}
+	//get_by_pay
+
 	
 
 

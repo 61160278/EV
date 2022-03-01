@@ -46,6 +46,7 @@ function exportfile() {
 
     var name = document.getElementById("name_file").innerHTML;
     var name_dep = document.getElementById("dep_id").value;
+    var pay_id = document.getElementById("pay_id").value;
 
     var sheet_name = name_dep;
     var file_name = "Report for payroll " + name_dep;
@@ -101,6 +102,22 @@ function exportfile() {
     XLSX.writeFile(wb, file_name + ".xlsx", {
         cellStyles: true
     });
+
+    $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "<?php echo base_url(); ?>ev_report/Evs_Report/insert_export_xlsx",
+        data: {
+            "pay_id": pay_id,
+            "name_dep": name_dep
+        },
+        success: function(data) {
+            console.log(data);
+
+        }
+        // success
+    });
+    // ajax
 
 }
 // exportfile
@@ -219,7 +236,25 @@ function exportfile() {
                                         ?>
                                     </td>
                                     <td><?php echo $row->Sectioncode_ID; ?></td>
-                                    <td><?php echo $grade_info[$index]; ?></td>
+                                    <td>
+                                        <?php if(sizeof($grade_info) != 0){
+                                            if($grade_info[$index] != "-"){
+                                                echo $grade_info[$index];
+                                            }
+                                            // if 
+                                            else{
+                                                echo "Wait approve !";
+                                            }
+                                            // else 
+                                            
+                                        }
+                                        // if
+                                        else{
+                                            echo "Wait approve !";
+                                        }
+                                        // else 
+                                     ?>
+                                    </td>
                                 </tr>
                                 <?php
                                     }
@@ -233,6 +268,7 @@ function exportfile() {
                         </table>
                         <!-- table -->
                         <input type="text" id="dep_id" value="<?php echo $dep_id; ?>" hidden>
+                        <input type="text" id="pay_id" value="<?php echo $year_info->pay_id; ?>" hidden>
                     </div>
                     <!-- col-12  -->
                 </div>
@@ -248,8 +284,8 @@ function exportfile() {
                         </div>
                         <!-- col-6  -->
                         <div class="col-sm-6" align="right">
-                            <button class="btn btn-success" onclick="exportfile()"><i
-                                    class="fa fa-download"></i>  Export</button>
+                            <button class="btn btn-success" onclick="exportfile()"><i class="fa fa-download"></i>
+                                Export</button>
                         </div>
                         <!-- col-6  -->
                     </div>

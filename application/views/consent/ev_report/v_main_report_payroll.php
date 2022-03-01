@@ -15,17 +15,21 @@ thead {
     text-align: center;
     font-size: 20px;
 }
+
 tbody {
     text-align: center;
     font-size: 15px;
 }
+
 .panel.panel-indigo .panel-heading {
     color: #e8eaf6;
     background-color: #134466;
 }
+
 .margin {
     margin-top: 10px;
 }
+
 #color_head {
     background-color: #3f51b5;
 }
@@ -85,17 +89,48 @@ $(document).ready(function() {
                             </thead>
                             <!-- thead -->
                             <tbody>
-                                <?php if(sizeof($dep_info) != 0){ 
+                                <?php 
+                                // print_r($ex_info);
+
+                                if(sizeof($dep_info) != 0){ 
                                     foreach($dep_info as $index => $row){?>
                                 <tr>
                                     <td><?php echo $index+1; ?></td>
                                     <td><?php echo $row->Company." (" . $row->Company_id . ")";?></td>
                                     <td><?php echo $row->Department; ?></td>
                                     <td>
-                                        <a href="<?php echo base_url(); ?>ev_report/Evs_Report/report_payroll_employee/<?php echo $row->Department_id; ?>">
+                                        <?php 
+                                        if(sizeof($ex_info) != 0){
+                                            foreach($ex_info as $rowex){
+                                                if($rowex->erp_excel_name == $row->Department_id){ ?>
+                                        <a
+                                            href="<?php echo base_url(); ?>ev_report/Evs_Report/report_payroll_employee/<?php echo $row->Department_id; ?>">
+                                            <button type="button" class="btn btn-success"><i
+                                                    class="fa fa-info-circle"></i></button>
+                                        </a>
+                                        <?php }
+                                                // if 
+                                                else{ ?>
+                                        <a
+                                            href="<?php echo base_url(); ?>ev_report/Evs_Report/report_payroll_employee/<?php echo $row->Department_id; ?>">
                                             <button type="button" class="btn btn-info"><i
                                                     class="fa fa-info-circle"></i></button>
                                         </a>
+                                        <?php }
+                                                // else 
+                                            }
+                                            // foreach
+                                        }
+                                        // if
+                                        else{ ?>
+                                        <a
+                                            href="<?php echo base_url(); ?>ev_report/Evs_Report/report_payroll_employee/<?php echo $row->Department_id; ?>">
+                                            <button type="button" class="btn btn-info"><i
+                                                    class="fa fa-info-circle"></i></button>
+                                        </a>
+                                        <? } 
+                                         ?>
+
                                     </td>
                                 </tr>
                                 <?php

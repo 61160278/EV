@@ -37,6 +37,17 @@ class Evs_Report extends MainController_avenxo {
 	*/
 	function report_payroll()
 	{
+
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+		$this->load->model('M_evs_excel_report','mexr');
+		$this->mexr->erp_pay_id = $pay_id;
+		$data["ex_info"] = $this->mexr->get_by_pay()->result();
+
 		$this->load->model('M_evs_employee','memp');
 		$data['dep_info'] = $this->memp->get_all_department()->result(); 
 
@@ -102,11 +113,17 @@ class Evs_Report extends MainController_avenxo {
 			$this->mdtg->dgr_emp_id = $row->emp_id;
 			$this->mdtg->dgr_pay_id = $pay_id;
 			$grade = $this->mdtg->get_by_emp()->result();
-			foreach($grade as $row){
-				array_push($grade_temp,$row->dgr_grade);
+			if(sizeof($grade) != 0){
+				foreach($grade as $row){
+					array_push($grade_temp,$row->dgr_grade);
+				}
+				// foreach 
 			}
-			// foreach 
-			
+			// if 
+			else {
+				array_push($grade_temp,"-");
+			}
+			// else 
 		}
 		// foreach 
 
@@ -117,6 +134,35 @@ class Evs_Report extends MainController_avenxo {
 		$this->output('/consent/ev_report/v_export_payroll',$data);
 	}
 	// function report_payroll
+
+	function insert_export_xlsx(){
+
+		$check = "";
+		$pay_id = $this->input->post("pay_id");
+		$name_dep = $this->input->post("name_dep");
+
+		$this->load->model('M_evs_excel_report','mexr');
+		$this->mexr->erp_excel_name = $name_dep;
+		$this->mexr->erp_pay_id = $pay_id;
+		$data["ex_info"] = $this->mexr->get_by_pay_name()->result();
+
+		if(sizeof($data["ex_info"]) == 0){
+			$this->load->model('Da_evs_excel_report','dexr');
+			$this->dexr->erp_excel_name = $name_dep;
+			$this->dexr->erp_pay_id = $pay_id;
+			$this->dexr->insert();
+
+			$check = "first_export";
+		}
+		// if
+		else{
+			$check = "next_export";
+		}
+		// else 
+
+		echo json_encode($check);
+	}
+	// function insert_export_xlsx
 
 	
 
