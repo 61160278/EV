@@ -128,5 +128,14 @@ class M_evs_data_approve extends Da_evs_data_approve {
 	}
 	// update_status
 
+	function get_app_by_empID(){	
+		$sql = "SELECT *
+				FROM evs_database.evs_data_approve
+				WHERE dma_dtm_emp_id = ? AND dma_emp_id = ?";
+		$query = $this->db->query($sql, array($this->dma_dtm_emp_id, $this->dma_emp_id));
+		return $query;
+	
+	}//get_app_by_empID
+
 } 
 ?>

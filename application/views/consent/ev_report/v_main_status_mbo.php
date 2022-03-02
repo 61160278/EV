@@ -1,11 +1,11 @@
 <?php
 /*
-* v_main_report_payroll.php
-* Display v_main_report_payroll
+* v_main_status_mbo.php
+* Display v_main_status_mbo
 * @input    
 * @output
 * @author Kunanya Singmee
-* @Create Date 2565-02-22
+* @Create Date 2565-03-3
 */  
 ?>
 
@@ -49,7 +49,7 @@ $(document).ready(function() {
     <div class="panel panel-indigo">
         <div class="panel-heading">
             <h2>
-                <font color="#ffffff" size="6px"><b>Report for Payroll</b></font>
+                <font color="#ffffff" size="6px"><b>Report status for create MBO</b></font>
             </h2>
         </div>
         <!-- panel-heading -->
@@ -59,7 +59,7 @@ $(document).ready(function() {
                 <div class="row">
                     <div class="col-sm-12">
                         <h3>
-                            List of department to report grade
+                            List of department to status for create MBO
                         </h3>
                     </div>
 
@@ -103,7 +103,7 @@ $(document).ready(function() {
                                         if(sizeof($ex_info) != 0){
                                             $check = [];
                                             foreach($ex_info as $rowex){
-                                                if(substr($rowex->erp_excel_name,8) == $row->Department_id && substr($rowex->erp_excel_name,0,7) == "Payroll"){
+                                                if(substr($rowex->erp_excel_name,10) == $row->Department_id && substr($rowex->erp_excel_name,0,9) == "StatusMBO"){
                                                     array_push($check,$row->Department_id);
                                                 }
                                                 // if 
@@ -112,7 +112,7 @@ $(document).ready(function() {
                                             ?>
                                         <?php if(sizeof($check) != 0){ ?>
                                         <a
-                                            href="<?php echo base_url(); ?>ev_report/Evs_Report/report_payroll_employee/<?php echo $row->Department_id; ?>">
+                                            href="<?php echo base_url(); ?>ev_report/Evs_Report/report_status_mbo_employee/<?php echo $row->Department_id; ?>">
                                             <button type="button" class="btn btn-success"><i
                                                     class="fa fa-info-circle"></i></button>
                                         </a>
@@ -120,7 +120,7 @@ $(document).ready(function() {
                                                 // if 
                                                 else{ ?>
                                         <a
-                                            href="<?php echo base_url(); ?>ev_report/Evs_Report/report_payroll_employee/<?php echo $row->Department_id; ?>">
+                                            href="<?php echo base_url(); ?>ev_report/Evs_Report/report_status_mbo_employee/<?php echo $row->Department_id; ?>">
                                             <button type="button" class="btn btn-info"><i
                                                     class="fa fa-info-circle"></i></button>
                                         </a>
@@ -131,7 +131,7 @@ $(document).ready(function() {
                                         // if
                                         else{ ?>
                                         <a
-                                            href="<?php echo base_url(); ?>ev_report/Evs_Report/report_payroll_employee/<?php echo $row->Department_id; ?>">
+                                            href="<?php echo base_url(); ?>ev_report/Evs_Report/report_status_mbo_employee/<?php echo $row->Department_id; ?>">
                                             <button type="button" class="btn btn-info"><i
                                                     class="fa fa-info-circle"></i></button>
                                         </a>

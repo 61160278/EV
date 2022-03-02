@@ -82,6 +82,16 @@ class M_evs_position_from extends Da_evs_position_from {
 		return $query;
 	}//get_all
 
+	function get_form() {	
+		$sql = "SELECT *  
+				FROM evs_database.evs_position_from as form
+				INNER JOIN dbmc.position as pos
+				ON pos.Position_ID = form.ps_pos_id
+				WHERE form.ps_form_pe = ? AND form.ps_pay_id = ?";
+		$query = $this->db->query($sql,array($this->ps_form_pe, $this->ps_pay_id));
+		return $query;
+	}//get_form
+
 	/*
 	* get_by_pos
 	* Get person from database

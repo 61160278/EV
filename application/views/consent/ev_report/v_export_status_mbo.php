@@ -1,11 +1,11 @@
 <?php
 /*
-* v_main_report_payroll.php
-* Display v_main_report_payroll
+* v_export_status_mbo.php
+* Display v_export_status_mbo
 * @input    
 * @output
 * @author Kunanya Singmee
-* @Create Date 2565-02-22
+* @Create Date 2565-03-3
 */  
 ?>
 
@@ -49,14 +49,14 @@ function exportfile() {
     var pay_id = document.getElementById("pay_id").value;
 
     var sheet_name = name_dep;
-    var file_name = "Report for payroll " + name_dep;
+    var file_name = "Report status for create MBO " + name_dep;
 
     var wb = {
         SheetNames: [],
         Sheets: {}
     };
 
-    var objectMaxLength = [3, 10, 30, 15, 25, 25, 15, 15, 20];
+    var objectMaxLength = [3, 10, 30, 15, 25, 25, 15, 15, 30];
 
     var wscols = [{
             width: objectMaxLength[0],
@@ -110,7 +110,7 @@ function exportfile() {
         data: {
             "pay_id": pay_id,
             "name_dep": name_dep,
-            "type": "Payroll"
+            "type": "StatusMBO"
         },
         success: function(data) {
             console.log(data);
@@ -131,15 +131,22 @@ function exportfile() {
         <div class="panel-heading">
             <div class="col-md-8">
                 <h2>
-                    <font color="#ffffff" size="6px"><b>Report for Payroll</b></font>
+                    <font color="#ffffff" size="6px"><b>Report status for create MBO</b></font>
                 </h2>
             </div>
-            <!-- col-8  -->
             <div class="col-md-4" align="right">
+                <?php if(sizeof($emp_info) != 0){ ?>
                 <button class="btn btn-success" onclick="exportfile()"><i class="fa fa-download"></i>
                     Export</button>
+                <?php }
+                        // if 
+                        else {?>
+                <button class="btn btn-success" disabled><i class="fa fa-download"></i>
+                    Export</button>
+                <?php }
+                        // else  ?>
             </div>
-            <!-- col-4  -->
+
         </div>
         <!-- panel-heading -->
 
@@ -148,7 +155,7 @@ function exportfile() {
                 <div class="row">
                     <div class="col-sm-12">
                         <h3>
-                            List of employee to report grade
+                            List of employee to status for create MBO
                         </h3>
                     </div>
 
@@ -156,7 +163,7 @@ function exportfile() {
                 <!--div row for manage size of head panel -->
                 <div class="row">
                     <div class="col-md-12">
-                        <?php $name = $year_info->pay_year." Salary Increment : ". $dep ?>
+                        <?php $name = $year_info->pay_year." Status for create MBO : ". $dep ?>
                         <table class="table table-striped table-bordered" id="export_for_payroll" width="100%"
                             style="width: 100%;">
                             <thead>
@@ -201,7 +208,7 @@ function exportfile() {
                                         <center>Section code</center>
                                     </th>
                                     <th>
-                                        <center>Salary Increment</center>
+                                        <center>Status</center>
                                     </th>
                                 </tr>
                                 <!-- tr -->
@@ -209,7 +216,7 @@ function exportfile() {
                             <!-- thead -->
                             <tbody>
                                 <?php 
-                                // print_r($dep_info);
+                                // print_r($status_info);
                                 
                                 if(sizeof($emp_info) != 0){ 
                                     foreach($emp_info as $index => $row){ ?>
@@ -246,23 +253,25 @@ function exportfile() {
                                     </td>
                                     <td><?php echo $row->Sectioncode_ID; ?></td>
                                     <td>
-                                        <?php if(sizeof($grade_info) != 0){
-                                            if($grade_info[$index] != "-"){
-                                                echo $grade_info[$index];
-                                            }
-                                            // if 
-                                            else{
-                                                echo "Wait approve !";
-                                            }
-                                            // else 
-                                            
-                                        }
+                                        <?php if($status_info[$index] == 1){?>
+                                        <font color="Blue"><b>
+                                                Created
+                                            </b></font>
+                                        <?php }
                                         // if
-                                        else{
-                                            echo "Wait approve !";
-                                        }
-                                        // else 
-                                     ?>
+                                        else if($status_info[$index] == 0){?>
+                                        <font color="Red"><b>
+                                                Not create
+                                            </b></font>
+                                        <?php }
+                                        // else if 
+                                        else if($status_info[$index] == 2){?>
+                                        <font color="Green"><b>
+                                                Created and Select approver
+                                            </b></font>
+                                        <?php }
+                                        // else if?>
+
                                     </td>
                                 </tr>
                                 <?php
@@ -287,14 +296,22 @@ function exportfile() {
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-sm-6">
-                            <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_payroll">
+                            <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_mbo">
                                 <button class="btn btn-inverse">BACK</button>
                             </a>
                         </div>
                         <!-- col-6  -->
                         <div class="col-sm-6" align="right">
+                            <?php if(sizeof($emp_info) != 0){ ?>
                             <button class="btn btn-success" onclick="exportfile()"><i class="fa fa-download"></i>
                                 Export</button>
+                            <?php }
+                        // if 
+                        else {?>
+                            <button class="btn btn-success" disabled><i class="fa fa-download"></i>
+                                Export</button>
+                            <?php }
+                        // else  ?>
                         </div>
                         <!-- col-6  -->
                     </div>

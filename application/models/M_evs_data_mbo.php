@@ -45,6 +45,17 @@ class M_evs_data_mbo extends Da_evs_data_mbo {
 	
 	}//get_by_empID
 
+	function get_mbo_by_empID(){	
+		$sql = "SELECT *
+				FROM evs_database.evs_data_mbo as mbo
+				WHERE dtm_emp_id = ? AND dtm_evs_emp_id = ?";
+		$query = $this->db->query($sql, array($this->dtm_emp_id, $this->dtm_evs_emp_id));
+		return $query;
+	
+	}//get_mbo_by_empID
+
+
+
 	
 } 
 ?>

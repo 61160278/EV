@@ -108,6 +108,9 @@
                                 <li><a href="<?php echo base_url() ?>ev_report/Evs_Report/report_payroll"><i
                                             class="fa fa-bar-chart-o"></i><span>Report for Payroll</span></span></a>
                                 </li>
+                                <li><a href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_mbo"><i
+                                            class="fa fa-bar-chart-o"></i><span>Report Status for Create MBO</span></span></a>
+                                </li>
 
                                 <!-- report -->
                                 <?php }
