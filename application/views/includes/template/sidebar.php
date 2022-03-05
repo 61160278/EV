@@ -116,7 +116,7 @@
                 <!-- Report for payroll -->
                 <li class="menu-item">
                     <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_mbo"><i
-                            class="menu-icon fa fa-bar-chart-o"></i>Report Status for Create MBO</a>
+                            class="menu-icon fa fa-bar-chart-o"></i>Status for Create MBO</a>
                 </li>
                 <!-- Report for payroll -->
 

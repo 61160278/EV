@@ -112,14 +112,14 @@ th {
                         <!-- col-4  -->
                     </a>
                     <!-- status form  -->
-					
-					
+
+
                 </div>
                 <!-- row  -->
-				
-				<div class="row">
-				    <a href="<?php echo base_url() ?>ev_form/Evs_form/show_ststus">
-                        <div class="col-md-6">
+
+                <div class="row">
+                    <a href="<?php echo base_url() ?>ev_form/Evs_form/show_ststus">
+                        <div class="col-md-4">
                             <div class="info-tile tile-indigo">
                                 <div class="tile-icon "><i class="fa fa-book"></i></div>
                                 <div class="tile-heading"><span>MENU</span></div>
@@ -133,9 +133,9 @@ th {
                         <!-- col-4  -->
                     </a>
                     <!-- status form  -->
-				
-					<a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/report_grade">
-                        <div class="col-md-6">
+
+                    <a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/report_grade">
+                        <div class="col-md-4">
                             <div class="info-tile tile-indigo">
                                 <div class="tile-icon"><i class="fa fa-bar-chart-o"></i></div>
                                 <div class="tile-heading"><span>MENU</span></div>
@@ -149,9 +149,25 @@ th {
                         <!-- col-4  -->
                     </a>
                     <!-- Report grade  -->
-					
-				</div>
-				
+
+                    <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_mbo_employee_group">
+                        <div class="col-md-4">
+                            <div class="info-tile tile-indigo">
+                                <div class="tile-icon"><i class="fa fa-bar-chart-o"></i></div>
+                                <div class="tile-heading"><span>MENU</span></div>
+                                <div class="tile-body">
+                                    <span>Status for Create MBO</span>
+                                </div>
+                                <!-- body  -->
+                            </div>
+                            <!-- title  -->
+                        </div>
+                        <!-- col-4  -->
+                    </a>
+                    <!-- Report grade  -->
+
+                </div>
+
             </div>
             <!-- body -->
         </div>

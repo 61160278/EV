@@ -54,6 +54,15 @@ class M_evs_group extends Da_evs_group {
 	
 	}//get_by_id
 
+	function get_by_head(){	
+		$sql = "SELECT *
+				FROM evs_database.evs_group as evg
+				WHERE evg.gru_head_dept = ? ";
+		$query = $this->db->query($sql, array($this->gru_head_dept));
+		return $query;
+	
+	}//get_by_head
+
 	
 
 	function get_name_emp_by_IDemp_sdm(){	

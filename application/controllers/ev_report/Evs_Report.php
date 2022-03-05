@@ -184,7 +184,7 @@ class Evs_Report extends MainController_avenxo {
 
 		$this->output('/consent/ev_report/v_main_status_mbo',$data);
 	}
-	// function report_payroll
+	// function report_status_mbo
 
 
 	function report_status_mbo_employee($dep_id){
@@ -305,7 +305,130 @@ class Evs_Report extends MainController_avenxo {
 		$data["year_info"] = $year;
 		$this->output('/consent/ev_report/v_export_status_mbo',$data);
 	}
-	// function report_payroll
+	// function report_status_mbo_employee
+
+
+	function report_status_mbo_employee_group(){
+
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $_SESSION['UsEmp_ID'];
+		$this->memp->emp_pay_id = $pay_id;
+		$data['emp_info_show'] = $this->memp->get_by_empid();
+		$temps = $data['emp_info_show']->row();
+
+		$data['dept_info'] = $this->memp->get_dpartment($temps->Sectioncode_ID)->row();
+		$tmp_dep = $data['dept_info'];
+
+		$this->load->model('M_evs_group','mgrp');
+		$this->mgrp->gru_head_dept = $_SESSION['UsEmp_ID'];
+		$data['grp_info'] = $this->mgrp->get_by_head()->row();
+		$temp_grp = $data['grp_info'];
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Department_id = $tmp_dep->Department_id;
+		$data['dep_temp'] = $this->memp->get_department_by_id()->result(); 
+		$temp = $data['dep_temp'];
+		$emp_temp = [];
+		$emp_check = [];
+		$postion = [];
+
+		$this->load->model('M_evs_position_from','meps');
+		$this->meps->ps_form_pe = "MBO";
+		$this->meps->ps_pay_id = $pay_id;
+		$data['form_temp'] = $this->meps->get_form()->result(); 
+
+		foreach($data['form_temp'] as $row_form){
+			array_push($postion,$row_form->ps_pos_id);
+			// echo $row_form->Position_ID;
+		}
+		// foreach
+
+		$data["com_info"] = $tmp_dep->Company." (" . $tmp_dep->Company_id . ")";
+		$data["dep_id"] = "Group ".$temp_grp->gru_name;
+		$data["dep"] = "Group ".$temp_grp->gru_name;
+
+		$emp = $this->memp->get_emp_by_dep_group($pay_id,$temp_grp->gru_id)->result();
+
+		foreach($emp as $index => $row){
+			if($index == 0){
+				foreach($postion as $row_pos){
+					if($row_pos == $row->Position_ID){
+						array_push($emp_temp,$row);
+						array_push($emp_check,$row->Emp_ID);
+					}
+					// if 
+				}
+				// foreach
+			}
+			// if
+			else if(!in_array($row->Emp_ID,$emp_check)){
+				foreach($postion as $row_pos){
+					if($row_pos == $row->Position_ID){
+						array_push($emp_temp,$row);
+						array_push($emp_check,$row->Emp_ID);
+					}
+					// if 
+				}
+				// foreach
+			}
+			// else if 
+		}
+		// foreach
+
+		$dep_temp = [];
+		$grade_temp = [];
+		$status_temp = [];
+
+		foreach($emp_temp as $index => $row){
+			// echo $row->Sectioncode_ID."<br>";
+			$dep = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
+			array_push($dep_temp,$dep);
+
+			$this->load->model('M_evs_data_mbo','medm');
+			$this->medm->dtm_emp_id = $row->Emp_ID;
+			$this->medm->dtm_evs_emp_id = $row->emp_id;
+			$data['mbo_temp'] = $this->medm->get_mbo_by_empID()->result(); 
+			$temp_mbo = $data['mbo_temp'];
+
+			if(sizeof($temp_mbo) != 0){
+
+				$this->load->model('M_evs_data_approve','meda');
+				$this->meda->dma_dtm_emp_id = $row->Emp_ID;
+				$this->meda->dma_emp_id = $row->emp_id;
+				$data['app_temp'] = $this->meda->get_app_by_empID()->result(); 
+
+				if(sizeof($data['app_temp']) != 0){
+					array_push($status_temp,"2");
+				}
+				// if 
+				else{
+					array_push($status_temp,"1");
+				}
+				// else 
+			}	
+			// if
+			else{
+				array_push($status_temp,"0");
+			}
+			// else
+
+
+		}
+		// foreach 
+
+		$data["emp_info"] = $emp_temp;
+		$data["dep_info"] = $dep_temp;
+		$data["status_info"] = $status_temp;
+		$data["year_info"] = $year;
+		$this->output('/consent/ev_report/v_export_status_mbo',$data);
+	}
+	// function report_status_mbo_employee_group
 
 	
 

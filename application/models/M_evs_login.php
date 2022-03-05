@@ -33,8 +33,6 @@ class M_evs_login extends Da_evs_login {
 				FROM evs_database.evs_login AS evs_log
                 INNER JOIN dbmc.employee AS dbmc_emp
                 ON dbmc_emp.Emp_id = evs_log.log_user_id
-                left join dbmc.group_secname AS dbmc_sec
-                on dbmc_sec.Sectioncode = dbmc_emp.Sectioncode_ID
                 left join dbmc.position AS dbmc_pos
                 on dbmc_pos.Position_ID = dbmc_emp.Position_ID
 				WHERE log_user_id = ? AND log_password = ? ";

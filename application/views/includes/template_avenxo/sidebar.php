@@ -72,6 +72,10 @@
                                             class="fa fa-book"></i><span>Status Form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/report_grade"><i
                                             class="fa fa-bar-chart-o"></i><span>Report Grade</span></span></a></li>
+                                <li><a
+                                        href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_mbo_employee_group"><i
+                                            class="fa fa-bar-chart-o"></i><span>Status for Create MBO</span></span></a>
+                                </li>
                                 <!-- head dap.  -->
                                 <?php }
                                 //else if 
@@ -109,7 +113,7 @@
                                             class="fa fa-bar-chart-o"></i><span>Report for Payroll</span></span></a>
                                 </li>
                                 <li><a href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_mbo"><i
-                                            class="fa fa-bar-chart-o"></i><span>Report Status for Create MBO</span></span></a>
+                                            class="fa fa-bar-chart-o"></i><span>Status for Create MBO</span></span></a>
                                 </li>
 
                                 <!-- report -->

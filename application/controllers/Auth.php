@@ -28,6 +28,7 @@ class Auth extends MainController
 		$this->melog->log_user_id = $_POST['user'];
 		$this->melog->log_password = $_POST['pass'];
 		$data['user'] = $this->melog->check_login();
+
  
 		if(sizeof($data['user']->row()) == 0 && ($_POST['user'] != "admin" && $_POST['pass'] != "root1234") ){
 			$this->login();
@@ -51,7 +52,7 @@ class Auth extends MainController
 			$this->session->set_userdata('UsEmp_ID', $temp->Emp_ID);
 			$this->session->set_userdata('UsName_EN', $temp->Empname_eng." ".$temp->Empsurname_eng);
 			$this->session->set_userdata('UsName_TH', $temp->Empname_th." ".$temp->Empsurname_th);
-			$this->session->set_userdata('UsDepartment', $temp->Department);
+			$this->session->set_userdata('UsDepartment', $temp->Sectioncode_ID);
 			$this->session->set_userdata('UsRole', $temp->log_role);
 			$this->session->set_userdata('Uspay_id', $pay_id);
 			}
