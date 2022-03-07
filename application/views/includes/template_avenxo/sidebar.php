@@ -115,6 +115,9 @@
                                 <li><a href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_mbo"><i
                                             class="fa fa-bar-chart-o"></i><span>Status for Create MBO</span></span></a>
                                 </li>
+                                <li><a href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_evaluation"><i
+                                            class="fa fa-bar-chart-o"></i><span>Status for evaluation</span></span></a>
+                                </li>
 
                                 <!-- report -->
                                 <?php }
