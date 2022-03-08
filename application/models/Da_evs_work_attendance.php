@@ -115,7 +115,7 @@ class Da_evs_work_attendance extends evs_model {
 	*/
 	function delete() {
 	 	
-	 	$sql = "DELETE FROM evs_database.evs_evs_work_attendance
+	 	$sql = "DELETE FROM evs_database.evs_work_attendance
 	 			WHERE wad_id=?";
 	 	$this->db->query($sql, array($this->wad_id));
 		

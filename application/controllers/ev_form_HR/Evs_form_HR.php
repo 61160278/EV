@@ -1945,100 +1945,15 @@ class Evs_form_HR extends MainController_avenxo {
 		$this->mwad->emp_pay_id = $year->pay_id;
 		$data['work_attendance'] = $this->mwad->get_data_by_pay_id()->result();
 
-		// if(sizeof($data['work_attendance']) != 0){
-		// 	$this->load->model('Da_evs_grade_auto','dgrat');
-		// 	foreach($data['garde'] as $row){
-		// 		$this->dgrat->grd_id = $row->grd_id;
-		// 		$this->dgrat->delete();
-		// 	}
-		// 	// foreach delete data gard
-
-		// 	$this->load->model('Da_evs_grade_auto_excel_report','dgae');
-		// 	$config["upload_path"] = "./excel_grade_auto/";
-		// 	$config["allowed_types"] = "xls|xlsx";
-	
-		// 	$this->load->library("upload",$config);
-	
-		// 	if($this->upload->do_upload("file")){
-		// 			$upload_data = $this->upload->data();
-		// 			$this->dgae->ger_excel_name = $upload_data["file_name"];
-		// 			$this->dgae->ger_pay_id = $pay_id;
-		// 			$this->dgae->insert();
-		// 	}
-		// 	//if
-		// 	else{
-		// 			print_r($this->upload->display_errors());
-		// 	}
-		// 	// else 
-	
-		// 	$this->load->model('M_evs_employee','memp');
-		// 	$this->load->model('M_evs_grad_master','mgms');
-		// 	$this->load->model('M_evs_reasoning_master','mrsm');
-		// 	$this->load->model('Da_evs_grade_auto','dgrat');
-			
-	
-		// 	if(isset($_FILES["file"]["name"]))
-		// 	{
-	
-		// 		$path = $_FILES["file"]["tmp_name"];
-		// 		$object = PHPExcel_IOFactory::load($path);
-		// 		foreach($object->getWorksheetIterator() as $worksheet)
-		// 		{
-		// 			$highestRow = $worksheet->getHighestRow();
-		// 			$highestColumn = $worksheet->getHighestColumn();
-					
-		// 			for($row=2; $row<=$highestRow; $row++)
-		// 			{
-						
-		// 				$this->memp->Emp_ID = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
-		// 				$this->memp->emp_pay_id = $pay_id;
-		// 				$data['emp_info'] = $this->memp->get_by_empid();
-				
-		// 				$tep = $data['emp_info']->row();
-	
-		// 				$grd_emp_id = $tep->emp_id;
-						
-		// 				$grade = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
-		// 				$reasoning = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
-
-		// 				$chack_grade = "0";
-		// 				$chack_reasoning = "0";
-								
-		// 				$data['garde_master'] = $this->mgms->get_all()->result();
-		// 				foreach($data['garde_master'] as $row_g){
-							
-		// 					if($grade == $row_g->gms_grade){ $chack_grade = "1"; }
-							
-		// 				}
-		// 				// foreach 
-						
-
-		// 				$data['reasoning_master'] = $this->mrsm->get_all()->result();
-		// 				foreach($data['reasoning_master'] as $row_r){
-							
-		// 					if($reasoning == $row_r->rms_id){ $chack_reasoning = "1"; }
-							
-		// 				}
-		// 				// foreach
-						
-		// 				if($chack_grade == "1" && $chack_reasoning == "1"){
-		// 					$this->dgrat->grd_emp_id = $grd_emp_id;
-		// 					$this->dgrat->grd_grade = $grade;
-		// 					$this->dgrat->grd_status = $reasoning;
-		// 					$this->dgrat->insert();
-		// 				}
-		// 			}
-		// 			// for
-		// 		}
-		// 		// foreach 
-		// 		$data = "import_new";
-		// 		echo json_encode($data);
-		// 	}
-		// 	// if isset		
-
-		// }
-		// // if size of 
-		// else if(sizeof($data['garde']) == 0){
+		if(sizeof($data['work_attendance']) != 0){
+			$this->load->model('Da_evs_work_attendance','dwad');
+			foreach($data['work_attendance'] as $row){
+				$this->dwad->wad_id = $row->wad_id;
+				$this->dwad->delete();
+			}
+			// foreach delete data gard
+		}
+		// if size of 
 
 			$this->load->model('Da_evs_excel_report','derp');
 			$config["upload_path"] = "./excel_work_attendance/";
@@ -2093,10 +2008,20 @@ class Evs_form_HR extends MainController_avenxo {
 	 					$wad_first_aid = $worksheet->getCellByColumnAndRow(13, $row)->getValue();
 	 					$wad_maternity = $worksheet->getCellByColumnAndRow(14, $row)->getValue();
 	 					$wad_military = $worksheet->getCellByColumnAndRow(15, $row)->getValue();
-	 					$wad_attendance = $worksheet->getCellByColumnAndRow(16, $row)->getValue();
+	 					$wad_attendance = 0;
 	 					$wad_special_pregnant = $worksheet->getCellByColumnAndRow(17, $row)->getValue();
 	 					$wad_special_leave = $worksheet->getCellByColumnAndRow(18, $row)->getValue();
-						
+						if($wad_special_pregnant == NULL && $wad_special_leave == NULL){
+							$wad_special_pregnant = 0;
+							$wad_special_leave = 0;
+
+						}
+
+						$wad_attendance = 100-(((($wad_late_return+$wad_absent+$wad_sick+$wad_business+
+												$wad_edu_Inter+$wad_first_aid+$wad_maternity+$wad_military)*100)/250));
+
+
+
 						$this->dwad->wad_emp_id = $wad_emp_id;		
 						$this->dwad->wad_late_return = 	$wad_late_return;
 						$this->dwad->wad_absent = $wad_absent;
@@ -2120,10 +2045,7 @@ class Evs_form_HR extends MainController_avenxo {
 				$data = "import_new";
 				echo json_encode($data);
 			}
-		// 	// if isset	
-		// }
-		// // else if
-	
+			// if isset	
 	}
 
 

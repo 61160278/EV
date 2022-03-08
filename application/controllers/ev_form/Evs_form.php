@@ -1098,5 +1098,28 @@ class Evs_form extends MainController_avenxo {
 
 	}
 	// function show_ststus
+
+
+	function show_work_attendance(){
+
+		$emp_id = $_SESSION['UsEmp_ID'];
+		$pay_id = $_SESSION['Uspay_id'];
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $emp_id;
+		$this->memp->emp_pay_id = $pay_id;
+		$data['emp_info'] = $this->memp->get_by_empid();
+		
+		$temp = $data['emp_info']->row();
+		$data['dept_info'] = $this->memp->get_dpartment($temp->Sectioncode_ID)->row();
+
+		$this->load->model('M_evs_work_attendance','mwad');
+		$this->mwad->wad_emp_id = $temp->emp_id;
+		$data['data_Atd'] = $this->mwad->get_data_by_emp_id()->row();
+
+		$this->output('/consent/ev_form/v_show_work_attendance',$data);
+
+	}
+	// function show_ststus
 }
 ?>

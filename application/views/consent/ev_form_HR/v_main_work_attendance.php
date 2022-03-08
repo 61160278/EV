@@ -24,7 +24,7 @@
 <script>
 $(document).ready(function() {
 
-    $("#show_data_import").hide();
+    $("#success").hide();
 
     $('#import_form').on('submit', function(form_submit) {
         form_submit.preventDefault();
@@ -40,6 +40,7 @@ $(document).ready(function() {
                 $('#file').val('');
                 console.log(data);
 
+                $("#success").show();
             }
             // success
         })
@@ -52,30 +53,6 @@ $(document).ready(function() {
 
 });
 // document ready
-
-
-// function del_score(evs_emp_id) {
-
-//     // evs_emp_id = document.getElementById("emp_id" + count).value;
-//     console.log(evs_emp_id);
-
-//     $.ajax({
-//         type: "post",
-//         url: "<?php echo base_url(); ?>/ev_form_HR/Evs_form_HR/del_grade_auto",
-//         data: {
-//             "evs_emp_id": evs_emp_id
-//         },
-//         dataType: "JSON",
-//         success: function(data) {
-//              window.location.href = "<?php echo base_url();?>/ev_form_HR/Evs_form_HR/grade_auto";
-//         }
-//         // success
-
-//     });
-//     // ajax
-
-// }
-// function del_score
 </script>
 <!-- END script  -->
 
@@ -84,7 +61,7 @@ $(document).ready(function() {
         <div class="panel panel-indigo" data-widget='{"draggable": "false"}'>
             <div class="panel-heading ">
                 <h2>
-                    <font color="#ffffff" size="6px"><b> Import Work Attendance  </b></font>
+                    <font color="#ffffff" size="6px"><b> Import Work Attendance </b></font>
                 </h2>
             </div>
             <!-- heading -->
@@ -130,235 +107,29 @@ $(document).ready(function() {
                                 </div>
                                 <!-- col-6 -->
                                 <div class="col-md-6">
-                                    <!-- <a href="<?php echo base_url(); ?>/./excel_template_grade_auto/excel_template.xlsx">
+                                    <a
+                                        href="<?php echo base_url(); ?>/./excel_template_work_attendance/excel_template.xlsx">
                                         <button type="button" class="btn btn-success">download template excel</button>
-                                    </a> -->
+                                    </a>
                                 </div>
                             </div>
                             <!-- row -->
                         </form>
                         <!-- form   -->
+
                     </div>
                     <!--col-6 -->
                 </div>
                 <!-- row -->
 
-                <?php 
-
-                //if(sizeof($garde) == 0){ ?>
-
-                <!-- <hr>
+                <hr>
                 <div class="row">
-                    <div class="col-md-12">
-                        <table class="table table-bordered table-striped m-n" id="show_data_import">
-                            <thead>
-                                <tr>
-                                    <th width="2%">
-                                        <center>#</center>
-                                    </th>
-                                    <th width="7%">
-                                        <center>Employee id</center>
-                                    </th>
-                                    <th width="15%">
-                                        <center>Name</center>
-                                    </th>
-                                    <th width="7%">
-                                        <center>Section code</center>
-                                    </th>
-                                    <th width="15%">
-                                        <center>Department</center>
-                                    </th>
-                                    <th width="2%">
-                                        <center>Items</center>
-                                    </th>
-                                    <th width="10%">
-                                        <center>Grade </center>
-                                    </th>
-                                    <th width="10%">
-                                        <center>reasoning </center>
-                                    </th>
-                                    <th width="10%">
-                                        <center>Action</center>
-                                    </th>
-
-                                </tr>
-                            </thead> -->
-                            <!-- thead -->
-                            <!-- <tbody id="row_inport">
-                            </tbody>
-                        </table>
-                    </div> -->
-                    <!-- col-12  -->
-                <!-- </div> -->
-                <!-- row  -->
-                <?php //}
-            // if
-            //else { ?>
-                <!-- <hr>
-
-                <div class="row">
-                    <div class="col-md-11">
-                        <label class="control-label">
-                            <strong>
-                                <font size="5px">List  garde of employees </font>
-                            </strong>
-                        </label>
+                    <div id = "success" class="alert alert-success">
+                        <strong>Success!</strong>
                     </div>
-                     col-12  -->
-                <!-- </div> -->
-                <!-- row  -->
-                <!-- <hr>
-                <div class="row">
-                    <div class="col-md-12">
-                        <table class="table table-bordered table-striped m-n" id="show_data">
-                            <thead>
-                                <tr>
-                                    <th width="2%">
-                                        <center>#</center>
-                                    </th>
-                                    <th width="7%">
-                                        <center>Employee id</center>
-                                    </th>
-                                    <th width="15%">
-                                        <center>Name</center>
-                                    </th>
-                                    <th width="7%">
-                                        <center>Section code</center>
-                                    </th>
-                                    <th width="15%">
-                                        <center>Department</center>
-                                    </th>
-                                    <th width="10%">
-                                        <center>Grade </center>
-                                    </th>
-                                    <th width="10%">
-                                        <center>reasoning </center>
-                                    </th>
-                                    <th width="10%">
-                                        <center>Action</center>
-                                    </th>
 
-                                </tr>
-                            </thead> -->
-                            <!-- thead -->
-                            <!-- <tbody id="row_inport_data">
-                                <?php 
-                                //$row_index = [];
-                                //$row_count = 0;
-                               // foreach($garde as $index => $row){
-
-                                   // if($index == 0){
-                                   //     $emp = $row->Emp_ID;
-                                  //      $row_count++;
-                                 //   }
-                                    // if
-                                 //   else if($emp == $row->Emp_ID){
-                                //        $row_count++;
-                                    //}
-                                    //
-                               //     else if($emp != $row->Emp_ID){
-                                //        array_push($row_index,$row_count);
-                                //        $emp = $row->Emp_ID;
-                                        // $row_count = 0;
-                                        // $row_count++;
-                                        
-                                  //  } 
-                                    // else if 
-
-                                    // if(($index+1) == sizeof($garde)){
-                                    //     array_push($row_index,$row_count);
-                                   // }
-                                    // if
-                                    
-                              //  }
-                                // foreach 
-
-                                // $count = 0;
-                                // $count_index = 0;
-                                // foreach($garde as $index => $row){  ?>
-                                <tr>
-                                    <?php 
-                                    // if($index == 0){
-                                    //     $emp = $row->Emp_ID; 
-                                    //     $count++; 
-                                    ?>
-
-                                    <td align="center" rowspan="<?php //echo $row_index[$count_index]; ?>">
-                                        <?php //echo $count; ?></td>
-                                    <td align="center" rowspan="<?php echo $row_index[$count_index]; ?>">
-                                        <?php //echo $row->Emp_ID?></td>
-                                    <td rowspan="<?php //echo $row_index[$count_index]; ?>">
-                                        <?php //echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
-                                    <td align="center" rowspan="<?php echo $row_index[$count_index]; ?>">
-                                        <?php //echo $row->Sectioncode_ID?></td>
-                                    <td rowspan="<?php //echo $row_index[$count_index]; ?>"><?php echo $row->Department?>
-                                    </td>
-                                    <td align="center"><?php //echo $row->grd_grade?></td>
-                                    <td align="center"><?php //echo $row->rms_name ?></td>
-                                    <td align="center">
-                                        <button data-toggle="modal" class="btn btn-danger"
-                                            data-target="#Delete<?php //echo $row->grd_emp_id;?>">
-                                            <i class="ti ti-trash"></i>
-                                        </button>
-                                    </td>
-                                    
-
-                                    <input type="text" id="emp_id<?php //echo $row->grd_emp_id; ?>"
-                                        value="<?php //echo $row->grd_emp_id?>" hidden>
-                                    <?php 
-                                    //$count_index++;       
-                                    //}
-                                    // if
-                                    //else if($emp == $row->Emp_ID){ ?>
-                                    <td align="center"><?php //echo $row->grd_grade?></td>
-                                    <td align="center"><?php //echo $row->rms_name ?></td>
-                                    <?php //}
-
-                                   // else if($emp != $row->Emp_ID){
-                                     //   $count++; 
-                                     //   $emp = $row->Emp_ID;?>
-
-                                    <td align="center" rowspan="<?php //echo $row_index[$count_index]; ?>">
-                                        <?php //echo $count; ?></td>
-                                    <td align="center" rowspan="<?php //echo $row_index[$count_index]; ?>">
-                                        <?php //echo $row->Emp_ID?></td>
-                                    <td rowspan="<?php //echo $row_index[$count_index]; ?>">
-                                        <?php //echo $row->Empname_eng." ".$row->Empsurname_eng?></td>
-                                    <td align="center" rowspan="<?php //echo $row_index[$count_index]; ?>">
-                                        <?php //echo $row->Sectioncode_ID?></td>
-                                    <td rowspan="<?php //echo $row_index[$count_index]; ?>">
-                                        <?php //echo $row->Department?>
-                                    </td>
-                                    <td align="center"><?php //echo $row->grd_grade?></td>
-                                    <td align="center"><?php //echo $row->rms_name ?></td>
-                                    <td align="center">
-                                        <button data-toggle="modal" class="btn btn-danger"
-                                            data-target="#Delete<?php //echo $row->grd_emp_id;?>">
-                                            <i class="ti ti-trash"></i>
-                                        </button>
-                                    </td>
-                                    <input type="text" id="emp_id<?php //echo $row->grd_emp_id; ?>"
-                                        value="<?php //echo $row->grd_emp_id?>" hidden>
-                                    <?php 
-                                   // $count_index++;     
-                                   // }
-                                    //else if ?>
-                                </tr>
-                                <?php 
-                                
-                                
-                              //  }
-                            // foreach ?>
-
-                            </tbody>
-                        </table>
-                    </div> -->
-                    <!-- col-12  -->
                 </div>
                 <!-- row  -->
-                <?php //}
-            // else  ?>
-                <hr>
                 <div class="row">
                     <div class="col-sm-8" align="left">
                         <a href="<?php echo base_url(); ?>Evs_Controller/index">
@@ -377,124 +148,3 @@ $(document).ready(function() {
     <!-- col-md-12 -->
 </div>
 <!-- row -->
-
-
-<?php 
-// $check = "";
-// if(sizeof($garde) != 0){
-//     foreach($garde as $index => $row){ 
-        
-//         if($index == 0){ 
-//            $check = $row->grd_emp_id; 
-           ?>
-
-<!-- Modal Delete -->
-<div class="modal fade" id="Delete<?php //echo $row->grd_emp_id?>" tabindex="-1" role="dialog"
-    aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:red;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                    style="color:white;">&times;</button>
-                <h2 class="modal-title">
-                    <b>
-                        <font color="white">Warning</font>
-                    </b>
-                </h2>
-            </div>
-            <!-- Modal header -->
-
-            <div class="modal-body">
-                <div class="form-horizontal">
-                    <div class="form-group" align="center">
-                        <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" align="center">
-                                <font size="5px">
-                                    Do you want
-                                    to delete
-                                    data ?</font>
-                            </label>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- form-horizontal -->
-            </div>
-            <!-- Modal body -->
-
-            <div class="modal-footer">
-                <div class="btn-group pull-left">
-                    <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
-                </div>
-                <button type="button" class="btn btn-success"
-                    onClick="del_score(<?php echo $row->grd_emp_id; ?>)">YES</button>
-            </div>
-            <!-- Modal footer -->
-        </div>
-        <!-- modal-content -->
-    </div>
-    <!-- modal-dialog -->
-</div>
-<!-- End Modal Delete -->
-
-<?php   //}
-        // if
-        // else if($check != $row->grd_emp_id){ 
-        //     $check = $row->grd_emp_id;
-        ?>
-
-<!-- Modal Delete -->
-<div class="modal fade" id="Delete<?php //echo $row->grd_emp_id?>" tabindex="-1" role="dialog"
-    aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:red;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                    style="color:white;">&times;</button>
-                <h2 class="modal-title">
-                    <b>
-                        <font color="white">Warning</font>
-                    </b>
-                </h2>
-            </div>
-            <!-- Modal header -->
-
-            <div class="modal-body">
-                <div class="form-horizontal">
-                    <div class="form-group" align="center">
-                        <div class="col-sm-12">
-                            <label for="focusedinput" class="control-label" align="center">
-                                <font size="5px">
-                                    Do you want
-                                    to delete
-                                    data ?</font>
-                            </label>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- form-horizontal -->
-            </div>
-            <!-- Modal body -->
-
-            <div class="modal-footer">
-                <div class="btn-group pull-left">
-                    <button type="button" class="btn btn-inverse" data-dismiss="modal">NO</button>
-                </div>
-                <button type="button" class="btn btn-success"
-                    onClick="del_score(<?php echo $row->grd_emp_id; ?>)">YES</button>
-            </div>
-            <!-- Modal footer -->
-        </div>
-        <!-- modal-content -->
-    </div>
-    <!-- modal-dialog -->
-</div>
-<!-- End Modal Delete -->
-<?php //}
-        // else if 
-   // }
-    // if
-//}
-// foreach 
-?>

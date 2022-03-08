@@ -49,7 +49,7 @@ class M_evs_work_attendance extends Da_evs_work_attendance {
 
 	function get_data_by_pay_id_and_emp_id(){	
 		$sql = "SELECT *
-		FROM evs_database.evs_grade_auto AS work_att
+		FROM evs_database.evs_work_attendance AS work_att
 		INNER JOIN evs_database.evs_employee AS evs_emp
 		ON evs_emp.emp_id = work_att.wad_emp_id 
 		INNER JOIN dbmc.employee AS emp
@@ -61,11 +61,12 @@ class M_evs_work_attendance extends Da_evs_work_attendance {
 	
 	}//get_data_show_mhrd
 
-	function delete_emp_id() {
-		$sql = "DELETE FROM evs_database.evs_grade_auto
+	function get_data_by_emp_id() {
+		$sql = "SELECT * 
+				FROM evs_database.evs_work_attendance
 				WHERE wad_emp_id=?";
-		$this->db->query($sql, array($this->wad_emp_id));
-	   
+		$query = $this->db->query($sql, array($this->wad_emp_id));
+		return $query;
 	}
 
 

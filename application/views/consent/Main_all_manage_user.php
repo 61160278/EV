@@ -145,6 +145,23 @@ th {
                         <!-- col-4  -->
                     </a>
                     <!-- Report grade  -->
+
+                    <a href="<?php echo base_url() ?>ev_form/Evs_form/show_work_attendance">
+                        <div class="col-md-4">
+                            <div class="info-tile tile-indigo">
+                                <div class="tile-icon"><i class="fa fa-bar-chart-o"></i></div>
+                                <div class="tile-heading"><span>MENU</span></div>
+                                <div class="tile-body">
+                                    <span>Work Attendance</span>
+                                </div>
+                                <!-- body  -->
+                            </div>
+                            <!-- title  -->
+                        </div>
+                        <!-- col-4  -->
+                    </a>
+                    <!-- Report grade  -->
+
                 </div>
                 <!-- row  -->
             </div>

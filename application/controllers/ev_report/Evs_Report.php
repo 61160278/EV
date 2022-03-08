@@ -532,5 +532,102 @@ class Evs_Report extends MainController_avenxo {
 	}
 	// function report_payroll
 
+
+	function report_grade_auto()
+	{
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+		$this->load->model('M_evs_employee','memp');
+		$data['dep_info'] = $this->memp->get_all_department()->result(); 
+
+		$this->output('/consent/ev_report/v_main_grade_auto',$data);
+	}
+	// function report_status_mbo
+
+	
+	function report_grade_auto_employee($dep_id){
+
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Department_id = $dep_id;
+		$data['dep_temp'] = $this->memp->get_department_by_id()->result(); 
+		$temp = $data['dep_temp'];
+		$emp_temp = [];
+		$emp_check = [];
+
+		foreach($temp as $index => $row){
+			if($index == 0){
+				$data["com_info"] = $row->Company." (" . $row->Company_id . ")";
+				$data["dep_id"] = $row->Department_id;
+				$data["dep"] = $row->Department;
+			}
+			// if
+
+			$dp = $row->Department_id;
+			$sc = $row->Section_id;
+			$sb = $row->SubSection_id;
+			$gr = $row->Group_id;
+			$ln = $row->Line_id;
+
+			$count = $index;
+			$emp = $this->memp->get_emp_by_dep($pay_id,$dp,$sc,$sb,$gr,$ln)->result();
+
+			foreach($emp as $index => $row){
+				if($count == 0){
+					array_push($emp_temp,$row);
+					array_push($emp_check,$row->Emp_ID);
+				}
+				// if
+				else if(!in_array($row->Emp_ID,$emp_check)){
+					array_push($emp_temp,$row);
+					array_push($emp_check,$row->Emp_ID);
+				}
+				// else if 
+			}
+			// foreach
+		}
+		// foreach 
+		$dep_temp = [];
+		$grade_temp = [];
+		foreach($emp_temp as $index => $row){
+			// echo $row->Sectioncode_ID."<br>";
+			$dep = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
+			array_push($dep_temp,$dep);
+
+			$this->load->model('M_evs_data_grade','mdtg');
+			$this->mdtg->dgr_emp_id = $row->emp_id;
+			$this->mdtg->dgr_pay_id = $pay_id;
+			$grade = $this->mdtg->get_by_emp()->result();
+			if(sizeof($grade) != 0){
+				foreach($grade as $row){
+					array_push($grade_temp,1);
+				}
+				// foreach 
+			}
+			// if 
+			else {
+				array_push($grade_temp,0);
+			}
+			// else 
+		}
+		// foreach 
+
+		$data["emp_info"] = $emp_temp;
+		$data["dep_info"] = $dep_temp;
+		$data["grade_info"] = $grade_temp;
+		$data["year_info"] = $year;
+		$this->output('/consent/ev_report/v_export_grade_auto',$data);
+	}
+	// function report_payroll
+
 }
 ?>

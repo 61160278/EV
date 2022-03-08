@@ -30,7 +30,7 @@ class Auth extends MainController
 		$data['user'] = $this->melog->check_login();
 
  
-		if(sizeof($data['user']->row()) == 0 && ($_POST['user'] != "admin" && $_POST['pass'] != "root1234") ){
+		if(sizeof($data['user']->row()) == 0 && ($_POST['user'] != "admin" || $_POST['pass'] != "root1234") ){
 			$this->login();
 		}
 		// if

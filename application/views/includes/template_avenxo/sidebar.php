@@ -52,6 +52,8 @@
                                             class="fa fa-book"></i><span>Status Form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/report_grade"><i
                                             class="fa fa-bar-chart-o"></i><span>Report Grade</span></span></a></li>
+                                <li><a href="<?php echo base_url() ?>ev_form/Evs_form/show_work_attendance"><i
+                                            class="fa fa-bar-chart-o"></i><span>Work Attendance</span></span></a></li>
                                 <!-- associate  -->
                                 <?php }
                                 // if
@@ -72,8 +74,9 @@
                                             class="fa fa-book"></i><span>Status Form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/report_grade"><i
                                             class="fa fa-bar-chart-o"></i><span>Report Grade</span></span></a></li>
-                                <li><a
-                                        href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_mbo_employee_group"><i
+                                <li><a href="<?php echo base_url() ?>ev_form/Evs_form/show_work_attendance"><i
+                                            class="fa fa-bar-chart-o"></i><span>Work Attendance</span></span></a></li>
+                                <li><a href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_mbo_employee_group"><i
                                             class="fa fa-bar-chart-o"></i><span>Status for Create MBO</span></span></a>
                                 </li>
                                 <!-- head dap.  -->
@@ -117,6 +120,9 @@
                                 </li>
                                 <li><a href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_evaluation"><i
                                             class="fa fa-bar-chart-o"></i><span>Status for evaluation</span></span></a>
+                                </li>
+                                <li><a href="<?php echo base_url() ?>ev_report/Evs_Report/report_grade_auto"><i
+                                            class="fa fa-bar-chart-o"></i><span>Report Grade Auto</span></span></a>
                                 </li>
 
                                 <!-- report -->
