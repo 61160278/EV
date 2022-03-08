@@ -26,28 +26,28 @@ $(document).ready(function() {
 
     $("#show_data_import").hide();
 
-    // $('#import_form').on('submit', function(form_submit) {
-    //     form_submit.preventDefault();
-    //     $.ajax({
-    //         url: "<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/import_garde_auto",
-    //         method: "POST",
-    //         data: new FormData(this),
-    //         contentType: false,
-    //         cache: false,
-    //         processData: false,
-    //         dataType: "JSON",
-    //         success: function(data) {
-    //             $('#file').val('');
-    //             console.log(data);
+    $('#import_form').on('submit', function(form_submit) {
+        form_submit.preventDefault();
+        $.ajax({
+            url: "<?php echo base_url(); ?>ev_form_HR/Evs_form_HR/import_work_attendance",
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            dataType: "JSON",
+            success: function(data) {
+                $('#file').val('');
+                console.log(data);
 
-    //         }
-    //         // success
-    //     })
-    //     // ajax
-    //     window.location.href =
-    //         "<?php echo base_url();?>/ev_form_HR/Evs_form_HR/grade_auto";
-    // });
-    // // onsubmit
+            }
+            // success
+        })
+        // ajax
+        // window.location.href =
+        //     "<?php echo base_url();?>/ev_form_HR/Evs_form_HR/grade_auto";
+    });
+    // onsubmit
 
 
 });
