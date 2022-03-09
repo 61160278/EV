@@ -165,8 +165,7 @@ class Evs_Report extends MainController_avenxo {
 	}
 	// function insert_export_xlsx
 
-	function report_status_mbo()
-	{
+	function report_status_mbo(){
 
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
@@ -307,7 +306,6 @@ class Evs_Report extends MainController_avenxo {
 	}
 	// function report_status_mbo_employee
 
-
 	function report_status_mbo_employee_group(){
 
 		$this->load->model('M_evs_pattern_and_year','myear');
@@ -430,8 +428,7 @@ class Evs_Report extends MainController_avenxo {
 	}
 	// function report_status_mbo_employee_group
 
-	function report_status_evaluation()
-	{
+	function report_status_evaluation(){
 
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
@@ -530,11 +527,10 @@ class Evs_Report extends MainController_avenxo {
 		$data["year_info"] = $year;
 		$this->output('/consent/ev_report/v_export_status_evaluation',$data);
 	}
-	// function report_payroll
+	// function report_status_evaluation_employee
 
 
-	function report_grade_auto()
-	{
+	function report_grade_auto(){
 		$this->load->model('M_evs_pattern_and_year','myear');
 		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
 		$year = $data['patt_year']->row(); // show value year now
@@ -546,7 +542,7 @@ class Evs_Report extends MainController_avenxo {
 
 		$this->output('/consent/ev_report/v_main_grade_auto',$data);
 	}
-	// function report_status_mbo
+	// function report_grade_auto
 
 	
 	function report_grade_auto_employee($dep_id){
@@ -627,7 +623,89 @@ class Evs_Report extends MainController_avenxo {
 		$data["year_info"] = $year;
 		$this->output('/consent/ev_report/v_export_grade_auto',$data);
 	}
-	// function report_payroll
+	// function report_grade_auto_employee
+
+	function report_status_evaluation_group(){
+
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $_SESSION['UsEmp_ID'];
+		$this->memp->emp_pay_id = $pay_id;
+		$data['emp_info_show'] = $this->memp->get_by_empid();
+		$temps = $data['emp_info_show']->row();
+
+		$data['dept_info'] = $this->memp->get_dpartment($temps->Sectioncode_ID)->row();
+		$tmp_dep = $data['dept_info'];
+
+		$this->load->model('M_evs_group','mgrp');
+		$this->mgrp->gru_head_dept = $_SESSION['UsEmp_ID'];
+		$data['grp_info'] = $this->mgrp->get_by_head()->row();
+		$temp_grp = $data['grp_info'];
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Department_id = $tmp_dep->Department_id;
+		$data['dep_temp'] = $this->memp->get_department_by_id()->result(); 
+		$temp = $data['dep_temp'];
+		$emp_temp = [];
+		$emp_check = [];
+
+		$data["com_info"] = $tmp_dep->Company." (" . $tmp_dep->Company_id . ")";
+		$data["dep_id"] = "Group ".$temp_grp->gru_name;
+		$data["dep"] = "Group ".$temp_grp->gru_name;
+
+		$emp = $this->memp->get_emp_by_dep_group($pay_id,$temp_grp->gru_id)->result();
+
+		foreach($emp as $index => $row){
+			if($index == 0){
+				array_push($emp_temp,$row);
+				array_push($emp_check,$row->Emp_ID);
+			}
+			// if
+			else if(!in_array($row->Emp_ID,$emp_check)){
+				array_push($emp_temp,$row);
+				array_push($emp_check,$row->Emp_ID);
+			}
+			// else if 
+		}
+		// foreach
+
+		$dep_temp = [];
+		$grade_temp = [];
+		foreach($emp_temp as $index => $row){
+			// echo $row->Sectioncode_ID."<br>";
+			$dep = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
+			array_push($dep_temp,$dep);
+
+			$this->load->model('M_evs_data_grade','mdtg');
+			$this->mdtg->dgr_emp_id = $row->emp_id;
+			$this->mdtg->dgr_pay_id = $pay_id;
+			$grade = $this->mdtg->get_by_emp()->result();
+			if(sizeof($grade) != 0){
+				foreach($grade as $row){
+					array_push($grade_temp,1);
+				}
+				// foreach 
+			}
+			// if 
+			else {
+				array_push($grade_temp,0);
+			}
+			// else 
+		}
+		// foreach 
+
+		$data["emp_info"] = $emp_temp;
+		$data["dep_info"] = $dep_temp;
+		$data["grade_info"] = $grade_temp;
+		$data["year_info"] = $year;
+		$this->output('/consent/ev_report/v_export_status_evaluation',$data);
+	}
+	// function report_status_evaluation_group
 
 }
 ?>
