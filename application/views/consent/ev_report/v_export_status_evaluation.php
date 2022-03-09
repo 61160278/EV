@@ -156,7 +156,7 @@ function exportfile() {
                 <!--div row for manage size of head panel -->
                 <div class="row">
                     <div class="col-md-12">
-                        <?php $name = $year_info->pay_year." Salary Increment : ". $dep ?>
+                        <?php $name = $year_info->pay_year." Status evaluation : ". $dep ?>
                         <table class="table table-striped table-bordered" id="export_for_payroll" width="100%"
                             style="width: 100%;">
                             <thead>
