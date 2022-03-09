@@ -503,13 +503,12 @@ class Evs_Report extends MainController_avenxo {
 			$dep = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
 			array_push($dep_temp,$dep);
 
-			$this->load->model('M_evs_data_grade','mdtg');
-			$this->mdtg->dgr_emp_id = $row->emp_id;
-			$this->mdtg->dgr_pay_id = $pay_id;
-			$grade = $this->mdtg->get_by_emp()->result();
-			if(sizeof($grade) != 0){
-				foreach($grade as $row){
-					array_push($grade_temp,1);
+			$this->load->model('M_evs_data_approve','mdap');
+			$this->mdap->dma_emp_id = $row->emp_id;
+			$status = $this->mdap->get_status_by_emp()->result();
+			if(sizeof($status) != 0){
+				foreach($status as $row){
+					array_push($grade_temp,$row->dma_status);
 				}
 				// foreach 
 			}
@@ -681,13 +680,12 @@ class Evs_Report extends MainController_avenxo {
 			$dep = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
 			array_push($dep_temp,$dep);
 
-			$this->load->model('M_evs_data_grade','mdtg');
-			$this->mdtg->dgr_emp_id = $row->emp_id;
-			$this->mdtg->dgr_pay_id = $pay_id;
-			$grade = $this->mdtg->get_by_emp()->result();
-			if(sizeof($grade) != 0){
-				foreach($grade as $row){
-					array_push($grade_temp,1);
+			$this->load->model('M_evs_data_approve','mdap');
+			$this->mdap->dma_emp_id = $row->emp_id;
+			$status = $this->mdap->get_status_by_emp()->result();
+			if(sizeof($status) != 0){
+				foreach($status as $row){
+					array_push($grade_temp,$row->dma_status);
 				}
 				// foreach 
 			}
@@ -706,6 +704,106 @@ class Evs_Report extends MainController_avenxo {
 		$this->output('/consent/ev_report/v_export_status_evaluation',$data);
 	}
 	// function report_status_evaluation_group
+
+	function report_status_evaluation_group_app(){
+
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $_SESSION['UsEmp_ID'];
+		$this->memp->emp_pay_id = $pay_id;
+		$data['emp_info_show'] = $this->memp->get_by_empid()->row();
+		$temps = $data['emp_info_show'];
+
+		$data['dept_info'] = $this->memp->get_dpartment($temps->Sectioncode_ID)->row();
+		$tmp_dep = $data['dept_info'];
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Department_id = $tmp_dep->Department_id;
+		$data['dep_temp'] = $this->memp->get_department_by_id()->result(); 
+		$temp = $data['dep_temp'];
+		$emp_temp = [];
+		$emp_check = [];
+
+		$data["com_info"] = $tmp_dep->Company." (" . $tmp_dep->Company_id . ")";
+		$data["dep_id"] = "Approver ".$_SESSION['UsName_EN'];
+		$data["dep"] = "Approver ".$_SESSION['UsName_EN'];
+
+		$this->load->model('M_evs_data_approve','meda');
+		$this->meda->dma_approve1 = $_SESSION['UsEmp_ID'];
+		$this->meda->emp_pay_id = $pay_id;
+		$emp_app1 = $this->meda->get_app1()->result();
+
+		$this->load->model('M_evs_data_approve','meda');
+		$this->meda->dma_approve2 = $_SESSION['UsEmp_ID'];
+		$this->meda->emp_pay_id = $pay_id;
+		$emp_app2 = $this->meda->get_app2()->result();
+
+		if(sizeof($emp_app1) != 0){
+			foreach($emp_app1 as $index => $row){
+				if($index == 0){
+					array_push($emp_temp,$row);
+					array_push($emp_check,$row->Emp_ID);
+				}
+				// if
+				else if(!in_array($row->Emp_ID,$emp_check)){
+					array_push($emp_temp,$row);
+					array_push($emp_check,$row->Emp_ID);
+				}
+				// else if 
+			}
+			// foreach
+		}
+		// if 
+
+		if(sizeof($emp_app2) != 0){
+			foreach($emp_app2 as $index => $row){
+				if(!in_array($row->Emp_ID,$emp_check)){
+					array_push($emp_temp,$row);
+					array_push($emp_check,$row->Emp_ID);
+				}
+				// else if 
+			}
+			// foreach
+		}
+		// if 
+
+
+		$dep_temp = [];
+		$grade_temp = [];
+		foreach($emp_temp as $index => $row){
+			// echo $row->Sectioncode_ID."<br>";
+			$dep = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
+			array_push($dep_temp,$dep);
+
+			$this->load->model('M_evs_data_approve','mdap');
+			$this->mdap->dma_emp_id = $row->emp_id;
+			$status = $this->mdap->get_status_by_emp()->result();
+			if(sizeof($status) != 0){
+				foreach($status as $row){
+					array_push($grade_temp,$row->dma_status);
+				}
+				// foreach 
+			}
+			// if 
+			else {
+				array_push($grade_temp,0);
+			}
+			// else 
+		}
+		// foreach 
+
+		$data["emp_info"] = $emp_temp;
+		$data["dep_info"] = $dep_temp;
+		$data["grade_info"] = $grade_temp;
+		$data["year_info"] = $year;
+		$this->output('/consent/ev_report/v_export_status_evaluation',$data);
+	}
+	// function report_status_evaluation_group_app
 
 }
 ?>

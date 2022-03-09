@@ -296,11 +296,27 @@ function exportfile() {
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-sm-6">
+                            <?php if($_SESSION['UsRole'] == 3){ ?>
                             <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_mbo">
                                 <button class="btn btn-inverse">BACK</button>
                             </a>
+                            <?php }
+                            // if 
+                            else if($_SESSION['UsRole'] == 2){ ?>
+                            <a href="<?php echo base_url() ?>Evs_all_manage/index_a">
+                                <button class="btn btn-inverse">BACK</button>
+                            </a>
+                            <?php }
+                            // else if
+                            else if($_SESSION['UsRole'] == 1){ ?>
+                            <a href="<?php echo base_url() ?>Evs_all_manage/index_u">
+                                <button class="btn btn-inverse">BACK</button>
+                            </a>
+                            <?php }
+                            // else ?>
                         </div>
                         <!-- col-6  -->
+
                         <div class="col-sm-6" align="right">
                             <?php if(sizeof($emp_info) != 0){ ?>
                             <button class="btn btn-success" onclick="exportfile()"><i class="fa fa-download"></i>

@@ -137,5 +137,35 @@ class M_evs_data_approve extends Da_evs_data_approve {
 	
 	}//get_app_by_empID
 
+	function get_app1(){	
+		$sql = "SELECT *
+				FROM evs_database.evs_data_approve as app
+				INNER JOIN evs_database.evs_employee AS evs_emp
+				ON evs_emp.emp_id = app.dma_emp_id
+				INNER JOIN dbmc.employee AS dbmc_emp
+				ON dbmc_emp.Emp_ID = evs_emp.emp_employee_id
+				INNER JOIN dbmc.position AS pos
+				ON pos.Position_ID = dbmc_emp.Position_ID
+				WHERE app.dma_approve1 = ? AND evs_emp.emp_pay_id = ?";
+		$query = $this->db->query($sql, array($this->dma_approve1, $this->emp_pay_id));
+		return $query;
+	
+	}//get_app1
+
+	function get_app2(){	
+		$sql = "SELECT *
+				FROM evs_database.evs_data_approve as app
+				INNER JOIN evs_database.evs_employee AS evs_emp
+				ON evs_emp.emp_id = app.dma_emp_id
+				INNER JOIN dbmc.employee AS dbmc_emp
+				ON dbmc_emp.Emp_ID = evs_emp.emp_employee_id
+				INNER JOIN dbmc.position AS pos
+				ON pos.Position_ID = dbmc_emp.Position_ID
+				WHERE app.dma_approve2 = ? AND evs_emp.emp_pay_id = ?";
+		$query = $this->db->query($sql, array($this->dma_approve2, $this->emp_pay_id));
+		return $query;
+	
+	}//get_app2
+
 } 
 ?>

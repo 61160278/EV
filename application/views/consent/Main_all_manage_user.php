@@ -97,7 +97,7 @@ th {
                     </a>
                     <!-- create form  -->
 
-                    
+
                     <a href="<?php echo base_url() ?>ev_form/Evs_form_evaluation/feedback">
                         <div class="col-md-4">
                             <div class="info-tile tile-indigo">
@@ -129,8 +129,8 @@ th {
                         <!-- col-4  -->
                     </a>
                     <!-- status form  -->
-					
-					<a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/report_grade">
+
+                    <a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/report_grade">
                         <div class="col-md-4">
                             <div class="info-tile tile-indigo">
                                 <div class="tile-icon"><i class="fa fa-bar-chart-o"></i></div>
@@ -160,7 +160,23 @@ th {
                         </div>
                         <!-- col-4  -->
                     </a>
-                    <!-- Report grade  -->
+                    <!-- Work Attendance  -->
+
+                    <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_evaluation_group_app">
+                        <div class="col-md-4">
+                            <div class="info-tile tile-indigo">
+                                <div class="tile-icon"><i class="fa fa-bar-chart-o"></i></div>
+                                <div class="tile-heading"><span>MENU</span></div>
+                                <div class="tile-body">
+                                    <span>Status for evaluation</span>
+                                </div>
+                                <!-- body  -->
+                            </div>
+                            <!-- title  -->
+                        </div>
+                        <!-- col-4  -->
+                    </a>
+                    <!-- Work Attendance  -->
 
                 </div>
                 <!-- row  -->

@@ -209,7 +209,7 @@ function exportfile() {
                             <!-- thead -->
                             <tbody>
                                 <?php 
-                                // print_r($dep_info);
+                                // print_r($grade_info);
                                 
                                 if(sizeof($emp_info) != 0){ 
                                     foreach($emp_info as $index => $row){ ?>
@@ -247,19 +247,35 @@ function exportfile() {
                                     <td><?php echo $row->Sectioncode_ID; ?></td>
                                     <td>
                                         <?php if(sizeof($grade_info) != 0){
-                                            if($grade_info[$index] == "1"){
+                                            if($grade_info[$index] == "5"){
                                                 echo "<font color='green'>Evaluated</font>";
                                             }
                                             // if 
-                                            else{
-                                                echo "<font color='red'>evaluating</font>";
+                                            else if($grade_info[$index] == "4"){
+                                                echo "<font color='blue'>Wait HR</font>";
+                                            }
+                                            // else 
+                                            else if($grade_info[$index] == "3"){
+                                                echo "<font color='blue'>Wait Head dept.</font>";
+                                            }
+                                            // else 
+                                            else if($grade_info[$index] == "2"){
+                                                echo "<font color='blue'>Wait Approver 2</font>";
+                                            }
+                                            // else 
+                                            else if($grade_info[$index] == "1"){
+                                                echo "<font color='blue'>Wait Approver 1</font>";
+                                            }
+                                            // else 
+                                            else if($grade_info[$index] == "0"){
+                                                echo "<font color='red'>Wait create form</font>";
                                             }
                                             // else 
                                             
                                         }
                                         // if
                                         else{
-                                            echo "<font color='red'>evaluating</font>";
+                                            echo "<font color='red'>Wait create form</font>";
                                         }
                                         // else 
                                      ?>
@@ -287,9 +303,24 @@ function exportfile() {
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-sm-6">
+                            <?php if($_SESSION['UsRole'] == 3){ ?>
                             <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_evaluation">
                                 <button class="btn btn-inverse">BACK</button>
                             </a>
+                            <?php }
+                            // if 
+                            else if($_SESSION['UsRole'] == 2){ ?>
+                            <a href="<?php echo base_url() ?>Evs_all_manage/index_a">
+                                <button class="btn btn-inverse">BACK</button>
+                            </a>
+                            <?php }
+                            // else if
+                            else if($_SESSION['UsRole'] == 1){ ?>
+                            <a href="<?php echo base_url() ?>Evs_all_manage/index_u">
+                                <button class="btn btn-inverse">BACK</button>
+                            </a>
+                            <?php }
+                            // else ?>
                         </div>
                         <!-- col-6  -->
                         <div class="col-sm-6" align="right">
