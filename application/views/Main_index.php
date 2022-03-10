@@ -306,7 +306,7 @@
                 </div>
                 <!-- End Menu Report for Create MBO  -->
 
-                <!-- Start Menu Report for Create MBO -->
+                <!-- Start Menu Report for evaluation -->
                 <div class="col-xl-4 col-md-6 mb-4">
                     <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_evaluation">
                         <div class="card border4 shadow h-100 py-2">
@@ -327,7 +327,31 @@
                     </a>
                     <!-- a href -->
                 </div>
-                <!-- End Menu Report for Create MBO  -->
+                <!-- End Menu Report for evaluation  -->
+
+                <!-- Start Menu Report history grade -->
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_history_grade">
+                        <div class="card border4 shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text4 text-uppercase mb-1">Menu</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Report history grade
+                                        </div>
+                                    </div>
+                                    <!-- col-2 -->
+                                </div>
+                                <!-- row -->
+                            </div>
+                            <!-- card body -->
+                        </div>
+                        <!-- card -->
+                    </a>
+                    <!-- a href -->
+                </div>
+                <!-- End Menu Report history grade  -->
+
 
 
             </div>

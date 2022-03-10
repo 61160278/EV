@@ -118,12 +118,17 @@
                     <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_mbo"><i
                             class="menu-icon fa fa-bar-chart-o"></i>Status for Create MBO</a>
                 </li>
-                <!-- Report for payroll -->
+                <!-- Report for Create MB -->
                 <li class="menu-item">
                     <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_evaluation"><i
                             class="menu-icon fa fa-bar-chart-o"></i>Status for evaluation</a>
                 </li>
-                <!-- Report for payroll -->
+                <!-- Report for evaluation -->
+                <li class="menu-item">
+                    <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_history_grade"><i
+                            class="menu-icon fa fa-bar-chart-o"></i>Report history grade</a>
+                </li>
+                <!-- Report history grade -->
 
             </ul>
             <!-- End tap menu sidebar  -->

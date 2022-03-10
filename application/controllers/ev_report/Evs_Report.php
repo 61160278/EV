@@ -143,7 +143,7 @@ class Evs_Report extends MainController_avenxo {
 		$type = $this->input->post("type");
 
 		$this->load->model('M_evs_excel_report','mexr');
-		$this->mexr->erp_excel_name = $name_dep;
+		$this->mexr->erp_excel_name = $type."_".$name_dep;
 		$this->mexr->erp_pay_id = $pay_id;
 		$data["ex_info"] = $this->mexr->get_by_pay_name()->result();
 
@@ -805,5 +805,152 @@ class Evs_Report extends MainController_avenxo {
 	}
 	// function report_status_evaluation_group_app
 
+	function report_history_grade(){
+
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+		$this->load->model('M_evs_excel_report','mexr');
+		$this->mexr->erp_pay_id = $pay_id;
+		$name = "HistoryGrade";
+		$data["ex_info"] = $this->mexr->get_by_pay($name)->result();
+
+		$this->load->model('M_evs_employee','memp');
+		$data['dep_info'] = $this->memp->get_all_department()->result(); 
+
+		$this->output('/consent/ev_report/v_main_history_grade',$data);
+	}
+	// function report_history_grade
+
+	function report_history_grade_employee($dep_id){
+
+		$this->load->model('M_evs_pattern_and_year','myears');
+		$data['all_year'] = $this->myears->get_all_year()->result();
+		$all_year = $data['all_year'];
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Department_id = $dep_id;
+		$data['dep_temp'] = $this->memp->get_department_by_id()->result(); 
+		$temp = $data['dep_temp'];
+		$emp_temp = [];
+		$emp_check = [];
+		$emp_all = [];
+		$emp_check_all = [];
+
+		foreach($temp as $index => $row){
+			if($index == 0){
+				$data["com_info"] = $row->Company." (" . $row->Company_id . ")";
+				$data["dep_id"] = $row->Department_id;
+				$data["dep"] = $row->Department;
+			}
+			// if
+
+			$dp = $row->Department_id;
+			$sc = $row->Section_id;
+			$sb = $row->SubSection_id;
+			$gr = $row->Group_id;
+			$ln = $row->Line_id;
+
+			foreach($all_year as $row_year){
+
+			$count = $index;
+			$emp = $this->memp->get_emp_by_dep($row_year->pay_id,$dp,$sc,$sb,$gr,$ln)->result();
+			
+				foreach($emp as $index => $row){
+					if($count == 0){
+						array_push($emp_temp,$row);
+						array_push($emp_check,$row->Emp_ID);
+						
+					}
+					// if
+					else if(!in_array($row->Emp_ID,$emp_check)){
+						array_push($emp_temp,$row);
+						array_push($emp_check,$row->Emp_ID);
+					}
+					// else if
+
+					if($count == 0){
+						array_push($emp_all,$row);
+						array_push($emp_check_all,$row->emp_id);
+						
+					}
+					// if
+					else if(!in_array($row->emp_id,$emp_check_all)){
+						array_push($emp_all,$row);
+						array_push($emp_check_all,$row->emp_id);
+					}
+					// else if
+					
+
+					
+				}
+				// foreach
+			}
+			// foreach year 
+		}
+		// foreach 
+		
+		$dep_temp = [];
+		$grade_temp = [];
+		$grade_temp_emp = [];
+
+		
+		foreach($emp_temp as $row){
+			$dep = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
+			array_push($dep_temp,$dep);
+		}
+		// foreach department 
+		$count_year = 0;
+
+		foreach($emp_all as $index => $row){
+			$emp_tmp = $row->emp_id;
+			
+				// echo $emp_tmp . "--" .$all_year[$count_year]->pay_id."<br>";
+					
+				$this->load->model('M_evs_data_grade','mdtg');
+				$this->mdtg->dgr_emp_id = $emp_tmp;
+				$this->mdtg->dgr_pay_id = $all_year[$count_year]->pay_id;
+				$grade = $this->mdtg->get_by_emp()->result();
+				if(sizeof($grade) != 0){
+					foreach($grade as $row){
+						array_push($grade_temp,$row->dgr_grade);
+					}
+					// foreach 
+				}
+				// if 
+				else {
+					array_push($grade_temp,"-");
+				}
+				// else
+				
+
+			$count_year++;
+
+			if(sizeof($all_year) == $count_year){
+				$count_year = 0;
+				array_push($grade_temp_emp,$grade_temp);
+				$grade_temp = [];
+			}
+			// if 
+		}
+		// foreach grade
+
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+
+		$data["emp_info"] = $emp_temp;
+		$data["dep_info"] = $dep_temp;
+		$data["grade_info"] = $grade_temp_emp;
+		$data["year_info"] = $pay_id;
+		$this->output('/consent/ev_report/v_export_history_grade',$data);
+	}
+	// function report_history_grade_employee
 }
 ?>

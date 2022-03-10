@@ -1,11 +1,11 @@
 <?php
 /*
-* v_export_status_mbo.php
-* Display v_export_status_mbo
+* v_main_report_payroll.php
+* Display v_main_report_payroll
 * @input    
 * @output
 * @author Kunanya Singmee
-* @Create Date 2565-03-3
+* @Create Date 2565-02-22
 */  
 ?>
 
@@ -47,50 +47,36 @@ function exportfile() {
     var name = document.getElementById("name_file").innerHTML;
     var name_dep = document.getElementById("dep_id").value;
     var pay_id = document.getElementById("pay_id").value;
+    var size_year = document.getElementById("size_year").value;
 
     var sheet_name = name_dep;
-    var file_name = "Report status for create MBO " + name_dep;
+    var file_name = "Report History Grade " + name_dep;
 
     var wb = {
         SheetNames: [],
         Sheets: {}
     };
 
-    var objectMaxLength = [3, 10, 30, 15, 25, 25, 15, 15, 30];
+    var objectMaxLength = [3, 10, 30, 15, 25, 25, 15, 15];
+    for (i = 0; i < size_year; i++) {
+        objectMaxLength.push(24);
+    }
+    // for 
+    // console.log(objectMaxLength);
 
-    var wscols = [{
-            width: objectMaxLength[0],
-        },
-        {
-            width: objectMaxLength[1]
-        },
-        {
-            width: objectMaxLength[2]
-        }, //...
-        {
-            width: objectMaxLength[3]
-        },
-        {
-            width: objectMaxLength[4]
-        },
-        {
-            width: objectMaxLength[5]
-        },
-        {
-            width: objectMaxLength[6]
-        },
-        {
-            width: objectMaxLength[7]
-        },
-        {
-            width: objectMaxLength[8]
-        },
-        {
-            width: objectMaxLength[9]
-        }
-    ];
+    var wscols = [];
 
-    var ws9 = XLSX.utils.table_to_sheet(document.getElementById('export_for_mbo'), {
+    for (i = 0; i < objectMaxLength.length; i++) {
+        temp = {
+            width: objectMaxLength[i]
+        };
+        wscols.push(temp);
+    }
+    // for
+
+    // console.log(wscols);
+
+    var ws9 = XLSX.utils.table_to_sheet(document.getElementById('export_for_hisorygrade'), {
         raw: true
     });
 
@@ -110,7 +96,7 @@ function exportfile() {
         data: {
             "pay_id": pay_id,
             "name_dep": name_dep,
-            "type": "StatusMBO"
+            "type": "HistoryGrade"
         },
         success: function(data) {
             console.log(data);
@@ -131,22 +117,15 @@ function exportfile() {
         <div class="panel-heading">
             <div class="col-md-8">
                 <h2>
-                    <font color="#ffffff" size="6px"><b>Report status for create MBO</b></font>
+                    <font color="#ffffff" size="6px"><b>Report for history grade</b></font>
                 </h2>
             </div>
+            <!-- col-8  -->
             <div class="col-md-4" align="right">
-                <?php if(sizeof($emp_info) != 0){ ?>
                 <button class="btn btn-success" onclick="exportfile()"><i class="fa fa-download"></i>
                     Export</button>
-                <?php }
-                        // if 
-                        else {?>
-                <button class="btn btn-success" disabled><i class="fa fa-download"></i>
-                    Export</button>
-                <?php }
-                        // else  ?>
             </div>
-
+            <!-- col-4  -->
         </div>
         <!-- panel-heading -->
 
@@ -155,7 +134,7 @@ function exportfile() {
                 <div class="row">
                     <div class="col-sm-12">
                         <h3>
-                            List of employee to status for create MBO
+                            List of employee to history grade
                         </h3>
                     </div>
 
@@ -163,17 +142,17 @@ function exportfile() {
                 <!--div row for manage size of head panel -->
                 <div class="row">
                     <div class="col-md-12">
-                        <?php $name = $year_info->pay_year." Status for create MBO : ". $dep ?>
-                        <table class="table table-striped table-bordered" id="export_for_mbo" width="100%"
+                        <?php $name = "History grade : ". $dep ?>
+                        <table class="table table-striped table-bordered" id="export_for_hisorygrade" width="100%"
                             style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <th colspan="9">
+                                    <th colspan="<?php echo (sizeof($all_year)+9); ?>">
                                         <h2><b><?php echo $com_info;?></b></h2>
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th colspan="9">
+                                    <th colspan="<?php echo (sizeof($all_year)+9); ?>">
                                         <h3>
                                             <b id="name_file">
                                                 <?php echo $name; ?>
@@ -207,16 +186,22 @@ function exportfile() {
                                     <th>
                                         <center>Section code</center>
                                     </th>
+                                    <?php if(sizeof($all_year) != 0){
+                                    foreach($all_year as $index => $row_year){?>
                                     <th>
-                                        <center>Status</center>
+                                        <center><?php echo "Salary Increment FY " . $row_year->pay_year; ?></center>
                                     </th>
+                                    <?php }
+                                    // foreach 
+                                    }
+                                    // if ?>
                                 </tr>
                                 <!-- tr -->
                             </thead>
                             <!-- thead -->
                             <tbody>
                                 <?php 
-                                // print_r($status_info);
+                                // print_r($grade_info);
                                 
                                 if(sizeof($emp_info) != 0){ 
                                     foreach($emp_info as $index => $row){ ?>
@@ -252,27 +237,25 @@ function exportfile() {
                                         ?>
                                     </td>
                                     <td><?php echo $row->Sectioncode_ID; ?></td>
-                                    <td>
-                                        <?php if($status_info[$index] == 1){?>
-                                        <font color="Blue"><b>
-                                                Created
-                                            </b></font>
-                                        <?php }
-                                        // if
-                                        else if($status_info[$index] == 0){?>
-                                        <font color="Red"><b>
-                                                Not create
-                                            </b></font>
-                                        <?php }
-                                        // else if 
-                                        else if($status_info[$index] == 2){?>
-                                        <font color="Green"><b>
-                                                Created and Select approver
-                                            </b></font>
-                                        <?php }
-                                        // else if?>
 
+                                    <?php if(sizeof($grade_info) != 0){ 
+                                        foreach($grade_info[$index] as $row_grade){?>
+                                    <td>
+                                        <?php if($row_grade != "-"){
+                                                echo $row_grade;
+                                            }
+                                            // if 
+                                            else{
+                                                echo "Wait approve !";
+                                            }
+                                            // else ?>
                                     </td>
+                                    <?php }
+                                    // foreach 
+                                    }
+                                    // if 
+                                    ?>
+
                                 </tr>
                                 <?php
                                     }
@@ -286,7 +269,8 @@ function exportfile() {
                         </table>
                         <!-- table -->
                         <input type="text" id="dep_id" value="<?php echo $dep_id; ?>" hidden>
-                        <input type="text" id="pay_id" value="<?php echo $year_info->pay_id; ?>" hidden>
+                        <input type="text" id="size_year" value="<?php echo sizeof($all_year); ?>" hidden>
+                        <input type="text" id="pay_id" value="<?php echo $year_info; ?>" hidden>
                     </div>
                     <!-- col-12  -->
                 </div>
@@ -296,38 +280,14 @@ function exportfile() {
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-sm-6">
-                            <?php if($_SESSION['UsRole'] == 3){ ?>
-                            <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_mbo">
+                            <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_history_grade">
                                 <button class="btn btn-inverse">BACK</button>
                             </a>
-                            <?php }
-                            // if 
-                            else if($_SESSION['UsRole'] == 2){ ?>
-                            <a href="<?php echo base_url() ?>Evs_all_manage/index_a">
-                                <button class="btn btn-inverse">BACK</button>
-                            </a>
-                            <?php }
-                            // else if
-                            else if($_SESSION['UsRole'] == 1){ ?>
-                            <a href="<?php echo base_url() ?>Evs_all_manage/index_u">
-                                <button class="btn btn-inverse">BACK</button>
-                            </a>
-                            <?php }
-                            // else ?>
                         </div>
                         <!-- col-6  -->
-
                         <div class="col-sm-6" align="right">
-                            <?php if(sizeof($emp_info) != 0){ ?>
                             <button class="btn btn-success" onclick="exportfile()"><i class="fa fa-download"></i>
                                 Export</button>
-                            <?php }
-                        // if 
-                        else {?>
-                            <button class="btn btn-success" disabled><i class="fa fa-download"></i>
-                                Export</button>
-                            <?php }
-                        // else  ?>
                         </div>
                         <!-- col-6  -->
                     </div>

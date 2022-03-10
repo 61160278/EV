@@ -133,6 +133,9 @@
                                 <li><a href="<?php echo base_url() ?>ev_report/Evs_Report/report_grade_auto"><i
                                             class="fa fa-bar-chart-o"></i><span>Report Grade Auto</span></span></a>
                                 </li>
+                                <li><a href="<?php echo base_url() ?>ev_report/Evs_Report/report_history_grade"><i
+                                            class="fa fa-bar-chart-o"></i><span>Report history grade</span></span></a>
+                                </li>
 
                                 <!-- report -->
                                 <?php }

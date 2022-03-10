@@ -81,6 +81,15 @@ class M_evs_pattern_and_year extends Da_evs_pattern_and_year {
 	}	
 	// get_by_year_now_year
 
+	function get_all_year() {
+		$sql = "SELECT * FROM evs_database.evs_pattern_and_year 
+				ORDER BY pay_id ASC";
+		$query = $this->db->query($sql);
+		return $query;
+				
+	}	
+	// get_by_year_now_year
+
 
 
 } 
