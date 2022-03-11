@@ -88,6 +88,9 @@
                                         href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_evaluation_group"><i
                                             class="fa fa-bar-chart-o"></i><span>Status for evaluation</span></span></a>
                                 </li>
+                                <li><a href="<?php echo base_url() ?>ev_report/Evs_Report/report_history_grade_employee_group"><i
+                                            class="fa fa-bar-chart-o"></i><span>Report history grade</span></span></a>
+                                </li>
                                 <!-- head dap.  -->
                                 <?php }
                                 //else if 

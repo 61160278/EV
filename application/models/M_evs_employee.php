@@ -143,6 +143,19 @@ class M_evs_employee extends Da_evs_employee {
 		$query = $this->db->query($sql);
 		return $query;
 	}//get_emp_by_dep_group
+
+	function get_emp_by_group($grp){	
+		$sql = "SELECT * 
+				FROM dbmc.employee AS emp
+				INNER JOIN dbmc.position AS pos
+				ON pos.Position_ID = emp.Position_ID
+				INNER JOIN evs_database.evs_employee AS evs_emp
+				ON evs_emp.emp_employee_id = emp.Emp_ID
+				WHERE evs_emp.emp_gru_id = '".$grp."'
+				ORDER BY emp.Emp_ID";
+		$query = $this->db->query($sql);
+		return $query;
+	}//get_emp_by_group
 	
 		/*
 	* get_by_Empid_group
