@@ -993,9 +993,6 @@ class Evs_Report extends MainController_avenxo {
 		$emp_all = [];
 		$emp_check_all = [];
 
-
-
-			
 			$emp = $this->memp->get_emp_by_group($temp_grp->gru_id)->result();
 				foreach($emp as $index => $row){
 					$count = $index;
@@ -1079,6 +1076,182 @@ class Evs_Report extends MainController_avenxo {
 		$this->output('/consent/ev_report/v_export_history_grade',$data);
 	}
 	// function report_history_grade_employee_group
+
+	function report_history_grade_employee_app(){
+
+		$this->load->model('M_evs_pattern_and_year','myears');
+		$data['all_year'] = $this->myears->get_all_year()->result();
+		$all_year = $data['all_year'];
+
+		$this->load->model('M_evs_pattern_and_year','myear');
+		$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+		$year = $data['patt_year']->row(); // show value year now
+		//end set year now
+		$pay_id = $year->pay_id;
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Emp_ID = $_SESSION['UsEmp_ID'];
+		$this->memp->emp_pay_id = $pay_id;
+		$data['emp_info_show'] = $this->memp->get_by_empid()->row();
+		$temps = $data['emp_info_show'];
+
+		$data['dept_info'] = $this->memp->get_dpartment($temps->Sectioncode_ID)->row();
+		$tmp_dep = $data['dept_info'];
+
+		$this->load->model('M_evs_employee','memp');
+		$this->memp->Department_id = $tmp_dep->Department_id;
+		$data['dep_temp'] = $this->memp->get_department_by_id()->result(); 
+		$temp = $data['dep_temp'];
+		$emp_temp = [];
+		$emp_check = [];
+
+		$data["com_info"] = $tmp_dep->Company." (" . $tmp_dep->Company_id . ")";
+		$data["dep_id"] = "Approver ".$_SESSION['UsName_EN'];
+		$data["dep"] = "Approver ".$_SESSION['UsName_EN'];
+
+		$emp_temp = [];
+		$emp_check = [];
+		$emp_all = [];
+		$emp_check_all = [];
+
+
+		$this->load->model('M_evs_data_approve','meda');
+		$this->meda->dma_approve1 = $_SESSION['UsEmp_ID'];
+		$emp_app1 = $this->meda->get_emp_app1()->result();
+
+			if(sizeof($emp_app1) != 0){
+				foreach($emp_app1 as $index => $row){
+					$count = $index;
+
+					if($count == 0){
+						array_push($emp_temp,$row);
+						array_push($emp_check,$row->Emp_ID);	
+					}
+					// if
+					else if(!in_array($row->Emp_ID,$emp_check)){
+						array_push($emp_temp,$row);
+						array_push($emp_check,$row->Emp_ID);
+					}
+					// else if
+
+					if($count == 0){
+						array_push($emp_all,$row);
+						array_push($emp_check_all,$row->emp_id);
+					}
+					// if
+					else if(!in_array($row->emp_id,$emp_check_all)){
+						array_push($emp_all,$row);
+						array_push($emp_check_all,$row->emp_id);
+					}
+					// else if
+					
+				}
+				// foreach
+			}
+			// if
+
+			$this->load->model('M_evs_data_approve','meda');
+			$this->meda->dma_approve2 = $_SESSION['UsEmp_ID'];
+			$emp_app2 = $this->meda->get_emp_app2()->result();
+	
+				if(sizeof($emp_app2) != 0){
+					foreach($emp_app2 as $index => $row){
+						$count = $index;
+	
+						if($count == 0){
+							array_push($emp_temp,$row);
+							array_push($emp_check,$row->Emp_ID);	
+						}
+						// if
+						else if(!in_array($row->Emp_ID,$emp_check)){
+							array_push($emp_temp,$row);
+							array_push($emp_check,$row->Emp_ID);
+						}
+						// else if
+	
+						if($count == 0){
+							array_push($emp_all,$row);
+							array_push($emp_check_all,$row->emp_id);
+						}
+						// if
+						else if(!in_array($row->emp_id,$emp_check_all)){
+							array_push($emp_all,$row);
+							array_push($emp_check_all,$row->emp_id);
+						}
+						// else if
+						
+					}
+					// foreach
+				}
+				// if
+		
+		$dep_temp = [];
+		$grade_temp = [];
+		$grade_temp_emp = [];
+
+		
+		foreach($emp_temp as $row){
+			$dep = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
+			array_push($dep_temp,$dep);
+		}
+		// foreach department 
+		$count_year = 0;
+		$count_index = 0;
+
+		foreach($emp_all as $index => $row){
+			$emp_tmp = $row->emp_id;
+			
+				// echo $emp_tmp . "--" .$all_year[$count_year]->pay_id."<br>";
+					
+				$this->load->model('M_evs_data_grade','mdtg');
+				$this->mdtg->dgr_emp_id = $emp_tmp;
+				$this->mdtg->dgr_pay_id = $all_year[$count_year]->pay_id;
+				$grade = $this->mdtg->get_by_emp()->result();
+				if(sizeof($grade) != 0){
+					foreach($grade as $row){
+						array_push($grade_temp,$row->dgr_grade);
+					}
+					// foreach 
+				}
+				// if 
+				else {
+					array_push($grade_temp,"-");
+				}
+				// else
+				
+
+			$count_year++;
+			$count_index++;
+
+			if(sizeof($all_year) == $count_year){
+				$count_year = 0;
+				array_push($grade_temp_emp,$grade_temp);
+				$grade_temp = [];
+			}
+			// if
+			else if($count_index == sizeof($emp_all)){
+				if($count_year != sizeof($all_year)){
+					array_push($grade_temp,"-");
+					array_push($grade_temp_emp,$grade_temp);
+				}
+				// if 
+				else {
+					array_push($grade_temp_emp,$grade_temp);
+				}
+				// else 
+			}
+			// else 
+		}
+		// foreach grade
+
+		$data["emp_info"] = $emp_temp;
+		$data["dep_info"] = $dep_temp;
+		$data["grade_info"] = $grade_temp_emp;
+		$data["year_info"] = $pay_id;
+		$this->output('/consent/ev_report/v_export_history_grade',$data);
+	}
+	// function report_history_grade_employee_app
+	
 
 
 

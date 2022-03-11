@@ -176,7 +176,23 @@ th {
                         </div>
                         <!-- col-4  -->
                     </a>
-                    <!-- Work Attendance  -->
+                    <!-- Status for evaluation  -->
+
+                    <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_history_grade_employee_app">
+                        <div class="col-md-4">
+                            <div class="info-tile tile-indigo">
+                                <div class="tile-icon"><i class="fa fa-bar-chart-o"></i></div>
+                                <div class="tile-heading"><span>MENU</span></div>
+                                <div class="tile-body">
+                                    <span>Report history grade</span>
+                                </div>
+                                <!-- body  -->
+                            </div>
+                            <!-- title  -->
+                        </div>
+                        <!-- col-4  -->
+                    </a>
+                    <!-- Report grade  -->
 
                 </div>
                 <!-- row  -->

@@ -58,6 +58,10 @@
                                         href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_evaluation_group_app"><i
                                             class="fa fa-bar-chart-o"></i><span>Status for evaluation</span></span></a>
                                 </li>
+                                <li><a
+                                        href="<?php echo base_url() ?>ev_report/Evs_Report/report_history_grade_employee_app"><i
+                                            class="fa fa-bar-chart-o"></i><span>Report history grade</span></span></a>
+                                </li>
                                 <!-- associate  -->
                                 <?php }
                                 // if
