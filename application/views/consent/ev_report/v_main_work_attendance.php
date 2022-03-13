@@ -1,7 +1,7 @@
 <?php
 /*
-* v_main_grade_auto.php
-* Display v_main_grade_auto
+* v_main_work_attendance.php
+* Display v_main_work_attendance
 * @input    
 * @output
 * @author Kunanya Singmee
@@ -49,7 +49,7 @@ $(document).ready(function() {
     <div class="panel panel-indigo">
         <div class="panel-heading">
             <h2>
-                <font color="#ffffff" size="6px"><b>Report Grade Auto</b></font>
+                <font color="#ffffff" size="6px"><b>Report Work Attendance</b></font>
             </h2>
         </div>
         <!-- panel-heading -->
@@ -59,7 +59,7 @@ $(document).ready(function() {
                 <div class="row">
                     <div class="col-sm-12">
                         <h3>
-                            List of department to grade auto
+                            List of department to  work attendance
                         </h3>
                     </div>
 
@@ -100,7 +100,7 @@ $(document).ready(function() {
                                     <td><?php echo $row->Department; ?></td>
                                     <td>                
                                         <a
-                                            href="<?php echo base_url(); ?>ev_report/Evs_Report/report_grade_auto_employee/<?php echo $row->Department_id; ?>">
+                                            href="<?php echo base_url(); ?>ev_report/Evs_Report/report_work_attendance_employee/<?php echo $row->Department_id; ?>">
                                             <button type="button" class="btn btn-info"><i
                                                     class="fa fa-info-circle"></i></button>
                                         </a>

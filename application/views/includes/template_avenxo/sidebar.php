@@ -50,10 +50,10 @@
                                             class="fa fa-comments"></i><span>Feedback Form</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form/Evs_form/show_ststus"><i
                                             class="fa fa-book"></i><span>Status Form</span></span></a></li>
+                                <li><a href="<?php echo base_url() ?>ev_form/Evs_form/show_work_attendance"><i
+                                            class="fa fa-book"></i><span>Work Attendance</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_AP/Evs_form_AP/report_grade"><i
                                             class="fa fa-bar-chart-o"></i><span>Report Grade</span></span></a></li>
-                                <li><a href="<?php echo base_url() ?>ev_form/Evs_form/show_work_attendance"><i
-                                            class="fa fa-bar-chart-o"></i><span>Work Attendance</span></span></a></li>
                                 <li><a
                                         href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_evaluation_group_app"><i
                                             class="fa fa-bar-chart-o"></i><span>Status for evaluation</span></span></a>
@@ -80,10 +80,10 @@
                                             class="fa fa-comments"></i><span>Feedback group</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form/Evs_form/show_ststus"><i
                                             class="fa fa-book"></i><span>Status Form</span></span></a></li>
+                                <li><a href="<?php echo base_url() ?>ev_form/Evs_form/show_work_attendance"><i
+                                            class="fa fa-book"></i><span>Work Attendance</span></span></a></li>
                                 <li><a href="<?php echo base_url() ?>ev_form_HD/Evs_form_HD/report_grade"><i
                                             class="fa fa-bar-chart-o"></i><span>Report Grade</span></span></a></li>
-                                <li><a href="<?php echo base_url() ?>ev_form/Evs_form/show_work_attendance"><i
-                                            class="fa fa-bar-chart-o"></i><span>Work Attendance</span></span></a></li>
                                 <li><a
                                         href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_mbo_employee_group"><i
                                             class="fa fa-bar-chart-o"></i><span>Status for Create MBO</span></span></a>
@@ -92,8 +92,17 @@
                                         href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_evaluation_group"><i
                                             class="fa fa-bar-chart-o"></i><span>Status for evaluation</span></span></a>
                                 </li>
-                                <li><a href="<?php echo base_url() ?>ev_report/Evs_Report/report_history_grade_employee_group"><i
+                                <li><a
+                                        href="<?php echo base_url() ?>ev_report/Evs_Report/report_grade_auto_employee_group"><i
+                                            class="fa fa-bar-chart-o"></i><span>Report grade auto</span></span></a>
+                                </li>
+                                <li><a
+                                        href="<?php echo base_url() ?>ev_report/Evs_Report/report_history_grade_employee_group"><i
                                             class="fa fa-bar-chart-o"></i><span>Report history grade</span></span></a>
+                                </li>
+                                <li><a
+                                        href="<?php echo base_url() ?>ev_report/Evs_Report/report_work_attendance_employee_group"><i
+                                            class="fa fa-bar-chart-o"></i><span>Report work attendance</span></span></a>
                                 </li>
                                 <!-- head dap.  -->
                                 <?php }
@@ -142,6 +151,9 @@
                                 </li>
                                 <li><a href="<?php echo base_url() ?>ev_report/Evs_Report/report_history_grade"><i
                                             class="fa fa-bar-chart-o"></i><span>Report history grade</span></span></a>
+                                </li>
+                                <li><a href="<?php echo base_url() ?>ev_report/Evs_Report/report_work_attendance"><i
+                                            class="fa fa-bar-chart-o"></i><span>Report work attendance</span></span></a>
                                 </li>
 
                                 <!-- report -->

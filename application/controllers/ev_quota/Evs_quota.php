@@ -194,14 +194,14 @@ class Evs_quota extends MainController_avenxo {
 		   $this->mqut->qut_id = $qut_id;
 		   $data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota
    
-		   $this->load->model('M_evs_department','mdep');
-		   $data['dep_data'] = $this->mdep->get_all(); // show value department all
+		//    $this->load->model('M_evs_department','mdep');
+		//    $data['dep_data'] = $this->mdep->get_all(); // show value department all
    
-		   $this->load->model('M_evs_position','meps');
-		   $data['pos_data'] = $this->meps->get_all()->result(); // show value position all
+		//    $this->load->model('M_evs_position','meps');
+		//    $data['pos_data'] = $this->meps->get_all()->result(); // show value position all
    
-		   $this->load->model('M_evs_company','mcpn');
-		   $data['com_data'] = $this->mcpn->get_all(); // show value company all
+		//    $this->load->model('M_evs_company','mcpn');
+		//    $data['com_data'] = $this->mcpn->get_all(); // show value company all
    
 		   $this->load->model('M_evs_quota_plan','mqup');
 		   $this->mqup->qup_qut_id = $qut_id;
@@ -213,17 +213,24 @@ class Evs_quota extends MainController_avenxo {
 		   $this->mqua->qua_Position_ID = $pos_id;
 		   $data['qua_data'] = $this->mqua->get_id_quota_position_actual()->result();
 
-		  
 
 		   $this->load->model('M_evs_pattern_and_year','mpay');
 			$data['year_quota_data'] = $this->mpay->get_by_year();
 
 		   $this->load->model('M_evs_position','mpos');	
 		   
-		   $sql_data = 'employee.Company_ID = '.$com_select.' and department.Dep_id '.'= '.$dep_sel.' and position.Position_ID = "'.$pos_id.'" ';
+		   $sql_data = '(DV.Company_id = "'.$com_select.'" or DM.Company_id = "'.$com_select.'" or SI.Company_id = "'.$com_select.'" 
+		   or SB.Company_id = "'.$com_select.'" or GI.Company_id = "'.$com_select.'" or LI.Company_id = "'.$com_select.'") 
+		   AND  (DV.Department_id = "'.$dep_sel.'" or DM.Department_id = "'.$dep_sel.'" or SI.Department_id = "'.$dep_sel.'" 
+		   or SB.Department_id = "'.$dep_sel.'" or GI.Department_id = "'.$dep_sel.'" 
+		   or LI.Department_id = "'.$dep_sel.'") and position.Position_ID = "'.$pos_id.'"';
 		   $data['data_Plan']  = sizeof( $this->mpos->get_pos_com_dep_posiion($sql_data)->result());
 
-		   $sql_data = 'employee.Company_ID = '.$com_select.' and department.Dep_id '.'= '.$dep_sel.' and position.Position_ID = "'.$pos_id.'" ';
+		   $sql_data = '(DV.Company_id = "'.$com_select.'" or DM.Company_id = "'.$com_select.'" or SI.Company_id = "'.$com_select.'" 
+		   or SB.Company_id = "'.$com_select.'" or GI.Company_id = "'.$com_select.'" or LI.Company_id = "'.$com_select.'") 
+		   AND  (DV.Department_id = "'.$dep_sel.'" or DM.Department_id = "'.$dep_sel.'" or SI.Department_id = "'.$dep_sel.'" 
+		   or SB.Department_id = "'.$dep_sel.'" or GI.Department_id = "'.$dep_sel.'" 
+		   or LI.Department_id = "'.$dep_sel.'") and position.Position_ID = "'.$pos_id.'"';
 		   $data_grade = $this->mpos->get_pos_com_dep_posiion_and_grade($sql_data)->result();
 		   
 		   $data_grade_rank = [];
@@ -359,16 +366,15 @@ class Evs_quota extends MainController_avenxo {
 	*/
 	function manage_quota_report($qut_id)
 	{
-		$this->load->model('M_evs_department','mdep');
-		$data['dep_data'] = $this->mdep->get_all(); // show value department all
+		
 
 		$this->load->model('M_evs_position_level','mepsl');
 		$data['psl_data'] = $this->mepsl->get_all(); // show value position level all
 
 		$this->load->model('M_evs_company','mcpn');
-		$data['com_data'] = $this->mcpn->get_all(); // show value company all
-
+		$data['com_data'] = $this->mcpn->get_company(); // show value company all
 		$this->load->model('M_evs_quota','mqut');
+
 		$this->mqut->qut_id = $qut_id;
 		$data['manage_qut_data'] = $this->mqut->get_quota_id()->result(); // show value quota in manage quota
 

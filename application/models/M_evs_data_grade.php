@@ -70,6 +70,19 @@ class M_evs_data_grade extends Da_evs_data_grade {
 		$query = $this->db->query($sql, array($this->dgr_emp_id,$this->dgr_pay_id));
 		return $query;
 	
+	}//
+	
+	function get_data_grade_auto_by_emp(){	
+		$sql = "SELECT *
+		FROM evs_database.evs_grade_auto as evs_gat
+		INNER JOIN evs_database.evs_employee as evs_emp
+		ON evs_emp.emp_id = evs_gat.grd_emp_id
+        INNER JOIN evs_database.evs_reasoning_master as evs_rsm
+		ON evs_gat.grd_status = evs_rsm.rms_id
+		WHERE grd_emp_id = ?";
+		$query = $this->db->query($sql, array($this->grd_emp_id));
+		return $query;
+	
 	}//get_by_emp
 	
 	/*
@@ -160,6 +173,8 @@ class M_evs_data_grade extends Da_evs_data_grade {
 		return $query;
 	
 	}//get_by_approver2
+
+
 
 
 

@@ -76,7 +76,7 @@ function edit_quota() {
 
     // document.getElementById("submit").disabled = false;
     var qut_id = parseFloat(document.getElementById("idDataQuota").value);
-    for (i = 1; i <= 6; i++) {
+    for (i = 1; i <= 7; i++) {
         check = document.getElementById("quota" + i).value;
 
         if (check != "") {

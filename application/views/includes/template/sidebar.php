@@ -125,10 +125,21 @@
                 </li>
                 <!-- Report for evaluation -->
                 <li class="menu-item">
+                    <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_grade_auto"><i
+                            class="menu-icon fa fa-bar-chart-o"></i>Report grade auto</a>
+                </li>
+                <!-- Report Grade Auto -->
+                <li class="menu-item">
                     <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_history_grade"><i
                             class="menu-icon fa fa-bar-chart-o"></i>Report history grade</a>
                 </li>
                 <!-- Report history grade -->
+                <li class="menu-item">
+                    <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_work_attendance"><i
+                            class="menu-icon fa fa-bar-chart-o"></i>Report work attendance</a>
+                </li>
+                <!-- Report history grade -->
+        
 
             </ul>
             <!-- End tap menu sidebar  -->

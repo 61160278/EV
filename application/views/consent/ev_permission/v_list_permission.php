@@ -10,6 +10,7 @@
 ?>
 <script>
 $(document).ready(function() {
+    emp_insert()
     $('#emp_list').DataTable();
 });
 // document.ready
@@ -91,13 +92,16 @@ function emp_insert() {
     // for 
     console.log("chack : " + check);
     console.log("loop_count : " + Math.ceil(loop_count));
-    if (check == Math.ceil(loop_count)) {
-        window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/" +
-            <?php echo $year; ?> + ""
-    }
-    // if 
+   
 
 } //function emp_insert
+
+function emp_location() {
+    window.location.href = "<?php echo base_url();?>ev_permission/Evs_permission/delete_emp/" +
+            <?php echo $year; ?> + ""
+
+}
+
 </script>
 <!-- END Script  -->
 
@@ -228,9 +232,7 @@ td {
             </div>
             <!-- col-8  -->
             <div class="col-sm-4" align="right">
-                <button class="btn btn-success btn" onclick="emp_insert()">Submit</button>
-
-
+                <button class="btn btn-warning btn" onclick="emp_location()">Edit data</button>
             </div>
             <!-- col-sm-4 -->
         </div>

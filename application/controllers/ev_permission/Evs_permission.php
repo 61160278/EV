@@ -247,7 +247,7 @@ class Evs_permission extends MainController_avenxo {
 			// if
 		}
 		// for
-		$data = $empid;
+		$data = "good";
 		echo json_encode($data);
 
 	} // function insert_emp

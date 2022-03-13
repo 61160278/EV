@@ -1,11 +1,11 @@
 <?php
 /*
-* v_export_grade_auto.php
-* Display v_export_grade_auto
+* v_main_report_payroll.php
+* Display v_main_report_payroll
 * @input    
 * @output
 * @author jakkarin 
-* @Create Date 2565-03-3
+* @Create Date 2565-02-22
 */  
 ?>
 
@@ -49,7 +49,7 @@ function exportfile() {
     var pay_id = document.getElementById("pay_id").value;
 
     var sheet_name = name_dep;
-    var file_name = "Report Grade Auto" + name_dep;
+    var file_name = "Report for Status evaluation " + name_dep;
 
     var wb = {
         SheetNames: [],
@@ -96,7 +96,7 @@ function exportfile() {
         }
     ];
 
-    var ws9 = XLSX.utils.table_to_sheet(document.getElementById('export_grade_auto'), {
+    var ws9 = XLSX.utils.table_to_sheet(document.getElementById('export_for_evaluation'), {
         raw: true
     });
 
@@ -137,15 +137,11 @@ function exportfile() {
         <div class="panel-heading">
             <div class="col-md-8">
                 <h2>
-                    <font color="#ffffff" size="6px"><b>Report Grade Auto</b></font>
+                    <font color="#ffffff" size="6px"><b>Report Work Attendance</b></font>
                 </h2>
             </div>
             <!-- col-8  -->
-            <div class="col-md-4" align="right">
-                <button class="btn btn-success" onclick="exportfile()"><i class="fa fa-download"></i>
-                    Export</button>
-            </div>
-            <!-- col-4  -->
+            
         </div>
         <!-- panel-heading -->
 
@@ -154,7 +150,7 @@ function exportfile() {
                 <div class="row">
                     <div class="col-sm-12">
                         <h3>
-                            List of department to grade auto
+                            List of department to work attendance
                         </h3>
                     </div>
 
@@ -163,7 +159,7 @@ function exportfile() {
                 <div class="row">
                     <div class="col-md-12">
                         <?php $name = $year_info->pay_year." Salary Increment : ". $dep ?>
-                        <table class="table table-striped table-bordered" id="export_grade_auto" width="100%"
+                        <table class="table table-striped table-bordered" id="export_work_attendance" width="100%"
                             style="width: 100%;">
                             <thead>
                                 <tr>
@@ -207,11 +203,9 @@ function exportfile() {
                                         <center>Section code</center>
                                     </th>
                                     <th>
-                                        <center>Arade auto</center>
+                                        <center>Action</center>
                                     </th>
-                                    <th>
-                                        <center>Reasoning</center>
-                                    </th>
+
                                 </tr>
                                 <!-- tr -->
                             </thead>
@@ -254,8 +248,13 @@ function exportfile() {
                                         ?>
                                     </td>
                                     <td><?php echo $row->Sectioncode_ID; ?></td>
-                                    <td><?php echo $grade_info[$index];?></td>
-                                    <td><?php echo $grade_reasoning[$index];?></td>
+                                    <td>
+                                        <a href="<?php echo base_url(); ?>ev_report/Evs_Report/show_work_attendance/<?php echo $row->Emp_ID; ?>">
+                                            <button type="button" class="btn btn-info"><i
+                                                    class="fa fa-info-circle"></i></button>
+                                        </a>
+                                    </td>
+
                                 </tr>
                                 <?php
                                     }
@@ -275,19 +274,28 @@ function exportfile() {
                 </div>
                 <!-- row  -->
 
-
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-sm-6">
-                            <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_grade_auto">
+                            <?php if($_SESSION['UsRole'] == 3){ ?>
+                            
+                            <?php }
+                            // if 
+                            else if($_SESSION['UsRole'] == 2){ ?>
+                            <a href="<?php echo base_url() ?>Evs_all_manage/index_a">
                                 <button class="btn btn-inverse">BACK</button>
                             </a>
+                            <?php }
+                            // else if
+                            else if($_SESSION['UsRole'] == 1){ ?>
+                            <a href="<?php echo base_url() ?>Evs_all_manage/index_u">
+                                <button class="btn btn-inverse">BACK</button>
+                            </a>
+                            <?php }
+                            // else ?>
                         </div>
                         <!-- col-6  -->
-                        <div class="col-sm-6" align="right">
-                            <button class="btn btn-success" onclick="exportfile()"><i class="fa fa-download"></i>
-                                Export</button>
-                        </div>
+                      
                         <!-- col-6  -->
                     </div>
                     <!-- row  -->

@@ -182,6 +182,22 @@ th {
                     </a>
                     <!-- Report evaluation  -->
 
+                    <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_grade_auto_employee_group">
+                        <div class="col-md-4">
+                            <div class="info-tile tile-indigo">
+                                <div class="tile-icon"><i class="fa fa-bar-chart-o"></i></div>
+                                <div class="tile-heading"><span>MENU</span></div>
+                                <div class="tile-body">
+                                    <span>Report Grade Auto</span>
+                                </div>
+                                <!-- body  -->
+                            </div>
+                            <!-- title  -->
+                        </div>
+                        <!-- col-4  -->
+                    </a>
+                    <!-- Report Grade Auto  -->
+
                     <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_history_grade_employee_group">
                         <div class="col-md-4">
                             <div class="info-tile tile-indigo">
@@ -197,6 +213,23 @@ th {
                         <!-- col-4  -->
                     </a>
                     <!-- Report history grade -->
+
+
+                    <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_work_attendance_employee_group">
+                        <div class="col-md-4">
+                            <div class="info-tile tile-indigo">
+                                <div class="tile-icon"><i class="fa fa-bar-chart-o"></i></div>
+                                <div class="tile-heading"><span>MENU</span></div>
+                                <div class="tile-body">
+                                    <span>Report work attendance</span>
+                                </div>
+                                <!-- body  -->
+                            </div>
+                            <!-- title  -->
+                        </div>
+                        <!-- col-4  -->
+                    </a>
+                    <!-- Report Grade Auto  -->
 
                 </div>
 

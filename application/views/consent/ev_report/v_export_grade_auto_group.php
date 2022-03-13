@@ -1,11 +1,11 @@
 <?php
 /*
-* v_export_grade_auto.php
-* Display v_export_grade_auto
+* v_main_report_payroll.php
+* Display v_main_report_payroll
 * @input    
 * @output
 * @author jakkarin 
-* @Create Date 2565-03-3
+* @Create Date 2565-02-22
 */  
 ?>
 
@@ -49,7 +49,7 @@ function exportfile() {
     var pay_id = document.getElementById("pay_id").value;
 
     var sheet_name = name_dep;
-    var file_name = "Report Grade Auto" + name_dep;
+    var file_name = "Report for Status evaluation " + name_dep;
 
     var wb = {
         SheetNames: [],
@@ -96,7 +96,7 @@ function exportfile() {
         }
     ];
 
-    var ws9 = XLSX.utils.table_to_sheet(document.getElementById('export_grade_auto'), {
+    var ws9 = XLSX.utils.table_to_sheet(document.getElementById('export_for_evaluation'), {
         raw: true
     });
 
@@ -162,8 +162,8 @@ function exportfile() {
                 <!--div row for manage size of head panel -->
                 <div class="row">
                     <div class="col-md-12">
-                        <?php $name = $year_info->pay_year." Salary Increment : ". $dep ?>
-                        <table class="table table-striped table-bordered" id="export_grade_auto" width="100%"
+                        <?php $name = $year_info->pay_year." Status evaluation : ". $dep ?>
+                        <table class="table table-striped table-bordered" id="export_for_evaluation" width="100%"
                             style="width: 100%;">
                             <thead>
                                 <tr>
@@ -279,9 +279,24 @@ function exportfile() {
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-sm-6">
-                            <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_grade_auto">
+                            <?php if($_SESSION['UsRole'] == 3){ ?>
+                            <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_evaluation">
                                 <button class="btn btn-inverse">BACK</button>
                             </a>
+                            <?php }
+                            // if 
+                            else if($_SESSION['UsRole'] == 2){ ?>
+                            <a href="<?php echo base_url() ?>Evs_all_manage/index_a">
+                                <button class="btn btn-inverse">BACK</button>
+                            </a>
+                            <?php }
+                            // else if
+                            else if($_SESSION['UsRole'] == 1){ ?>
+                            <a href="<?php echo base_url() ?>Evs_all_manage/index_u">
+                                <button class="btn btn-inverse">BACK</button>
+                            </a>
+                            <?php }
+                            // else ?>
                         </div>
                         <!-- col-6  -->
                         <div class="col-sm-6" align="right">

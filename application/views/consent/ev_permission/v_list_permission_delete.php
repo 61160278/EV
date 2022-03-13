@@ -12,7 +12,7 @@
 
 $(document).ready( function () {
     $('#emp_list').DataTable();
-} );
+});
 
 function emp_delete(emp_id) {
     console.log(emp_id);

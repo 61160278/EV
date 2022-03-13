@@ -161,7 +161,7 @@ class M_evs_position extends Da_evs_position {
 		LEFT JOIN master_mapping AS SB ON Sectioncode_ID = SB.SubSection_id 
 		LEFT JOIN master_mapping AS GI ON Sectioncode_ID = GI.Group_id 
 		LEFT JOIN master_mapping AS LI ON Sectioncode_ID = LI.Line_id 
-		WHERE ".$sql_data."";
+		WHERE ".$sql_data." GROUP by position.Position_ID";
 		$query = $this->db->query($sql);
 		return $query;
 	}
@@ -178,23 +178,18 @@ class M_evs_position extends Da_evs_position {
 	*/	
 
 	function get_pos_com_dep_posiion_and_grade($sql_data){	
-		$sql = " SELECT *
-		FROM dbmc.employee
-		LEFT JOIN dbmc.position
-		ON employee.Position_ID = position.Position_ID
-		LEFT JOIN dbmc.position_level
-		ON position.position_level_id = position_level.psl_id
-		LEFT JOIN dbmc.sectioncode
-		ON employee.CostCenter_ID = sectioncode.Sectioncode
-		LEFT JOIN dbmc.department
-		ON sectioncode.dep_id = department.Dep_id
-		LEFT JOIN dbmc.company
-		ON employee.Company_ID = company.Company_ID
-        LEFT JOIN evs_database.evs_employee
-        ON employee.Emp_ID = evs_employee.emp_employee_id
+		$sql = " SELECT * 
+		FROM employee 
+		LEFT JOIN position ON employee.Position_ID = position.Position_ID 
+		LEFT JOIN master_mapping AS DV ON Sectioncode_ID = DV.Division_id 
+		LEFT JOIN master_mapping AS DM ON Sectioncode_ID = DM.Department_id 
+		LEFT JOIN master_mapping AS SI ON Sectioncode_ID = SI.Section_id 
+		LEFT JOIN master_mapping AS SB ON Sectioncode_ID = SB.SubSection_id 
+		LEFT JOIN master_mapping AS GI ON Sectioncode_ID = GI.Group_id 
+		LEFT JOIN master_mapping AS LI ON Sectioncode_ID = LI.Line_id 
         LEFT JOIN evs_database.evs_data_grade
-        ON evs_employee.emp_id = evs_data_grade.dgr_dtm_emp_id
-        WHERE ".$sql_data."";
+        ON employee.emp_id = evs_data_grade.dgr_emp_id
+        WHERE ".$sql_data." GROUP by position.Position_ID";
 		$query = $this->db->query($sql);
 		return $query;
 	}

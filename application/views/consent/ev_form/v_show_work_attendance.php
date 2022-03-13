@@ -257,9 +257,17 @@ $(document).ready(function() {
                 <hr>
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="<?php echo base_url() ?>Evs_all_manage/index_u">
-                            <button class="btn btn-inverse">BACK</button>
-                        </a>
+                    <?php if($_SESSION['UsRole'] == 3){ ?>
+                            <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_work_attendance_employee/<?php echo $dept_info->Department_id; ?>">
+                                <button class="btn btn-inverse">BACK</button>
+                            </a>
+                            <?php }
+                            // if 
+                            else if($_SESSION['UsRole'] == 2){ ?>
+                            <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_work_attendance_employee_group">
+                                <button class="btn btn-inverse">BACK</button>
+                            </a>
+                            <?php } ?>
                         <!-- cancel to back to main  -->
                     </div>
                     <!-- col-md-6 -->
