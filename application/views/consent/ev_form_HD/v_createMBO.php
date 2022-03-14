@@ -95,7 +95,8 @@ function save_dataMBO() {
         },
         success: function(data) {
             console.log(data);
-            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form_HD/edit_mbo_emp/" + check_emp_id +
+            window.location.href = "<?php echo base_url();?>/ev_form/Evs_form_HD/edit_mbo_emp/" +
+                check_emp_id +
                 "";
         }
         // success
@@ -123,12 +124,12 @@ function creatembo() {
             "pos": check_pos
         },
         success: function(data) {
-            //console.log("1111");
-            //console.log(data);
+            console.log("1111");
+            console.log(data);
             var rowmbo = data.sfm_index_field;
             info_row = parseInt(rowmbo);
             var clear = 0;
-            //console.log(info_row);
+            console.log(info_row);
 
             for (i = 0; i < info_row; i++) {
                 clear = i + 1;
@@ -194,6 +195,28 @@ function creatembo() {
 
 }
 // function creatembo
+
+function get_sdgs_mbo(count) {
+
+    $.get("<?php echo base_url(); ?>ev_form/Evs_form/get_sdgs", function(data) {
+        var obj = JSON.parse(data);
+        var data_sel = "";
+        obj.forEach((row, index) => {
+            data_sel += '<option value="' + row.sdg_id + '">'
+            data_sel += row.sdg_name_th
+            data_sel += '</option>'
+        });
+        // forEach
+
+        for (i = 0; i < count; i++) {
+            $("#sdgs_sel" + (i + 1)).append(data_sel);
+        }
+        // for
+
+    });
+
+}
+// function get_sdgs
 
 function check_weight() {
 
@@ -333,7 +356,16 @@ function check_cancel() {
 // function check_cancel
 
 function cancel_form() {
-    window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/index";
+    var check = $("#st_btn").val();
+    if (check != 1) {
+        window.location.href = "<?php echo base_url();?>/ev_form/Evs_form/index";
+    }
+    // if
+    else {
+        window.location.href = "<?php echo base_url();?>/ev_form_HD/Evs_form_HD/create_form_group";
+    }
+    // else 
+
 }
 // function cancel_form
 
@@ -654,6 +686,7 @@ function set_tap() {
                     <ul class="nav nav-tabs pull-right tabdrop" id="show_tap">
                     </ul>
                 </div>
+                <input type="hidden" id="st_btn" value="<?php echo $status_btn; ?>">
             </div>
             <!-- heading -->
 
@@ -790,7 +823,8 @@ function set_tap() {
                             <!-- col-md-6 -->
 
                             <div class="col-md-6" align="right">
-                                <button class="btn btn-success" id="btn_save" onclick="return check_mbo()">Submit</button>
+                                <button class="btn btn-success" id="btn_save"
+                                    onclick="return check_mbo()">Submit</button>
                             </div>
                             <!-- col-md-6 add_app -->
 
