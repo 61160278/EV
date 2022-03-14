@@ -1355,10 +1355,8 @@ class Evs_Report extends MainController_avenxo {
 	}
 	// function report_history_grade_employee_app
 	
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-function report_work_attendance(){
+ function report_work_attendance(){
 	$this->load->model('M_evs_pattern_and_year','myear');
 	$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
 	$year = $data['patt_year']->row(); // show value year now
@@ -1538,31 +1536,157 @@ function report_work_attendance_employee_group(){
 		$this->load->model('M_evs_data_grade','mdtg');
 		$this->mdtg->grd_emp_id = $row->emp_id;
 		$grade = $this->mdtg->get_data_grade_auto_by_emp()->result();
-		if(sizeof($grade) != 0){
-			foreach($grade as $row){
-				array_push($grade_temp,$row->grd_grade);
-				array_push($grade_reasoning,$row->rms_name);
-			}
-			// foreach 
-		}
-		// if 
-		else {
-			array_push($grade_temp,"-");
-			array_push($grade_reasoning,"-");
-		}
-		// else 
 	}
 	// foreach 
 
 	$data["emp_info"] = $emp_temp;
 	$data["dep_info"] = $dep_temp;
-	$data["grade_info"] = $grade_temp;
-	$data["grade_reasoning"] = $grade_reasoning;
 	$data["year_info"] = $year;
 	$this->output('/consent/ev_report/v_export_work_attendance_group',$data);
 }
 // function report_work_attendance_employee_group
 
+
+function report_list_of_associate_for_create_MBO(){
+
+	$this->load->model('M_evs_pattern_and_year','myear');
+	$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+	$year = $data['patt_year']->row(); // show value year now
+	//end set year now
+	$pay_id = $year->pay_id;
+
+	$this->load->model('M_evs_excel_report','mexr');
+	$this->mexr->erp_pay_id = $pay_id;
+	$name = "StatusMBO";
+	$data["ex_info"] = $this->mexr->get_by_pay($name)->result();
+
+	$this->load->model('M_evs_employee','memp');
+	$data['dep_info'] = $this->memp->get_all_department()->result(); 
+
+	$this->output('/consent/ev_report/v_main_associate_for_create_MBO',$data);
+}
+// function report_status_mbo
+
+
+function report_list_of_associate_for_create_MBO_emp ($dep_id){
+
+	$this->load->model('M_evs_pattern_and_year','myear');
+	$data['patt_year'] = $this->myear->get_by_year_now_year(); // show value year now
+	$year = $data['patt_year']->row(); // show value year now
+	//end set year now
+	$pay_id = $year->pay_id;
+
+	$this->load->model('M_evs_employee','memp');
+	$this->memp->Department_id = $dep_id;
+	$data['dep_temp'] = $this->memp->get_department_by_id()->result(); 
+	$temp = $data['dep_temp'];
+	$emp_temp = [];
+	$emp_check = [];
+	$postion = [];
+
+	$this->load->model('M_evs_position_from','meps');
+	$this->meps->ps_form_pe = "MBO";
+	$this->meps->ps_pay_id = $pay_id;
+	$data['form_temp'] = $this->meps->get_form()->result(); 
+
+	foreach($data['form_temp'] as $row_form){
+		array_push($postion,$row_form->ps_pos_id);
+		// echo $row_form->Position_name;
+	}
+	// foreach
+
+	foreach($temp as $index => $row){
+		if($index == 0){
+			$data["com_info"] = $row->Company." (" . $row->Company_id . ")";
+			$data["dep_id"] = $row->Department_id;
+			$data["dep"] = $row->Department;
+		}
+		// if
+
+		$dp = $row->Department_id;
+		$sc = $row->Section_id;
+		$sb = $row->SubSection_id;
+		$gr = $row->Group_id;
+		$ln = $row->Line_id;
+
+		$count = $index;
+		$emp = $this->memp->get_emp_by_dep($pay_id,$dp,$sc,$sb,$gr,$ln)->result();
+
+		foreach($emp as $index => $row){
+			if($count == 0){
+				foreach($postion as $row_pos){
+					if($row_pos == $row->Position_ID){
+						array_push($emp_temp,$row);
+						array_push($emp_check,$row->Emp_ID);
+					}
+					// if 
+				}
+				// foreach
+			}
+			// if
+			else if(!in_array($row->Emp_ID,$emp_check)){
+				foreach($postion as $row_pos){
+					if($row_pos == $row->Position_ID){
+						array_push($emp_temp,$row);
+						array_push($emp_check,$row->Emp_ID);
+					}
+					// if 
+				}
+				// foreach
+			}
+			// else if 
+		}
+		// foreach
+	}
+	// foreach 
+	$dep_temp = [];
+	$grade_temp = [];
+	$status_temp = [];
+
+	foreach($emp_temp as $index => $row){
+		// echo $row->Sectioncode_ID."<br>";
+		$dep = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
+		array_push($dep_temp,$dep);
+
+		$this->load->model('M_evs_data_mbo','medm');
+		$this->medm->dtm_emp_id = $row->Emp_ID;
+		$this->medm->dtm_evs_emp_id = $row->emp_id;
+		$data['mbo_temp'] = $this->medm->get_mbo_by_empID()->result(); 
+		$temp_mbo = $data['mbo_temp'];
+
+		if(sizeof($temp_mbo) != 0){
+
+			$this->load->model('M_evs_data_approve','meda');
+			$this->meda->dma_dtm_emp_id = $row->Emp_ID;
+			$this->meda->dma_emp_id = $row->emp_id;
+			$data['app_temp'] = $this->meda->get_app_by_empID()->result(); 
+
+			if(sizeof($data['app_temp']) != 0){
+				array_push($status_temp,"2");
+			}
+			// if 
+			else{
+				array_push($status_temp,"1");
+			}
+			// else 
+		}	
+		// if
+		else{
+			array_push($status_temp,"0");
+		}
+		// else
+
+
+	}
+	// foreach 
+
+	$data["emp_info"] = $emp_temp;
+	$data["dep_info"] = $dep_temp;
+	$data["status_info"] = $status_temp;
+	$data["year_info"] = $year;
+	$this->output('/consent/ev_report/v_export_associate_for_create_MBO',$data);
+}
+// function report_status_mbo_employee
 
 
 

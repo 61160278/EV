@@ -155,6 +155,9 @@
                                 <li><a href="<?php echo base_url() ?>ev_report/Evs_Report/report_work_attendance"><i
                                             class="fa fa-bar-chart-o"></i><span>Report work attendance</span></span></a>
                                 </li>
+                                <li><a href="<?php echo base_url() ?>ev_report/Evs_Report/report_list_of_associate_for_create_MBO"><i
+                                            class="fa fa-bar-chart-o"></i><span>Report associate for create MBO</span></span></a>
+                                </li>
 
                                 <!-- report -->
                                 <?php }

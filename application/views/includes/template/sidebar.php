@@ -138,7 +138,12 @@
                     <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_work_attendance"><i
                             class="menu-icon fa fa-bar-chart-o"></i>Report work attendance</a>
                 </li>
-                <!-- Report history grade -->
+                <!-- Report work attendance -->
+                <li class="menu-item">
+                    <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_list_of_associate_for_create_MBO"><i
+                            class="menu-icon fa fa-bar-chart-o"></i>Report associate for create MBO</a>
+                </li>
+                <!-- Report list of associate for create MBO -->
         
 
             </ul>
