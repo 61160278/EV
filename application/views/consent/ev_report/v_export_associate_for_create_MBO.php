@@ -160,7 +160,7 @@ function exportfile() {
                 <!--div row for manage size of head panel -->
                 <div class="row">
                     <div class="col-md-12">
-                        <?php $name = $year_info->pay_year." Status for create MBO : ". $dep ?>
+                        <?php $name = $year_info->pay_year." list of associate for create MBO : ". $dep ?>
                         <table class="table table-striped table-bordered" id="export_for_mbo" width="100%"
                             style="width: 100%;">
                             <thead>

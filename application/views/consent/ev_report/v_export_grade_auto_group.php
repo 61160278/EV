@@ -162,7 +162,7 @@ function exportfile() {
                 <!--div row for manage size of head panel -->
                 <div class="row">
                     <div class="col-md-12">
-                        <?php $name = $year_info->pay_year." Status evaluation : ". $dep ?>
+                        <?php $name = $year_info->pay_year." Grade Auto : ". $dep ?>
                         <table class="table table-striped table-bordered" id="export_for_evaluation" width="100%"
                             style="width: 100%;">
                             <thead>
