@@ -201,7 +201,7 @@ function exportfile() {
                                         <center>Section code</center>
                                     </th>
                                     <th>
-                                        <center>Status Evluation</center>
+                                        <center>Status Evaluation</center>
                                     </th>
                                 </tr>
                                 <!-- tr -->
