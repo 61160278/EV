@@ -38,6 +38,7 @@ tbody {
 
 <script>
 $(document).ready(function() {
+    // $('#export_for_evaluation').DataTable();
 
 });
 // document ready
