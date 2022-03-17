@@ -520,6 +520,7 @@ function set_tap_his() {
                                                 $mbo_3 = "Unchecked";
                                                 $mbo_4 = "Unchecked";
                                                 $mbo_5 = "Unchecked";
+                                                if(sizeof($data_mbo) != 0){
 
                                                 if($data_mbo[$index]->dmw_weight == 1){ 
                                                     $mbo_1 = "checked";
@@ -541,6 +542,9 @@ function set_tap_his() {
                                                     $mbo_5 = "checked";
                                                 }
                                                 // else if
+                                                
+                                                }
+                                                // if
                                                 ?>
 
                                                 <input type="radio" name="result<?php echo $index; ?>" value="1"
@@ -572,9 +576,11 @@ function set_tap_his() {
                                     <td id="dis_color">
                                         <center>
                                             <?php 
-                                            
+                                            if(sizeof($data_mbo) != 0){
                                             echo intval($data_mbo[$index]->dmw_weight)*$row->dtm_weight; 
                                             $sum_w += intval($data_mbo[$index]->dmw_weight)*$row->dtm_weight; 
+                                            }
+                                            // if 
                                             ?>
                                         </center>
                                     </td>

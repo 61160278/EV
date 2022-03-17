@@ -618,7 +618,7 @@ class Evs_form_AP extends MainController_avenxo {
 			if(sizeof($data['emp_info']) != 0){
 
 			foreach($data['emp_info'] as $row){
-				echo $row->Sectioncode_ID;
+				// echo $row->Sectioncode_ID;
 				$data["dep_info"] = $this->memp->get_dpartment($row->Sectioncode_ID)->row();
 			}
 			// foreach 
