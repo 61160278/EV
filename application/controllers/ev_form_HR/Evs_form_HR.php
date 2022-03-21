@@ -1926,9 +1926,6 @@ class Evs_form_HR extends MainController_avenxo {
 		$year = $data['patt_year']->row(); // show value year now
 		//end set year now
 
-		// $this->load->model('M_evs_grade_auto','mgat');
-		// $this->mgat->emp_pay_id = $year->pay_id;
-		// $data['garde'] = $this->mgat->get_data_by_pay_id()->result();
 
 		$this->output('/consent/ev_form_HR/v_main_work_attendance',$data);
 	}
