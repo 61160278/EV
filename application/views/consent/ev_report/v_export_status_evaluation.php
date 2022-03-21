@@ -38,6 +38,7 @@ tbody {
 
 <script>
 $(document).ready(function() {
+    // $('#export_for_evaluation').DataTable();
 
 });
 // document ready
@@ -201,7 +202,7 @@ function exportfile() {
                                         <center>Section code</center>
                                     </th>
                                     <th>
-                                        <center>Status Evluation</center>
+                                        <center>Status Evaluation</center>
                                     </th>
                                 </tr>
                                 <!-- tr -->

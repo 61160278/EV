@@ -1576,7 +1576,7 @@ function createFROM_emp($EMP_ID){
 	$data['form'] = $this->mpf->get_all_by_key_by_year()->row();
 
 	if(sizeof($data['form']) != 0){
-
+		$data['status_btn'] = 1;
 		if($data['form']->ps_form_pe == "MBO"){
 			$this->load->model('M_evs_data_mbo','medm');
 			$this->medm->dtm_emp_id = $emp_id;

@@ -261,13 +261,13 @@ function exportfile() {
                                         // if
                                         else if($status_info[$index] == 0){?>
                                         <font color="Red"><b>
-                                                Not create
+                                                Not Create
                                             </b></font>
                                         <?php }
                                         // else if 
                                         else if($status_info[$index] == 2){?>
                                         <font color="Green"><b>
-                                                Created and Select approver
+                                                Created and Select Approver
                                             </b></font>
                                         <?php }
                                         // else if?>
