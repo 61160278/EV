@@ -146,13 +146,13 @@ $(document).ready(function() {
                             <thead>
                                 <tr>
                                     <th width="%">
-                                        <center>Late/ Return (Day)</center>
+                                        <center>Late/ Return (Days)</center>
                                     </th>
                                     <th width="%">
                                         <center>Absent (Days) </center>
                                     </th>
                                     <th width="%">
-                                        <center>Sick (Day)</center>
+                                        <center>Sick (Days)</center>
                                     </th>
                                     <th width="%">
                                         <center>Business (Days)</center>
@@ -167,16 +167,16 @@ $(document).ready(function() {
                                         <center>First Aid (Days)</center>
                                     </th>
                                     <th width="%">
-                                        <center>Maternity (Day)</center>
+                                        <center>Maternity (Days)</center>
                                     </th>
                                     <th width="%">
-                                        <center>Military (Day)</center>
+                                        <center>Military (Days)</center>
                                     </th>
                                     <th width="%">
                                         <center>Attendance(%)</center>
                                     </th>
                                     <th width="%">
-                                        <center>Special pregnant (Day)</center>
+                                        <center>Special pregnant (Days)</center>
                                     </th>
                                     <th width="%">
                                         <center>Attendance who take special leave in performance avalution cycle (%)</center>

@@ -271,7 +271,7 @@ function exportfile() {
                     <div class="row">
                         <div class="col-sm-6">
                             <?php if($_SESSION['UsRole'] == 3){ ?>
-                            <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_status_mbo">
+                            <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_list_of_associate_for_create_MBO">
                                 <button class="btn btn-inverse">BACK</button>
                             </a>
                             <?php }
