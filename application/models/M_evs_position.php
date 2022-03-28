@@ -165,6 +165,29 @@ class M_evs_position extends Da_evs_position {
 		$query = $this->db->query($sql);
 		return $query;
 	}
+	/*
+	* get_pos_com_dep_posiion
+	* Get company position department from database
+	* @input  
+	* @output company
+	* @author Piyasak Srijan
+	* @Create Date 2563-04-21
+	*/	
+
+	function get_pos_com_dep_posiion_dot_gorup_by($sql_data){	
+		$sql = " SELECT * 
+		FROM employee 
+		LEFT JOIN position ON employee.Position_ID = position.Position_ID 
+		LEFT JOIN master_mapping AS DV ON Sectioncode_ID = DV.Division_id 
+		LEFT JOIN master_mapping AS DM ON Sectioncode_ID = DM.Department_id 
+		LEFT JOIN master_mapping AS SI ON Sectioncode_ID = SI.Section_id 
+		LEFT JOIN master_mapping AS SB ON Sectioncode_ID = SB.SubSection_id 
+		LEFT JOIN master_mapping AS GI ON Sectioncode_ID = GI.Group_id 
+		LEFT JOIN master_mapping AS LI ON Sectioncode_ID = LI.Line_id 
+		WHERE ".$sql_data."";
+		$query = $this->db->query($sql);
+		return $query;
+	}
 
 	
 

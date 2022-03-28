@@ -158,7 +158,7 @@ class Evs_quota extends MainController_avenxo {
 		   AND  (DV.Department_id = "'.$dep_sel.'" or DM.Department_id = "'.$dep_sel.'" or SI.Department_id = "'.$dep_sel.'" 
 		   or SB.Department_id = "'.$dep_sel.'" or GI.Department_id = "'.$dep_sel.'" 
 		   or LI.Department_id = "'.$dep_sel.'") and position.Position_ID = "'.$pos_id.'"';
-		   $data['data_Plan']  = sizeof( $this->mpos->get_pos_com_dep_posiion($sql_data)->result());
+		   $data['data_Plan']  = sizeof( $this->mpos->get_pos_com_dep_posiion_dot_gorup_by($sql_data)->result());
 
 		   $this->output('/consent/ev_quota/v_show_hr_report_curve',$data);
 		

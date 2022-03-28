@@ -40,13 +40,14 @@ $(document).ready(function() {
                 $('#file').val('');
                 console.log(data);
 
-                $("#success").show();
+                // $("#success").show();
+                window.location.href =
+            "<?php echo base_url();?>/ev_form_HR/Evs_form_HR/grade_auto";
             }
             // success
         })
         // ajax
-        // window.location.href =
-        //     "<?php echo base_url();?>/ev_form_HR/Evs_form_HR/grade_auto";
+        
     });
     // onsubmit
 
