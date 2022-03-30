@@ -559,13 +559,44 @@ function get_search_data(){
 	$pos_lv_select = $this->input->post("pos_lv_select");
 	$pos_select = $this->input->post("pos_select");
 	
-		$this->load->model('M_evs_position','mpos');	
-				$sql_data =  
+		$this->load->model('M_evs_position','mpos');
+		// if($com_select != "0" && $dep_sel == "0" && $pos_lv_select == "0" && $pos_select == "0" ){
+		// 	$sql_data =  
+		// 		'(DV.Company_id = "'.$com_select.'" or DM.Company_id = "'.$com_select.'" or SI.Company_id = "'.$com_select.'" 
+		// 		or SB.Company_id = "'.$com_select.'" or GI.Company_id = "'.$com_select.'" or LI.Company_id = "'.$com_select.'") And position.Position_ID IS NOT NULL';
+		// }
+		if($com_select != "0" && $dep_sel != "0" && $pos_lv_select == "0" && $pos_select == "0" ){
+			$sql_data =  
 				'(DV.Company_id = "'.$com_select.'" or DM.Company_id = "'.$com_select.'" or SI.Company_id = "'.$com_select.'" 
 				or SB.Company_id = "'.$com_select.'" or GI.Company_id = "'.$com_select.'" or LI.Company_id = "'.$com_select.'") 
 				AND  (DV.Department_id = "'.$dep_sel.'" or DM.Department_id = "'.$dep_sel.'" or SI.Department_id = "'.$dep_sel.'" 
 				or SB.Department_id = "'.$dep_sel.'" or GI.Department_id = "'.$dep_sel.'" 
-				or LI.Department_id = "'.$dep_sel.'") and position.position_level_id = "'.$pos_lv_select.'" and position.Position_ID = "'.$pos_select.'"'; 
+				or LI.Department_id = "'.$dep_sel.'") And position.Position_ID IS NOT NULL';
+		}
+		if($com_select != "0" && $dep_sel != "0" && $pos_lv_select != "0" && $pos_select == "0" ){
+			$sql_data =  
+				'(DV.Company_id = "'.$com_select.'" or DM.Company_id = "'.$com_select.'" or SI.Company_id = "'.$com_select.'" 
+				or SB.Company_id = "'.$com_select.'" or GI.Company_id = "'.$com_select.'" or LI.Company_id = "'.$com_select.'") 
+				AND  (DV.Department_id = "'.$dep_sel.'" or DM.Department_id = "'.$dep_sel.'" or SI.Department_id = "'.$dep_sel.'" 
+				or SB.Department_id = "'.$dep_sel.'" or GI.Department_id = "'.$dep_sel.'" 
+				or LI.Department_id = "'.$dep_sel.'") and position.position_level_id = "'.$pos_lv_select.'"  And position.Position_ID IS NOT NULL';
+		}
+		if($com_select != "0" && $dep_sel != "0" && $pos_lv_select != "0" && $pos_select != "0" ){
+			$sql_data =  
+				'(DV.Company_id = "'.$com_select.'" or DM.Company_id = "'.$com_select.'" or SI.Company_id = "'.$com_select.'" 
+				or SB.Company_id = "'.$com_select.'" or GI.Company_id = "'.$com_select.'" or LI.Company_id = "'.$com_select.'") 
+				AND  (DV.Department_id = "'.$dep_sel.'" or DM.Department_id = "'.$dep_sel.'" or SI.Department_id = "'.$dep_sel.'" 
+				or SB.Department_id = "'.$dep_sel.'" or GI.Department_id = "'.$dep_sel.'" 
+				or LI.Department_id = "'.$dep_sel.'") and position.position_level_id = "'.$pos_lv_select.'" and position.Position_ID = "'.$pos_select.'"  And position.Position_ID IS NOT NULL';
+		}
+		
+
+				// $sql_data =  
+				// '(DV.Company_id = "'.$com_select.'" or DM.Company_id = "'.$com_select.'" or SI.Company_id = "'.$com_select.'" 
+				// or SB.Company_id = "'.$com_select.'" or GI.Company_id = "'.$com_select.'" or LI.Company_id = "'.$com_select.'") 
+				// AND  (DV.Department_id = "'.$dep_sel.'" or DM.Department_id = "'.$dep_sel.'" or SI.Department_id = "'.$dep_sel.'" 
+				// or SB.Department_id = "'.$dep_sel.'" or GI.Department_id = "'.$dep_sel.'" 
+				// or LI.Department_id = "'.$dep_sel.'") and position.position_level_id = "'.$pos_lv_select.'" and position.Position_ID = "'.$pos_select.'"'; 
 		
 		$data = $this->mpos->get_pos_com_dep($sql_data)->result();
 		echo json_encode($data);

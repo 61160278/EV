@@ -144,7 +144,7 @@ function search_data() {
                     table_data += com_select
                     table_data += '</td>'
                     table_data += '<td>'
-                    table_data += dep_select
+                    table_data += row.Department
                     table_data += '</td>'
                     table_data += '<td>'
 
@@ -153,7 +153,7 @@ function search_data() {
                     <?php foreach($manage_qut_data as $value){ ?>
                     table_data += '<td>'
                     table_data +=
-                        '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i + ',' + "'"+com_select+"'" + ',' + "'"+dep_select+"'" +
+                        '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i + ',' + "'"+com_select+"'" + ',' + "'"+row.Department_id+"'" +
                         ')" ><button type="submit" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></button></a>'
                     table_data += '<input type="text" id="pos_<?php echo $value->qut_id?>' + i +
                         '" value="' + row.Position_ID + '" hidden>'
@@ -300,13 +300,13 @@ h4 {
                 </label>
                 <!-- col-3  -->
                 <label class="col-md-3">
-                <select id="dep_select" name="example_length" class="form-control" >
+                <select id="dep_select" name="example_length" class="form-control" onclick="search_data();" >
                         <option value="0">Department</option>
                     </select>
                 </label>
                 <!-- col-3  -->
                 <label class="col-md-3">
-                <select name="example_length" class="form-control" id="pos_lv_select" onclick="get_position()">
+                <select name="example_length" class="form-control" id="pos_lv_select" onclick="get_position(); search_data();">
                         <option value="0">Position Level</option>
                         <?php foreach($manage_qut_data as $value){ ?>
                         <?php  if ($value->qut_pos == 'Operational Associate above') {?>

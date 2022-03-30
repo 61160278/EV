@@ -32,7 +32,7 @@ function get_position() {
             // console.log(data)
             var table_data = ""
 
-            table_data += '<option value="">Position</option>'
+            table_data += '<option value="0">Position</option>'
 
             data.forEach((row, i) => {
                 if (qut_pos == 'Operational Associate above') {
@@ -74,7 +74,7 @@ function get_department() {
             data = JSON.parse(data)
             // console.log(data)
             var table_data = ""
-            table_data += '<option value="">Depamant</option>'
+            table_data += '<option value="0">Depamant</option>'
 
 
             data.forEach((row, i) => {
@@ -142,7 +142,7 @@ function search_data() {
                     table_data += com_select
                     table_data += '</td>'
                     table_data += '<td>'
-                    table_data += dep_select
+                    table_data += row.Department
                     table_data += '</td>'
                     table_data += '<td>'
 
@@ -151,7 +151,7 @@ function search_data() {
                     <?php foreach($manage_qut_data as $value){ ?>
                     table_data += '<td>'
                     table_data +=
-                        '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i + ',' + "'"+com_select+"'" + ',' + "'"+dep_select+"'" +
+                        '<a onclick ="report_data(<?php echo $value->qut_id?>,' + i + ',' + "'"+com_select+"'" + ',' + "'"+row.Department_id+"'" +
                         ')" ><button type="submit" class="btn btn-social btn-facebook"><i class="fa fa-file-text"></i></button></a>'
                     table_data += '<input type="text" id="pos_<?php echo $value->qut_id?>' + i +
                         '" value="' + row.Position_ID + '" hidden>'
@@ -289,8 +289,8 @@ h4 {
 
             <div class="row">
                 <label class="col-md-3">
-                    <select id="com_select" name="example_length" class="form-control" onclick="get_department(); search_data();">
-                        <option value="">Company</option>
+                    <select id="com_select" name="example_length" class="form-control" onclick="get_department();">
+                        <option value="0">Company</option>
                         <!-- start foreach -->
                         <?php foreach($com_data->result() as $value){ ?>
                         <option value="<?php echo $value->Company_id;?>">
@@ -303,13 +303,13 @@ h4 {
                 <!-- col-3  -->
                 <label class="col-md-3">
                 <select id="dep_select" name="example_length" class="form-control" onclick="search_data();" >
-                        <option value="">Department</option>
+                        <option value="0">Department</option>
                     </select>
                 </label>
                 <!-- col-3  -->
                 <label class="col-md-3">
                 <select name="example_length" class="form-control" id="pos_lv_select" onclick="get_position(); search_data();">
-                        <option value="">Position Level</option>
+                        <option value="0">Position Level</option>
                         <?php foreach($manage_qut_data as $value){ ?>
                         <?php  if ($value->qut_pos == 'Operational Associate above') {?>
                         <!-- start foreach -->
@@ -347,7 +347,7 @@ h4 {
                 <!-- col-3  -->
                 <label class="col-md-3">
                 <select name="example_length" class="form-control" id="pos_select" onclick="search_data()">
-                        <option value="">Position</option>
+                        <option value="0">Position</option>
                 </select>
                 </label>
                 <!-- col-3  -->

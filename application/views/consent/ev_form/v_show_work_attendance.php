@@ -179,13 +179,15 @@ $(document).ready(function() {
                                         <center>Special pregnant (Days)</center>
                                     </th>
                                     <th width="%">
-                                        <center>Attendance who take special leave in performance avalution cycle (%)</center>
+                                        <center>Attendance who take special leave in performance avalution cycle (%)
+                                        </center>
                                     </th>
                                 </tr>
                             </thead>
                             <!-- thead -->
 
                             <tbody id="">
+                                <?php if(sizeof($data_Atd) != 0){ ?>
                                 <tr>
                                     <td>
                                         <center>
@@ -248,6 +250,15 @@ $(document).ready(function() {
                                         </center>
                                     </td>
                                 </tr>
+                                <?php }
+                                    else{
+                                ?>
+                                <tr>
+                                    <td colspan="12" align = "center">
+                                        There is no data in the system.
+                                    </td>
+                                </tr>
+                                <?php } ?>
                             </tbody>
                             <!-- tbody  -->
                         </table>
@@ -257,17 +268,18 @@ $(document).ready(function() {
                 <hr>
                 <div class="row">
                     <div class="col-md-12">
-                    <?php if($_SESSION['UsRole'] == 3){ ?>
-                            <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_work_attendance_employee/<?php echo $dept_info->Department_id; ?>">
-                                <button class="btn btn-inverse">BACK</button>
-                            </a>
-                            <?php }
+                        <?php if($_SESSION['UsRole'] == 3){ ?>
+                        <a
+                            href="<?php echo base_url() ?>ev_report/Evs_Report/report_work_attendance_employee/<?php echo $dept_info->Department_id; ?>">
+                            <button class="btn btn-inverse">BACK</button>
+                        </a>
+                        <?php }
                             // if 
                             else if($_SESSION['UsRole'] == 2){ ?>
-                            <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_work_attendance_employee_group">
-                                <button class="btn btn-inverse">BACK</button>
-                            </a>
-                            <?php } ?>
+                        <a href="<?php echo base_url() ?>ev_report/Evs_Report/report_work_attendance_employee_group">
+                            <button class="btn btn-inverse">BACK</button>
+                        </a>
+                        <?php } ?>
                         <!-- cancel to back to main  -->
                     </div>
                     <!-- col-md-6 -->

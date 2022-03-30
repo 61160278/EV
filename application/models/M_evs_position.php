@@ -128,7 +128,23 @@ class M_evs_position extends Da_evs_position {
 	*/	
 
 	function get_pos_com_dep($sql_data){	
-		$sql = " SELECT * 
+		$sql = " SELECT position.Position_ID,position.Position_name,
+		CASE WHEN IFNULL(DV.Department_id,'0') != '0' THEN DV.Department
+		WHEN IFNULL(DM.Department_id,'0') != '0' THEN DM.Department
+		WHEN IFNULL(SI.Department_id,'0') != '0' THEN SI.Department
+		WHEN IFNULL(SB.Department_id,'0') != '0' THEN SB.Department
+		WHEN IFNULL(GI.Department_id,'0') != '0' THEN GI.Department
+		WHEN IFNULL(LI.Department_id,'0') != '0' THEN LI.Department
+		ELSE 'not have'
+		END AS Department,
+CASE WHEN IFNULL(DV.Department_id,'0') != '0' THEN DV.Department_id
+WHEN IFNULL(DM.Department_id,'0') != '0' THEN DM.Department_id
+WHEN IFNULL(SI.Department_id,'0') != '0' THEN SI.Department_id
+WHEN IFNULL(SB.Department_id,'0') != '0' THEN SB.Department_id
+WHEN IFNULL(GI.Department_id,'0') != '0' THEN GI.Department_id
+WHEN IFNULL(LI.Department_id,'0') != '0' THEN LI.Department_id
+ELSE 'not have'
+END AS Department_id
 		FROM employee 
 		LEFT JOIN position ON employee.Position_ID = position.Position_ID 
 		LEFT JOIN master_mapping AS DV ON Sectioncode_ID = DV.Division_id 
@@ -152,7 +168,23 @@ class M_evs_position extends Da_evs_position {
 	*/	
 
 	function get_pos_com_dep_posiion($sql_data){	
-		$sql = " SELECT * 
+		$sql = "SELECT position.Position_ID,position.Position_name,
+		CASE WHEN IFNULL(DV.Department_id,'0') != '0' THEN DV.Department
+		WHEN IFNULL(DM.Department_id,'0') != '0' THEN DM.Department
+		WHEN IFNULL(SI.Department_id,'0') != '0' THEN SI.Department
+		WHEN IFNULL(SB.Department_id,'0') != '0' THEN SB.Department
+		WHEN IFNULL(GI.Department_id,'0') != '0' THEN GI.Department
+		WHEN IFNULL(LI.Department_id,'0') != '0' THEN LI.Department
+		ELSE 'not have'
+		END AS Department,
+CASE WHEN IFNULL(DV.Department_id,'0') != '0' THEN DV.Department_id
+WHEN IFNULL(DM.Department_id,'0') != '0' THEN DM.Department_id
+WHEN IFNULL(SI.Department_id,'0') != '0' THEN SI.Department_id
+WHEN IFNULL(SB.Department_id,'0') != '0' THEN SB.Department_id
+WHEN IFNULL(GI.Department_id,'0') != '0' THEN GI.Department_id
+WHEN IFNULL(LI.Department_id,'0') != '0' THEN LI.Department_id
+ELSE 'not have'
+END AS Department_id
 		FROM employee 
 		LEFT JOIN position ON employee.Position_ID = position.Position_ID 
 		LEFT JOIN master_mapping AS DV ON Sectioncode_ID = DV.Division_id 
@@ -175,7 +207,23 @@ class M_evs_position extends Da_evs_position {
 	*/	
 
 	function get_pos_com_dep_posiion_dot_gorup_by($sql_data){	
-		$sql = " SELECT * 
+		$sql = " SELECT position.Position_ID,position.Position_name,
+		CASE WHEN IFNULL(DV.Department_id,'0') != '0' THEN DV.Department
+		WHEN IFNULL(DM.Department_id,'0') != '0' THEN DM.Department
+		WHEN IFNULL(SI.Department_id,'0') != '0' THEN SI.Department
+		WHEN IFNULL(SB.Department_id,'0') != '0' THEN SB.Department
+		WHEN IFNULL(GI.Department_id,'0') != '0' THEN GI.Department
+		WHEN IFNULL(LI.Department_id,'0') != '0' THEN LI.Department
+		ELSE 'not have'
+		END AS Department,
+CASE WHEN IFNULL(DV.Department_id,'0') != '0' THEN DV.Department_id
+WHEN IFNULL(DM.Department_id,'0') != '0' THEN DM.Department_id
+WHEN IFNULL(SI.Department_id,'0') != '0' THEN SI.Department_id
+WHEN IFNULL(SB.Department_id,'0') != '0' THEN SB.Department_id
+WHEN IFNULL(GI.Department_id,'0') != '0' THEN GI.Department_id
+WHEN IFNULL(LI.Department_id,'0') != '0' THEN LI.Department_id
+ELSE 'not have'
+END AS Department_id
 		FROM employee 
 		LEFT JOIN position ON employee.Position_ID = position.Position_ID 
 		LEFT JOIN master_mapping AS DV ON Sectioncode_ID = DV.Division_id 
@@ -184,7 +232,7 @@ class M_evs_position extends Da_evs_position {
 		LEFT JOIN master_mapping AS SB ON Sectioncode_ID = SB.SubSection_id 
 		LEFT JOIN master_mapping AS GI ON Sectioncode_ID = GI.Group_id 
 		LEFT JOIN master_mapping AS LI ON Sectioncode_ID = LI.Line_id 
-		WHERE ".$sql_data."";
+		WHERE ".$sql_data." GROUP by employee.Emp_ID";
 		$query = $this->db->query($sql);
 		return $query;
 	}
