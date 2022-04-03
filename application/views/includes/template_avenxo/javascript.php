@@ -101,6 +101,9 @@
 
 <!-- Load datatable scripts-->
 <script type="text/javascript" src="<?php echo base_url();?>DataTables/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
 <!-- End datatablel scripts-->
 
 <!-- End loading page level scripts-->
@@ -108,4 +111,3 @@
 <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
 <script src="https://unpkg.com/file-saver@1.3.3/FileSaver.js"></script>
 <script lang="javascript" src="dist/xlsx.bundle.js"></script>
-<script src="<?php echo base_url(); ?>argon/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>

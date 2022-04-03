@@ -38,7 +38,7 @@ tbody {
 
 <script>
 $(document).ready(function() {
-    // $('#export_for_evaluation').DataTable();
+    $('#show_export_for_evaluation').DataTable();
 
 });
 // document ready
@@ -57,39 +57,17 @@ function exportfile() {
         Sheets: {}
     };
 
-    var objectMaxLength = [3, 10, 30, 15, 25, 25, 15, 15, 20];
+    var objectMaxLength = [4, 10, 30, 15, 25, 25, 15, 15, 20];
 
-    var wscols = [{
-            width: objectMaxLength[0],
-        },
-        {
-            width: objectMaxLength[1]
-        },
-        {
-            width: objectMaxLength[2]
-        }, //...
-        {
-            width: objectMaxLength[3]
-        },
-        {
-            width: objectMaxLength[4]
-        },
-        {
-            width: objectMaxLength[5]
-        },
-        {
-            width: objectMaxLength[6]
-        },
-        {
-            width: objectMaxLength[7]
-        },
-        {
-            width: objectMaxLength[8]
-        },
-        {
-            width: objectMaxLength[9]
-        }
-    ];
+    var wscols = [];
+
+    for (i = 0; i < objectMaxLength.length; i++) {
+        temp = {
+            width: objectMaxLength[i]
+        };
+        wscols.push(temp);
+    }
+    // for
 
     var ws9 = XLSX.utils.table_to_sheet(document.getElementById('export_for_evaluation'), {
         raw: true
@@ -158,7 +136,7 @@ function exportfile() {
                 <div class="row">
                     <div class="col-md-12">
                         <?php $name = $year_info->pay_year." Status evaluation : ". $dep ?>
-                        <table class="table table-striped table-bordered" id="export_for_evaluation" width="100%"
+                        <table class="table table-striped table-bordered" id="show_export_for_evaluation" width="100%"
                             style="width: 100%;">
                             <thead>
                                 <tr>
@@ -300,6 +278,141 @@ function exportfile() {
                 </div>
                 <!-- row  -->
 
+                <table class="table"  hidden="hidden" id="export_for_evaluation" width="100%"
+                            style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th colspan="9">
+                                        <h2><b><?php echo $com_info;?></b></h2>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="9">
+                                        <h3>
+                                            <b id="name_file">
+                                                <?php echo $name; ?>
+                                            </b>
+                                        </h3>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <center>No.</center>
+                                    </th>
+                                    <th>
+                                        <center>Emp No.</center>
+
+                                    </th>
+                                    <th>
+                                        <center>Name - Surname</center>
+                                    </th>
+                                    <th>
+                                        <center>Position</center>
+                                    </th>
+                                    <th>
+                                        <center>Department</center>
+                                    </th>
+                                    <th>
+                                        <center>Section</center>
+                                    </th>
+                                    <th>
+                                        <center>Sub Section</center>
+                                    </th>
+                                    <th>
+                                        <center>Section code</center>
+                                    </th>
+                                    <th>
+                                        <center>Status Evaluation</center>
+                                    </th>
+                                </tr>
+                                <!-- tr -->
+                            </thead>
+                            <!-- thead -->
+                            <tbody>
+                                <?php 
+                                // print_r($grade_info);
+                                
+                                if(sizeof($emp_info) != 0){ 
+                                    foreach($emp_info as $index => $row){ ?>
+                                <tr>
+                                    <td><?php echo $index+1; ?></td>
+                                    <td><?php echo $row->Emp_ID;?></td>
+                                    <td><?php echo $row->Empname_engTitle." ".$row->Empname_eng." ".$row->Empsurname_eng ;?>
+                                    </td>
+                                    <td><?php echo $row->Position_name;?></td>
+                                    <td><?php echo $dep_info[$index]->Department;?></td>
+                                    <td>
+                                        <?php if($dep_info[$index]->Section != ""){
+                                            echo $dep_info[$index]->Section;
+                                        }
+                                        // if
+                                        else {
+                                            echo "-";
+                                        }
+                                        // else 
+                                        
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php if($dep_info[$index]->SubSection != ""){
+                                            echo $dep_info[$index]->SubSection;
+                                        }
+                                        // if
+                                        else {
+                                            echo "-";
+                                        }
+                                        // else 
+                                        
+                                        ?>
+                                    </td>
+                                    <td><?php echo $row->Sectioncode_ID; ?></td>
+                                    <td>
+                                        <?php if(sizeof($grade_info) != 0){
+                                            if($grade_info[$index] == "5"){
+                                                echo "<font color='green'>Evaluated</font>";
+                                            }
+                                            // if 
+                                            else if($grade_info[$index] == "4"){
+                                                echo "<font color='blue'>Wait HR</font>";
+                                            }
+                                            // else 
+                                            else if($grade_info[$index] == "3"){
+                                                echo "<font color='blue'>Wait Head dept.</font>";
+                                            }
+                                            // else 
+                                            else if($grade_info[$index] == "2"){
+                                                echo "<font color='blue'>Wait Approver 2</font>";
+                                            }
+                                            // else 
+                                            else if($grade_info[$index] == "1"){
+                                                echo "<font color='blue'>Wait Approver 1</font>";
+                                            }
+                                            // else 
+                                            else if($grade_info[$index] == "0"){
+                                                echo "<font color='red'>Wait create form</font>";
+                                            }
+                                            // else 
+                                            
+                                        }
+                                        // if
+                                        else{
+                                            echo "<font color='red'>Wait create form</font>";
+                                        }
+                                        // else 
+                                     ?>
+                                    </td>
+                                </tr>
+                                <?php
+                                    }
+                                    // foreach 
+                                }
+                                // if  ?>
+
+
+                            </tbody>
+                            <!-- tbody  -->
+                        </table>
+                        <!-- table for export -->
 
                 <div class="panel-footer">
                     <div class="row">

@@ -35,10 +35,10 @@ tbody {
 }
 </style>
 
-
+<!-- var table = $('#export_for_payroll').DataTable(); -->
 <script>
 $(document).ready(function() {
-
+    $('#show_export_for_payroll').DataTable();
 });
 // document ready
 
@@ -153,11 +153,12 @@ function exportfile() {
                     </div>
 
                 </div>
-                <!--div row for manage size of head panel -->
+                <!--div row -->
+
                 <div class="row">
                     <div class="col-md-12">
                         <?php $name = $year_info->pay_year." Salary Increment : ". $dep ?>
-                        <table class="table table-striped table-bordered" id="export_for_payroll" width="100%"
+                        <table class="table table-striped table-bordered display nowrap" id="show_export_for_payroll"
                             style="width: 100%;">
                             <thead>
                                 <tr>
@@ -283,6 +284,124 @@ function exportfile() {
                 </div>
                 <!-- row  -->
 
+                <table class="table" hidden="hidden" id="export_for_payroll" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th colspan="9">
+                                <h2><b><?php echo $com_info;?></b></h2>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colspan="9">
+                                <h3>
+                                    <b id="name_file">
+                                        <?php echo $name; ?>
+                                    </b>
+                                </h3>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <center>No.</center>
+                            </th>
+                            <th>
+                                <center>Emp No.</center>
+
+                            </th>
+                            <th>
+                                <center>Name - Surname</center>
+                            </th>
+                            <th>
+                                <center>Position</center>
+                            </th>
+                            <th>
+                                <center>Department</center>
+                            </th>
+                            <th>
+                                <center>Section</center>
+                            </th>
+                            <th>
+                                <center>Sub Section</center>
+                            </th>
+                            <th>
+                                <center>Section code</center>
+                            </th>
+                            <th>
+                                <center>Salary Increment</center>
+                            </th>
+                        </tr>
+                        <!-- tr -->
+                    </thead>
+                    <!-- thead -->
+                    <tbody>
+                        <?php 
+                                // print_r($dep_info);
+                                
+                                if(sizeof($emp_info) != 0){ 
+                                    foreach($emp_info as $index => $row){ ?>
+                        <tr>
+                            <td><?php echo $index+1; ?></td>
+                            <td><?php echo $row->Emp_ID;?></td>
+                            <td><?php echo $row->Empname_engTitle." ".$row->Empname_eng." ".$row->Empsurname_eng ;?>
+                            </td>
+                            <td><?php echo $row->Position_name;?></td>
+                            <td><?php echo $dep_info[$index]->Department;?></td>
+                            <td>
+                                <?php if($dep_info[$index]->Section != ""){
+                                            echo $dep_info[$index]->Section;
+                                        }
+                                        // if
+                                        else {
+                                            echo "-";
+                                        }
+                                        // else 
+                                        
+                                        ?>
+                            </td>
+                            <td>
+                                <?php if($dep_info[$index]->SubSection != ""){
+                                            echo $dep_info[$index]->SubSection;
+                                        }
+                                        // if
+                                        else {
+                                            echo "-";
+                                        }
+                                        // else 
+                                        
+                                        ?>
+                            </td>
+                            <td><?php echo $row->Sectioncode_ID; ?></td>
+                            <td>
+                                <?php if(sizeof($grade_info) != 0){
+                                            if($grade_info[$index] != "-"){
+                                                echo $grade_info[$index];
+                                            }
+                                            // if 
+                                            else{
+                                                echo "Wait approve !";
+                                            }
+                                            // else 
+                                            
+                                        }
+                                        // if
+                                        else{
+                                            echo "Wait approve !";
+                                        }
+                                        // else 
+                                     ?>
+                            </td>
+                        </tr>
+                        <?php
+                                    }
+                                    // foreach 
+                                }
+                                // if  ?>
+
+
+                    </tbody>
+                    <!-- tbody  -->
+                </table>
+                <!-- table export  -->
 
                 <div class="panel-footer">
                     <div class="row">

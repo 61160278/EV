@@ -38,7 +38,7 @@ tbody {
 
 <script>
 $(document).ready(function() {
-
+    $("#show_export_for_hisorygrade").DataTable();
 });
 // document ready
 
@@ -143,7 +143,7 @@ function exportfile() {
                 <div class="row">
                     <div class="col-md-12">
                         <?php $name = "History grade : ". $dep ?>
-                        <table class="table table-striped table-bordered" id="export_for_hisorygrade" width="100%"
+                        <table class="table table-striped table-bordered" id="show_export_for_hisorygrade" width="100%"
                             style="width: 100%;">
                             <thead>
                                 <tr>
@@ -275,6 +275,132 @@ function exportfile() {
                     <!-- col-12  -->
                 </div>
                 <!-- row  -->
+
+                <table class="table" hidden="hidden" id="export_for_hisorygrade" width="100%"
+                            style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th colspan="<?php echo (sizeof($all_year)+9); ?>">
+                                        <h2><b><?php echo $com_info;?></b></h2>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="<?php echo (sizeof($all_year)+9); ?>">
+                                        <h3>
+                                            <b id="name_file">
+                                                <?php echo $name; ?>
+                                            </b>
+                                        </h3>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <center>No.</center>
+                                    </th>
+                                    <th>
+                                        <center>Emp No.</center>
+
+                                    </th>
+                                    <th>
+                                        <center>Name - Surname</center>
+                                    </th>
+                                    <th>
+                                        <center>Position</center>
+                                    </th>
+                                    <th>
+                                        <center>Department</center>
+                                    </th>
+                                    <th>
+                                        <center>Section</center>
+                                    </th>
+                                    <th>
+                                        <center>Sub Section</center>
+                                    </th>
+                                    <th>
+                                        <center>Section code</center>
+                                    </th>
+                                    <?php if(sizeof($all_year) != 0){
+                                    foreach($all_year as $index => $row_year){?>
+                                    <th>
+                                        <center><?php echo "Salary Increment FY " . $row_year->pay_year; ?></center>
+                                    </th>
+                                    <?php }
+                                    // foreach 
+                                    }
+                                    // if ?>
+                                </tr>
+                                <!-- tr -->
+                            </thead>
+                            <!-- thead -->
+                            <tbody>
+                                <?php 
+                                // print_r($grade_info);
+                                
+                                if(sizeof($emp_info) != 0){ 
+                                    foreach($emp_info as $index => $row){ ?>
+                                <tr>
+                                    <td><?php echo $index+1; ?></td>
+                                    <td><?php echo $row->Emp_ID;?></td>
+                                    <td><?php echo $row->Empname_engTitle." ".$row->Empname_eng." ".$row->Empsurname_eng ;?>
+                                    </td>
+                                    <td><?php echo $row->Position_name;?></td>
+                                    <td><?php echo $dep_info[$index]->Department;?></td>
+                                    <td>
+                                        <?php if($dep_info[$index]->Section != ""){
+                                            echo $dep_info[$index]->Section;
+                                        }
+                                        // if
+                                        else {
+                                            echo "-";
+                                        }
+                                        // else 
+                                        
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php if($dep_info[$index]->SubSection != ""){
+                                            echo $dep_info[$index]->SubSection;
+                                        }
+                                        // if
+                                        else {
+                                            echo "-";
+                                        }
+                                        // else 
+                                        
+                                        ?>
+                                    </td>
+                                    <td><?php echo $row->Sectioncode_ID; ?></td>
+
+                                    <?php if(sizeof($grade_info) != 0){ 
+                                        foreach($grade_info[$index] as $row_grade){?>
+                                    <td>
+                                        <?php if($row_grade != "-"){
+                                                echo $row_grade;
+                                            }
+                                            // if 
+                                            else{
+                                                echo "Wait approve !";
+                                            }
+                                            // else ?>
+                                    </td>
+                                    <?php }
+                                    // foreach 
+                                    }
+                                    // if 
+                                    ?>
+
+                                </tr>
+                                <?php
+                                    }
+                                    // foreach 
+                                }
+                                // if  ?>
+
+
+                            </tbody>
+                            <!-- tbody  -->
+                        </table>
+                        <!-- table -->
 
 
                 <div class="panel-footer">
