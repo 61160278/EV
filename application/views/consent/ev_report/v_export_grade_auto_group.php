@@ -38,7 +38,7 @@ tbody {
 
 <script>
 $(document).ready(function() {
-
+    $("#show_for_evaluation").DataTable();
 });
 // document ready
 
@@ -58,43 +58,15 @@ function exportfile() {
 
     var objectMaxLength = [3, 10, 30, 15, 25, 25, 15, 15, 20, 15, 15];
 
-    var wscols = [{
-            width: objectMaxLength[0],
-        },
-        {
-            width: objectMaxLength[1]
-        },
-        {
-            width: objectMaxLength[2]
-        }, //...
-        {
-            width: objectMaxLength[3]
-        },
-        {
-            width: objectMaxLength[4]
-        },
-        {
-            width: objectMaxLength[5]
-        },
-        {
-            width: objectMaxLength[6]
-        },
-        {
-            width: objectMaxLength[7]
-        },
-        {
-            width: objectMaxLength[8]
-        },
-        {
-            width: objectMaxLength[9]
-        },
-        {
-            width: objectMaxLength[10]
-        },
-        {
-            width: objectMaxLength[11]
-        }
-    ];
+    var wscols = [];
+
+    for (i = 0; i < objectMaxLength.length; i++) {
+        temp = {
+            width: objectMaxLength[i]
+        };
+        wscols.push(temp);
+    }
+    // for
 
     var ws9 = XLSX.utils.table_to_sheet(document.getElementById('export_for_evaluation'), {
         raw: true
@@ -163,8 +135,123 @@ function exportfile() {
                 <div class="row">
                     <div class="col-md-12">
                         <?php $name = $year_info->pay_year." Grade Auto : ". $dep ?>
-                        <table class="table table-striped table-bordered" id="export_for_evaluation" width="100%"
+                        <table class="table table-striped table-bordered" id="show_for_evaluation" width="100%"
                             style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th colspan="10">
+                                        <h2><b><?php echo $com_info;?></b></h2>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="10">
+                                        <h3>
+                                            <b id="name_file">
+                                                <?php echo $name; ?>
+                                            </b>
+                                        </h3>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <center>No.</center>
+                                    </th>
+                                    <th>
+                                        <center>Emp No.</center>
+
+                                    </th>
+                                    <th>
+                                        <center>Name - Surname</center>
+                                    </th>
+                                    <th>
+                                        <center>Position</center>
+                                    </th>
+                                    <th>
+                                        <center>Department</center>
+                                    </th>
+                                    <th>
+                                        <center>Section</center>
+                                    </th>
+                                    <th>
+                                        <center>Sub Section</center>
+                                    </th>
+                                    <th>
+                                        <center>Section code</center>
+                                    </th>
+                                    <th>
+                                        <center>Arade auto</center>
+                                    </th>
+                                    <th>
+                                        <center>Reasoning</center>
+                                    </th>
+                                </tr>
+                                <!-- tr -->
+                            </thead>
+                            <!-- thead -->
+                            <tbody>
+                                <?php 
+                                // print_r($dep_info);
+                                
+                                if(sizeof($emp_info) != 0){ 
+                                    foreach($emp_info as $index => $row){ ?>
+                                <tr>
+                                    <td><?php echo $index+1; ?></td>
+                                    <td><?php echo $row->Emp_ID;?></td>
+                                    <td><?php echo $row->Empname_engTitle." ".$row->Empname_eng." ".$row->Empsurname_eng ;?>
+                                    </td>
+                                    <td><?php echo $row->Position_name;?></td>
+                                    <td><?php echo $dep_info[$index]->Department;?></td>
+                                    <td>
+                                        <?php if($dep_info[$index]->Section != ""){
+                                            echo $dep_info[$index]->Section;
+                                        }
+                                        // if
+                                        else {
+                                            echo "-";
+                                        }
+                                        // else 
+                                        
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php if($dep_info[$index]->SubSection != ""){
+                                            echo $dep_info[$index]->SubSection;
+                                        }
+                                        // if
+                                        else {
+                                            echo "-";
+                                        }
+                                        // else 
+                                        
+                                        ?>
+                                    </td>
+                                    <td><?php echo $row->Sectioncode_ID; ?></td>
+                                    <td><?php echo $grade_info[$index];?></td>
+                                    <td><?php echo $grade_reasoning[$index];?></td>
+                                </tr>
+                                <?php
+                                    }
+                                    // foreach 
+                                }
+                                // if  ?>
+
+
+                            </tbody>
+                            <!-- tbody  -->
+                        </table>
+                        <!-- table -->
+                        <input type="text" id="dep_id" value="<?php echo $dep_id; ?>" hidden>
+                        <input type="text" id="pay_id" value="<?php echo $year_info->pay_id; ?>" hidden>
+                    </div>
+                    <!-- col-12  -->
+                </div>
+                <!-- row  -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <?php $name = $year_info->pay_year." Grade Auto : ". $dep ?>
+                        <table class="table table-striped table-bordered" id="export_for_evaluation" width="100%"
+                            style="width: 100%;" hidden="hidden">
                             <thead>
                                 <tr>
                                     <th colspan="10">

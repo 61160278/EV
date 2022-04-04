@@ -38,7 +38,7 @@ tbody {
 
 <script>
 $(document).ready(function() {
-
+    $("#show_Work_Attendance").DataTable();
 });
 // document ready
 
@@ -58,43 +58,13 @@ function exportfile() {
 
     var objectMaxLength = [3, 10, 30, 15, 25, 25, 15, 15, 20, 15, 15];
 
-    var wscols = [{
-            width: objectMaxLength[0],
-        },
-        {
-            width: objectMaxLength[1]
-        },
-        {
-            width: objectMaxLength[2]
-        }, //...
-        {
-            width: objectMaxLength[3]
-        },
-        {
-            width: objectMaxLength[4]
-        },
-        {
-            width: objectMaxLength[5]
-        },
-        {
-            width: objectMaxLength[6]
-        },
-        {
-            width: objectMaxLength[7]
-        },
-        {
-            width: objectMaxLength[8]
-        },
-        {
-            width: objectMaxLength[9]
-        },
-        {
-            width: objectMaxLength[10]
-        },
-        {
-            width: objectMaxLength[11]
-        }
-    ];
+    for (i = 0; i < objectMaxLength.length; i++) {
+        temp = {
+            width: objectMaxLength[i]
+        };
+        wscols.push(temp);
+    }
+    // for
 
     var ws9 = XLSX.utils.table_to_sheet(document.getElementById('export_for_evaluation'), {
         raw: true
@@ -159,7 +129,7 @@ function exportfile() {
                 <div class="row">
                     <div class="col-md-12">
                         <?php $name = $year_info->pay_year." Work Attendance : ". $dep ?>
-                        <table class="table table-striped table-bordered" id="export_work_attendance" width="100%"
+                        <table class="table table-striped table-bordered" id="show_Work_Attendance" width="100%"
                             style="width: 100%;">
                             <thead>
                                 <tr>
