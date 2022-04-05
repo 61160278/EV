@@ -158,7 +158,7 @@ function exportfile() {
                 <div class="row">
                     <div class="col-md-12">
                         <?php $name = $year_info->pay_year." Salary Increment : ". $dep ?>
-                        <table class="table table-striped table-bordered display nowrap" id="show_export_for_payroll"
+                        <table class="table table-striped table-bordered" id="show_export_for_payroll"
                             style="width: 100%;">
                             <thead>
                                 <tr>
