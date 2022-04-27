@@ -379,126 +379,14 @@ function createG_O() {
             "pos": check_pos
         },
         success: function(data) {
-            console.log("1111 - G&O");
-            // console.log(data);
-            // console.log(data.sfg_index_level);
-            level_row = parseInt(data.sfg_index_level);
-            ranges_row = parseInt(data.sfg_index_ranges);
+            console.log("1111");
+            console.log(data);
 
-            for (i = 0; i < level_row; i++) {
-                number++
-                data_row += '<tr>'
-                data_row += '<td><center>'
-                data_row += number
-                data_row += '</center></td>'
-                // index
-                data_row += '<td><center>'
-                data_row += '<input type="radio" id="type' + number + '" name="type' + number +
-                    '"  value="1">'
-                data_row += '<label>&nbsp;C</label>'
-                data_row += '<br>'
-                data_row += '<input type="radio" id="type' + number + '" name="type' + number +
-                    '" value="2">'
-                data_row += '<label>&nbsp;D</label>'
-                data_row += '</center></td>'
-                // type of G&O
-                data_row += '<td>'
-                data_row += '<select class="form-control" id="sdgs_sel' + number +
-                    '" onchange="clear_css_sel_G_O(' + number + ')">'
-                data_row += '<option value="0">---Select SDGs---</option>'
-                data_row += '</select>'
-                data_row += '</td>'
-                // sdgs 
-                data_row += '<td>'
-                data_row += '<input class="form-control" type="text" id="inp_item' + number +
-                    '" onkeyup="clear_css_inp_G_O(' + number + ')">'
-                data_row += '</td>'
-                // input
-                data_row += '<td>'
-                data_row += '<input class="form-control" type="number" id="weight' + number +
-                    '" onchange="check_weightG_O()" min="0" max="100">'
-                data_row += '</td>'
-                // Weight 
-                data_row += '<td>'
-                for (j = 0; j < 5; j++) {
-                    data_row += '<input class="form-control" type="text" id="possible' + number + j +
-                        '" placeholder="Level ' + (j + 1) + '" onkeyup="clear_css_inp_lev(' + number + ',' +
-                        j + ')">'
-                    data_row += '<hr>'
-                }
-                // for
-                data_row += '</td>'
-                data_row += '<td>'
-                data_row += '<input class="form-control" type="text" id="inp_self' + number +
-                    '" onkeyup="clear_css_inp_self(' + number + ')">'
-                data_row += '</td>'
-                data_row += '<td id="dis_color"></td>'
-                data_row += '</tr>'
-
-            }
-            // for
-
-            for (i = 0; i < ranges_row; i++) {
-                number++
-                data_row += '<tr>'
-                data_row += '<td><center>'
-                data_row += number
-                data_row += '</center></td>'
-                // index
-                data_row += '<td><center>'
-                data_row += '<input type="radio" id="type' + number + '" name="type' + number +
-                    '"  value="1">'
-                data_row += '<label>&nbsp;C</label>'
-                data_row += '<br>'
-                data_row += '<input type="radio" id="type' + number + '" name="type' + number +
-                    '" value="2">'
-                data_row += '<label>&nbsp;D</label>'
-                data_row += '</center></td>'
-                // type of G&O
-                data_row += '<td>'
-                data_row += '<select class="form-control" id="sdgs_sel' + number +
-                    '" onchange="clear_css_sel_G_O(' + number + ')">'
-                data_row += '<option value="0">---Select SDGs---</option>'
-                data_row += '</select>'
-                data_row += '</td>'
-                // sdgs 
-                data_row += '<td>'
-                data_row += '<input class="form-control" type="text" id="inp_item' + number +
-                    '" onkeyup="clear_css_inp_G_O(' + number + ')">'
-                data_row += '</td>'
-                // input
-                data_row += '<td>'
-                data_row += '<input class="form-control" type="number" id="weight' + number +
-                    '"  onchange="check_weightG_O()" min="0" max="100">'
-                data_row += '</td>'
-                // Weight 
-                data_row += '<td>'
-                data_row += '<input class="form-control" type="text" id="ranges_c' + number +
-                    '" placeholder="Challenges" onkeyup="clear_css_inp_rangC(' + number + ')">'
-                data_row += '<hr>'
-                data_row += '<input class="form-control" type="text" id="ranges_s' + number +
-                    '" placeholder="Standard" onkeyup="clear_css_inp_rangS(' + number + ')">'
-                data_row += '</td>'
-                data_row += '<td>'
-                data_row += '<input class="form-control" type="text" id="inp_self' + number +
-                    '" onkeyup="clear_css_inp_self(' + number + ')">'
-                data_row += '</td>'
-                data_row += '<td id="dis_color"></td>'
-                data_row += '</tr>'
-
-            }
-            // for
-
-            $("#level_row").val(level_row);
-            $("#row_indexG_O").val(number);
-            get_sdgs_mbo(number)
-            $("#G_O_Table").html(data_row)
-            $("#btn_saveG_O").attr("disabled", true);
 
         },
         // success
         error: function(data) {
-            console.log("9999 - G&O : error");
+            console.log("9999: error");
 
         }
         // error

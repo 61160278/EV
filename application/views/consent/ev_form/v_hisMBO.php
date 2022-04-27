@@ -520,31 +520,31 @@ function set_tap_his() {
                                                 $mbo_3 = "Unchecked";
                                                 $mbo_4 = "Unchecked";
                                                 $mbo_5 = "Unchecked";
-                                                if(sizeof($data_mbo) != 0){
+                                                // if(sizeof($data_mbo) != 0){
 
-                                                if($data_mbo[$index]->dmw_weight == 1){ 
-                                                    $mbo_1 = "checked";
-                                                }
-                                                // if 
-                                                else if($data_mbo[$index]->dmw_weight == 2){
-                                                    $mbo_2 = "checked";
-                                                }
-                                                // else if
-                                                else if($data_mbo[$index]->dmw_weight == 3){
-                                                    $mbo_3 = "checked";
-                                                }
-                                                // else if
-                                                else if($data_mbo[$index]->dmw_weight == 4){
-                                                    $mbo_4 = "checked";
-                                                }
-                                                // else if
-                                                else if($data_mbo[$index]->dmw_weight == 5){
-                                                    $mbo_5 = "checked";
-                                                }
-                                                // else if
+                                                // if($data_mbo[$index]->dmw_weight == 1){ 
+                                                //     $mbo_1 = "checked";
+                                                // }
+                                                // // if 
+                                                // else if($data_mbo[$index]->dmw_weight == 2){
+                                                //     $mbo_2 = "checked";
+                                                // }
+                                                // // else if
+                                                // else if($data_mbo[$index]->dmw_weight == 3){
+                                                //     $mbo_3 = "checked";
+                                                // }
+                                                // // else if
+                                                // else if($data_mbo[$index]->dmw_weight == 4){
+                                                //     $mbo_4 = "checked";
+                                                // }
+                                                // // else if
+                                                // else if($data_mbo[$index]->dmw_weight == 5){
+                                                //     $mbo_5 = "checked";
+                                                // }
+                                                // // else if
                                                 
-                                                }
-                                                // if
+                                                // }
+                                                // // if
                                                 ?>
 
                                                 <input type="radio" name="result<?php echo $index; ?>" value="1"
@@ -1269,29 +1269,29 @@ function set_tap_his() {
                                                 $acm_3 = "Unchecked";
                                                 $acm_4 = "Unchecked";
                                                 $acm_5 = "Unchecked";
-                                                if(sizeof($data_acm) != 0){
-                                                    if($data_acm[$count-1]->dta_weight == 1){ 
-                                                        $acm_1 = "checked";
-                                                    }
-                                                    // if 
-                                                    else if($data_acm[$count-1]->dta_weight == 2){
-                                                        $acm_2 = "checked";
-                                                    }
-                                                    // else if
-                                                    else if($data_acm[$count-1]->dta_weight == 3){
-                                                        $acm_3 = "checked";
-                                                    }
-                                                    // else if
-                                                    else if($data_acm[$count-1]->dta_weight == 4){
-                                                        $acm_4 = "checked";
-                                                    }
-                                                    // else if
-                                                    else if($data_acm[$count-1]->dta_weight == 5){
-                                                        $acm_5 = "checked";
-                                                    }
-                                                    // else if
-                                                }
-                                                // if
+                                                // if(sizeof($data_acm) != 0){
+                                                //     if($data_acm[$count-1]->dta_weight == 1){ 
+                                                //         $acm_1 = "checked";
+                                                //     }
+                                                //     // if 
+                                                //     else if($data_acm[$count-1]->dta_weight == 2){
+                                                //         $acm_2 = "checked";
+                                                //     }
+                                                //     // else if
+                                                //     else if($data_acm[$count-1]->dta_weight == 3){
+                                                //         $acm_3 = "checked";
+                                                //     }
+                                                //     // else if
+                                                //     else if($data_acm[$count-1]->dta_weight == 4){
+                                                //         $acm_4 = "checked";
+                                                //     }
+                                                //     // else if
+                                                //     else if($data_acm[$count-1]->dta_weight == 5){
+                                                //         $acm_5 = "checked";
+                                                //     }
+                                                //     // else if
+                                                // }
+                                                // // if
                                                 ?>
                                                 <input type="radio" name="result<?php echo $index; ?>" value="1"
                                                     Disabled <?php echo $acm_1; ?>>
